@@ -1,0 +1,186 @@
+   1              	 .cpu cortex-m0
+   2              	 .fpu softvfp
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,0
+  11              	 .eabi_attribute 18,4
+  12              	 .code 16
+  13              	 .file "capture_conf.c"
+  14              	 .text
+  15              	.Ltext0:
+  16              	 .cfi_sections .debug_frame
+  17              	 .global CAPTURE_RC_Steering_input
+  18              	 .section .rodata.CAPTURE_RC_Steering_input,"a",%progbits
+  19              	 .align 2
+  22              	CAPTURE_RC_Steering_input:
+  23 0000 00040440 	 .word 1074004992
+  24 0004 0A       	 .byte 10
+  25 0005 000000   	 .space 3
+  26              	 .global CAPTURE_RC_Steering_input_pin_config
+  27              	 .section .rodata.CAPTURE_RC_Steering_input_pin_config,"a",%progbits
+  28              	 .align 2
+  31              	CAPTURE_RC_Steering_input_pin_config:
+  32 0000 00000000 	 .space 8
+  32      00000000 
+  33              	 .global CAPTURE_RC_Steering_event0_config
+  34              	 .section .rodata.CAPTURE_RC_Steering_event0_config,"a",%progbits
+  35              	 .align 2
+  38              	CAPTURE_RC_Steering_event0_config:
+  39 0000 15       	 .byte 21
+  40 0001 01       	 .byte 1
+  41 0002 00       	 .byte 0
+  42 0003 00       	 .byte 0
+  43              	 .global CAPTURE_RC_Steering_event1_config
+  44              	 .section .rodata.CAPTURE_RC_Steering_event1_config,"a",%progbits
+  45              	 .align 2
+  48              	CAPTURE_RC_Steering_event1_config:
+  49 0000 15       	 .byte 21
+  50 0001 02       	 .byte 2
+  51 0002 00       	 .byte 0
+  52 0003 00       	 .byte 0
+  53              	 .global CAPTURE_RC_Steering_config
+  54              	 .section .rodata.CAPTURE_RC_Steering_config,"a",%progbits
+  55              	 .align 2
+  58              	CAPTURE_RC_Steering_config:
+  59 0000 60       	 .byte 96
+  60 0001 10       	 .byte 16
+  61 0002 01       	 .byte 1
+  62 0003 00       	 .space 1
+  63 0004 F0       	 .byte 240
+  64 0005 00       	 .byte 0
+  65 0006 0000     	 .space 2
+  66              	 .global CAPTURE_RC_Steering
+  67              	 .section .data.CAPTURE_RC_Steering,"aw",%progbits
+  68              	 .align 2
+  71              	CAPTURE_RC_Steering:
+  72 0000 28000000 	 .word 40
+  73 0004 80C3C901 	 .word 30000000
+  74 0008 00050000 	 .word 1280
+  75 000c 00000000 	 .word CAPTURE_RC_Steering_event0_config
+  76 0010 00000000 	 .word CAPTURE_RC_Steering_event1_config
+  77 0014 00000000 	 .word GLOBAL_CCU4_1
+  78 0018 00030448 	 .word 1208222464
+  79 001c 00000000 	 .word CAPTURE_RC_Steering_config
+  80 0020 00       	 .byte 0
+  81 0021 000000   	 .space 3
+  82 0024 00000000 	 .word CAPTURE_RC_Steering_input
+  83 0028 00000000 	 .word CAPTURE_RC_Steering_input_pin_config
+  84 002c 02       	 .byte 2
+  85 002d 00       	 .byte 0
+  86 002e 01       	 .byte 1
+  87 002f 00       	 .byte 0
+  88 0030 00       	 .byte 0
+  89 0031 00       	 .byte 0
+  90 0032 0000     	 .space 2
+  91              	 .global CAPTURE_RC_Speed_input
+  92              	 .section .rodata.CAPTURE_RC_Speed_input,"a",%progbits
+  93              	 .align 2
+  96              	CAPTURE_RC_Speed_input:
+  97 0000 00040440 	 .word 1074004992
+  98 0004 0B       	 .byte 11
+  99 0005 000000   	 .space 3
+ 100              	 .global CAPTURE_RC_Speed_input_pin_config
+ 101              	 .section .rodata.CAPTURE_RC_Speed_input_pin_config,"a",%progbits
+ 102              	 .align 2
+ 105              	CAPTURE_RC_Speed_input_pin_config:
+ 106 0000 00000000 	 .space 8
+ 106      00000000 
+ 107              	 .global CAPTURE_RC_Speed_event0_config
+ 108              	 .section .rodata.CAPTURE_RC_Speed_event0_config,"a",%progbits
+ 109              	 .align 2
+ 112              	CAPTURE_RC_Speed_event0_config:
+ 113 0000 15       	 .byte 21
+ 114 0001 01       	 .byte 1
+ 115 0002 00       	 .byte 0
+ 116 0003 00       	 .byte 0
+ 117              	 .global CAPTURE_RC_Speed_event1_config
+ 118              	 .section .rodata.CAPTURE_RC_Speed_event1_config,"a",%progbits
+ 119              	 .align 2
+ 122              	CAPTURE_RC_Speed_event1_config:
+ 123 0000 15       	 .byte 21
+ 124 0001 02       	 .byte 2
+ 125 0002 00       	 .byte 0
+ 126 0003 00       	 .byte 0
+ 127              	 .global CAPTURE_RC_Speed_config
+ 128              	 .section .rodata.CAPTURE_RC_Speed_config,"a",%progbits
+ 129              	 .align 2
+ 132              	CAPTURE_RC_Speed_config:
+ 133 0000 60       	 .byte 96
+ 134 0001 10       	 .byte 16
+ 135 0002 01       	 .byte 1
+ 136 0003 00       	 .space 1
+ 137 0004 F0       	 .byte 240
+ 138 0005 00       	 .byte 0
+ 139 0006 0000     	 .space 2
+ 140              	 .global CAPTURE_RC_Speed
+ 141              	 .section .data.CAPTURE_RC_Speed,"aw",%progbits
+ 142              	 .align 2
+ 145              	CAPTURE_RC_Speed:
+ 146 0000 28000000 	 .word 40
+ 147 0004 80C3C901 	 .word 30000000
+ 148 0008 00500000 	 .word 20480
+ 149 000c 00000000 	 .word CAPTURE_RC_Speed_event0_config
+ 150 0010 00000000 	 .word CAPTURE_RC_Speed_event1_config
+ 151 0014 00000000 	 .word GLOBAL_CCU4_1
+ 152 0018 00040448 	 .word 1208222720
+ 153 001c 00000000 	 .word CAPTURE_RC_Speed_config
+ 154 0020 00       	 .byte 0
+ 155 0021 000000   	 .space 3
+ 156 0024 00000000 	 .word CAPTURE_RC_Speed_input
+ 157 0028 00000000 	 .word CAPTURE_RC_Speed_input_pin_config
+ 158 002c 03       	 .byte 3
+ 159 002d 00       	 .byte 0
+ 160 002e 01       	 .byte 1
+ 161 002f 00       	 .byte 0
+ 162 0030 00       	 .byte 0
+ 163 0031 00       	 .byte 0
+ 164 0032 0000     	 .space 2
+ 165              	 .text
+ 166              	.Letext0:
+ 167              	 .file 1 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 168              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 169              	 .file 3 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 170              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_ccu4.h"
+ 171              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_scu.h"
+ 172              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
+ 173              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_gpio.h"
+ 174              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 175              	 .file 9 "../Dave/Generated/CAPTURE/capture.h"
+ 176              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 177              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 178              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CCU4/global_ccu4_extern.h"
+ 179              	 .file 13 "../Dave/Generated/CAPTURE/capture_conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 capture_conf.c
+    {standard input}:22     .rodata.CAPTURE_RC_Steering_input:00000000 CAPTURE_RC_Steering_input
+    {standard input}:19     .rodata.CAPTURE_RC_Steering_input:00000000 $d
+    {standard input}:31     .rodata.CAPTURE_RC_Steering_input_pin_config:00000000 CAPTURE_RC_Steering_input_pin_config
+    {standard input}:28     .rodata.CAPTURE_RC_Steering_input_pin_config:00000000 $d
+    {standard input}:38     .rodata.CAPTURE_RC_Steering_event0_config:00000000 CAPTURE_RC_Steering_event0_config
+    {standard input}:35     .rodata.CAPTURE_RC_Steering_event0_config:00000000 $d
+    {standard input}:48     .rodata.CAPTURE_RC_Steering_event1_config:00000000 CAPTURE_RC_Steering_event1_config
+    {standard input}:45     .rodata.CAPTURE_RC_Steering_event1_config:00000000 $d
+    {standard input}:58     .rodata.CAPTURE_RC_Steering_config:00000000 CAPTURE_RC_Steering_config
+    {standard input}:55     .rodata.CAPTURE_RC_Steering_config:00000000 $d
+    {standard input}:71     .data.CAPTURE_RC_Steering:00000000 CAPTURE_RC_Steering
+    {standard input}:68     .data.CAPTURE_RC_Steering:00000000 $d
+    {standard input}:96     .rodata.CAPTURE_RC_Speed_input:00000000 CAPTURE_RC_Speed_input
+    {standard input}:93     .rodata.CAPTURE_RC_Speed_input:00000000 $d
+    {standard input}:105    .rodata.CAPTURE_RC_Speed_input_pin_config:00000000 CAPTURE_RC_Speed_input_pin_config
+    {standard input}:102    .rodata.CAPTURE_RC_Speed_input_pin_config:00000000 $d
+    {standard input}:112    .rodata.CAPTURE_RC_Speed_event0_config:00000000 CAPTURE_RC_Speed_event0_config
+    {standard input}:109    .rodata.CAPTURE_RC_Speed_event0_config:00000000 $d
+    {standard input}:122    .rodata.CAPTURE_RC_Speed_event1_config:00000000 CAPTURE_RC_Speed_event1_config
+    {standard input}:119    .rodata.CAPTURE_RC_Speed_event1_config:00000000 $d
+    {standard input}:132    .rodata.CAPTURE_RC_Speed_config:00000000 CAPTURE_RC_Speed_config
+    {standard input}:129    .rodata.CAPTURE_RC_Speed_config:00000000 $d
+    {standard input}:145    .data.CAPTURE_RC_Speed:00000000 CAPTURE_RC_Speed
+    {standard input}:142    .data.CAPTURE_RC_Speed:00000000 $d
+
+UNDEFINED SYMBOLS
+GLOBAL_CCU4_1

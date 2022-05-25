@@ -1,0 +1,1173 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "bus_io.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .section .text.XMC_GPIO_SetOutputLevel,"ax",%progbits
+  20              	 .align 2
+  21              	 .thumb
+  22              	 .thumb_func
+  24              	XMC_GPIO_SetOutputLevel:
+  25              	.LFB136:
+  26              	 .file 1 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_gpio.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+   2:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @file xmc_gpio.h
+   3:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @date 2015-06-20
+   4:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   5:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @cond
+   6:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+   7:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMClib v2.1.20 - XMC Peripheral Driver Library 
+   8:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   9:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Copyright (c) 2015-2018, Infineon Technologies AG
+  10:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * All rights reserved.                        
+  11:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                             
+  12:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  13:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * following conditions are met:   
+  14:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                                                              
+  15:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Redistributions of source code must retain the above copyright notice, this list of conditions a
+  16:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * disclaimer.                        
+  17:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 
+  18:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Redistributions in binary form must reproduce the above copyright notice, this list of condition
+  19:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * disclaimer in the documentation and/or other materials provided with the distribution.          
+  20:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 
+  21:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Neither the name of the copyright holders nor the names of its contributors may be used to endor
+  22:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * products derived from this software without specific prior written permission.                  
+  23:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                                                              
+  24:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  25:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  26:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  27:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  28:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  29:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  30:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                            
+  31:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                                                              
+  32:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  33:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Infineon Technologies AG dave@infineon.com).                                                    
+  34:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  35:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  36:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Change History
+  37:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * --------------
+  38:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  39:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-02-20:
+  40:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Initial draft<br>
+  41:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Documentation improved <br>
+  42:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *      
+  43:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-06-20:
+  44:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Removed version macros and declaration of GetDriverVersion API
+  45:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  46:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @endcond
+  47:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  48:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  49:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  50:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #ifndef XMC_GPIO_H
+  51:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_H
+  52:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  53:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  54:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * HEADER FILES
+  55:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  56:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  57:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc_common.h"
+  58:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  59:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  60:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup XMClib XMC Peripheral Library
+  61:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @{
+  62:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  63:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  64:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  65:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup GPIO
+  66:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @brief General Purpose Input Output (GPIO) driver for the XMC microcontroller family.
+  67:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  68:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * GPIO driver provide a generic and very flexible software interface for all standard digital I/O 
+  69:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Each port slice has individual interfaces for the operation as General Purpose I/O and it furthe
+  70:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * connectivity to the on-chip periphery and the control for the pad characteristics. 
+  71:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  72:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * The driver is divided into Input and Output mode.
+  73:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  74:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Input mode features:
+  75:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Configuration structure XMC_GPIO_CONFIG_t and initialization function XMC_GPIO_Init()
+  76:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of weak pull-up or pull-down device. Configuration structure XMC_GPIO_MO
+  77:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+  78:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of input hysteresis. XMC_GPIO_SetInputHysteresis()
+  79:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  80:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  81:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 
+  82:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Output mode features:
+  83:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of push pull/open drain and Alternate output. Configuration structure XM
+  84:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+  85:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of pad driver strength. Configuration structure XMC_GPIO_OUTPUT_STRENGTH
+  86:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  87:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  88:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of initial output level. Configuration structure XMC_GPIO_OUTPUT_LEVEL_t
+  89:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  90:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *@{
+  91:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  92:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  
+  93:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  94:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * MACROS
+  95:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  96:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  97:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Pos PORT0_IOCR0_PC0_Pos
+  98:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Msk PORT0_IOCR0_PC0_Msk
+  99:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 100:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Size 				(8U)
+ 101:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 											
+ 102:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 103:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_OUTPUT_LEVEL(level) ((level == XMC_GPIO_OUTPUT_LEVEL_LOW) || \
+ 104:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                             (level == XMC_GPIO_OUTPUT_LEVEL_HIGH))
+ 105:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                             
+ 106:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_HWCTRL(hwctrl) ((hwctrl == XMC_GPIO_HWCTRL_DISABLED) || \
+ 107:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL1) || \
+ 108:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL2))                    
+ 109:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                             
+ 110:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 111:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * ENUMS
+ 112:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 113:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 114:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 115:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 116:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines output level of a pin. Use type \a XMC_GPIO_OUTPUT_LEVEL_t for this enum.
+ 117:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 118:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_OUTPUT_LEVEL
+ 119:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 120:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_LOW  = 0x10000U, /**<  Reset bit */
+ 121:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_HIGH = 0x1U, 	/**< Set bit  */
+ 122:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_OUTPUT_LEVEL_t;
+ 123:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 124:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 125:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines direct hardware control characteristics of the pin . Use type \a XMC_GPIO_HWCTRL_t for t
+ 126:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 127:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_HWCTRL
+ 128:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 129:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_DISABLED     = 0x0U, /**<  Software control only */
+ 130:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL1  = 0x1U, /**<  HWI0/HWO0 control path can override the software confi
+ 131:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL2  = 0x2U  /**<  HWI1/HWO1 control path can override the software confi
+ 132:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_HWCTRL_t;
+ 133:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 134:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 135:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * DEVICE FAMILY EXTENSIONS
+ 136:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 137:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 138:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  #if UC_FAMILY == XMC1
+ 139:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc1_gpio.h"
+ 140:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #elif UC_FAMILY == XMC4
+ 141:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc4_gpio.h"
+ 142:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #else
+ 143:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #error "xmc_gpio.h: family device not supported"
+ 144:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 145:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 146:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 147:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * API PROTOTYPES
+ 148:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 149:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 150:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #ifdef __cplusplus
+ 151:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** extern "C" {
+ 152:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 153:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 154:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 155:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 156:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	  Constant pointer pointing to GPIO port, to access port registers like Pn_OUT,Pn_O
+ 157:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	  Port pin number.
+ 158:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  config GPIO configuration data structure. Refer data structure @ref XMC_GPIO_CONFIG_t fo
+ 159:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 160:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 161:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 162:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 163:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+ 164:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,hysteresis, push pull
+ 165:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for a selected \a po
+ 166:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \a config provides selected I/O settings. It configures hardware registers Pn_IOCR,Pn_OUT, Pn_OM
+ 167:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 168:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+ 169:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,push pull /open drain
+ 170:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for selected \a port
+ 171:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * It configures hardware registers Pn_IOCR,Pn_OUT,Pn_OMR,Pn_PDISC and Pn_PDR.\n
+ 172:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 173:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 174:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 175:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 176:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 177:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 178:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * This API is called in definition of DAVE_init by code generation and therefore should not be exp
+ 179:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * for the normal operation. Use other APIs only after DAVE_init is called successfully (returns DA
+ 180:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 181:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 182:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 183:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 184:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  
+ 185:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_Init(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_CONFIG_t *const c
+ 186:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  
+ 187:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 188:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 189:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	Constant pointer pointing to GPIO port, to access hardware register Pn_IOCR.
+ 190:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 191:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  mode input / output functionality selection. Refer @ref XMC_GPIO_MODE_t for valid values
+ 192:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 193:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 194:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 195:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 196:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets digital input and output driver functionality and characteristics of a GPIO port pin. It co
+ 197:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * registers Pn_IOCR. \a mode is initially configured during initialization in XMC_GPIO_Init(). Cal
+ 198:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * the port direction functionality as needed later in the program.
+ 199:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 200:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 201:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 202:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 203:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 204:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 205:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_SetMode(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_MODE_t mode);
+ 206:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 207:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 208:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 209:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 210:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	 Constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 211:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	 Port pin number.
+ 212:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  level output level selection. Refer @ref XMC_GPIO_OUTPUT_LEVEL_t for valid values.
+ 213:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 214:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 215:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 216:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 217:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Set port pin output level to high or low.It configures hardware registers Pn_OMR.\a level is ini
+ 218:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * configured during initialization in XMC_GPIO_Init(). Call this API to alter output level as need
+ 219:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 220:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 221:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputHigh(), XMC_GPIO_SetOutputLow().
+ 222:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 223:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 224:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 225:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 226:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 227:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 228:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 229:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT_t *const port, const uint8_t pin, const 
+ 230:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  27              	 .loc 1 230 0
+  28              	 .cfi_startproc
+  29              	 
+  30              	 
+  31              	 
+  32 0000 80B4     	 push {r7}
+  33              	.LCFI0:
+  34              	 .cfi_def_cfa_offset 4
+  35              	 .cfi_offset 7,-4
+  36 0002 85B0     	 sub sp,sp,#20
+  37              	.LCFI1:
+  38              	 .cfi_def_cfa_offset 24
+  39 0004 00AF     	 add r7,sp,#0
+  40              	.LCFI2:
+  41              	 .cfi_def_cfa_register 7
+  42 0006 F860     	 str r0,[r7,#12]
+  43 0008 0B46     	 mov r3,r1
+  44 000a 7A60     	 str r2,[r7,#4]
+  45 000c FB72     	 strb r3,[r7,#11]
+ 231:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 232:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid output level", XMC_GPIO_CHECK_OUTPUT_LEVEL(level));
+ 233:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   
+ 234:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)level << pin;
+  46              	 .loc 1 234 0
+  47 000e FB7A     	 ldrb r3,[r7,#11]
+  48 0010 7A68     	 ldr r2,[r7,#4]
+  49 0012 9A40     	 lsls r2,r2,r3
+  50 0014 FB68     	 ldr r3,[r7,#12]
+  51 0016 5A60     	 str r2,[r3,#4]
+ 235:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  52              	 .loc 1 235 0
+  53 0018 1437     	 adds r7,r7,#20
+  54              	.LCFI3:
+  55              	 .cfi_def_cfa_offset 4
+  56 001a BD46     	 mov sp,r7
+  57              	.LCFI4:
+  58              	 .cfi_def_cfa_register 13
+  59              	 
+  60 001c 5DF8047B 	 ldr r7,[sp],#4
+  61              	.LCFI5:
+  62              	 .cfi_restore 7
+  63              	 .cfi_def_cfa_offset 0
+  64 0020 7047     	 bx lr
+  65              	 .cfi_endproc
+  66              	.LFE136:
+  68 0022 00BF     	 .section .text.XMC_GPIO_ToggleOutput,"ax",%progbits
+  69              	 .align 2
+  70              	 .thumb
+  71              	 .thumb_func
+  73              	XMC_GPIO_ToggleOutput:
+  74              	.LFB139:
+ 236:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 237:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 238:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 239:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 240:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 241:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 242:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 243:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 244:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 245:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  Sets port pin output to high. It configures hardware registers Pn_OMR.
+ 246:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 247:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  \par<b>Related APIs:</b><BR>
+ 248:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputLow()
+ 249:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 250:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 251:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().\n
+ 252:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 253:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 254:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 255:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 256:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputHigh(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 257:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 258:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputHigh: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 259:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 260:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)0x1U << pin;
+ 261:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 262:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 263:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 264:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 265:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 266:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	port pin number.
+ 267:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 268:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return  None
+ 269:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 270:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Description:</b><br>
+ 271:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets port pin output to low. It configures hardware registers Pn_OMR.\n
+ 272:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 273:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>>
+ 274:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMC_GPIO_SetOutputHigh()
+ 275:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 276:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Note:</b><br>
+ 277:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 278:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 279:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 280:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 281:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 282:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLow(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 283:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 284:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLow: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 285:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 286:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = 0x10000U << pin;
+ 287:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 288:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 289:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 290:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 291:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param port constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 292:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param pin  port pin number.
+ 293:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 294:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 295:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 296:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 297:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Configures port pin output to Toggle. It configures hardware registers Pn_OMR.
+ 298:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 299:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 300:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMC_GPIO_SetOutputHigh(), XMC_GPIO_SetOutputLow().
+ 301:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 302:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 303:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode(). Regis
+ 304:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * and does not contain any flip-flop. A read action delivers the value of 0.
+ 305:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 306:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 307:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 308:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_ToggleOutput(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 309:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  75              	 .loc 1 309 0
+  76              	 .cfi_startproc
+  77              	 
+  78              	 
+  79              	 
+  80 0000 80B4     	 push {r7}
+  81              	.LCFI6:
+  82              	 .cfi_def_cfa_offset 4
+  83              	 .cfi_offset 7,-4
+  84 0002 83B0     	 sub sp,sp,#12
+  85              	.LCFI7:
+  86              	 .cfi_def_cfa_offset 16
+  87 0004 00AF     	 add r7,sp,#0
+  88              	.LCFI8:
+  89              	 .cfi_def_cfa_register 7
+  90 0006 7860     	 str r0,[r7,#4]
+  91 0008 0B46     	 mov r3,r1
+  92 000a FB70     	 strb r3,[r7,#3]
+ 310:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_ToggleOutput: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 311:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 312:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = 0x10001U << pin;
+  93              	 .loc 1 312 0
+  94 000c FB78     	 ldrb r3,[r7,#3]
+  95 000e 4FF00112 	 mov r2,#65537
+  96 0012 9A40     	 lsls r2,r2,r3
+  97 0014 7B68     	 ldr r3,[r7,#4]
+  98 0016 5A60     	 str r2,[r3,#4]
+ 313:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  99              	 .loc 1 313 0
+ 100 0018 0C37     	 adds r7,r7,#12
+ 101              	.LCFI9:
+ 102              	 .cfi_def_cfa_offset 4
+ 103 001a BD46     	 mov sp,r7
+ 104              	.LCFI10:
+ 105              	 .cfi_def_cfa_register 13
+ 106              	 
+ 107 001c 5DF8047B 	 ldr r7,[sp],#4
+ 108              	.LCFI11:
+ 109              	 .cfi_restore 7
+ 110              	 .cfi_def_cfa_offset 0
+ 111 0020 7047     	 bx lr
+ 112              	 .cfi_endproc
+ 113              	.LFE139:
+ 115 0022 00BF     	 .section .text.XMC_GPIO_GetInput,"ax",%progbits
+ 116              	 .align 2
+ 117              	 .thumb
+ 118              	 .thumb_func
+ 120              	XMC_GPIO_GetInput:
+ 121              	.LFB140:
+ 314:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 315:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 316:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 317:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param port constant pointer pointing to GPIO port, to access hardware register Pn_IN.
+ 318:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param pin  Port pin number.
+ 319:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 320:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return uint32_t pin logic level status.
+ 321:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 322:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Description:</b><br>
+ 323:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Reads the Pn_IN register and returns the current logical value at the GPIO pin.
+ 324:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 325:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 326:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * None
+ 327:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 328:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 329:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to input mode using XMC_GPIO_SetMode().
+ 330:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 331:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 332:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 333:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE uint32_t XMC_GPIO_GetInput(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 334:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 122              	 .loc 1 334 0
+ 123              	 .cfi_startproc
+ 124              	 
+ 125              	 
+ 126              	 
+ 127 0000 80B4     	 push {r7}
+ 128              	.LCFI12:
+ 129              	 .cfi_def_cfa_offset 4
+ 130              	 .cfi_offset 7,-4
+ 131 0002 83B0     	 sub sp,sp,#12
+ 132              	.LCFI13:
+ 133              	 .cfi_def_cfa_offset 16
+ 134 0004 00AF     	 add r7,sp,#0
+ 135              	.LCFI14:
+ 136              	 .cfi_def_cfa_register 7
+ 137 0006 7860     	 str r0,[r7,#4]
+ 138 0008 0B46     	 mov r3,r1
+ 139 000a FB70     	 strb r3,[r7,#3]
+ 335:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_GetInput: Invalid port", XMC_GPIO_CHECK_PORT(port));
+ 336:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 337:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   return (((port->IN) >> pin) & 0x1U);
+ 140              	 .loc 1 337 0
+ 141 000c 7B68     	 ldr r3,[r7,#4]
+ 142 000e 5A6A     	 ldr r2,[r3,#36]
+ 143 0010 FB78     	 ldrb r3,[r7,#3]
+ 144 0012 22FA03F3 	 lsr r3,r2,r3
+ 145 0016 03F00103 	 and r3,r3,#1
+ 338:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 146              	 .loc 1 338 0
+ 147 001a 1846     	 mov r0,r3
+ 148 001c 0C37     	 adds r7,r7,#12
+ 149              	.LCFI15:
+ 150              	 .cfi_def_cfa_offset 4
+ 151 001e BD46     	 mov sp,r7
+ 152              	.LCFI16:
+ 153              	 .cfi_def_cfa_register 13
+ 154              	 
+ 155 0020 5DF8047B 	 ldr r7,[sp],#4
+ 156              	.LCFI17:
+ 157              	 .cfi_restore 7
+ 158              	 .cfi_def_cfa_offset 0
+ 159 0024 7047     	 bx lr
+ 160              	 .cfi_endproc
+ 161              	.LFE140:
+ 163 0026 00BF     	 .section .text.BUS_IO_GetAppVersion,"ax",%progbits
+ 164              	 .align 2
+ 165              	 .global BUS_IO_GetAppVersion
+ 166              	 .thumb
+ 167              	 .thumb_func
+ 169              	BUS_IO_GetAppVersion:
+ 170              	.LFB145:
+ 171              	 .file 2 "../Dave/Generated/BUS_IO/bus_io.c"
+   1:../Dave/Generated/BUS_IO/bus_io.c **** /**
+   2:../Dave/Generated/BUS_IO/bus_io.c ****  * @file BUS_io.c
+   3:../Dave/Generated/BUS_IO/bus_io.c ****  * @date 2016-04-06
+   4:../Dave/Generated/BUS_IO/bus_io.c ****  *
+   5:../Dave/Generated/BUS_IO/bus_io.c ****  * NOTE:
+   6:../Dave/Generated/BUS_IO/bus_io.c ****  * This file is generated by DAVE. Any manual modification done to this file will be lost when the 
+   7:../Dave/Generated/BUS_IO/bus_io.c ****  *
+   8:../Dave/Generated/BUS_IO/bus_io.c ****  * @cond
+   9:../Dave/Generated/BUS_IO/bus_io.c ****  **************************************************************************************************
+  10:../Dave/Generated/BUS_IO/bus_io.c ****  * BUS_IO v4.0.2 - BUS_IO APP is used to configure/control several GPIO pins as one entity.
+  11:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  12:../Dave/Generated/BUS_IO/bus_io.c ****  * Copyright (c) 2016, Infineon Technologies AG
+  13:../Dave/Generated/BUS_IO/bus_io.c ****  * All rights reserved.
+  14:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  15:../Dave/Generated/BUS_IO/bus_io.c ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  16:../Dave/Generated/BUS_IO/bus_io.c ****  * following conditions are met:
+  17:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  18:../Dave/Generated/BUS_IO/bus_io.c ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  19:../Dave/Generated/BUS_IO/bus_io.c ****  *   disclaimer.
+  20:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  21:../Dave/Generated/BUS_IO/bus_io.c ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  22:../Dave/Generated/BUS_IO/bus_io.c ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  23:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  24:../Dave/Generated/BUS_IO/bus_io.c ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  25:../Dave/Generated/BUS_IO/bus_io.c ****  *   products derived from this software without specific prior written permission.
+  26:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  27:../Dave/Generated/BUS_IO/bus_io.c ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  28:../Dave/Generated/BUS_IO/bus_io.c ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  29:../Dave/Generated/BUS_IO/bus_io.c ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  30:../Dave/Generated/BUS_IO/bus_io.c ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  31:../Dave/Generated/BUS_IO/bus_io.c ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  32:../Dave/Generated/BUS_IO/bus_io.c ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  33:../Dave/Generated/BUS_IO/bus_io.c ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  34:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  35:../Dave/Generated/BUS_IO/bus_io.c ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  36:../Dave/Generated/BUS_IO/bus_io.c ****  * with Infineon Technologies AG (dave@infineon.com).
+  37:../Dave/Generated/BUS_IO/bus_io.c ****  **************************************************************************************************
+  38:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  39:../Dave/Generated/BUS_IO/bus_io.c ****  * Change History
+  40:../Dave/Generated/BUS_IO/bus_io.c ****  * --------------
+  41:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  42:../Dave/Generated/BUS_IO/bus_io.c ****  * 2016-04-01
+  43:../Dave/Generated/BUS_IO/bus_io.c ****  *     - Initial version.<br>
+  44:../Dave/Generated/BUS_IO/bus_io.c ****  * 2016-04-06
+  45:../Dave/Generated/BUS_IO/bus_io.c ****  *     - BUS_IO_Write() API performance improved.<br>
+  46:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  47:../Dave/Generated/BUS_IO/bus_io.c ****  * @endcond
+  48:../Dave/Generated/BUS_IO/bus_io.c ****  *
+  49:../Dave/Generated/BUS_IO/bus_io.c ****  */
+  50:../Dave/Generated/BUS_IO/bus_io.c **** 
+  51:../Dave/Generated/BUS_IO/bus_io.c **** /**************************************************************************************************
+  52:../Dave/Generated/BUS_IO/bus_io.c ****  * HEADER FILES
+  53:../Dave/Generated/BUS_IO/bus_io.c ****  **************************************************************************************************
+  54:../Dave/Generated/BUS_IO/bus_io.c **** #include "bus_io.h"
+  55:../Dave/Generated/BUS_IO/bus_io.c **** 
+  56:../Dave/Generated/BUS_IO/bus_io.c **** /**************************************************************************************************
+  57:../Dave/Generated/BUS_IO/bus_io.c ****  * MACROS
+  58:../Dave/Generated/BUS_IO/bus_io.c ****  **************************************************************************************************
+  59:../Dave/Generated/BUS_IO/bus_io.c **** 
+  60:../Dave/Generated/BUS_IO/bus_io.c **** /**************************************************************************************************
+  61:../Dave/Generated/BUS_IO/bus_io.c ****  * LOCAL DATA
+  62:../Dave/Generated/BUS_IO/bus_io.c ****  **************************************************************************************************
+  63:../Dave/Generated/BUS_IO/bus_io.c **** 
+  64:../Dave/Generated/BUS_IO/bus_io.c **** /**************************************************************************************************
+  65:../Dave/Generated/BUS_IO/bus_io.c ****  * LOCAL ROUTINES
+  66:../Dave/Generated/BUS_IO/bus_io.c ****  **************************************************************************************************
+  67:../Dave/Generated/BUS_IO/bus_io.c **** 
+  68:../Dave/Generated/BUS_IO/bus_io.c ****  /*************************************************************************************************
+  69:../Dave/Generated/BUS_IO/bus_io.c ****  * API IMPLEMENTATION
+  70:../Dave/Generated/BUS_IO/bus_io.c ****  **************************************************************************************************
+  71:../Dave/Generated/BUS_IO/bus_io.c **** 
+  72:../Dave/Generated/BUS_IO/bus_io.c **** /**
+  73:../Dave/Generated/BUS_IO/bus_io.c **** * @brief Get BUS_IO APP version
+  74:../Dave/Generated/BUS_IO/bus_io.c **** * @return DAVE_APP_VERSION_t APP version information (major, minor and patch number)
+  75:../Dave/Generated/BUS_IO/bus_io.c **** */
+  76:../Dave/Generated/BUS_IO/bus_io.c **** 
+  77:../Dave/Generated/BUS_IO/bus_io.c **** DAVE_APP_VERSION_t BUS_IO_GetAppVersion(void)
+  78:../Dave/Generated/BUS_IO/bus_io.c **** {
+ 172              	 .loc 2 78 0
+ 173              	 .cfi_startproc
+ 174              	 
+ 175              	 
+ 176              	 
+ 177 0000 80B4     	 push {r7}
+ 178              	.LCFI18:
+ 179              	 .cfi_def_cfa_offset 4
+ 180              	 .cfi_offset 7,-4
+ 181 0002 83B0     	 sub sp,sp,#12
+ 182              	.LCFI19:
+ 183              	 .cfi_def_cfa_offset 16
+ 184 0004 00AF     	 add r7,sp,#0
+ 185              	.LCFI20:
+ 186              	 .cfi_def_cfa_register 7
+  79:../Dave/Generated/BUS_IO/bus_io.c ****   DAVE_APP_VERSION_t version;
+  80:../Dave/Generated/BUS_IO/bus_io.c **** 
+  81:../Dave/Generated/BUS_IO/bus_io.c ****   version.major = (uint8_t)BUS_IO_MAJOR_VERSION;
+ 187              	 .loc 2 81 0
+ 188 0006 0423     	 movs r3,#4
+ 189 0008 3B70     	 strb r3,[r7]
+  82:../Dave/Generated/BUS_IO/bus_io.c ****   version.minor = (uint8_t)BUS_IO_MINOR_VERSION;
+ 190              	 .loc 2 82 0
+ 191 000a 0023     	 movs r3,#0
+ 192 000c 7B70     	 strb r3,[r7,#1]
+  83:../Dave/Generated/BUS_IO/bus_io.c ****   version.patch = (uint8_t)BUS_IO_PATCH_VERSION;
+ 193              	 .loc 2 83 0
+ 194 000e 0223     	 movs r3,#2
+ 195 0010 BB70     	 strb r3,[r7,#2]
+  84:../Dave/Generated/BUS_IO/bus_io.c **** 
+  85:../Dave/Generated/BUS_IO/bus_io.c ****   return (version);
+ 196              	 .loc 2 85 0
+ 197 0012 3B1D     	 adds r3,r7,#4
+ 198 0014 3A46     	 mov r2,r7
+ 199 0016 1268     	 ldr r2,[r2]
+ 200 0018 1146     	 mov r1,r2
+ 201 001a 1980     	 strh r1,[r3]
+ 202 001c 0233     	 adds r3,r3,#2
+ 203 001e 120C     	 lsrs r2,r2,#16
+ 204 0020 1A70     	 strb r2,[r3]
+ 205 0022 0023     	 movs r3,#0
+ 206 0024 3A79     	 ldrb r2,[r7,#4]
+ 207 0026 62F30703 	 bfi r3,r2,#0,#8
+ 208 002a 7A79     	 ldrb r2,[r7,#5]
+ 209 002c 62F30F23 	 bfi r3,r2,#8,#8
+ 210 0030 BA79     	 ldrb r2,[r7,#6]
+ 211 0032 62F31743 	 bfi r3,r2,#16,#8
+  86:../Dave/Generated/BUS_IO/bus_io.c **** }
+ 212              	 .loc 2 86 0
+ 213 0036 1846     	 mov r0,r3
+ 214 0038 0C37     	 adds r7,r7,#12
+ 215              	.LCFI21:
+ 216              	 .cfi_def_cfa_offset 4
+ 217 003a BD46     	 mov sp,r7
+ 218              	.LCFI22:
+ 219              	 .cfi_def_cfa_register 13
+ 220              	 
+ 221 003c 5DF8047B 	 ldr r7,[sp],#4
+ 222              	.LCFI23:
+ 223              	 .cfi_restore 7
+ 224              	 .cfi_def_cfa_offset 0
+ 225 0040 7047     	 bx lr
+ 226              	 .cfi_endproc
+ 227              	.LFE145:
+ 229 0042 00BF     	 .section .text.BUS_IO_Init,"ax",%progbits
+ 230              	 .align 2
+ 231              	 .global BUS_IO_Init
+ 232              	 .thumb
+ 233              	 .thumb_func
+ 235              	BUS_IO_Init:
+ 236              	.LFB146:
+  87:../Dave/Generated/BUS_IO/bus_io.c **** 
+  88:../Dave/Generated/BUS_IO/bus_io.c **** /**
+  89:../Dave/Generated/BUS_IO/bus_io.c **** * @brief Function to initialize the port pin as per UI settings.
+  90:../Dave/Generated/BUS_IO/bus_io.c **** * @param handle_ptr Pointer pointing to APP data structure.
+  91:../Dave/Generated/BUS_IO/bus_io.c **** * @return BUS_IO_STATUS_t BUS_IO APP status.
+  92:../Dave/Generated/BUS_IO/bus_io.c **** */
+  93:../Dave/Generated/BUS_IO/bus_io.c **** 
+  94:../Dave/Generated/BUS_IO/bus_io.c **** BUS_IO_STATUS_t BUS_IO_Init(BUS_IO_t *const handle_ptr)
+  95:../Dave/Generated/BUS_IO/bus_io.c **** {
+ 237              	 .loc 2 95 0
+ 238              	 .cfi_startproc
+ 239              	 
+ 240              	 
+ 241 0000 80B5     	 push {r7,lr}
+ 242              	.LCFI24:
+ 243              	 .cfi_def_cfa_offset 8
+ 244              	 .cfi_offset 7,-8
+ 245              	 .cfi_offset 14,-4
+ 246 0002 84B0     	 sub sp,sp,#16
+ 247              	.LCFI25:
+ 248              	 .cfi_def_cfa_offset 24
+ 249 0004 00AF     	 add r7,sp,#0
+ 250              	.LCFI26:
+ 251              	 .cfi_def_cfa_register 7
+ 252 0006 7860     	 str r0,[r7,#4]
+  96:../Dave/Generated/BUS_IO/bus_io.c ****   uint8_t i;
+  97:../Dave/Generated/BUS_IO/bus_io.c **** 
+  98:../Dave/Generated/BUS_IO/bus_io.c ****   XMC_ASSERT("BUS_IO_Init: handle_ptr null pointer", handle_ptr != NULL);
+  99:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 100:../Dave/Generated/BUS_IO/bus_io.c ****   if ((bool)false == handle_ptr->initialized)
+ 253              	 .loc 2 100 0
+ 254 0008 7B68     	 ldr r3,[r7,#4]
+ 255 000a 5B7C     	 ldrb r3,[r3,#17]
+ 256 000c 83F00103 	 eor r3,r3,#1
+ 257 0010 DBB2     	 uxtb r3,r3
+ 258 0012 002B     	 cmp r3,#0
+ 259 0014 20D0     	 beq .L8
+ 101:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 102:../Dave/Generated/BUS_IO/bus_io.c ****     /* Iterate the list of pins initializing the pin according to the gpio_config */
+ 103:../Dave/Generated/BUS_IO/bus_io.c ****     for (i = 0U; i < handle_ptr->number_of_pins; i++)
+ 260              	 .loc 2 103 0
+ 261 0016 0023     	 movs r3,#0
+ 262 0018 FB73     	 strb r3,[r7,#15]
+ 263 001a 15E0     	 b .L9
+ 264              	.L10:
+ 104:../Dave/Generated/BUS_IO/bus_io.c ****     {
+ 105:../Dave/Generated/BUS_IO/bus_io.c ****       /* Initializes input / output characteristics */
+ 106:../Dave/Generated/BUS_IO/bus_io.c ****       XMC_GPIO_Init(handle_ptr->pin_array[i].gpio_port, handle_ptr->pin_array[i].gpio_pin, &handle_
+ 265              	 .loc 2 106 0 discriminator 3
+ 266 001c 7B68     	 ldr r3,[r7,#4]
+ 267 001e 1A68     	 ldr r2,[r3]
+ 268 0020 FB7B     	 ldrb r3,[r7,#15]
+ 269 0022 DB00     	 lsls r3,r3,#3
+ 270 0024 1344     	 add r3,r3,r2
+ 271 0026 1968     	 ldr r1,[r3]
+ 272 0028 7B68     	 ldr r3,[r7,#4]
+ 273 002a 1A68     	 ldr r2,[r3]
+ 274 002c FB7B     	 ldrb r3,[r7,#15]
+ 275 002e DB00     	 lsls r3,r3,#3
+ 276 0030 1344     	 add r3,r3,r2
+ 277 0032 1A79     	 ldrb r2,[r3,#4]
+ 278 0034 7B68     	 ldr r3,[r7,#4]
+ 279 0036 0433     	 adds r3,r3,#4
+ 280 0038 0846     	 mov r0,r1
+ 281 003a 1146     	 mov r1,r2
+ 282 003c 1A46     	 mov r2,r3
+ 283 003e FFF7FEFF 	 bl XMC_GPIO_Init
+ 103:../Dave/Generated/BUS_IO/bus_io.c ****     {
+ 284              	 .loc 2 103 0 discriminator 3
+ 285 0042 FB7B     	 ldrb r3,[r7,#15]
+ 286 0044 0133     	 adds r3,r3,#1
+ 287 0046 FB73     	 strb r3,[r7,#15]
+ 288              	.L9:
+ 103:../Dave/Generated/BUS_IO/bus_io.c ****     {
+ 289              	 .loc 2 103 0 is_stmt 0 discriminator 1
+ 290 0048 7B68     	 ldr r3,[r7,#4]
+ 291 004a 1B7C     	 ldrb r3,[r3,#16]
+ 292 004c FA7B     	 ldrb r2,[r7,#15]
+ 293 004e 9A42     	 cmp r2,r3
+ 294 0050 E4D3     	 bcc .L10
+ 107:../Dave/Generated/BUS_IO/bus_io.c ****     }
+ 108:../Dave/Generated/BUS_IO/bus_io.c ****     handle_ptr->initialized = (bool)true;
+ 295              	 .loc 2 108 0 is_stmt 1
+ 296 0052 7B68     	 ldr r3,[r7,#4]
+ 297 0054 0122     	 movs r2,#1
+ 298 0056 5A74     	 strb r2,[r3,#17]
+ 299              	.L8:
+ 109:../Dave/Generated/BUS_IO/bus_io.c ****   }
+ 110:../Dave/Generated/BUS_IO/bus_io.c ****   return (BUS_IO_STATUS_OK);
+ 300              	 .loc 2 110 0
+ 301 0058 0023     	 movs r3,#0
+ 111:../Dave/Generated/BUS_IO/bus_io.c **** }
+ 302              	 .loc 2 111 0
+ 303 005a 1846     	 mov r0,r3
+ 304 005c 1037     	 adds r7,r7,#16
+ 305              	.LCFI27:
+ 306              	 .cfi_def_cfa_offset 8
+ 307 005e BD46     	 mov sp,r7
+ 308              	.LCFI28:
+ 309              	 .cfi_def_cfa_register 13
+ 310              	 
+ 311 0060 80BD     	 pop {r7,pc}
+ 312              	 .cfi_endproc
+ 313              	.LFE146:
+ 315 0062 00BF     	 .section .text.BUS_IO_SetMode,"ax",%progbits
+ 316              	 .align 2
+ 317              	 .global BUS_IO_SetMode
+ 318              	 .thumb
+ 319              	 .thumb_func
+ 321              	BUS_IO_SetMode:
+ 322              	.LFB147:
+ 112:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 113:../Dave/Generated/BUS_IO/bus_io.c **** /* Function to set the mode of the bus */
+ 114:../Dave/Generated/BUS_IO/bus_io.c **** void BUS_IO_SetMode(BUS_IO_t *const handle_ptr, const BUS_IO_MODE_t mode)
+ 115:../Dave/Generated/BUS_IO/bus_io.c **** {
+ 323              	 .loc 2 115 0
+ 324              	 .cfi_startproc
+ 325              	 
+ 326              	 
+ 327 0000 80B5     	 push {r7,lr}
+ 328              	.LCFI29:
+ 329              	 .cfi_def_cfa_offset 8
+ 330              	 .cfi_offset 7,-8
+ 331              	 .cfi_offset 14,-4
+ 332 0002 84B0     	 sub sp,sp,#16
+ 333              	.LCFI30:
+ 334              	 .cfi_def_cfa_offset 24
+ 335 0004 00AF     	 add r7,sp,#0
+ 336              	.LCFI31:
+ 337              	 .cfi_def_cfa_register 7
+ 338 0006 7860     	 str r0,[r7,#4]
+ 339 0008 0B46     	 mov r3,r1
+ 340 000a FB70     	 strb r3,[r7,#3]
+ 116:../Dave/Generated/BUS_IO/bus_io.c ****   uint8_t i;
+ 117:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 118:../Dave/Generated/BUS_IO/bus_io.c ****   XMC_ASSERT("BUS_IO_SetMode: handle_ptr null pointer", handle_ptr != NULL);
+ 119:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 120:../Dave/Generated/BUS_IO/bus_io.c ****   /* Iterate the list of pins setting the pin according to the selected mode */
+ 121:../Dave/Generated/BUS_IO/bus_io.c ****   for (i = 0U; i < handle_ptr->number_of_pins; i++)
+ 341              	 .loc 2 121 0
+ 342 000c 0023     	 movs r3,#0
+ 343 000e FB73     	 strb r3,[r7,#15]
+ 344 0010 14E0     	 b .L13
+ 345              	.L14:
+ 122:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 123:../Dave/Generated/BUS_IO/bus_io.c ****     /* Setting of a mode of a bus */
+ 124:../Dave/Generated/BUS_IO/bus_io.c ****     XMC_GPIO_SetMode(handle_ptr->pin_array[i].gpio_port, handle_ptr->pin_array[i].gpio_pin, mode);
+ 346              	 .loc 2 124 0 discriminator 3
+ 347 0012 7B68     	 ldr r3,[r7,#4]
+ 348 0014 1A68     	 ldr r2,[r3]
+ 349 0016 FB7B     	 ldrb r3,[r7,#15]
+ 350 0018 DB00     	 lsls r3,r3,#3
+ 351 001a 1344     	 add r3,r3,r2
+ 352 001c 1968     	 ldr r1,[r3]
+ 353 001e 7B68     	 ldr r3,[r7,#4]
+ 354 0020 1A68     	 ldr r2,[r3]
+ 355 0022 FB7B     	 ldrb r3,[r7,#15]
+ 356 0024 DB00     	 lsls r3,r3,#3
+ 357 0026 1344     	 add r3,r3,r2
+ 358 0028 1A79     	 ldrb r2,[r3,#4]
+ 359 002a FB78     	 ldrb r3,[r7,#3]
+ 360 002c 0846     	 mov r0,r1
+ 361 002e 1146     	 mov r1,r2
+ 362 0030 1A46     	 mov r2,r3
+ 363 0032 FFF7FEFF 	 bl XMC_GPIO_SetMode
+ 121:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 364              	 .loc 2 121 0 discriminator 3
+ 365 0036 FB7B     	 ldrb r3,[r7,#15]
+ 366 0038 0133     	 adds r3,r3,#1
+ 367 003a FB73     	 strb r3,[r7,#15]
+ 368              	.L13:
+ 121:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 369              	 .loc 2 121 0 is_stmt 0 discriminator 1
+ 370 003c 7B68     	 ldr r3,[r7,#4]
+ 371 003e 1B7C     	 ldrb r3,[r3,#16]
+ 372 0040 FA7B     	 ldrb r2,[r7,#15]
+ 373 0042 9A42     	 cmp r2,r3
+ 374 0044 E5D3     	 bcc .L14
+ 125:../Dave/Generated/BUS_IO/bus_io.c ****   }
+ 126:../Dave/Generated/BUS_IO/bus_io.c **** }
+ 375              	 .loc 2 126 0 is_stmt 1
+ 376 0046 1037     	 adds r7,r7,#16
+ 377              	.LCFI32:
+ 378              	 .cfi_def_cfa_offset 8
+ 379 0048 BD46     	 mov sp,r7
+ 380              	.LCFI33:
+ 381              	 .cfi_def_cfa_register 13
+ 382              	 
+ 383 004a 80BD     	 pop {r7,pc}
+ 384              	 .cfi_endproc
+ 385              	.LFE147:
+ 387              	 .section .text.BUS_IO_Read,"ax",%progbits
+ 388              	 .align 2
+ 389              	 .global BUS_IO_Read
+ 390              	 .thumb
+ 391              	 .thumb_func
+ 393              	BUS_IO_Read:
+ 394              	.LFB148:
+ 127:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 128:../Dave/Generated/BUS_IO/bus_io.c **** /* Function to read the bus pins state */
+ 129:../Dave/Generated/BUS_IO/bus_io.c **** uint16_t BUS_IO_Read(BUS_IO_t *const handle_ptr)
+ 130:../Dave/Generated/BUS_IO/bus_io.c **** {
+ 395              	 .loc 2 130 0
+ 396              	 .cfi_startproc
+ 397              	 
+ 398              	 
+ 399 0000 80B5     	 push {r7,lr}
+ 400              	.LCFI34:
+ 401              	 .cfi_def_cfa_offset 8
+ 402              	 .cfi_offset 7,-8
+ 403              	 .cfi_offset 14,-4
+ 404 0002 84B0     	 sub sp,sp,#16
+ 405              	.LCFI35:
+ 406              	 .cfi_def_cfa_offset 24
+ 407 0004 00AF     	 add r7,sp,#0
+ 408              	.LCFI36:
+ 409              	 .cfi_def_cfa_register 7
+ 410 0006 7860     	 str r0,[r7,#4]
+ 131:../Dave/Generated/BUS_IO/bus_io.c ****   uint8_t i;
+ 132:../Dave/Generated/BUS_IO/bus_io.c ****   uint16_t count = 0U;
+ 411              	 .loc 2 132 0
+ 412 0008 0023     	 movs r3,#0
+ 413 000a BB81     	 strh r3,[r7,#12]
+ 133:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 134:../Dave/Generated/BUS_IO/bus_io.c ****   XMC_ASSERT("BUS_IO_Read: handle_ptr null pointer", handle_ptr != NULL);
+ 135:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 136:../Dave/Generated/BUS_IO/bus_io.c ****   /* Iterate the list of pins reading the pin state and packing the result according the pin positi
+ 137:../Dave/Generated/BUS_IO/bus_io.c ****   for (i = 0U; i < handle_ptr->number_of_pins; i++)
+ 414              	 .loc 2 137 0
+ 415 000c 0023     	 movs r3,#0
+ 416 000e FB73     	 strb r3,[r7,#15]
+ 417 0010 1AE0     	 b .L16
+ 418              	.L17:
+ 138:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 139:../Dave/Generated/BUS_IO/bus_io.c ****     /* Reading a bus pin's state */
+ 140:../Dave/Generated/BUS_IO/bus_io.c ****     count |= (uint16_t)(XMC_GPIO_GetInput(handle_ptr->pin_array[i].gpio_port, handle_ptr->pin_array
+ 419              	 .loc 2 140 0 discriminator 3
+ 420 0012 7B68     	 ldr r3,[r7,#4]
+ 421 0014 1A68     	 ldr r2,[r3]
+ 422 0016 FB7B     	 ldrb r3,[r7,#15]
+ 423 0018 DB00     	 lsls r3,r3,#3
+ 424 001a 1344     	 add r3,r3,r2
+ 425 001c 1968     	 ldr r1,[r3]
+ 426 001e 7B68     	 ldr r3,[r7,#4]
+ 427 0020 1A68     	 ldr r2,[r3]
+ 428 0022 FB7B     	 ldrb r3,[r7,#15]
+ 429 0024 DB00     	 lsls r3,r3,#3
+ 430 0026 1344     	 add r3,r3,r2
+ 431 0028 1B79     	 ldrb r3,[r3,#4]
+ 432 002a 0846     	 mov r0,r1
+ 433 002c 1946     	 mov r1,r3
+ 434 002e FFF7FEFF 	 bl XMC_GPIO_GetInput
+ 435 0032 0246     	 mov r2,r0
+ 436 0034 FB7B     	 ldrb r3,[r7,#15]
+ 437 0036 02FA03F3 	 lsl r3,r2,r3
+ 438 003a 9AB2     	 uxth r2,r3
+ 439 003c BB89     	 ldrh r3,[r7,#12]
+ 440 003e 1343     	 orrs r3,r3,r2
+ 441 0040 BB81     	 strh r3,[r7,#12]
+ 137:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 442              	 .loc 2 137 0 discriminator 3
+ 443 0042 FB7B     	 ldrb r3,[r7,#15]
+ 444 0044 0133     	 adds r3,r3,#1
+ 445 0046 FB73     	 strb r3,[r7,#15]
+ 446              	.L16:
+ 137:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 447              	 .loc 2 137 0 is_stmt 0 discriminator 1
+ 448 0048 7B68     	 ldr r3,[r7,#4]
+ 449 004a 1B7C     	 ldrb r3,[r3,#16]
+ 450 004c FA7B     	 ldrb r2,[r7,#15]
+ 451 004e 9A42     	 cmp r2,r3
+ 452 0050 DFD3     	 bcc .L17
+ 141:../Dave/Generated/BUS_IO/bus_io.c ****   }
+ 142:../Dave/Generated/BUS_IO/bus_io.c ****   return(count);
+ 453              	 .loc 2 142 0 is_stmt 1
+ 454 0052 BB89     	 ldrh r3,[r7,#12]
+ 143:../Dave/Generated/BUS_IO/bus_io.c **** }
+ 455              	 .loc 2 143 0
+ 456 0054 1846     	 mov r0,r3
+ 457 0056 1037     	 adds r7,r7,#16
+ 458              	.LCFI37:
+ 459              	 .cfi_def_cfa_offset 8
+ 460 0058 BD46     	 mov sp,r7
+ 461              	.LCFI38:
+ 462              	 .cfi_def_cfa_register 13
+ 463              	 
+ 464 005a 80BD     	 pop {r7,pc}
+ 465              	 .cfi_endproc
+ 466              	.LFE148:
+ 468              	 .section .text.BUS_IO_Write,"ax",%progbits
+ 469              	 .align 2
+ 470              	 .global BUS_IO_Write
+ 471              	 .thumb
+ 472              	 .thumb_func
+ 474              	BUS_IO_Write:
+ 475              	.LFB149:
+ 144:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 145:../Dave/Generated/BUS_IO/bus_io.c **** /* Function to set the pins bus state */
+ 146:../Dave/Generated/BUS_IO/bus_io.c **** void BUS_IO_Write(BUS_IO_t *const handle_ptr, const uint16_t data)
+ 147:../Dave/Generated/BUS_IO/bus_io.c **** {
+ 476              	 .loc 2 147 0
+ 477              	 .cfi_startproc
+ 478              	 
+ 479              	 
+ 480 0000 80B5     	 push {r7,lr}
+ 481              	.LCFI39:
+ 482              	 .cfi_def_cfa_offset 8
+ 483              	 .cfi_offset 7,-8
+ 484              	 .cfi_offset 14,-4
+ 485 0002 84B0     	 sub sp,sp,#16
+ 486              	.LCFI40:
+ 487              	 .cfi_def_cfa_offset 24
+ 488 0004 00AF     	 add r7,sp,#0
+ 489              	.LCFI41:
+ 490              	 .cfi_def_cfa_register 7
+ 491 0006 7860     	 str r0,[r7,#4]
+ 492 0008 0B46     	 mov r3,r1
+ 493 000a 7B80     	 strh r3,[r7,#2]
+ 148:../Dave/Generated/BUS_IO/bus_io.c ****   uint8_t i;
+ 149:../Dave/Generated/BUS_IO/bus_io.c ****   const BUS_IO_PORT_PIN_t *bus_io_port_pin;
+ 150:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 151:../Dave/Generated/BUS_IO/bus_io.c ****   XMC_ASSERT("BUS_IO_Write: handle_ptr null pointer", handle_ptr != NULL);
+ 152:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 153:../Dave/Generated/BUS_IO/bus_io.c ****   bus_io_port_pin = handle_ptr->pin_array;
+ 494              	 .loc 2 153 0
+ 495 000c 7B68     	 ldr r3,[r7,#4]
+ 496 000e 1B68     	 ldr r3,[r3]
+ 497 0010 BB60     	 str r3,[r7,#8]
+ 154:../Dave/Generated/BUS_IO/bus_io.c ****   /* Iterate the list of pins setting the pin state according the pin position in the list, , from 
+ 155:../Dave/Generated/BUS_IO/bus_io.c ****   for (i = 0U; i < handle_ptr->number_of_pins; i++)
+ 498              	 .loc 2 155 0
+ 499 0012 0023     	 movs r3,#0
+ 500 0014 FB73     	 strb r3,[r7,#15]
+ 501 0016 23E0     	 b .L20
+ 502              	.L23:
+ 156:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 157:../Dave/Generated/BUS_IO/bus_io.c ****     if (data & (uint16_t)((uint16_t)1 << i))
+ 503              	 .loc 2 157 0
+ 504 0018 FB7B     	 ldrb r3,[r7,#15]
+ 505 001a 0122     	 movs r2,#1
+ 506 001c 02FA03F3 	 lsl r3,r2,r3
+ 507 0020 9AB2     	 uxth r2,r3
+ 508 0022 7B88     	 ldrh r3,[r7,#2]
+ 509 0024 1340     	 ands r3,r3,r2
+ 510 0026 9BB2     	 uxth r3,r3
+ 511 0028 002B     	 cmp r3,#0
+ 512 002a 09D0     	 beq .L21
+ 158:../Dave/Generated/BUS_IO/bus_io.c ****     {
+ 159:../Dave/Generated/BUS_IO/bus_io.c ****       XMC_GPIO_SetOutputLevel(bus_io_port_pin->gpio_port, bus_io_port_pin->gpio_pin, XMC_GPIO_OUTPU
+ 513              	 .loc 2 159 0
+ 514 002c BB68     	 ldr r3,[r7,#8]
+ 515 002e 1A68     	 ldr r2,[r3]
+ 516 0030 BB68     	 ldr r3,[r7,#8]
+ 517 0032 1B79     	 ldrb r3,[r3,#4]
+ 518 0034 1046     	 mov r0,r2
+ 519 0036 1946     	 mov r1,r3
+ 520 0038 0122     	 movs r2,#1
+ 521 003a FFF7FEFF 	 bl XMC_GPIO_SetOutputLevel
+ 522 003e 09E0     	 b .L22
+ 523              	.L21:
+ 160:../Dave/Generated/BUS_IO/bus_io.c ****     }
+ 161:../Dave/Generated/BUS_IO/bus_io.c ****     else
+ 162:../Dave/Generated/BUS_IO/bus_io.c ****     {
+ 163:../Dave/Generated/BUS_IO/bus_io.c ****       XMC_GPIO_SetOutputLevel(bus_io_port_pin->gpio_port, bus_io_port_pin->gpio_pin, XMC_GPIO_OUTPU
+ 524              	 .loc 2 163 0
+ 525 0040 BB68     	 ldr r3,[r7,#8]
+ 526 0042 1A68     	 ldr r2,[r3]
+ 527 0044 BB68     	 ldr r3,[r7,#8]
+ 528 0046 1B79     	 ldrb r3,[r3,#4]
+ 529 0048 1046     	 mov r0,r2
+ 530 004a 1946     	 mov r1,r3
+ 531 004c 4FF48032 	 mov r2,#65536
+ 532 0050 FFF7FEFF 	 bl XMC_GPIO_SetOutputLevel
+ 533              	.L22:
+ 164:../Dave/Generated/BUS_IO/bus_io.c ****     }
+ 165:../Dave/Generated/BUS_IO/bus_io.c ****    bus_io_port_pin++;
+ 534              	 .loc 2 165 0 discriminator 2
+ 535 0054 BB68     	 ldr r3,[r7,#8]
+ 536 0056 0833     	 adds r3,r3,#8
+ 537 0058 BB60     	 str r3,[r7,#8]
+ 155:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 538              	 .loc 2 155 0 discriminator 2
+ 539 005a FB7B     	 ldrb r3,[r7,#15]
+ 540 005c 0133     	 adds r3,r3,#1
+ 541 005e FB73     	 strb r3,[r7,#15]
+ 542              	.L20:
+ 155:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 543              	 .loc 2 155 0 is_stmt 0 discriminator 1
+ 544 0060 7B68     	 ldr r3,[r7,#4]
+ 545 0062 1B7C     	 ldrb r3,[r3,#16]
+ 546 0064 FA7B     	 ldrb r2,[r7,#15]
+ 547 0066 9A42     	 cmp r2,r3
+ 548 0068 D6D3     	 bcc .L23
+ 166:../Dave/Generated/BUS_IO/bus_io.c ****   }
+ 167:../Dave/Generated/BUS_IO/bus_io.c **** }
+ 549              	 .loc 2 167 0 is_stmt 1
+ 550 006a 1037     	 adds r7,r7,#16
+ 551              	.LCFI42:
+ 552              	 .cfi_def_cfa_offset 8
+ 553 006c BD46     	 mov sp,r7
+ 554              	.LCFI43:
+ 555              	 .cfi_def_cfa_register 13
+ 556              	 
+ 557 006e 80BD     	 pop {r7,pc}
+ 558              	 .cfi_endproc
+ 559              	.LFE149:
+ 561              	 .section .text.BUS_IO_Toggle,"ax",%progbits
+ 562              	 .align 2
+ 563              	 .global BUS_IO_Toggle
+ 564              	 .thumb
+ 565              	 .thumb_func
+ 567              	BUS_IO_Toggle:
+ 568              	.LFB150:
+ 168:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 169:../Dave/Generated/BUS_IO/bus_io.c **** /* Function to Toggles the pins bus state */
+ 170:../Dave/Generated/BUS_IO/bus_io.c **** void BUS_IO_Toggle(BUS_IO_t *const handle_ptr)
+ 171:../Dave/Generated/BUS_IO/bus_io.c **** {
+ 569              	 .loc 2 171 0
+ 570              	 .cfi_startproc
+ 571              	 
+ 572              	 
+ 573 0000 80B5     	 push {r7,lr}
+ 574              	.LCFI44:
+ 575              	 .cfi_def_cfa_offset 8
+ 576              	 .cfi_offset 7,-8
+ 577              	 .cfi_offset 14,-4
+ 578 0002 84B0     	 sub sp,sp,#16
+ 579              	.LCFI45:
+ 580              	 .cfi_def_cfa_offset 24
+ 581 0004 00AF     	 add r7,sp,#0
+ 582              	.LCFI46:
+ 583              	 .cfi_def_cfa_register 7
+ 584 0006 7860     	 str r0,[r7,#4]
+ 172:../Dave/Generated/BUS_IO/bus_io.c ****   uint8_t i;
+ 173:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 174:../Dave/Generated/BUS_IO/bus_io.c ****   XMC_ASSERT("BUS_IO_Toggle: handle_ptr null pointer", handle_ptr != NULL);
+ 175:../Dave/Generated/BUS_IO/bus_io.c **** 
+ 176:../Dave/Generated/BUS_IO/bus_io.c ****   /* Iterate the list of pins toggling the pin state */
+ 177:../Dave/Generated/BUS_IO/bus_io.c ****   for (i = 0U; i < handle_ptr->number_of_pins; i++)
+ 585              	 .loc 2 177 0
+ 586 0008 0023     	 movs r3,#0
+ 587 000a FB73     	 strb r3,[r7,#15]
+ 588 000c 12E0     	 b .L25
+ 589              	.L26:
+ 178:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 179:../Dave/Generated/BUS_IO/bus_io.c ****     /* Toggles the pins bus state */
+ 180:../Dave/Generated/BUS_IO/bus_io.c ****     XMC_GPIO_ToggleOutput(handle_ptr->pin_array[i].gpio_port, handle_ptr->pin_array[i].gpio_pin);
+ 590              	 .loc 2 180 0 discriminator 3
+ 591 000e 7B68     	 ldr r3,[r7,#4]
+ 592 0010 1A68     	 ldr r2,[r3]
+ 593 0012 FB7B     	 ldrb r3,[r7,#15]
+ 594 0014 DB00     	 lsls r3,r3,#3
+ 595 0016 1344     	 add r3,r3,r2
+ 596 0018 1968     	 ldr r1,[r3]
+ 597 001a 7B68     	 ldr r3,[r7,#4]
+ 598 001c 1A68     	 ldr r2,[r3]
+ 599 001e FB7B     	 ldrb r3,[r7,#15]
+ 600 0020 DB00     	 lsls r3,r3,#3
+ 601 0022 1344     	 add r3,r3,r2
+ 602 0024 1B79     	 ldrb r3,[r3,#4]
+ 603 0026 0846     	 mov r0,r1
+ 604 0028 1946     	 mov r1,r3
+ 605 002a FFF7FEFF 	 bl XMC_GPIO_ToggleOutput
+ 177:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 606              	 .loc 2 177 0 discriminator 3
+ 607 002e FB7B     	 ldrb r3,[r7,#15]
+ 608 0030 0133     	 adds r3,r3,#1
+ 609 0032 FB73     	 strb r3,[r7,#15]
+ 610              	.L25:
+ 177:../Dave/Generated/BUS_IO/bus_io.c ****   {
+ 611              	 .loc 2 177 0 is_stmt 0 discriminator 1
+ 612 0034 7B68     	 ldr r3,[r7,#4]
+ 613 0036 1B7C     	 ldrb r3,[r3,#16]
+ 614 0038 FA7B     	 ldrb r2,[r7,#15]
+ 615 003a 9A42     	 cmp r2,r3
+ 616 003c E7D3     	 bcc .L26
+ 181:../Dave/Generated/BUS_IO/bus_io.c ****   }
+ 182:../Dave/Generated/BUS_IO/bus_io.c **** }
+ 617              	 .loc 2 182 0 is_stmt 1
+ 618 003e 1037     	 adds r7,r7,#16
+ 619              	.LCFI47:
+ 620              	 .cfi_def_cfa_offset 8
+ 621 0040 BD46     	 mov sp,r7
+ 622              	.LCFI48:
+ 623              	 .cfi_def_cfa_register 13
+ 624              	 
+ 625 0042 80BD     	 pop {r7,pc}
+ 626              	 .cfi_endproc
+ 627              	.LFE150:
+ 629              	 .text
+ 630              	.Letext0:
+ 631              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 632              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 633              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 634              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE_common.h"
+ 635              	 .file 7 "../Dave/Generated/BUS_IO/bus_io.h"
+ 636              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 bus_io.c
+    {standard input}:20     .text.XMC_GPIO_SetOutputLevel:00000000 $t
+    {standard input}:24     .text.XMC_GPIO_SetOutputLevel:00000000 XMC_GPIO_SetOutputLevel
+    {standard input}:69     .text.XMC_GPIO_ToggleOutput:00000000 $t
+    {standard input}:73     .text.XMC_GPIO_ToggleOutput:00000000 XMC_GPIO_ToggleOutput
+    {standard input}:116    .text.XMC_GPIO_GetInput:00000000 $t
+    {standard input}:120    .text.XMC_GPIO_GetInput:00000000 XMC_GPIO_GetInput
+    {standard input}:164    .text.BUS_IO_GetAppVersion:00000000 $t
+    {standard input}:169    .text.BUS_IO_GetAppVersion:00000000 BUS_IO_GetAppVersion
+    {standard input}:230    .text.BUS_IO_Init:00000000 $t
+    {standard input}:235    .text.BUS_IO_Init:00000000 BUS_IO_Init
+    {standard input}:316    .text.BUS_IO_SetMode:00000000 $t
+    {standard input}:321    .text.BUS_IO_SetMode:00000000 BUS_IO_SetMode
+    {standard input}:388    .text.BUS_IO_Read:00000000 $t
+    {standard input}:393    .text.BUS_IO_Read:00000000 BUS_IO_Read
+    {standard input}:469    .text.BUS_IO_Write:00000000 $t
+    {standard input}:474    .text.BUS_IO_Write:00000000 BUS_IO_Write
+    {standard input}:562    .text.BUS_IO_Toggle:00000000 $t
+    {standard input}:567    .text.BUS_IO_Toggle:00000000 BUS_IO_Toggle
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+XMC_GPIO_Init
+XMC_GPIO_SetMode

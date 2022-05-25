@@ -1,0 +1,655 @@
+   1              	 .cpu cortex-m0
+   2              	 .fpu softvfp
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,0
+  11              	 .eabi_attribute 18,4
+  12              	 .code 16
+  13              	 .file "DAVE.c"
+  14              	 .text
+  15              	.Ltext0:
+  16              	 .cfi_sections .debug_frame
+  17              	 .section .text.DAVE_Init,"ax",%progbits
+  18              	 .align 2
+  19              	 .weak DAVE_Init
+  20              	 .code 16
+  21              	 .thumb_func
+  23              	DAVE_Init:
+  24              	.LFB224:
+  25              	 .file 1 "../Dave/Generated/DAVE.c"
+   1:../Dave/Generated/DAVE.c **** 
+   2:../Dave/Generated/DAVE.c **** /**
+   3:../Dave/Generated/DAVE.c ****  * @cond
+   4:../Dave/Generated/DAVE.c ****  **************************************************************************************************
+   5:../Dave/Generated/DAVE.c ****  *
+   6:../Dave/Generated/DAVE.c ****  * Copyright (c) 2015-2020, Infineon Technologies AG
+   7:../Dave/Generated/DAVE.c ****  * All rights reserved.
+   8:../Dave/Generated/DAVE.c ****  *
+   9:../Dave/Generated/DAVE.c ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  10:../Dave/Generated/DAVE.c ****  * following conditions are met:
+  11:../Dave/Generated/DAVE.c ****  *
+  12:../Dave/Generated/DAVE.c ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  13:../Dave/Generated/DAVE.c ****  *   disclaimer.
+  14:../Dave/Generated/DAVE.c ****  *
+  15:../Dave/Generated/DAVE.c ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  16:../Dave/Generated/DAVE.c ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  17:../Dave/Generated/DAVE.c ****  *
+  18:../Dave/Generated/DAVE.c ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  19:../Dave/Generated/DAVE.c ****  *   products derived from this software without specific prior written permission.
+  20:../Dave/Generated/DAVE.c ****  *
+  21:../Dave/Generated/DAVE.c ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  22:../Dave/Generated/DAVE.c ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  23:../Dave/Generated/DAVE.c ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  24:../Dave/Generated/DAVE.c ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  25:../Dave/Generated/DAVE.c ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  26:../Dave/Generated/DAVE.c ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  27:../Dave/Generated/DAVE.c ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  28:../Dave/Generated/DAVE.c ****  *
+  29:../Dave/Generated/DAVE.c ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  30:../Dave/Generated/DAVE.c ****  * with Infineon Technologies AG (dave@infineon.com).
+  31:../Dave/Generated/DAVE.c ****  **************************************************************************************************
+  32:../Dave/Generated/DAVE.c ****  *
+  33:../Dave/Generated/DAVE.c ****  * Change History
+  34:../Dave/Generated/DAVE.c ****  * --------------
+  35:../Dave/Generated/DAVE.c ****  *
+  36:../Dave/Generated/DAVE.c ****  * 2014-06-16:
+  37:../Dave/Generated/DAVE.c ****  *     - Initial version<br>
+  38:../Dave/Generated/DAVE.c ****  * 2015-08-28:
+  39:../Dave/Generated/DAVE.c ****  *     - Added CLOCK_XMC1_Init conditionally
+  40:../Dave/Generated/DAVE.c ****  * 2018-08-08:
+  41:../Dave/Generated/DAVE.c ****  *     - Add creation of projectData.bak file
+  42:../Dave/Generated/DAVE.c ****  * 2019-01-30:
+  43:../Dave/Generated/DAVE.c ****  *     - Fix creation of projectData.bak file
+  44:../Dave/Generated/DAVE.c ****  * 2019-04-29:
+  45:../Dave/Generated/DAVE.c ****  *     - Make DAVE_Init() weak, the user can reimplement the function
+  46:../Dave/Generated/DAVE.c ****  *
+  47:../Dave/Generated/DAVE.c ****  * @endcond
+  48:../Dave/Generated/DAVE.c ****  *
+  49:../Dave/Generated/DAVE.c ****  */
+  50:../Dave/Generated/DAVE.c **** 
+  51:../Dave/Generated/DAVE.c **** /**************************************************************************************************
+  52:../Dave/Generated/DAVE.c ****  * HEADER FILES
+  53:../Dave/Generated/DAVE.c ****  **************************************************************************************************
+  54:../Dave/Generated/DAVE.c **** #include "DAVE.h"
+  55:../Dave/Generated/DAVE.c **** 
+  56:../Dave/Generated/DAVE.c **** /**************************************************************************************************
+  57:../Dave/Generated/DAVE.c ****  * API IMPLEMENTATION
+  58:../Dave/Generated/DAVE.c ****  **************************************************************************************************
+  59:../Dave/Generated/DAVE.c **** 
+  60:../Dave/Generated/DAVE.c **** /*******************************************************************************
+  61:../Dave/Generated/DAVE.c ****  * @brief This function initializes the APPs Init Functions.
+  62:../Dave/Generated/DAVE.c ****  *
+  63:../Dave/Generated/DAVE.c ****  * @param[in]  None
+  64:../Dave/Generated/DAVE.c ****  *
+  65:../Dave/Generated/DAVE.c ****  * @return  DAVE_STATUS_t <BR>
+  66:../Dave/Generated/DAVE.c ****  ******************************************************************************/
+  67:../Dave/Generated/DAVE.c **** __WEAK DAVE_STATUS_t DAVE_Init(void)
+  68:../Dave/Generated/DAVE.c **** {
+  26              	 .loc 1 68 0
+  27              	 .cfi_startproc
+  28 0000 90B5     	 push {r4,r7,lr}
+  29              	.LCFI0:
+  30              	 .cfi_def_cfa_offset 12
+  31              	 .cfi_offset 4,-12
+  32              	 .cfi_offset 7,-8
+  33              	 .cfi_offset 14,-4
+  34 0002 83B0     	 sub sp,sp,#12
+  35              	.LCFI1:
+  36              	 .cfi_def_cfa_offset 24
+  37 0004 00AF     	 add r7,sp,#0
+  38              	.LCFI2:
+  39              	 .cfi_def_cfa_register 7
+  69:../Dave/Generated/DAVE.c ****   DAVE_STATUS_t init_status;
+  70:../Dave/Generated/DAVE.c ****   
+  71:../Dave/Generated/DAVE.c ****   init_status = DAVE_STATUS_SUCCESS;
+  40              	 .loc 1 71 0
+  41 0006 FB1D     	 add r3,r7,#7
+  42 0008 0022     	 mov r2,#0
+  43 000a 1A70     	 strb r2,[r3]
+  72:../Dave/Generated/DAVE.c ****      /** @Initialization of APPs Init Functions */
+  73:../Dave/Generated/DAVE.c ****      init_status = (DAVE_STATUS_t)CLOCK_XMC1_Init(&CLOCK_XMC1_0);
+  44              	 .loc 1 73 0
+  45 000c FC1D     	 add r4,r7,#7
+  46 000e 844B     	 ldr r3,.L26
+  47 0010 181C     	 mov r0,r3
+  48 0012 FFF7FEFF 	 bl CLOCK_XMC1_Init
+  49 0016 031C     	 mov r3,r0
+  50 0018 2370     	 strb r3,[r4]
+  74:../Dave/Generated/DAVE.c **** 
+  75:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+  51              	 .loc 1 75 0
+  52 001a FB1D     	 add r3,r7,#7
+  53 001c 1B78     	 ldrb r3,[r3]
+  54 001e 002B     	 cmp r3,#0
+  55 0020 06D1     	 bne .L2
+  76:../Dave/Generated/DAVE.c ****   {
+  77:../Dave/Generated/DAVE.c **** 	 /**  Initialization of CAN_NODE APP instance CAN_NODE_0 */
+  78:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)CAN_NODE_Init(&CAN_NODE_0); 
+  56              	 .loc 1 78 0
+  57 0022 FC1D     	 add r4,r7,#7
+  58 0024 7F4B     	 ldr r3,.L26+4
+  59 0026 181C     	 mov r0,r3
+  60 0028 FFF7FEFF 	 bl CAN_NODE_Init
+  61 002c 031C     	 mov r3,r0
+  62 002e 2370     	 strb r3,[r4]
+  63              	.L2:
+  79:../Dave/Generated/DAVE.c ****    } 
+  80:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+  64              	 .loc 1 80 0
+  65 0030 FB1D     	 add r3,r7,#7
+  66 0032 1B78     	 ldrb r3,[r3]
+  67 0034 002B     	 cmp r3,#0
+  68 0036 06D1     	 bne .L3
+  81:../Dave/Generated/DAVE.c ****   {
+  82:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance CAN_RX_ULTRASONIC */
+  83:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&CAN_RX_ULTRASONIC); 
+  69              	 .loc 1 83 0
+  70 0038 FC1D     	 add r4,r7,#7
+  71 003a 7B4B     	 ldr r3,.L26+8
+  72 003c 181C     	 mov r0,r3
+  73 003e FFF7FEFF 	 bl INTERRUPT_Init
+  74 0042 031C     	 mov r3,r0
+  75 0044 2370     	 strb r3,[r4]
+  76              	.L3:
+  84:../Dave/Generated/DAVE.c ****    } 
+  85:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+  77              	 .loc 1 85 0
+  78 0046 FB1D     	 add r3,r7,#7
+  79 0048 1B78     	 ldrb r3,[r3]
+  80 004a 002B     	 cmp r3,#0
+  81 004c 06D1     	 bne .L4
+  86:../Dave/Generated/DAVE.c ****   {
+  87:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PWM APP instance PWM_servo_fl */
+  88:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PWM_Init(&PWM_servo_fl); 
+  82              	 .loc 1 88 0
+  83 004e FC1D     	 add r4,r7,#7
+  84 0050 764B     	 ldr r3,.L26+12
+  85 0052 181C     	 mov r0,r3
+  86 0054 FFF7FEFF 	 bl PWM_Init
+  87 0058 031C     	 mov r3,r0
+  88 005a 2370     	 strb r3,[r4]
+  89              	.L4:
+  89:../Dave/Generated/DAVE.c ****    } 
+  90:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+  90              	 .loc 1 90 0
+  91 005c FB1D     	 add r3,r7,#7
+  92 005e 1B78     	 ldrb r3,[r3]
+  93 0060 002B     	 cmp r3,#0
+  94 0062 06D1     	 bne .L5
+  91:../Dave/Generated/DAVE.c ****   {
+  92:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PWM APP instance PWM_servo_fr */
+  93:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PWM_Init(&PWM_servo_fr); 
+  95              	 .loc 1 93 0
+  96 0064 FC1D     	 add r4,r7,#7
+  97 0066 724B     	 ldr r3,.L26+16
+  98 0068 181C     	 mov r0,r3
+  99 006a FFF7FEFF 	 bl PWM_Init
+ 100 006e 031C     	 mov r3,r0
+ 101 0070 2370     	 strb r3,[r4]
+ 102              	.L5:
+  94:../Dave/Generated/DAVE.c ****    } 
+  95:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 103              	 .loc 1 95 0
+ 104 0072 FB1D     	 add r3,r7,#7
+ 105 0074 1B78     	 ldrb r3,[r3]
+ 106 0076 002B     	 cmp r3,#0
+ 107 0078 06D1     	 bne .L6
+  96:../Dave/Generated/DAVE.c ****   {
+  97:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PWM APP instance PWM_servo_rl */
+  98:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PWM_Init(&PWM_servo_rl); 
+ 108              	 .loc 1 98 0
+ 109 007a FC1D     	 add r4,r7,#7
+ 110 007c 6D4B     	 ldr r3,.L26+20
+ 111 007e 181C     	 mov r0,r3
+ 112 0080 FFF7FEFF 	 bl PWM_Init
+ 113 0084 031C     	 mov r3,r0
+ 114 0086 2370     	 strb r3,[r4]
+ 115              	.L6:
+  99:../Dave/Generated/DAVE.c ****    } 
+ 100:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 116              	 .loc 1 100 0
+ 117 0088 FB1D     	 add r3,r7,#7
+ 118 008a 1B78     	 ldrb r3,[r3]
+ 119 008c 002B     	 cmp r3,#0
+ 120 008e 06D1     	 bne .L7
+ 101:../Dave/Generated/DAVE.c ****   {
+ 102:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PWM APP instance PWM_servo_rr */
+ 103:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PWM_Init(&PWM_servo_rr); 
+ 121              	 .loc 1 103 0
+ 122 0090 FC1D     	 add r4,r7,#7
+ 123 0092 694B     	 ldr r3,.L26+24
+ 124 0094 181C     	 mov r0,r3
+ 125 0096 FFF7FEFF 	 bl PWM_Init
+ 126 009a 031C     	 mov r3,r0
+ 127 009c 2370     	 strb r3,[r4]
+ 128              	.L7:
+ 104:../Dave/Generated/DAVE.c ****    } 
+ 105:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 129              	 .loc 1 105 0
+ 130 009e FB1D     	 add r3,r7,#7
+ 131 00a0 1B78     	 ldrb r3,[r3]
+ 132 00a2 002B     	 cmp r3,#0
+ 133 00a4 06D1     	 bne .L8
+ 106:../Dave/Generated/DAVE.c ****   {
+ 107:../Dave/Generated/DAVE.c **** 	 /**  Initialization of TIMER APP instance TIMER_10us */
+ 108:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)TIMER_Init(&TIMER_10us); 
+ 134              	 .loc 1 108 0
+ 135 00a6 FC1D     	 add r4,r7,#7
+ 136 00a8 644B     	 ldr r3,.L26+28
+ 137 00aa 181C     	 mov r0,r3
+ 138 00ac FFF7FEFF 	 bl TIMER_Init
+ 139 00b0 031C     	 mov r3,r0
+ 140 00b2 2370     	 strb r3,[r4]
+ 141              	.L8:
+ 109:../Dave/Generated/DAVE.c ****    } 
+ 110:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 142              	 .loc 1 110 0
+ 143 00b4 FB1D     	 add r3,r7,#7
+ 144 00b6 1B78     	 ldrb r3,[r3]
+ 145 00b8 002B     	 cmp r3,#0
+ 146 00ba 06D1     	 bne .L9
+ 111:../Dave/Generated/DAVE.c ****   {
+ 112:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance INTERRUPT_TIMER_10us */
+ 113:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_TIMER_10us); 
+ 147              	 .loc 1 113 0
+ 148 00bc FC1D     	 add r4,r7,#7
+ 149 00be 604B     	 ldr r3,.L26+32
+ 150 00c0 181C     	 mov r0,r3
+ 151 00c2 FFF7FEFF 	 bl INTERRUPT_Init
+ 152 00c6 031C     	 mov r3,r0
+ 153 00c8 2370     	 strb r3,[r4]
+ 154              	.L9:
+ 114:../Dave/Generated/DAVE.c ****    } 
+ 115:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 155              	 .loc 1 115 0
+ 156 00ca FB1D     	 add r3,r7,#7
+ 157 00cc 1B78     	 ldrb r3,[r3]
+ 158 00ce 002B     	 cmp r3,#0
+ 159 00d0 06D1     	 bne .L10
+ 116:../Dave/Generated/DAVE.c ****   {
+ 117:../Dave/Generated/DAVE.c **** 	 /**  Initialization of CAPTURE APP instance CAPTURE_RC_Steering */
+ 118:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)CAPTURE_Init(&CAPTURE_RC_Steering); 
+ 160              	 .loc 1 118 0
+ 161 00d2 FC1D     	 add r4,r7,#7
+ 162 00d4 5B4B     	 ldr r3,.L26+36
+ 163 00d6 181C     	 mov r0,r3
+ 164 00d8 FFF7FEFF 	 bl CAPTURE_Init
+ 165 00dc 031C     	 mov r3,r0
+ 166 00de 2370     	 strb r3,[r4]
+ 167              	.L10:
+ 119:../Dave/Generated/DAVE.c ****    } 
+ 120:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 168              	 .loc 1 120 0
+ 169 00e0 FB1D     	 add r3,r7,#7
+ 170 00e2 1B78     	 ldrb r3,[r3]
+ 171 00e4 002B     	 cmp r3,#0
+ 172 00e6 06D1     	 bne .L11
+ 121:../Dave/Generated/DAVE.c ****   {
+ 122:../Dave/Generated/DAVE.c **** 	 /**  Initialization of CAPTURE APP instance CAPTURE_RC_Speed */
+ 123:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)CAPTURE_Init(&CAPTURE_RC_Speed); 
+ 173              	 .loc 1 123 0
+ 174 00e8 FC1D     	 add r4,r7,#7
+ 175 00ea 574B     	 ldr r3,.L26+40
+ 176 00ec 181C     	 mov r0,r3
+ 177 00ee FFF7FEFF 	 bl CAPTURE_Init
+ 178 00f2 031C     	 mov r3,r0
+ 179 00f4 2370     	 strb r3,[r4]
+ 180              	.L11:
+ 124:../Dave/Generated/DAVE.c ****    } 
+ 125:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 181              	 .loc 1 125 0
+ 182 00f6 FB1D     	 add r3,r7,#7
+ 183 00f8 1B78     	 ldrb r3,[r3]
+ 184 00fa 002B     	 cmp r3,#0
+ 185 00fc 06D1     	 bne .L12
+ 126:../Dave/Generated/DAVE.c ****   {
+ 127:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance RC_no_data_LED */
+ 128:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&RC_no_data_LED); 
+ 186              	 .loc 1 128 0
+ 187 00fe FC1D     	 add r4,r7,#7
+ 188 0100 524B     	 ldr r3,.L26+44
+ 189 0102 181C     	 mov r0,r3
+ 190 0104 FFF7FEFF 	 bl DIGITAL_IO_Init
+ 191 0108 031C     	 mov r3,r0
+ 192 010a 2370     	 strb r3,[r4]
+ 193              	.L12:
+ 129:../Dave/Generated/DAVE.c ****    } 
+ 130:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 194              	 .loc 1 130 0
+ 195 010c FB1D     	 add r3,r7,#7
+ 196 010e 1B78     	 ldrb r3,[r3]
+ 197 0110 002B     	 cmp r3,#0
+ 198 0112 06D1     	 bne .L13
+ 131:../Dave/Generated/DAVE.c ****   {
+ 132:../Dave/Generated/DAVE.c **** 	 /**  Initialization of TIMER APP instance TIMER_CONTROL */
+ 133:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)TIMER_Init(&TIMER_CONTROL); 
+ 199              	 .loc 1 133 0
+ 200 0114 FC1D     	 add r4,r7,#7
+ 201 0116 4E4B     	 ldr r3,.L26+48
+ 202 0118 181C     	 mov r0,r3
+ 203 011a FFF7FEFF 	 bl TIMER_Init
+ 204 011e 031C     	 mov r3,r0
+ 205 0120 2370     	 strb r3,[r4]
+ 206              	.L13:
+ 134:../Dave/Generated/DAVE.c ****    } 
+ 135:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 207              	 .loc 1 135 0
+ 208 0122 FB1D     	 add r3,r7,#7
+ 209 0124 1B78     	 ldrb r3,[r3]
+ 210 0126 002B     	 cmp r3,#0
+ 211 0128 06D1     	 bne .L14
+ 136:../Dave/Generated/DAVE.c ****   {
+ 137:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance INTERRUPT_TIMER_CONTROL */
+ 138:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_TIMER_CONTROL); 
+ 212              	 .loc 1 138 0
+ 213 012a FC1D     	 add r4,r7,#7
+ 214 012c 494B     	 ldr r3,.L26+52
+ 215 012e 181C     	 mov r0,r3
+ 216 0130 FFF7FEFF 	 bl INTERRUPT_Init
+ 217 0134 031C     	 mov r3,r0
+ 218 0136 2370     	 strb r3,[r4]
+ 219              	.L14:
+ 139:../Dave/Generated/DAVE.c ****    } 
+ 140:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 220              	 .loc 1 140 0
+ 221 0138 FB1D     	 add r3,r7,#7
+ 222 013a 1B78     	 ldrb r3,[r3]
+ 223 013c 002B     	 cmp r3,#0
+ 224 013e 06D1     	 bne .L15
+ 141:../Dave/Generated/DAVE.c ****   {
+ 142:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PIN_INTERRUPT APP instance RC_Connected */
+ 143:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&RC_Connected); 
+ 225              	 .loc 1 143 0
+ 226 0140 FC1D     	 add r4,r7,#7
+ 227 0142 454B     	 ldr r3,.L26+56
+ 228 0144 181C     	 mov r0,r3
+ 229 0146 FFF7FEFF 	 bl PIN_INTERRUPT_Init
+ 230 014a 031C     	 mov r3,r0
+ 231 014c 2370     	 strb r3,[r4]
+ 232              	.L15:
+ 144:../Dave/Generated/DAVE.c ****    } 
+ 145:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 233              	 .loc 1 145 0
+ 234 014e FB1D     	 add r3,r7,#7
+ 235 0150 1B78     	 ldrb r3,[r3]
+ 236 0152 002B     	 cmp r3,#0
+ 237 0154 06D1     	 bne .L16
+ 146:../Dave/Generated/DAVE.c ****   {
+ 147:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance CALC_TIME_INDICATOR */
+ 148:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&CALC_TIME_INDICATOR); 
+ 238              	 .loc 1 148 0
+ 239 0156 FC1D     	 add r4,r7,#7
+ 240 0158 404B     	 ldr r3,.L26+60
+ 241 015a 181C     	 mov r0,r3
+ 242 015c FFF7FEFF 	 bl DIGITAL_IO_Init
+ 243 0160 031C     	 mov r3,r0
+ 244 0162 2370     	 strb r3,[r4]
+ 245              	.L16:
+ 149:../Dave/Generated/DAVE.c ****    } 
+ 150:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 246              	 .loc 1 150 0
+ 247 0164 FB1D     	 add r3,r7,#7
+ 248 0166 1B78     	 ldrb r3,[r3]
+ 249 0168 002B     	 cmp r3,#0
+ 250 016a 06D1     	 bne .L17
+ 151:../Dave/Generated/DAVE.c ****   {
+ 152:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance MODE_001 */
+ 153:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&MODE_001); 
+ 251              	 .loc 1 153 0
+ 252 016c FC1D     	 add r4,r7,#7
+ 253 016e 3C4B     	 ldr r3,.L26+64
+ 254 0170 181C     	 mov r0,r3
+ 255 0172 FFF7FEFF 	 bl DIGITAL_IO_Init
+ 256 0176 031C     	 mov r3,r0
+ 257 0178 2370     	 strb r3,[r4]
+ 258              	.L17:
+ 154:../Dave/Generated/DAVE.c ****    } 
+ 155:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 259              	 .loc 1 155 0
+ 260 017a FB1D     	 add r3,r7,#7
+ 261 017c 1B78     	 ldrb r3,[r3]
+ 262 017e 002B     	 cmp r3,#0
+ 263 0180 06D1     	 bne .L18
+ 156:../Dave/Generated/DAVE.c ****   {
+ 157:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance MODE_010 */
+ 158:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&MODE_010); 
+ 264              	 .loc 1 158 0
+ 265 0182 FC1D     	 add r4,r7,#7
+ 266 0184 374B     	 ldr r3,.L26+68
+ 267 0186 181C     	 mov r0,r3
+ 268 0188 FFF7FEFF 	 bl DIGITAL_IO_Init
+ 269 018c 031C     	 mov r3,r0
+ 270 018e 2370     	 strb r3,[r4]
+ 271              	.L18:
+ 159:../Dave/Generated/DAVE.c ****    } 
+ 160:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 272              	 .loc 1 160 0
+ 273 0190 FB1D     	 add r3,r7,#7
+ 274 0192 1B78     	 ldrb r3,[r3]
+ 275 0194 002B     	 cmp r3,#0
+ 276 0196 06D1     	 bne .L19
+ 161:../Dave/Generated/DAVE.c ****   {
+ 162:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance MODE_100 */
+ 163:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&MODE_100); 
+ 277              	 .loc 1 163 0
+ 278 0198 FC1D     	 add r4,r7,#7
+ 279 019a 334B     	 ldr r3,.L26+72
+ 280 019c 181C     	 mov r0,r3
+ 281 019e FFF7FEFF 	 bl DIGITAL_IO_Init
+ 282 01a2 031C     	 mov r3,r0
+ 283 01a4 2370     	 strb r3,[r4]
+ 284              	.L19:
+ 164:../Dave/Generated/DAVE.c ****    } 
+ 165:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 285              	 .loc 1 165 0
+ 286 01a6 FB1D     	 add r3,r7,#7
+ 287 01a8 1B78     	 ldrb r3,[r3]
+ 288 01aa 002B     	 cmp r3,#0
+ 289 01ac 06D1     	 bne .L20
+ 166:../Dave/Generated/DAVE.c ****   {
+ 167:../Dave/Generated/DAVE.c **** 	 /**  Initialization of WATCHDOG APP instance WATCHDOG_0 */
+ 168:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)WATCHDOG_Init(&WATCHDOG_0); 
+ 290              	 .loc 1 168 0
+ 291 01ae FC1D     	 add r4,r7,#7
+ 292 01b0 2E4B     	 ldr r3,.L26+76
+ 293 01b2 181C     	 mov r0,r3
+ 294 01b4 FFF7FEFF 	 bl WATCHDOG_Init
+ 295 01b8 031C     	 mov r3,r0
+ 296 01ba 2370     	 strb r3,[r4]
+ 297              	.L20:
+ 169:../Dave/Generated/DAVE.c ****    } 
+ 170:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 298              	 .loc 1 170 0
+ 299 01bc FB1D     	 add r3,r7,#7
+ 300 01be 1B78     	 ldrb r3,[r3]
+ 301 01c0 002B     	 cmp r3,#0
+ 302 01c2 06D1     	 bne .L21
+ 171:../Dave/Generated/DAVE.c ****   {
+ 172:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance WATCHDOG_LED_BLUE */
+ 173:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&WATCHDOG_LED_BLUE); 
+ 303              	 .loc 1 173 0
+ 304 01c4 FC1D     	 add r4,r7,#7
+ 305 01c6 2A4B     	 ldr r3,.L26+80
+ 306 01c8 181C     	 mov r0,r3
+ 307 01ca FFF7FEFF 	 bl DIGITAL_IO_Init
+ 308 01ce 031C     	 mov r3,r0
+ 309 01d0 2370     	 strb r3,[r4]
+ 310              	.L21:
+ 174:../Dave/Generated/DAVE.c ****    } 
+ 175:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 311              	 .loc 1 175 0
+ 312 01d2 FB1D     	 add r3,r7,#7
+ 313 01d4 1B78     	 ldrb r3,[r3]
+ 314 01d6 002B     	 cmp r3,#0
+ 315 01d8 06D1     	 bne .L22
+ 176:../Dave/Generated/DAVE.c ****   {
+ 177:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance CAN_RX_INVERTER */
+ 178:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&CAN_RX_INVERTER); 
+ 316              	 .loc 1 178 0
+ 317 01da FC1D     	 add r4,r7,#7
+ 318 01dc 254B     	 ldr r3,.L26+84
+ 319 01de 181C     	 mov r0,r3
+ 320 01e0 FFF7FEFF 	 bl INTERRUPT_Init
+ 321 01e4 031C     	 mov r3,r0
+ 322 01e6 2370     	 strb r3,[r4]
+ 323              	.L22:
+ 179:../Dave/Generated/DAVE.c ****    } 
+ 180:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 324              	 .loc 1 180 0
+ 325 01e8 FB1D     	 add r3,r7,#7
+ 326 01ea 1B78     	 ldrb r3,[r3]
+ 327 01ec 002B     	 cmp r3,#0
+ 328 01ee 06D1     	 bne .L23
+ 181:../Dave/Generated/DAVE.c ****   {
+ 182:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PIN_INTERRUPT APP instance RC_AUX1 */
+ 183:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&RC_AUX1); 
+ 329              	 .loc 1 183 0
+ 330 01f0 FC1D     	 add r4,r7,#7
+ 331 01f2 214B     	 ldr r3,.L26+88
+ 332 01f4 181C     	 mov r0,r3
+ 333 01f6 FFF7FEFF 	 bl PIN_INTERRUPT_Init
+ 334 01fa 031C     	 mov r3,r0
+ 335 01fc 2370     	 strb r3,[r4]
+ 336              	.L23:
+ 184:../Dave/Generated/DAVE.c ****    } 
+ 185:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
+ 337              	 .loc 1 185 0
+ 338 01fe FB1D     	 add r3,r7,#7
+ 339 0200 1B78     	 ldrb r3,[r3]
+ 340 0202 002B     	 cmp r3,#0
+ 341 0204 06D1     	 bne .L24
+ 186:../Dave/Generated/DAVE.c ****   {
+ 187:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance LED_CAN_ERROR */
+ 188:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&LED_CAN_ERROR); 
+ 342              	 .loc 1 188 0
+ 343 0206 FC1D     	 add r4,r7,#7
+ 344 0208 1C4B     	 ldr r3,.L26+92
+ 345 020a 181C     	 mov r0,r3
+ 346 020c FFF7FEFF 	 bl DIGITAL_IO_Init
+ 347 0210 031C     	 mov r3,r0
+ 348 0212 2370     	 strb r3,[r4]
+ 349              	.L24:
+ 189:../Dave/Generated/DAVE.c ****    }  
+ 190:../Dave/Generated/DAVE.c ****   return init_status;
+ 350              	 .loc 1 190 0
+ 351 0214 FB1D     	 add r3,r7,#7
+ 352 0216 1B78     	 ldrb r3,[r3]
+ 191:../Dave/Generated/DAVE.c **** } /**  End of function DAVE_Init */
+ 353              	 .loc 1 191 0
+ 354 0218 181C     	 mov r0,r3
+ 355 021a BD46     	 mov sp,r7
+ 356 021c 03B0     	 add sp,sp,#12
+ 357              	 
+ 358 021e 90BD     	 pop {r4,r7,pc}
+ 359              	.L27:
+ 360              	 .align 2
+ 361              	.L26:
+ 362 0220 00000000 	 .word CLOCK_XMC1_0
+ 363 0224 00000000 	 .word CAN_NODE_0
+ 364 0228 00000000 	 .word CAN_RX_ULTRASONIC
+ 365 022c 00000000 	 .word PWM_servo_fl
+ 366 0230 00000000 	 .word PWM_servo_fr
+ 367 0234 00000000 	 .word PWM_servo_rl
+ 368 0238 00000000 	 .word PWM_servo_rr
+ 369 023c 00000000 	 .word TIMER_10us
+ 370 0240 00000000 	 .word INTERRUPT_TIMER_10us
+ 371 0244 00000000 	 .word CAPTURE_RC_Steering
+ 372 0248 00000000 	 .word CAPTURE_RC_Speed
+ 373 024c 00000000 	 .word RC_no_data_LED
+ 374 0250 00000000 	 .word TIMER_CONTROL
+ 375 0254 00000000 	 .word INTERRUPT_TIMER_CONTROL
+ 376 0258 00000000 	 .word RC_Connected
+ 377 025c 00000000 	 .word CALC_TIME_INDICATOR
+ 378 0260 00000000 	 .word MODE_001
+ 379 0264 00000000 	 .word MODE_010
+ 380 0268 00000000 	 .word MODE_100
+ 381 026c 00000000 	 .word WATCHDOG_0
+ 382 0270 00000000 	 .word WATCHDOG_LED_BLUE
+ 383 0274 00000000 	 .word CAN_RX_INVERTER
+ 384 0278 00000000 	 .word RC_AUX1
+ 385 027c 00000000 	 .word LED_CAN_ERROR
+ 386              	 .cfi_endproc
+ 387              	.LFE224:
+ 389              	 .text
+ 390              	.Letext0:
+ 391              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 392              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 393              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 394              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_scu.h"
+ 395              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_scu.h"
+ 396              	 .file 7 "../Dave/Generated/CLOCK_XMC1/clock_xmc1.h"
+ 397              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_can.h"
+ 398              	 .file 9 "../Dave/Generated/GLOBAL_CAN/global_can.h"
+ 399              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_gpio.h"
+ 400              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 401              	 .file 12 "../Dave/Generated/CAN_NODE/can_node.h"
+ 402              	 .file 13 "../Dave/Generated/INTERRUPT/interrupt.h"
+ 403              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_ccu4.h"
+ 404              	 .file 15 "../Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
+ 405              	 .file 16 "../Dave/Generated/PWM/pwm.h"
+ 406              	 .file 17 "../Dave/Generated/TIMER/timer.h"
+ 407              	 .file 18 "../Dave/Generated/CAPTURE/capture.h"
+ 408              	 .file 19 "../Dave/Generated/DIGITAL_IO/digital_io.h"
+ 409              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_eru.h"
+ 410              	 .file 21 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
+ 411              	 .file 22 "../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h"
+ 412              	 .file 23 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_wdt.h"
+ 413              	 .file 24 "../Dave/Generated/WATCHDOG/watchdog.h"
+ 414              	 .file 25 "../Dave/Generated/DAVE.h"
+ 415              	 .file 26 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 416              	 .file 27 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 417              	 .file 28 "../Dave/Generated/CLOCK_XMC1/clock_xmc1_extern.h"
+ 418              	 .file 29 "../Dave/Generated/CAN_NODE/can_node_extern.h"
+ 419              	 .file 30 "../Dave/Generated/INTERRUPT/interrupt_extern.h"
+ 420              	 .file 31 "../Dave/Generated/PWM/PWM_Extern.h"
+ 421              	 .file 32 "../Dave/Generated/TIMER/timer_extern.h"
+ 422              	 .file 33 "../Dave/Generated/CAPTURE/capture_extern.h"
+ 423              	 .file 34 "../Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 424              	 .file 35 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
+ 425              	 .file 36 "../Dave/Generated/WATCHDOG/watchdog_extern.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 DAVE.c
+    {standard input}:18     .text.DAVE_Init:00000000 $t
+    {standard input}:23     .text.DAVE_Init:00000000 DAVE_Init
+    {standard input}:362    .text.DAVE_Init:00000220 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+CLOCK_XMC1_Init
+CAN_NODE_Init
+INTERRUPT_Init
+PWM_Init
+TIMER_Init
+CAPTURE_Init
+DIGITAL_IO_Init
+PIN_INTERRUPT_Init
+WATCHDOG_Init
+CLOCK_XMC1_0
+CAN_NODE_0
+CAN_RX_ULTRASONIC
+PWM_servo_fl
+PWM_servo_fr
+PWM_servo_rl
+PWM_servo_rr
+TIMER_10us
+INTERRUPT_TIMER_10us
+CAPTURE_RC_Steering
+CAPTURE_RC_Speed
+RC_no_data_LED
+TIMER_CONTROL
+INTERRUPT_TIMER_CONTROL
+RC_Connected
+CALC_TIME_INDICATOR
+MODE_001
+MODE_010
+MODE_100
+WATCHDOG_0
+WATCHDOG_LED_BLUE
+CAN_RX_INVERTER
+RC_AUX1
+LED_CAN_ERROR

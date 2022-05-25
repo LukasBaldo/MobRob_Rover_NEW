@@ -1,0 +1,1535 @@
+   1              	 .cpu cortex-m0
+   2              	 .fpu softvfp
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,0
+  11              	 .eabi_attribute 18,4
+  12              	 .code 16
+  13              	 .file "global_scu_xmc1.c"
+  14              	 .text
+  15              	.Ltext0:
+  16              	 .cfi_sections .debug_frame
+  17              	 .section .text.__NVIC_EnableIRQ,"ax",%progbits
+  18              	 .align 2
+  19              	 .code 16
+  20              	 .thumb_func
+  22              	__NVIC_EnableIRQ:
+  23              	.LFB27:
+  24              	 .file 1 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/core_cm0.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**************************************************************************//**
+   2:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * @file     core_cm0.h
+   3:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * @brief    CMSIS Cortex-M0 Core Peripheral Access Layer Header File
+   4:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * @version  V5.0.8
+   5:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * @date     21. August 2019
+   6:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  ******************************************************************************/
+   7:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*
+   8:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
+   9:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  *
+  10:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * SPDX-License-Identifier: Apache-2.0
+  11:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  *
+  12:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  13:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * not use this file except in compliance with the License.
+  14:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * You may obtain a copy of the License at
+  15:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  *
+  16:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * www.apache.org/licenses/LICENSE-2.0
+  17:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  *
+  18:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * Unless required by applicable law or agreed to in writing, software
+  19:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  20:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  21:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * See the License for the specific language governing permissions and
+  22:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  * limitations under the License.
+  23:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+  24:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  25:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #if   defined ( __ICCARM__ )
+  26:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #pragma system_include         /* treat file as system include file for MISRA check */
+  27:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #elif defined (__clang__)
+  28:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #pragma clang system_header   /* treat file as system include file */
+  29:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif
+  30:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  31:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #ifndef __CORE_CM0_H_GENERIC
+  32:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define __CORE_CM0_H_GENERIC
+  33:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  34:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #include <stdint.h>
+  35:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  36:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #ifdef __cplusplus
+  37:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  extern "C" {
+  38:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif
+  39:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  40:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+  41:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \page CMSIS_MISRA_Exceptions  MISRA-C:2004 Compliance Exceptions
+  42:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   CMSIS violates the following MISRA-C:2004 rules:
+  43:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  44:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****    \li Required Rule 8.5, object/function definition in header file.<br>
+  45:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****      Function definitions in header files are used to allow 'inlining'.
+  46:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  47:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****    \li Required Rule 18.4, declaration of union type or object of union type: '{...}'.<br>
+  48:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****      Unions are used for effective representation of core registers.
+  49:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  50:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****    \li Advisory Rule 19.7, Function-like macro defined.<br>
+  51:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****      Function-like macros are used to allow more efficient code.
+  52:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+  53:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  54:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  55:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*******************************************************************************
+  56:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  *                 CMSIS definitions
+  57:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  ******************************************************************************/
+  58:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+  59:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup Cortex_M0
+  60:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   @{
+  61:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+  62:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  63:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #include "cmsis_version.h"
+  64:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  
+  65:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*  CMSIS CM0 definitions */
+  66:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define __CM0_CMSIS_VERSION_MAIN  (__CM_CMSIS_VERSION_MAIN)              /*!< \deprecated [31:16] C
+  67:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define __CM0_CMSIS_VERSION_SUB   (__CM_CMSIS_VERSION_SUB)               /*!< \deprecated [15:0]  C
+  68:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define __CM0_CMSIS_VERSION       ((__CM0_CMSIS_VERSION_MAIN << 16U) | \
+  69:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****                                     __CM0_CMSIS_VERSION_SUB           )  /*!< \deprecated CMSIS HAL
+  70:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  71:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define __CORTEX_M                (0U)                                   /*!< Cortex-M Core */
+  72:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  73:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /** __FPU_USED indicates whether an FPU is used or not.
+  74:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     This core does not support an FPU at all
+  75:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** */
+  76:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define __FPU_USED       0U
+  77:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  78:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #if defined ( __CC_ARM )
+  79:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __TARGET_FPU_VFP
+  80:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  81:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+  82:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  83:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #elif defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+  84:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __ARM_FP
+  85:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  86:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+  87:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  88:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __GNUC__ )
+  89:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #if defined (__VFP_FP__) && !defined(__SOFTFP__)
+  90:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  91:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+  92:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  93:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __ICCARM__ )
+  94:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __ARMVFP__
+  95:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  96:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+  97:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+  98:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __TI_ARM__ )
+  99:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __TI_VFP_SUPPORT__
+ 100:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+ 101:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 102:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 103:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __TASKING__ )
+ 104:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __FPU_VFP__
+ 105:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+ 106:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 107:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 108:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __CSMC__ )
+ 109:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #if ( __CSMC__ & 0x400U)
+ 110:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+ 111:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 112:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 113:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 114:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 115:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #include "cmsis_compiler.h"               /* CMSIS compiler specific defines */
+ 116:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 117:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 118:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #ifdef __cplusplus
+ 119:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** }
+ 120:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 121:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 122:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif /* __CORE_CM0_H_GENERIC */
+ 123:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 124:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #ifndef __CMSIS_GENERIC
+ 125:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 126:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #ifndef __CORE_CM0_H_DEPENDANT
+ 127:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define __CORE_CM0_H_DEPENDANT
+ 128:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 129:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #ifdef __cplusplus
+ 130:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  extern "C" {
+ 131:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 132:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 133:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* check device defines and use defaults */
+ 134:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #if defined __CHECK_DEVICE_DEFINES
+ 135:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef __CM0_REV
+ 136:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #define __CM0_REV               0x0000U
+ 137:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #warning "__CM0_REV not defined in device header file; using default!"
+ 138:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 139:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 140:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef __NVIC_PRIO_BITS
+ 141:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #define __NVIC_PRIO_BITS          2U
+ 142:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #warning "__NVIC_PRIO_BITS not defined in device header file; using default!"
+ 143:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 144:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 145:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef __Vendor_SysTickConfig
+ 146:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #define __Vendor_SysTickConfig    0U
+ 147:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #warning "__Vendor_SysTickConfig not defined in device header file; using default!"
+ 148:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 149:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 150:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 151:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* IO definitions (access restrictions to peripheral registers) */
+ 152:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 153:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     \defgroup CMSIS_glob_defs CMSIS Global Defines
+ 154:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 155:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     <strong>IO Type Qualifiers</strong> are used
+ 156:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     \li to specify the access to peripheral variables.
+ 157:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     \li for automatic generation of peripheral register debug information.
+ 158:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** */
+ 159:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #ifdef __cplusplus
+ 160:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define   __I     volatile             /*!< Defines 'read only' permissions */
+ 161:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #else
+ 162:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define   __I     volatile const       /*!< Defines 'read only' permissions */
+ 163:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 164:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define     __O     volatile             /*!< Defines 'write only' permissions */
+ 165:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define     __IO    volatile             /*!< Defines 'read / write' permissions */
+ 166:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 167:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* following defines should be used for structure members */
+ 168:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define     __IM     volatile const      /*! Defines 'read only' structure member permissions */
+ 169:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define     __OM     volatile            /*! Defines 'write only' structure member permissions */
+ 170:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define     __IOM    volatile            /*! Defines 'read / write' structure member permissions */
+ 171:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 172:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group Cortex_M0 */
+ 173:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 174:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 175:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 176:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*******************************************************************************
+ 177:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  *                 Register Abstraction
+ 178:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   Core Register contain:
+ 179:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   - Core Register
+ 180:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   - Core NVIC Register
+ 181:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   - Core SCB Register
+ 182:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   - Core SysTick Register
+ 183:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  ******************************************************************************/
+ 184:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 185:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_core_register Defines and Type Definitions
+ 186:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief Type definitions and defines for Cortex-M processor based devices.
+ 187:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** */
+ 188:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 189:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 190:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup    CMSIS_core_register
+ 191:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup   CMSIS_CORE  Status and Control Registers
+ 192:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief      Core Register type definitions.
+ 193:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 194:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 195:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 196:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 197:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Union type to access the Application Program Status Register (APSR).
+ 198:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 199:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** typedef union
+ 200:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 201:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   struct
+ 202:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 203:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved0:28;              /*!< bit:  0..27  Reserved */
+ 204:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag */
+ 205:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t C:1;                        /*!< bit:     29  Carry condition code flag */
+ 206:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag */
+ 207:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t N:1;                        /*!< bit:     31  Negative condition code flag */
+ 208:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 209:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 210:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** } APSR_Type;
+ 211:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 212:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* APSR Register Definitions */
+ 213:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_N_Pos                         31U                                            /*!< APSR
+ 214:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_N_Msk                         (1UL << APSR_N_Pos)                            /*!< APSR
+ 215:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 216:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_Z_Pos                         30U                                            /*!< APSR
+ 217:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_Z_Msk                         (1UL << APSR_Z_Pos)                            /*!< APSR
+ 218:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 219:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_C_Pos                         29U                                            /*!< APSR
+ 220:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_C_Msk                         (1UL << APSR_C_Pos)                            /*!< APSR
+ 221:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 222:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_V_Pos                         28U                                            /*!< APSR
+ 223:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_V_Msk                         (1UL << APSR_V_Pos)                            /*!< APSR
+ 224:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 225:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 226:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 227:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Union type to access the Interrupt Program Status Register (IPSR).
+ 228:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 229:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** typedef union
+ 230:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 231:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   struct
+ 232:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 233:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number */
+ 234:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved0:23;              /*!< bit:  9..31  Reserved */
+ 235:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 236:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 237:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** } IPSR_Type;
+ 238:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 239:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* IPSR Register Definitions */
+ 240:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define IPSR_ISR_Pos                        0U                                            /*!< IPSR
+ 241:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define IPSR_ISR_Msk                       (0x1FFUL /*<< IPSR_ISR_Pos*/)                  /*!< IPSR
+ 242:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 243:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 244:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 245:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Union type to access the Special-Purpose Program Status Registers (xPSR).
+ 246:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 247:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** typedef union
+ 248:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 249:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   struct
+ 250:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 251:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number */
+ 252:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved0:15;              /*!< bit:  9..23  Reserved */
+ 253:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t T:1;                        /*!< bit:     24  Thumb bit        (read 0) */
+ 254:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved1:3;               /*!< bit: 25..27  Reserved */
+ 255:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag */
+ 256:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t C:1;                        /*!< bit:     29  Carry condition code flag */
+ 257:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag */
+ 258:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t N:1;                        /*!< bit:     31  Negative condition code flag */
+ 259:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 260:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 261:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** } xPSR_Type;
+ 262:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 263:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* xPSR Register Definitions */
+ 264:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_N_Pos                         31U                                            /*!< xPSR
+ 265:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_N_Msk                         (1UL << xPSR_N_Pos)                            /*!< xPSR
+ 266:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 267:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_Z_Pos                         30U                                            /*!< xPSR
+ 268:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_Z_Msk                         (1UL << xPSR_Z_Pos)                            /*!< xPSR
+ 269:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 270:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_C_Pos                         29U                                            /*!< xPSR
+ 271:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_C_Msk                         (1UL << xPSR_C_Pos)                            /*!< xPSR
+ 272:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 273:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_V_Pos                         28U                                            /*!< xPSR
+ 274:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_V_Msk                         (1UL << xPSR_V_Pos)                            /*!< xPSR
+ 275:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 276:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_T_Pos                         24U                                            /*!< xPSR
+ 277:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_T_Msk                         (1UL << xPSR_T_Pos)                            /*!< xPSR
+ 278:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 279:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_ISR_Pos                        0U                                            /*!< xPSR
+ 280:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_ISR_Msk                       (0x1FFUL /*<< xPSR_ISR_Pos*/)                  /*!< xPSR
+ 281:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 282:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 283:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 284:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Union type to access the Control Registers (CONTROL).
+ 285:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 286:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** typedef union
+ 287:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 288:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   struct
+ 289:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 290:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved0:1;               /*!< bit:      0  Reserved */
+ 291:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t SPSEL:1;                    /*!< bit:      1  Stack to be used */
+ 292:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved1:30;              /*!< bit:  2..31  Reserved */
+ 293:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 294:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 295:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** } CONTROL_Type;
+ 296:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 297:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* CONTROL Register Definitions */
+ 298:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define CONTROL_SPSEL_Pos                   1U                                            /*!< CONT
+ 299:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define CONTROL_SPSEL_Msk                  (1UL << CONTROL_SPSEL_Pos)                     /*!< CONT
+ 300:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 301:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_CORE */
+ 302:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 303:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 304:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 305:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup    CMSIS_core_register
+ 306:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup   CMSIS_NVIC  Nested Vectored Interrupt Controller (NVIC)
+ 307:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief      Type definitions for the NVIC Registers
+ 308:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 309:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 310:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 311:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 312:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Structure type to access the Nested Vectored Interrupt Controller (NVIC).
+ 313:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 314:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** typedef struct
+ 315:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 316:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ISER[1U];               /*!< Offset: 0x000 (R/W)  Interrupt Set Enable Register */
+ 317:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED0[31U];
+ 318:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ICER[1U];               /*!< Offset: 0x080 (R/W)  Interrupt Clear Enable Register 
+ 319:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED1[31U];
+ 320:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ISPR[1U];               /*!< Offset: 0x100 (R/W)  Interrupt Set Pending Register *
+ 321:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED2[31U];
+ 322:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ICPR[1U];               /*!< Offset: 0x180 (R/W)  Interrupt Clear Pending Register
+ 323:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED3[31U];
+ 324:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED4[64U];
+ 325:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t IP[8U];                 /*!< Offset: 0x300 (R/W)  Interrupt Priority Register */
+ 326:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** }  NVIC_Type;
+ 327:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 328:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_NVIC */
+ 329:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 330:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 331:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 332:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup  CMSIS_core_register
+ 333:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_SCB     System Control Block (SCB)
+ 334:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief    Type definitions for the System Control Block Registers
+ 335:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 336:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 337:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 338:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 339:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Structure type to access the System Control Block (SCB).
+ 340:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 341:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** typedef struct
+ 342:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 343:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IM  uint32_t CPUID;                  /*!< Offset: 0x000 (R/ )  CPUID Base Register */
+ 344:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ICSR;                   /*!< Offset: 0x004 (R/W)  Interrupt Control and State Regi
+ 345:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED0;
+ 346:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t AIRCR;                  /*!< Offset: 0x00C (R/W)  Application Interrupt and Reset 
+ 347:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t SCR;                    /*!< Offset: 0x010 (R/W)  System Control Register */
+ 348:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t CCR;                    /*!< Offset: 0x014 (R/W)  Configuration Control Register *
+ 349:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED1;
+ 350:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t SHP[2U];                /*!< Offset: 0x01C (R/W)  System Handlers Priority Registe
+ 351:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t SHCSR;                  /*!< Offset: 0x024 (R/W)  System Handler Control and State
+ 352:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** } SCB_Type;
+ 353:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 354:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SCB CPUID Register Definitions */
+ 355:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_IMPLEMENTER_Pos          24U                                            /*!< SCB 
+ 356:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_IMPLEMENTER_Msk          (0xFFUL << SCB_CPUID_IMPLEMENTER_Pos)          /*!< SCB 
+ 357:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 358:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_VARIANT_Pos              20U                                            /*!< SCB 
+ 359:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_VARIANT_Msk              (0xFUL << SCB_CPUID_VARIANT_Pos)               /*!< SCB 
+ 360:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 361:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_ARCHITECTURE_Pos         16U                                            /*!< SCB 
+ 362:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_ARCHITECTURE_Msk         (0xFUL << SCB_CPUID_ARCHITECTURE_Pos)          /*!< SCB 
+ 363:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 364:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_PARTNO_Pos                4U                                            /*!< SCB 
+ 365:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_PARTNO_Msk               (0xFFFUL << SCB_CPUID_PARTNO_Pos)              /*!< SCB 
+ 366:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 367:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_REVISION_Pos              0U                                            /*!< SCB 
+ 368:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_REVISION_Msk             (0xFUL /*<< SCB_CPUID_REVISION_Pos*/)          /*!< SCB 
+ 369:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 370:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SCB Interrupt Control State Register Definitions */
+ 371:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_NMIPENDSET_Pos            31U                                            /*!< SCB 
+ 372:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_NMIPENDSET_Msk            (1UL << SCB_ICSR_NMIPENDSET_Pos)               /*!< SCB 
+ 373:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 374:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSVSET_Pos             28U                                            /*!< SCB 
+ 375:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSVSET_Msk             (1UL << SCB_ICSR_PENDSVSET_Pos)                /*!< SCB 
+ 376:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 377:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSVCLR_Pos             27U                                            /*!< SCB 
+ 378:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSVCLR_Msk             (1UL << SCB_ICSR_PENDSVCLR_Pos)                /*!< SCB 
+ 379:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 380:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSTSET_Pos             26U                                            /*!< SCB 
+ 381:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSTSET_Msk             (1UL << SCB_ICSR_PENDSTSET_Pos)                /*!< SCB 
+ 382:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 383:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSTCLR_Pos             25U                                            /*!< SCB 
+ 384:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSTCLR_Msk             (1UL << SCB_ICSR_PENDSTCLR_Pos)                /*!< SCB 
+ 385:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 386:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Pos            23U                                            /*!< SCB 
+ 387:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Msk            (1UL << SCB_ICSR_ISRPREEMPT_Pos)               /*!< SCB 
+ 388:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 389:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_ISRPENDING_Pos            22U                                            /*!< SCB 
+ 390:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_ISRPENDING_Msk            (1UL << SCB_ICSR_ISRPENDING_Pos)               /*!< SCB 
+ 391:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 392:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_VECTPENDING_Pos           12U                                            /*!< SCB 
+ 393:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_VECTPENDING_Msk           (0x1FFUL << SCB_ICSR_VECTPENDING_Pos)          /*!< SCB 
+ 394:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 395:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_VECTACTIVE_Pos             0U                                            /*!< SCB 
+ 396:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_VECTACTIVE_Msk            (0x1FFUL /*<< SCB_ICSR_VECTACTIVE_Pos*/)       /*!< SCB 
+ 397:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 398:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SCB Application Interrupt and Reset Control Register Definitions */
+ 399:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTKEY_Pos              16U                                            /*!< SCB 
+ 400:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTKEY_Msk              (0xFFFFUL << SCB_AIRCR_VECTKEY_Pos)            /*!< SCB 
+ 401:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 402:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTKEYSTAT_Pos          16U                                            /*!< SCB 
+ 403:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTKEYSTAT_Msk          (0xFFFFUL << SCB_AIRCR_VECTKEYSTAT_Pos)        /*!< SCB 
+ 404:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 405:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_ENDIANESS_Pos            15U                                            /*!< SCB 
+ 406:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_ENDIANESS_Msk            (1UL << SCB_AIRCR_ENDIANESS_Pos)               /*!< SCB 
+ 407:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 408:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_SYSRESETREQ_Pos           2U                                            /*!< SCB 
+ 409:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_SYSRESETREQ_Msk          (1UL << SCB_AIRCR_SYSRESETREQ_Pos)             /*!< SCB 
+ 410:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 411:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTCLRACTIVE_Pos         1U                                            /*!< SCB 
+ 412:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTCLRACTIVE_Msk        (1UL << SCB_AIRCR_VECTCLRACTIVE_Pos)           /*!< SCB 
+ 413:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 414:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SCB System Control Register Definitions */
+ 415:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SEVONPEND_Pos               4U                                            /*!< SCB 
+ 416:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SEVONPEND_Msk              (1UL << SCB_SCR_SEVONPEND_Pos)                 /*!< SCB 
+ 417:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 418:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SLEEPDEEP_Pos               2U                                            /*!< SCB 
+ 419:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SLEEPDEEP_Msk              (1UL << SCB_SCR_SLEEPDEEP_Pos)                 /*!< SCB 
+ 420:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 421:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SLEEPONEXIT_Pos             1U                                            /*!< SCB 
+ 422:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SLEEPONEXIT_Msk            (1UL << SCB_SCR_SLEEPONEXIT_Pos)               /*!< SCB 
+ 423:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 424:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SCB Configuration Control Register Definitions */
+ 425:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CCR_STKALIGN_Pos                9U                                            /*!< SCB 
+ 426:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CCR_STKALIGN_Msk               (1UL << SCB_CCR_STKALIGN_Pos)                  /*!< SCB 
+ 427:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 428:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CCR_UNALIGN_TRP_Pos             3U                                            /*!< SCB 
+ 429:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CCR_UNALIGN_TRP_Msk            (1UL << SCB_CCR_UNALIGN_TRP_Pos)               /*!< SCB 
+ 430:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 431:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SCB System Handler Control and State Register Definitions */
+ 432:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SHCSR_SVCALLPENDED_Pos         15U                                            /*!< SCB 
+ 433:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SHCSR_SVCALLPENDED_Msk         (1UL << SCB_SHCSR_SVCALLPENDED_Pos)            /*!< SCB 
+ 434:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 435:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_SCB */
+ 436:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 437:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 438:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 439:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup  CMSIS_core_register
+ 440:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_SysTick     System Tick Timer (SysTick)
+ 441:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief    Type definitions for the System Timer Registers.
+ 442:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 443:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 444:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 445:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 446:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Structure type to access the System Timer (SysTick).
+ 447:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 448:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** typedef struct
+ 449:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 450:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t CTRL;                   /*!< Offset: 0x000 (R/W)  SysTick Control and Status Regis
+ 451:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t LOAD;                   /*!< Offset: 0x004 (R/W)  SysTick Reload Value Register */
+ 452:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t VAL;                    /*!< Offset: 0x008 (R/W)  SysTick Current Value Register *
+ 453:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   __IM  uint32_t CALIB;                  /*!< Offset: 0x00C (R/ )  SysTick Calibration Register */
+ 454:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** } SysTick_Type;
+ 455:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 456:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SysTick Control / Status Register Definitions */
+ 457:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_COUNTFLAG_Pos         16U                                            /*!< SysT
+ 458:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_COUNTFLAG_Msk         (1UL << SysTick_CTRL_COUNTFLAG_Pos)            /*!< SysT
+ 459:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 460:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_CLKSOURCE_Pos          2U                                            /*!< SysT
+ 461:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_CLKSOURCE_Msk         (1UL << SysTick_CTRL_CLKSOURCE_Pos)            /*!< SysT
+ 462:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 463:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_TICKINT_Pos            1U                                            /*!< SysT
+ 464:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_TICKINT_Msk           (1UL << SysTick_CTRL_TICKINT_Pos)              /*!< SysT
+ 465:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 466:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_ENABLE_Pos             0U                                            /*!< SysT
+ 467:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_ENABLE_Msk            (1UL /*<< SysTick_CTRL_ENABLE_Pos*/)           /*!< SysT
+ 468:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 469:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SysTick Reload Register Definitions */
+ 470:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_LOAD_RELOAD_Pos             0U                                            /*!< SysT
+ 471:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_LOAD_RELOAD_Msk            (0xFFFFFFUL /*<< SysTick_LOAD_RELOAD_Pos*/)    /*!< SysT
+ 472:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 473:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SysTick Current Register Definitions */
+ 474:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_VAL_CURRENT_Pos             0U                                            /*!< SysT
+ 475:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_VAL_CURRENT_Msk            (0xFFFFFFUL /*<< SysTick_VAL_CURRENT_Pos*/)    /*!< SysT
+ 476:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 477:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* SysTick Calibration Register Definitions */
+ 478:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_NOREF_Pos            31U                                            /*!< SysT
+ 479:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_NOREF_Msk            (1UL << SysTick_CALIB_NOREF_Pos)               /*!< SysT
+ 480:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 481:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_SKEW_Pos             30U                                            /*!< SysT
+ 482:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_SKEW_Msk             (1UL << SysTick_CALIB_SKEW_Pos)                /*!< SysT
+ 483:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 484:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_TENMS_Pos             0U                                            /*!< SysT
+ 485:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_TENMS_Msk            (0xFFFFFFUL /*<< SysTick_CALIB_TENMS_Pos*/)    /*!< SysT
+ 486:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 487:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_SysTick */
+ 488:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 489:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 490:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 491:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup  CMSIS_core_register
+ 492:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_CoreDebug       Core Debug Registers (CoreDebug)
+ 493:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief    Cortex-M0 Core Debug Registers (DCB registers, SHCSR, and DFSR) are only accessible ove
+ 494:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****             Therefore they are not covered by the Cortex-M0 header file.
+ 495:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 496:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 497:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_CoreDebug */
+ 498:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 499:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 500:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 501:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup    CMSIS_core_register
+ 502:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup   CMSIS_core_bitfield     Core register bit field macros
+ 503:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief      Macros for use with bit field definitions (xxx_Pos, xxx_Msk).
+ 504:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 505:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 506:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 507:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 508:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Mask and shift a bit field value for use in a register bit range.
+ 509:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param[in] field  Name of the register bit field.
+ 510:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param[in] value  Value of the bit field. This parameter is interpreted as an uint32_t type.
+ 511:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \return           Masked and shifted value.
+ 512:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** */
+ 513:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define _VAL2FLD(field, value)    (((uint32_t)(value) << field ## _Pos) & field ## _Msk)
+ 514:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 515:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 516:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief     Mask and shift a register value to extract a bit filed value.
+ 517:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param[in] field  Name of the register bit field.
+ 518:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param[in] value  Value of register. This parameter is interpreted as an uint32_t type.
+ 519:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \return           Masked and shifted bit field value.
+ 520:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** */
+ 521:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define _FLD2VAL(field, value)    (((uint32_t)(value) & field ## _Msk) >> field ## _Pos)
+ 522:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 523:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_core_bitfield */
+ 524:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 525:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 526:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 527:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup    CMSIS_core_register
+ 528:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup   CMSIS_core_base     Core Definitions
+ 529:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief      Definitions for base addresses, unions, and structures.
+ 530:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 531:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 532:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 533:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* Memory mapping of Core Hardware */
+ 534:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCS_BASE            (0xE000E000UL)                            /*!< System Control Space Bas
+ 535:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_BASE        (SCS_BASE +  0x0010UL)                    /*!< SysTick Base Address */
+ 536:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define NVIC_BASE           (SCS_BASE +  0x0100UL)                    /*!< NVIC Base Address */
+ 537:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_BASE            (SCS_BASE +  0x0D00UL)                    /*!< System Control Block Bas
+ 538:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 539:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SCB                 ((SCB_Type       *)     SCB_BASE      )   /*!< SCB configuration struct
+ 540:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick             ((SysTick_Type   *)     SysTick_BASE  )   /*!< SysTick configuration st
+ 541:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define NVIC                ((NVIC_Type      *)     NVIC_BASE     )   /*!< NVIC configuration struc
+ 542:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 543:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 544:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*@} */
+ 545:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 546:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 547:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 548:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*******************************************************************************
+ 549:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  *                Hardware Abstraction Layer
+ 550:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   Core Function Interface contains:
+ 551:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   - Core NVIC Functions
+ 552:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   - Core SysTick Functions
+ 553:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   - Core Register Access Functions
+ 554:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  ******************************************************************************/
+ 555:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 556:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_Core_FunctionInterface Functions and Instructions Reference
+ 557:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** */
+ 558:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 559:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 560:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 561:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* ##########################   NVIC functions  #################################### */
+ 562:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 563:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup  CMSIS_Core_FunctionInterface
+ 564:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_Core_NVICFunctions NVIC Functions
+ 565:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief    Functions that manage interrupts and exceptions via the NVIC.
+ 566:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 567:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 568:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 569:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #ifdef CMSIS_NVIC_VIRTUAL
+ 570:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef CMSIS_NVIC_VIRTUAL_HEADER_FILE
+ 571:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #define CMSIS_NVIC_VIRTUAL_HEADER_FILE "cmsis_nvic_virtual.h"
+ 572:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 573:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #include CMSIS_NVIC_VIRTUAL_HEADER_FILE
+ 574:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #else
+ 575:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SetPriorityGrouping    __NVIC_SetPriorityGrouping
+ 576:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetPriorityGrouping    __NVIC_GetPriorityGrouping
+ 577:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_EnableIRQ              __NVIC_EnableIRQ
+ 578:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetEnableIRQ           __NVIC_GetEnableIRQ
+ 579:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_DisableIRQ             __NVIC_DisableIRQ
+ 580:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetPendingIRQ          __NVIC_GetPendingIRQ
+ 581:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SetPendingIRQ          __NVIC_SetPendingIRQ
+ 582:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_ClearPendingIRQ        __NVIC_ClearPendingIRQ
+ 583:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /*#define NVIC_GetActive              __NVIC_GetActive             not available for Cortex-M0 */
+ 584:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SetPriority            __NVIC_SetPriority
+ 585:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetPriority            __NVIC_GetPriority
+ 586:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SystemReset            __NVIC_SystemReset
+ 587:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif /* CMSIS_NVIC_VIRTUAL */
+ 588:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 589:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #ifdef CMSIS_VECTAB_VIRTUAL
+ 590:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef CMSIS_VECTAB_VIRTUAL_HEADER_FILE
+ 591:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     #define CMSIS_VECTAB_VIRTUAL_HEADER_FILE "cmsis_vectab_virtual.h"
+ 592:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 593:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #include CMSIS_VECTAB_VIRTUAL_HEADER_FILE
+ 594:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #else
+ 595:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SetVector              __NVIC_SetVector
+ 596:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetVector              __NVIC_GetVector
+ 597:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #endif  /* (CMSIS_VECTAB_VIRTUAL) */
+ 598:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 599:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define NVIC_USER_IRQ_OFFSET          16
+ 600:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 601:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 602:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* The following EXC_RETURN values are saved the LR on exception entry */
+ 603:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define EXC_RETURN_HANDLER         (0xFFFFFFF1UL)     /* return to Handler mode, uses MSP after ret
+ 604:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define EXC_RETURN_THREAD_MSP      (0xFFFFFFF9UL)     /* return to Thread mode, uses MSP after retu
+ 605:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define EXC_RETURN_THREAD_PSP      (0xFFFFFFFDUL)     /* return to Thread mode, uses PSP after retu
+ 606:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 607:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 608:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* Interrupt Priorities are WORD accessible only under Armv6-M                  */
+ 609:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /* The following MACROS handle generation of the register offset and byte masks */
+ 610:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define _BIT_SHIFT(IRQn)         (  ((((uint32_t)(int32_t)(IRQn))         )      &  0x03UL) * 8UL)
+ 611:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define _SHP_IDX(IRQn)           ( (((((uint32_t)(int32_t)(IRQn)) & 0x0FUL)-8UL) >>    2UL)      )
+ 612:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define _IP_IDX(IRQn)            (   (((uint32_t)(int32_t)(IRQn))                >>    2UL)      )
+ 613:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 614:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define __NVIC_SetPriorityGrouping(X) (void)(X)
+ 615:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** #define __NVIC_GetPriorityGrouping()  (0U)
+ 616:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 617:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 618:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Enable Interrupt
+ 619:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \details Enables a device specific interrupt in the NVIC interrupt controller.
+ 620:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 621:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 622:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 623:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
+ 624:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+  25              	 .loc 1 624 0
+  26              	 .cfi_startproc
+  27 0000 80B5     	 push {r7,lr}
+  28              	.LCFI0:
+  29              	 .cfi_def_cfa_offset 8
+  30              	 .cfi_offset 7,-8
+  31              	 .cfi_offset 14,-4
+  32 0002 82B0     	 sub sp,sp,#8
+  33              	.LCFI1:
+  34              	 .cfi_def_cfa_offset 16
+  35 0004 00AF     	 add r7,sp,#0
+  36              	.LCFI2:
+  37              	 .cfi_def_cfa_register 7
+  38 0006 021C     	 mov r2,r0
+  39 0008 FB1D     	 add r3,r7,#7
+  40 000a 1A70     	 strb r2,[r3]
+ 625:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+  41              	 .loc 1 625 0
+  42 000c FB1D     	 add r3,r7,#7
+  43 000e 1B78     	 ldrb r3,[r3]
+  44 0010 7F2B     	 cmp r3,#127
+  45 0012 09D8     	 bhi .L1
+ 626:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 627:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     __COMPILER_BARRIER();
+  46              	 .loc 1 627 0
+ 628:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->ISER[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+  47              	 .loc 1 628 0
+  48 0014 064B     	 ldr r3,.L3
+  49 0016 FA1D     	 add r2,r7,#7
+  50 0018 1278     	 ldrb r2,[r2]
+  51 001a 111C     	 mov r1,r2
+  52 001c 1F22     	 mov r2,#31
+  53 001e 0A40     	 and r2,r1
+  54 0020 0121     	 mov r1,#1
+  55 0022 9140     	 lsl r1,r1,r2
+  56 0024 0A1C     	 mov r2,r1
+  57 0026 1A60     	 str r2,[r3]
+ 629:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     __COMPILER_BARRIER();
+  58              	 .loc 1 629 0
+  59              	.L1:
+ 630:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 631:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** }
+  60              	 .loc 1 631 0
+  61 0028 BD46     	 mov sp,r7
+  62 002a 02B0     	 add sp,sp,#8
+  63              	 
+  64 002c 80BD     	 pop {r7,pc}
+  65              	.L4:
+  66 002e C046     	 .align 2
+  67              	.L3:
+  68 0030 00E100E0 	 .word -536813312
+  69              	 .cfi_endproc
+  70              	.LFE27:
+  72              	 .section .text.__NVIC_SetPriority,"ax",%progbits
+  73              	 .align 2
+  74              	 .code 16
+  75              	 .thumb_func
+  77              	__NVIC_SetPriority:
+  78              	.LFB33:
+ 632:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 633:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 634:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 635:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Get Interrupt Enable status
+ 636:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \details Returns a device specific interrupt enable status from the NVIC interrupt controller.
+ 637:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 638:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \return             0  Interrupt is not enabled.
+ 639:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \return             1  Interrupt is enabled.
+ 640:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 641:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 642:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
+ 643:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 644:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 645:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 646:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     return((uint32_t)(((NVIC->ISER[0U] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL)
+ 647:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 648:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   else
+ 649:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 650:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     return(0U);
+ 651:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 652:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** }
+ 653:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 654:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 655:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 656:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Disable Interrupt
+ 657:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \details Disables a device specific interrupt in the NVIC interrupt controller.
+ 658:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 659:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 660:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 661:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn)
+ 662:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 663:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 664:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 665:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->ICER[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 666:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     __DSB();
+ 667:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     __ISB();
+ 668:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 669:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** }
+ 670:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 671:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 672:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 673:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Get Pending Interrupt
+ 674:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \details Reads the NVIC pending register and returns the pending bit for the specified device spe
+ 675:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 676:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \return             0  Interrupt status is not pending.
+ 677:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \return             1  Interrupt status is pending.
+ 678:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 679:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 680:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
+ 681:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 682:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 683:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 684:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     return((uint32_t)(((NVIC->ISPR[0U] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL)
+ 685:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 686:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   else
+ 687:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 688:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     return(0U);
+ 689:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 690:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** }
+ 691:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 692:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 693:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 694:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Set Pending Interrupt
+ 695:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \details Sets the pending bit of a device specific interrupt in the NVIC pending register.
+ 696:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 697:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 698:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 699:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
+ 700:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 701:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 702:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 703:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->ISPR[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 704:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 705:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** }
+ 706:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 707:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 708:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 709:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Clear Pending Interrupt
+ 710:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \details Clears the pending bit of a device specific interrupt in the NVIC pending register.
+ 711:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 712:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 713:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 714:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
+ 715:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+ 716:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 717:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 718:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->ICPR[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 719:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 720:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** }
+ 721:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 722:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** 
+ 723:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 724:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Set Interrupt Priority
+ 725:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \details Sets the priority of a device specific interrupt or a processor exception.
+ 726:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****            The interrupt number can be positive to specify a device specific interrupt,
+ 727:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****            or negative to specify a processor exception.
+ 728:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Interrupt number.
+ 729:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]  priority  Priority to set.
+ 730:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   \note    The priority cannot be set for every processor exception.
+ 731:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 732:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+ 733:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** {
+  79              	 .loc 1 733 0
+  80              	 .cfi_startproc
+  81 0000 B0B5     	 push {r4,r5,r7,lr}
+  82              	.LCFI3:
+  83              	 .cfi_def_cfa_offset 16
+  84              	 .cfi_offset 4,-16
+  85              	 .cfi_offset 5,-12
+  86              	 .cfi_offset 7,-8
+  87              	 .cfi_offset 14,-4
+  88 0002 82B0     	 sub sp,sp,#8
+  89              	.LCFI4:
+  90              	 .cfi_def_cfa_offset 24
+  91 0004 00AF     	 add r7,sp,#0
+  92              	.LCFI5:
+  93              	 .cfi_def_cfa_register 7
+  94 0006 021C     	 mov r2,r0
+  95 0008 3960     	 str r1,[r7]
+  96 000a FB1D     	 add r3,r7,#7
+  97 000c 1A70     	 strb r2,[r3]
+ 734:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+  98              	 .loc 1 734 0
+  99 000e FB1D     	 add r3,r7,#7
+ 100 0010 1B78     	 ldrb r3,[r3]
+ 101 0012 7F2B     	 cmp r3,#127
+ 102 0014 27D8     	 bhi .L6
+ 735:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 736:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->IP[_IP_IDX(IRQn)]  = ((uint32_t)(NVIC->IP[_IP_IDX(IRQn)]  & ~(0xFFUL << _BIT_SHIFT(IRQn))
+ 103              	 .loc 1 736 0
+ 104 0016 2D4C     	 ldr r4,.L8
+ 105 0018 FB1D     	 add r3,r7,#7
+ 106 001a 1B78     	 ldrb r3,[r3]
+ 107 001c 5BB2     	 sxtb r3,r3
+ 108 001e 9B08     	 lsr r3,r3,#2
+ 109 0020 2A49     	 ldr r1,.L8
+ 110 0022 FA1D     	 add r2,r7,#7
+ 111 0024 1278     	 ldrb r2,[r2]
+ 112 0026 52B2     	 sxtb r2,r2
+ 113 0028 9208     	 lsr r2,r2,#2
+ 114 002a C032     	 add r2,r2,#192
+ 115 002c 9200     	 lsl r2,r2,#2
+ 116 002e 5258     	 ldr r2,[r2,r1]
+ 117 0030 F91D     	 add r1,r7,#7
+ 118 0032 0978     	 ldrb r1,[r1]
+ 119 0034 081C     	 mov r0,r1
+ 120 0036 0321     	 mov r1,#3
+ 121 0038 0140     	 and r1,r0
+ 122 003a C900     	 lsl r1,r1,#3
+ 123 003c 081C     	 mov r0,r1
+ 124 003e FF21     	 mov r1,#255
+ 125 0040 8140     	 lsl r1,r1,r0
+ 126 0042 C943     	 mvn r1,r1
+ 127 0044 1140     	 and r1,r2
+ 737:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****        (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 128              	 .loc 1 737 0
+ 129 0046 3A68     	 ldr r2,[r7]
+ 130 0048 9201     	 lsl r2,r2,#6
+ 131 004a FF20     	 mov r0,#255
+ 132 004c 0240     	 and r2,r0
+ 133 004e F81D     	 add r0,r7,#7
+ 134 0050 0078     	 ldrb r0,[r0]
+ 135 0052 051C     	 mov r5,r0
+ 136 0054 0320     	 mov r0,#3
+ 137 0056 2840     	 and r0,r5
+ 138 0058 C000     	 lsl r0,r0,#3
+ 139 005a 8240     	 lsl r2,r2,r0
+ 736:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****        (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 140              	 .loc 1 736 0
+ 141 005c 0A43     	 orr r2,r1
+ 142 005e C033     	 add r3,r3,#192
+ 143 0060 9B00     	 lsl r3,r3,#2
+ 144 0062 1A51     	 str r2,[r3,r4]
+ 145 0064 2EE0     	 b .L5
+ 146              	.L6:
+ 738:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 739:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   else
+ 740:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 741:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****     SCB->SHP[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))
+ 147              	 .loc 1 741 0
+ 148 0066 1A4C     	 ldr r4,.L8+4
+ 149 0068 FB1D     	 add r3,r7,#7
+ 150 006a 1B78     	 ldrb r3,[r3]
+ 151 006c 1A1C     	 mov r2,r3
+ 152 006e 0F23     	 mov r3,#15
+ 153 0070 1340     	 and r3,r2
+ 154 0072 083B     	 sub r3,r3,#8
+ 155 0074 9908     	 lsr r1,r3,#2
+ 156 0076 164A     	 ldr r2,.L8+4
+ 157 0078 FB1D     	 add r3,r7,#7
+ 158 007a 1B78     	 ldrb r3,[r3]
+ 159 007c 181C     	 mov r0,r3
+ 160 007e 0F23     	 mov r3,#15
+ 161 0080 0340     	 and r3,r0
+ 162 0082 083B     	 sub r3,r3,#8
+ 163 0084 9B08     	 lsr r3,r3,#2
+ 164 0086 0633     	 add r3,r3,#6
+ 165 0088 9B00     	 lsl r3,r3,#2
+ 166 008a D318     	 add r3,r2,r3
+ 167 008c 5B68     	 ldr r3,[r3,#4]
+ 168 008e FA1D     	 add r2,r7,#7
+ 169 0090 1278     	 ldrb r2,[r2]
+ 170 0092 101C     	 mov r0,r2
+ 171 0094 0322     	 mov r2,#3
+ 172 0096 0240     	 and r2,r0
+ 173 0098 D200     	 lsl r2,r2,#3
+ 174 009a 101C     	 mov r0,r2
+ 175 009c FF22     	 mov r2,#255
+ 176 009e 8240     	 lsl r2,r2,r0
+ 177 00a0 D243     	 mvn r2,r2
+ 178 00a2 1A40     	 and r2,r3
+ 742:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****        (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 179              	 .loc 1 742 0
+ 180 00a4 3B68     	 ldr r3,[r7]
+ 181 00a6 9B01     	 lsl r3,r3,#6
+ 182 00a8 FF20     	 mov r0,#255
+ 183 00aa 0340     	 and r3,r0
+ 184 00ac F81D     	 add r0,r7,#7
+ 185 00ae 0078     	 ldrb r0,[r0]
+ 186 00b0 051C     	 mov r5,r0
+ 187 00b2 0320     	 mov r0,#3
+ 188 00b4 2840     	 and r0,r5
+ 189 00b6 C000     	 lsl r0,r0,#3
+ 190 00b8 8340     	 lsl r3,r3,r0
+ 741:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****        (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 191              	 .loc 1 741 0
+ 192 00ba 1A43     	 orr r2,r3
+ 193 00bc 8B1D     	 add r3,r1,#6
+ 194 00be 9B00     	 lsl r3,r3,#2
+ 195 00c0 E318     	 add r3,r4,r3
+ 196 00c2 5A60     	 str r2,[r3,#4]
+ 197              	.L5:
+ 743:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 744:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include\core_cm0.h **** }
+ 198              	 .loc 1 744 0
+ 199 00c4 BD46     	 mov sp,r7
+ 200 00c6 02B0     	 add sp,sp,#8
+ 201              	 
+ 202 00c8 B0BD     	 pop {r4,r5,r7,pc}
+ 203              	.L9:
+ 204 00ca C046     	 .align 2
+ 205              	.L8:
+ 206 00cc 00E100E0 	 .word -536813312
+ 207 00d0 00ED00E0 	 .word -536810240
+ 208              	 .cfi_endproc
+ 209              	.LFE33:
+ 211              	 .section .text.GLOBAL_SCU_XMC1_GetAppVersion,"ax",%progbits
+ 212              	 .align 2
+ 213              	 .global GLOBAL_SCU_XMC1_GetAppVersion
+ 214              	 .code 16
+ 215              	 .thumb_func
+ 217              	GLOBAL_SCU_XMC1_GetAppVersion:
+ 218              	.LFB66:
+ 219              	 .file 2 "../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c"
+   1:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /**
+   2:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * @file global_scu_xmc1.c
+   3:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * @date 2015-10-09
+   4:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+   5:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * NOTE:
+   6:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * This file is generated by DAVE. Any manual modification done to this file will be lost when the 
+   7:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+   8:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /**
+   9:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * @cond
+  10:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  **************************************************************************************************
+  11:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * GLOBAL_SCU_XMC1 v4.1.12 - Registers the callback for SCU Interrupt
+  12:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  13:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * Copyright (c) 2015-2020, Infineon Technologies AG
+  14:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * All rights reserved.
+  15:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  16:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  17:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * following conditions are met:
+  18:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  19:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  20:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *   disclaimer.
+  21:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  22:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  23:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  24:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  25:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  26:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *   products derived from this software without specific prior written permission.
+  27:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  28:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  29:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  30:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  31:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  32:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  33:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  34:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  35:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  36:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  37:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * with Infineon Technologies AG (dave@infineon.com).
+  38:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  **************************************************************************************************
+  39:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  40:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * Change History
+  41:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * --------------
+  42:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  43:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * 2015-02-16:
+  44:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *     - Initial version<br>
+  45:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  46:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * 2015-06-01:
+  47:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *     - GLOBAL_SCU_XMC4_CHECK_EVENT static inline API added
+  48:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *     - GLOBAL_SCU_XMC4_RegisterCallback API signature modified <br>
+  49:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * 2015-07-30:
+  50:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *     - Added new IRQ handlers for XMC14
+  51:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * 2015-10-09:
+  52:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *     - Added XMC_SCU_SetInterruptControl() before enabling IRQ for XMC14 
+  53:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * @endcond
+  54:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+  55:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+  56:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /**************************************************************************************************
+  57:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * HEADER FILES
+  58:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  **************************************************************************************************
+  59:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #include "global_scu_xmc1.h"
+  60:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /**************************************************************************************************
+  61:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * MACROS
+  62:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  **************************************************************************************************
+  63:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #if defined(XMC_ASSERT_ENABLE)
+  64:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #define GLOBAL_SCU_XMC1_CHECK_EVENT(event) ((event == GLOBAL_SCU_XMC1_EVENT_WDT_WARNING) || \
+  65:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 		                                    (event == GLOBAL_SCU_XMC1_EVENT_RTC_PERIODIC) || \
+  66:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 		                                    (event == GLOBAL_SCU_XMC1_EVENT_RTC_ALARM) || \
+  67:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 											(event == GLOBAL_SCU_XMC1_EVENT_LOSS_EXT_CLOCK) || \
+  68:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 											(event == GLOBAL_SCU_XMC1_EVENT_DCO1_OUT_SYNC))
+  69:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #endif
+  70:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /**************************************************************************************************
+  71:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * LOCAL DATA
+  72:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  **************************************************************************************************
+  73:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+  74:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /**************************************************************************************************
+  75:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * LOCAL ROUTINES
+  76:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  **************************************************************************************************
+  77:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #if (UC_SERIES != XMC14)
+  78:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void SCU_0_IRQHandler(void);
+  79:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void SCU_1_IRQHandler(void);
+  80:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void SCU_2_IRQHandler(void);
+  81:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #else
+  82:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void IRQ0_Handler(void);
+  83:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void IRQ1_Handler(void);
+  84:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void IRQ2_Handler(void);
+  85:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #endif
+  86:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /**************************************************************************************************
+  87:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** * API IMPLEMENTATION
+  88:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** ***************************************************************************************************
+  89:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+  90:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /*
+  91:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * API to retrieve the version of the GLOBAL_SCU_XMC1 APP
+  92:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+  93:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** DAVE_APP_VERSION_t GLOBAL_SCU_XMC1_GetAppVersion(void)
+  94:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** {
+ 220              	 .loc 2 94 0
+ 221              	 .cfi_startproc
+ 222 0000 80B5     	 push {r7,lr}
+ 223              	.LCFI6:
+ 224              	 .cfi_def_cfa_offset 8
+ 225              	 .cfi_offset 7,-8
+ 226              	 .cfi_offset 14,-4
+ 227 0002 82B0     	 sub sp,sp,#8
+ 228              	.LCFI7:
+ 229              	 .cfi_def_cfa_offset 16
+ 230 0004 00AF     	 add r7,sp,#0
+ 231              	.LCFI8:
+ 232              	 .cfi_def_cfa_register 7
+  95:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   DAVE_APP_VERSION_t version;
+  96:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+  97:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   version.major = GLOBAL_SCU_XMC1_MAJOR_VERSION;
+ 233              	 .loc 2 97 0
+ 234 0006 3B1C     	 mov r3,r7
+ 235 0008 0422     	 mov r2,#4
+ 236 000a 1A70     	 strb r2,[r3]
+  98:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   version.minor = GLOBAL_SCU_XMC1_MINOR_VERSION;
+ 237              	 .loc 2 98 0
+ 238 000c 3B1C     	 mov r3,r7
+ 239 000e 0122     	 mov r2,#1
+ 240 0010 5A70     	 strb r2,[r3,#1]
+  99:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   version.patch = GLOBAL_SCU_XMC1_PATCH_VERSION;
+ 241              	 .loc 2 99 0
+ 242 0012 3B1C     	 mov r3,r7
+ 243 0014 0C22     	 mov r2,#12
+ 244 0016 9A70     	 strb r2,[r3,#2]
+ 100:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 101:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   return (version);
+ 245              	 .loc 2 101 0
+ 246 0018 3B1D     	 add r3,r7,#4
+ 247 001a 3A1C     	 mov r2,r7
+ 248 001c 1188     	 ldrh r1,[r2]
+ 249 001e 1980     	 strh r1,[r3]
+ 250 0020 9278     	 ldrb r2,[r2,#2]
+ 251 0022 9A70     	 strb r2,[r3,#2]
+ 252 0024 3A1D     	 add r2,r7,#4
+ 253 0026 0023     	 mov r3,#0
+ 254 0028 1178     	 ldrb r1,[r2]
+ 255 002a FF20     	 mov r0,#255
+ 256 002c 0140     	 and r1,r0
+ 257 002e FF20     	 mov r0,#255
+ 258 0030 8343     	 bic r3,r0
+ 259 0032 0B43     	 orr r3,r1
+ 260 0034 5178     	 ldrb r1,[r2,#1]
+ 261 0036 FF20     	 mov r0,#255
+ 262 0038 0140     	 and r1,r0
+ 263 003a 0902     	 lsl r1,r1,#8
+ 264 003c 0648     	 ldr r0,.L12
+ 265 003e 0340     	 and r3,r0
+ 266 0040 0B43     	 orr r3,r1
+ 267 0042 9278     	 ldrb r2,[r2,#2]
+ 268 0044 FF21     	 mov r1,#255
+ 269 0046 0A40     	 and r2,r1
+ 270 0048 1204     	 lsl r2,r2,#16
+ 271 004a 0449     	 ldr r1,.L12+4
+ 272 004c 0B40     	 and r3,r1
+ 273 004e 1343     	 orr r3,r2
+ 102:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** }
+ 274              	 .loc 2 102 0
+ 275 0050 181C     	 mov r0,r3
+ 276 0052 BD46     	 mov sp,r7
+ 277 0054 02B0     	 add sp,sp,#8
+ 278              	 
+ 279 0056 80BD     	 pop {r7,pc}
+ 280              	.L13:
+ 281              	 .align 2
+ 282              	.L12:
+ 283 0058 FF00FFFF 	 .word -65281
+ 284 005c FFFF00FF 	 .word -16711681
+ 285              	 .cfi_endproc
+ 286              	.LFE66:
+ 288              	 .section .text.GLOBAL_SCU_XMC1_Init,"ax",%progbits
+ 289              	 .align 2
+ 290              	 .global GLOBAL_SCU_XMC1_Init
+ 291              	 .code 16
+ 292              	 .thumb_func
+ 294              	GLOBAL_SCU_XMC1_Init:
+ 295              	.LFB67:
+ 103:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 104:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /*  Function to configure SCU Interrupts based on  user configuration.
+ 105:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * 
+ 106:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+ 107:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** GLOBAL_SCU_XMC1_STATUS_t GLOBAL_SCU_XMC1_Init(GLOBAL_SCU_XMC1_t*const handle)
+ 108:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** {
+ 296              	 .loc 2 108 0
+ 297              	 .cfi_startproc
+ 298 0000 80B5     	 push {r7,lr}
+ 299              	.LCFI9:
+ 300              	 .cfi_def_cfa_offset 8
+ 301              	 .cfi_offset 7,-8
+ 302              	 .cfi_offset 14,-4
+ 303 0002 84B0     	 sub sp,sp,#16
+ 304              	.LCFI10:
+ 305              	 .cfi_def_cfa_offset 24
+ 306 0004 00AF     	 add r7,sp,#0
+ 307              	.LCFI11:
+ 308              	 .cfi_def_cfa_register 7
+ 309 0006 7860     	 str r0,[r7,#4]
+ 109:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   GLOBAL_SCU_XMC1_STATUS_t initstatus;
+ 110:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 111:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   XMC_ASSERT("GLOBAL_SCU_XMC1_Init: NULL handle", (handle != NULL));
+ 112:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 113:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   if (handle->initialized == false)
+ 310              	 .loc 2 113 0
+ 311 0008 7B68     	 ldr r3,[r7,#4]
+ 312 000a 1B79     	 ldrb r3,[r3,#4]
+ 313 000c 0122     	 mov r2,#1
+ 314 000e 5340     	 eor r3,r2
+ 315 0010 DBB2     	 uxtb r3,r3
+ 316 0012 002B     	 cmp r3,#0
+ 317 0014 44D0     	 beq .L15
+ 114:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   {
+ 115:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****     NVIC_SetPriority((IRQn_Type)0U,(uint32_t)handle->config->priority[0]);
+ 318              	 .loc 2 115 0
+ 319 0016 7B68     	 ldr r3,[r7,#4]
+ 320 0018 1B68     	 ldr r3,[r3]
+ 321 001a 1B78     	 ldrb r3,[r3]
+ 322 001c 0020     	 mov r0,#0
+ 323 001e 191C     	 mov r1,r3
+ 324 0020 FFF7FEFF 	 bl __NVIC_SetPriority
+ 116:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	NVIC_SetPriority((IRQn_Type)1U,(uint32_t)handle->config->priority[1]);
+ 325              	 .loc 2 116 0
+ 326 0024 7B68     	 ldr r3,[r7,#4]
+ 327 0026 1B68     	 ldr r3,[r3]
+ 328 0028 5B78     	 ldrb r3,[r3,#1]
+ 329 002a 0120     	 mov r0,#1
+ 330 002c 191C     	 mov r1,r3
+ 331 002e FFF7FEFF 	 bl __NVIC_SetPriority
+ 117:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	NVIC_SetPriority((IRQn_Type)2U,(uint32_t)handle->config->priority[2]);
+ 332              	 .loc 2 117 0
+ 333 0032 7B68     	 ldr r3,[r7,#4]
+ 334 0034 1B68     	 ldr r3,[r3]
+ 335 0036 9B78     	 ldrb r3,[r3,#2]
+ 336 0038 0220     	 mov r0,#2
+ 337 003a 191C     	 mov r1,r3
+ 338 003c FFF7FEFF 	 bl __NVIC_SetPriority
+ 118:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 119:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	/* enable the IRQ0 */
+ 120:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	if (handle->config->enable_at_init[0] == true)
+ 339              	 .loc 2 120 0
+ 340 0040 7B68     	 ldr r3,[r7,#4]
+ 341 0042 1B68     	 ldr r3,[r3]
+ 342 0044 DB78     	 ldrb r3,[r3,#3]
+ 343 0046 002B     	 cmp r3,#0
+ 344 0048 06D0     	 beq .L16
+ 121:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	{
+ 122:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #if (UC_SERIES == XMC14)
+ 123:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	  XMC_SCU_SetInterruptControl(0, XMC_SCU_IRQCTRL_SCU_SR0_IRQ0);
+ 345              	 .loc 2 123 0
+ 346 004a 0020     	 mov r0,#0
+ 347 004c 0021     	 mov r1,#0
+ 348 004e FFF7FEFF 	 bl XMC_SCU_SetInterruptControl
+ 124:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #endif
+ 125:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	  NVIC_EnableIRQ((IRQn_Type)0U);
+ 349              	 .loc 2 125 0
+ 350 0052 0020     	 mov r0,#0
+ 351 0054 FFF7FEFF 	 bl __NVIC_EnableIRQ
+ 352              	.L16:
+ 126:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	}
+ 127:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	/* enable the IRQ1 */
+ 128:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	if (handle->config->enable_at_init[1] == true)
+ 353              	 .loc 2 128 0
+ 354 0058 7B68     	 ldr r3,[r7,#4]
+ 355 005a 1B68     	 ldr r3,[r3]
+ 356 005c 1B79     	 ldrb r3,[r3,#4]
+ 357 005e 002B     	 cmp r3,#0
+ 358 0060 08D0     	 beq .L17
+ 129:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	{
+ 130:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #if (UC_SERIES == XMC14)
+ 131:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	  XMC_SCU_SetInterruptControl(1, XMC_SCU_IRQCTRL_SCU_SR1_IRQ1);
+ 359              	 .loc 2 131 0
+ 360 0062 8023     	 mov r3,#128
+ 361 0064 5B00     	 lsl r3,r3,#1
+ 362 0066 0120     	 mov r0,#1
+ 363 0068 191C     	 mov r1,r3
+ 364 006a FFF7FEFF 	 bl XMC_SCU_SetInterruptControl
+ 132:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #endif
+ 133:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	  NVIC_EnableIRQ((IRQn_Type)1U);
+ 365              	 .loc 2 133 0
+ 366 006e 0120     	 mov r0,#1
+ 367 0070 FFF7FEFF 	 bl __NVIC_EnableIRQ
+ 368              	.L17:
+ 134:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	}
+ 135:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	/* enable the IRQ2 */
+ 136:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	if (handle->config->enable_at_init[2] == true)
+ 369              	 .loc 2 136 0
+ 370 0074 7B68     	 ldr r3,[r7,#4]
+ 371 0076 1B68     	 ldr r3,[r3]
+ 372 0078 5B79     	 ldrb r3,[r3,#5]
+ 373 007a 002B     	 cmp r3,#0
+ 374 007c 08D0     	 beq .L18
+ 137:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	{
+ 138:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #if (UC_SERIES == XMC14)
+ 139:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	  XMC_SCU_SetInterruptControl(2, XMC_SCU_IRQCTRL_SCU_SR2_IRQ2);
+ 375              	 .loc 2 139 0
+ 376 007e 8023     	 mov r3,#128
+ 377 0080 9B00     	 lsl r3,r3,#2
+ 378 0082 0220     	 mov r0,#2
+ 379 0084 191C     	 mov r1,r3
+ 380 0086 FFF7FEFF 	 bl XMC_SCU_SetInterruptControl
+ 140:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #endif
+ 141:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****       NVIC_EnableIRQ((IRQn_Type)2U);
+ 381              	 .loc 2 141 0
+ 382 008a 0220     	 mov r0,#2
+ 383 008c FFF7FEFF 	 bl __NVIC_EnableIRQ
+ 384              	.L18:
+ 142:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	}
+ 143:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 	handle->initialized = true;
+ 385              	 .loc 2 143 0
+ 386 0090 7B68     	 ldr r3,[r7,#4]
+ 387 0092 0122     	 mov r2,#1
+ 388 0094 1A71     	 strb r2,[r3,#4]
+ 144:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****     initstatus = GLOBAL_SCU_XMC1_STATUS_SUCCESS;
+ 389              	 .loc 2 144 0
+ 390 0096 0F23     	 mov r3,#15
+ 391 0098 FB18     	 add r3,r7,r3
+ 392 009a 0022     	 mov r2,#0
+ 393 009c 1A70     	 strb r2,[r3]
+ 394 009e 03E0     	 b .L19
+ 395              	.L15:
+ 145:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   }
+ 146:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   else
+ 147:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   {
+ 148:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****     initstatus = GLOBAL_SCU_XMC1_STATUS_FAILURE;
+ 396              	 .loc 2 148 0
+ 397 00a0 0F23     	 mov r3,#15
+ 398 00a2 FB18     	 add r3,r7,r3
+ 399 00a4 0122     	 mov r2,#1
+ 400 00a6 1A70     	 strb r2,[r3]
+ 401              	.L19:
+ 149:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   }
+ 150:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   	
+ 151:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   return (initstatus);
+ 402              	 .loc 2 151 0
+ 403 00a8 0F23     	 mov r3,#15
+ 404 00aa FB18     	 add r3,r7,r3
+ 405 00ac 1B78     	 ldrb r3,[r3]
+ 152:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** }
+ 406              	 .loc 2 152 0
+ 407 00ae 181C     	 mov r0,r3
+ 408 00b0 BD46     	 mov sp,r7
+ 409 00b2 04B0     	 add sp,sp,#16
+ 410              	 
+ 411 00b4 80BD     	 pop {r7,pc}
+ 412              	 .cfi_endproc
+ 413              	.LFE67:
+ 415 00b6 C046     	 .section .text.IRQ0_Handler,"ax",%progbits
+ 416              	 .align 2
+ 417              	 .global IRQ0_Handler
+ 418              	 .code 16
+ 419              	 .thumb_func
+ 421              	IRQ0_Handler:
+ 422              	.LFB68:
+ 153:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 154:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #if (UC_SERIES != XMC14)
+ 155:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /*
+ 156:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * @brief  SCU_0 Interrupt Handler
+ 157:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+ 158:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void SCU_0_IRQHandler(void)
+ 159:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** {
+ 160:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   XMC_SCU_IRQHandler(0U);
+ 161:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** }
+ 162:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 163:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /*  SCU_1 Interrupt Handler.
+ 164:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * 
+ 165:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+ 166:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void SCU_1_IRQHandler(void)
+ 167:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** {
+ 168:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   XMC_SCU_IRQHandler(1U);
+ 169:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** }
+ 170:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 171:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /*  SCU2 Interrupt Handler.
+ 172:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+ 173:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+ 174:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void SCU_2_IRQHandler(void)
+ 175:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** {
+ 176:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   XMC_SCU_IRQHandler(2U);
+ 177:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** }
+ 178:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #else
+ 179:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /*
+ 180:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * @brief  IRQ0 Interrupt Handler
+ 181:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+ 182:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void IRQ0_Handler(void)
+ 183:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** {
+ 423              	 .loc 2 183 0
+ 424              	 .cfi_startproc
+ 425 0000 80B5     	 push {r7,lr}
+ 426              	.LCFI12:
+ 427              	 .cfi_def_cfa_offset 8
+ 428              	 .cfi_offset 7,-8
+ 429              	 .cfi_offset 14,-4
+ 430 0002 00AF     	 add r7,sp,#0
+ 431              	.LCFI13:
+ 432              	 .cfi_def_cfa_register 7
+ 184:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   XMC_SCU_IRQHandler(0);
+ 433              	 .loc 2 184 0
+ 434 0004 0020     	 mov r0,#0
+ 435 0006 FFF7FEFF 	 bl XMC_SCU_IRQHandler
+ 185:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** }
+ 436              	 .loc 2 185 0
+ 437 000a BD46     	 mov sp,r7
+ 438              	 
+ 439 000c 80BD     	 pop {r7,pc}
+ 440              	 .cfi_endproc
+ 441              	.LFE68:
+ 443 000e C046     	 .section .text.IRQ1_Handler,"ax",%progbits
+ 444              	 .align 2
+ 445              	 .global IRQ1_Handler
+ 446              	 .code 16
+ 447              	 .thumb_func
+ 449              	IRQ1_Handler:
+ 450              	.LFB69:
+ 186:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 187:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /*  IRQ1 Interrupt Handler.
+ 188:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+ 189:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+ 190:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void IRQ1_Handler(void)
+ 191:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** {
+ 451              	 .loc 2 191 0
+ 452              	 .cfi_startproc
+ 453 0000 80B5     	 push {r7,lr}
+ 454              	.LCFI14:
+ 455              	 .cfi_def_cfa_offset 8
+ 456              	 .cfi_offset 7,-8
+ 457              	 .cfi_offset 14,-4
+ 458 0002 00AF     	 add r7,sp,#0
+ 459              	.LCFI15:
+ 460              	 .cfi_def_cfa_register 7
+ 192:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   XMC_SCU_IRQHandler(1);
+ 461              	 .loc 2 192 0
+ 462 0004 0120     	 mov r0,#1
+ 463 0006 FFF7FEFF 	 bl XMC_SCU_IRQHandler
+ 193:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** }
+ 464              	 .loc 2 193 0
+ 465 000a BD46     	 mov sp,r7
+ 466              	 
+ 467 000c 80BD     	 pop {r7,pc}
+ 468              	 .cfi_endproc
+ 469              	.LFE69:
+ 471 000e C046     	 .section .text.IRQ2_Handler,"ax",%progbits
+ 472              	 .align 2
+ 473              	 .global IRQ2_Handler
+ 474              	 .code 16
+ 475              	 .thumb_func
+ 477              	IRQ2_Handler:
+ 478              	.LFB70:
+ 194:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 195:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /*  IRQ2 Interrupt Handler.
+ 196:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  *
+ 197:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+ 198:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** void IRQ2_Handler(void)
+ 199:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** {
+ 479              	 .loc 2 199 0
+ 480              	 .cfi_startproc
+ 481 0000 80B5     	 push {r7,lr}
+ 482              	.LCFI16:
+ 483              	 .cfi_def_cfa_offset 8
+ 484              	 .cfi_offset 7,-8
+ 485              	 .cfi_offset 14,-4
+ 486 0002 00AF     	 add r7,sp,#0
+ 487              	.LCFI17:
+ 488              	 .cfi_def_cfa_register 7
+ 200:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   XMC_SCU_IRQHandler(2);
+ 489              	 .loc 2 200 0
+ 490 0004 0220     	 mov r0,#2
+ 491 0006 FFF7FEFF 	 bl XMC_SCU_IRQHandler
+ 201:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** }
+ 492              	 .loc 2 201 0
+ 493 000a BD46     	 mov sp,r7
+ 494              	 
+ 495 000c 80BD     	 pop {r7,pc}
+ 496              	 .cfi_endproc
+ 497              	.LFE70:
+ 499 000e C046     	 .section .text.GLOBAL_SCU_XMC1_RegisterCallback,"ax",%progbits
+ 500              	 .align 2
+ 501              	 .global GLOBAL_SCU_XMC1_RegisterCallback
+ 502              	 .code 16
+ 503              	 .thumb_func
+ 505              	GLOBAL_SCU_XMC1_RegisterCallback:
+ 506              	.LFB71:
+ 202:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 203:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** #endif
+ 204:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 205:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** /*
+ 206:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  * @brief  Function to register callback event
+ 207:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****  */
+ 208:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** GLOBAL_SCU_XMC1_STATUS_t GLOBAL_SCU_XMC1_RegisterCallback(const GLOBAL_SCU_XMC1_EVENT_t event,
+ 209:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****                                                           const GLOBAL_SCU_XMC1_EVENT_HANDLER_t han
+ 210:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** {
+ 507              	 .loc 2 210 0
+ 508              	 .cfi_startproc
+ 509 0000 B0B5     	 push {r4,r5,r7,lr}
+ 510              	.LCFI18:
+ 511              	 .cfi_def_cfa_offset 16
+ 512              	 .cfi_offset 4,-16
+ 513              	 .cfi_offset 5,-12
+ 514              	 .cfi_offset 7,-8
+ 515              	 .cfi_offset 14,-4
+ 516 0002 86B0     	 sub sp,sp,#24
+ 517              	.LCFI19:
+ 518              	 .cfi_def_cfa_offset 40
+ 519 0004 00AF     	 add r7,sp,#0
+ 520              	.LCFI20:
+ 521              	 .cfi_def_cfa_register 7
+ 522 0006 B860     	 str r0,[r7,#8]
+ 523 0008 F960     	 str r1,[r7,#12]
+ 524 000a 7A60     	 str r2,[r7,#4]
+ 211:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   GLOBAL_SCU_XMC1_STATUS_t status;
+ 212:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 213:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   XMC_ASSERT("GLOBAL_SCU_XMC1_RegisterCallback: Invalid event", (GLOBAL_SCU_XMC1_CHECK_EVENT(event)
+ 214:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   XMC_ASSERT("GLOBAL_SCU_XMC1_RegisterCallback: NULL Handle", (handler != NULL));
+ 215:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   
+ 216:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   status = (GLOBAL_SCU_XMC1_STATUS_t)XMC_SCU_INTERRUPT_SetEventHandler(event, handler);
+ 525              	 .loc 2 216 0
+ 526 000c 1723     	 mov r3,#23
+ 527 000e FD18     	 add r5,r7,r3
+ 528 0010 BB68     	 ldr r3,[r7,#8]
+ 529 0012 FC68     	 ldr r4,[r7,#12]
+ 530 0014 7A68     	 ldr r2,[r7,#4]
+ 531 0016 181C     	 mov r0,r3
+ 532 0018 211C     	 mov r1,r4
+ 533 001a FFF7FEFF 	 bl XMC_SCU_INTERRUPT_SetEventHandler
+ 534 001e 031C     	 mov r3,r0
+ 535 0020 2B70     	 strb r3,[r5]
+ 217:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** 
+ 218:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c ****   return (status);
+ 536              	 .loc 2 218 0
+ 537 0022 1723     	 mov r3,#23
+ 538 0024 FB18     	 add r3,r7,r3
+ 539 0026 1B78     	 ldrb r3,[r3]
+ 219:../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.c **** }
+ 540              	 .loc 2 219 0
+ 541 0028 181C     	 mov r0,r3
+ 542 002a BD46     	 mov sp,r7
+ 543 002c 06B0     	 add sp,sp,#24
+ 544              	 
+ 545 002e B0BD     	 pop {r4,r5,r7,pc}
+ 546              	 .cfi_endproc
+ 547              	.LFE71:
+ 549              	 .text
+ 550              	.Letext0:
+ 551              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 552              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 553              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 554              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_scu.h"
+ 555              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_scu.h"
+ 556              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DAVE_Common.h"
+ 557              	 .file 9 "../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h"
+ 558              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 559              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 global_scu_xmc1.c
+    {standard input}:18     .text.__NVIC_EnableIRQ:00000000 $t
+    {standard input}:22     .text.__NVIC_EnableIRQ:00000000 __NVIC_EnableIRQ
+    {standard input}:68     .text.__NVIC_EnableIRQ:00000030 $d
+    {standard input}:73     .text.__NVIC_SetPriority:00000000 $t
+    {standard input}:77     .text.__NVIC_SetPriority:00000000 __NVIC_SetPriority
+    {standard input}:206    .text.__NVIC_SetPriority:000000cc $d
+    {standard input}:212    .text.GLOBAL_SCU_XMC1_GetAppVersion:00000000 $t
+    {standard input}:217    .text.GLOBAL_SCU_XMC1_GetAppVersion:00000000 GLOBAL_SCU_XMC1_GetAppVersion
+    {standard input}:283    .text.GLOBAL_SCU_XMC1_GetAppVersion:00000058 $d
+    {standard input}:289    .text.GLOBAL_SCU_XMC1_Init:00000000 $t
+    {standard input}:294    .text.GLOBAL_SCU_XMC1_Init:00000000 GLOBAL_SCU_XMC1_Init
+    {standard input}:416    .text.IRQ0_Handler:00000000 $t
+    {standard input}:421    .text.IRQ0_Handler:00000000 IRQ0_Handler
+    {standard input}:444    .text.IRQ1_Handler:00000000 $t
+    {standard input}:449    .text.IRQ1_Handler:00000000 IRQ1_Handler
+    {standard input}:472    .text.IRQ2_Handler:00000000 $t
+    {standard input}:477    .text.IRQ2_Handler:00000000 IRQ2_Handler
+    {standard input}:500    .text.GLOBAL_SCU_XMC1_RegisterCallback:00000000 $t
+    {standard input}:505    .text.GLOBAL_SCU_XMC1_RegisterCallback:00000000 GLOBAL_SCU_XMC1_RegisterCallback
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+XMC_SCU_SetInterruptControl
+XMC_SCU_IRQHandler
+XMC_SCU_INTERRUPT_SetEventHandler

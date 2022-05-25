@@ -1,0 +1,49 @@
+   1              	 .cpu cortex-m0
+   2              	 .fpu softvfp
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,0
+  11              	 .eabi_attribute 18,4
+  12              	 .code 16
+  13              	 .file "global_scu_xmc1_conf.c"
+  14              	 .text
+  15              	.Ltext0:
+  16              	 .cfi_sections .debug_frame
+  17              	 .global GLOBAL_SCU_XMC1_0_config
+  18              	 .section .rodata.GLOBAL_SCU_XMC1_0_config,"a",%progbits
+  19              	 .align 2
+  22              	GLOBAL_SCU_XMC1_0_config:
+  23 0000 03       	 .byte 3
+  24 0001 03       	 .byte 3
+  25 0002 03       	 .byte 3
+  26 0003 01       	 .byte 1
+  27 0004 01       	 .byte 1
+  28 0005 01       	 .byte 1
+  29              	 .global GLOBAL_SCU_XMC1_0
+  30 0006 0000     	 .section .data.GLOBAL_SCU_XMC1_0,"aw",%progbits
+  31              	 .align 2
+  34              	GLOBAL_SCU_XMC1_0:
+  35 0000 00000000 	 .word GLOBAL_SCU_XMC1_0_config
+  36 0004 00       	 .byte 0
+  37 0005 000000   	 .space 3
+  38              	 .text
+  39              	.Letext0:
+  40              	 .file 1 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+  41              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+  42              	 .file 3 "../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h"
+  43              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+  44              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+  45              	 .file 6 "../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1_conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 global_scu_xmc1_conf.c
+    {standard input}:22     .rodata.GLOBAL_SCU_XMC1_0_config:00000000 GLOBAL_SCU_XMC1_0_config
+    {standard input}:19     .rodata.GLOBAL_SCU_XMC1_0_config:00000000 $d
+    {standard input}:34     .data.GLOBAL_SCU_XMC1_0:00000000 GLOBAL_SCU_XMC1_0
+    {standard input}:31     .data.GLOBAL_SCU_XMC1_0:00000000 $d
+
+NO UNDEFINED SYMBOLS
