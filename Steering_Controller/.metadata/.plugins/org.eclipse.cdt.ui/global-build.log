@@ -1652,3 +1652,489 @@ make: *** [main.o] Error 1
 "C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
 'Finished building: MobRob_Steering_Controller.lst'
 
+13:35:09 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  40628	    768	   1540	  42936	   a7b8	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+15:40:18 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'IRQ4_Handler':
+'Building file: ../main.c'
+../main.c:429:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                                                                           ^
+'Finished building: ../main.c'
+../main.c:136:6: note: expected 'float *' but argument is of type 'volatile float *'
+
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+      ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:717:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:563:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:720:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:549:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42228	    792	   1540	  44560	   ae10	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+15:41:56 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42228	    792	   1540	  44560	   ae10	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+15:44:42 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'IRQ4_Handler':
+'Building file: ../main.c'
+../main.c:429:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                                                                           ^
+'Finished building: ../main.c'
+../main.c:136:6: note: expected 'float *' but argument is of type 'volatile float *'
+
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+      ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:717:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:563:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:720:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:549:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42228	    792	   1540	  44560	   ae10	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+15:45:20 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ4_Handler':
+../main.c:429:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                                                                           ^
+'Finished building: ../main.c'
+../main.c:136:6: note: expected 'float *' but argument is of type 'volatile float *'
+
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+      ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:717:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:563:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:720:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:549:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42228	    792	   1540	  44560	   ae10	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+15:47:03 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ4_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:429:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+'Finished building: ../main.c'
+                                                                           ^
+
+../main.c:136:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+      ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:717:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:563:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:720:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:549:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42300	    792	   1540	  44632	   ae58	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+15:56:57 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ4_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:429:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+'Finished building: ../main.c'
+                                                                           ^
+
+../main.c:136:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+      ^
+../main.c: In function 'Ultra_sonic_filter':
+../main.c:458:2: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+  if(Ultrsonic_data_vaild[1] = 1){
+  ^
+../main.c:463:2: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+  if(Ultrsonic_data_vaild[2] = 1){
+  ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:729:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:575:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:732:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:561:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42348	    792	   1540	  44680	   ae88	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+15:57:07 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42348	    792	   1540	  44680	   ae88	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+15:57:38 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ4_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:429:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+'Finished building: ../main.c'
+                                                                           ^
+../main.c:136:6: note: expected 'float *' but argument is of type 'volatile float *'
+
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+      ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:729:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:575:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:732:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:561:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42348	    792	   1540	  44680	   ae88	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+15:59:14 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'IRQ4_Handler':
+'Building file: ../main.c'
+../main.c:429:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+                                                                           ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+../main.c:136:6: note: expected 'float *' but argument is of type 'volatile float *'
+'Finished building: ../main.c'
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+
+      ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:730:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:576:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:733:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:562:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42348	    792	   1540	  44680	   ae88	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+16:06:06 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c:91:79: error: redefinition of 'obstacel_R_x'
+'Invoking: ARM-GCC C Compiler'
+ float obstacel_F_x = 0, obstacel_L_x = 0, obstacel_L_y = 0, obstacel_R_x = 0, obstacel_R_x = 0;
+                                                                               ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+../main.c:91:61: note: previous definition of 'obstacel_R_x' was here
+subdir.mk:18: recipe for target 'main.o' failed
+ float obstacel_F_x = 0, obstacel_L_x = 0, obstacel_L_y = 0, obstacel_R_x = 0, obstacel_R_x = 0;
+                                                             ^
+../main.c: In function 'IRQ4_Handler':
+../main.c:432:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+                                                                           ^
+../main.c:140:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+      ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:739:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:585:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:742:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:571:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+make: *** [main.o] Error 1
+16:06:27 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ4_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:432:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+                                                                           ^
+'Finished building: ../main.c'
+../main.c:140:6: note: expected 'float *' but argument is of type 'volatile float *'
+
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+      ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:739:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:585:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:742:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:571:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42404	    792	   1556	  44752	   aed0	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+16:06:36 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ4_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:432:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+                                                                           ^
+../main.c:140:6: note: expected 'float *' but argument is of type 'volatile float *'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+'Finished building: ../main.c'
+      ^
+
+../main.c: In function 'IRQ7_Handler':
+../main.c:739:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:585:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c:742:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:571:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42412	    792	   1564	  44768	   aee0	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+16:06:38 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42412	    792	   1564	  44768	   aee0	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
