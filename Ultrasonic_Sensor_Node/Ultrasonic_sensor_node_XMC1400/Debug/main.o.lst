@@ -1,0 +1,1811 @@
+   1              	 .cpu cortex-m0
+   2              	 .fpu softvfp
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,0
+  11              	 .eabi_attribute 18,4
+  12              	 .code 16
+  13              	 .file "main.c"
+  14              	 .text
+  15              	.Ltext0:
+  16              	 .cfi_sections .debug_frame
+  17              	 .section .text.XMC_GPIO_GetInput,"ax",%progbits
+  18              	 .align 2
+  19              	 .code 16
+  20              	 .thumb_func
+  22              	XMC_GPIO_GetInput:
+  23              	.LFB125:
+  24              	 .file 1 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_gpio.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+   2:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @file xmc_gpio.h
+   3:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @date 2015-06-20
+   4:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   5:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @cond
+   6:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *****************************************************************************
+   7:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMClib v2.2.0 - XMC Peripheral Driver Library
+   8:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   9:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Copyright (c) 2015-2020, Infineon Technologies AG
+  10:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * All rights reserved.
+  11:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  12:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Boost Software License - Version 1.0 - August 17th, 2003
+  13:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  14:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Permission is hereby granted, free of charge, to any person or organization
+  15:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * obtaining a copy of the software and accompanying documentation covered by
+  16:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * this license (the "Software") to use, reproduce, display, distribute,
+  17:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * execute, and transmit the Software, and to prepare derivative works of the
+  18:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Software, and to permit third-parties to whom the Software is furnished to
+  19:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * do so, all subject to the following:
+  20:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  21:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * The copyright notices in the Software and this entire statement, including
+  22:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * the above license grant, this restriction and the following disclaimer,
+  23:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * must be included in all copies of the Software, in whole or in part, and
+  24:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * all derivative works of the Software, unless such copies or derivative
+  25:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * works are solely in the form of machine-executable object code generated by
+  26:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * a source language processor.
+  27:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  28:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  29:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  30:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+  31:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+  32:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+  33:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  34:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * DEALINGS IN THE SOFTWARE.
+  35:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  36:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * To improve the quality of the software, users are encouraged to share
+  37:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * modifications, enhancements or bug fixes with Infineon Technologies AG
+  38:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * at XMCSupport@infineon.com.
+  39:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *****************************************************************************
+  40:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  41:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Change History
+  42:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * --------------
+  43:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  44:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-02-20:
+  45:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Initial draft<br>
+  46:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Documentation improved <br>
+  47:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  48:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-06-20:
+  49:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Removed version macros and declaration of GetDriverVersion API
+  50:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  51:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @endcond
+  52:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  53:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  54:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  55:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #ifndef XMC_GPIO_H
+  56:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_H
+  57:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  58:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  59:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * HEADER FILES
+  60:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  61:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  62:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc_common.h"
+  63:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  64:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  65:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup XMClib XMC Peripheral Library
+  66:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @{
+  67:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  68:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  69:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  70:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup GPIO
+  71:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @brief General Purpose Input Output (GPIO) driver for the XMC microcontroller family.
+  72:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  73:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * GPIO driver provide a generic and very flexible software interface for all standard digital I/O 
+  74:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Each port slice has individual interfaces for the operation as General Purpose I/O and it furthe
+  75:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * connectivity to the on-chip periphery and the control for the pad characteristics.
+  76:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  77:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * The driver is divided into Input and Output mode.
+  78:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  79:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Input mode features:
+  80:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Configuration structure XMC_GPIO_CONFIG_t and initialization function XMC_GPIO_Init()
+  81:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of weak pull-up or pull-down device. Configuration structure XMC_GPIO_MO
+  82:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+  83:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of input hysteresis. XMC_GPIO_SetInputHysteresis()
+  84:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  85:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  86:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  87:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Output mode features:
+  88:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of push pull/open drain and Alternate output. Configuration structure XM
+  89:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+  90:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of pad driver strength. Configuration structure XMC_GPIO_OUTPUT_STRENGTH
+  91:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  92:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  93:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of initial output level. Configuration structure XMC_GPIO_OUTPUT_LEVEL_t
+  94:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  95:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *@{
+  96:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  97:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  98:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  99:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * MACROS
+ 100:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 101:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 102:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Pos PORT0_IOCR0_PC0_Pos
+ 103:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Msk PORT0_IOCR0_PC0_Msk
+ 104:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 105:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Size 				(8U)
+ 106:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 107:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 108:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_OUTPUT_LEVEL(level) ((level == XMC_GPIO_OUTPUT_LEVEL_LOW) || \
+ 109:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****                                             (level == XMC_GPIO_OUTPUT_LEVEL_HIGH))
+ 110:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 111:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_HWCTRL(hwctrl) ((hwctrl == XMC_GPIO_HWCTRL_DISABLED) || \
+ 112:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL1) || \
+ 113:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL2))
+ 114:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 115:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 116:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * ENUMS
+ 117:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 118:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 119:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 120:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 121:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines output level of a pin. Use type \a XMC_GPIO_OUTPUT_LEVEL_t for this enum.
+ 122:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 123:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_OUTPUT_LEVEL
+ 124:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 125:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_LOW  = 0x10000U, /**<  Reset bit */
+ 126:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_HIGH = 0x1U, 	/**< Set bit  */
+ 127:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_OUTPUT_LEVEL_t;
+ 128:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 129:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 130:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines direct hardware control characteristics of the pin . Use type \a XMC_GPIO_HWCTRL_t for t
+ 131:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 132:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_HWCTRL
+ 133:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 134:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_DISABLED     = 0x0U, /**<  Software control only */
+ 135:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL1  = 0x1U, /**<  HWI0/HWO0 control path can override the software confi
+ 136:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL2  = 0x2U  /**<  HWI1/HWO1 control path can override the software confi
+ 137:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_HWCTRL_t;
+ 138:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 139:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 140:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * DEVICE FAMILY EXTENSIONS
+ 141:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 142:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 143:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #if UC_FAMILY == XMC1
+ 144:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc1_gpio.h"
+ 145:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #elif UC_FAMILY == XMC4
+ 146:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc4_gpio.h"
+ 147:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #else
+ 148:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #error "xmc_gpio.h: family device not supported"
+ 149:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 150:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 151:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 152:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * API PROTOTYPES
+ 153:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 154:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 155:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #ifdef __cplusplus
+ 156:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** extern "C" {
+ 157:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 158:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 159:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 160:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 161:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	  Constant pointer pointing to GPIO port, to access port registers like Pn_OUT,Pn_O
+ 162:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	  Port pin number.
+ 163:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  config GPIO configuration data structure. Refer data structure @ref XMC_GPIO_CONFIG_t fo
+ 164:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 165:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 166:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 167:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 168:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+ 169:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,hysteresis, push pull
+ 170:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for a selected \a po
+ 171:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \a config provides selected I/O settings. It configures hardware registers Pn_IOCR,Pn_OUT, Pn_OM
+ 172:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 173:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+ 174:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,push pull /open drain
+ 175:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for selected \a port
+ 176:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * It configures hardware registers Pn_IOCR,Pn_OUT,Pn_OMR,Pn_PDISC and Pn_PDR.\n
+ 177:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 178:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 179:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 180:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 181:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 182:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 183:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * This API is called in definition of DAVE_init by code generation and therefore should not be exp
+ 184:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * for the normal operation. Use other APIs only after DAVE_init is called successfully (returns DA
+ 185:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 186:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 187:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 188:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 189:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 190:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_Init(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_CONFIG_t *const c
+ 191:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 192:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 193:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 194:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	Constant pointer pointing to GPIO port, to access hardware register Pn_IOCR.
+ 195:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 196:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  mode input / output functionality selection. Refer @ref XMC_GPIO_MODE_t for valid values
+ 197:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 198:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 199:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 200:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 201:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets digital input and output driver functionality and characteristics of a GPIO port pin. It co
+ 202:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * registers Pn_IOCR. \a mode is initially configured during initialization in XMC_GPIO_Init(). Cal
+ 203:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * the port direction functionality as needed later in the program.
+ 204:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 205:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 206:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 207:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 208:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 209:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 210:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_SetMode(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_MODE_t mode);
+ 211:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 212:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 213:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 214:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 215:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	 Constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 216:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	 Port pin number.
+ 217:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  level output level selection. Refer @ref XMC_GPIO_OUTPUT_LEVEL_t for valid values.
+ 218:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 219:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 220:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 221:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 222:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Set port pin output level to high or low.It configures hardware registers Pn_OMR.\a level is ini
+ 223:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * configured during initialization in XMC_GPIO_Init(). Call this API to alter output level as need
+ 224:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 225:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 226:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputHigh(), XMC_GPIO_SetOutputLow().
+ 227:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 228:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 229:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 230:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 231:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 232:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 233:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 234:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT_t *const port, const uint8_t pin, const 
+ 235:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 236:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 237:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid output level", XMC_GPIO_CHECK_OUTPUT_LEVEL(level));
+ 238:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 239:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)level << pin;
+ 240:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 241:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 242:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 243:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 244:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 245:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 246:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 247:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 248:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 249:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 250:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *  Sets port pin output to high. It configures hardware registers Pn_OMR.
+ 251:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 252:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *  \par<b>Related APIs:</b><BR>
+ 253:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputLow()
+ 254:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 255:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 256:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().\n
+ 257:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 258:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 259:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 260:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 261:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputHigh(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 262:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 263:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputHigh: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 264:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 265:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)0x1U << pin;
+ 266:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 267:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 268:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 269:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 270:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 271:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	port pin number.
+ 272:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 273:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return  None
+ 274:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 275:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Description:</b><br>
+ 276:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets port pin output to low. It configures hardware registers Pn_OMR.\n
+ 277:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 278:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>>
+ 279:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMC_GPIO_SetOutputHigh()
+ 280:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 281:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Note:</b><br>
+ 282:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 283:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 284:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 285:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 286:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 287:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLow(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 288:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 289:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLow: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 290:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 291:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = 0x10000U << pin;
+ 292:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 293:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 294:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 295:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 296:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param port constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 297:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param pin  port pin number.
+ 298:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 299:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 300:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 301:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 302:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Configures port pin output to Toggle. It configures hardware registers Pn_OMR.
+ 303:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 304:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 305:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMC_GPIO_SetOutputHigh(), XMC_GPIO_SetOutputLow().
+ 306:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 307:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 308:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode(). Regis
+ 309:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * and does not contain any flip-flop. A read action delivers the value of 0.
+ 310:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 311:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 312:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 313:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_ToggleOutput(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 314:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 315:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_ToggleOutput: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 316:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 317:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = 0x10001U << pin;
+ 318:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 319:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 320:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 321:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 322:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param port constant pointer pointing to GPIO port, to access hardware register Pn_IN.
+ 323:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param pin  Port pin number.
+ 324:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 325:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return uint32_t pin logic level status.
+ 326:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 327:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Description:</b><br>
+ 328:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Reads the Pn_IN register and returns the current logical value at the GPIO pin.
+ 329:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 330:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 331:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * None
+ 332:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 333:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 334:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to input mode using XMC_GPIO_SetMode().
+ 335:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 336:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 337:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 338:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE uint32_t XMC_GPIO_GetInput(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 339:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  25              	 .loc 1 339 0
+  26              	 .cfi_startproc
+  27 0000 80B5     	 push {r7,lr}
+  28              	.LCFI0:
+  29              	 .cfi_def_cfa_offset 8
+  30              	 .cfi_offset 7,-8
+  31              	 .cfi_offset 14,-4
+  32 0002 82B0     	 sub sp,sp,#8
+  33              	.LCFI1:
+  34              	 .cfi_def_cfa_offset 16
+  35 0004 00AF     	 add r7,sp,#0
+  36              	.LCFI2:
+  37              	 .cfi_def_cfa_register 7
+  38 0006 7860     	 str r0,[r7,#4]
+  39 0008 0A1C     	 mov r2,r1
+  40 000a FB1C     	 add r3,r7,#3
+  41 000c 1A70     	 strb r2,[r3]
+ 340:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_GetInput: Invalid port", XMC_GPIO_CHECK_PORT(port));
+ 341:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 342:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   return (((port->IN) >> pin) & 0x1U);
+  42              	 .loc 1 342 0
+  43 000e 7B68     	 ldr r3,[r7,#4]
+  44 0010 5A6A     	 ldr r2,[r3,#36]
+  45 0012 FB1C     	 add r3,r7,#3
+  46 0014 1B78     	 ldrb r3,[r3]
+  47 0016 DA40     	 lsr r2,r2,r3
+  48 0018 131C     	 mov r3,r2
+  49 001a 0122     	 mov r2,#1
+  50 001c 1340     	 and r3,r2
+ 343:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  51              	 .loc 1 343 0
+  52 001e 181C     	 mov r0,r3
+  53 0020 BD46     	 mov sp,r7
+  54 0022 02B0     	 add sp,sp,#8
+  55              	 
+  56 0024 80BD     	 pop {r7,pc}
+  57              	 .cfi_endproc
+  58              	.LFE125:
+  60 0026 C046     	 .section .text.PIN_INTERRUPT_GetPinValue,"ax",%progbits
+  61              	 .align 2
+  62              	 .code 16
+  63              	 .thumb_func
+  65              	PIN_INTERRUPT_GetPinValue:
+  66              	.LFB201:
+  67              	 .file 2 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+   2:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @file pin_interrupt.h
+   3:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @date 2021-01-08
+   4:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+   5:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * NOTE:
+   6:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * This file is generated by DAVE. Any manual modification done to this file will be lost when the 
+   7:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+   8:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @cond
+   9:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  10:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * PIN_INTERRUPT v4.0.4 - The PIN_INTERRUPT APP invokes user interrupt handler in a response to ris
+  11:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                        edge event signal on a pin.
+  12:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+  13:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * Copyright (c) 2016-2020, Infineon Technologies AG
+  14:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * All rights reserved.                        
+  15:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                                             
+  16:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  17:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * following conditions are met:   
+  18:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                                                                              
+  19:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  20:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   disclaimer.                        
+  21:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * 
+  22:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  23:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   disclaimer in the documentation and/or other materials provided with the distribution.     
+  24:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                         
+  25:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  26:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   products derived from this software without specific prior written permission. 
+  27:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                                             
+  28:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  29:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  30:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  31:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  32:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  33:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  34:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.    
+  35:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                                                                              
+  36:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  37:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * with Infineon Technologies AG (dave@infineon.com).         
+  38:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  39:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+  40:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * Change History
+  41:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * --------------
+  42:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * 2015-12-03:
+  43:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     - Initial version for DAVEv4. <BR>
+  44:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * 
+  45:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * 2021-01-08:
+  46:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     - Modified check for minimum XMCLib version
+  47:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+  48:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcond 
+  49:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+  50:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  51:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  52:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #ifndef PIN_INTERRUPT_H
+  53:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #define PIN_INTERRUPT_H
+  54:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  55:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**************************************************************************************************
+  56:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * HEADER FILES                                                                                    
+  57:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  58:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #if (UC_SERIES == XMC14)
+  59:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include "xmc_scu.h"
+  60:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+  61:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include "xmc_gpio.h"
+  62:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include "xmc_eru.h"
+  63:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  64:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include "DAVE_Common.h"
+  65:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include "pin_interrupt_conf.h"
+  66:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  67:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**************************************************************************************************
+  68:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * MACROS                                                                                          
+  69:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  70:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #define PIN_INTERRUPT_XMC_LIB_MAJOR_VERSION 2
+  71:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #define PIN_INTERRUPT_XMC_LIB_MINOR_VERSION 1
+  72:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #define PIN_INTERRUPT_XMC_LIB_PATCH_VERSION 6
+  73:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  74:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #if !((XMC_LIB_MAJOR_VERSION > PIN_INTERRUPT_XMC_LIB_MAJOR_VERSION) ||\
+  75:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****       ((XMC_LIB_MAJOR_VERSION == PIN_INTERRUPT_XMC_LIB_MAJOR_VERSION) && (XMC_LIB_MINOR_VERSION > P
+  76:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****       ((XMC_LIB_MAJOR_VERSION == PIN_INTERRUPT_XMC_LIB_MAJOR_VERSION) && (XMC_LIB_MINOR_VERSION == 
+  77:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #error "PIN_INTERRUPT requires XMC Peripheral Library v2.1.6 or higher"
+  78:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+  79:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  80:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+  81:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @ingroup App_publicparam
+  82:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @{
+  83:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  84:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+  85:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  @brief Initialization data structure for PIN_INTERRUPT APP
+  86:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  87:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  88:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+  89:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @}
+  90:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  91:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  92:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  /*************************************************************************************************
+  93:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * ENUMS
+  94:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  95:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+  96:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @ingroup PIN_INTERRUPT_enumerations
+  97:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @{
+  98:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  99:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /*
+ 100:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief enumeration for PIN_INTERRUPT APP
+ 101:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 102:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** typedef enum PIN_INTERRUPT_STATUS
+ 103:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+ 104:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_STATUS_SUCCESS = 0U,        /**<APP initialization is success */
+ 105:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_STATUS_FAILURE = 1U         /**<APP initialization is failure */
+ 106:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** } PIN_INTERRUPT_STATUS_t;
+ 107:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 108:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 109:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 110:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * Defines trigger edge for the event generation by ETLx (Event Trigger Logic, x = [0 to 3]) unit, 
+ 111:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * from ERSx(Event request source, x = [0 to 3]) unit.
+ 112:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 113:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** typedef enum PIN_INTERRUPT_EDGE
+ 114:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+ 115:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_EDGE_NONE = 0U, /**< no event enabled */
+ 116:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_EDGE_RISING = 1U,   /**< detection of rising edge generates the event */
+ 117:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_EDGE_FALLING = 2U,  /**< detection of falling edge generates the event */
+ 118:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_EDGE_BOTH = 3U      /**< detection of either edges generates the event */
+ 119:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** } PIN_INTERRUPT_EDGE_t;
+ 120:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 121:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @}
+ 122:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 123:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 124:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**************************************************************************************************
+ 125:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * DATA STRUCTURES
+ 126:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** ***************************************************************************************************
+ 127:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 128:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @ingroup PIN_INTERRUPT_datastructures
+ 129:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @{
+ 130:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 131:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 132:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 133:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Configuration structure for PIN_INTERRUPT APP
+ 134:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 135:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** typedef struct PIN_INTERRUPT
+ 136:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+ 137:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ERU_t *eru;  /**< Mapped ERU module */
+ 138:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_GPIO_PORT_t *port;  /**< Mapped port number */
+ 139:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_GPIO_CONFIG_t gpio_config;   /**< Initializes the input pin characteristics */
+ 140:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ERU_ETL_CONFIG_t etl_config;  /**< reference to ERUx_ETLy (x = [0..1], y = [0..4])
+ 141:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****                                                       module configuration */
+ 142:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #if (UC_SERIES == XMC14)
+ 143:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_SCU_IRQCTRL_t irqctrl;  /**< selects the interrupt source for a NVIC interrupt node*/
+ 144:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+ 145:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   IRQn_Type IRQn;       /**< Mapped NVIC Node */
+ 146:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t irq_priority; 	  /**< Node Interrupt Priority */
+ 147:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #if (UC_FAMILY == XMC4)
+ 148:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t irq_subpriority;  /**< Node Interrupt SubPriority only valid for XMC4x */
+ 149:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+ 150:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t etl; /*< ETLx channel (x = [0..3])*/
+ 151:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t ogu; /*< OGUy channel (y = [0..3])*/
+ 152:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t pin; /*< Mapped pin number */
+ 153:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   bool enable_at_init;  /**< Interrupt enable for Node at initialization*/
+ 154:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** } PIN_INTERRUPT_t;
+ 155:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 156:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @}
+ 157:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 158:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 159:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #ifdef __cplusplus
+ 160:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** extern "C" {
+ 161:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+ 162:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**************************************************************************************************
+ 163:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * API Prototypes
+ 164:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+ 165:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 166:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @ingroup PIN_INTERRUPT_apidoc
+ 167:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @{
+ 168:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 169:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 170:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Get PIN_INTERRUPT APP version
+ 171:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @return DAVE_APP_VERSION_t APP version information (major, minor and patch number)
+ 172:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 173:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * \par<b>Description: </b><br>
+ 174:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * The function can be used to check application software compatibility with a
+ 175:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * specific version of the APP.
+ 176:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 177:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * \par<b>Example Usage:</b><br>
+ 178:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 179:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @code
+ 180:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * #include "DAVE.h"
+ 181:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 182:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * int main(void) 
+ 183:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * {
+ 184:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   DAVE_STATUS_t init_status;
+ 185:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   DAVE_APP_VERSION_t version;
+ 186:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 187:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   // Initialize PIN_INTERRUPT APP:
+ 188:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   // PIN_INTERRUPT_Init() is called from within DAVE_Init().
+ 189:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   init_status = DAVE_Init();
+ 190:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 191:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   if (DAVE_STATUS_SUCCESS == init_status)
+ 192:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   {
+ 193:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     version = PIN_INTERRUPT_GetAppVersion();
+ 194:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     if (version.major != 4U) {
+ 195:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *       // Probably, not the right version.
+ 196:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     }
+ 197:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   }
+ 198:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 199:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   // More code here
+ 200:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   while(1)
+ 201:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   {
+ 202:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   }
+ 203:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   return (1);
+ 204:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * }
+ 205:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcode<BR>
+ 206:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 207:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** DAVE_APP_VERSION_t PIN_INTERRUPT_GetAppVersion(void);
+ 208:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 209:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 210:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Initializes a PIN_INTERRUPT APP instance
+ 211:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @param handle Pointer pointing to APP data structure. Refer @ref PIN_INTERRUPT_t for details.
+ 212:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @return
+ 213:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *            PIN_INTERRUPT_STATUS_SUCCESS             : if initialization is successful\n
+ 214:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *            PIN_INTERRUPT_STATUS_FAILURE             : if initialization is failed
+ 215:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 216:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * \par<b>Description:</b><br>
+ 217:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * PIN_INTERRUPT_Init API is called during initialization of DAVE APPS. This API Initializes input 
+ 218:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * ERU and OGU hardware module initialization, Configures NVIC node and its priority in order to ge
+ 219:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 220:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * \par<b>Example Usage:</b><br>
+ 221:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 222:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @code
+ 223:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * #include "DAVE.h"
+ 224:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 225:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * int main(void)
+ 226:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * {
+ 227:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   DAVE_STATUS_t status;
+ 228:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 229:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   status = DAVE_Init();  //  PIN_INTERRUPT_Init API is called during initialization of DAVE APPS
+ 230:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   if (DAVE_STATUS_SUCCESS == status)
+ 231:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   {
+ 232:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     // user code
+ 233:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 234:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     while(1)
+ 235:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     {
+ 236:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 237:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     }
+ 238:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   }
+ 239:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   return (1);
+ 240:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * }
+ 241:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 242:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcode<BR>
+ 243:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 244:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** PIN_INTERRUPT_STATUS_t PIN_INTERRUPT_Init(const PIN_INTERRUPT_t *const handle);
+ 245:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 246:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 247:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Enables the IRQ.
+ 248:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @param handle Pointer pointing to APP data structure. Refer @ref PIN_INTERRUPT_t for details.
+ 249:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @return None
+ 250:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * <BR><P ALIGN="LEFT"><B>Example:</B>
+ 251:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 252:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @code
+ 253:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  #include "DAVE.h"
+ 254:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 255:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  int main(void)
+ 256:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  {
+ 257:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    DAVE_STATUS_t status;
+ 258:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 259:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    status = DAVE_Init();  //  PIN_INTERRUPT_Init API is called during initialization of DAVE APP
+ 260:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    if (DAVE_STATUS_SUCCESS == status)
+ 261:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    {
+ 262:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *      // user code
+ 263:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 264:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *      PIN_INTERRUPT_Enable(&PIN_INTERRUPT_0);
+ 265:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *      while(1)
+ 266:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *      {}
+ 267:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    }
+ 268:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 269:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    return (1);
+ 270:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  }
+ 271:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcode<BR> </p>
+ 272:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 273:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** __STATIC_INLINE void PIN_INTERRUPT_Enable(const PIN_INTERRUPT_t *const handle)
+ 274:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+ 275:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ASSERT("PIN_INTERRUPT_Enable: Handler null pointer", handle != NULL);
+ 276:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   NVIC_EnableIRQ(handle->IRQn);
+ 277:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** }
+ 278:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 279:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 280:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Disables the IRQ.
+ 281:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @param handle Pointer pointing to APP data structure. Refer @ref PIN_INTERRUPT_t for details.
+ 282:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @return None
+ 283:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * <BR><P ALIGN="LEFT"><B>Example:</B>
+ 284:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 285:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @code
+ 286:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  #include "DAVE.h"
+ 287:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 288:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  int main(void)
+ 289:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  {
+ 290:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 291:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    DAVE_STATUS_t status;
+ 292:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 293:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    status = DAVE_Init();  //  PIN_INTERRUPT_Init API is called during initialization of DAVE APP
+ 294:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    if(DAVE_STATUS_SUCCESS == status)
+ 295:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    {
+ 296:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *      // user code
+ 297:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 298:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *      PIN_INTERRUPT_Disable(&PIN_INTERRUPT_0);
+ 299:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *      while(1)
+ 300:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *      {}
+ 301:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    }
+ 302:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 303:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    return (1);
+ 304:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 305:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  }
+ 306:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcode<BR> </p>
+ 307:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 308:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** __STATIC_INLINE void PIN_INTERRUPT_Disable(const PIN_INTERRUPT_t *const handle)
+ 309:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+ 310:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ASSERT("PIN_INTERRUPT_Disable: Handler null pointer", handle != NULL);
+ 311:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   NVIC_DisableIRQ(handle->IRQn);
+ 312:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** }
+ 313:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 314:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 315:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * @brief Read input level of port pin.
+ 316:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * @param handle Pointer pointing to APP data structure. Refer @ref PIN_INTERRUPT_t for details.
+ 317:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * @return uint32_t input logic level. Range:0-1
+ 318:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *
+ 319:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * \par<b>Description:</b><br>
+ 320:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * This function reads the Pn_IN register and returns the current logical value at the GPIO pin.
+ 321:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *
+ 322:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *
+ 323:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * Example Usage:
+ 324:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * @code
+ 325:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * #include "DAVE.h"//Declarations from DAVE Code Generation (includes SFR declaration)
+ 326:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *
+ 327:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * int main(void)
+ 328:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * {
+ 329:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   DAVE_STATUS_t status;
+ 330:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   uint32_t pin_status;
+ 331:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   status = DAVE_Init();   // (DAVE_STATUS_t)PIN_INTERRUPT_Init(&PIN_INTERRUPT_0) is called within
+ 332:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   
+ 333:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   if (status == DAVE_STATUS_SUCCESS)
+ 334:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   {
+ 335:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     XMC_DEBUG("DAVE Apps initialization success\n");
+ 336:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   }
+ 337:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   else
+ 338:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   {
+ 339:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 340:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     while(1U)
+ 341:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     {
+ 342:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     }
+ 343:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   }
+ 344:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   //Placeholder for user application code. The while loop below can be replaced with user applica
+ 345:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   while(1U)
+ 346:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   {
+ 347:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     pin_status = PIN_INTERRUPT_GetPinValue(&PIN_INTERRUPT_0);
+ 348:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     if (pin_status == 1)
+ 349:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     {
+ 350:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *       // Add application code here
+ 351:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     }
+ 352:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     else
+ 353:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     {
+ 354:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *       // Add application code here
+ 355:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     }
+ 356:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   }
+ 357:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   return (1);
+ 358:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * }
+ 359:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *  @endcode
+ 360:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** */
+ 361:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** __STATIC_INLINE uint32_t PIN_INTERRUPT_GetPinValue(const PIN_INTERRUPT_t *const handle)
+ 362:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+  68              	 .loc 2 362 0
+  69              	 .cfi_startproc
+  70 0000 80B5     	 push {r7,lr}
+  71              	.LCFI3:
+  72              	 .cfi_def_cfa_offset 8
+  73              	 .cfi_offset 7,-8
+  74              	 .cfi_offset 14,-4
+  75 0002 82B0     	 sub sp,sp,#8
+  76              	.LCFI4:
+  77              	 .cfi_def_cfa_offset 16
+  78 0004 00AF     	 add r7,sp,#0
+  79              	.LCFI5:
+  80              	 .cfi_def_cfa_register 7
+  81 0006 7860     	 str r0,[r7,#4]
+ 363:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ASSERT("PIN_INTERRUPT_GetPinValue: Handler null pointer", handle != NULL);
+ 364:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   return (XMC_GPIO_GetInput(handle->port, handle->pin));
+  82              	 .loc 2 364 0
+  83 0008 7B68     	 ldr r3,[r7,#4]
+  84 000a 5A68     	 ldr r2,[r3,#4]
+  85 000c 7B68     	 ldr r3,[r7,#4]
+  86 000e 9B7F     	 ldrb r3,[r3,#30]
+  87 0010 101C     	 mov r0,r2
+  88 0012 191C     	 mov r1,r3
+  89 0014 FFF7FEFF 	 bl XMC_GPIO_GetInput
+  90 0018 031C     	 mov r3,r0
+ 365:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** }
+  91              	 .loc 2 365 0
+  92 001a 181C     	 mov r0,r3
+  93 001c BD46     	 mov sp,r7
+  94 001e 02B0     	 add sp,sp,#8
+  95              	 
+  96 0020 80BD     	 pop {r7,pc}
+  97              	 .cfi_endproc
+  98              	.LFE201:
+ 100              	 .global CAN_OK
+ 101 0022 C046     	 .section .bss.CAN_OK,"aw",%nobits
+ 104              	CAN_OK:
+ 105 0000 00       	 .space 1
+ 106              	 .comm init_status,1,1
+ 107              	 .global t_10us_count
+ 108              	 .section .bss.t_10us_count,"aw",%nobits
+ 109              	 .align 1
+ 112              	t_10us_count:
+ 113 0000 0000     	 .space 2
+ 114              	 .global pin_state_C
+ 115              	 .section .bss.pin_state_C,"aw",%nobits
+ 118              	pin_state_C:
+ 119 0000 00       	 .space 1
+ 120              	 .global echo_time_C
+ 121              	 .section .bss.echo_time_C,"aw",%nobits
+ 122              	 .align 2
+ 125              	echo_time_C:
+ 126 0000 00000000 	 .space 4
+ 127              	 .global echo_count_C
+ 128              	 .section .bss.echo_count_C,"aw",%nobits
+ 129              	 .align 2
+ 132              	echo_count_C:
+ 133 0000 00000000 	 .space 4
+ 134              	 .global distance_C
+ 135              	 .section .bss.distance_C,"aw",%nobits
+ 136              	 .align 1
+ 139              	distance_C:
+ 140 0000 0000     	 .space 2
+ 141              	 .global pin_state_L
+ 142              	 .section .bss.pin_state_L,"aw",%nobits
+ 145              	pin_state_L:
+ 146 0000 00       	 .space 1
+ 147              	 .global echo_time_L
+ 148              	 .section .bss.echo_time_L,"aw",%nobits
+ 149              	 .align 2
+ 152              	echo_time_L:
+ 153 0000 00000000 	 .space 4
+ 154              	 .global echo_count_L
+ 155              	 .section .bss.echo_count_L,"aw",%nobits
+ 156              	 .align 2
+ 159              	echo_count_L:
+ 160 0000 00000000 	 .space 4
+ 161              	 .global distance_L
+ 162              	 .section .bss.distance_L,"aw",%nobits
+ 163              	 .align 1
+ 166              	distance_L:
+ 167 0000 0000     	 .space 2
+ 168              	 .global pin_state_R
+ 169              	 .section .bss.pin_state_R,"aw",%nobits
+ 172              	pin_state_R:
+ 173 0000 00       	 .space 1
+ 174              	 .global echo_time_R
+ 175              	 .section .bss.echo_time_R,"aw",%nobits
+ 176              	 .align 2
+ 179              	echo_time_R:
+ 180 0000 00000000 	 .space 4
+ 181              	 .global echo_count_R
+ 182              	 .section .bss.echo_count_R,"aw",%nobits
+ 183              	 .align 2
+ 186              	echo_count_R:
+ 187 0000 00000000 	 .space 4
+ 188              	 .global distance_R
+ 189              	 .section .bss.distance_R,"aw",%nobits
+ 190              	 .align 1
+ 193              	distance_R:
+ 194 0000 0000     	 .space 2
+ 195              	 .section .text.main,"ax",%progbits
+ 196              	 .align 2
+ 197              	 .global main
+ 198              	 .code 16
+ 199              	 .thumb_func
+ 201              	main:
+ 202              	.LFB202:
+ 203              	 .file 3 "../main.c"
+   1:../main.c     **** /*
+   2:../main.c     ****  * main.c
+   3:../main.c     ****  *
+   4:../main.c     ****  *  Created on: 2022 May 24 16:56:28
+   5:../main.c     ****  *  Author: lukas
+   6:../main.c     ****  */
+   7:../main.c     **** #include "DAVE.h"                 //Declarations from DAVE Code Generation (includes SFR declaratio
+   8:../main.c     **** 
+   9:../main.c     **** 
+  10:../main.c     **** // ################### CONSTANTS################
+  11:../main.c     **** #define ECHO_TIME_MIN 20
+  12:../main.c     **** #define ECHO_TIME_MAX 2355
+  13:../main.c     **** #define ECHO_TIME_10us_TO_DISTANCE_cm 0.17
+  14:../main.c     **** 
+  15:../main.c     **** //#################### FUNCTIONS ################
+  16:../main.c     **** float average(float a[],int num_vaules);
+  17:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN );
+  18:../main.c     **** void calc();
+  19:../main.c     **** 
+  20:../main.c     **** // ################## VARS ######################
+  21:../main.c     **** uint8_t CAN_OK = 0;
+  22:../main.c     **** CAN_NODE_STATUS_t init_status;
+  23:../main.c     **** 
+  24:../main.c     **** volatile uint16_t t_10us_count = 0;
+  25:../main.c     **** 
+  26:../main.c     **** volatile uint8_t pin_state_C = 0;
+  27:../main.c     **** volatile uint32_t echo_time_C = 0;
+  28:../main.c     **** volatile uint32_t echo_count_C = 0;
+  29:../main.c     **** volatile uint16_t distance_C = 0;
+  30:../main.c     **** 
+  31:../main.c     **** volatile uint8_t pin_state_L = 0;
+  32:../main.c     **** volatile uint32_t echo_time_L = 0;
+  33:../main.c     **** volatile uint32_t echo_count_L = 0;
+  34:../main.c     **** volatile uint16_t distance_L = 0;
+  35:../main.c     **** 
+  36:../main.c     **** 
+  37:../main.c     **** volatile uint8_t pin_state_R = 0;
+  38:../main.c     **** volatile uint32_t echo_time_R = 0;
+  39:../main.c     **** volatile uint32_t echo_count_R = 0;
+  40:../main.c     **** volatile uint16_t distance_R = 0;
+  41:../main.c     **** 
+  42:../main.c     **** int main(void)
+  43:../main.c     **** {
+ 204              	 .loc 3 43 0
+ 205              	 .cfi_startproc
+ 206 0000 90B5     	 push {r4,r7,lr}
+ 207              	.LCFI6:
+ 208              	 .cfi_def_cfa_offset 12
+ 209              	 .cfi_offset 4,-12
+ 210              	 .cfi_offset 7,-8
+ 211              	 .cfi_offset 14,-4
+ 212 0002 83B0     	 sub sp,sp,#12
+ 213              	.LCFI7:
+ 214              	 .cfi_def_cfa_offset 24
+ 215 0004 00AF     	 add r7,sp,#0
+ 216              	.LCFI8:
+ 217              	 .cfi_def_cfa_register 7
+  44:../main.c     ****   DAVE_STATUS_t status;
+  45:../main.c     **** 
+  46:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
+ 218              	 .loc 3 46 0
+ 219 0006 FC1D     	 add r4,r7,#7
+ 220 0008 FFF7FEFF 	 bl DAVE_Init
+ 221 000c 031C     	 mov r3,r0
+ 222 000e 2370     	 strb r3,[r4]
+  47:../main.c     **** 
+  48:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
+ 223              	 .loc 3 48 0
+ 224 0010 FB1D     	 add r3,r7,#7
+ 225 0012 1B78     	 ldrb r3,[r3]
+ 226 0014 002B     	 cmp r3,#0
+ 227 0016 00D0     	 beq .L6
+ 228              	.L7:
+  49:../main.c     ****   {
+  50:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
+  51:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
+  52:../main.c     **** 
+  53:../main.c     ****     while(1U)
+  54:../main.c     ****     {
+  55:../main.c     **** 
+  56:../main.c     ****     }
+ 229              	 .loc 3 56 0 discriminator 1
+ 230 0018 FEE7     	 b .L7
+ 231              	.L6:
+  57:../main.c     ****   }
+  58:../main.c     **** 
+  59:../main.c     ****   //Initialization of CAN
+  60:../main.c     **** 	//CAN_NODE_STATUS_t init_status;
+  61:../main.c     **** 	init_status = CAN_NODE_Init(&CAN_NODE_0);
+ 232              	 .loc 3 61 0
+ 233 001a 084B     	 ldr r3,.L9
+ 234 001c 181C     	 mov r0,r3
+ 235 001e FFF7FEFF 	 bl CAN_NODE_Init
+ 236 0022 031C     	 mov r3,r0
+ 237 0024 1A1C     	 mov r2,r3
+ 238 0026 064B     	 ldr r3,.L9+4
+ 239 0028 1A70     	 strb r2,[r3]
+  62:../main.c     **** 
+  63:../main.c     **** 	if (init_status != CAN_NODE_STATUS_SUCCESS) {
+ 240              	 .loc 3 63 0
+ 241 002a 054B     	 ldr r3,.L9+4
+ 242 002c 1B78     	 ldrb r3,[r3]
+ 243 002e 002B     	 cmp r3,#0
+ 244 0030 02D1     	 bne .L8
+  64:../main.c     **** 		XMC_DEBUG("CAN initialization failed\n");
+  65:../main.c     **** 	}
+  66:../main.c     **** 	else{
+  67:../main.c     **** 		CAN_OK = 1;
+ 245              	 .loc 3 67 0
+ 246 0032 044B     	 ldr r3,.L9+8
+ 247 0034 0122     	 mov r2,#1
+ 248 0036 1A70     	 strb r2,[r3]
+ 249              	.L8:
+  68:../main.c     **** 	}
+  69:../main.c     **** 
+  70:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
+  71:../main.c     ****   while(1U)
+  72:../main.c     ****   {
+  73:../main.c     **** 
+  74:../main.c     ****   }
+ 250              	 .loc 3 74 0 discriminator 3
+ 251 0038 FEE7     	 b .L8
+ 252              	.L10:
+ 253 003a C046     	 .align 2
+ 254              	.L9:
+ 255 003c 00000000 	 .word CAN_NODE_0
+ 256 0040 00000000 	 .word init_status
+ 257 0044 00000000 	 .word CAN_OK
+ 258              	 .cfi_endproc
+ 259              	.LFE202:
+ 261              	 .section .text.IRQ0_Handler,"ax",%progbits
+ 262              	 .align 2
+ 263              	 .global IRQ0_Handler
+ 264              	 .code 16
+ 265              	 .thumb_func
+ 267              	IRQ0_Handler:
+ 268              	.LFB203:
+  75:../main.c     **** }
+  76:../main.c     **** 
+  77:../main.c     **** 
+  78:../main.c     **** void TIMER_10us_ISR(){
+ 269              	 .loc 3 78 0
+ 270              	 .cfi_startproc
+ 271 0000 80B5     	 push {r7,lr}
+ 272              	.LCFI9:
+ 273              	 .cfi_def_cfa_offset 8
+ 274              	 .cfi_offset 7,-8
+ 275              	 .cfi_offset 14,-4
+ 276 0002 00AF     	 add r7,sp,#0
+ 277              	.LCFI10:
+ 278              	 .cfi_def_cfa_register 7
+  79:../main.c     **** 	t_10us_count ++;
+ 279              	 .loc 3 79 0
+ 280 0004 2A4B     	 ldr r3,.L18
+ 281 0006 1B88     	 ldrh r3,[r3]
+ 282 0008 9BB2     	 uxth r3,r3
+ 283 000a 0133     	 add r3,r3,#1
+ 284 000c 9AB2     	 uxth r2,r3
+ 285 000e 284B     	 ldr r3,.L18
+ 286 0010 1A80     	 strh r2,[r3]
+  80:../main.c     **** 	if (pin_state_C == 1) echo_count_C ++;
+ 287              	 .loc 3 80 0
+ 288 0012 284B     	 ldr r3,.L18+4
+ 289 0014 1B78     	 ldrb r3,[r3]
+ 290 0016 DBB2     	 uxtb r3,r3
+ 291 0018 012B     	 cmp r3,#1
+ 292 001a 04D1     	 bne .L12
+ 293              	 .loc 3 80 0 is_stmt 0 discriminator 1
+ 294 001c 264B     	 ldr r3,.L18+8
+ 295 001e 1B68     	 ldr r3,[r3]
+ 296 0020 5A1C     	 add r2,r3,#1
+ 297 0022 254B     	 ldr r3,.L18+8
+ 298 0024 1A60     	 str r2,[r3]
+ 299              	.L12:
+  81:../main.c     **** 	if (pin_state_L == 1) echo_count_L ++;
+ 300              	 .loc 3 81 0 is_stmt 1
+ 301 0026 254B     	 ldr r3,.L18+12
+ 302 0028 1B78     	 ldrb r3,[r3]
+ 303 002a DBB2     	 uxtb r3,r3
+ 304 002c 012B     	 cmp r3,#1
+ 305 002e 04D1     	 bne .L13
+ 306              	 .loc 3 81 0 is_stmt 0 discriminator 1
+ 307 0030 234B     	 ldr r3,.L18+16
+ 308 0032 1B68     	 ldr r3,[r3]
+ 309 0034 5A1C     	 add r2,r3,#1
+ 310 0036 224B     	 ldr r3,.L18+16
+ 311 0038 1A60     	 str r2,[r3]
+ 312              	.L13:
+  82:../main.c     **** 	if (pin_state_R == 1) echo_count_R ++;
+ 313              	 .loc 3 82 0 is_stmt 1
+ 314 003a 224B     	 ldr r3,.L18+20
+ 315 003c 1B78     	 ldrb r3,[r3]
+ 316 003e DBB2     	 uxtb r3,r3
+ 317 0040 012B     	 cmp r3,#1
+ 318 0042 04D1     	 bne .L14
+ 319              	 .loc 3 82 0 is_stmt 0 discriminator 1
+ 320 0044 204B     	 ldr r3,.L18+24
+ 321 0046 1B68     	 ldr r3,[r3]
+ 322 0048 5A1C     	 add r2,r3,#1
+ 323 004a 1F4B     	 ldr r3,.L18+24
+ 324 004c 1A60     	 str r2,[r3]
+ 325              	.L14:
+  83:../main.c     **** 
+  84:../main.c     **** 	if(t_10us_count == 1){
+ 326              	 .loc 3 84 0 is_stmt 1
+ 327 004e 184B     	 ldr r3,.L18
+ 328 0050 1B88     	 ldrh r3,[r3]
+ 329 0052 9BB2     	 uxth r3,r3
+ 330 0054 012B     	 cmp r3,#1
+ 331 0056 05D1     	 bne .L15
+  85:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b111);
+ 332              	 .loc 3 85 0
+ 333 0058 1C4B     	 ldr r3,.L18+28
+ 334 005a 181C     	 mov r0,r3
+ 335 005c 0721     	 mov r1,#7
+ 336 005e FFF7FEFF 	 bl BUS_IO_Write
+ 337 0062 23E0     	 b .L11
+ 338              	.L15:
+  86:../main.c     **** 	}
+  87:../main.c     **** 	else if (t_10us_count == 11) {
+ 339              	 .loc 3 87 0
+ 340 0064 124B     	 ldr r3,.L18
+ 341 0066 1B88     	 ldrh r3,[r3]
+ 342 0068 9BB2     	 uxth r3,r3
+ 343 006a 0B2B     	 cmp r3,#11
+ 344 006c 05D1     	 bne .L17
+  88:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
+ 345              	 .loc 3 88 0
+ 346 006e 174B     	 ldr r3,.L18+28
+ 347 0070 181C     	 mov r0,r3
+ 348 0072 0021     	 mov r1,#0
+ 349 0074 FFF7FEFF 	 bl BUS_IO_Write
+ 350 0078 18E0     	 b .L11
+ 351              	.L17:
+  89:../main.c     **** 	}
+  90:../main.c     **** 	else if (t_10us_count > 2500) {
+ 352              	 .loc 3 90 0
+ 353 007a 0D4B     	 ldr r3,.L18
+ 354 007c 1B88     	 ldrh r3,[r3]
+ 355 007e 9BB2     	 uxth r3,r3
+ 356 0080 134A     	 ldr r2,.L18+32
+ 357 0082 9342     	 cmp r3,r2
+ 358 0084 12D9     	 bls .L11
+  91:../main.c     **** 		t_10us_count = 0;
+ 359              	 .loc 3 91 0
+ 360 0086 0A4B     	 ldr r3,.L18
+ 361 0088 0022     	 mov r2,#0
+ 362 008a 1A80     	 strh r2,[r3]
+  92:../main.c     **** 		calc();
+ 363              	 .loc 3 92 0
+ 364 008c FFF7FEFF 	 bl calc
+  93:../main.c     **** 		CAN_send_vaules(distance_C, distance_L, distance_R );
+ 365              	 .loc 3 93 0
+ 366 0090 104B     	 ldr r3,.L18+36
+ 367 0092 1B88     	 ldrh r3,[r3]
+ 368 0094 99B2     	 uxth r1,r3
+ 369 0096 104B     	 ldr r3,.L18+40
+ 370 0098 1B88     	 ldrh r3,[r3]
+ 371 009a 9AB2     	 uxth r2,r3
+ 372 009c 0F4B     	 ldr r3,.L18+44
+ 373 009e 1B88     	 ldrh r3,[r3]
+ 374 00a0 9BB2     	 uxth r3,r3
+ 375 00a2 081C     	 mov r0,r1
+ 376 00a4 111C     	 mov r1,r2
+ 377 00a6 1A1C     	 mov r2,r3
+ 378 00a8 FFF7FEFF 	 bl CAN_send_vaules
+ 379              	.L11:
+  94:../main.c     **** 	}
+  95:../main.c     **** 
+  96:../main.c     **** }
+ 380              	 .loc 3 96 0
+ 381 00ac BD46     	 mov sp,r7
+ 382              	 
+ 383 00ae 80BD     	 pop {r7,pc}
+ 384              	.L19:
+ 385              	 .align 2
+ 386              	.L18:
+ 387 00b0 00000000 	 .word t_10us_count
+ 388 00b4 00000000 	 .word pin_state_C
+ 389 00b8 00000000 	 .word echo_count_C
+ 390 00bc 00000000 	 .word pin_state_L
+ 391 00c0 00000000 	 .word echo_count_L
+ 392 00c4 00000000 	 .word pin_state_R
+ 393 00c8 00000000 	 .word echo_count_R
+ 394 00cc 00000000 	 .word BUS_IO_TRIGGER
+ 395 00d0 C4090000 	 .word 2500
+ 396 00d4 00000000 	 .word distance_C
+ 397 00d8 00000000 	 .word distance_L
+ 398 00dc 00000000 	 .word distance_R
+ 399              	 .cfi_endproc
+ 400              	.LFE203:
+ 402              	 .section .text.IRQ5_Handler,"ax",%progbits
+ 403              	 .align 2
+ 404              	 .global IRQ5_Handler
+ 405              	 .code 16
+ 406              	 .thumb_func
+ 408              	IRQ5_Handler:
+ 409              	.LFB204:
+  97:../main.c     **** 
+  98:../main.c     **** 
+  99:../main.c     **** 
+ 100:../main.c     **** void ECHO_L_ISR(void){
+ 410              	 .loc 3 100 0
+ 411              	 .cfi_startproc
+ 412 0000 80B5     	 push {r7,lr}
+ 413              	.LCFI11:
+ 414              	 .cfi_def_cfa_offset 8
+ 415              	 .cfi_offset 7,-8
+ 416              	 .cfi_offset 14,-4
+ 417 0002 00AF     	 add r7,sp,#0
+ 418              	.LCFI12:
+ 419              	 .cfi_def_cfa_register 7
+ 101:../main.c     **** 	pin_state_L = PIN_INTERRUPT_GetPinValue(&ECHO_L);
+ 420              	 .loc 3 101 0
+ 421 0004 0A4B     	 ldr r3,.L22
+ 422 0006 181C     	 mov r0,r3
+ 423 0008 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 424 000c 031C     	 mov r3,r0
+ 425 000e DAB2     	 uxtb r2,r3
+ 426 0010 084B     	 ldr r3,.L22+4
+ 427 0012 1A70     	 strb r2,[r3]
+ 102:../main.c     **** 
+ 103:../main.c     **** 	if(pin_state_L == 0){
+ 428              	 .loc 3 103 0
+ 429 0014 074B     	 ldr r3,.L22+4
+ 430 0016 1B78     	 ldrb r3,[r3]
+ 431 0018 DBB2     	 uxtb r3,r3
+ 432 001a 002B     	 cmp r3,#0
+ 433 001c 06D1     	 bne .L20
+ 104:../main.c     **** 		echo_time_L = echo_count_L;
+ 434              	 .loc 3 104 0
+ 435 001e 064B     	 ldr r3,.L22+8
+ 436 0020 1A68     	 ldr r2,[r3]
+ 437 0022 064B     	 ldr r3,.L22+12
+ 438 0024 1A60     	 str r2,[r3]
+ 105:../main.c     **** 		echo_count_L = 0;
+ 439              	 .loc 3 105 0
+ 440 0026 044B     	 ldr r3,.L22+8
+ 441 0028 0022     	 mov r2,#0
+ 442 002a 1A60     	 str r2,[r3]
+ 443              	.L20:
+ 106:../main.c     **** 	}
+ 107:../main.c     **** 
+ 108:../main.c     **** }
+ 444              	 .loc 3 108 0
+ 445 002c BD46     	 mov sp,r7
+ 446              	 
+ 447 002e 80BD     	 pop {r7,pc}
+ 448              	.L23:
+ 449              	 .align 2
+ 450              	.L22:
+ 451 0030 00000000 	 .word ECHO_L
+ 452 0034 00000000 	 .word pin_state_L
+ 453 0038 00000000 	 .word echo_count_L
+ 454 003c 00000000 	 .word echo_time_L
+ 455              	 .cfi_endproc
+ 456              	.LFE204:
+ 458              	 .section .text.IRQ6_Handler,"ax",%progbits
+ 459              	 .align 2
+ 460              	 .global IRQ6_Handler
+ 461              	 .code 16
+ 462              	 .thumb_func
+ 464              	IRQ6_Handler:
+ 465              	.LFB205:
+ 109:../main.c     **** 
+ 110:../main.c     **** void ECHO_C_ISR(void){
+ 466              	 .loc 3 110 0
+ 467              	 .cfi_startproc
+ 468 0000 80B5     	 push {r7,lr}
+ 469              	.LCFI13:
+ 470              	 .cfi_def_cfa_offset 8
+ 471              	 .cfi_offset 7,-8
+ 472              	 .cfi_offset 14,-4
+ 473 0002 00AF     	 add r7,sp,#0
+ 474              	.LCFI14:
+ 475              	 .cfi_def_cfa_register 7
+ 111:../main.c     **** 	pin_state_C = PIN_INTERRUPT_GetPinValue(&ECHO_C);
+ 476              	 .loc 3 111 0
+ 477 0004 0A4B     	 ldr r3,.L26
+ 478 0006 181C     	 mov r0,r3
+ 479 0008 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 480 000c 031C     	 mov r3,r0
+ 481 000e DAB2     	 uxtb r2,r3
+ 482 0010 084B     	 ldr r3,.L26+4
+ 483 0012 1A70     	 strb r2,[r3]
+ 112:../main.c     **** 
+ 113:../main.c     **** 	if(pin_state_C == 0){
+ 484              	 .loc 3 113 0
+ 485 0014 074B     	 ldr r3,.L26+4
+ 486 0016 1B78     	 ldrb r3,[r3]
+ 487 0018 DBB2     	 uxtb r3,r3
+ 488 001a 002B     	 cmp r3,#0
+ 489 001c 06D1     	 bne .L24
+ 114:../main.c     **** 		echo_time_C = echo_count_C;
+ 490              	 .loc 3 114 0
+ 491 001e 064B     	 ldr r3,.L26+8
+ 492 0020 1A68     	 ldr r2,[r3]
+ 493 0022 064B     	 ldr r3,.L26+12
+ 494 0024 1A60     	 str r2,[r3]
+ 115:../main.c     **** 		echo_count_C = 0;
+ 495              	 .loc 3 115 0
+ 496 0026 044B     	 ldr r3,.L26+8
+ 497 0028 0022     	 mov r2,#0
+ 498 002a 1A60     	 str r2,[r3]
+ 499              	.L24:
+ 116:../main.c     **** 	}
+ 117:../main.c     **** 
+ 118:../main.c     **** }
+ 500              	 .loc 3 118 0
+ 501 002c BD46     	 mov sp,r7
+ 502              	 
+ 503 002e 80BD     	 pop {r7,pc}
+ 504              	.L27:
+ 505              	 .align 2
+ 506              	.L26:
+ 507 0030 00000000 	 .word ECHO_C
+ 508 0034 00000000 	 .word pin_state_C
+ 509 0038 00000000 	 .word echo_count_C
+ 510 003c 00000000 	 .word echo_time_C
+ 511              	 .cfi_endproc
+ 512              	.LFE205:
+ 514              	 .section .text.IRQ3_Handler,"ax",%progbits
+ 515              	 .align 2
+ 516              	 .global IRQ3_Handler
+ 517              	 .code 16
+ 518              	 .thumb_func
+ 520              	IRQ3_Handler:
+ 521              	.LFB206:
+ 119:../main.c     **** 
+ 120:../main.c     **** void ECHO_R_ISR(void){
+ 522              	 .loc 3 120 0
+ 523              	 .cfi_startproc
+ 524 0000 80B5     	 push {r7,lr}
+ 525              	.LCFI15:
+ 526              	 .cfi_def_cfa_offset 8
+ 527              	 .cfi_offset 7,-8
+ 528              	 .cfi_offset 14,-4
+ 529 0002 00AF     	 add r7,sp,#0
+ 530              	.LCFI16:
+ 531              	 .cfi_def_cfa_register 7
+ 121:../main.c     **** 	pin_state_R = PIN_INTERRUPT_GetPinValue(&ECHO_R);
+ 532              	 .loc 3 121 0
+ 533 0004 0A4B     	 ldr r3,.L30
+ 534 0006 181C     	 mov r0,r3
+ 535 0008 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 536 000c 031C     	 mov r3,r0
+ 537 000e DAB2     	 uxtb r2,r3
+ 538 0010 084B     	 ldr r3,.L30+4
+ 539 0012 1A70     	 strb r2,[r3]
+ 122:../main.c     **** 
+ 123:../main.c     **** 	if(pin_state_R == 0){
+ 540              	 .loc 3 123 0
+ 541 0014 074B     	 ldr r3,.L30+4
+ 542 0016 1B78     	 ldrb r3,[r3]
+ 543 0018 DBB2     	 uxtb r3,r3
+ 544 001a 002B     	 cmp r3,#0
+ 545 001c 06D1     	 bne .L28
+ 124:../main.c     **** 		echo_time_R = echo_count_R;
+ 546              	 .loc 3 124 0
+ 547 001e 064B     	 ldr r3,.L30+8
+ 548 0020 1A68     	 ldr r2,[r3]
+ 549 0022 064B     	 ldr r3,.L30+12
+ 550 0024 1A60     	 str r2,[r3]
+ 125:../main.c     **** 		echo_count_R = 0;
+ 551              	 .loc 3 125 0
+ 552 0026 044B     	 ldr r3,.L30+8
+ 553 0028 0022     	 mov r2,#0
+ 554 002a 1A60     	 str r2,[r3]
+ 555              	.L28:
+ 126:../main.c     **** 	}
+ 127:../main.c     **** 
+ 128:../main.c     **** }
+ 556              	 .loc 3 128 0
+ 557 002c BD46     	 mov sp,r7
+ 558              	 
+ 559 002e 80BD     	 pop {r7,pc}
+ 560              	.L31:
+ 561              	 .align 2
+ 562              	.L30:
+ 563 0030 00000000 	 .word ECHO_R
+ 564 0034 00000000 	 .word pin_state_R
+ 565 0038 00000000 	 .word echo_count_R
+ 566 003c 00000000 	 .word echo_time_R
+ 567              	 .cfi_endproc
+ 568              	.LFE206:
+ 570              	 .global __aeabi_ui2d
+ 571              	 .global __aeabi_dmul
+ 572              	 .global __aeabi_d2uiz
+ 573              	 .section .text.calc,"ax",%progbits
+ 574              	 .align 2
+ 575              	 .global calc
+ 576              	 .code 16
+ 577              	 .thumb_func
+ 579              	calc:
+ 580              	.LFB207:
+ 129:../main.c     **** 
+ 130:../main.c     **** void calc(){
+ 581              	 .loc 3 130 0
+ 582              	 .cfi_startproc
+ 583 0000 98B5     	 push {r3,r4,r7,lr}
+ 584              	.LCFI17:
+ 585              	 .cfi_def_cfa_offset 16
+ 586              	 .cfi_offset 3,-16
+ 587              	 .cfi_offset 4,-12
+ 588              	 .cfi_offset 7,-8
+ 589              	 .cfi_offset 14,-4
+ 590 0002 00AF     	 add r7,sp,#0
+ 591              	.LCFI18:
+ 592              	 .cfi_def_cfa_register 7
+ 131:../main.c     **** 	if(echo_time_L < ECHO_TIME_MIN) echo_time_L = ECHO_TIME_MIN;
+ 593              	 .loc 3 131 0
+ 594 0004 3B4B     	 ldr r3,.L39
+ 595 0006 1B68     	 ldr r3,[r3]
+ 596 0008 132B     	 cmp r3,#19
+ 597 000a 03D8     	 bhi .L33
+ 598              	 .loc 3 131 0 is_stmt 0 discriminator 1
+ 599 000c 394B     	 ldr r3,.L39
+ 600 000e 1422     	 mov r2,#20
+ 601 0010 1A60     	 str r2,[r3]
+ 602 0012 07E0     	 b .L34
+ 603              	.L33:
+ 132:../main.c     **** 	else if(echo_time_L > ECHO_TIME_MAX) echo_time_L = ECHO_TIME_MAX;
+ 604              	 .loc 3 132 0 is_stmt 1
+ 605 0014 374B     	 ldr r3,.L39
+ 606 0016 1B68     	 ldr r3,[r3]
+ 607 0018 374A     	 ldr r2,.L39+4
+ 608 001a 9342     	 cmp r3,r2
+ 609 001c 02D9     	 bls .L34
+ 610              	 .loc 3 132 0 is_stmt 0 discriminator 1
+ 611 001e 354B     	 ldr r3,.L39
+ 612 0020 354A     	 ldr r2,.L39+4
+ 613 0022 1A60     	 str r2,[r3]
+ 614              	.L34:
+ 133:../main.c     **** 	distance_L = echo_time_L * ECHO_TIME_10us_TO_DISTANCE_cm;
+ 615              	 .loc 3 133 0 is_stmt 1
+ 616 0024 334B     	 ldr r3,.L39
+ 617 0026 1B68     	 ldr r3,[r3]
+ 618 0028 181C     	 mov r0,r3
+ 619 002a FFF7FEFF 	 bl __aeabi_ui2d
+ 620 002e 031C     	 mov r3,r0
+ 621 0030 0C1C     	 mov r4,r1
+ 622 0032 181C     	 mov r0,r3
+ 623 0034 211C     	 mov r1,r4
+ 624 0036 314A     	 ldr r2,.L39+8
+ 625 0038 314B     	 ldr r3,.L39+12
+ 626 003a FFF7FEFF 	 bl __aeabi_dmul
+ 627 003e 031C     	 mov r3,r0
+ 628 0040 0C1C     	 mov r4,r1
+ 629 0042 181C     	 mov r0,r3
+ 630 0044 211C     	 mov r1,r4
+ 631 0046 FFF7FEFF 	 bl __aeabi_d2uiz
+ 632 004a 031C     	 mov r3,r0
+ 633 004c 9AB2     	 uxth r2,r3
+ 634 004e 2D4B     	 ldr r3,.L39+16
+ 635 0050 1A80     	 strh r2,[r3]
+ 134:../main.c     **** 
+ 135:../main.c     **** 	if(echo_time_C < ECHO_TIME_MIN) echo_time_C = ECHO_TIME_MIN;
+ 636              	 .loc 3 135 0
+ 637 0052 2D4B     	 ldr r3,.L39+20
+ 638 0054 1B68     	 ldr r3,[r3]
+ 639 0056 132B     	 cmp r3,#19
+ 640 0058 03D8     	 bhi .L35
+ 641              	 .loc 3 135 0 is_stmt 0 discriminator 1
+ 642 005a 2B4B     	 ldr r3,.L39+20
+ 643 005c 1422     	 mov r2,#20
+ 644 005e 1A60     	 str r2,[r3]
+ 645 0060 07E0     	 b .L36
+ 646              	.L35:
+ 136:../main.c     **** 	else if(echo_time_C > ECHO_TIME_MAX) echo_time_C = ECHO_TIME_MAX;
+ 647              	 .loc 3 136 0 is_stmt 1
+ 648 0062 294B     	 ldr r3,.L39+20
+ 649 0064 1B68     	 ldr r3,[r3]
+ 650 0066 244A     	 ldr r2,.L39+4
+ 651 0068 9342     	 cmp r3,r2
+ 652 006a 02D9     	 bls .L36
+ 653              	 .loc 3 136 0 is_stmt 0 discriminator 1
+ 654 006c 264B     	 ldr r3,.L39+20
+ 655 006e 224A     	 ldr r2,.L39+4
+ 656 0070 1A60     	 str r2,[r3]
+ 657              	.L36:
+ 137:../main.c     **** 	distance_C = echo_time_C * ECHO_TIME_10us_TO_DISTANCE_cm;
+ 658              	 .loc 3 137 0 is_stmt 1
+ 659 0072 254B     	 ldr r3,.L39+20
+ 660 0074 1B68     	 ldr r3,[r3]
+ 661 0076 181C     	 mov r0,r3
+ 662 0078 FFF7FEFF 	 bl __aeabi_ui2d
+ 663 007c 031C     	 mov r3,r0
+ 664 007e 0C1C     	 mov r4,r1
+ 665 0080 181C     	 mov r0,r3
+ 666 0082 211C     	 mov r1,r4
+ 667 0084 1D4A     	 ldr r2,.L39+8
+ 668 0086 1E4B     	 ldr r3,.L39+12
+ 669 0088 FFF7FEFF 	 bl __aeabi_dmul
+ 670 008c 031C     	 mov r3,r0
+ 671 008e 0C1C     	 mov r4,r1
+ 672 0090 181C     	 mov r0,r3
+ 673 0092 211C     	 mov r1,r4
+ 674 0094 FFF7FEFF 	 bl __aeabi_d2uiz
+ 675 0098 031C     	 mov r3,r0
+ 676 009a 9AB2     	 uxth r2,r3
+ 677 009c 1B4B     	 ldr r3,.L39+24
+ 678 009e 1A80     	 strh r2,[r3]
+ 138:../main.c     **** 
+ 139:../main.c     **** 	if(echo_time_R < ECHO_TIME_MIN) echo_time_R = ECHO_TIME_MIN;
+ 679              	 .loc 3 139 0
+ 680 00a0 1B4B     	 ldr r3,.L39+28
+ 681 00a2 1B68     	 ldr r3,[r3]
+ 682 00a4 132B     	 cmp r3,#19
+ 683 00a6 03D8     	 bhi .L37
+ 684              	 .loc 3 139 0 is_stmt 0 discriminator 1
+ 685 00a8 194B     	 ldr r3,.L39+28
+ 686 00aa 1422     	 mov r2,#20
+ 687 00ac 1A60     	 str r2,[r3]
+ 688 00ae 07E0     	 b .L38
+ 689              	.L37:
+ 140:../main.c     **** 	else if(echo_time_R > ECHO_TIME_MAX) echo_time_R = ECHO_TIME_MAX;
+ 690              	 .loc 3 140 0 is_stmt 1
+ 691 00b0 174B     	 ldr r3,.L39+28
+ 692 00b2 1B68     	 ldr r3,[r3]
+ 693 00b4 104A     	 ldr r2,.L39+4
+ 694 00b6 9342     	 cmp r3,r2
+ 695 00b8 02D9     	 bls .L38
+ 696              	 .loc 3 140 0 is_stmt 0 discriminator 1
+ 697 00ba 154B     	 ldr r3,.L39+28
+ 698 00bc 0E4A     	 ldr r2,.L39+4
+ 699 00be 1A60     	 str r2,[r3]
+ 700              	.L38:
+ 141:../main.c     **** 	distance_R = echo_time_R * ECHO_TIME_10us_TO_DISTANCE_cm;
+ 701              	 .loc 3 141 0 is_stmt 1
+ 702 00c0 134B     	 ldr r3,.L39+28
+ 703 00c2 1B68     	 ldr r3,[r3]
+ 704 00c4 181C     	 mov r0,r3
+ 705 00c6 FFF7FEFF 	 bl __aeabi_ui2d
+ 706 00ca 031C     	 mov r3,r0
+ 707 00cc 0C1C     	 mov r4,r1
+ 708 00ce 181C     	 mov r0,r3
+ 709 00d0 211C     	 mov r1,r4
+ 710 00d2 0A4A     	 ldr r2,.L39+8
+ 711 00d4 0A4B     	 ldr r3,.L39+12
+ 712 00d6 FFF7FEFF 	 bl __aeabi_dmul
+ 713 00da 031C     	 mov r3,r0
+ 714 00dc 0C1C     	 mov r4,r1
+ 715 00de 181C     	 mov r0,r3
+ 716 00e0 211C     	 mov r1,r4
+ 717 00e2 FFF7FEFF 	 bl __aeabi_d2uiz
+ 718 00e6 031C     	 mov r3,r0
+ 719 00e8 9AB2     	 uxth r2,r3
+ 720 00ea 0A4B     	 ldr r3,.L39+32
+ 721 00ec 1A80     	 strh r2,[r3]
+ 142:../main.c     **** }
+ 722              	 .loc 3 142 0
+ 723 00ee BD46     	 mov sp,r7
+ 724              	 
+ 725 00f0 98BD     	 pop {r3,r4,r7,pc}
+ 726              	.L40:
+ 727 00f2 C046     	 .align 2
+ 728              	.L39:
+ 729 00f4 00000000 	 .word echo_time_L
+ 730 00f8 33090000 	 .word 2355
+ 731 00fc C3F5285C 	 .word 1546188227
+ 732 0100 8FC2C53F 	 .word 1069925007
+ 733 0104 00000000 	 .word distance_L
+ 734 0108 00000000 	 .word echo_time_C
+ 735 010c 00000000 	 .word distance_C
+ 736 0110 00000000 	 .word echo_time_R
+ 737 0114 00000000 	 .word distance_R
+ 738              	 .cfi_endproc
+ 739              	.LFE207:
+ 741              	 .section .text.CAN_send_vaules,"ax",%progbits
+ 742              	 .align 2
+ 743              	 .global CAN_send_vaules
+ 744              	 .code 16
+ 745              	 .thumb_func
+ 747              	CAN_send_vaules:
+ 748              	.LFB208:
+ 143:../main.c     **** 
+ 144:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN ){
+ 749              	 .loc 3 144 0
+ 750              	 .cfi_startproc
+ 751 0000 90B5     	 push {r4,r7,lr}
+ 752              	.LCFI19:
+ 753              	 .cfi_def_cfa_offset 12
+ 754              	 .cfi_offset 4,-12
+ 755              	 .cfi_offset 7,-8
+ 756              	 .cfi_offset 14,-4
+ 757 0002 85B0     	 sub sp,sp,#20
+ 758              	.LCFI20:
+ 759              	 .cfi_def_cfa_offset 32
+ 760 0004 00AF     	 add r7,sp,#0
+ 761              	.LCFI21:
+ 762              	 .cfi_def_cfa_register 7
+ 763 0006 041C     	 mov r4,r0
+ 764 0008 081C     	 mov r0,r1
+ 765 000a 111C     	 mov r1,r2
+ 766 000c BB1D     	 add r3,r7,#6
+ 767 000e 221C     	 add r2,r4,#0
+ 768 0010 1A80     	 strh r2,[r3]
+ 769 0012 3B1D     	 add r3,r7,#4
+ 770 0014 021C     	 add r2,r0,#0
+ 771 0016 1A80     	 strh r2,[r3]
+ 772 0018 BB1C     	 add r3,r7,#2
+ 773 001a 0A1C     	 add r2,r1,#0
+ 774 001c 1A80     	 strh r2,[r3]
+ 145:../main.c     **** 
+ 146:../main.c     **** 	uint16_t RX_Data[4] ={CAN_OK, distance_C_CAN, distance_L_CAN, distance_R_CAN}; // in int16_t mm/s 
+ 775              	 .loc 3 146 0
+ 776 001e 124B     	 ldr r3,.L42
+ 777 0020 1B78     	 ldrb r3,[r3]
+ 778 0022 9AB2     	 uxth r2,r3
+ 779 0024 0823     	 mov r3,#8
+ 780 0026 FB18     	 add r3,r7,r3
+ 781 0028 1A80     	 strh r2,[r3]
+ 782 002a 0823     	 mov r3,#8
+ 783 002c FB18     	 add r3,r7,r3
+ 784 002e BA1D     	 add r2,r7,#6
+ 785 0030 1288     	 ldrh r2,[r2]
+ 786 0032 5A80     	 strh r2,[r3,#2]
+ 787 0034 0823     	 mov r3,#8
+ 788 0036 FB18     	 add r3,r7,r3
+ 789 0038 3A1D     	 add r2,r7,#4
+ 790 003a 1288     	 ldrh r2,[r2]
+ 791 003c 9A80     	 strh r2,[r3,#4]
+ 792 003e 0823     	 mov r3,#8
+ 793 0040 FB18     	 add r3,r7,r3
+ 794 0042 BA1C     	 add r2,r7,#2
+ 795 0044 1288     	 ldrh r2,[r2]
+ 796 0046 DA80     	 strh r2,[r3,#6]
+ 147:../main.c     **** 
+ 148:../main.c     **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)RX_Data);
+ 797              	 .loc 3 148 0
+ 798 0048 084B     	 ldr r3,.L42+4
+ 799 004a DA68     	 ldr r2,[r3,#12]
+ 800 004c 0823     	 mov r3,#8
+ 801 004e FB18     	 add r3,r7,r3
+ 802 0050 101C     	 mov r0,r2
+ 803 0052 191C     	 mov r1,r3
+ 804 0054 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
+ 149:../main.c     **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
+ 805              	 .loc 3 149 0
+ 806 0058 044B     	 ldr r3,.L42+4
+ 807 005a DB68     	 ldr r3,[r3,#12]
+ 808 005c 181C     	 mov r0,r3
+ 809 005e FFF7FEFF 	 bl CAN_NODE_MO_Transmit
+ 150:../main.c     **** }
+ 810              	 .loc 3 150 0
+ 811 0062 BD46     	 mov sp,r7
+ 812 0064 05B0     	 add sp,sp,#20
+ 813              	 
+ 814 0066 90BD     	 pop {r4,r7,pc}
+ 815              	.L43:
+ 816              	 .align 2
+ 817              	.L42:
+ 818 0068 00000000 	 .word CAN_OK
+ 819 006c 00000000 	 .word CAN_NODE_0
+ 820              	 .cfi_endproc
+ 821              	.LFE208:
+ 823              	 .global __aeabi_fadd
+ 824              	 .global __aeabi_i2f
+ 825              	 .global __aeabi_fdiv
+ 826              	 .section .text.average,"ax",%progbits
+ 827              	 .align 2
+ 828              	 .global average
+ 829              	 .code 16
+ 830              	 .thumb_func
+ 832              	average:
+ 833              	.LFB209:
+ 151:../main.c     **** 
+ 152:../main.c     **** 
+ 153:../main.c     **** float average(float a[],int num_vaules) {
+ 834              	 .loc 3 153 0
+ 835              	 .cfi_startproc
+ 836 0000 80B5     	 push {r7,lr}
+ 837              	.LCFI22:
+ 838              	 .cfi_def_cfa_offset 8
+ 839              	 .cfi_offset 7,-8
+ 840              	 .cfi_offset 14,-4
+ 841 0002 84B0     	 sub sp,sp,#16
+ 842              	.LCFI23:
+ 843              	 .cfi_def_cfa_offset 24
+ 844 0004 00AF     	 add r7,sp,#0
+ 845              	.LCFI24:
+ 846              	 .cfi_def_cfa_register 7
+ 847 0006 7860     	 str r0,[r7,#4]
+ 848 0008 3960     	 str r1,[r7]
+ 154:../main.c     ****     float sum = 0;
+ 849              	 .loc 3 154 0
+ 850 000a 0023     	 mov r3,#0
+ 851 000c FB60     	 str r3,[r7,#12]
+ 155:../main.c     ****     int i;
+ 156:../main.c     ****     for(i = 0; i < num_vaules; i++){
+ 852              	 .loc 3 156 0
+ 853 000e 0023     	 mov r3,#0
+ 854 0010 BB60     	 str r3,[r7,#8]
+ 855 0012 0DE0     	 b .L45
+ 856              	.L46:
+ 157:../main.c     ****         sum += a[i];
+ 857              	 .loc 3 157 0 discriminator 3
+ 858 0014 BB68     	 ldr r3,[r7,#8]
+ 859 0016 9B00     	 lsl r3,r3,#2
+ 860 0018 7A68     	 ldr r2,[r7,#4]
+ 861 001a D318     	 add r3,r2,r3
+ 862 001c 1B68     	 ldr r3,[r3]
+ 863 001e F868     	 ldr r0,[r7,#12]
+ 864 0020 191C     	 add r1,r3,#0
+ 865 0022 FFF7FEFF 	 bl __aeabi_fadd
+ 866 0026 031C     	 add r3,r0,#0
+ 867 0028 FB60     	 str r3,[r7,#12]
+ 156:../main.c     ****         sum += a[i];
+ 868              	 .loc 3 156 0 discriminator 3
+ 869 002a BB68     	 ldr r3,[r7,#8]
+ 870 002c 0133     	 add r3,r3,#1
+ 871 002e BB60     	 str r3,[r7,#8]
+ 872              	.L45:
+ 156:../main.c     ****         sum += a[i];
+ 873              	 .loc 3 156 0 is_stmt 0 discriminator 1
+ 874 0030 BA68     	 ldr r2,[r7,#8]
+ 875 0032 3B68     	 ldr r3,[r7]
+ 876 0034 9A42     	 cmp r2,r3
+ 877 0036 EDDB     	 blt .L46
+ 158:../main.c     ****     }
+ 159:../main.c     ****     return sum / num_vaules;
+ 878              	 .loc 3 159 0 is_stmt 1
+ 879 0038 3868     	 ldr r0,[r7]
+ 880 003a FFF7FEFF 	 bl __aeabi_i2f
+ 881 003e 031C     	 add r3,r0,#0
+ 882 0040 F868     	 ldr r0,[r7,#12]
+ 883 0042 191C     	 add r1,r3,#0
+ 884 0044 FFF7FEFF 	 bl __aeabi_fdiv
+ 885 0048 031C     	 add r3,r0,#0
+ 160:../main.c     **** }
+ 886              	 .loc 3 160 0
+ 887 004a 181C     	 add r0,r3,#0
+ 888 004c BD46     	 mov sp,r7
+ 889 004e 04B0     	 add sp,sp,#16
+ 890              	 
+ 891 0050 80BD     	 pop {r7,pc}
+ 892              	 .cfi_endproc
+ 893              	.LFE209:
+ 895 0052 C046     	 .text
+ 896              	.Letext0:
+ 897              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 898              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 899              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 900              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_scu.h"
+ 901              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_can.h"
+ 902              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 903              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 904              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/CAN_NODE/can_node.h"
+ 905              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_eru.h"
+ 906              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io.h"
+ 907              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DAVE.h"
+ 908              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 909              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 910              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/CAN_NODE/can_node_extern.h"
+ 911              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
+ 912              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io_extern.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+    {standard input}:18     .text.XMC_GPIO_GetInput:00000000 $t
+    {standard input}:22     .text.XMC_GPIO_GetInput:00000000 XMC_GPIO_GetInput
+    {standard input}:61     .text.PIN_INTERRUPT_GetPinValue:00000000 $t
+    {standard input}:65     .text.PIN_INTERRUPT_GetPinValue:00000000 PIN_INTERRUPT_GetPinValue
+    {standard input}:104    .bss.CAN_OK:00000000 CAN_OK
+    {standard input}:105    .bss.CAN_OK:00000000 $d
+                            *COM*:00000001 init_status
+    {standard input}:112    .bss.t_10us_count:00000000 t_10us_count
+    {standard input}:109    .bss.t_10us_count:00000000 $d
+    {standard input}:118    .bss.pin_state_C:00000000 pin_state_C
+    {standard input}:119    .bss.pin_state_C:00000000 $d
+    {standard input}:125    .bss.echo_time_C:00000000 echo_time_C
+    {standard input}:122    .bss.echo_time_C:00000000 $d
+    {standard input}:132    .bss.echo_count_C:00000000 echo_count_C
+    {standard input}:129    .bss.echo_count_C:00000000 $d
+    {standard input}:139    .bss.distance_C:00000000 distance_C
+    {standard input}:136    .bss.distance_C:00000000 $d
+    {standard input}:145    .bss.pin_state_L:00000000 pin_state_L
+    {standard input}:146    .bss.pin_state_L:00000000 $d
+    {standard input}:152    .bss.echo_time_L:00000000 echo_time_L
+    {standard input}:149    .bss.echo_time_L:00000000 $d
+    {standard input}:159    .bss.echo_count_L:00000000 echo_count_L
+    {standard input}:156    .bss.echo_count_L:00000000 $d
+    {standard input}:166    .bss.distance_L:00000000 distance_L
+    {standard input}:163    .bss.distance_L:00000000 $d
+    {standard input}:172    .bss.pin_state_R:00000000 pin_state_R
+    {standard input}:173    .bss.pin_state_R:00000000 $d
+    {standard input}:179    .bss.echo_time_R:00000000 echo_time_R
+    {standard input}:176    .bss.echo_time_R:00000000 $d
+    {standard input}:186    .bss.echo_count_R:00000000 echo_count_R
+    {standard input}:183    .bss.echo_count_R:00000000 $d
+    {standard input}:193    .bss.distance_R:00000000 distance_R
+    {standard input}:190    .bss.distance_R:00000000 $d
+    {standard input}:196    .text.main:00000000 $t
+    {standard input}:201    .text.main:00000000 main
+    {standard input}:255    .text.main:0000003c $d
+    {standard input}:262    .text.IRQ0_Handler:00000000 $t
+    {standard input}:267    .text.IRQ0_Handler:00000000 IRQ0_Handler
+    {standard input}:579    .text.calc:00000000 calc
+    {standard input}:747    .text.CAN_send_vaules:00000000 CAN_send_vaules
+    {standard input}:387    .text.IRQ0_Handler:000000b0 $d
+    {standard input}:403    .text.IRQ5_Handler:00000000 $t
+    {standard input}:408    .text.IRQ5_Handler:00000000 IRQ5_Handler
+    {standard input}:451    .text.IRQ5_Handler:00000030 $d
+    {standard input}:459    .text.IRQ6_Handler:00000000 $t
+    {standard input}:464    .text.IRQ6_Handler:00000000 IRQ6_Handler
+    {standard input}:507    .text.IRQ6_Handler:00000030 $d
+    {standard input}:515    .text.IRQ3_Handler:00000000 $t
+    {standard input}:520    .text.IRQ3_Handler:00000000 IRQ3_Handler
+    {standard input}:563    .text.IRQ3_Handler:00000030 $d
+    {standard input}:574    .text.calc:00000000 $t
+    {standard input}:729    .text.calc:000000f4 $d
+    {standard input}:742    .text.CAN_send_vaules:00000000 $t
+    {standard input}:818    .text.CAN_send_vaules:00000068 $d
+    {standard input}:827    .text.average:00000000 $t
+    {standard input}:832    .text.average:00000000 average
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+DAVE_Init
+CAN_NODE_Init
+CAN_NODE_0
+BUS_IO_Write
+BUS_IO_TRIGGER
+ECHO_L
+ECHO_C
+ECHO_R
+__aeabi_ui2d
+__aeabi_dmul
+__aeabi_d2uiz
+CAN_NODE_MO_UpdateData
+CAN_NODE_MO_Transmit
+__aeabi_fadd
+__aeabi_i2f
+__aeabi_fdiv

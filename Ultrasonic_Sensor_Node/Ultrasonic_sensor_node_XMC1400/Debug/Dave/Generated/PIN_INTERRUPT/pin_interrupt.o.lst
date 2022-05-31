@@ -1,0 +1,1427 @@
+   1              	 .cpu cortex-m0
+   2              	 .fpu softvfp
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,0
+  11              	 .eabi_attribute 18,4
+  12              	 .code 16
+  13              	 .file "pin_interrupt.c"
+  14              	 .text
+  15              	.Ltext0:
+  16              	 .cfi_sections .debug_frame
+  17              	 .section .text.__NVIC_EnableIRQ,"ax",%progbits
+  18              	 .align 2
+  19              	 .code 16
+  20              	 .thumb_func
+  22              	__NVIC_EnableIRQ:
+  23              	.LFB27:
+  24              	 .file 1 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include/core_cm0.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**************************************************************************//**
+   2:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * @file     core_cm0.h
+   3:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * @brief    CMSIS Cortex-M0 Core Peripheral Access Layer Header File
+   4:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * @version  V5.0.8
+   5:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * @date     21. August 2019
+   6:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  ******************************************************************************/
+   7:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*
+   8:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
+   9:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  *
+  10:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * SPDX-License-Identifier: Apache-2.0
+  11:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  *
+  12:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  13:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * not use this file except in compliance with the License.
+  14:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * You may obtain a copy of the License at
+  15:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  *
+  16:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * www.apache.org/licenses/LICENSE-2.0
+  17:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  *
+  18:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * Unless required by applicable law or agreed to in writing, software
+  19:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  20:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  21:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * See the License for the specific language governing permissions and
+  22:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  * limitations under the License.
+  23:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+  24:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  25:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #if   defined ( __ICCARM__ )
+  26:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #pragma system_include         /* treat file as system include file for MISRA check */
+  27:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #elif defined (__clang__)
+  28:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #pragma clang system_header   /* treat file as system include file */
+  29:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif
+  30:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  31:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #ifndef __CORE_CM0_H_GENERIC
+  32:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define __CORE_CM0_H_GENERIC
+  33:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  34:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #include <stdint.h>
+  35:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  36:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #ifdef __cplusplus
+  37:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  extern "C" {
+  38:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif
+  39:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  40:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+  41:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \page CMSIS_MISRA_Exceptions  MISRA-C:2004 Compliance Exceptions
+  42:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   CMSIS violates the following MISRA-C:2004 rules:
+  43:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  44:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****    \li Required Rule 8.5, object/function definition in header file.<br>
+  45:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****      Function definitions in header files are used to allow 'inlining'.
+  46:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  47:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****    \li Required Rule 18.4, declaration of union type or object of union type: '{...}'.<br>
+  48:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****      Unions are used for effective representation of core registers.
+  49:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  50:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****    \li Advisory Rule 19.7, Function-like macro defined.<br>
+  51:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****      Function-like macros are used to allow more efficient code.
+  52:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+  53:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  54:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  55:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*******************************************************************************
+  56:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  *                 CMSIS definitions
+  57:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  ******************************************************************************/
+  58:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+  59:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup Cortex_M0
+  60:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   @{
+  61:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+  62:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  63:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #include "cmsis_version.h"
+  64:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  
+  65:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*  CMSIS CM0 definitions */
+  66:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define __CM0_CMSIS_VERSION_MAIN  (__CM_CMSIS_VERSION_MAIN)              /*!< \deprecated [31:16] C
+  67:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define __CM0_CMSIS_VERSION_SUB   (__CM_CMSIS_VERSION_SUB)               /*!< \deprecated [15:0]  C
+  68:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define __CM0_CMSIS_VERSION       ((__CM0_CMSIS_VERSION_MAIN << 16U) | \
+  69:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****                                     __CM0_CMSIS_VERSION_SUB           )  /*!< \deprecated CMSIS HAL
+  70:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  71:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define __CORTEX_M                (0U)                                   /*!< Cortex-M Core */
+  72:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  73:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /** __FPU_USED indicates whether an FPU is used or not.
+  74:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     This core does not support an FPU at all
+  75:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** */
+  76:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define __FPU_USED       0U
+  77:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  78:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #if defined ( __CC_ARM )
+  79:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __TARGET_FPU_VFP
+  80:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  81:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+  82:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  83:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #elif defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+  84:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __ARM_FP
+  85:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  86:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+  87:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  88:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __GNUC__ )
+  89:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #if defined (__VFP_FP__) && !defined(__SOFTFP__)
+  90:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  91:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+  92:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  93:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __ICCARM__ )
+  94:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __ARMVFP__
+  95:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  96:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+  97:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+  98:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __TI_ARM__ )
+  99:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __TI_VFP_SUPPORT__
+ 100:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+ 101:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 102:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 103:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __TASKING__ )
+ 104:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #if defined __FPU_VFP__
+ 105:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+ 106:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 107:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 108:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #elif defined ( __CSMC__ )
+ 109:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #if ( __CSMC__ & 0x400U)
+ 110:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+ 111:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 112:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 113:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 114:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 115:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #include "cmsis_compiler.h"               /* CMSIS compiler specific defines */
+ 116:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 117:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 118:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #ifdef __cplusplus
+ 119:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** }
+ 120:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 121:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 122:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif /* __CORE_CM0_H_GENERIC */
+ 123:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 124:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #ifndef __CMSIS_GENERIC
+ 125:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 126:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #ifndef __CORE_CM0_H_DEPENDANT
+ 127:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define __CORE_CM0_H_DEPENDANT
+ 128:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 129:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #ifdef __cplusplus
+ 130:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  extern "C" {
+ 131:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 132:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 133:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* check device defines and use defaults */
+ 134:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #if defined __CHECK_DEVICE_DEFINES
+ 135:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef __CM0_REV
+ 136:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #define __CM0_REV               0x0000U
+ 137:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #warning "__CM0_REV not defined in device header file; using default!"
+ 138:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 139:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 140:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef __NVIC_PRIO_BITS
+ 141:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #define __NVIC_PRIO_BITS          2U
+ 142:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #warning "__NVIC_PRIO_BITS not defined in device header file; using default!"
+ 143:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 144:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 145:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef __Vendor_SysTickConfig
+ 146:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #define __Vendor_SysTickConfig    0U
+ 147:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #warning "__Vendor_SysTickConfig not defined in device header file; using default!"
+ 148:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 149:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 150:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 151:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* IO definitions (access restrictions to peripheral registers) */
+ 152:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 153:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     \defgroup CMSIS_glob_defs CMSIS Global Defines
+ 154:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 155:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     <strong>IO Type Qualifiers</strong> are used
+ 156:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     \li to specify the access to peripheral variables.
+ 157:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     \li for automatic generation of peripheral register debug information.
+ 158:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** */
+ 159:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #ifdef __cplusplus
+ 160:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define   __I     volatile             /*!< Defines 'read only' permissions */
+ 161:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #else
+ 162:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define   __I     volatile const       /*!< Defines 'read only' permissions */
+ 163:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif
+ 164:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define     __O     volatile             /*!< Defines 'write only' permissions */
+ 165:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define     __IO    volatile             /*!< Defines 'read / write' permissions */
+ 166:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 167:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* following defines should be used for structure members */
+ 168:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define     __IM     volatile const      /*! Defines 'read only' structure member permissions */
+ 169:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define     __OM     volatile            /*! Defines 'write only' structure member permissions */
+ 170:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define     __IOM    volatile            /*! Defines 'read / write' structure member permissions */
+ 171:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 172:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group Cortex_M0 */
+ 173:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 174:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 175:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 176:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*******************************************************************************
+ 177:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  *                 Register Abstraction
+ 178:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   Core Register contain:
+ 179:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   - Core Register
+ 180:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   - Core NVIC Register
+ 181:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   - Core SCB Register
+ 182:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   - Core SysTick Register
+ 183:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  ******************************************************************************/
+ 184:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 185:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_core_register Defines and Type Definitions
+ 186:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief Type definitions and defines for Cortex-M processor based devices.
+ 187:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** */
+ 188:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 189:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 190:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup    CMSIS_core_register
+ 191:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup   CMSIS_CORE  Status and Control Registers
+ 192:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief      Core Register type definitions.
+ 193:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 194:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 195:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 196:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 197:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Union type to access the Application Program Status Register (APSR).
+ 198:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 199:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** typedef union
+ 200:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 201:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   struct
+ 202:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 203:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved0:28;              /*!< bit:  0..27  Reserved */
+ 204:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag */
+ 205:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t C:1;                        /*!< bit:     29  Carry condition code flag */
+ 206:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag */
+ 207:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t N:1;                        /*!< bit:     31  Negative condition code flag */
+ 208:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 209:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 210:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** } APSR_Type;
+ 211:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 212:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* APSR Register Definitions */
+ 213:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_N_Pos                         31U                                            /*!< APSR
+ 214:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_N_Msk                         (1UL << APSR_N_Pos)                            /*!< APSR
+ 215:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 216:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_Z_Pos                         30U                                            /*!< APSR
+ 217:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_Z_Msk                         (1UL << APSR_Z_Pos)                            /*!< APSR
+ 218:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 219:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_C_Pos                         29U                                            /*!< APSR
+ 220:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_C_Msk                         (1UL << APSR_C_Pos)                            /*!< APSR
+ 221:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 222:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_V_Pos                         28U                                            /*!< APSR
+ 223:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define APSR_V_Msk                         (1UL << APSR_V_Pos)                            /*!< APSR
+ 224:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 225:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 226:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 227:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Union type to access the Interrupt Program Status Register (IPSR).
+ 228:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 229:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** typedef union
+ 230:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 231:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   struct
+ 232:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 233:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number */
+ 234:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved0:23;              /*!< bit:  9..31  Reserved */
+ 235:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 236:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 237:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** } IPSR_Type;
+ 238:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 239:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* IPSR Register Definitions */
+ 240:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define IPSR_ISR_Pos                        0U                                            /*!< IPSR
+ 241:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define IPSR_ISR_Msk                       (0x1FFUL /*<< IPSR_ISR_Pos*/)                  /*!< IPSR
+ 242:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 243:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 244:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 245:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Union type to access the Special-Purpose Program Status Registers (xPSR).
+ 246:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 247:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** typedef union
+ 248:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 249:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   struct
+ 250:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 251:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number */
+ 252:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved0:15;              /*!< bit:  9..23  Reserved */
+ 253:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t T:1;                        /*!< bit:     24  Thumb bit        (read 0) */
+ 254:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved1:3;               /*!< bit: 25..27  Reserved */
+ 255:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag */
+ 256:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t C:1;                        /*!< bit:     29  Carry condition code flag */
+ 257:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag */
+ 258:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t N:1;                        /*!< bit:     31  Negative condition code flag */
+ 259:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 260:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 261:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** } xPSR_Type;
+ 262:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 263:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* xPSR Register Definitions */
+ 264:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_N_Pos                         31U                                            /*!< xPSR
+ 265:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_N_Msk                         (1UL << xPSR_N_Pos)                            /*!< xPSR
+ 266:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 267:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_Z_Pos                         30U                                            /*!< xPSR
+ 268:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_Z_Msk                         (1UL << xPSR_Z_Pos)                            /*!< xPSR
+ 269:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 270:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_C_Pos                         29U                                            /*!< xPSR
+ 271:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_C_Msk                         (1UL << xPSR_C_Pos)                            /*!< xPSR
+ 272:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 273:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_V_Pos                         28U                                            /*!< xPSR
+ 274:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_V_Msk                         (1UL << xPSR_V_Pos)                            /*!< xPSR
+ 275:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 276:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_T_Pos                         24U                                            /*!< xPSR
+ 277:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_T_Msk                         (1UL << xPSR_T_Pos)                            /*!< xPSR
+ 278:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 279:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_ISR_Pos                        0U                                            /*!< xPSR
+ 280:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define xPSR_ISR_Msk                       (0x1FFUL /*<< xPSR_ISR_Pos*/)                  /*!< xPSR
+ 281:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 282:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 283:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 284:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Union type to access the Control Registers (CONTROL).
+ 285:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 286:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** typedef union
+ 287:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 288:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   struct
+ 289:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 290:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved0:1;               /*!< bit:      0  Reserved */
+ 291:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t SPSEL:1;                    /*!< bit:      1  Stack to be used */
+ 292:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     uint32_t _reserved1:30;              /*!< bit:  2..31  Reserved */
+ 293:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 294:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 295:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** } CONTROL_Type;
+ 296:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 297:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* CONTROL Register Definitions */
+ 298:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define CONTROL_SPSEL_Pos                   1U                                            /*!< CONT
+ 299:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define CONTROL_SPSEL_Msk                  (1UL << CONTROL_SPSEL_Pos)                     /*!< CONT
+ 300:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 301:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_CORE */
+ 302:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 303:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 304:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 305:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup    CMSIS_core_register
+ 306:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup   CMSIS_NVIC  Nested Vectored Interrupt Controller (NVIC)
+ 307:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief      Type definitions for the NVIC Registers
+ 308:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 309:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 310:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 311:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 312:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Structure type to access the Nested Vectored Interrupt Controller (NVIC).
+ 313:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 314:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** typedef struct
+ 315:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 316:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ISER[1U];               /*!< Offset: 0x000 (R/W)  Interrupt Set Enable Register */
+ 317:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED0[31U];
+ 318:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ICER[1U];               /*!< Offset: 0x080 (R/W)  Interrupt Clear Enable Register 
+ 319:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED1[31U];
+ 320:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ISPR[1U];               /*!< Offset: 0x100 (R/W)  Interrupt Set Pending Register *
+ 321:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED2[31U];
+ 322:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ICPR[1U];               /*!< Offset: 0x180 (R/W)  Interrupt Clear Pending Register
+ 323:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED3[31U];
+ 324:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED4[64U];
+ 325:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t IP[8U];                 /*!< Offset: 0x300 (R/W)  Interrupt Priority Register */
+ 326:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** }  NVIC_Type;
+ 327:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 328:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_NVIC */
+ 329:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 330:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 331:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 332:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup  CMSIS_core_register
+ 333:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_SCB     System Control Block (SCB)
+ 334:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief    Type definitions for the System Control Block Registers
+ 335:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 336:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 337:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 338:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 339:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Structure type to access the System Control Block (SCB).
+ 340:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 341:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** typedef struct
+ 342:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 343:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IM  uint32_t CPUID;                  /*!< Offset: 0x000 (R/ )  CPUID Base Register */
+ 344:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t ICSR;                   /*!< Offset: 0x004 (R/W)  Interrupt Control and State Regi
+ 345:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED0;
+ 346:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t AIRCR;                  /*!< Offset: 0x00C (R/W)  Application Interrupt and Reset 
+ 347:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t SCR;                    /*!< Offset: 0x010 (R/W)  System Control Register */
+ 348:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t CCR;                    /*!< Offset: 0x014 (R/W)  Configuration Control Register *
+ 349:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****         uint32_t RESERVED1;
+ 350:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t SHP[2U];                /*!< Offset: 0x01C (R/W)  System Handlers Priority Registe
+ 351:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t SHCSR;                  /*!< Offset: 0x024 (R/W)  System Handler Control and State
+ 352:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** } SCB_Type;
+ 353:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 354:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SCB CPUID Register Definitions */
+ 355:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_IMPLEMENTER_Pos          24U                                            /*!< SCB 
+ 356:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_IMPLEMENTER_Msk          (0xFFUL << SCB_CPUID_IMPLEMENTER_Pos)          /*!< SCB 
+ 357:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 358:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_VARIANT_Pos              20U                                            /*!< SCB 
+ 359:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_VARIANT_Msk              (0xFUL << SCB_CPUID_VARIANT_Pos)               /*!< SCB 
+ 360:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 361:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_ARCHITECTURE_Pos         16U                                            /*!< SCB 
+ 362:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_ARCHITECTURE_Msk         (0xFUL << SCB_CPUID_ARCHITECTURE_Pos)          /*!< SCB 
+ 363:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 364:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_PARTNO_Pos                4U                                            /*!< SCB 
+ 365:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_PARTNO_Msk               (0xFFFUL << SCB_CPUID_PARTNO_Pos)              /*!< SCB 
+ 366:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 367:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_REVISION_Pos              0U                                            /*!< SCB 
+ 368:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CPUID_REVISION_Msk             (0xFUL /*<< SCB_CPUID_REVISION_Pos*/)          /*!< SCB 
+ 369:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 370:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SCB Interrupt Control State Register Definitions */
+ 371:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_NMIPENDSET_Pos            31U                                            /*!< SCB 
+ 372:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_NMIPENDSET_Msk            (1UL << SCB_ICSR_NMIPENDSET_Pos)               /*!< SCB 
+ 373:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 374:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSVSET_Pos             28U                                            /*!< SCB 
+ 375:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSVSET_Msk             (1UL << SCB_ICSR_PENDSVSET_Pos)                /*!< SCB 
+ 376:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 377:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSVCLR_Pos             27U                                            /*!< SCB 
+ 378:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSVCLR_Msk             (1UL << SCB_ICSR_PENDSVCLR_Pos)                /*!< SCB 
+ 379:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 380:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSTSET_Pos             26U                                            /*!< SCB 
+ 381:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSTSET_Msk             (1UL << SCB_ICSR_PENDSTSET_Pos)                /*!< SCB 
+ 382:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 383:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSTCLR_Pos             25U                                            /*!< SCB 
+ 384:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_PENDSTCLR_Msk             (1UL << SCB_ICSR_PENDSTCLR_Pos)                /*!< SCB 
+ 385:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 386:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Pos            23U                                            /*!< SCB 
+ 387:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Msk            (1UL << SCB_ICSR_ISRPREEMPT_Pos)               /*!< SCB 
+ 388:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 389:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_ISRPENDING_Pos            22U                                            /*!< SCB 
+ 390:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_ISRPENDING_Msk            (1UL << SCB_ICSR_ISRPENDING_Pos)               /*!< SCB 
+ 391:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 392:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_VECTPENDING_Pos           12U                                            /*!< SCB 
+ 393:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_VECTPENDING_Msk           (0x1FFUL << SCB_ICSR_VECTPENDING_Pos)          /*!< SCB 
+ 394:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 395:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_VECTACTIVE_Pos             0U                                            /*!< SCB 
+ 396:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_ICSR_VECTACTIVE_Msk            (0x1FFUL /*<< SCB_ICSR_VECTACTIVE_Pos*/)       /*!< SCB 
+ 397:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 398:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SCB Application Interrupt and Reset Control Register Definitions */
+ 399:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTKEY_Pos              16U                                            /*!< SCB 
+ 400:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTKEY_Msk              (0xFFFFUL << SCB_AIRCR_VECTKEY_Pos)            /*!< SCB 
+ 401:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 402:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTKEYSTAT_Pos          16U                                            /*!< SCB 
+ 403:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTKEYSTAT_Msk          (0xFFFFUL << SCB_AIRCR_VECTKEYSTAT_Pos)        /*!< SCB 
+ 404:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 405:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_ENDIANESS_Pos            15U                                            /*!< SCB 
+ 406:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_ENDIANESS_Msk            (1UL << SCB_AIRCR_ENDIANESS_Pos)               /*!< SCB 
+ 407:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 408:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_SYSRESETREQ_Pos           2U                                            /*!< SCB 
+ 409:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_SYSRESETREQ_Msk          (1UL << SCB_AIRCR_SYSRESETREQ_Pos)             /*!< SCB 
+ 410:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 411:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTCLRACTIVE_Pos         1U                                            /*!< SCB 
+ 412:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_AIRCR_VECTCLRACTIVE_Msk        (1UL << SCB_AIRCR_VECTCLRACTIVE_Pos)           /*!< SCB 
+ 413:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 414:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SCB System Control Register Definitions */
+ 415:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SEVONPEND_Pos               4U                                            /*!< SCB 
+ 416:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SEVONPEND_Msk              (1UL << SCB_SCR_SEVONPEND_Pos)                 /*!< SCB 
+ 417:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 418:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SLEEPDEEP_Pos               2U                                            /*!< SCB 
+ 419:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SLEEPDEEP_Msk              (1UL << SCB_SCR_SLEEPDEEP_Pos)                 /*!< SCB 
+ 420:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 421:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SLEEPONEXIT_Pos             1U                                            /*!< SCB 
+ 422:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SCR_SLEEPONEXIT_Msk            (1UL << SCB_SCR_SLEEPONEXIT_Pos)               /*!< SCB 
+ 423:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 424:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SCB Configuration Control Register Definitions */
+ 425:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CCR_STKALIGN_Pos                9U                                            /*!< SCB 
+ 426:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CCR_STKALIGN_Msk               (1UL << SCB_CCR_STKALIGN_Pos)                  /*!< SCB 
+ 427:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 428:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CCR_UNALIGN_TRP_Pos             3U                                            /*!< SCB 
+ 429:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_CCR_UNALIGN_TRP_Msk            (1UL << SCB_CCR_UNALIGN_TRP_Pos)               /*!< SCB 
+ 430:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 431:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SCB System Handler Control and State Register Definitions */
+ 432:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SHCSR_SVCALLPENDED_Pos         15U                                            /*!< SCB 
+ 433:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_SHCSR_SVCALLPENDED_Msk         (1UL << SCB_SHCSR_SVCALLPENDED_Pos)            /*!< SCB 
+ 434:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 435:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_SCB */
+ 436:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 437:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 438:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 439:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup  CMSIS_core_register
+ 440:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_SysTick     System Tick Timer (SysTick)
+ 441:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief    Type definitions for the System Timer Registers.
+ 442:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 443:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 444:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 445:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 446:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief  Structure type to access the System Timer (SysTick).
+ 447:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 448:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** typedef struct
+ 449:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 450:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t CTRL;                   /*!< Offset: 0x000 (R/W)  SysTick Control and Status Regis
+ 451:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t LOAD;                   /*!< Offset: 0x004 (R/W)  SysTick Reload Value Register */
+ 452:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IOM uint32_t VAL;                    /*!< Offset: 0x008 (R/W)  SysTick Current Value Register *
+ 453:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   __IM  uint32_t CALIB;                  /*!< Offset: 0x00C (R/ )  SysTick Calibration Register */
+ 454:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** } SysTick_Type;
+ 455:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 456:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SysTick Control / Status Register Definitions */
+ 457:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_COUNTFLAG_Pos         16U                                            /*!< SysT
+ 458:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_COUNTFLAG_Msk         (1UL << SysTick_CTRL_COUNTFLAG_Pos)            /*!< SysT
+ 459:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 460:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_CLKSOURCE_Pos          2U                                            /*!< SysT
+ 461:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_CLKSOURCE_Msk         (1UL << SysTick_CTRL_CLKSOURCE_Pos)            /*!< SysT
+ 462:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 463:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_TICKINT_Pos            1U                                            /*!< SysT
+ 464:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_TICKINT_Msk           (1UL << SysTick_CTRL_TICKINT_Pos)              /*!< SysT
+ 465:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 466:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_ENABLE_Pos             0U                                            /*!< SysT
+ 467:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CTRL_ENABLE_Msk            (1UL /*<< SysTick_CTRL_ENABLE_Pos*/)           /*!< SysT
+ 468:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 469:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SysTick Reload Register Definitions */
+ 470:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_LOAD_RELOAD_Pos             0U                                            /*!< SysT
+ 471:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_LOAD_RELOAD_Msk            (0xFFFFFFUL /*<< SysTick_LOAD_RELOAD_Pos*/)    /*!< SysT
+ 472:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 473:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SysTick Current Register Definitions */
+ 474:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_VAL_CURRENT_Pos             0U                                            /*!< SysT
+ 475:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_VAL_CURRENT_Msk            (0xFFFFFFUL /*<< SysTick_VAL_CURRENT_Pos*/)    /*!< SysT
+ 476:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 477:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* SysTick Calibration Register Definitions */
+ 478:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_NOREF_Pos            31U                                            /*!< SysT
+ 479:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_NOREF_Msk            (1UL << SysTick_CALIB_NOREF_Pos)               /*!< SysT
+ 480:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 481:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_SKEW_Pos             30U                                            /*!< SysT
+ 482:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_SKEW_Msk             (1UL << SysTick_CALIB_SKEW_Pos)                /*!< SysT
+ 483:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 484:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_TENMS_Pos             0U                                            /*!< SysT
+ 485:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_CALIB_TENMS_Msk            (0xFFFFFFUL /*<< SysTick_CALIB_TENMS_Pos*/)    /*!< SysT
+ 486:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 487:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_SysTick */
+ 488:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 489:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 490:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 491:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup  CMSIS_core_register
+ 492:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_CoreDebug       Core Debug Registers (CoreDebug)
+ 493:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief    Cortex-M0 Core Debug Registers (DCB registers, SHCSR, and DFSR) are only accessible ove
+ 494:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****             Therefore they are not covered by the Cortex-M0 header file.
+ 495:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 496:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 497:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_CoreDebug */
+ 498:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 499:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 500:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 501:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup    CMSIS_core_register
+ 502:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup   CMSIS_core_bitfield     Core register bit field macros
+ 503:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief      Macros for use with bit field definitions (xxx_Pos, xxx_Msk).
+ 504:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 505:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 506:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 507:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 508:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Mask and shift a bit field value for use in a register bit range.
+ 509:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param[in] field  Name of the register bit field.
+ 510:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param[in] value  Value of the bit field. This parameter is interpreted as an uint32_t type.
+ 511:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \return           Masked and shifted value.
+ 512:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** */
+ 513:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define _VAL2FLD(field, value)    (((uint32_t)(value) << field ## _Pos) & field ## _Msk)
+ 514:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 515:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 516:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief     Mask and shift a register value to extract a bit filed value.
+ 517:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param[in] field  Name of the register bit field.
+ 518:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param[in] value  Value of register. This parameter is interpreted as an uint32_t type.
+ 519:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \return           Masked and shifted bit field value.
+ 520:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** */
+ 521:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define _FLD2VAL(field, value)    (((uint32_t)(value) & field ## _Msk) >> field ## _Pos)
+ 522:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 523:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*@} end of group CMSIS_core_bitfield */
+ 524:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 525:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 526:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 527:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup    CMSIS_core_register
+ 528:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup   CMSIS_core_base     Core Definitions
+ 529:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief      Definitions for base addresses, unions, and structures.
+ 530:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 531:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 532:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 533:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* Memory mapping of Core Hardware */
+ 534:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCS_BASE            (0xE000E000UL)                            /*!< System Control Space Bas
+ 535:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick_BASE        (SCS_BASE +  0x0010UL)                    /*!< SysTick Base Address */
+ 536:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define NVIC_BASE           (SCS_BASE +  0x0100UL)                    /*!< NVIC Base Address */
+ 537:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB_BASE            (SCS_BASE +  0x0D00UL)                    /*!< System Control Block Bas
+ 538:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 539:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SCB                 ((SCB_Type       *)     SCB_BASE      )   /*!< SCB configuration struct
+ 540:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define SysTick             ((SysTick_Type   *)     SysTick_BASE  )   /*!< SysTick configuration st
+ 541:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define NVIC                ((NVIC_Type      *)     NVIC_BASE     )   /*!< NVIC configuration struc
+ 542:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 543:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 544:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*@} */
+ 545:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 546:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 547:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 548:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*******************************************************************************
+ 549:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  *                Hardware Abstraction Layer
+ 550:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   Core Function Interface contains:
+ 551:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   - Core NVIC Functions
+ 552:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   - Core SysTick Functions
+ 553:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   - Core Register Access Functions
+ 554:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  ******************************************************************************/
+ 555:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 556:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_Core_FunctionInterface Functions and Instructions Reference
+ 557:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** */
+ 558:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 559:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 560:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 561:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* ##########################   NVIC functions  #################################### */
+ 562:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 563:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \ingroup  CMSIS_Core_FunctionInterface
+ 564:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \defgroup CMSIS_Core_NVICFunctions NVIC Functions
+ 565:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief    Functions that manage interrupts and exceptions via the NVIC.
+ 566:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   @{
+ 567:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 568:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 569:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #ifdef CMSIS_NVIC_VIRTUAL
+ 570:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef CMSIS_NVIC_VIRTUAL_HEADER_FILE
+ 571:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #define CMSIS_NVIC_VIRTUAL_HEADER_FILE "cmsis_nvic_virtual.h"
+ 572:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 573:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #include CMSIS_NVIC_VIRTUAL_HEADER_FILE
+ 574:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #else
+ 575:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SetPriorityGrouping    __NVIC_SetPriorityGrouping
+ 576:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetPriorityGrouping    __NVIC_GetPriorityGrouping
+ 577:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_EnableIRQ              __NVIC_EnableIRQ
+ 578:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetEnableIRQ           __NVIC_GetEnableIRQ
+ 579:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_DisableIRQ             __NVIC_DisableIRQ
+ 580:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetPendingIRQ          __NVIC_GetPendingIRQ
+ 581:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SetPendingIRQ          __NVIC_SetPendingIRQ
+ 582:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_ClearPendingIRQ        __NVIC_ClearPendingIRQ
+ 583:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /*#define NVIC_GetActive              __NVIC_GetActive             not available for Cortex-M0 */
+ 584:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SetPriority            __NVIC_SetPriority
+ 585:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetPriority            __NVIC_GetPriority
+ 586:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SystemReset            __NVIC_SystemReset
+ 587:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif /* CMSIS_NVIC_VIRTUAL */
+ 588:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 589:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #ifdef CMSIS_VECTAB_VIRTUAL
+ 590:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #ifndef CMSIS_VECTAB_VIRTUAL_HEADER_FILE
+ 591:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     #define CMSIS_VECTAB_VIRTUAL_HEADER_FILE "cmsis_vectab_virtual.h"
+ 592:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #endif
+ 593:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #include CMSIS_VECTAB_VIRTUAL_HEADER_FILE
+ 594:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #else
+ 595:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_SetVector              __NVIC_SetVector
+ 596:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   #define NVIC_GetVector              __NVIC_GetVector
+ 597:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #endif  /* (CMSIS_VECTAB_VIRTUAL) */
+ 598:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 599:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define NVIC_USER_IRQ_OFFSET          16
+ 600:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 601:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 602:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* The following EXC_RETURN values are saved the LR on exception entry */
+ 603:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define EXC_RETURN_HANDLER         (0xFFFFFFF1UL)     /* return to Handler mode, uses MSP after ret
+ 604:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define EXC_RETURN_THREAD_MSP      (0xFFFFFFF9UL)     /* return to Thread mode, uses MSP after retu
+ 605:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define EXC_RETURN_THREAD_PSP      (0xFFFFFFFDUL)     /* return to Thread mode, uses PSP after retu
+ 606:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 607:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 608:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* Interrupt Priorities are WORD accessible only under Armv6-M                  */
+ 609:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /* The following MACROS handle generation of the register offset and byte masks */
+ 610:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define _BIT_SHIFT(IRQn)         (  ((((uint32_t)(int32_t)(IRQn))         )      &  0x03UL) * 8UL)
+ 611:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define _SHP_IDX(IRQn)           ( (((((uint32_t)(int32_t)(IRQn)) & 0x0FUL)-8UL) >>    2UL)      )
+ 612:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define _IP_IDX(IRQn)            (   (((uint32_t)(int32_t)(IRQn))                >>    2UL)      )
+ 613:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 614:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define __NVIC_SetPriorityGrouping(X) (void)(X)
+ 615:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** #define __NVIC_GetPriorityGrouping()  (0U)
+ 616:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 617:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 618:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Enable Interrupt
+ 619:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \details Enables a device specific interrupt in the NVIC interrupt controller.
+ 620:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 621:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 622:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 623:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
+ 624:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+  25              	 .loc 1 624 0
+  26              	 .cfi_startproc
+  27 0000 80B5     	 push {r7,lr}
+  28              	.LCFI0:
+  29              	 .cfi_def_cfa_offset 8
+  30              	 .cfi_offset 7,-8
+  31              	 .cfi_offset 14,-4
+  32 0002 82B0     	 sub sp,sp,#8
+  33              	.LCFI1:
+  34              	 .cfi_def_cfa_offset 16
+  35 0004 00AF     	 add r7,sp,#0
+  36              	.LCFI2:
+  37              	 .cfi_def_cfa_register 7
+  38 0006 021C     	 mov r2,r0
+  39 0008 FB1D     	 add r3,r7,#7
+  40 000a 1A70     	 strb r2,[r3]
+ 625:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+  41              	 .loc 1 625 0
+  42 000c FB1D     	 add r3,r7,#7
+  43 000e 1B78     	 ldrb r3,[r3]
+  44 0010 7F2B     	 cmp r3,#127
+  45 0012 09D8     	 bhi .L1
+ 626:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 627:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     __COMPILER_BARRIER();
+  46              	 .loc 1 627 0
+ 628:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->ISER[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+  47              	 .loc 1 628 0
+  48 0014 064B     	 ldr r3,.L3
+  49 0016 FA1D     	 add r2,r7,#7
+  50 0018 1278     	 ldrb r2,[r2]
+  51 001a 111C     	 mov r1,r2
+  52 001c 1F22     	 mov r2,#31
+  53 001e 0A40     	 and r2,r1
+  54 0020 0121     	 mov r1,#1
+  55 0022 9140     	 lsl r1,r1,r2
+  56 0024 0A1C     	 mov r2,r1
+  57 0026 1A60     	 str r2,[r3]
+ 629:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     __COMPILER_BARRIER();
+  58              	 .loc 1 629 0
+  59              	.L1:
+ 630:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 631:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** }
+  60              	 .loc 1 631 0
+  61 0028 BD46     	 mov sp,r7
+  62 002a 02B0     	 add sp,sp,#8
+  63              	 
+  64 002c 80BD     	 pop {r7,pc}
+  65              	.L4:
+  66 002e C046     	 .align 2
+  67              	.L3:
+  68 0030 00E100E0 	 .word -536813312
+  69              	 .cfi_endproc
+  70              	.LFE27:
+  72              	 .section .text.__NVIC_ClearPendingIRQ,"ax",%progbits
+  73              	 .align 2
+  74              	 .code 16
+  75              	 .thumb_func
+  77              	__NVIC_ClearPendingIRQ:
+  78              	.LFB32:
+ 632:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 633:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 634:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 635:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Get Interrupt Enable status
+ 636:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \details Returns a device specific interrupt enable status from the NVIC interrupt controller.
+ 637:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 638:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \return             0  Interrupt is not enabled.
+ 639:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \return             1  Interrupt is enabled.
+ 640:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 641:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 642:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
+ 643:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 644:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 645:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 646:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     return((uint32_t)(((NVIC->ISER[0U] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL)
+ 647:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 648:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   else
+ 649:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 650:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     return(0U);
+ 651:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 652:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** }
+ 653:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 654:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 655:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 656:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Disable Interrupt
+ 657:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \details Disables a device specific interrupt in the NVIC interrupt controller.
+ 658:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 659:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 660:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 661:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn)
+ 662:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 663:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 664:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 665:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->ICER[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 666:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     __DSB();
+ 667:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     __ISB();
+ 668:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 669:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** }
+ 670:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 671:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 672:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 673:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Get Pending Interrupt
+ 674:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \details Reads the NVIC pending register and returns the pending bit for the specified device spe
+ 675:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 676:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \return             0  Interrupt status is not pending.
+ 677:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \return             1  Interrupt status is pending.
+ 678:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 679:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 680:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
+ 681:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 682:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 683:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 684:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     return((uint32_t)(((NVIC->ISPR[0U] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL)
+ 685:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 686:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   else
+ 687:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 688:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     return(0U);
+ 689:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 690:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** }
+ 691:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 692:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 693:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 694:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Set Pending Interrupt
+ 695:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \details Sets the pending bit of a device specific interrupt in the NVIC pending register.
+ 696:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 697:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 698:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 699:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
+ 700:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 701:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 702:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 703:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->ISPR[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 704:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 705:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** }
+ 706:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 707:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 708:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 709:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Clear Pending Interrupt
+ 710:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \details Clears the pending bit of a device specific interrupt in the NVIC pending register.
+ 711:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 712:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \note    IRQn must not be negative.
+ 713:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 714:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
+ 715:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+  79              	 .loc 1 715 0
+  80              	 .cfi_startproc
+  81 0000 80B5     	 push {r7,lr}
+  82              	.LCFI3:
+  83              	 .cfi_def_cfa_offset 8
+  84              	 .cfi_offset 7,-8
+  85              	 .cfi_offset 14,-4
+  86 0002 82B0     	 sub sp,sp,#8
+  87              	.LCFI4:
+  88              	 .cfi_def_cfa_offset 16
+  89 0004 00AF     	 add r7,sp,#0
+  90              	.LCFI5:
+  91              	 .cfi_def_cfa_register 7
+  92 0006 021C     	 mov r2,r0
+  93 0008 FB1D     	 add r3,r7,#7
+  94 000a 1A70     	 strb r2,[r3]
+ 716:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+  95              	 .loc 1 716 0
+  96 000c FB1D     	 add r3,r7,#7
+  97 000e 1B78     	 ldrb r3,[r3]
+  98 0010 7F2B     	 cmp r3,#127
+  99 0012 0AD8     	 bhi .L5
+ 717:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 718:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->ICPR[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 100              	 .loc 1 718 0
+ 101 0014 0649     	 ldr r1,.L7
+ 102 0016 FB1D     	 add r3,r7,#7
+ 103 0018 1B78     	 ldrb r3,[r3]
+ 104 001a 1A1C     	 mov r2,r3
+ 105 001c 1F23     	 mov r3,#31
+ 106 001e 1340     	 and r3,r2
+ 107 0020 0122     	 mov r2,#1
+ 108 0022 9A40     	 lsl r2,r2,r3
+ 109 0024 C023     	 mov r3,#192
+ 110 0026 5B00     	 lsl r3,r3,#1
+ 111 0028 CA50     	 str r2,[r1,r3]
+ 112              	.L5:
+ 719:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 720:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** }
+ 113              	 .loc 1 720 0
+ 114 002a BD46     	 mov sp,r7
+ 115 002c 02B0     	 add sp,sp,#8
+ 116              	 
+ 117 002e 80BD     	 pop {r7,pc}
+ 118              	.L8:
+ 119              	 .align 2
+ 120              	.L7:
+ 121 0030 00E100E0 	 .word -536813312
+ 122              	 .cfi_endproc
+ 123              	.LFE32:
+ 125              	 .section .text.__NVIC_SetPriority,"ax",%progbits
+ 126              	 .align 2
+ 127              	 .code 16
+ 128              	 .thumb_func
+ 130              	__NVIC_SetPriority:
+ 131              	.LFB33:
+ 721:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 722:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** 
+ 723:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** /**
+ 724:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \brief   Set Interrupt Priority
+ 725:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \details Sets the priority of a device specific interrupt or a processor exception.
+ 726:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****            The interrupt number can be positive to specify a device specific interrupt,
+ 727:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****            or negative to specify a processor exception.
+ 728:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]      IRQn  Interrupt number.
+ 729:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \param [in]  priority  Priority to set.
+ 730:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   \note    The priority cannot be set for every processor exception.
+ 731:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****  */
+ 732:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+ 733:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** {
+ 132              	 .loc 1 733 0
+ 133              	 .cfi_startproc
+ 134 0000 B0B5     	 push {r4,r5,r7,lr}
+ 135              	.LCFI6:
+ 136              	 .cfi_def_cfa_offset 16
+ 137              	 .cfi_offset 4,-16
+ 138              	 .cfi_offset 5,-12
+ 139              	 .cfi_offset 7,-8
+ 140              	 .cfi_offset 14,-4
+ 141 0002 82B0     	 sub sp,sp,#8
+ 142              	.LCFI7:
+ 143              	 .cfi_def_cfa_offset 24
+ 144 0004 00AF     	 add r7,sp,#0
+ 145              	.LCFI8:
+ 146              	 .cfi_def_cfa_register 7
+ 147 0006 021C     	 mov r2,r0
+ 148 0008 3960     	 str r1,[r7]
+ 149 000a FB1D     	 add r3,r7,#7
+ 150 000c 1A70     	 strb r2,[r3]
+ 734:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 151              	 .loc 1 734 0
+ 152 000e FB1D     	 add r3,r7,#7
+ 153 0010 1B78     	 ldrb r3,[r3]
+ 154 0012 7F2B     	 cmp r3,#127
+ 155 0014 27D8     	 bhi .L10
+ 735:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 736:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     NVIC->IP[_IP_IDX(IRQn)]  = ((uint32_t)(NVIC->IP[_IP_IDX(IRQn)]  & ~(0xFFUL << _BIT_SHIFT(IRQn))
+ 156              	 .loc 1 736 0
+ 157 0016 2D4C     	 ldr r4,.L12
+ 158 0018 FB1D     	 add r3,r7,#7
+ 159 001a 1B78     	 ldrb r3,[r3]
+ 160 001c 5BB2     	 sxtb r3,r3
+ 161 001e 9B08     	 lsr r3,r3,#2
+ 162 0020 2A49     	 ldr r1,.L12
+ 163 0022 FA1D     	 add r2,r7,#7
+ 164 0024 1278     	 ldrb r2,[r2]
+ 165 0026 52B2     	 sxtb r2,r2
+ 166 0028 9208     	 lsr r2,r2,#2
+ 167 002a C032     	 add r2,r2,#192
+ 168 002c 9200     	 lsl r2,r2,#2
+ 169 002e 5258     	 ldr r2,[r2,r1]
+ 170 0030 F91D     	 add r1,r7,#7
+ 171 0032 0978     	 ldrb r1,[r1]
+ 172 0034 081C     	 mov r0,r1
+ 173 0036 0321     	 mov r1,#3
+ 174 0038 0140     	 and r1,r0
+ 175 003a C900     	 lsl r1,r1,#3
+ 176 003c 081C     	 mov r0,r1
+ 177 003e FF21     	 mov r1,#255
+ 178 0040 8140     	 lsl r1,r1,r0
+ 179 0042 C943     	 mvn r1,r1
+ 180 0044 1140     	 and r1,r2
+ 737:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****        (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 181              	 .loc 1 737 0
+ 182 0046 3A68     	 ldr r2,[r7]
+ 183 0048 9201     	 lsl r2,r2,#6
+ 184 004a FF20     	 mov r0,#255
+ 185 004c 0240     	 and r2,r0
+ 186 004e F81D     	 add r0,r7,#7
+ 187 0050 0078     	 ldrb r0,[r0]
+ 188 0052 051C     	 mov r5,r0
+ 189 0054 0320     	 mov r0,#3
+ 190 0056 2840     	 and r0,r5
+ 191 0058 C000     	 lsl r0,r0,#3
+ 192 005a 8240     	 lsl r2,r2,r0
+ 736:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****        (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 193              	 .loc 1 736 0
+ 194 005c 0A43     	 orr r2,r1
+ 195 005e C033     	 add r3,r3,#192
+ 196 0060 9B00     	 lsl r3,r3,#2
+ 197 0062 1A51     	 str r2,[r3,r4]
+ 198 0064 2EE0     	 b .L9
+ 199              	.L10:
+ 738:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 739:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   else
+ 740:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   {
+ 741:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****     SCB->SHP[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))
+ 200              	 .loc 1 741 0
+ 201 0066 1A4C     	 ldr r4,.L12+4
+ 202 0068 FB1D     	 add r3,r7,#7
+ 203 006a 1B78     	 ldrb r3,[r3]
+ 204 006c 1A1C     	 mov r2,r3
+ 205 006e 0F23     	 mov r3,#15
+ 206 0070 1340     	 and r3,r2
+ 207 0072 083B     	 sub r3,r3,#8
+ 208 0074 9908     	 lsr r1,r3,#2
+ 209 0076 164A     	 ldr r2,.L12+4
+ 210 0078 FB1D     	 add r3,r7,#7
+ 211 007a 1B78     	 ldrb r3,[r3]
+ 212 007c 181C     	 mov r0,r3
+ 213 007e 0F23     	 mov r3,#15
+ 214 0080 0340     	 and r3,r0
+ 215 0082 083B     	 sub r3,r3,#8
+ 216 0084 9B08     	 lsr r3,r3,#2
+ 217 0086 0633     	 add r3,r3,#6
+ 218 0088 9B00     	 lsl r3,r3,#2
+ 219 008a D318     	 add r3,r2,r3
+ 220 008c 5B68     	 ldr r3,[r3,#4]
+ 221 008e FA1D     	 add r2,r7,#7
+ 222 0090 1278     	 ldrb r2,[r2]
+ 223 0092 101C     	 mov r0,r2
+ 224 0094 0322     	 mov r2,#3
+ 225 0096 0240     	 and r2,r0
+ 226 0098 D200     	 lsl r2,r2,#3
+ 227 009a 101C     	 mov r0,r2
+ 228 009c FF22     	 mov r2,#255
+ 229 009e 8240     	 lsl r2,r2,r0
+ 230 00a0 D243     	 mvn r2,r2
+ 231 00a2 1A40     	 and r2,r3
+ 742:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****        (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 232              	 .loc 1 742 0
+ 233 00a4 3B68     	 ldr r3,[r7]
+ 234 00a6 9B01     	 lsl r3,r3,#6
+ 235 00a8 FF20     	 mov r0,#255
+ 236 00aa 0340     	 and r3,r0
+ 237 00ac F81D     	 add r0,r7,#7
+ 238 00ae 0078     	 ldrb r0,[r0]
+ 239 00b0 051C     	 mov r5,r0
+ 240 00b2 0320     	 mov r0,#3
+ 241 00b4 2840     	 and r0,r5
+ 242 00b6 C000     	 lsl r0,r0,#3
+ 243 00b8 8340     	 lsl r3,r3,r0
+ 741:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****        (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 244              	 .loc 1 741 0
+ 245 00ba 1A43     	 orr r2,r3
+ 246 00bc 8B1D     	 add r3,r1,#6
+ 247 00be 9B00     	 lsl r3,r3,#2
+ 248 00c0 E318     	 add r3,r4,r3
+ 249 00c2 5A60     	 str r2,[r3,#4]
+ 250              	.L9:
+ 743:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h ****   }
+ 744:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include\core_cm0.h **** }
+ 251              	 .loc 1 744 0
+ 252 00c4 BD46     	 mov sp,r7
+ 253 00c6 02B0     	 add sp,sp,#8
+ 254              	 
+ 255 00c8 B0BD     	 pop {r4,r5,r7,pc}
+ 256              	.L13:
+ 257 00ca C046     	 .align 2
+ 258              	.L12:
+ 259 00cc 00E100E0 	 .word -536813312
+ 260 00d0 00ED00E0 	 .word -536810240
+ 261              	 .cfi_endproc
+ 262              	.LFE33:
+ 264              	 .section .text.PIN_INTERRUPT_GetAppVersion,"ax",%progbits
+ 265              	 .align 2
+ 266              	 .global PIN_INTERRUPT_GetAppVersion
+ 267              	 .code 16
+ 268              	 .thumb_func
+ 270              	PIN_INTERRUPT_GetAppVersion:
+ 271              	.LFB79:
+ 272              	 .file 2 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c"
+   1:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /**
+   2:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * @file pin_interrupt.c
+   3:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * @date 2016-03-02
+   4:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *
+   5:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * NOTE:
+   6:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * This file is generated by DAVE. Any manual modification done to this file will be lost when the 
+   7:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *
+   8:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * @cond
+   9:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  **************************************************************************************************
+  10:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * PIN_INTERRUPT v4.0.4 - The PIN_INTERRUPT APP invokes user interrupt handler in a response to ris
+  11:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *                        edge event signal on a pin.
+  12:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *
+  13:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * Copyright (c) 2016-2020, Infineon Technologies AG
+  14:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * All rights reserved.                        
+  15:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *                                             
+  16:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  17:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * following conditions are met:   
+  18:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *                                                                              
+  19:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  20:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *   disclaimer.                        
+  21:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * 
+  22:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  23:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  24:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *                         
+  25:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  26:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *   products derived from this software without specific prior written permission. 
+  27:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *                                             
+  28:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  29:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  30:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  31:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  32:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  33:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  34:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.    
+  35:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *                                                                              
+  36:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  37:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * with Infineon Technologies AG (dave@infineon.com).        
+  38:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  **************************************************************************************************
+  39:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *
+  40:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * Change History
+  41:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * --------------
+  42:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * 2015-12-03:
+  43:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *     - Initial version for DAVEv4. <BR>
+  44:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * @endcond 
+  45:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  *
+  46:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  */
+  47:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** 
+  48:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /**************************************************************************************************
+  49:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * HEADER FILES                                                                                    
+  50:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  **************************************************************************************************
+  51:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** #include "pin_interrupt.h"
+  52:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** 
+  53:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /**************************************************************************************************
+  54:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * MACROS
+  55:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  **************************************************************************************************
+  56:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** 
+  57:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /**************************************************************************************************
+  58:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * LOCAL DATA
+  59:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  **************************************************************************************************
+  60:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** 
+  61:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /**************************************************************************************************
+  62:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * LOCAL ROUTINES
+  63:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  **************************************************************************************************
+  64:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** 
+  65:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /**************************************************************************************************
+  66:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** * API IMPLEMENTATION
+  67:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** ***************************************************************************************************
+  68:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /*  API to retrieve version of the APP */
+  69:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** DAVE_APP_VERSION_t PIN_INTERRUPT_GetAppVersion(void)
+  70:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** {
+ 273              	 .loc 2 70 0
+ 274              	 .cfi_startproc
+ 275 0000 80B5     	 push {r7,lr}
+ 276              	.LCFI9:
+ 277              	 .cfi_def_cfa_offset 8
+ 278              	 .cfi_offset 7,-8
+ 279              	 .cfi_offset 14,-4
+ 280 0002 82B0     	 sub sp,sp,#8
+ 281              	.LCFI10:
+ 282              	 .cfi_def_cfa_offset 16
+ 283 0004 00AF     	 add r7,sp,#0
+ 284              	.LCFI11:
+ 285              	 .cfi_def_cfa_register 7
+  71:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   DAVE_APP_VERSION_t version;
+  72:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   version.major = (uint8_t)PIN_INTERRUPT_MAJOR_VERSION;
+ 286              	 .loc 2 72 0
+ 287 0006 3B1C     	 mov r3,r7
+ 288 0008 0422     	 mov r2,#4
+ 289 000a 1A70     	 strb r2,[r3]
+  73:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   version.minor = (uint8_t)PIN_INTERRUPT_MINOR_VERSION;
+ 290              	 .loc 2 73 0
+ 291 000c 3B1C     	 mov r3,r7
+ 292 000e 0022     	 mov r2,#0
+ 293 0010 5A70     	 strb r2,[r3,#1]
+  74:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   version.patch = (uint8_t)PIN_INTERRUPT_PATCH_VERSION;
+ 294              	 .loc 2 74 0
+ 295 0012 3B1C     	 mov r3,r7
+ 296 0014 0422     	 mov r2,#4
+ 297 0016 9A70     	 strb r2,[r3,#2]
+  75:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   return (version);
+ 298              	 .loc 2 75 0
+ 299 0018 3B1D     	 add r3,r7,#4
+ 300 001a 3A1C     	 mov r2,r7
+ 301 001c 1188     	 ldrh r1,[r2]
+ 302 001e 1980     	 strh r1,[r3]
+ 303 0020 9278     	 ldrb r2,[r2,#2]
+ 304 0022 9A70     	 strb r2,[r3,#2]
+ 305 0024 3A1D     	 add r2,r7,#4
+ 306 0026 0023     	 mov r3,#0
+ 307 0028 1178     	 ldrb r1,[r2]
+ 308 002a FF20     	 mov r0,#255
+ 309 002c 0140     	 and r1,r0
+ 310 002e FF20     	 mov r0,#255
+ 311 0030 8343     	 bic r3,r0
+ 312 0032 0B43     	 orr r3,r1
+ 313 0034 5178     	 ldrb r1,[r2,#1]
+ 314 0036 FF20     	 mov r0,#255
+ 315 0038 0140     	 and r1,r0
+ 316 003a 0902     	 lsl r1,r1,#8
+ 317 003c 0648     	 ldr r0,.L16
+ 318 003e 0340     	 and r3,r0
+ 319 0040 0B43     	 orr r3,r1
+ 320 0042 9278     	 ldrb r2,[r2,#2]
+ 321 0044 FF21     	 mov r1,#255
+ 322 0046 0A40     	 and r2,r1
+ 323 0048 1204     	 lsl r2,r2,#16
+ 324 004a 0449     	 ldr r1,.L16+4
+ 325 004c 0B40     	 and r3,r1
+ 326 004e 1343     	 orr r3,r2
+  76:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** }
+ 327              	 .loc 2 76 0
+ 328 0050 181C     	 mov r0,r3
+ 329 0052 BD46     	 mov sp,r7
+ 330 0054 02B0     	 add sp,sp,#8
+ 331              	 
+ 332 0056 80BD     	 pop {r7,pc}
+ 333              	.L17:
+ 334              	 .align 2
+ 335              	.L16:
+ 336 0058 FF00FFFF 	 .word -65281
+ 337 005c FFFF00FF 	 .word -16711681
+ 338              	 .cfi_endproc
+ 339              	.LFE79:
+ 341              	 .section .text.PIN_INTERRUPT_Init,"ax",%progbits
+ 342              	 .align 2
+ 343              	 .global PIN_INTERRUPT_Init
+ 344              	 .code 16
+ 345              	 .thumb_func
+ 347              	PIN_INTERRUPT_Init:
+ 348              	.LFB80:
+  77:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** 
+  78:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /*
+  79:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * API to initialize the PIN_INTERRUPT APP ERU Event Trigger Logic, Output Gating Unit Hardware ini
+  80:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * and NVIC node configuration.
+  81:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  */
+  82:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** PIN_INTERRUPT_STATUS_t PIN_INTERRUPT_Init(const PIN_INTERRUPT_t *const handle)
+  83:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** {
+ 349              	 .loc 2 83 0
+ 350              	 .cfi_startproc
+ 351 0000 80B5     	 push {r7,lr}
+ 352              	.LCFI12:
+ 353              	 .cfi_def_cfa_offset 8
+ 354              	 .cfi_offset 7,-8
+ 355              	 .cfi_offset 14,-4
+ 356 0002 82B0     	 sub sp,sp,#8
+ 357              	.LCFI13:
+ 358              	 .cfi_def_cfa_offset 16
+ 359 0004 00AF     	 add r7,sp,#0
+ 360              	.LCFI14:
+ 361              	 .cfi_def_cfa_register 7
+ 362 0006 7860     	 str r0,[r7,#4]
+  84:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   XMC_ASSERT("PIN_INTERRUPT_Init: PIN_INTERRUPT APP handle function pointer uninitialized", (handle
+  85:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** 
+  86:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   /* Initializes input pin characteristics */
+  87:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   XMC_GPIO_Init(handle->port, handle->pin, &handle->gpio_config);
+ 363              	 .loc 2 87 0
+ 364 0008 7B68     	 ldr r3,[r7,#4]
+ 365 000a 5968     	 ldr r1,[r3,#4]
+ 366 000c 7B68     	 ldr r3,[r7,#4]
+ 367 000e 9A7F     	 ldrb r2,[r3,#30]
+ 368 0010 7B68     	 ldr r3,[r7,#4]
+ 369 0012 0833     	 add r3,r3,#8
+ 370 0014 081C     	 mov r0,r1
+ 371 0016 111C     	 mov r1,r2
+ 372 0018 1A1C     	 mov r2,r3
+ 373 001a FFF7FEFF 	 bl XMC_GPIO_Init
+  88:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   /* ERU Event Trigger Logic Hardware initialization based on UI */
+  89:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   XMC_ERU_ETL_Init(handle->eru, handle->etl, &handle->etl_config);
+ 374              	 .loc 2 89 0
+ 375 001e 7B68     	 ldr r3,[r7,#4]
+ 376 0020 1968     	 ldr r1,[r3]
+ 377 0022 7B68     	 ldr r3,[r7,#4]
+ 378 0024 1A7F     	 ldrb r2,[r3,#28]
+ 379 0026 7B68     	 ldr r3,[r7,#4]
+ 380 0028 1033     	 add r3,r3,#16
+ 381 002a 081C     	 mov r0,r1
+ 382 002c 111C     	 mov r1,r2
+ 383 002e 1A1C     	 mov r2,r3
+ 384 0030 FFF7FEFF 	 bl XMC_ERU_ETL_Init
+  90:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   /* OGU is configured to generate event on configured trigger edge */
+  91:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   XMC_ERU_OGU_SetServiceRequestMode(handle->eru, handle->ogu, XMC_ERU_OGU_SERVICE_REQUEST_ON_TRIGGE
+ 385              	 .loc 2 91 0
+ 386 0034 7B68     	 ldr r3,[r7,#4]
+ 387 0036 1A68     	 ldr r2,[r3]
+ 388 0038 7B68     	 ldr r3,[r7,#4]
+ 389 003a 5B7F     	 ldrb r3,[r3,#29]
+ 390 003c 101C     	 mov r0,r2
+ 391 003e 191C     	 mov r1,r3
+ 392 0040 0122     	 mov r2,#1
+ 393 0042 FFF7FEFF 	 bl XMC_ERU_OGU_SetServiceRequestMode
+  92:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** #if (UC_FAMILY == XMC1)
+  93:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   /* Configure NVIC node and priority */
+  94:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   NVIC_SetPriority((IRQn_Type)handle->IRQn, handle->irq_priority);
+ 394              	 .loc 2 94 0
+ 395 0046 7B68     	 ldr r3,[r7,#4]
+ 396 0048 9A7E     	 ldrb r2,[r3,#26]
+ 397 004a 7B68     	 ldr r3,[r7,#4]
+ 398 004c DB7E     	 ldrb r3,[r3,#27]
+ 399 004e 191C     	 mov r1,r3
+ 400 0050 53B2     	 sxtb r3,r2
+ 401 0052 181C     	 mov r0,r3
+ 402 0054 FFF7FEFF 	 bl __NVIC_SetPriority
+  95:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** #else
+  96:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   /* Configure NVIC node, priority and subpriority */
+  97:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   NVIC_SetPriority((IRQn_Type)handle->IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),
+  98:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****                     handle->irq_priority, handle->irq_subpriority));
+  99:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** #endif
+ 100:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** #if (UC_SERIES == XMC14)
+ 101:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   XMC_SCU_SetInterruptControl((IRQn_Type)handle->IRQn, (XMC_SCU_IRQCTRL_t)handle->irqctrl);
+ 403              	 .loc 2 101 0
+ 404 0058 7B68     	 ldr r3,[r7,#4]
+ 405 005a 9B7E     	 ldrb r3,[r3,#26]
+ 406 005c DAB2     	 uxtb r2,r3
+ 407 005e 7B68     	 ldr r3,[r7,#4]
+ 408 0060 1B8B     	 ldrh r3,[r3,#24]
+ 409 0062 101C     	 mov r0,r2
+ 410 0064 191C     	 mov r1,r3
+ 411 0066 FFF7FEFF 	 bl XMC_SCU_SetInterruptControl
+ 102:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** #endif
+ 103:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   if (true == handle->enable_at_init)
+ 412              	 .loc 2 103 0
+ 413 006a 7B68     	 ldr r3,[r7,#4]
+ 414 006c DB7F     	 ldrb r3,[r3,#31]
+ 415 006e 002B     	 cmp r3,#0
+ 416 0070 0BD0     	 beq .L19
+ 104:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   {
+ 105:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****     /* Clear pending interrupt before enabling it */
+ 106:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****     NVIC_ClearPendingIRQ((IRQn_Type)handle->IRQn);
+ 417              	 .loc 2 106 0
+ 418 0072 7B68     	 ldr r3,[r7,#4]
+ 419 0074 9B7E     	 ldrb r3,[r3,#26]
+ 420 0076 5BB2     	 sxtb r3,r3
+ 421 0078 181C     	 mov r0,r3
+ 422 007a FFF7FEFF 	 bl __NVIC_ClearPendingIRQ
+ 107:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****     /* Enable NVIC node */
+ 108:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****     NVIC_EnableIRQ((IRQn_Type)handle->IRQn);
+ 423              	 .loc 2 108 0
+ 424 007e 7B68     	 ldr r3,[r7,#4]
+ 425 0080 9B7E     	 ldrb r3,[r3,#26]
+ 426 0082 5BB2     	 sxtb r3,r3
+ 427 0084 181C     	 mov r0,r3
+ 428 0086 FFF7FEFF 	 bl __NVIC_EnableIRQ
+ 429              	.L19:
+ 109:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   }
+ 110:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   return (PIN_INTERRUPT_STATUS_SUCCESS);
+ 430              	 .loc 2 110 0
+ 431 008a 0023     	 mov r3,#0
+ 111:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** }
+ 432              	 .loc 2 111 0
+ 433 008c 181C     	 mov r0,r3
+ 434 008e BD46     	 mov sp,r7
+ 435 0090 02B0     	 add sp,sp,#8
+ 436              	 
+ 437 0092 80BD     	 pop {r7,pc}
+ 438              	 .cfi_endproc
+ 439              	.LFE80:
+ 441              	 .section .text.PIN_INTERRUPT_SetEdgeSensitivity,"ax",%progbits
+ 442              	 .align 2
+ 443              	 .global PIN_INTERRUPT_SetEdgeSensitivity
+ 444              	 .code 16
+ 445              	 .thumb_func
+ 447              	PIN_INTERRUPT_SetEdgeSensitivity:
+ 448              	.LFB81:
+ 112:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** 
+ 113:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /**
+ 114:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * This function is used to configure event trigger edge during run time.
+ 115:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  */
+ 116:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** void PIN_INTERRUPT_SetEdgeSensitivity(const PIN_INTERRUPT_t *const handle, const PIN_INTERRUPT_EDGE
+ 117:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** {
+ 449              	 .loc 2 117 0
+ 450              	 .cfi_startproc
+ 451 0000 80B5     	 push {r7,lr}
+ 452              	.LCFI15:
+ 453              	 .cfi_def_cfa_offset 8
+ 454              	 .cfi_offset 7,-8
+ 455              	 .cfi_offset 14,-4
+ 456 0002 82B0     	 sub sp,sp,#8
+ 457              	.LCFI16:
+ 458              	 .cfi_def_cfa_offset 16
+ 459 0004 00AF     	 add r7,sp,#0
+ 460              	.LCFI17:
+ 461              	 .cfi_def_cfa_register 7
+ 462 0006 7860     	 str r0,[r7,#4]
+ 463 0008 0A1C     	 mov r2,r1
+ 464 000a FB1C     	 add r3,r7,#3
+ 465 000c 1A70     	 strb r2,[r3]
+ 118:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   XMC_ASSERT("PIN_INTERRUPT_SetEdgeSensitivity: Handler null pointer", handle != NULL);
+ 119:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   XMC_ERU_ETL_SetEdgeDetection(handle->eru, handle->etl, (XMC_ERU_ETL_EDGE_DETECTION_t)edge);
+ 466              	 .loc 2 119 0
+ 467 000e 7B68     	 ldr r3,[r7,#4]
+ 468 0010 1968     	 ldr r1,[r3]
+ 469 0012 7B68     	 ldr r3,[r7,#4]
+ 470 0014 1A7F     	 ldrb r2,[r3,#28]
+ 471 0016 FB1C     	 add r3,r7,#3
+ 472 0018 1B78     	 ldrb r3,[r3]
+ 473 001a 081C     	 mov r0,r1
+ 474 001c 111C     	 mov r1,r2
+ 475 001e 1A1C     	 mov r2,r3
+ 476 0020 FFF7FEFF 	 bl XMC_ERU_ETL_SetEdgeDetection
+ 120:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** }
+ 477              	 .loc 2 120 0
+ 478 0024 BD46     	 mov sp,r7
+ 479 0026 02B0     	 add sp,sp,#8
+ 480              	 
+ 481 0028 80BD     	 pop {r7,pc}
+ 482              	 .cfi_endproc
+ 483              	.LFE81:
+ 485 002a C046     	 .section .text.PIN_INTERRUPT_GetEdgeSensitivity,"ax",%progbits
+ 486              	 .align 2
+ 487              	 .global PIN_INTERRUPT_GetEdgeSensitivity
+ 488              	 .code 16
+ 489              	 .thumb_func
+ 491              	PIN_INTERRUPT_GetEdgeSensitivity:
+ 492              	.LFB82:
+ 121:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** 
+ 122:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** /**
+ 123:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  * This function is used to get the configured event trigger edge during run time.
+ 124:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****  */
+ 125:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** PIN_INTERRUPT_EDGE_t PIN_INTERRUPT_GetEdgeSensitivity(const PIN_INTERRUPT_t *const handle)
+ 126:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** {
+ 493              	 .loc 2 126 0
+ 494              	 .cfi_startproc
+ 495 0000 80B5     	 push {r7,lr}
+ 496              	.LCFI18:
+ 497              	 .cfi_def_cfa_offset 8
+ 498              	 .cfi_offset 7,-8
+ 499              	 .cfi_offset 14,-4
+ 500 0002 82B0     	 sub sp,sp,#8
+ 501              	.LCFI19:
+ 502              	 .cfi_def_cfa_offset 16
+ 503 0004 00AF     	 add r7,sp,#0
+ 504              	.LCFI20:
+ 505              	 .cfi_def_cfa_register 7
+ 506 0006 7860     	 str r0,[r7,#4]
+ 127:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   XMC_ASSERT("PIN_INTERRUPT_GetEdgeSensitivity: Handler null pointer", handle != NULL);
+ 128:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c ****   return ((PIN_INTERRUPT_EDGE_t)XMC_ERU_ETL_GetEdgeDetection(handle->eru, handle->etl));
+ 507              	 .loc 2 128 0
+ 508 0008 7B68     	 ldr r3,[r7,#4]
+ 509 000a 1A68     	 ldr r2,[r3]
+ 510 000c 7B68     	 ldr r3,[r7,#4]
+ 511 000e 1B7F     	 ldrb r3,[r3,#28]
+ 512 0010 101C     	 mov r0,r2
+ 513 0012 191C     	 mov r1,r3
+ 514 0014 FFF7FEFF 	 bl XMC_ERU_ETL_GetEdgeDetection
+ 515 0018 031C     	 mov r3,r0
+ 129:../Dave/Generated/PIN_INTERRUPT/pin_interrupt.c **** }
+ 516              	 .loc 2 129 0
+ 517 001a 181C     	 mov r0,r3
+ 518 001c BD46     	 mov sp,r7
+ 519 001e 02B0     	 add sp,sp,#8
+ 520              	 
+ 521 0020 80BD     	 pop {r7,pc}
+ 522              	 .cfi_endproc
+ 523              	.LFE82:
+ 525 0022 C046     	 .text
+ 526              	.Letext0:
+ 527              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 528              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 529              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 530              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_scu.h"
+ 531              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_gpio.h"
+ 532              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 533              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_eru.h"
+ 534              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DAVE_Common.h"
+ 535              	 .file 11 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
+ 536              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 537              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 pin_interrupt.c
+    {standard input}:18     .text.__NVIC_EnableIRQ:00000000 $t
+    {standard input}:22     .text.__NVIC_EnableIRQ:00000000 __NVIC_EnableIRQ
+    {standard input}:68     .text.__NVIC_EnableIRQ:00000030 $d
+    {standard input}:73     .text.__NVIC_ClearPendingIRQ:00000000 $t
+    {standard input}:77     .text.__NVIC_ClearPendingIRQ:00000000 __NVIC_ClearPendingIRQ
+    {standard input}:121    .text.__NVIC_ClearPendingIRQ:00000030 $d
+    {standard input}:126    .text.__NVIC_SetPriority:00000000 $t
+    {standard input}:130    .text.__NVIC_SetPriority:00000000 __NVIC_SetPriority
+    {standard input}:259    .text.__NVIC_SetPriority:000000cc $d
+    {standard input}:265    .text.PIN_INTERRUPT_GetAppVersion:00000000 $t
+    {standard input}:270    .text.PIN_INTERRUPT_GetAppVersion:00000000 PIN_INTERRUPT_GetAppVersion
+    {standard input}:336    .text.PIN_INTERRUPT_GetAppVersion:00000058 $d
+    {standard input}:342    .text.PIN_INTERRUPT_Init:00000000 $t
+    {standard input}:347    .text.PIN_INTERRUPT_Init:00000000 PIN_INTERRUPT_Init
+    {standard input}:442    .text.PIN_INTERRUPT_SetEdgeSensitivity:00000000 $t
+    {standard input}:447    .text.PIN_INTERRUPT_SetEdgeSensitivity:00000000 PIN_INTERRUPT_SetEdgeSensitivity
+    {standard input}:486    .text.PIN_INTERRUPT_GetEdgeSensitivity:00000000 $t
+    {standard input}:491    .text.PIN_INTERRUPT_GetEdgeSensitivity:00000000 PIN_INTERRUPT_GetEdgeSensitivity
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+XMC_GPIO_Init
+XMC_ERU_ETL_Init
+XMC_ERU_OGU_SetServiceRequestMode
+XMC_SCU_SetInterruptControl
+XMC_ERU_ETL_SetEdgeDetection
+XMC_ERU_ETL_GetEdgeDetection
