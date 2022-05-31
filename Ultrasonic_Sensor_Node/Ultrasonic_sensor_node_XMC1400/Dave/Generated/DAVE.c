@@ -106,6 +106,11 @@ __WEAK DAVE_STATUS_t DAVE_Init(void)
   {
 	 /**  Initialization of BUS_IO APP instance BUS_IO_TRIGGER */
 	 init_status = (DAVE_STATUS_t)BUS_IO_Init(&BUS_IO_TRIGGER); 
+   } 
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+	 /**  Initialization of DIGITAL_IO APP instance CALC_TIME */
+	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&CALC_TIME); 
    }  
   return init_status;
 } /**  End of function DAVE_Init */

@@ -14,16 +14,15 @@
   14              	 .text
   15              	.Ltext0:
   16              	 .cfi_sections .debug_frame
-  17              	 .global DIGITAL_IO_0
-  18              	 .section .rodata.DIGITAL_IO_0,"a",%progbits
+  17              	 .global CALC_TIME
+  18              	 .section .rodata.CALC_TIME,"a",%progbits
   19              	 .align 2
-  22              	DIGITAL_IO_0:
-  23 0000 00010440 	 .word 1074004224
-  24 0004 00       	 .byte 0
-  25 0005 00       	 .byte 0
-  26 0006 00000000 	 .space 6
-  26      0000
-  27 000c 02       	 .byte 2
+  22              	CALC_TIME:
+  23 0000 00040440 	 .word 1074004992
+  24 0004 80       	 .byte -128
+  25 0005 000000   	 .space 3
+  26 0008 00000100 	 .word 65536
+  27 000c 03       	 .byte 3
   28 000d 00       	 .byte 0
   29 000e 0000     	 .space 2
   30              	 .text
@@ -37,7 +36,7 @@
   38              	 .file 7 "../Dave/Generated/DIGITAL_IO/digital_io_conf.c"
 DEFINED SYMBOLS
                             *ABS*:00000000 digital_io_conf.c
-    {standard input}:22     .rodata.DIGITAL_IO_0:00000000 DIGITAL_IO_0
-    {standard input}:19     .rodata.DIGITAL_IO_0:00000000 $d
+    {standard input}:22     .rodata.CALC_TIME:00000000 CALC_TIME
+    {standard input}:19     .rodata.CALC_TIME:00000000 $d
 
 NO UNDEFINED SYMBOLS

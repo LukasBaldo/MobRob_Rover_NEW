@@ -20,7 +20,7 @@
   20              	 .code 16
   21              	 .thumb_func
   23              	DAVE_Init:
-  24              	.LFB202:
+  24              	.LFB206:
   25              	 .file 1 "../Dave/Generated/DAVE.c"
    1:../Dave/Generated/DAVE.c **** 
    2:../Dave/Generated/DAVE.c **** /**
@@ -115,7 +115,7 @@
   73:../Dave/Generated/DAVE.c ****      init_status = (DAVE_STATUS_t)CLOCK_XMC1_Init(&CLOCK_XMC1_0);
   44              	 .loc 1 73 0
   45 000c FC1D     	 add r4,r7,#7
-  46 000e 2C4B     	 ldr r3,.L10
+  46 000e 324B     	 ldr r3,.L11
   47 0010 181C     	 mov r0,r3
   48 0012 FFF7FEFF 	 bl CLOCK_XMC1_Init
   49 0016 031C     	 mov r3,r0
@@ -132,7 +132,7 @@
   78:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)CAN_NODE_Init(&CAN_NODE_0); 
   56              	 .loc 1 78 0
   57 0022 FC1D     	 add r4,r7,#7
-  58 0024 274B     	 ldr r3,.L10+4
+  58 0024 2D4B     	 ldr r3,.L11+4
   59 0026 181C     	 mov r0,r3
   60 0028 FFF7FEFF 	 bl CAN_NODE_Init
   61 002c 031C     	 mov r3,r0
@@ -150,7 +150,7 @@
   83:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)TIMER_Init(&TIMER_10us); 
   69              	 .loc 1 83 0
   70 0038 FC1D     	 add r4,r7,#7
-  71 003a 234B     	 ldr r3,.L10+8
+  71 003a 294B     	 ldr r3,.L11+8
   72 003c 181C     	 mov r0,r3
   73 003e FFF7FEFF 	 bl TIMER_Init
   74 0042 031C     	 mov r3,r0
@@ -168,7 +168,7 @@
   88:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_TIMER_10us); 
   82              	 .loc 1 88 0
   83 004e FC1D     	 add r4,r7,#7
-  84 0050 1E4B     	 ldr r3,.L10+12
+  84 0050 244B     	 ldr r3,.L11+12
   85 0052 181C     	 mov r0,r3
   86 0054 FFF7FEFF 	 bl INTERRUPT_Init
   87 0058 031C     	 mov r3,r0
@@ -186,7 +186,7 @@
   93:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&ECHO_L); 
   95              	 .loc 1 93 0
   96 0064 FC1D     	 add r4,r7,#7
-  97 0066 1A4B     	 ldr r3,.L10+16
+  97 0066 204B     	 ldr r3,.L11+16
   98 0068 181C     	 mov r0,r3
   99 006a FFF7FEFF 	 bl PIN_INTERRUPT_Init
  100 006e 031C     	 mov r3,r0
@@ -204,7 +204,7 @@
   98:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&ECHO_R); 
  108              	 .loc 1 98 0
  109 007a FC1D     	 add r4,r7,#7
- 110 007c 154B     	 ldr r3,.L10+20
+ 110 007c 1B4B     	 ldr r3,.L11+20
  111 007e 181C     	 mov r0,r3
  112 0080 FFF7FEFF 	 bl PIN_INTERRUPT_Init
  113 0084 031C     	 mov r3,r0
@@ -222,7 +222,7 @@
  103:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&ECHO_C); 
  121              	 .loc 1 103 0
  122 0090 FC1D     	 add r4,r7,#7
- 123 0092 114B     	 ldr r3,.L10+24
+ 123 0092 174B     	 ldr r3,.L11+24
  124 0094 181C     	 mov r0,r3
  125 0096 FFF7FEFF 	 bl PIN_INTERRUPT_Init
  126 009a 031C     	 mov r3,r0
@@ -240,70 +240,91 @@
  108:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)BUS_IO_Init(&BUS_IO_TRIGGER); 
  134              	 .loc 1 108 0
  135 00a6 FC1D     	 add r4,r7,#7
- 136 00a8 0C4B     	 ldr r3,.L10+28
+ 136 00a8 124B     	 ldr r3,.L11+28
  137 00aa 181C     	 mov r0,r3
  138 00ac FFF7FEFF 	 bl BUS_IO_Init
  139 00b0 031C     	 mov r3,r0
  140 00b2 2370     	 strb r3,[r4]
  141              	.L8:
- 109:../Dave/Generated/DAVE.c ****    }  
- 110:../Dave/Generated/DAVE.c ****   return init_status;
+ 109:../Dave/Generated/DAVE.c ****    } 
+ 110:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
  142              	 .loc 1 110 0
  143 00b4 FB1D     	 add r3,r7,#7
  144 00b6 1B78     	 ldrb r3,[r3]
- 111:../Dave/Generated/DAVE.c **** } /**  End of function DAVE_Init */
- 145              	 .loc 1 111 0
- 146 00b8 181C     	 mov r0,r3
- 147 00ba BD46     	 mov sp,r7
- 148 00bc 03B0     	 add sp,sp,#12
- 149              	 
- 150 00be 90BD     	 pop {r4,r7,pc}
- 151              	.L11:
- 152              	 .align 2
- 153              	.L10:
- 154 00c0 00000000 	 .word CLOCK_XMC1_0
- 155 00c4 00000000 	 .word CAN_NODE_0
- 156 00c8 00000000 	 .word TIMER_10us
- 157 00cc 00000000 	 .word INTERRUPT_TIMER_10us
- 158 00d0 00000000 	 .word ECHO_L
- 159 00d4 00000000 	 .word ECHO_R
- 160 00d8 00000000 	 .word ECHO_C
- 161 00dc 00000000 	 .word BUS_IO_TRIGGER
- 162              	 .cfi_endproc
- 163              	.LFE202:
- 165              	 .text
- 166              	.Letext0:
- 167              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 168              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 169              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
- 170              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_scu.h"
- 171              	 .file 6 "../Dave/Generated/CLOCK_XMC1/clock_xmc1.h"
- 172              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_can.h"
- 173              	 .file 8 "../Dave/Generated/GLOBAL_CAN/global_can.h"
- 174              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_gpio.h"
- 175              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_gpio.h"
- 176              	 .file 11 "../Dave/Generated/CAN_NODE/can_node.h"
- 177              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_ccu4.h"
- 178              	 .file 13 "../Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
- 179              	 .file 14 "../Dave/Generated/TIMER/timer.h"
- 180              	 .file 15 "../Dave/Generated/INTERRUPT/interrupt.h"
- 181              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_eru.h"
- 182              	 .file 17 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
- 183              	 .file 18 "../Dave/Generated/BUS_IO/bus_io.h"
- 184              	 .file 19 "../Dave/Generated/DAVE.h"
- 185              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include/cmsis_gcc.h"
- 186              	 .file 21 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 187              	 .file 22 "../Dave/Generated/CLOCK_XMC1/clock_xmc1_extern.h"
- 188              	 .file 23 "../Dave/Generated/CAN_NODE/can_node_extern.h"
- 189              	 .file 24 "../Dave/Generated/TIMER/timer_extern.h"
- 190              	 .file 25 "../Dave/Generated/INTERRUPT/interrupt_extern.h"
- 191              	 .file 26 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
- 192              	 .file 27 "../Dave/Generated/BUS_IO/bus_io_extern.h"
+ 145 00b8 002B     	 cmp r3,#0
+ 146 00ba 06D1     	 bne .L9
+ 111:../Dave/Generated/DAVE.c ****   {
+ 112:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance CALC_TIME */
+ 113:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&CALC_TIME); 
+ 147              	 .loc 1 113 0
+ 148 00bc FC1D     	 add r4,r7,#7
+ 149 00be 0E4B     	 ldr r3,.L11+32
+ 150 00c0 181C     	 mov r0,r3
+ 151 00c2 FFF7FEFF 	 bl DIGITAL_IO_Init
+ 152 00c6 031C     	 mov r3,r0
+ 153 00c8 2370     	 strb r3,[r4]
+ 154              	.L9:
+ 114:../Dave/Generated/DAVE.c ****    }  
+ 115:../Dave/Generated/DAVE.c ****   return init_status;
+ 155              	 .loc 1 115 0
+ 156 00ca FB1D     	 add r3,r7,#7
+ 157 00cc 1B78     	 ldrb r3,[r3]
+ 116:../Dave/Generated/DAVE.c **** } /**  End of function DAVE_Init */
+ 158              	 .loc 1 116 0
+ 159 00ce 181C     	 mov r0,r3
+ 160 00d0 BD46     	 mov sp,r7
+ 161 00d2 03B0     	 add sp,sp,#12
+ 162              	 
+ 163 00d4 90BD     	 pop {r4,r7,pc}
+ 164              	.L12:
+ 165 00d6 C046     	 .align 2
+ 166              	.L11:
+ 167 00d8 00000000 	 .word CLOCK_XMC1_0
+ 168 00dc 00000000 	 .word CAN_NODE_0
+ 169 00e0 00000000 	 .word TIMER_10us
+ 170 00e4 00000000 	 .word INTERRUPT_TIMER_10us
+ 171 00e8 00000000 	 .word ECHO_L
+ 172 00ec 00000000 	 .word ECHO_R
+ 173 00f0 00000000 	 .word ECHO_C
+ 174 00f4 00000000 	 .word BUS_IO_TRIGGER
+ 175 00f8 00000000 	 .word CALC_TIME
+ 176              	 .cfi_endproc
+ 177              	.LFE206:
+ 179              	 .text
+ 180              	.Letext0:
+ 181              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 182              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 183              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 184              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_scu.h"
+ 185              	 .file 6 "../Dave/Generated/CLOCK_XMC1/clock_xmc1.h"
+ 186              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_can.h"
+ 187              	 .file 8 "../Dave/Generated/GLOBAL_CAN/global_can.h"
+ 188              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_gpio.h"
+ 189              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 190              	 .file 11 "../Dave/Generated/CAN_NODE/can_node.h"
+ 191              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_ccu4.h"
+ 192              	 .file 13 "../Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
+ 193              	 .file 14 "../Dave/Generated/TIMER/timer.h"
+ 194              	 .file 15 "../Dave/Generated/INTERRUPT/interrupt.h"
+ 195              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_eru.h"
+ 196              	 .file 17 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
+ 197              	 .file 18 "../Dave/Generated/BUS_IO/bus_io.h"
+ 198              	 .file 19 "../Dave/Generated/DIGITAL_IO/digital_io.h"
+ 199              	 .file 20 "../Dave/Generated/DAVE.h"
+ 200              	 .file 21 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 201              	 .file 22 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 202              	 .file 23 "../Dave/Generated/CLOCK_XMC1/clock_xmc1_extern.h"
+ 203              	 .file 24 "../Dave/Generated/CAN_NODE/can_node_extern.h"
+ 204              	 .file 25 "../Dave/Generated/TIMER/timer_extern.h"
+ 205              	 .file 26 "../Dave/Generated/INTERRUPT/interrupt_extern.h"
+ 206              	 .file 27 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
+ 207              	 .file 28 "../Dave/Generated/BUS_IO/bus_io_extern.h"
+ 208              	 .file 29 "../Dave/Generated/DIGITAL_IO/digital_io_extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 DAVE.c
     {standard input}:18     .text.DAVE_Init:00000000 $t
     {standard input}:23     .text.DAVE_Init:00000000 DAVE_Init
-    {standard input}:154    .text.DAVE_Init:000000c0 $d
+    {standard input}:167    .text.DAVE_Init:000000d8 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -313,6 +334,7 @@ TIMER_Init
 INTERRUPT_Init
 PIN_INTERRUPT_Init
 BUS_IO_Init
+DIGITAL_IO_Init
 CLOCK_XMC1_0
 CAN_NODE_0
 TIMER_10us
@@ -321,3 +343,4 @@ ECHO_L
 ECHO_R
 ECHO_C
 BUS_IO_TRIGGER
+CALC_TIME

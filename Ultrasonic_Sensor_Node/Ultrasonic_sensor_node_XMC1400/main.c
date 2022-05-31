@@ -23,17 +23,19 @@ CAN_NODE_STATUS_t init_status;
 
 volatile uint16_t t_10us_count = 0;
 
+volatile uint8_t pin_change_count_C = 0;
 volatile uint8_t pin_state_C = 0;
 volatile uint32_t echo_time_C = 0;
 volatile uint32_t echo_count_C = 0;
 volatile uint16_t distance_C = 0;
 
+volatile uint8_t pin_change_count_L = 0;
 volatile uint8_t pin_state_L = 0;
 volatile uint32_t echo_time_L = 0;
 volatile uint32_t echo_count_L = 0;
 volatile uint16_t distance_L = 0;
 
-
+volatile uint8_t pin_change_count_R = 0;
 volatile uint8_t pin_state_R = 0;
 volatile uint32_t echo_time_R = 0;
 volatile uint32_t echo_count_R = 0;
@@ -87,10 +89,11 @@ void TIMER_10us_ISR(){
 	else if (t_10us_count == 11) {
 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
 	}
-	else if (t_10us_count > 2500) {
-		t_10us_count = 0;
+	else if (t_10us_count == 2400) {
 		calc();
-		CAN_send_vaules(distance_C, distance_L, distance_R );
+	}
+	else if (t_10us_count > 2500){
+		t_10us_count = 0;
 	}
 
 }
@@ -98,6 +101,7 @@ void TIMER_10us_ISR(){
 
 
 void ECHO_L_ISR(void){
+	pin_change_count_L ++;
 	pin_state_L = PIN_INTERRUPT_GetPinValue(&ECHO_L);
 
 	if(pin_state_L == 0){
@@ -108,6 +112,7 @@ void ECHO_L_ISR(void){
 }
 
 void ECHO_C_ISR(void){
+	pin_change_count_C ++;
 	pin_state_C = PIN_INTERRUPT_GetPinValue(&ECHO_C);
 
 	if(pin_state_C == 0){
@@ -118,6 +123,7 @@ void ECHO_C_ISR(void){
 }
 
 void ECHO_R_ISR(void){
+	pin_change_count_R ++;
 	pin_state_R = PIN_INTERRUPT_GetPinValue(&ECHO_R);
 
 	if(pin_state_R == 0){
@@ -128,17 +134,41 @@ void ECHO_R_ISR(void){
 }
 
 void calc(){
-	if(echo_time_L < ECHO_TIME_MIN) echo_time_L = ECHO_TIME_MIN;
-	else if(echo_time_L > ECHO_TIME_MAX) echo_time_L = ECHO_TIME_MAX;
-	distance_L = echo_time_L * ECHO_TIME_10us_TO_DISTANCE_cm;
+	DIGITAL_IO_SetOutputHigh(&CALC_TIME);
 
-	if(echo_time_C < ECHO_TIME_MIN) echo_time_C = ECHO_TIME_MIN;
-	else if(echo_time_C > ECHO_TIME_MAX) echo_time_C = ECHO_TIME_MAX;
-	distance_C = echo_time_C * ECHO_TIME_10us_TO_DISTANCE_cm;
+	if(pin_change_count_L == 2){
+		if(echo_time_L < ECHO_TIME_MIN) echo_time_L = ECHO_TIME_MIN;
+		else if(echo_time_L > ECHO_TIME_MAX) echo_time_L = ECHO_TIME_MAX;
+		distance_L = echo_time_L * ECHO_TIME_10us_TO_DISTANCE_cm;
+	}
+	else distance_L = 0;
 
-	if(echo_time_R < ECHO_TIME_MIN) echo_time_R = ECHO_TIME_MIN;
-	else if(echo_time_R > ECHO_TIME_MAX) echo_time_R = ECHO_TIME_MAX;
-	distance_R = echo_time_R * ECHO_TIME_10us_TO_DISTANCE_cm;
+	if(pin_change_count_C == 2){
+		if(echo_time_C < ECHO_TIME_MIN) echo_time_C = ECHO_TIME_MIN;
+		else if(echo_time_C > ECHO_TIME_MAX) echo_time_C = ECHO_TIME_MAX;
+		distance_C = echo_time_C * ECHO_TIME_10us_TO_DISTANCE_cm;
+	}
+	else distance_C = 0;
+
+	if(pin_change_count_R == 2){
+		if(echo_time_R < ECHO_TIME_MIN) echo_time_R = ECHO_TIME_MIN;
+		else if(echo_time_R > ECHO_TIME_MAX) echo_time_R = ECHO_TIME_MAX;
+		distance_R = echo_time_R * ECHO_TIME_10us_TO_DISTANCE_cm;
+	}
+	else distance_R = 0;
+
+
+	CAN_send_vaules(distance_C, distance_L, distance_R );
+
+	//rest
+	pin_change_count_C = 0;
+	pin_change_count_L = 0;
+	pin_change_count_R = 0;
+	echo_count_C = 0;
+	echo_count_L = 0;
+	echo_count_R = 0;
+
+	DIGITAL_IO_SetOutputLow(&CALC_TIME);
 }
 
 void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN ){

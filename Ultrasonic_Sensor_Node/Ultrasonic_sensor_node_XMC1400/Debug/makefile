@@ -16,6 +16,7 @@ RM := rm -rf
 -include Dave/Generated/INTERRUPT/subdir.mk
 -include Dave/Generated/GLOBAL_CCU4/subdir.mk
 -include Dave/Generated/GLOBAL_CAN/subdir.mk
+-include Dave/Generated/DIGITAL_IO/subdir.mk
 -include Dave/Generated/CPU_CTRL_XMC1/subdir.mk
 -include Dave/Generated/CLOCK_XMC1/subdir.mk
 -include Dave/Generated/CAN_NODE/subdir.mk

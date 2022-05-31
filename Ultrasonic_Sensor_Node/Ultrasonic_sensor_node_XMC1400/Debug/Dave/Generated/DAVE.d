@@ -50,7 +50,10 @@ Dave/Generated/DAVE.o Dave/Generated/DAVE.d Dave/Generated/DAVE.o: \
  ../Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h \
  ../Dave/Generated/PIN_INTERRUPT/pin_interrupt.h \
  ../Dave/Generated/BUS_IO/bus_io.h ../Dave/Generated/BUS_IO/bus_io_conf.h \
- ../Dave/Generated/BUS_IO/bus_io_extern.h
+ ../Dave/Generated/BUS_IO/bus_io_extern.h \
+ ../Dave/Generated/DIGITAL_IO/digital_io.h \
+ ../Dave/Generated/DIGITAL_IO/digital_io_conf.h \
+ ../Dave/Generated/DIGITAL_IO/digital_io_extern.h
 
 ../Dave/Generated/DAVE.h:
 
@@ -159,3 +162,9 @@ C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400
 ../Dave/Generated/BUS_IO/bus_io_conf.h:
 
 ../Dave/Generated/BUS_IO/bus_io_extern.h:
+
+../Dave/Generated/DIGITAL_IO/digital_io.h:
+
+../Dave/Generated/DIGITAL_IO/digital_io_conf.h:
+
+../Dave/Generated/DIGITAL_IO/digital_io_extern.h:

@@ -52,7 +52,10 @@ main.o main.d main.o: ../main.c \
  C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT/pin_interrupt.h \
  C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io.h \
  C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io_conf.h \
- C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io_extern.h
+ C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io_extern.h \
+ C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO/digital_io.h \
+ C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO/digital_io_conf.h \
+ C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO/digital_io_extern.h
 
 C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DAVE.h:
 
@@ -161,3 +164,9 @@ C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400
 C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io_conf.h:
 
 C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io_extern.h:
+
+C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO/digital_io.h:
+
+C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO/digital_io_conf.h:
+
+C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO/digital_io_extern.h:

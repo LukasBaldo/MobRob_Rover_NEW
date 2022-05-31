@@ -14,12 +14,12 @@
   14              	 .text
   15              	.Ltext0:
   16              	 .cfi_sections .debug_frame
-  17              	 .section .text.XMC_GPIO_GetInput,"ax",%progbits
+  17              	 .section .text.XMC_GPIO_SetOutputHigh,"ax",%progbits
   18              	 .align 2
   19              	 .code 16
   20              	 .thumb_func
-  22              	XMC_GPIO_GetInput:
-  23              	.LFB125:
+  22              	XMC_GPIO_SetOutputHigh:
+  23              	.LFB122:
   24              	 .file 1 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_gpio.h"
    1:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
    2:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  * @file xmc_gpio.h
@@ -283,10 +283,47 @@
  260:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
  261:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputHigh(XMC_GPIO_PORT_t *const port, const uint8_t pin)
  262:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  25              	 .loc 1 262 0
+  26              	 .cfi_startproc
+  27 0000 80B5     	 push {r7,lr}
+  28              	.LCFI0:
+  29              	 .cfi_def_cfa_offset 8
+  30              	 .cfi_offset 7,-8
+  31              	 .cfi_offset 14,-4
+  32 0002 82B0     	 sub sp,sp,#8
+  33              	.LCFI1:
+  34              	 .cfi_def_cfa_offset 16
+  35 0004 00AF     	 add r7,sp,#0
+  36              	.LCFI2:
+  37              	 .cfi_def_cfa_register 7
+  38 0006 7860     	 str r0,[r7,#4]
+  39 0008 0A1C     	 mov r2,r1
+  40 000a FB1C     	 add r3,r7,#3
+  41 000c 1A70     	 strb r2,[r3]
  263:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputHigh: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
  264:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
  265:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)0x1U << pin;
+  42              	 .loc 1 265 0
+  43 000e FB1C     	 add r3,r7,#3
+  44 0010 1B78     	 ldrb r3,[r3]
+  45 0012 0122     	 mov r2,#1
+  46 0014 9A40     	 lsl r2,r2,r3
+  47 0016 7B68     	 ldr r3,[r7,#4]
+  48 0018 5A60     	 str r2,[r3,#4]
  266:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  49              	 .loc 1 266 0
+  50 001a BD46     	 mov sp,r7
+  51 001c 02B0     	 add sp,sp,#8
+  52              	 
+  53 001e 80BD     	 pop {r7,pc}
+  54              	 .cfi_endproc
+  55              	.LFE122:
+  57              	 .section .text.XMC_GPIO_SetOutputLow,"ax",%progbits
+  58              	 .align 2
+  59              	 .code 16
+  60              	 .thumb_func
+  62              	XMC_GPIO_SetOutputLow:
+  63              	.LFB123:
  267:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
  268:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
  269:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
@@ -309,10 +346,48 @@
  286:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
  287:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLow(XMC_GPIO_PORT_t *const port, const uint8_t pin)
  288:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  64              	 .loc 1 288 0
+  65              	 .cfi_startproc
+  66 0000 80B5     	 push {r7,lr}
+  67              	.LCFI3:
+  68              	 .cfi_def_cfa_offset 8
+  69              	 .cfi_offset 7,-8
+  70              	 .cfi_offset 14,-4
+  71 0002 82B0     	 sub sp,sp,#8
+  72              	.LCFI4:
+  73              	 .cfi_def_cfa_offset 16
+  74 0004 00AF     	 add r7,sp,#0
+  75              	.LCFI5:
+  76              	 .cfi_def_cfa_register 7
+  77 0006 7860     	 str r0,[r7,#4]
+  78 0008 0A1C     	 mov r2,r1
+  79 000a FB1C     	 add r3,r7,#3
+  80 000c 1A70     	 strb r2,[r3]
  289:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLow: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
  290:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
  291:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = 0x10000U << pin;
+  81              	 .loc 1 291 0
+  82 000e FB1C     	 add r3,r7,#3
+  83 0010 1B78     	 ldrb r3,[r3]
+  84 0012 8022     	 mov r2,#128
+  85 0014 5202     	 lsl r2,r2,#9
+  86 0016 9A40     	 lsl r2,r2,r3
+  87 0018 7B68     	 ldr r3,[r7,#4]
+  88 001a 5A60     	 str r2,[r3,#4]
  292:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  89              	 .loc 1 292 0
+  90 001c BD46     	 mov sp,r7
+  91 001e 02B0     	 add sp,sp,#8
+  92              	 
+  93 0020 80BD     	 pop {r7,pc}
+  94              	 .cfi_endproc
+  95              	.LFE123:
+  97 0022 C046     	 .section .text.XMC_GPIO_GetInput,"ax",%progbits
+  98              	 .align 2
+  99              	 .code 16
+ 100              	 .thumb_func
+ 102              	XMC_GPIO_GetInput:
+ 103              	.LFB125:
  293:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
  294:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** /**
  295:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****  *
@@ -360,51 +435,51 @@
  337:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
  338:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE uint32_t XMC_GPIO_GetInput(XMC_GPIO_PORT_t *const port, const uint8_t pin)
  339:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** {
-  25              	 .loc 1 339 0
-  26              	 .cfi_startproc
-  27 0000 80B5     	 push {r7,lr}
-  28              	.LCFI0:
-  29              	 .cfi_def_cfa_offset 8
-  30              	 .cfi_offset 7,-8
-  31              	 .cfi_offset 14,-4
-  32 0002 82B0     	 sub sp,sp,#8
-  33              	.LCFI1:
-  34              	 .cfi_def_cfa_offset 16
-  35 0004 00AF     	 add r7,sp,#0
-  36              	.LCFI2:
-  37              	 .cfi_def_cfa_register 7
-  38 0006 7860     	 str r0,[r7,#4]
-  39 0008 0A1C     	 mov r2,r1
-  40 000a FB1C     	 add r3,r7,#3
-  41 000c 1A70     	 strb r2,[r3]
+ 104              	 .loc 1 339 0
+ 105              	 .cfi_startproc
+ 106 0000 80B5     	 push {r7,lr}
+ 107              	.LCFI6:
+ 108              	 .cfi_def_cfa_offset 8
+ 109              	 .cfi_offset 7,-8
+ 110              	 .cfi_offset 14,-4
+ 111 0002 82B0     	 sub sp,sp,#8
+ 112              	.LCFI7:
+ 113              	 .cfi_def_cfa_offset 16
+ 114 0004 00AF     	 add r7,sp,#0
+ 115              	.LCFI8:
+ 116              	 .cfi_def_cfa_register 7
+ 117 0006 7860     	 str r0,[r7,#4]
+ 118 0008 0A1C     	 mov r2,r1
+ 119 000a FB1C     	 add r3,r7,#3
+ 120 000c 1A70     	 strb r2,[r3]
  340:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_GetInput: Invalid port", XMC_GPIO_CHECK_PORT(port));
  341:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** 
  342:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h ****   return (((port->IN) >> pin) & 0x1U);
-  42              	 .loc 1 342 0
-  43 000e 7B68     	 ldr r3,[r7,#4]
-  44 0010 5A6A     	 ldr r2,[r3,#36]
-  45 0012 FB1C     	 add r3,r7,#3
-  46 0014 1B78     	 ldrb r3,[r3]
-  47 0016 DA40     	 lsr r2,r2,r3
-  48 0018 131C     	 mov r3,r2
-  49 001a 0122     	 mov r2,#1
-  50 001c 1340     	 and r3,r2
+ 121              	 .loc 1 342 0
+ 122 000e 7B68     	 ldr r3,[r7,#4]
+ 123 0010 5A6A     	 ldr r2,[r3,#36]
+ 124 0012 FB1C     	 add r3,r7,#3
+ 125 0014 1B78     	 ldrb r3,[r3]
+ 126 0016 DA40     	 lsr r2,r2,r3
+ 127 0018 131C     	 mov r3,r2
+ 128 001a 0122     	 mov r2,#1
+ 129 001c 1340     	 and r3,r2
  343:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc\xmc_gpio.h **** }
-  51              	 .loc 1 343 0
-  52 001e 181C     	 mov r0,r3
-  53 0020 BD46     	 mov sp,r7
-  54 0022 02B0     	 add sp,sp,#8
-  55              	 
-  56 0024 80BD     	 pop {r7,pc}
-  57              	 .cfi_endproc
-  58              	.LFE125:
-  60 0026 C046     	 .section .text.PIN_INTERRUPT_GetPinValue,"ax",%progbits
-  61              	 .align 2
-  62              	 .code 16
-  63              	 .thumb_func
-  65              	PIN_INTERRUPT_GetPinValue:
-  66              	.LFB201:
-  67              	 .file 2 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
+ 130              	 .loc 1 343 0
+ 131 001e 181C     	 mov r0,r3
+ 132 0020 BD46     	 mov sp,r7
+ 133 0022 02B0     	 add sp,sp,#8
+ 134              	 
+ 135 0024 80BD     	 pop {r7,pc}
+ 136              	 .cfi_endproc
+ 137              	.LFE125:
+ 139 0026 C046     	 .section .text.PIN_INTERRUPT_GetPinValue,"ax",%progbits
+ 140              	 .align 2
+ 141              	 .code 16
+ 142              	 .thumb_func
+ 144              	PIN_INTERRUPT_GetPinValue:
+ 145              	.LFB201:
+ 146              	 .file 2 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
    1:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
    2:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @file pin_interrupt.h
    3:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @date 2021-01-08
@@ -767,115 +842,526 @@
  360:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** */
  361:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** __STATIC_INLINE uint32_t PIN_INTERRUPT_GetPinValue(const PIN_INTERRUPT_t *const handle)
  362:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
-  68              	 .loc 2 362 0
-  69              	 .cfi_startproc
-  70 0000 80B5     	 push {r7,lr}
-  71              	.LCFI3:
-  72              	 .cfi_def_cfa_offset 8
-  73              	 .cfi_offset 7,-8
-  74              	 .cfi_offset 14,-4
-  75 0002 82B0     	 sub sp,sp,#8
-  76              	.LCFI4:
-  77              	 .cfi_def_cfa_offset 16
-  78 0004 00AF     	 add r7,sp,#0
-  79              	.LCFI5:
-  80              	 .cfi_def_cfa_register 7
-  81 0006 7860     	 str r0,[r7,#4]
+ 147              	 .loc 2 362 0
+ 148              	 .cfi_startproc
+ 149 0000 80B5     	 push {r7,lr}
+ 150              	.LCFI9:
+ 151              	 .cfi_def_cfa_offset 8
+ 152              	 .cfi_offset 7,-8
+ 153              	 .cfi_offset 14,-4
+ 154 0002 82B0     	 sub sp,sp,#8
+ 155              	.LCFI10:
+ 156              	 .cfi_def_cfa_offset 16
+ 157 0004 00AF     	 add r7,sp,#0
+ 158              	.LCFI11:
+ 159              	 .cfi_def_cfa_register 7
+ 160 0006 7860     	 str r0,[r7,#4]
  363:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ASSERT("PIN_INTERRUPT_GetPinValue: Handler null pointer", handle != NULL);
  364:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   return (XMC_GPIO_GetInput(handle->port, handle->pin));
-  82              	 .loc 2 364 0
-  83 0008 7B68     	 ldr r3,[r7,#4]
-  84 000a 5A68     	 ldr r2,[r3,#4]
-  85 000c 7B68     	 ldr r3,[r7,#4]
-  86 000e 9B7F     	 ldrb r3,[r3,#30]
-  87 0010 101C     	 mov r0,r2
-  88 0012 191C     	 mov r1,r3
-  89 0014 FFF7FEFF 	 bl XMC_GPIO_GetInput
-  90 0018 031C     	 mov r3,r0
+ 161              	 .loc 2 364 0
+ 162 0008 7B68     	 ldr r3,[r7,#4]
+ 163 000a 5A68     	 ldr r2,[r3,#4]
+ 164 000c 7B68     	 ldr r3,[r7,#4]
+ 165 000e 9B7F     	 ldrb r3,[r3,#30]
+ 166 0010 101C     	 mov r0,r2
+ 167 0012 191C     	 mov r1,r3
+ 168 0014 FFF7FEFF 	 bl XMC_GPIO_GetInput
+ 169 0018 031C     	 mov r3,r0
  365:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** }
-  91              	 .loc 2 365 0
-  92 001a 181C     	 mov r0,r3
-  93 001c BD46     	 mov sp,r7
-  94 001e 02B0     	 add sp,sp,#8
-  95              	 
-  96 0020 80BD     	 pop {r7,pc}
-  97              	 .cfi_endproc
-  98              	.LFE201:
- 100              	 .global CAN_OK
- 101 0022 C046     	 .section .bss.CAN_OK,"aw",%nobits
- 104              	CAN_OK:
- 105 0000 00       	 .space 1
- 106              	 .comm init_status,1,1
- 107              	 .global t_10us_count
- 108              	 .section .bss.t_10us_count,"aw",%nobits
- 109              	 .align 1
- 112              	t_10us_count:
- 113 0000 0000     	 .space 2
- 114              	 .global pin_state_C
- 115              	 .section .bss.pin_state_C,"aw",%nobits
- 118              	pin_state_C:
- 119 0000 00       	 .space 1
- 120              	 .global echo_time_C
- 121              	 .section .bss.echo_time_C,"aw",%nobits
- 122              	 .align 2
- 125              	echo_time_C:
- 126 0000 00000000 	 .space 4
- 127              	 .global echo_count_C
- 128              	 .section .bss.echo_count_C,"aw",%nobits
- 129              	 .align 2
- 132              	echo_count_C:
- 133 0000 00000000 	 .space 4
- 134              	 .global distance_C
- 135              	 .section .bss.distance_C,"aw",%nobits
- 136              	 .align 1
- 139              	distance_C:
- 140 0000 0000     	 .space 2
- 141              	 .global pin_state_L
- 142              	 .section .bss.pin_state_L,"aw",%nobits
- 145              	pin_state_L:
- 146 0000 00       	 .space 1
- 147              	 .global echo_time_L
- 148              	 .section .bss.echo_time_L,"aw",%nobits
- 149              	 .align 2
- 152              	echo_time_L:
- 153 0000 00000000 	 .space 4
- 154              	 .global echo_count_L
- 155              	 .section .bss.echo_count_L,"aw",%nobits
- 156              	 .align 2
- 159              	echo_count_L:
- 160 0000 00000000 	 .space 4
- 161              	 .global distance_L
- 162              	 .section .bss.distance_L,"aw",%nobits
- 163              	 .align 1
- 166              	distance_L:
- 167 0000 0000     	 .space 2
- 168              	 .global pin_state_R
- 169              	 .section .bss.pin_state_R,"aw",%nobits
- 172              	pin_state_R:
- 173 0000 00       	 .space 1
- 174              	 .global echo_time_R
- 175              	 .section .bss.echo_time_R,"aw",%nobits
- 176              	 .align 2
- 179              	echo_time_R:
- 180 0000 00000000 	 .space 4
- 181              	 .global echo_count_R
- 182              	 .section .bss.echo_count_R,"aw",%nobits
- 183              	 .align 2
- 186              	echo_count_R:
- 187 0000 00000000 	 .space 4
- 188              	 .global distance_R
- 189              	 .section .bss.distance_R,"aw",%nobits
- 190              	 .align 1
- 193              	distance_R:
- 194 0000 0000     	 .space 2
- 195              	 .section .text.main,"ax",%progbits
- 196              	 .align 2
- 197              	 .global main
- 198              	 .code 16
- 199              	 .thumb_func
- 201              	main:
- 202              	.LFB202:
- 203              	 .file 3 "../main.c"
+ 170              	 .loc 2 365 0
+ 171 001a 181C     	 mov r0,r3
+ 172 001c BD46     	 mov sp,r7
+ 173 001e 02B0     	 add sp,sp,#8
+ 174              	 
+ 175 0020 80BD     	 pop {r7,pc}
+ 176              	 .cfi_endproc
+ 177              	.LFE201:
+ 179 0022 C046     	 .section .text.DIGITAL_IO_SetOutputHigh,"ax",%progbits
+ 180              	 .align 2
+ 181              	 .code 16
+ 182              	 .thumb_func
+ 184              	DIGITAL_IO_SetOutputHigh:
+ 185              	.LFB202:
+ 186              	 .file 3 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO/digital_io.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /*
+   2:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+   3:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @file digital_io.h
+   4:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @date 2021-01-08
+   5:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+   6:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * NOTE:
+   7:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * This file is generated by DAVE. Any manual modification done to this file will be lost when the 
+   8:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+   9:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @cond
+  10:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  11:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * DIGITAL_IO v4.0.18 - The DIGITAL_IO APP is used to configure a port pin as digital Input/Output.
+  12:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  13:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * Copyright (c) 2015-2020, Infineon Technologies AG
+  14:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * All rights reserved.
+  15:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  16:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  17:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * following conditions are met:
+  18:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  19:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  20:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   disclaimer.
+  21:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  22:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  23:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  24:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  25:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  26:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   products derived from this software without specific prior written permission.
+  27:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  28:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  29:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  30:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  31:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  32:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  33:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  34:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  35:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  36:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  37:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * with Infineon Technologies AG (dave@infineon.com).
+  38:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  39:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  40:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * Change History
+  41:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * --------------
+  42:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  43:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-02-16
+  44:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Initial version
+  45:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  46:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-04-22
+  47:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - XMC_ASSERT is added in static inline functions.<br>
+  48:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  49:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-06-20
+  50:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Version check added for XMCLib dependency.<br>
+  51:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  52:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-12-22
+  53:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Added hardware controlled IO feature.
+  54:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2016-07-08:
+  55:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Fixed incorrect case for an included header.<br>
+  56:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2021-01-08:
+  57:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Modified check for minimum XMCLib version
+  58:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  59:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @endcond
+  60:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  61:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  */
+  62:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  63:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+  64:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * HEADER FILES
+  65:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  66:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  67:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #ifndef DIGITAL_IO_H
+  68:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #define DIGITAL_IO_H
+  69:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  70:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #include "xmc_gpio.h"
+  71:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #include "DAVE_Common.h"
+  72:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #include "digital_io_conf.h"
+  73:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  74:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+  75:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * MACROS
+  76:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  77:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #define DIGITAL_IO_XMC_LIB_MAJOR_VERSION 2
+  78:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #define DIGITAL_IO_XMC_LIB_MINOR_VERSION 0
+  79:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #define DIGITAL_IO_XMC_LIB_PATCH_VERSION 0
+  80:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  81:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #if !((XMC_LIB_MAJOR_VERSION > DIGITAL_IO_XMC_LIB_MAJOR_VERSION) ||\
+  82:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****       ((XMC_LIB_MAJOR_VERSION == DIGITAL_IO_XMC_LIB_MAJOR_VERSION) && (XMC_LIB_MINOR_VERSION > DIGI
+  83:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****       ((XMC_LIB_MAJOR_VERSION == DIGITAL_IO_XMC_LIB_MAJOR_VERSION) && (XMC_LIB_MINOR_VERSION == DIG
+  84:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #error "DIGITAL_IO requires XMC Peripheral Library v2.0.0 or higher"
+  85:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #endif
+  86:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  87:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  /*************************************************************************************************
+  88:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * ENUMS
+  89:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  90:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  91:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+  92:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @ingroup DIGITAL_IO_enumerations
+  93:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @{
+  94:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+  95:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  96:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+  97:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Initialization status of DIGITAL_IO APP.
+  98:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+  99:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** typedef enum DIGITAL_IO_STATUS
+ 100:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 101:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   DIGITAL_IO_STATUS_OK = 0U,/**< 0=Status OK */
+ 102:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   DIGITAL_IO_STATUS_FAILURE = 1U/**< 1=Status Failed */
+ 103:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** } DIGITAL_IO_STATUS_t;
+ 104:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 105:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 106:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @}
+ 107:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 108:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 109:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+ 110:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * DATA STRUCTURES
+ 111:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+ 112:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 113:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @ingroup DIGITAL_IO_datastructures
+ 114:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @{
+ 115:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 116:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 117:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 118:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Initialization data structure of DIGITAL_IO APP
+ 119:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 120:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** typedef struct DIGITAL_IO
+ 121:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 122:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_GPIO_PORT_t *const gpio_port;             /**< port number */
+ 123:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   const XMC_GPIO_CONFIG_t gpio_config;          /**< mode, initial output level and pad driver stre
+ 124:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   const uint8_t gpio_pin;                       /**< pin number */
+ 125:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   const XMC_GPIO_HWCTRL_t hwctrl;               /**< Hardware port control */
+ 126:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** } DIGITAL_IO_t;
+ 127:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 128:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 129:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 130:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @}
+ 131:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 132:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 133:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 134:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+ 135:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  * API Prototypes
+ 136:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+ 137:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 138:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 139:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #ifdef __cplusplus
+ 140:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** extern "C" {
+ 141:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** #endif
+ 142:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 143:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 144:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @ingroup DIGITAL_IO_apidoc
+ 145:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @{
+ 146:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 147:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 148:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 149:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 150:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 151:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Get DIGITAL_IO APP version
+ 152:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return DAVE_APP_VERSION_t APP version information (major, minor and patch number)
+ 153:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 154:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description: </b><br>
+ 155:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * The function can be used to check application software compatibility with a
+ 156:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * specific version of the APP.
+ 157:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 158:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 159:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 160:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 161:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * #include "DAVE.h"
+ 162:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 163:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * int main(void)
+ 164:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * {
+ 165:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_STATUS_t init_status;
+ 166:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_APP_VERSION_t version;
+ 167:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 168:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   // Initialize DIGITAL_IO APP:
+ 169:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   // DIGITAL_IO_Init() is called from within DAVE_Init().
+ 170:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   init_status = DAVE_Init();
+ 171:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   if(init_status == DAVE_STATUS_SUCCESS)
+ 172:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 173:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     version = DIGITAL_IO_GetAppVersion();
+ 174:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     if (version.major != 4U) {
+ 175:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     // Probably, not the right version.
+ 176:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 177:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 178:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 179:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     // More code here
+ 180:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     while(1) {
+ 181:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 182:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 183:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     return (1);
+ 184:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *  }
+ 185:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @endcode<BR>
+ 186:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 187:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 188:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** DAVE_APP_VERSION_t DIGITAL_IO_GetAppVersion(void);
+ 189:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 190:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 191:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 192:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Function to initialize the port pin as per UI settings.
+ 193:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @param handler Pointer pointing to APP data structure. Refer @ref DIGITAL_IO_t for details.
+ 194:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return DIGITAL_IO_STATUS_t DIGITAL_IO APP status. Refer @ref DIGITAL_IO_STATUS_t structure for d
+ 195:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 196:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description:</b><br>
+ 197:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * This function initializes GPIO port registers IOCR,PDISC,OMR,PDR/PHCR to configure pin direction,
+ 198:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * and pad driver strength/hysteresis.
+ 199:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 200:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Related APIs:</b><BR>
+ 201:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * None
+ 202:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 203:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 204:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 205:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * #include "DAVE.h" //Declarations from DAVE Code Generation (includes SFR declaration)
+ 206:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 207:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * int main(void)
+ 208:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * {
+ 209:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_STATUS_t status;
+ 210:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   status = DAVE_Init();  //(DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0) is called within DAVE_In
+ 211:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   if(status == DAVE_STATUS_SUCCESS)
+ 212:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 213:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG("DAVE Apps initialization success\n");
+ 214:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 215:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   else
+ 216:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 217:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 218:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     while(1U)
+ 219:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     {
+ 220:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 221:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 222:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   //Placeholder for user application code. The while loop below can be replaced with user applica
+ 223:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   while(1U)
+ 224:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 225:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 226:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   return 1U;
+ 227:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *  }
+ 228:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *  @endcode
+ 229:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 230:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 231:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** DIGITAL_IO_STATUS_t DIGITAL_IO_Init(const DIGITAL_IO_t *const handler);
+ 232:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 233:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 234:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 235:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Function to set port pin high.
+ 236:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @param handler Pointer pointing to APP data structure. Refer @ref DIGITAL_IO_t for details.
+ 237:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return None
+ 238:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 239:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description:</b><br>
+ 240:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * This function configures port output modification register Pn_OMR, to make port pin to high level
+ 241:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 242:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Related APIs:</b><BR>
+ 243:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *  DIGITAL_IO_SetOutputLow()
+ 244:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 245:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 246:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 247:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * #include "DAVE.h" //Declarations from DAVE Code Generation (includes SFR declaration)
+ 248:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 249:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * int main(void)
+ 250:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * {
+ 251:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_STATUS_t status;
+ 252:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   status = DAVE_Init();  //(DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0) is called within DAVE_In
+ 253:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   if(status == DAVE_STATUS_SUCCESS)
+ 254:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 255:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG("DAVE Apps initialization success\n");
+ 256:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 257:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   else
+ 258:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 259:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 260:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     while(1U)
+ 261:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     {
+ 262:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 263:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 264:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   //Placeholder for user application code. The while loop below can be replaced with user applica
+ 265:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
+ 266:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   while(1U)
+ 267:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 268:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *     // Add application code here
+ 269:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 270:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 271:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   return (1);
+ 272:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * }
+ 273:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *  @endcode
+ 274:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 275:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 276:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** __STATIC_INLINE void DIGITAL_IO_SetOutputHigh(const DIGITAL_IO_t *const handler)
+ 277:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 187              	 .loc 3 277 0
+ 188              	 .cfi_startproc
+ 189 0000 80B5     	 push {r7,lr}
+ 190              	.LCFI12:
+ 191              	 .cfi_def_cfa_offset 8
+ 192              	 .cfi_offset 7,-8
+ 193              	 .cfi_offset 14,-4
+ 194 0002 82B0     	 sub sp,sp,#8
+ 195              	.LCFI13:
+ 196              	 .cfi_def_cfa_offset 16
+ 197 0004 00AF     	 add r7,sp,#0
+ 198              	.LCFI14:
+ 199              	 .cfi_def_cfa_register 7
+ 200 0006 7860     	 str r0,[r7,#4]
+ 278:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_ASSERT("DIGITAL_IO_SetOutputHigh: handler null pointer", handler != NULL);
+ 279:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_GPIO_SetOutputHigh(handler->gpio_port, handler->gpio_pin);
+ 201              	 .loc 3 279 0
+ 202 0008 7B68     	 ldr r3,[r7,#4]
+ 203 000a 1A68     	 ldr r2,[r3]
+ 204 000c 7B68     	 ldr r3,[r7,#4]
+ 205 000e 1B7B     	 ldrb r3,[r3,#12]
+ 206 0010 101C     	 mov r0,r2
+ 207 0012 191C     	 mov r1,r3
+ 208 0014 FFF7FEFF 	 bl XMC_GPIO_SetOutputHigh
+ 280:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** }
+ 209              	 .loc 3 280 0
+ 210 0018 BD46     	 mov sp,r7
+ 211 001a 02B0     	 add sp,sp,#8
+ 212              	 
+ 213 001c 80BD     	 pop {r7,pc}
+ 214              	 .cfi_endproc
+ 215              	.LFE202:
+ 217 001e C046     	 .section .text.DIGITAL_IO_SetOutputLow,"ax",%progbits
+ 218              	 .align 2
+ 219              	 .code 16
+ 220              	 .thumb_func
+ 222              	DIGITAL_IO_SetOutputLow:
+ 223              	.LFB203:
+ 281:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 282:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 283:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Function to reset port pin.
+ 284:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @param handler Pointer pointing to APP data structure. Refer @ref DIGITAL_IO_t for details.
+ 285:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return None
+ 286:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 287:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description:</b><br>
+ 288:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * This function configures port output modification register Pn_OMR, to make port pin to low level.
+ 289:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 290:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Related APIs:</b><BR>
+ 291:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * DIGITAL_IO_SetOutputHigh()
+ 292:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 293:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 294:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 295:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *  #include "DAVE.h" //Declarations from DAVE Code Generation (includes SFR declaration)
+ 296:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 297:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *  int main(void)
+ 298:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *  {
+ 299:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    DAVE_STATUS_t status;
+ 300:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    status = DAVE_Init();  //(DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0) is called within DAVE_I
+ 301:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    if(status == DAVE_STATUS_SUCCESS)
+ 302:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    {
+ 303:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *      XMC_DEBUG("DAVE Apps initialization success\n");
+ 304:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    }
+ 305:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    else
+ 306:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    {
+ 307:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *      XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 308:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *      while(1U)
+ 309:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *      {
+ 310:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *      }
+ 311:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    }
+ 312:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    //Placeholder for user application code. The while loop below can be replaced with user applic
+ 313:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
+ 314:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    while(1U)
+ 315:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    {
+ 316:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *      // Add application code here
+ 317:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *    }
+ 318:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 319:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *   return (1);
+ 320:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** * }
+ 321:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** *  @endcode
+ 322:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 323:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 324:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** __STATIC_INLINE void DIGITAL_IO_SetOutputLow(const DIGITAL_IO_t *const handler)
+ 325:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 224              	 .loc 3 325 0
+ 225              	 .cfi_startproc
+ 226 0000 80B5     	 push {r7,lr}
+ 227              	.LCFI15:
+ 228              	 .cfi_def_cfa_offset 8
+ 229              	 .cfi_offset 7,-8
+ 230              	 .cfi_offset 14,-4
+ 231 0002 82B0     	 sub sp,sp,#8
+ 232              	.LCFI16:
+ 233              	 .cfi_def_cfa_offset 16
+ 234 0004 00AF     	 add r7,sp,#0
+ 235              	.LCFI17:
+ 236              	 .cfi_def_cfa_register 7
+ 237 0006 7860     	 str r0,[r7,#4]
+ 326:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_ASSERT("DIGITAL_IO_SetOutputLow: handler null pointer", handler != NULL);
+ 327:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_GPIO_SetOutputLow(handler->gpio_port,handler->gpio_pin);
+ 238              	 .loc 3 327 0
+ 239 0008 7B68     	 ldr r3,[r7,#4]
+ 240 000a 1A68     	 ldr r2,[r3]
+ 241 000c 7B68     	 ldr r3,[r7,#4]
+ 242 000e 1B7B     	 ldrb r3,[r3,#12]
+ 243 0010 101C     	 mov r0,r2
+ 244 0012 191C     	 mov r1,r3
+ 245 0014 FFF7FEFF 	 bl XMC_GPIO_SetOutputLow
+ 328:C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO\digital_io.h **** }
+ 246              	 .loc 3 328 0
+ 247 0018 BD46     	 mov sp,r7
+ 248 001a 02B0     	 add sp,sp,#8
+ 249              	 
+ 250 001c 80BD     	 pop {r7,pc}
+ 251              	 .cfi_endproc
+ 252              	.LFE203:
+ 254              	 .global CAN_OK
+ 255 001e C046     	 .section .bss.CAN_OK,"aw",%nobits
+ 258              	CAN_OK:
+ 259 0000 00       	 .space 1
+ 260              	 .comm init_status,1,1
+ 261              	 .global t_10us_count
+ 262              	 .section .bss.t_10us_count,"aw",%nobits
+ 263              	 .align 1
+ 266              	t_10us_count:
+ 267 0000 0000     	 .space 2
+ 268              	 .global pin_change_count_C
+ 269              	 .section .bss.pin_change_count_C,"aw",%nobits
+ 272              	pin_change_count_C:
+ 273 0000 00       	 .space 1
+ 274              	 .global pin_state_C
+ 275              	 .section .bss.pin_state_C,"aw",%nobits
+ 278              	pin_state_C:
+ 279 0000 00       	 .space 1
+ 280              	 .global echo_time_C
+ 281              	 .section .bss.echo_time_C,"aw",%nobits
+ 282              	 .align 2
+ 285              	echo_time_C:
+ 286 0000 00000000 	 .space 4
+ 287              	 .global echo_count_C
+ 288              	 .section .bss.echo_count_C,"aw",%nobits
+ 289              	 .align 2
+ 292              	echo_count_C:
+ 293 0000 00000000 	 .space 4
+ 294              	 .global distance_C
+ 295              	 .section .bss.distance_C,"aw",%nobits
+ 296              	 .align 1
+ 299              	distance_C:
+ 300 0000 0000     	 .space 2
+ 301              	 .global pin_change_count_L
+ 302              	 .section .bss.pin_change_count_L,"aw",%nobits
+ 305              	pin_change_count_L:
+ 306 0000 00       	 .space 1
+ 307              	 .global pin_state_L
+ 308              	 .section .bss.pin_state_L,"aw",%nobits
+ 311              	pin_state_L:
+ 312 0000 00       	 .space 1
+ 313              	 .global echo_time_L
+ 314              	 .section .bss.echo_time_L,"aw",%nobits
+ 315              	 .align 2
+ 318              	echo_time_L:
+ 319 0000 00000000 	 .space 4
+ 320              	 .global echo_count_L
+ 321              	 .section .bss.echo_count_L,"aw",%nobits
+ 322              	 .align 2
+ 325              	echo_count_L:
+ 326 0000 00000000 	 .space 4
+ 327              	 .global distance_L
+ 328              	 .section .bss.distance_L,"aw",%nobits
+ 329              	 .align 1
+ 332              	distance_L:
+ 333 0000 0000     	 .space 2
+ 334              	 .global pin_change_count_R
+ 335              	 .section .bss.pin_change_count_R,"aw",%nobits
+ 338              	pin_change_count_R:
+ 339 0000 00       	 .space 1
+ 340              	 .global pin_state_R
+ 341              	 .section .bss.pin_state_R,"aw",%nobits
+ 344              	pin_state_R:
+ 345 0000 00       	 .space 1
+ 346              	 .global echo_time_R
+ 347              	 .section .bss.echo_time_R,"aw",%nobits
+ 348              	 .align 2
+ 351              	echo_time_R:
+ 352 0000 00000000 	 .space 4
+ 353              	 .global echo_count_R
+ 354              	 .section .bss.echo_count_R,"aw",%nobits
+ 355              	 .align 2
+ 358              	echo_count_R:
+ 359 0000 00000000 	 .space 4
+ 360              	 .global distance_R
+ 361              	 .section .bss.distance_R,"aw",%nobits
+ 362              	 .align 1
+ 365              	distance_R:
+ 366 0000 0000     	 .space 2
+ 367              	 .section .text.main,"ax",%progbits
+ 368              	 .align 2
+ 369              	 .global main
+ 370              	 .code 16
+ 371              	 .thumb_func
+ 373              	main:
+ 374              	.LFB206:
+ 375              	 .file 4 "../main.c"
    1:../main.c     **** /*
    2:../main.c     ****  * main.c
    3:../main.c     ****  *
@@ -901,895 +1387,1052 @@
   23:../main.c     **** 
   24:../main.c     **** volatile uint16_t t_10us_count = 0;
   25:../main.c     **** 
-  26:../main.c     **** volatile uint8_t pin_state_C = 0;
-  27:../main.c     **** volatile uint32_t echo_time_C = 0;
-  28:../main.c     **** volatile uint32_t echo_count_C = 0;
-  29:../main.c     **** volatile uint16_t distance_C = 0;
-  30:../main.c     **** 
-  31:../main.c     **** volatile uint8_t pin_state_L = 0;
-  32:../main.c     **** volatile uint32_t echo_time_L = 0;
-  33:../main.c     **** volatile uint32_t echo_count_L = 0;
-  34:../main.c     **** volatile uint16_t distance_L = 0;
-  35:../main.c     **** 
-  36:../main.c     **** 
-  37:../main.c     **** volatile uint8_t pin_state_R = 0;
-  38:../main.c     **** volatile uint32_t echo_time_R = 0;
-  39:../main.c     **** volatile uint32_t echo_count_R = 0;
-  40:../main.c     **** volatile uint16_t distance_R = 0;
-  41:../main.c     **** 
-  42:../main.c     **** int main(void)
-  43:../main.c     **** {
- 204              	 .loc 3 43 0
- 205              	 .cfi_startproc
- 206 0000 90B5     	 push {r4,r7,lr}
- 207              	.LCFI6:
- 208              	 .cfi_def_cfa_offset 12
- 209              	 .cfi_offset 4,-12
- 210              	 .cfi_offset 7,-8
- 211              	 .cfi_offset 14,-4
- 212 0002 83B0     	 sub sp,sp,#12
- 213              	.LCFI7:
- 214              	 .cfi_def_cfa_offset 24
- 215 0004 00AF     	 add r7,sp,#0
- 216              	.LCFI8:
- 217              	 .cfi_def_cfa_register 7
-  44:../main.c     ****   DAVE_STATUS_t status;
-  45:../main.c     **** 
-  46:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
- 218              	 .loc 3 46 0
- 219 0006 FC1D     	 add r4,r7,#7
- 220 0008 FFF7FEFF 	 bl DAVE_Init
- 221 000c 031C     	 mov r3,r0
- 222 000e 2370     	 strb r3,[r4]
+  26:../main.c     **** volatile uint8_t pin_change_count_C = 0;
+  27:../main.c     **** volatile uint8_t pin_state_C = 0;
+  28:../main.c     **** volatile uint32_t echo_time_C = 0;
+  29:../main.c     **** volatile uint32_t echo_count_C = 0;
+  30:../main.c     **** volatile uint16_t distance_C = 0;
+  31:../main.c     **** 
+  32:../main.c     **** volatile uint8_t pin_change_count_L = 0;
+  33:../main.c     **** volatile uint8_t pin_state_L = 0;
+  34:../main.c     **** volatile uint32_t echo_time_L = 0;
+  35:../main.c     **** volatile uint32_t echo_count_L = 0;
+  36:../main.c     **** volatile uint16_t distance_L = 0;
+  37:../main.c     **** 
+  38:../main.c     **** volatile uint8_t pin_change_count_R = 0;
+  39:../main.c     **** volatile uint8_t pin_state_R = 0;
+  40:../main.c     **** volatile uint32_t echo_time_R = 0;
+  41:../main.c     **** volatile uint32_t echo_count_R = 0;
+  42:../main.c     **** volatile uint16_t distance_R = 0;
+  43:../main.c     **** 
+  44:../main.c     **** int main(void)
+  45:../main.c     **** {
+ 376              	 .loc 4 45 0
+ 377              	 .cfi_startproc
+ 378 0000 90B5     	 push {r4,r7,lr}
+ 379              	.LCFI18:
+ 380              	 .cfi_def_cfa_offset 12
+ 381              	 .cfi_offset 4,-12
+ 382              	 .cfi_offset 7,-8
+ 383              	 .cfi_offset 14,-4
+ 384 0002 83B0     	 sub sp,sp,#12
+ 385              	.LCFI19:
+ 386              	 .cfi_def_cfa_offset 24
+ 387 0004 00AF     	 add r7,sp,#0
+ 388              	.LCFI20:
+ 389              	 .cfi_def_cfa_register 7
+  46:../main.c     ****   DAVE_STATUS_t status;
   47:../main.c     **** 
-  48:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
- 223              	 .loc 3 48 0
- 224 0010 FB1D     	 add r3,r7,#7
- 225 0012 1B78     	 ldrb r3,[r3]
- 226 0014 002B     	 cmp r3,#0
- 227 0016 00D0     	 beq .L6
- 228              	.L7:
-  49:../main.c     ****   {
-  50:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
-  51:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
-  52:../main.c     **** 
-  53:../main.c     ****     while(1U)
-  54:../main.c     ****     {
-  55:../main.c     **** 
-  56:../main.c     ****     }
- 229              	 .loc 3 56 0 discriminator 1
- 230 0018 FEE7     	 b .L7
- 231              	.L6:
-  57:../main.c     ****   }
-  58:../main.c     **** 
-  59:../main.c     ****   //Initialization of CAN
-  60:../main.c     **** 	//CAN_NODE_STATUS_t init_status;
-  61:../main.c     **** 	init_status = CAN_NODE_Init(&CAN_NODE_0);
- 232              	 .loc 3 61 0
- 233 001a 084B     	 ldr r3,.L9
- 234 001c 181C     	 mov r0,r3
- 235 001e FFF7FEFF 	 bl CAN_NODE_Init
- 236 0022 031C     	 mov r3,r0
- 237 0024 1A1C     	 mov r2,r3
- 238 0026 064B     	 ldr r3,.L9+4
- 239 0028 1A70     	 strb r2,[r3]
-  62:../main.c     **** 
-  63:../main.c     **** 	if (init_status != CAN_NODE_STATUS_SUCCESS) {
- 240              	 .loc 3 63 0
- 241 002a 054B     	 ldr r3,.L9+4
- 242 002c 1B78     	 ldrb r3,[r3]
- 243 002e 002B     	 cmp r3,#0
- 244 0030 02D1     	 bne .L8
-  64:../main.c     **** 		XMC_DEBUG("CAN initialization failed\n");
-  65:../main.c     **** 	}
-  66:../main.c     **** 	else{
-  67:../main.c     **** 		CAN_OK = 1;
- 245              	 .loc 3 67 0
- 246 0032 044B     	 ldr r3,.L9+8
- 247 0034 0122     	 mov r2,#1
- 248 0036 1A70     	 strb r2,[r3]
- 249              	.L8:
-  68:../main.c     **** 	}
-  69:../main.c     **** 
-  70:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
-  71:../main.c     ****   while(1U)
-  72:../main.c     ****   {
-  73:../main.c     **** 
-  74:../main.c     ****   }
- 250              	 .loc 3 74 0 discriminator 3
- 251 0038 FEE7     	 b .L8
- 252              	.L10:
- 253 003a C046     	 .align 2
- 254              	.L9:
- 255 003c 00000000 	 .word CAN_NODE_0
- 256 0040 00000000 	 .word init_status
- 257 0044 00000000 	 .word CAN_OK
- 258              	 .cfi_endproc
- 259              	.LFE202:
- 261              	 .section .text.IRQ0_Handler,"ax",%progbits
- 262              	 .align 2
- 263              	 .global IRQ0_Handler
- 264              	 .code 16
- 265              	 .thumb_func
- 267              	IRQ0_Handler:
- 268              	.LFB203:
-  75:../main.c     **** }
-  76:../main.c     **** 
-  77:../main.c     **** 
-  78:../main.c     **** void TIMER_10us_ISR(){
- 269              	 .loc 3 78 0
- 270              	 .cfi_startproc
- 271 0000 80B5     	 push {r7,lr}
- 272              	.LCFI9:
- 273              	 .cfi_def_cfa_offset 8
- 274              	 .cfi_offset 7,-8
- 275              	 .cfi_offset 14,-4
- 276 0002 00AF     	 add r7,sp,#0
- 277              	.LCFI10:
- 278              	 .cfi_def_cfa_register 7
-  79:../main.c     **** 	t_10us_count ++;
- 279              	 .loc 3 79 0
- 280 0004 2A4B     	 ldr r3,.L18
- 281 0006 1B88     	 ldrh r3,[r3]
- 282 0008 9BB2     	 uxth r3,r3
- 283 000a 0133     	 add r3,r3,#1
- 284 000c 9AB2     	 uxth r2,r3
- 285 000e 284B     	 ldr r3,.L18
- 286 0010 1A80     	 strh r2,[r3]
-  80:../main.c     **** 	if (pin_state_C == 1) echo_count_C ++;
- 287              	 .loc 3 80 0
- 288 0012 284B     	 ldr r3,.L18+4
- 289 0014 1B78     	 ldrb r3,[r3]
- 290 0016 DBB2     	 uxtb r3,r3
- 291 0018 012B     	 cmp r3,#1
- 292 001a 04D1     	 bne .L12
- 293              	 .loc 3 80 0 is_stmt 0 discriminator 1
- 294 001c 264B     	 ldr r3,.L18+8
- 295 001e 1B68     	 ldr r3,[r3]
- 296 0020 5A1C     	 add r2,r3,#1
- 297 0022 254B     	 ldr r3,.L18+8
- 298 0024 1A60     	 str r2,[r3]
- 299              	.L12:
-  81:../main.c     **** 	if (pin_state_L == 1) echo_count_L ++;
- 300              	 .loc 3 81 0 is_stmt 1
- 301 0026 254B     	 ldr r3,.L18+12
- 302 0028 1B78     	 ldrb r3,[r3]
- 303 002a DBB2     	 uxtb r3,r3
- 304 002c 012B     	 cmp r3,#1
- 305 002e 04D1     	 bne .L13
- 306              	 .loc 3 81 0 is_stmt 0 discriminator 1
- 307 0030 234B     	 ldr r3,.L18+16
- 308 0032 1B68     	 ldr r3,[r3]
- 309 0034 5A1C     	 add r2,r3,#1
- 310 0036 224B     	 ldr r3,.L18+16
- 311 0038 1A60     	 str r2,[r3]
- 312              	.L13:
-  82:../main.c     **** 	if (pin_state_R == 1) echo_count_R ++;
- 313              	 .loc 3 82 0 is_stmt 1
- 314 003a 224B     	 ldr r3,.L18+20
- 315 003c 1B78     	 ldrb r3,[r3]
- 316 003e DBB2     	 uxtb r3,r3
- 317 0040 012B     	 cmp r3,#1
- 318 0042 04D1     	 bne .L14
- 319              	 .loc 3 82 0 is_stmt 0 discriminator 1
- 320 0044 204B     	 ldr r3,.L18+24
- 321 0046 1B68     	 ldr r3,[r3]
- 322 0048 5A1C     	 add r2,r3,#1
- 323 004a 1F4B     	 ldr r3,.L18+24
- 324 004c 1A60     	 str r2,[r3]
- 325              	.L14:
-  83:../main.c     **** 
-  84:../main.c     **** 	if(t_10us_count == 1){
- 326              	 .loc 3 84 0 is_stmt 1
- 327 004e 184B     	 ldr r3,.L18
- 328 0050 1B88     	 ldrh r3,[r3]
- 329 0052 9BB2     	 uxth r3,r3
- 330 0054 012B     	 cmp r3,#1
- 331 0056 05D1     	 bne .L15
-  85:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b111);
- 332              	 .loc 3 85 0
- 333 0058 1C4B     	 ldr r3,.L18+28
- 334 005a 181C     	 mov r0,r3
- 335 005c 0721     	 mov r1,#7
- 336 005e FFF7FEFF 	 bl BUS_IO_Write
- 337 0062 23E0     	 b .L11
- 338              	.L15:
-  86:../main.c     **** 	}
-  87:../main.c     **** 	else if (t_10us_count == 11) {
- 339              	 .loc 3 87 0
- 340 0064 124B     	 ldr r3,.L18
- 341 0066 1B88     	 ldrh r3,[r3]
- 342 0068 9BB2     	 uxth r3,r3
- 343 006a 0B2B     	 cmp r3,#11
- 344 006c 05D1     	 bne .L17
-  88:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
- 345              	 .loc 3 88 0
- 346 006e 174B     	 ldr r3,.L18+28
- 347 0070 181C     	 mov r0,r3
- 348 0072 0021     	 mov r1,#0
- 349 0074 FFF7FEFF 	 bl BUS_IO_Write
- 350 0078 18E0     	 b .L11
- 351              	.L17:
-  89:../main.c     **** 	}
-  90:../main.c     **** 	else if (t_10us_count > 2500) {
- 352              	 .loc 3 90 0
- 353 007a 0D4B     	 ldr r3,.L18
- 354 007c 1B88     	 ldrh r3,[r3]
- 355 007e 9BB2     	 uxth r3,r3
- 356 0080 134A     	 ldr r2,.L18+32
- 357 0082 9342     	 cmp r3,r2
- 358 0084 12D9     	 bls .L11
-  91:../main.c     **** 		t_10us_count = 0;
- 359              	 .loc 3 91 0
- 360 0086 0A4B     	 ldr r3,.L18
- 361 0088 0022     	 mov r2,#0
- 362 008a 1A80     	 strh r2,[r3]
-  92:../main.c     **** 		calc();
- 363              	 .loc 3 92 0
- 364 008c FFF7FEFF 	 bl calc
-  93:../main.c     **** 		CAN_send_vaules(distance_C, distance_L, distance_R );
- 365              	 .loc 3 93 0
- 366 0090 104B     	 ldr r3,.L18+36
- 367 0092 1B88     	 ldrh r3,[r3]
- 368 0094 99B2     	 uxth r1,r3
- 369 0096 104B     	 ldr r3,.L18+40
- 370 0098 1B88     	 ldrh r3,[r3]
- 371 009a 9AB2     	 uxth r2,r3
- 372 009c 0F4B     	 ldr r3,.L18+44
- 373 009e 1B88     	 ldrh r3,[r3]
- 374 00a0 9BB2     	 uxth r3,r3
- 375 00a2 081C     	 mov r0,r1
- 376 00a4 111C     	 mov r1,r2
- 377 00a6 1A1C     	 mov r2,r3
- 378 00a8 FFF7FEFF 	 bl CAN_send_vaules
- 379              	.L11:
+  48:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
+ 390              	 .loc 4 48 0
+ 391 0006 FC1D     	 add r4,r7,#7
+ 392 0008 FFF7FEFF 	 bl DAVE_Init
+ 393 000c 031C     	 mov r3,r0
+ 394 000e 2370     	 strb r3,[r4]
+  49:../main.c     **** 
+  50:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
+ 395              	 .loc 4 50 0
+ 396 0010 FB1D     	 add r3,r7,#7
+ 397 0012 1B78     	 ldrb r3,[r3]
+ 398 0014 002B     	 cmp r3,#0
+ 399 0016 00D0     	 beq .L10
+ 400              	.L11:
+  51:../main.c     ****   {
+  52:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
+  53:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
+  54:../main.c     **** 
+  55:../main.c     ****     while(1U)
+  56:../main.c     ****     {
+  57:../main.c     **** 
+  58:../main.c     ****     }
+ 401              	 .loc 4 58 0 discriminator 1
+ 402 0018 FEE7     	 b .L11
+ 403              	.L10:
+  59:../main.c     ****   }
+  60:../main.c     **** 
+  61:../main.c     ****   //Initialization of CAN
+  62:../main.c     **** 	//CAN_NODE_STATUS_t init_status;
+  63:../main.c     **** 	init_status = CAN_NODE_Init(&CAN_NODE_0);
+ 404              	 .loc 4 63 0
+ 405 001a 084B     	 ldr r3,.L13
+ 406 001c 181C     	 mov r0,r3
+ 407 001e FFF7FEFF 	 bl CAN_NODE_Init
+ 408 0022 031C     	 mov r3,r0
+ 409 0024 1A1C     	 mov r2,r3
+ 410 0026 064B     	 ldr r3,.L13+4
+ 411 0028 1A70     	 strb r2,[r3]
+  64:../main.c     **** 
+  65:../main.c     **** 	if (init_status != CAN_NODE_STATUS_SUCCESS) {
+ 412              	 .loc 4 65 0
+ 413 002a 054B     	 ldr r3,.L13+4
+ 414 002c 1B78     	 ldrb r3,[r3]
+ 415 002e 002B     	 cmp r3,#0
+ 416 0030 02D1     	 bne .L12
+  66:../main.c     **** 		XMC_DEBUG("CAN initialization failed\n");
+  67:../main.c     **** 	}
+  68:../main.c     **** 	else{
+  69:../main.c     **** 		CAN_OK = 1;
+ 417              	 .loc 4 69 0
+ 418 0032 044B     	 ldr r3,.L13+8
+ 419 0034 0122     	 mov r2,#1
+ 420 0036 1A70     	 strb r2,[r3]
+ 421              	.L12:
+  70:../main.c     **** 	}
+  71:../main.c     **** 
+  72:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
+  73:../main.c     ****   while(1U)
+  74:../main.c     ****   {
+  75:../main.c     **** 
+  76:../main.c     ****   }
+ 422              	 .loc 4 76 0 discriminator 3
+ 423 0038 FEE7     	 b .L12
+ 424              	.L14:
+ 425 003a C046     	 .align 2
+ 426              	.L13:
+ 427 003c 00000000 	 .word CAN_NODE_0
+ 428 0040 00000000 	 .word init_status
+ 429 0044 00000000 	 .word CAN_OK
+ 430              	 .cfi_endproc
+ 431              	.LFE206:
+ 433              	 .section .text.IRQ0_Handler,"ax",%progbits
+ 434              	 .align 2
+ 435              	 .global IRQ0_Handler
+ 436              	 .code 16
+ 437              	 .thumb_func
+ 439              	IRQ0_Handler:
+ 440              	.LFB207:
+  77:../main.c     **** }
+  78:../main.c     **** 
+  79:../main.c     **** 
+  80:../main.c     **** void TIMER_10us_ISR(){
+ 441              	 .loc 4 80 0
+ 442              	 .cfi_startproc
+ 443 0000 80B5     	 push {r7,lr}
+ 444              	.LCFI21:
+ 445              	 .cfi_def_cfa_offset 8
+ 446              	 .cfi_offset 7,-8
+ 447              	 .cfi_offset 14,-4
+ 448 0002 00AF     	 add r7,sp,#0
+ 449              	.LCFI22:
+ 450              	 .cfi_def_cfa_register 7
+  81:../main.c     **** 	t_10us_count ++;
+ 451              	 .loc 4 81 0
+ 452 0004 274B     	 ldr r3,.L23
+ 453 0006 1B88     	 ldrh r3,[r3]
+ 454 0008 9BB2     	 uxth r3,r3
+ 455 000a 0133     	 add r3,r3,#1
+ 456 000c 9AB2     	 uxth r2,r3
+ 457 000e 254B     	 ldr r3,.L23
+ 458 0010 1A80     	 strh r2,[r3]
+  82:../main.c     **** 	if (pin_state_C == 1) echo_count_C ++;
+ 459              	 .loc 4 82 0
+ 460 0012 254B     	 ldr r3,.L23+4
+ 461 0014 1B78     	 ldrb r3,[r3]
+ 462 0016 DBB2     	 uxtb r3,r3
+ 463 0018 012B     	 cmp r3,#1
+ 464 001a 04D1     	 bne .L16
+ 465              	 .loc 4 82 0 is_stmt 0 discriminator 1
+ 466 001c 234B     	 ldr r3,.L23+8
+ 467 001e 1B68     	 ldr r3,[r3]
+ 468 0020 5A1C     	 add r2,r3,#1
+ 469 0022 224B     	 ldr r3,.L23+8
+ 470 0024 1A60     	 str r2,[r3]
+ 471              	.L16:
+  83:../main.c     **** 	if (pin_state_L == 1) echo_count_L ++;
+ 472              	 .loc 4 83 0 is_stmt 1
+ 473 0026 224B     	 ldr r3,.L23+12
+ 474 0028 1B78     	 ldrb r3,[r3]
+ 475 002a DBB2     	 uxtb r3,r3
+ 476 002c 012B     	 cmp r3,#1
+ 477 002e 04D1     	 bne .L17
+ 478              	 .loc 4 83 0 is_stmt 0 discriminator 1
+ 479 0030 204B     	 ldr r3,.L23+16
+ 480 0032 1B68     	 ldr r3,[r3]
+ 481 0034 5A1C     	 add r2,r3,#1
+ 482 0036 1F4B     	 ldr r3,.L23+16
+ 483 0038 1A60     	 str r2,[r3]
+ 484              	.L17:
+  84:../main.c     **** 	if (pin_state_R == 1) echo_count_R ++;
+ 485              	 .loc 4 84 0 is_stmt 1
+ 486 003a 1F4B     	 ldr r3,.L23+20
+ 487 003c 1B78     	 ldrb r3,[r3]
+ 488 003e DBB2     	 uxtb r3,r3
+ 489 0040 012B     	 cmp r3,#1
+ 490 0042 04D1     	 bne .L18
+ 491              	 .loc 4 84 0 is_stmt 0 discriminator 1
+ 492 0044 1D4B     	 ldr r3,.L23+24
+ 493 0046 1B68     	 ldr r3,[r3]
+ 494 0048 5A1C     	 add r2,r3,#1
+ 495 004a 1C4B     	 ldr r3,.L23+24
+ 496 004c 1A60     	 str r2,[r3]
+ 497              	.L18:
+  85:../main.c     **** 
+  86:../main.c     **** 	if(t_10us_count == 1){
+ 498              	 .loc 4 86 0 is_stmt 1
+ 499 004e 154B     	 ldr r3,.L23
+ 500 0050 1B88     	 ldrh r3,[r3]
+ 501 0052 9BB2     	 uxth r3,r3
+ 502 0054 012B     	 cmp r3,#1
+ 503 0056 05D1     	 bne .L19
+  87:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b111);
+ 504              	 .loc 4 87 0
+ 505 0058 194B     	 ldr r3,.L23+28
+ 506 005a 181C     	 mov r0,r3
+ 507 005c 0721     	 mov r1,#7
+ 508 005e FFF7FEFF 	 bl BUS_IO_Write
+ 509 0062 1DE0     	 b .L15
+ 510              	.L19:
+  88:../main.c     **** 	}
+  89:../main.c     **** 	else if (t_10us_count == 11) {
+ 511              	 .loc 4 89 0
+ 512 0064 0F4B     	 ldr r3,.L23
+ 513 0066 1B88     	 ldrh r3,[r3]
+ 514 0068 9BB2     	 uxth r3,r3
+ 515 006a 0B2B     	 cmp r3,#11
+ 516 006c 05D1     	 bne .L21
+  90:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
+ 517              	 .loc 4 90 0
+ 518 006e 144B     	 ldr r3,.L23+28
+ 519 0070 181C     	 mov r0,r3
+ 520 0072 0021     	 mov r1,#0
+ 521 0074 FFF7FEFF 	 bl BUS_IO_Write
+ 522 0078 12E0     	 b .L15
+ 523              	.L21:
+  91:../main.c     **** 	}
+  92:../main.c     **** 	else if (t_10us_count == 2400) {
+ 524              	 .loc 4 92 0
+ 525 007a 0A4B     	 ldr r3,.L23
+ 526 007c 1B88     	 ldrh r3,[r3]
+ 527 007e 9AB2     	 uxth r2,r3
+ 528 0080 9623     	 mov r3,#150
+ 529 0082 1B01     	 lsl r3,r3,#4
+ 530 0084 9A42     	 cmp r2,r3
+ 531 0086 02D1     	 bne .L22
+  93:../main.c     **** 		calc();
+ 532              	 .loc 4 93 0
+ 533 0088 FFF7FEFF 	 bl calc
+ 534 008c 08E0     	 b .L15
+ 535              	.L22:
   94:../main.c     **** 	}
-  95:../main.c     **** 
-  96:../main.c     **** }
- 380              	 .loc 3 96 0
- 381 00ac BD46     	 mov sp,r7
- 382              	 
- 383 00ae 80BD     	 pop {r7,pc}
- 384              	.L19:
- 385              	 .align 2
- 386              	.L18:
- 387 00b0 00000000 	 .word t_10us_count
- 388 00b4 00000000 	 .word pin_state_C
- 389 00b8 00000000 	 .word echo_count_C
- 390 00bc 00000000 	 .word pin_state_L
- 391 00c0 00000000 	 .word echo_count_L
- 392 00c4 00000000 	 .word pin_state_R
- 393 00c8 00000000 	 .word echo_count_R
- 394 00cc 00000000 	 .word BUS_IO_TRIGGER
- 395 00d0 C4090000 	 .word 2500
- 396 00d4 00000000 	 .word distance_C
- 397 00d8 00000000 	 .word distance_L
- 398 00dc 00000000 	 .word distance_R
- 399              	 .cfi_endproc
- 400              	.LFE203:
- 402              	 .section .text.IRQ5_Handler,"ax",%progbits
- 403              	 .align 2
- 404              	 .global IRQ5_Handler
- 405              	 .code 16
- 406              	 .thumb_func
- 408              	IRQ5_Handler:
- 409              	.LFB204:
-  97:../main.c     **** 
+  95:../main.c     **** 	else if (t_10us_count > 2500){
+ 536              	 .loc 4 95 0
+ 537 008e 054B     	 ldr r3,.L23
+ 538 0090 1B88     	 ldrh r3,[r3]
+ 539 0092 9BB2     	 uxth r3,r3
+ 540 0094 0B4A     	 ldr r2,.L23+32
+ 541 0096 9342     	 cmp r3,r2
+ 542 0098 02D9     	 bls .L15
+  96:../main.c     **** 		t_10us_count = 0;
+ 543              	 .loc 4 96 0
+ 544 009a 024B     	 ldr r3,.L23
+ 545 009c 0022     	 mov r2,#0
+ 546 009e 1A80     	 strh r2,[r3]
+ 547              	.L15:
+  97:../main.c     **** 	}
   98:../main.c     **** 
-  99:../main.c     **** 
- 100:../main.c     **** void ECHO_L_ISR(void){
- 410              	 .loc 3 100 0
- 411              	 .cfi_startproc
- 412 0000 80B5     	 push {r7,lr}
- 413              	.LCFI11:
- 414              	 .cfi_def_cfa_offset 8
- 415              	 .cfi_offset 7,-8
- 416              	 .cfi_offset 14,-4
- 417 0002 00AF     	 add r7,sp,#0
- 418              	.LCFI12:
- 419              	 .cfi_def_cfa_register 7
- 101:../main.c     **** 	pin_state_L = PIN_INTERRUPT_GetPinValue(&ECHO_L);
- 420              	 .loc 3 101 0
- 421 0004 0A4B     	 ldr r3,.L22
- 422 0006 181C     	 mov r0,r3
- 423 0008 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 424 000c 031C     	 mov r3,r0
- 425 000e DAB2     	 uxtb r2,r3
- 426 0010 084B     	 ldr r3,.L22+4
- 427 0012 1A70     	 strb r2,[r3]
+  99:../main.c     **** }
+ 548              	 .loc 4 99 0
+ 549 00a0 BD46     	 mov sp,r7
+ 550              	 
+ 551 00a2 80BD     	 pop {r7,pc}
+ 552              	.L24:
+ 553              	 .align 2
+ 554              	.L23:
+ 555 00a4 00000000 	 .word t_10us_count
+ 556 00a8 00000000 	 .word pin_state_C
+ 557 00ac 00000000 	 .word echo_count_C
+ 558 00b0 00000000 	 .word pin_state_L
+ 559 00b4 00000000 	 .word echo_count_L
+ 560 00b8 00000000 	 .word pin_state_R
+ 561 00bc 00000000 	 .word echo_count_R
+ 562 00c0 00000000 	 .word BUS_IO_TRIGGER
+ 563 00c4 C4090000 	 .word 2500
+ 564              	 .cfi_endproc
+ 565              	.LFE207:
+ 567              	 .section .text.IRQ5_Handler,"ax",%progbits
+ 568              	 .align 2
+ 569              	 .global IRQ5_Handler
+ 570              	 .code 16
+ 571              	 .thumb_func
+ 573              	IRQ5_Handler:
+ 574              	.LFB208:
+ 100:../main.c     **** 
+ 101:../main.c     **** 
  102:../main.c     **** 
- 103:../main.c     **** 	if(pin_state_L == 0){
- 428              	 .loc 3 103 0
- 429 0014 074B     	 ldr r3,.L22+4
- 430 0016 1B78     	 ldrb r3,[r3]
- 431 0018 DBB2     	 uxtb r3,r3
- 432 001a 002B     	 cmp r3,#0
- 433 001c 06D1     	 bne .L20
- 104:../main.c     **** 		echo_time_L = echo_count_L;
- 434              	 .loc 3 104 0
- 435 001e 064B     	 ldr r3,.L22+8
- 436 0020 1A68     	 ldr r2,[r3]
- 437 0022 064B     	 ldr r3,.L22+12
- 438 0024 1A60     	 str r2,[r3]
- 105:../main.c     **** 		echo_count_L = 0;
- 439              	 .loc 3 105 0
- 440 0026 044B     	 ldr r3,.L22+8
- 441 0028 0022     	 mov r2,#0
- 442 002a 1A60     	 str r2,[r3]
- 443              	.L20:
- 106:../main.c     **** 	}
- 107:../main.c     **** 
- 108:../main.c     **** }
- 444              	 .loc 3 108 0
- 445 002c BD46     	 mov sp,r7
- 446              	 
- 447 002e 80BD     	 pop {r7,pc}
- 448              	.L23:
- 449              	 .align 2
- 450              	.L22:
- 451 0030 00000000 	 .word ECHO_L
- 452 0034 00000000 	 .word pin_state_L
- 453 0038 00000000 	 .word echo_count_L
- 454 003c 00000000 	 .word echo_time_L
- 455              	 .cfi_endproc
- 456              	.LFE204:
- 458              	 .section .text.IRQ6_Handler,"ax",%progbits
- 459              	 .align 2
- 460              	 .global IRQ6_Handler
- 461              	 .code 16
- 462              	 .thumb_func
- 464              	IRQ6_Handler:
- 465              	.LFB205:
- 109:../main.c     **** 
- 110:../main.c     **** void ECHO_C_ISR(void){
- 466              	 .loc 3 110 0
- 467              	 .cfi_startproc
- 468 0000 80B5     	 push {r7,lr}
- 469              	.LCFI13:
- 470              	 .cfi_def_cfa_offset 8
- 471              	 .cfi_offset 7,-8
- 472              	 .cfi_offset 14,-4
- 473 0002 00AF     	 add r7,sp,#0
- 474              	.LCFI14:
- 475              	 .cfi_def_cfa_register 7
- 111:../main.c     **** 	pin_state_C = PIN_INTERRUPT_GetPinValue(&ECHO_C);
- 476              	 .loc 3 111 0
- 477 0004 0A4B     	 ldr r3,.L26
- 478 0006 181C     	 mov r0,r3
- 479 0008 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 480 000c 031C     	 mov r3,r0
- 481 000e DAB2     	 uxtb r2,r3
- 482 0010 084B     	 ldr r3,.L26+4
- 483 0012 1A70     	 strb r2,[r3]
- 112:../main.c     **** 
- 113:../main.c     **** 	if(pin_state_C == 0){
- 484              	 .loc 3 113 0
- 485 0014 074B     	 ldr r3,.L26+4
- 486 0016 1B78     	 ldrb r3,[r3]
- 487 0018 DBB2     	 uxtb r3,r3
- 488 001a 002B     	 cmp r3,#0
- 489 001c 06D1     	 bne .L24
- 114:../main.c     **** 		echo_time_C = echo_count_C;
- 490              	 .loc 3 114 0
- 491 001e 064B     	 ldr r3,.L26+8
- 492 0020 1A68     	 ldr r2,[r3]
- 493 0022 064B     	 ldr r3,.L26+12
- 494 0024 1A60     	 str r2,[r3]
- 115:../main.c     **** 		echo_count_C = 0;
- 495              	 .loc 3 115 0
- 496 0026 044B     	 ldr r3,.L26+8
- 497 0028 0022     	 mov r2,#0
- 498 002a 1A60     	 str r2,[r3]
- 499              	.L24:
- 116:../main.c     **** 	}
+ 103:../main.c     **** void ECHO_L_ISR(void){
+ 575              	 .loc 4 103 0
+ 576              	 .cfi_startproc
+ 577 0000 80B5     	 push {r7,lr}
+ 578              	.LCFI23:
+ 579              	 .cfi_def_cfa_offset 8
+ 580              	 .cfi_offset 7,-8
+ 581              	 .cfi_offset 14,-4
+ 582 0002 00AF     	 add r7,sp,#0
+ 583              	.LCFI24:
+ 584              	 .cfi_def_cfa_register 7
+ 104:../main.c     **** 	pin_change_count_L ++;
+ 585              	 .loc 4 104 0
+ 586 0004 0E4B     	 ldr r3,.L27
+ 587 0006 1B78     	 ldrb r3,[r3]
+ 588 0008 DBB2     	 uxtb r3,r3
+ 589 000a 0133     	 add r3,r3,#1
+ 590 000c DAB2     	 uxtb r2,r3
+ 591 000e 0C4B     	 ldr r3,.L27
+ 592 0010 1A70     	 strb r2,[r3]
+ 105:../main.c     **** 	pin_state_L = PIN_INTERRUPT_GetPinValue(&ECHO_L);
+ 593              	 .loc 4 105 0
+ 594 0012 0C4B     	 ldr r3,.L27+4
+ 595 0014 181C     	 mov r0,r3
+ 596 0016 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 597 001a 031C     	 mov r3,r0
+ 598 001c DAB2     	 uxtb r2,r3
+ 599 001e 0A4B     	 ldr r3,.L27+8
+ 600 0020 1A70     	 strb r2,[r3]
+ 106:../main.c     **** 
+ 107:../main.c     **** 	if(pin_state_L == 0){
+ 601              	 .loc 4 107 0
+ 602 0022 094B     	 ldr r3,.L27+8
+ 603 0024 1B78     	 ldrb r3,[r3]
+ 604 0026 DBB2     	 uxtb r3,r3
+ 605 0028 002B     	 cmp r3,#0
+ 606 002a 06D1     	 bne .L25
+ 108:../main.c     **** 		echo_time_L = echo_count_L;
+ 607              	 .loc 4 108 0
+ 608 002c 074B     	 ldr r3,.L27+12
+ 609 002e 1A68     	 ldr r2,[r3]
+ 610 0030 074B     	 ldr r3,.L27+16
+ 611 0032 1A60     	 str r2,[r3]
+ 109:../main.c     **** 		echo_count_L = 0;
+ 612              	 .loc 4 109 0
+ 613 0034 054B     	 ldr r3,.L27+12
+ 614 0036 0022     	 mov r2,#0
+ 615 0038 1A60     	 str r2,[r3]
+ 616              	.L25:
+ 110:../main.c     **** 	}
+ 111:../main.c     **** 
+ 112:../main.c     **** }
+ 617              	 .loc 4 112 0
+ 618 003a BD46     	 mov sp,r7
+ 619              	 
+ 620 003c 80BD     	 pop {r7,pc}
+ 621              	.L28:
+ 622 003e C046     	 .align 2
+ 623              	.L27:
+ 624 0040 00000000 	 .word pin_change_count_L
+ 625 0044 00000000 	 .word ECHO_L
+ 626 0048 00000000 	 .word pin_state_L
+ 627 004c 00000000 	 .word echo_count_L
+ 628 0050 00000000 	 .word echo_time_L
+ 629              	 .cfi_endproc
+ 630              	.LFE208:
+ 632              	 .section .text.IRQ6_Handler,"ax",%progbits
+ 633              	 .align 2
+ 634              	 .global IRQ6_Handler
+ 635              	 .code 16
+ 636              	 .thumb_func
+ 638              	IRQ6_Handler:
+ 639              	.LFB209:
+ 113:../main.c     **** 
+ 114:../main.c     **** void ECHO_C_ISR(void){
+ 640              	 .loc 4 114 0
+ 641              	 .cfi_startproc
+ 642 0000 80B5     	 push {r7,lr}
+ 643              	.LCFI25:
+ 644              	 .cfi_def_cfa_offset 8
+ 645              	 .cfi_offset 7,-8
+ 646              	 .cfi_offset 14,-4
+ 647 0002 00AF     	 add r7,sp,#0
+ 648              	.LCFI26:
+ 649              	 .cfi_def_cfa_register 7
+ 115:../main.c     **** 	pin_change_count_C ++;
+ 650              	 .loc 4 115 0
+ 651 0004 0E4B     	 ldr r3,.L31
+ 652 0006 1B78     	 ldrb r3,[r3]
+ 653 0008 DBB2     	 uxtb r3,r3
+ 654 000a 0133     	 add r3,r3,#1
+ 655 000c DAB2     	 uxtb r2,r3
+ 656 000e 0C4B     	 ldr r3,.L31
+ 657 0010 1A70     	 strb r2,[r3]
+ 116:../main.c     **** 	pin_state_C = PIN_INTERRUPT_GetPinValue(&ECHO_C);
+ 658              	 .loc 4 116 0
+ 659 0012 0C4B     	 ldr r3,.L31+4
+ 660 0014 181C     	 mov r0,r3
+ 661 0016 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 662 001a 031C     	 mov r3,r0
+ 663 001c DAB2     	 uxtb r2,r3
+ 664 001e 0A4B     	 ldr r3,.L31+8
+ 665 0020 1A70     	 strb r2,[r3]
  117:../main.c     **** 
- 118:../main.c     **** }
- 500              	 .loc 3 118 0
- 501 002c BD46     	 mov sp,r7
- 502              	 
- 503 002e 80BD     	 pop {r7,pc}
- 504              	.L27:
- 505              	 .align 2
- 506              	.L26:
- 507 0030 00000000 	 .word ECHO_C
- 508 0034 00000000 	 .word pin_state_C
- 509 0038 00000000 	 .word echo_count_C
- 510 003c 00000000 	 .word echo_time_C
- 511              	 .cfi_endproc
- 512              	.LFE205:
- 514              	 .section .text.IRQ3_Handler,"ax",%progbits
- 515              	 .align 2
- 516              	 .global IRQ3_Handler
- 517              	 .code 16
- 518              	 .thumb_func
- 520              	IRQ3_Handler:
- 521              	.LFB206:
- 119:../main.c     **** 
- 120:../main.c     **** void ECHO_R_ISR(void){
- 522              	 .loc 3 120 0
- 523              	 .cfi_startproc
- 524 0000 80B5     	 push {r7,lr}
- 525              	.LCFI15:
- 526              	 .cfi_def_cfa_offset 8
- 527              	 .cfi_offset 7,-8
- 528              	 .cfi_offset 14,-4
- 529 0002 00AF     	 add r7,sp,#0
- 530              	.LCFI16:
- 531              	 .cfi_def_cfa_register 7
- 121:../main.c     **** 	pin_state_R = PIN_INTERRUPT_GetPinValue(&ECHO_R);
- 532              	 .loc 3 121 0
- 533 0004 0A4B     	 ldr r3,.L30
- 534 0006 181C     	 mov r0,r3
- 535 0008 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 536 000c 031C     	 mov r3,r0
- 537 000e DAB2     	 uxtb r2,r3
- 538 0010 084B     	 ldr r3,.L30+4
- 539 0012 1A70     	 strb r2,[r3]
+ 118:../main.c     **** 	if(pin_state_C == 0){
+ 666              	 .loc 4 118 0
+ 667 0022 094B     	 ldr r3,.L31+8
+ 668 0024 1B78     	 ldrb r3,[r3]
+ 669 0026 DBB2     	 uxtb r3,r3
+ 670 0028 002B     	 cmp r3,#0
+ 671 002a 06D1     	 bne .L29
+ 119:../main.c     **** 		echo_time_C = echo_count_C;
+ 672              	 .loc 4 119 0
+ 673 002c 074B     	 ldr r3,.L31+12
+ 674 002e 1A68     	 ldr r2,[r3]
+ 675 0030 074B     	 ldr r3,.L31+16
+ 676 0032 1A60     	 str r2,[r3]
+ 120:../main.c     **** 		echo_count_C = 0;
+ 677              	 .loc 4 120 0
+ 678 0034 054B     	 ldr r3,.L31+12
+ 679 0036 0022     	 mov r2,#0
+ 680 0038 1A60     	 str r2,[r3]
+ 681              	.L29:
+ 121:../main.c     **** 	}
  122:../main.c     **** 
- 123:../main.c     **** 	if(pin_state_R == 0){
- 540              	 .loc 3 123 0
- 541 0014 074B     	 ldr r3,.L30+4
- 542 0016 1B78     	 ldrb r3,[r3]
- 543 0018 DBB2     	 uxtb r3,r3
- 544 001a 002B     	 cmp r3,#0
- 545 001c 06D1     	 bne .L28
- 124:../main.c     **** 		echo_time_R = echo_count_R;
- 546              	 .loc 3 124 0
- 547 001e 064B     	 ldr r3,.L30+8
- 548 0020 1A68     	 ldr r2,[r3]
- 549 0022 064B     	 ldr r3,.L30+12
- 550 0024 1A60     	 str r2,[r3]
- 125:../main.c     **** 		echo_count_R = 0;
- 551              	 .loc 3 125 0
- 552 0026 044B     	 ldr r3,.L30+8
- 553 0028 0022     	 mov r2,#0
- 554 002a 1A60     	 str r2,[r3]
- 555              	.L28:
- 126:../main.c     **** 	}
- 127:../main.c     **** 
- 128:../main.c     **** }
- 556              	 .loc 3 128 0
- 557 002c BD46     	 mov sp,r7
- 558              	 
- 559 002e 80BD     	 pop {r7,pc}
- 560              	.L31:
- 561              	 .align 2
- 562              	.L30:
- 563 0030 00000000 	 .word ECHO_R
- 564 0034 00000000 	 .word pin_state_R
- 565 0038 00000000 	 .word echo_count_R
- 566 003c 00000000 	 .word echo_time_R
- 567              	 .cfi_endproc
- 568              	.LFE206:
- 570              	 .global __aeabi_ui2d
- 571              	 .global __aeabi_dmul
- 572              	 .global __aeabi_d2uiz
- 573              	 .section .text.calc,"ax",%progbits
- 574              	 .align 2
- 575              	 .global calc
- 576              	 .code 16
- 577              	 .thumb_func
- 579              	calc:
- 580              	.LFB207:
- 129:../main.c     **** 
- 130:../main.c     **** void calc(){
- 581              	 .loc 3 130 0
- 582              	 .cfi_startproc
- 583 0000 98B5     	 push {r3,r4,r7,lr}
- 584              	.LCFI17:
- 585              	 .cfi_def_cfa_offset 16
- 586              	 .cfi_offset 3,-16
- 587              	 .cfi_offset 4,-12
- 588              	 .cfi_offset 7,-8
- 589              	 .cfi_offset 14,-4
- 590 0002 00AF     	 add r7,sp,#0
- 591              	.LCFI18:
- 592              	 .cfi_def_cfa_register 7
- 131:../main.c     **** 	if(echo_time_L < ECHO_TIME_MIN) echo_time_L = ECHO_TIME_MIN;
- 593              	 .loc 3 131 0
- 594 0004 3B4B     	 ldr r3,.L39
- 595 0006 1B68     	 ldr r3,[r3]
- 596 0008 132B     	 cmp r3,#19
- 597 000a 03D8     	 bhi .L33
- 598              	 .loc 3 131 0 is_stmt 0 discriminator 1
- 599 000c 394B     	 ldr r3,.L39
- 600 000e 1422     	 mov r2,#20
- 601 0010 1A60     	 str r2,[r3]
- 602 0012 07E0     	 b .L34
- 603              	.L33:
- 132:../main.c     **** 	else if(echo_time_L > ECHO_TIME_MAX) echo_time_L = ECHO_TIME_MAX;
- 604              	 .loc 3 132 0 is_stmt 1
- 605 0014 374B     	 ldr r3,.L39
- 606 0016 1B68     	 ldr r3,[r3]
- 607 0018 374A     	 ldr r2,.L39+4
- 608 001a 9342     	 cmp r3,r2
- 609 001c 02D9     	 bls .L34
- 610              	 .loc 3 132 0 is_stmt 0 discriminator 1
- 611 001e 354B     	 ldr r3,.L39
- 612 0020 354A     	 ldr r2,.L39+4
- 613 0022 1A60     	 str r2,[r3]
- 614              	.L34:
- 133:../main.c     **** 	distance_L = echo_time_L * ECHO_TIME_10us_TO_DISTANCE_cm;
- 615              	 .loc 3 133 0 is_stmt 1
- 616 0024 334B     	 ldr r3,.L39
- 617 0026 1B68     	 ldr r3,[r3]
- 618 0028 181C     	 mov r0,r3
- 619 002a FFF7FEFF 	 bl __aeabi_ui2d
- 620 002e 031C     	 mov r3,r0
- 621 0030 0C1C     	 mov r4,r1
- 622 0032 181C     	 mov r0,r3
- 623 0034 211C     	 mov r1,r4
- 624 0036 314A     	 ldr r2,.L39+8
- 625 0038 314B     	 ldr r3,.L39+12
- 626 003a FFF7FEFF 	 bl __aeabi_dmul
- 627 003e 031C     	 mov r3,r0
- 628 0040 0C1C     	 mov r4,r1
- 629 0042 181C     	 mov r0,r3
- 630 0044 211C     	 mov r1,r4
- 631 0046 FFF7FEFF 	 bl __aeabi_d2uiz
- 632 004a 031C     	 mov r3,r0
- 633 004c 9AB2     	 uxth r2,r3
- 634 004e 2D4B     	 ldr r3,.L39+16
- 635 0050 1A80     	 strh r2,[r3]
- 134:../main.c     **** 
- 135:../main.c     **** 	if(echo_time_C < ECHO_TIME_MIN) echo_time_C = ECHO_TIME_MIN;
- 636              	 .loc 3 135 0
- 637 0052 2D4B     	 ldr r3,.L39+20
- 638 0054 1B68     	 ldr r3,[r3]
- 639 0056 132B     	 cmp r3,#19
- 640 0058 03D8     	 bhi .L35
- 641              	 .loc 3 135 0 is_stmt 0 discriminator 1
- 642 005a 2B4B     	 ldr r3,.L39+20
- 643 005c 1422     	 mov r2,#20
- 644 005e 1A60     	 str r2,[r3]
- 645 0060 07E0     	 b .L36
- 646              	.L35:
- 136:../main.c     **** 	else if(echo_time_C > ECHO_TIME_MAX) echo_time_C = ECHO_TIME_MAX;
- 647              	 .loc 3 136 0 is_stmt 1
- 648 0062 294B     	 ldr r3,.L39+20
- 649 0064 1B68     	 ldr r3,[r3]
- 650 0066 244A     	 ldr r2,.L39+4
- 651 0068 9342     	 cmp r3,r2
- 652 006a 02D9     	 bls .L36
- 653              	 .loc 3 136 0 is_stmt 0 discriminator 1
- 654 006c 264B     	 ldr r3,.L39+20
- 655 006e 224A     	 ldr r2,.L39+4
- 656 0070 1A60     	 str r2,[r3]
- 657              	.L36:
- 137:../main.c     **** 	distance_C = echo_time_C * ECHO_TIME_10us_TO_DISTANCE_cm;
- 658              	 .loc 3 137 0 is_stmt 1
- 659 0072 254B     	 ldr r3,.L39+20
- 660 0074 1B68     	 ldr r3,[r3]
- 661 0076 181C     	 mov r0,r3
- 662 0078 FFF7FEFF 	 bl __aeabi_ui2d
- 663 007c 031C     	 mov r3,r0
- 664 007e 0C1C     	 mov r4,r1
- 665 0080 181C     	 mov r0,r3
- 666 0082 211C     	 mov r1,r4
- 667 0084 1D4A     	 ldr r2,.L39+8
- 668 0086 1E4B     	 ldr r3,.L39+12
- 669 0088 FFF7FEFF 	 bl __aeabi_dmul
- 670 008c 031C     	 mov r3,r0
- 671 008e 0C1C     	 mov r4,r1
- 672 0090 181C     	 mov r0,r3
- 673 0092 211C     	 mov r1,r4
- 674 0094 FFF7FEFF 	 bl __aeabi_d2uiz
- 675 0098 031C     	 mov r3,r0
- 676 009a 9AB2     	 uxth r2,r3
- 677 009c 1B4B     	 ldr r3,.L39+24
- 678 009e 1A80     	 strh r2,[r3]
+ 123:../main.c     **** }
+ 682              	 .loc 4 123 0
+ 683 003a BD46     	 mov sp,r7
+ 684              	 
+ 685 003c 80BD     	 pop {r7,pc}
+ 686              	.L32:
+ 687 003e C046     	 .align 2
+ 688              	.L31:
+ 689 0040 00000000 	 .word pin_change_count_C
+ 690 0044 00000000 	 .word ECHO_C
+ 691 0048 00000000 	 .word pin_state_C
+ 692 004c 00000000 	 .word echo_count_C
+ 693 0050 00000000 	 .word echo_time_C
+ 694              	 .cfi_endproc
+ 695              	.LFE209:
+ 697              	 .section .text.IRQ3_Handler,"ax",%progbits
+ 698              	 .align 2
+ 699              	 .global IRQ3_Handler
+ 700              	 .code 16
+ 701              	 .thumb_func
+ 703              	IRQ3_Handler:
+ 704              	.LFB210:
+ 124:../main.c     **** 
+ 125:../main.c     **** void ECHO_R_ISR(void){
+ 705              	 .loc 4 125 0
+ 706              	 .cfi_startproc
+ 707 0000 80B5     	 push {r7,lr}
+ 708              	.LCFI27:
+ 709              	 .cfi_def_cfa_offset 8
+ 710              	 .cfi_offset 7,-8
+ 711              	 .cfi_offset 14,-4
+ 712 0002 00AF     	 add r7,sp,#0
+ 713              	.LCFI28:
+ 714              	 .cfi_def_cfa_register 7
+ 126:../main.c     **** 	pin_change_count_R ++;
+ 715              	 .loc 4 126 0
+ 716 0004 0E4B     	 ldr r3,.L35
+ 717 0006 1B78     	 ldrb r3,[r3]
+ 718 0008 DBB2     	 uxtb r3,r3
+ 719 000a 0133     	 add r3,r3,#1
+ 720 000c DAB2     	 uxtb r2,r3
+ 721 000e 0C4B     	 ldr r3,.L35
+ 722 0010 1A70     	 strb r2,[r3]
+ 127:../main.c     **** 	pin_state_R = PIN_INTERRUPT_GetPinValue(&ECHO_R);
+ 723              	 .loc 4 127 0
+ 724 0012 0C4B     	 ldr r3,.L35+4
+ 725 0014 181C     	 mov r0,r3
+ 726 0016 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 727 001a 031C     	 mov r3,r0
+ 728 001c DAB2     	 uxtb r2,r3
+ 729 001e 0A4B     	 ldr r3,.L35+8
+ 730 0020 1A70     	 strb r2,[r3]
+ 128:../main.c     **** 
+ 129:../main.c     **** 	if(pin_state_R == 0){
+ 731              	 .loc 4 129 0
+ 732 0022 094B     	 ldr r3,.L35+8
+ 733 0024 1B78     	 ldrb r3,[r3]
+ 734 0026 DBB2     	 uxtb r3,r3
+ 735 0028 002B     	 cmp r3,#0
+ 736 002a 06D1     	 bne .L33
+ 130:../main.c     **** 		echo_time_R = echo_count_R;
+ 737              	 .loc 4 130 0
+ 738 002c 074B     	 ldr r3,.L35+12
+ 739 002e 1A68     	 ldr r2,[r3]
+ 740 0030 074B     	 ldr r3,.L35+16
+ 741 0032 1A60     	 str r2,[r3]
+ 131:../main.c     **** 		echo_count_R = 0;
+ 742              	 .loc 4 131 0
+ 743 0034 054B     	 ldr r3,.L35+12
+ 744 0036 0022     	 mov r2,#0
+ 745 0038 1A60     	 str r2,[r3]
+ 746              	.L33:
+ 132:../main.c     **** 	}
+ 133:../main.c     **** 
+ 134:../main.c     **** }
+ 747              	 .loc 4 134 0
+ 748 003a BD46     	 mov sp,r7
+ 749              	 
+ 750 003c 80BD     	 pop {r7,pc}
+ 751              	.L36:
+ 752 003e C046     	 .align 2
+ 753              	.L35:
+ 754 0040 00000000 	 .word pin_change_count_R
+ 755 0044 00000000 	 .word ECHO_R
+ 756 0048 00000000 	 .word pin_state_R
+ 757 004c 00000000 	 .word echo_count_R
+ 758 0050 00000000 	 .word echo_time_R
+ 759              	 .cfi_endproc
+ 760              	.LFE210:
+ 762              	 .global __aeabi_ui2d
+ 763              	 .global __aeabi_dmul
+ 764              	 .global __aeabi_d2uiz
+ 765              	 .section .text.calc,"ax",%progbits
+ 766              	 .align 2
+ 767              	 .global calc
+ 768              	 .code 16
+ 769              	 .thumb_func
+ 771              	calc:
+ 772              	.LFB211:
+ 135:../main.c     **** 
+ 136:../main.c     **** void calc(){
+ 773              	 .loc 4 136 0
+ 774              	 .cfi_startproc
+ 775 0000 98B5     	 push {r3,r4,r7,lr}
+ 776              	.LCFI29:
+ 777              	 .cfi_def_cfa_offset 16
+ 778              	 .cfi_offset 3,-16
+ 779              	 .cfi_offset 4,-12
+ 780              	 .cfi_offset 7,-8
+ 781              	 .cfi_offset 14,-4
+ 782 0002 00AF     	 add r7,sp,#0
+ 783              	.LCFI30:
+ 784              	 .cfi_def_cfa_register 7
+ 137:../main.c     **** 	DIGITAL_IO_SetOutputHigh(&CALC_TIME);
+ 785              	 .loc 4 137 0
+ 786 0004 5C4B     	 ldr r3,.L50
+ 787 0006 181C     	 mov r0,r3
+ 788 0008 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
  138:../main.c     **** 
- 139:../main.c     **** 	if(echo_time_R < ECHO_TIME_MIN) echo_time_R = ECHO_TIME_MIN;
- 679              	 .loc 3 139 0
- 680 00a0 1B4B     	 ldr r3,.L39+28
- 681 00a2 1B68     	 ldr r3,[r3]
- 682 00a4 132B     	 cmp r3,#19
- 683 00a6 03D8     	 bhi .L37
- 684              	 .loc 3 139 0 is_stmt 0 discriminator 1
- 685 00a8 194B     	 ldr r3,.L39+28
- 686 00aa 1422     	 mov r2,#20
- 687 00ac 1A60     	 str r2,[r3]
- 688 00ae 07E0     	 b .L38
- 689              	.L37:
- 140:../main.c     **** 	else if(echo_time_R > ECHO_TIME_MAX) echo_time_R = ECHO_TIME_MAX;
- 690              	 .loc 3 140 0 is_stmt 1
- 691 00b0 174B     	 ldr r3,.L39+28
- 692 00b2 1B68     	 ldr r3,[r3]
- 693 00b4 104A     	 ldr r2,.L39+4
- 694 00b6 9342     	 cmp r3,r2
- 695 00b8 02D9     	 bls .L38
- 696              	 .loc 3 140 0 is_stmt 0 discriminator 1
- 697 00ba 154B     	 ldr r3,.L39+28
- 698 00bc 0E4A     	 ldr r2,.L39+4
- 699 00be 1A60     	 str r2,[r3]
- 700              	.L38:
- 141:../main.c     **** 	distance_R = echo_time_R * ECHO_TIME_10us_TO_DISTANCE_cm;
- 701              	 .loc 3 141 0 is_stmt 1
- 702 00c0 134B     	 ldr r3,.L39+28
- 703 00c2 1B68     	 ldr r3,[r3]
- 704 00c4 181C     	 mov r0,r3
- 705 00c6 FFF7FEFF 	 bl __aeabi_ui2d
- 706 00ca 031C     	 mov r3,r0
- 707 00cc 0C1C     	 mov r4,r1
- 708 00ce 181C     	 mov r0,r3
- 709 00d0 211C     	 mov r1,r4
- 710 00d2 0A4A     	 ldr r2,.L39+8
- 711 00d4 0A4B     	 ldr r3,.L39+12
- 712 00d6 FFF7FEFF 	 bl __aeabi_dmul
- 713 00da 031C     	 mov r3,r0
- 714 00dc 0C1C     	 mov r4,r1
- 715 00de 181C     	 mov r0,r3
- 716 00e0 211C     	 mov r1,r4
- 717 00e2 FFF7FEFF 	 bl __aeabi_d2uiz
- 718 00e6 031C     	 mov r3,r0
- 719 00e8 9AB2     	 uxth r2,r3
- 720 00ea 0A4B     	 ldr r3,.L39+32
- 721 00ec 1A80     	 strh r2,[r3]
- 142:../main.c     **** }
- 722              	 .loc 3 142 0
- 723 00ee BD46     	 mov sp,r7
- 724              	 
- 725 00f0 98BD     	 pop {r3,r4,r7,pc}
- 726              	.L40:
- 727 00f2 C046     	 .align 2
- 728              	.L39:
- 729 00f4 00000000 	 .word echo_time_L
- 730 00f8 33090000 	 .word 2355
- 731 00fc C3F5285C 	 .word 1546188227
- 732 0100 8FC2C53F 	 .word 1069925007
- 733 0104 00000000 	 .word distance_L
- 734 0108 00000000 	 .word echo_time_C
- 735 010c 00000000 	 .word distance_C
- 736 0110 00000000 	 .word echo_time_R
- 737 0114 00000000 	 .word distance_R
- 738              	 .cfi_endproc
- 739              	.LFE207:
- 741              	 .section .text.CAN_send_vaules,"ax",%progbits
- 742              	 .align 2
- 743              	 .global CAN_send_vaules
- 744              	 .code 16
- 745              	 .thumb_func
- 747              	CAN_send_vaules:
- 748              	.LFB208:
- 143:../main.c     **** 
- 144:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN ){
- 749              	 .loc 3 144 0
- 750              	 .cfi_startproc
- 751 0000 90B5     	 push {r4,r7,lr}
- 752              	.LCFI19:
- 753              	 .cfi_def_cfa_offset 12
- 754              	 .cfi_offset 4,-12
- 755              	 .cfi_offset 7,-8
- 756              	 .cfi_offset 14,-4
- 757 0002 85B0     	 sub sp,sp,#20
- 758              	.LCFI20:
- 759              	 .cfi_def_cfa_offset 32
- 760 0004 00AF     	 add r7,sp,#0
- 761              	.LCFI21:
- 762              	 .cfi_def_cfa_register 7
- 763 0006 041C     	 mov r4,r0
- 764 0008 081C     	 mov r0,r1
- 765 000a 111C     	 mov r1,r2
- 766 000c BB1D     	 add r3,r7,#6
- 767 000e 221C     	 add r2,r4,#0
- 768 0010 1A80     	 strh r2,[r3]
- 769 0012 3B1D     	 add r3,r7,#4
- 770 0014 021C     	 add r2,r0,#0
- 771 0016 1A80     	 strh r2,[r3]
- 772 0018 BB1C     	 add r3,r7,#2
- 773 001a 0A1C     	 add r2,r1,#0
- 774 001c 1A80     	 strh r2,[r3]
+ 139:../main.c     **** 	if(pin_change_count_L == 2){
+ 789              	 .loc 4 139 0
+ 790 000c 5B4B     	 ldr r3,.L50+4
+ 791 000e 1B78     	 ldrb r3,[r3]
+ 792 0010 DBB2     	 uxtb r3,r3
+ 793 0012 022B     	 cmp r3,#2
+ 794 0014 27D1     	 bne .L38
+ 140:../main.c     **** 		if(echo_time_L < ECHO_TIME_MIN) echo_time_L = ECHO_TIME_MIN;
+ 795              	 .loc 4 140 0
+ 796 0016 5A4B     	 ldr r3,.L50+8
+ 797 0018 1B68     	 ldr r3,[r3]
+ 798 001a 132B     	 cmp r3,#19
+ 799 001c 03D8     	 bhi .L39
+ 800              	 .loc 4 140 0 is_stmt 0 discriminator 1
+ 801 001e 584B     	 ldr r3,.L50+8
+ 802 0020 1422     	 mov r2,#20
+ 803 0022 1A60     	 str r2,[r3]
+ 804 0024 07E0     	 b .L40
+ 805              	.L39:
+ 141:../main.c     **** 		else if(echo_time_L > ECHO_TIME_MAX) echo_time_L = ECHO_TIME_MAX;
+ 806              	 .loc 4 141 0 is_stmt 1
+ 807 0026 564B     	 ldr r3,.L50+8
+ 808 0028 1B68     	 ldr r3,[r3]
+ 809 002a 564A     	 ldr r2,.L50+12
+ 810 002c 9342     	 cmp r3,r2
+ 811 002e 02D9     	 bls .L40
+ 812              	 .loc 4 141 0 is_stmt 0 discriminator 1
+ 813 0030 534B     	 ldr r3,.L50+8
+ 814 0032 544A     	 ldr r2,.L50+12
+ 815 0034 1A60     	 str r2,[r3]
+ 816              	.L40:
+ 142:../main.c     **** 		distance_L = echo_time_L * ECHO_TIME_10us_TO_DISTANCE_cm;
+ 817              	 .loc 4 142 0 is_stmt 1
+ 818 0036 524B     	 ldr r3,.L50+8
+ 819 0038 1B68     	 ldr r3,[r3]
+ 820 003a 181C     	 mov r0,r3
+ 821 003c FFF7FEFF 	 bl __aeabi_ui2d
+ 822 0040 031C     	 mov r3,r0
+ 823 0042 0C1C     	 mov r4,r1
+ 824 0044 181C     	 mov r0,r3
+ 825 0046 211C     	 mov r1,r4
+ 826 0048 4F4A     	 ldr r2,.L50+16
+ 827 004a 504B     	 ldr r3,.L50+20
+ 828 004c FFF7FEFF 	 bl __aeabi_dmul
+ 829 0050 031C     	 mov r3,r0
+ 830 0052 0C1C     	 mov r4,r1
+ 831 0054 181C     	 mov r0,r3
+ 832 0056 211C     	 mov r1,r4
+ 833 0058 FFF7FEFF 	 bl __aeabi_d2uiz
+ 834 005c 031C     	 mov r3,r0
+ 835 005e 9AB2     	 uxth r2,r3
+ 836 0060 4B4B     	 ldr r3,.L50+24
+ 837 0062 1A80     	 strh r2,[r3]
+ 838 0064 02E0     	 b .L41
+ 839              	.L38:
+ 143:../main.c     **** 	}
+ 144:../main.c     **** 	else distance_L = 0;
+ 840              	 .loc 4 144 0
+ 841 0066 4A4B     	 ldr r3,.L50+24
+ 842 0068 0022     	 mov r2,#0
+ 843 006a 1A80     	 strh r2,[r3]
+ 844              	.L41:
  145:../main.c     **** 
- 146:../main.c     **** 	uint16_t RX_Data[4] ={CAN_OK, distance_C_CAN, distance_L_CAN, distance_R_CAN}; // in int16_t mm/s 
- 775              	 .loc 3 146 0
- 776 001e 124B     	 ldr r3,.L42
- 777 0020 1B78     	 ldrb r3,[r3]
- 778 0022 9AB2     	 uxth r2,r3
- 779 0024 0823     	 mov r3,#8
- 780 0026 FB18     	 add r3,r7,r3
- 781 0028 1A80     	 strh r2,[r3]
- 782 002a 0823     	 mov r3,#8
- 783 002c FB18     	 add r3,r7,r3
- 784 002e BA1D     	 add r2,r7,#6
- 785 0030 1288     	 ldrh r2,[r2]
- 786 0032 5A80     	 strh r2,[r3,#2]
- 787 0034 0823     	 mov r3,#8
- 788 0036 FB18     	 add r3,r7,r3
- 789 0038 3A1D     	 add r2,r7,#4
- 790 003a 1288     	 ldrh r2,[r2]
- 791 003c 9A80     	 strh r2,[r3,#4]
- 792 003e 0823     	 mov r3,#8
- 793 0040 FB18     	 add r3,r7,r3
- 794 0042 BA1C     	 add r2,r7,#2
- 795 0044 1288     	 ldrh r2,[r2]
- 796 0046 DA80     	 strh r2,[r3,#6]
- 147:../main.c     **** 
- 148:../main.c     **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)RX_Data);
- 797              	 .loc 3 148 0
- 798 0048 084B     	 ldr r3,.L42+4
- 799 004a DA68     	 ldr r2,[r3,#12]
- 800 004c 0823     	 mov r3,#8
- 801 004e FB18     	 add r3,r7,r3
- 802 0050 101C     	 mov r0,r2
- 803 0052 191C     	 mov r1,r3
- 804 0054 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
- 149:../main.c     **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
- 805              	 .loc 3 149 0
- 806 0058 044B     	 ldr r3,.L42+4
- 807 005a DB68     	 ldr r3,[r3,#12]
- 808 005c 181C     	 mov r0,r3
- 809 005e FFF7FEFF 	 bl CAN_NODE_MO_Transmit
- 150:../main.c     **** }
- 810              	 .loc 3 150 0
- 811 0062 BD46     	 mov sp,r7
- 812 0064 05B0     	 add sp,sp,#20
- 813              	 
- 814 0066 90BD     	 pop {r4,r7,pc}
- 815              	.L43:
- 816              	 .align 2
- 817              	.L42:
- 818 0068 00000000 	 .word CAN_OK
- 819 006c 00000000 	 .word CAN_NODE_0
- 820              	 .cfi_endproc
- 821              	.LFE208:
- 823              	 .global __aeabi_fadd
- 824              	 .global __aeabi_i2f
- 825              	 .global __aeabi_fdiv
- 826              	 .section .text.average,"ax",%progbits
- 827              	 .align 2
- 828              	 .global average
- 829              	 .code 16
- 830              	 .thumb_func
- 832              	average:
- 833              	.LFB209:
- 151:../main.c     **** 
+ 146:../main.c     **** 	if(pin_change_count_C == 2){
+ 845              	 .loc 4 146 0
+ 846 006c 494B     	 ldr r3,.L50+28
+ 847 006e 1B78     	 ldrb r3,[r3]
+ 848 0070 DBB2     	 uxtb r3,r3
+ 849 0072 022B     	 cmp r3,#2
+ 850 0074 27D1     	 bne .L42
+ 147:../main.c     **** 		if(echo_time_C < ECHO_TIME_MIN) echo_time_C = ECHO_TIME_MIN;
+ 851              	 .loc 4 147 0
+ 852 0076 484B     	 ldr r3,.L50+32
+ 853 0078 1B68     	 ldr r3,[r3]
+ 854 007a 132B     	 cmp r3,#19
+ 855 007c 03D8     	 bhi .L43
+ 856              	 .loc 4 147 0 is_stmt 0 discriminator 1
+ 857 007e 464B     	 ldr r3,.L50+32
+ 858 0080 1422     	 mov r2,#20
+ 859 0082 1A60     	 str r2,[r3]
+ 860 0084 07E0     	 b .L44
+ 861              	.L43:
+ 148:../main.c     **** 		else if(echo_time_C > ECHO_TIME_MAX) echo_time_C = ECHO_TIME_MAX;
+ 862              	 .loc 4 148 0 is_stmt 1
+ 863 0086 444B     	 ldr r3,.L50+32
+ 864 0088 1B68     	 ldr r3,[r3]
+ 865 008a 3E4A     	 ldr r2,.L50+12
+ 866 008c 9342     	 cmp r3,r2
+ 867 008e 02D9     	 bls .L44
+ 868              	 .loc 4 148 0 is_stmt 0 discriminator 1
+ 869 0090 414B     	 ldr r3,.L50+32
+ 870 0092 3C4A     	 ldr r2,.L50+12
+ 871 0094 1A60     	 str r2,[r3]
+ 872              	.L44:
+ 149:../main.c     **** 		distance_C = echo_time_C * ECHO_TIME_10us_TO_DISTANCE_cm;
+ 873              	 .loc 4 149 0 is_stmt 1
+ 874 0096 404B     	 ldr r3,.L50+32
+ 875 0098 1B68     	 ldr r3,[r3]
+ 876 009a 181C     	 mov r0,r3
+ 877 009c FFF7FEFF 	 bl __aeabi_ui2d
+ 878 00a0 031C     	 mov r3,r0
+ 879 00a2 0C1C     	 mov r4,r1
+ 880 00a4 181C     	 mov r0,r3
+ 881 00a6 211C     	 mov r1,r4
+ 882 00a8 374A     	 ldr r2,.L50+16
+ 883 00aa 384B     	 ldr r3,.L50+20
+ 884 00ac FFF7FEFF 	 bl __aeabi_dmul
+ 885 00b0 031C     	 mov r3,r0
+ 886 00b2 0C1C     	 mov r4,r1
+ 887 00b4 181C     	 mov r0,r3
+ 888 00b6 211C     	 mov r1,r4
+ 889 00b8 FFF7FEFF 	 bl __aeabi_d2uiz
+ 890 00bc 031C     	 mov r3,r0
+ 891 00be 9AB2     	 uxth r2,r3
+ 892 00c0 364B     	 ldr r3,.L50+36
+ 893 00c2 1A80     	 strh r2,[r3]
+ 894 00c4 02E0     	 b .L45
+ 895              	.L42:
+ 150:../main.c     **** 	}
+ 151:../main.c     **** 	else distance_C = 0;
+ 896              	 .loc 4 151 0
+ 897 00c6 354B     	 ldr r3,.L50+36
+ 898 00c8 0022     	 mov r2,#0
+ 899 00ca 1A80     	 strh r2,[r3]
+ 900              	.L45:
  152:../main.c     **** 
- 153:../main.c     **** float average(float a[],int num_vaules) {
- 834              	 .loc 3 153 0
- 835              	 .cfi_startproc
- 836 0000 80B5     	 push {r7,lr}
- 837              	.LCFI22:
- 838              	 .cfi_def_cfa_offset 8
- 839              	 .cfi_offset 7,-8
- 840              	 .cfi_offset 14,-4
- 841 0002 84B0     	 sub sp,sp,#16
- 842              	.LCFI23:
- 843              	 .cfi_def_cfa_offset 24
- 844 0004 00AF     	 add r7,sp,#0
- 845              	.LCFI24:
- 846              	 .cfi_def_cfa_register 7
- 847 0006 7860     	 str r0,[r7,#4]
- 848 0008 3960     	 str r1,[r7]
- 154:../main.c     ****     float sum = 0;
- 849              	 .loc 3 154 0
- 850 000a 0023     	 mov r3,#0
- 851 000c FB60     	 str r3,[r7,#12]
- 155:../main.c     ****     int i;
- 156:../main.c     ****     for(i = 0; i < num_vaules; i++){
- 852              	 .loc 3 156 0
- 853 000e 0023     	 mov r3,#0
- 854 0010 BB60     	 str r3,[r7,#8]
- 855 0012 0DE0     	 b .L45
- 856              	.L46:
- 157:../main.c     ****         sum += a[i];
- 857              	 .loc 3 157 0 discriminator 3
- 858 0014 BB68     	 ldr r3,[r7,#8]
- 859 0016 9B00     	 lsl r3,r3,#2
- 860 0018 7A68     	 ldr r2,[r7,#4]
- 861 001a D318     	 add r3,r2,r3
- 862 001c 1B68     	 ldr r3,[r3]
- 863 001e F868     	 ldr r0,[r7,#12]
- 864 0020 191C     	 add r1,r3,#0
- 865 0022 FFF7FEFF 	 bl __aeabi_fadd
- 866 0026 031C     	 add r3,r0,#0
- 867 0028 FB60     	 str r3,[r7,#12]
- 156:../main.c     ****         sum += a[i];
- 868              	 .loc 3 156 0 discriminator 3
- 869 002a BB68     	 ldr r3,[r7,#8]
- 870 002c 0133     	 add r3,r3,#1
- 871 002e BB60     	 str r3,[r7,#8]
- 872              	.L45:
- 156:../main.c     ****         sum += a[i];
- 873              	 .loc 3 156 0 is_stmt 0 discriminator 1
- 874 0030 BA68     	 ldr r2,[r7,#8]
- 875 0032 3B68     	 ldr r3,[r7]
- 876 0034 9A42     	 cmp r2,r3
- 877 0036 EDDB     	 blt .L46
- 158:../main.c     ****     }
- 159:../main.c     ****     return sum / num_vaules;
- 878              	 .loc 3 159 0 is_stmt 1
- 879 0038 3868     	 ldr r0,[r7]
- 880 003a FFF7FEFF 	 bl __aeabi_i2f
- 881 003e 031C     	 add r3,r0,#0
- 882 0040 F868     	 ldr r0,[r7,#12]
- 883 0042 191C     	 add r1,r3,#0
- 884 0044 FFF7FEFF 	 bl __aeabi_fdiv
- 885 0048 031C     	 add r3,r0,#0
- 160:../main.c     **** }
- 886              	 .loc 3 160 0
- 887 004a 181C     	 add r0,r3,#0
- 888 004c BD46     	 mov sp,r7
- 889 004e 04B0     	 add sp,sp,#16
- 890              	 
- 891 0050 80BD     	 pop {r7,pc}
- 892              	 .cfi_endproc
- 893              	.LFE209:
- 895 0052 C046     	 .text
- 896              	.Letext0:
- 897              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 898              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 899              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
- 900              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_scu.h"
- 901              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_can.h"
- 902              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/GLOBAL_CAN/global_can.h"
- 903              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_gpio.h"
- 904              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/CAN_NODE/can_node.h"
- 905              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_eru.h"
- 906              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io.h"
- 907              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DAVE.h"
- 908              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include/cmsis_gcc.h"
- 909              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 910              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/CAN_NODE/can_node_extern.h"
- 911              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
- 912              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io_extern.h"
+ 153:../main.c     **** 	if(pin_change_count_R == 2){
+ 901              	 .loc 4 153 0
+ 902 00cc 344B     	 ldr r3,.L50+40
+ 903 00ce 1B78     	 ldrb r3,[r3]
+ 904 00d0 DBB2     	 uxtb r3,r3
+ 905 00d2 022B     	 cmp r3,#2
+ 906 00d4 27D1     	 bne .L46
+ 154:../main.c     **** 		if(echo_time_R < ECHO_TIME_MIN) echo_time_R = ECHO_TIME_MIN;
+ 907              	 .loc 4 154 0
+ 908 00d6 334B     	 ldr r3,.L50+44
+ 909 00d8 1B68     	 ldr r3,[r3]
+ 910 00da 132B     	 cmp r3,#19
+ 911 00dc 03D8     	 bhi .L47
+ 912              	 .loc 4 154 0 is_stmt 0 discriminator 1
+ 913 00de 314B     	 ldr r3,.L50+44
+ 914 00e0 1422     	 mov r2,#20
+ 915 00e2 1A60     	 str r2,[r3]
+ 916 00e4 07E0     	 b .L48
+ 917              	.L47:
+ 155:../main.c     **** 		else if(echo_time_R > ECHO_TIME_MAX) echo_time_R = ECHO_TIME_MAX;
+ 918              	 .loc 4 155 0 is_stmt 1
+ 919 00e6 2F4B     	 ldr r3,.L50+44
+ 920 00e8 1B68     	 ldr r3,[r3]
+ 921 00ea 264A     	 ldr r2,.L50+12
+ 922 00ec 9342     	 cmp r3,r2
+ 923 00ee 02D9     	 bls .L48
+ 924              	 .loc 4 155 0 is_stmt 0 discriminator 1
+ 925 00f0 2C4B     	 ldr r3,.L50+44
+ 926 00f2 244A     	 ldr r2,.L50+12
+ 927 00f4 1A60     	 str r2,[r3]
+ 928              	.L48:
+ 156:../main.c     **** 		distance_R = echo_time_R * ECHO_TIME_10us_TO_DISTANCE_cm;
+ 929              	 .loc 4 156 0 is_stmt 1
+ 930 00f6 2B4B     	 ldr r3,.L50+44
+ 931 00f8 1B68     	 ldr r3,[r3]
+ 932 00fa 181C     	 mov r0,r3
+ 933 00fc FFF7FEFF 	 bl __aeabi_ui2d
+ 934 0100 031C     	 mov r3,r0
+ 935 0102 0C1C     	 mov r4,r1
+ 936 0104 181C     	 mov r0,r3
+ 937 0106 211C     	 mov r1,r4
+ 938 0108 1F4A     	 ldr r2,.L50+16
+ 939 010a 204B     	 ldr r3,.L50+20
+ 940 010c FFF7FEFF 	 bl __aeabi_dmul
+ 941 0110 031C     	 mov r3,r0
+ 942 0112 0C1C     	 mov r4,r1
+ 943 0114 181C     	 mov r0,r3
+ 944 0116 211C     	 mov r1,r4
+ 945 0118 FFF7FEFF 	 bl __aeabi_d2uiz
+ 946 011c 031C     	 mov r3,r0
+ 947 011e 9AB2     	 uxth r2,r3
+ 948 0120 214B     	 ldr r3,.L50+48
+ 949 0122 1A80     	 strh r2,[r3]
+ 950 0124 02E0     	 b .L49
+ 951              	.L46:
+ 157:../main.c     **** 	}
+ 158:../main.c     **** 	else distance_R = 0;
+ 952              	 .loc 4 158 0
+ 953 0126 204B     	 ldr r3,.L50+48
+ 954 0128 0022     	 mov r2,#0
+ 955 012a 1A80     	 strh r2,[r3]
+ 956              	.L49:
+ 159:../main.c     **** 
+ 160:../main.c     **** 
+ 161:../main.c     **** 	CAN_send_vaules(distance_C, distance_L, distance_R );
+ 957              	 .loc 4 161 0
+ 958 012c 1B4B     	 ldr r3,.L50+36
+ 959 012e 1B88     	 ldrh r3,[r3]
+ 960 0130 99B2     	 uxth r1,r3
+ 961 0132 174B     	 ldr r3,.L50+24
+ 962 0134 1B88     	 ldrh r3,[r3]
+ 963 0136 9AB2     	 uxth r2,r3
+ 964 0138 1B4B     	 ldr r3,.L50+48
+ 965 013a 1B88     	 ldrh r3,[r3]
+ 966 013c 9BB2     	 uxth r3,r3
+ 967 013e 081C     	 mov r0,r1
+ 968 0140 111C     	 mov r1,r2
+ 969 0142 1A1C     	 mov r2,r3
+ 970 0144 FFF7FEFF 	 bl CAN_send_vaules
+ 162:../main.c     **** 
+ 163:../main.c     **** 	//rest
+ 164:../main.c     **** 	pin_change_count_C = 0;
+ 971              	 .loc 4 164 0
+ 972 0148 124B     	 ldr r3,.L50+28
+ 973 014a 0022     	 mov r2,#0
+ 974 014c 1A70     	 strb r2,[r3]
+ 165:../main.c     **** 	pin_change_count_L = 0;
+ 975              	 .loc 4 165 0
+ 976 014e 0B4B     	 ldr r3,.L50+4
+ 977 0150 0022     	 mov r2,#0
+ 978 0152 1A70     	 strb r2,[r3]
+ 166:../main.c     **** 	pin_change_count_R = 0;
+ 979              	 .loc 4 166 0
+ 980 0154 124B     	 ldr r3,.L50+40
+ 981 0156 0022     	 mov r2,#0
+ 982 0158 1A70     	 strb r2,[r3]
+ 167:../main.c     **** 	echo_count_C = 0;
+ 983              	 .loc 4 167 0
+ 984 015a 144B     	 ldr r3,.L50+52
+ 985 015c 0022     	 mov r2,#0
+ 986 015e 1A60     	 str r2,[r3]
+ 168:../main.c     **** 	echo_count_L = 0;
+ 987              	 .loc 4 168 0
+ 988 0160 134B     	 ldr r3,.L50+56
+ 989 0162 0022     	 mov r2,#0
+ 990 0164 1A60     	 str r2,[r3]
+ 169:../main.c     **** 	echo_count_R = 0;
+ 991              	 .loc 4 169 0
+ 992 0166 134B     	 ldr r3,.L50+60
+ 993 0168 0022     	 mov r2,#0
+ 994 016a 1A60     	 str r2,[r3]
+ 170:../main.c     **** 
+ 171:../main.c     **** 	DIGITAL_IO_SetOutputLow(&CALC_TIME);
+ 995              	 .loc 4 171 0
+ 996 016c 024B     	 ldr r3,.L50
+ 997 016e 181C     	 mov r0,r3
+ 998 0170 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 172:../main.c     **** }
+ 999              	 .loc 4 172 0
+ 1000 0174 BD46     	 mov sp,r7
+ 1001              	 
+ 1002 0176 98BD     	 pop {r3,r4,r7,pc}
+ 1003              	.L51:
+ 1004              	 .align 2
+ 1005              	.L50:
+ 1006 0178 00000000 	 .word CALC_TIME
+ 1007 017c 00000000 	 .word pin_change_count_L
+ 1008 0180 00000000 	 .word echo_time_L
+ 1009 0184 33090000 	 .word 2355
+ 1010 0188 C3F5285C 	 .word 1546188227
+ 1011 018c 8FC2C53F 	 .word 1069925007
+ 1012 0190 00000000 	 .word distance_L
+ 1013 0194 00000000 	 .word pin_change_count_C
+ 1014 0198 00000000 	 .word echo_time_C
+ 1015 019c 00000000 	 .word distance_C
+ 1016 01a0 00000000 	 .word pin_change_count_R
+ 1017 01a4 00000000 	 .word echo_time_R
+ 1018 01a8 00000000 	 .word distance_R
+ 1019 01ac 00000000 	 .word echo_count_C
+ 1020 01b0 00000000 	 .word echo_count_L
+ 1021 01b4 00000000 	 .word echo_count_R
+ 1022              	 .cfi_endproc
+ 1023              	.LFE211:
+ 1025              	 .section .text.CAN_send_vaules,"ax",%progbits
+ 1026              	 .align 2
+ 1027              	 .global CAN_send_vaules
+ 1028              	 .code 16
+ 1029              	 .thumb_func
+ 1031              	CAN_send_vaules:
+ 1032              	.LFB212:
+ 173:../main.c     **** 
+ 174:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN ){
+ 1033              	 .loc 4 174 0
+ 1034              	 .cfi_startproc
+ 1035 0000 90B5     	 push {r4,r7,lr}
+ 1036              	.LCFI31:
+ 1037              	 .cfi_def_cfa_offset 12
+ 1038              	 .cfi_offset 4,-12
+ 1039              	 .cfi_offset 7,-8
+ 1040              	 .cfi_offset 14,-4
+ 1041 0002 85B0     	 sub sp,sp,#20
+ 1042              	.LCFI32:
+ 1043              	 .cfi_def_cfa_offset 32
+ 1044 0004 00AF     	 add r7,sp,#0
+ 1045              	.LCFI33:
+ 1046              	 .cfi_def_cfa_register 7
+ 1047 0006 041C     	 mov r4,r0
+ 1048 0008 081C     	 mov r0,r1
+ 1049 000a 111C     	 mov r1,r2
+ 1050 000c BB1D     	 add r3,r7,#6
+ 1051 000e 221C     	 add r2,r4,#0
+ 1052 0010 1A80     	 strh r2,[r3]
+ 1053 0012 3B1D     	 add r3,r7,#4
+ 1054 0014 021C     	 add r2,r0,#0
+ 1055 0016 1A80     	 strh r2,[r3]
+ 1056 0018 BB1C     	 add r3,r7,#2
+ 1057 001a 0A1C     	 add r2,r1,#0
+ 1058 001c 1A80     	 strh r2,[r3]
+ 175:../main.c     **** 
+ 176:../main.c     **** 	uint16_t RX_Data[4] ={CAN_OK, distance_C_CAN, distance_L_CAN, distance_R_CAN}; // in int16_t mm/s 
+ 1059              	 .loc 4 176 0
+ 1060 001e 124B     	 ldr r3,.L53
+ 1061 0020 1B78     	 ldrb r3,[r3]
+ 1062 0022 9AB2     	 uxth r2,r3
+ 1063 0024 0823     	 mov r3,#8
+ 1064 0026 FB18     	 add r3,r7,r3
+ 1065 0028 1A80     	 strh r2,[r3]
+ 1066 002a 0823     	 mov r3,#8
+ 1067 002c FB18     	 add r3,r7,r3
+ 1068 002e BA1D     	 add r2,r7,#6
+ 1069 0030 1288     	 ldrh r2,[r2]
+ 1070 0032 5A80     	 strh r2,[r3,#2]
+ 1071 0034 0823     	 mov r3,#8
+ 1072 0036 FB18     	 add r3,r7,r3
+ 1073 0038 3A1D     	 add r2,r7,#4
+ 1074 003a 1288     	 ldrh r2,[r2]
+ 1075 003c 9A80     	 strh r2,[r3,#4]
+ 1076 003e 0823     	 mov r3,#8
+ 1077 0040 FB18     	 add r3,r7,r3
+ 1078 0042 BA1C     	 add r2,r7,#2
+ 1079 0044 1288     	 ldrh r2,[r2]
+ 1080 0046 DA80     	 strh r2,[r3,#6]
+ 177:../main.c     **** 
+ 178:../main.c     **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)RX_Data);
+ 1081              	 .loc 4 178 0
+ 1082 0048 084B     	 ldr r3,.L53+4
+ 1083 004a DA68     	 ldr r2,[r3,#12]
+ 1084 004c 0823     	 mov r3,#8
+ 1085 004e FB18     	 add r3,r7,r3
+ 1086 0050 101C     	 mov r0,r2
+ 1087 0052 191C     	 mov r1,r3
+ 1088 0054 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
+ 179:../main.c     **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
+ 1089              	 .loc 4 179 0
+ 1090 0058 044B     	 ldr r3,.L53+4
+ 1091 005a DB68     	 ldr r3,[r3,#12]
+ 1092 005c 181C     	 mov r0,r3
+ 1093 005e FFF7FEFF 	 bl CAN_NODE_MO_Transmit
+ 180:../main.c     **** }
+ 1094              	 .loc 4 180 0
+ 1095 0062 BD46     	 mov sp,r7
+ 1096 0064 05B0     	 add sp,sp,#20
+ 1097              	 
+ 1098 0066 90BD     	 pop {r4,r7,pc}
+ 1099              	.L54:
+ 1100              	 .align 2
+ 1101              	.L53:
+ 1102 0068 00000000 	 .word CAN_OK
+ 1103 006c 00000000 	 .word CAN_NODE_0
+ 1104              	 .cfi_endproc
+ 1105              	.LFE212:
+ 1107              	 .global __aeabi_fadd
+ 1108              	 .global __aeabi_i2f
+ 1109              	 .global __aeabi_fdiv
+ 1110              	 .section .text.average,"ax",%progbits
+ 1111              	 .align 2
+ 1112              	 .global average
+ 1113              	 .code 16
+ 1114              	 .thumb_func
+ 1116              	average:
+ 1117              	.LFB213:
+ 181:../main.c     **** 
+ 182:../main.c     **** 
+ 183:../main.c     **** float average(float a[],int num_vaules) {
+ 1118              	 .loc 4 183 0
+ 1119              	 .cfi_startproc
+ 1120 0000 80B5     	 push {r7,lr}
+ 1121              	.LCFI34:
+ 1122              	 .cfi_def_cfa_offset 8
+ 1123              	 .cfi_offset 7,-8
+ 1124              	 .cfi_offset 14,-4
+ 1125 0002 84B0     	 sub sp,sp,#16
+ 1126              	.LCFI35:
+ 1127              	 .cfi_def_cfa_offset 24
+ 1128 0004 00AF     	 add r7,sp,#0
+ 1129              	.LCFI36:
+ 1130              	 .cfi_def_cfa_register 7
+ 1131 0006 7860     	 str r0,[r7,#4]
+ 1132 0008 3960     	 str r1,[r7]
+ 184:../main.c     ****     float sum = 0;
+ 1133              	 .loc 4 184 0
+ 1134 000a 0023     	 mov r3,#0
+ 1135 000c FB60     	 str r3,[r7,#12]
+ 185:../main.c     ****     int i;
+ 186:../main.c     ****     for(i = 0; i < num_vaules; i++){
+ 1136              	 .loc 4 186 0
+ 1137 000e 0023     	 mov r3,#0
+ 1138 0010 BB60     	 str r3,[r7,#8]
+ 1139 0012 0DE0     	 b .L56
+ 1140              	.L57:
+ 187:../main.c     ****         sum += a[i];
+ 1141              	 .loc 4 187 0 discriminator 3
+ 1142 0014 BB68     	 ldr r3,[r7,#8]
+ 1143 0016 9B00     	 lsl r3,r3,#2
+ 1144 0018 7A68     	 ldr r2,[r7,#4]
+ 1145 001a D318     	 add r3,r2,r3
+ 1146 001c 1B68     	 ldr r3,[r3]
+ 1147 001e F868     	 ldr r0,[r7,#12]
+ 1148 0020 191C     	 add r1,r3,#0
+ 1149 0022 FFF7FEFF 	 bl __aeabi_fadd
+ 1150 0026 031C     	 add r3,r0,#0
+ 1151 0028 FB60     	 str r3,[r7,#12]
+ 186:../main.c     ****         sum += a[i];
+ 1152              	 .loc 4 186 0 discriminator 3
+ 1153 002a BB68     	 ldr r3,[r7,#8]
+ 1154 002c 0133     	 add r3,r3,#1
+ 1155 002e BB60     	 str r3,[r7,#8]
+ 1156              	.L56:
+ 186:../main.c     ****         sum += a[i];
+ 1157              	 .loc 4 186 0 is_stmt 0 discriminator 1
+ 1158 0030 BA68     	 ldr r2,[r7,#8]
+ 1159 0032 3B68     	 ldr r3,[r7]
+ 1160 0034 9A42     	 cmp r2,r3
+ 1161 0036 EDDB     	 blt .L57
+ 188:../main.c     ****     }
+ 189:../main.c     ****     return sum / num_vaules;
+ 1162              	 .loc 4 189 0 is_stmt 1
+ 1163 0038 3868     	 ldr r0,[r7]
+ 1164 003a FFF7FEFF 	 bl __aeabi_i2f
+ 1165 003e 031C     	 add r3,r0,#0
+ 1166 0040 F868     	 ldr r0,[r7,#12]
+ 1167 0042 191C     	 add r1,r3,#0
+ 1168 0044 FFF7FEFF 	 bl __aeabi_fdiv
+ 1169 0048 031C     	 add r3,r0,#0
+ 190:../main.c     **** }
+ 1170              	 .loc 4 190 0
+ 1171 004a 181C     	 add r0,r3,#0
+ 1172 004c BD46     	 mov sp,r7
+ 1173 004e 04B0     	 add sp,sp,#16
+ 1174              	 
+ 1175 0050 80BD     	 pop {r7,pc}
+ 1176              	 .cfi_endproc
+ 1177              	.LFE213:
+ 1179 0052 C046     	 .text
+ 1180              	.Letext0:
+ 1181              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1182              	 .file 6 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 1183              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 1184              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_scu.h"
+ 1185              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_can.h"
+ 1186              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 1187              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 1188              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/CAN_NODE/can_node.h"
+ 1189              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/XMCLib/inc/xmc_eru.h"
+ 1190              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io.h"
+ 1191              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DAVE.h"
+ 1192              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 1193              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 1194              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/CAN_NODE/can_node_extern.h"
+ 1195              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
+ 1196              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/BUS_IO/bus_io_extern.h"
+ 1197              	 .file 21 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_sensor_node_XMC1400/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-    {standard input}:18     .text.XMC_GPIO_GetInput:00000000 $t
-    {standard input}:22     .text.XMC_GPIO_GetInput:00000000 XMC_GPIO_GetInput
-    {standard input}:61     .text.PIN_INTERRUPT_GetPinValue:00000000 $t
-    {standard input}:65     .text.PIN_INTERRUPT_GetPinValue:00000000 PIN_INTERRUPT_GetPinValue
-    {standard input}:104    .bss.CAN_OK:00000000 CAN_OK
-    {standard input}:105    .bss.CAN_OK:00000000 $d
+    {standard input}:18     .text.XMC_GPIO_SetOutputHigh:00000000 $t
+    {standard input}:22     .text.XMC_GPIO_SetOutputHigh:00000000 XMC_GPIO_SetOutputHigh
+    {standard input}:58     .text.XMC_GPIO_SetOutputLow:00000000 $t
+    {standard input}:62     .text.XMC_GPIO_SetOutputLow:00000000 XMC_GPIO_SetOutputLow
+    {standard input}:98     .text.XMC_GPIO_GetInput:00000000 $t
+    {standard input}:102    .text.XMC_GPIO_GetInput:00000000 XMC_GPIO_GetInput
+    {standard input}:140    .text.PIN_INTERRUPT_GetPinValue:00000000 $t
+    {standard input}:144    .text.PIN_INTERRUPT_GetPinValue:00000000 PIN_INTERRUPT_GetPinValue
+    {standard input}:180    .text.DIGITAL_IO_SetOutputHigh:00000000 $t
+    {standard input}:184    .text.DIGITAL_IO_SetOutputHigh:00000000 DIGITAL_IO_SetOutputHigh
+    {standard input}:218    .text.DIGITAL_IO_SetOutputLow:00000000 $t
+    {standard input}:222    .text.DIGITAL_IO_SetOutputLow:00000000 DIGITAL_IO_SetOutputLow
+    {standard input}:258    .bss.CAN_OK:00000000 CAN_OK
+    {standard input}:259    .bss.CAN_OK:00000000 $d
                             *COM*:00000001 init_status
-    {standard input}:112    .bss.t_10us_count:00000000 t_10us_count
-    {standard input}:109    .bss.t_10us_count:00000000 $d
-    {standard input}:118    .bss.pin_state_C:00000000 pin_state_C
-    {standard input}:119    .bss.pin_state_C:00000000 $d
-    {standard input}:125    .bss.echo_time_C:00000000 echo_time_C
-    {standard input}:122    .bss.echo_time_C:00000000 $d
-    {standard input}:132    .bss.echo_count_C:00000000 echo_count_C
-    {standard input}:129    .bss.echo_count_C:00000000 $d
-    {standard input}:139    .bss.distance_C:00000000 distance_C
-    {standard input}:136    .bss.distance_C:00000000 $d
-    {standard input}:145    .bss.pin_state_L:00000000 pin_state_L
-    {standard input}:146    .bss.pin_state_L:00000000 $d
-    {standard input}:152    .bss.echo_time_L:00000000 echo_time_L
-    {standard input}:149    .bss.echo_time_L:00000000 $d
-    {standard input}:159    .bss.echo_count_L:00000000 echo_count_L
-    {standard input}:156    .bss.echo_count_L:00000000 $d
-    {standard input}:166    .bss.distance_L:00000000 distance_L
-    {standard input}:163    .bss.distance_L:00000000 $d
-    {standard input}:172    .bss.pin_state_R:00000000 pin_state_R
-    {standard input}:173    .bss.pin_state_R:00000000 $d
-    {standard input}:179    .bss.echo_time_R:00000000 echo_time_R
-    {standard input}:176    .bss.echo_time_R:00000000 $d
-    {standard input}:186    .bss.echo_count_R:00000000 echo_count_R
-    {standard input}:183    .bss.echo_count_R:00000000 $d
-    {standard input}:193    .bss.distance_R:00000000 distance_R
-    {standard input}:190    .bss.distance_R:00000000 $d
-    {standard input}:196    .text.main:00000000 $t
-    {standard input}:201    .text.main:00000000 main
-    {standard input}:255    .text.main:0000003c $d
-    {standard input}:262    .text.IRQ0_Handler:00000000 $t
-    {standard input}:267    .text.IRQ0_Handler:00000000 IRQ0_Handler
-    {standard input}:579    .text.calc:00000000 calc
-    {standard input}:747    .text.CAN_send_vaules:00000000 CAN_send_vaules
-    {standard input}:387    .text.IRQ0_Handler:000000b0 $d
-    {standard input}:403    .text.IRQ5_Handler:00000000 $t
-    {standard input}:408    .text.IRQ5_Handler:00000000 IRQ5_Handler
-    {standard input}:451    .text.IRQ5_Handler:00000030 $d
-    {standard input}:459    .text.IRQ6_Handler:00000000 $t
-    {standard input}:464    .text.IRQ6_Handler:00000000 IRQ6_Handler
-    {standard input}:507    .text.IRQ6_Handler:00000030 $d
-    {standard input}:515    .text.IRQ3_Handler:00000000 $t
-    {standard input}:520    .text.IRQ3_Handler:00000000 IRQ3_Handler
-    {standard input}:563    .text.IRQ3_Handler:00000030 $d
-    {standard input}:574    .text.calc:00000000 $t
-    {standard input}:729    .text.calc:000000f4 $d
-    {standard input}:742    .text.CAN_send_vaules:00000000 $t
-    {standard input}:818    .text.CAN_send_vaules:00000068 $d
-    {standard input}:827    .text.average:00000000 $t
-    {standard input}:832    .text.average:00000000 average
+    {standard input}:266    .bss.t_10us_count:00000000 t_10us_count
+    {standard input}:263    .bss.t_10us_count:00000000 $d
+    {standard input}:272    .bss.pin_change_count_C:00000000 pin_change_count_C
+    {standard input}:273    .bss.pin_change_count_C:00000000 $d
+    {standard input}:278    .bss.pin_state_C:00000000 pin_state_C
+    {standard input}:279    .bss.pin_state_C:00000000 $d
+    {standard input}:285    .bss.echo_time_C:00000000 echo_time_C
+    {standard input}:282    .bss.echo_time_C:00000000 $d
+    {standard input}:292    .bss.echo_count_C:00000000 echo_count_C
+    {standard input}:289    .bss.echo_count_C:00000000 $d
+    {standard input}:299    .bss.distance_C:00000000 distance_C
+    {standard input}:296    .bss.distance_C:00000000 $d
+    {standard input}:305    .bss.pin_change_count_L:00000000 pin_change_count_L
+    {standard input}:306    .bss.pin_change_count_L:00000000 $d
+    {standard input}:311    .bss.pin_state_L:00000000 pin_state_L
+    {standard input}:312    .bss.pin_state_L:00000000 $d
+    {standard input}:318    .bss.echo_time_L:00000000 echo_time_L
+    {standard input}:315    .bss.echo_time_L:00000000 $d
+    {standard input}:325    .bss.echo_count_L:00000000 echo_count_L
+    {standard input}:322    .bss.echo_count_L:00000000 $d
+    {standard input}:332    .bss.distance_L:00000000 distance_L
+    {standard input}:329    .bss.distance_L:00000000 $d
+    {standard input}:338    .bss.pin_change_count_R:00000000 pin_change_count_R
+    {standard input}:339    .bss.pin_change_count_R:00000000 $d
+    {standard input}:344    .bss.pin_state_R:00000000 pin_state_R
+    {standard input}:345    .bss.pin_state_R:00000000 $d
+    {standard input}:351    .bss.echo_time_R:00000000 echo_time_R
+    {standard input}:348    .bss.echo_time_R:00000000 $d
+    {standard input}:358    .bss.echo_count_R:00000000 echo_count_R
+    {standard input}:355    .bss.echo_count_R:00000000 $d
+    {standard input}:365    .bss.distance_R:00000000 distance_R
+    {standard input}:362    .bss.distance_R:00000000 $d
+    {standard input}:368    .text.main:00000000 $t
+    {standard input}:373    .text.main:00000000 main
+    {standard input}:427    .text.main:0000003c $d
+    {standard input}:434    .text.IRQ0_Handler:00000000 $t
+    {standard input}:439    .text.IRQ0_Handler:00000000 IRQ0_Handler
+    {standard input}:771    .text.calc:00000000 calc
+    {standard input}:555    .text.IRQ0_Handler:000000a4 $d
+    {standard input}:568    .text.IRQ5_Handler:00000000 $t
+    {standard input}:573    .text.IRQ5_Handler:00000000 IRQ5_Handler
+    {standard input}:624    .text.IRQ5_Handler:00000040 $d
+    {standard input}:633    .text.IRQ6_Handler:00000000 $t
+    {standard input}:638    .text.IRQ6_Handler:00000000 IRQ6_Handler
+    {standard input}:689    .text.IRQ6_Handler:00000040 $d
+    {standard input}:698    .text.IRQ3_Handler:00000000 $t
+    {standard input}:703    .text.IRQ3_Handler:00000000 IRQ3_Handler
+    {standard input}:754    .text.IRQ3_Handler:00000040 $d
+    {standard input}:766    .text.calc:00000000 $t
+    {standard input}:1031   .text.CAN_send_vaules:00000000 CAN_send_vaules
+    {standard input}:1006   .text.calc:00000178 $d
+    {standard input}:1026   .text.CAN_send_vaules:00000000 $t
+    {standard input}:1102   .text.CAN_send_vaules:00000068 $d
+    {standard input}:1111   .text.average:00000000 $t
+    {standard input}:1116   .text.average:00000000 average
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -1804,6 +2447,7 @@ ECHO_R
 __aeabi_ui2d
 __aeabi_dmul
 __aeabi_d2uiz
+CALC_TIME
 CAN_NODE_MO_UpdateData
 CAN_NODE_MO_Transmit
 __aeabi_fadd

@@ -24,25 +24,25 @@
         <content ControlType="XYGraph" Type="Graph4">
           <definitions Width="600" Height="350" TypeOfXAxisValues="SampleNumber" TypeOfUpdateStyle="ScrollLeft" MaxNumSamples="2000" IsLegendVisible="true" ChartType="MarkerChart" EraseTrace="false" XAxisFrom="0" XAxisTo="200" XAxisStep="20" PrimaryYAxisFrom="0" PrimaryYAxisTo="500" PrimaryYAxisStep="10" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" DecimalPlaces="0" LeadingZeroes="0" LegendPosition="InsideTopRight" ShowLegend="true" Show_XAxisLabels="true" />
           <symbolseries>
-            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="distance_R">
+            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="distance_L">
               <seriesmodel EraseTrace="false" MaxNumSamples="2000" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
-              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF00FF00" PointStroke="#FF00FF00" PointStrokeThickness="1" PointFill="#FF00FF00" PointSize="5" LineStroke="#FF00FF00" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
+              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FFFF0000" PointStroke="#FFFF0000" PointStrokeThickness="1" PointFill="#FFFF0000" PointSize="5" LineStroke="#FFFF0000" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
             </serie>
             <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="distance_C">
               <seriesmodel EraseTrace="false" MaxNumSamples="2000" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
               <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF0000FF" PointStroke="#FF0000FF" PointStrokeThickness="1" PointFill="#FF0000FF" PointSize="5" LineStroke="#FF0000FF" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
             </serie>
-            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="distance_L">
+            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="distance_R">
               <seriesmodel EraseTrace="false" MaxNumSamples="2000" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
-              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FFFF0000" PointStroke="#FFFF0000" PointStrokeThickness="1" PointFill="#FFFF0000" PointSize="5" LineStroke="#FFFF0000" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
+              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF00FF00" PointStroke="#FF00FF00" PointStrokeThickness="1" PointFill="#FF00FF00" PointSize="5" LineStroke="#FF00FF00" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
             </serie>
           </symbolseries>
         </content>
       </innercontent>
       <symbols>
-        <symbol path="distance_R" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
-        <symbol path="distance_C" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
         <symbol path="distance_L" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+        <symbol path="distance_C" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+        <symbol path="distance_R" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
       </symbols>
     </node>
     <node ScreenId="DataScreen2" NodeId="CustomDiagramNode3" OffsetX="650" OffsetY="92" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="2" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
@@ -63,6 +63,36 @@
       </innercontent>
       <symbols>
         <symbol path="distance_R" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+      </symbols>
+    </node>
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode5" OffsetX="201" OffsetY="20" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+      <innercontent>
+        <content ControlType="Numeric" Type="Numeric1">
+          <definitions NumericFontFamilyValue="Arial Black" NumericFontSizeValue="50" NumericForegroundValue="#FFFFFFFF" NumericTextAlignmentValue="Right" IsThousandSeparatorEnabled="true" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" LeadingZeroes="0" DecimalPlaces="0" Width="300" Height="60" />
+        </content>
+      </innercontent>
+      <symbols>
+        <symbol path="echo_time_L" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+      </symbols>
+    </node>
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode6" OffsetX="650" OffsetY="20" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="2" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+      <innercontent>
+        <content ControlType="Numeric" Type="Numeric1">
+          <definitions NumericFontFamilyValue="Arial Black" NumericFontSizeValue="50" NumericForegroundValue="#FFFFFFFF" NumericTextAlignmentValue="Right" IsThousandSeparatorEnabled="true" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" LeadingZeroes="0" DecimalPlaces="0" Width="300" Height="60" />
+        </content>
+      </innercontent>
+      <symbols>
+        <symbol path="echo_time_C" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+      </symbols>
+    </node>
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode7" OffsetX="1160" OffsetY="20" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="3" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+      <innercontent>
+        <content ControlType="Numeric" Type="Numeric1">
+          <definitions NumericFontFamilyValue="Arial Black" NumericFontSizeValue="50" NumericForegroundValue="#FFFFFFFF" NumericTextAlignmentValue="Right" IsThousandSeparatorEnabled="true" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" LeadingZeroes="0" DecimalPlaces="0" Width="300" Height="60" />
+        </content>
+      </innercontent>
+      <symbols>
+        <symbol path="echo_time_R" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
       </symbols>
     </node>
   </nodes>
@@ -108,7 +138,7 @@
           <IsSelectedTab>false</IsSelectedTab>
           <IsActiveWindow>false</IsActiveWindow>
           <WindowRect />
-          <TabGroupName>10412274</TabGroupName>
+          <TabGroupName>2897938</TabGroupName>
           <IsTabGroupOwner>false</IsTabGroupOwner>
           <SideTabOrder>0</SideTabOrder>
           <IndexInDockMode>4</IndexInDockMode>
@@ -184,7 +214,7 @@
           <IsSelectedTab>false</IsSelectedTab>
           <IsActiveWindow>false</IsActiveWindow>
           <WindowRect />
-          <TabGroupName>7246776</TabGroupName>
+          <TabGroupName>32222121</TabGroupName>
           <IsTabGroupOwner>false</IsTabGroupOwner>
           <SideTabOrder>0</SideTabOrder>
           <IndexInDockMode>2</IndexInDockMode>
@@ -260,7 +290,7 @@
           <IsSelectedTab>false</IsSelectedTab>
           <IsActiveWindow>false</IsActiveWindow>
           <WindowRect />
-          <TabGroupName>50117950</TabGroupName>
+          <TabGroupName>59855045</TabGroupName>
           <IsTabGroupOwner>false</IsTabGroupOwner>
           <SideTabOrder>0</SideTabOrder>
           <IndexInDockMode>1</IndexInDockMode>
@@ -336,7 +366,7 @@
           <IsSelectedTab>true</IsSelectedTab>
           <IsActiveWindow>true</IsActiveWindow>
           <WindowRect />
-          <TabGroupName>33022149</TabGroupName>
+          <TabGroupName>16420444</TabGroupName>
           <IsTabGroupOwner>false</IsTabGroupOwner>
           <SideTabOrder>0</SideTabOrder>
           <IndexInDockMode>3</IndexInDockMode>
