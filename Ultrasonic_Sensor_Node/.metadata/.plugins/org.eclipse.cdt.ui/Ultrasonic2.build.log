@@ -1,0 +1,29 @@
+17:00:59 **** Incremental Build of configuration Debug for project Ultrasonic2 ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Dave/Generated/CAN_NODE/can_node_conf.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Dave/Generated/CAN_NODE/can_node_conf.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic2/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic2/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic2/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic2" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic2/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic2/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Dave/Generated/CAN_NODE/can_node_conf.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Dave/Generated/CAN_NODE/can_node_conf.d" -MT"Dave/Generated/CAN_NODE/can_node_conf.d Dave/Generated/CAN_NODE/can_node_conf.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Dave/Generated/CAN_NODE/can_node_conf.o" "../Dave/Generated/CAN_NODE/can_node_conf.c" 
+'Finished building: ../Dave/Generated/CAN_NODE/can_node_conf.c'
+
+'Building target: Ultrasonic2.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic2.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic2.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic2.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic2.elf" "Ultrasonic2.hex"
+'Finished building: Ultrasonic2.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic2.elf"
+   text	   data	    bss	    dec	    hex	filename
+  15728	    288	   1084	  17100	   42cc	Ultrasonic2.elf
+'Finished building: Ultrasonic2.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic2.elf" > "Ultrasonic2.lst"
+'Finished building: Ultrasonic2.lst'
+
+
+17:01:00 Build Finished (took 904ms)
+

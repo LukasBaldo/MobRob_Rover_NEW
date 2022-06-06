@@ -1,0 +1,857 @@
+   1              	 .cpu cortex-m0
+   2              	 .fpu softvfp
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,0
+  11              	 .eabi_attribute 18,4
+  12              	 .code 16
+  13              	 .file "main.c"
+  14              	 .text
+  15              	.Ltext0:
+  16              	 .cfi_sections .debug_frame
+  17              	 .global CAN_OK
+  18              	 .section .bss.CAN_OK,"aw",%nobits
+  21              	CAN_OK:
+  22 0000 00       	 .space 1
+  23              	 .comm init_status,1,1
+  24              	 .global t_100us_count
+  25              	 .section .bss.t_100us_count,"aw",%nobits
+  26              	 .align 1
+  29              	t_100us_count:
+  30 0000 0000     	 .space 2
+  31              	 .global captured_time
+  32              	 .section .bss.captured_time,"aw",%nobits
+  33              	 .align 2
+  36              	captured_time:
+  37 0000 00000000 	 .space 4
+  38              	 .global flag_C
+  39              	 .section .bss.flag_C,"aw",%nobits
+  42              	flag_C:
+  43 0000 00       	 .space 1
+  44              	 .global flag_L
+  45              	 .section .bss.flag_L,"aw",%nobits
+  48              	flag_L:
+  49 0000 00       	 .space 1
+  50              	 .global flag_R
+  51              	 .section .bss.flag_R,"aw",%nobits
+  54              	flag_R:
+  55 0000 00       	 .space 1
+  56              	 .global distance_C
+  57              	 .section .bss.distance_C,"aw",%nobits
+  58              	 .align 1
+  61              	distance_C:
+  62 0000 0000     	 .space 2
+  63              	 .global echo_time_C
+  64              	 .section .bss.echo_time_C,"aw",%nobits
+  65              	 .align 2
+  68              	echo_time_C:
+  69 0000 00000000 	 .space 4
+  70              	 .global distance_L
+  71              	 .section .bss.distance_L,"aw",%nobits
+  72              	 .align 1
+  75              	distance_L:
+  76 0000 0000     	 .space 2
+  77              	 .global echo_time_L
+  78              	 .section .bss.echo_time_L,"aw",%nobits
+  79              	 .align 2
+  82              	echo_time_L:
+  83 0000 00000000 	 .space 4
+  84              	 .global distance_R
+  85              	 .section .bss.distance_R,"aw",%nobits
+  86              	 .align 1
+  89              	distance_R:
+  90 0000 0000     	 .space 2
+  91              	 .global echo_time_R
+  92              	 .section .bss.echo_time_R,"aw",%nobits
+  93              	 .align 2
+  96              	echo_time_R:
+  97 0000 00000000 	 .space 4
+  98              	 .section .text.main,"ax",%progbits
+  99              	 .align 2
+ 100              	 .global main
+ 101              	 .code 16
+ 102              	 .thumb_func
+ 104              	main:
+ 105              	.LFB195:
+ 106              	 .file 1 "../main.c"
+   1:../main.c     **** /*
+   2:../main.c     ****  * main.c
+   3:../main.c     ****  *
+   4:../main.c     ****  *  Created on: 2022 May 31 16:22:54
+   5:../main.c     ****  *  Author: lukas
+   6:../main.c     ****  */
+   7:../main.c     **** 
+   8:../main.c     **** 
+   9:../main.c     **** 
+  10:../main.c     **** 
+  11:../main.c     **** #include "DAVE.h"                 //Declarations from DAVE Code Generation (includes SFR declaratio
+  12:../main.c     **** 
+  13:../main.c     **** /**
+  14:../main.c     **** 
+  15:../main.c     ****  * @brief main() - Application entry point
+  16:../main.c     ****  *
+  17:../main.c     ****  * <b>Details of function</b><br>
+  18:../main.c     ****  * This routine is the application entry point. It is invoked by the device startup code. It is res
+  19:../main.c     ****  * invoking the APP initialization dispatcher routine - DAVE_Init() and hosting the place-holder fo
+  20:../main.c     ****  * code.
+  21:../main.c     ****  */
+  22:../main.c     **** #define ECHO_TIME_ns_TO_DISTANCE_cm 0.000017
+  23:../main.c     **** #define ECHO_TIME_MIN 200000
+  24:../main.c     **** #define ECHO_TIME_MAX 20000000
+  25:../main.c     **** 
+  26:../main.c     **** uint8_t CAN_OK = 0;
+  27:../main.c     **** CAN_NODE_STATUS_t init_status;
+  28:../main.c     **** 
+  29:../main.c     **** volatile uint16_t t_100us_count = 0;
+  30:../main.c     **** 
+  31:../main.c     **** uint32_t captured_time = 0;
+  32:../main.c     **** uint8_t flag_C = 0;
+  33:../main.c     **** uint8_t flag_L = 0;
+  34:../main.c     **** uint8_t flag_R = 0;
+  35:../main.c     **** 
+  36:../main.c     **** uint16_t distance_C = 0;
+  37:../main.c     **** uint32_t echo_time_C = 0;
+  38:../main.c     **** 
+  39:../main.c     **** uint16_t distance_L = 0;
+  40:../main.c     **** uint32_t echo_time_L = 0;
+  41:../main.c     **** 
+  42:../main.c     **** uint16_t distance_R = 0;
+  43:../main.c     **** uint32_t echo_time_R = 0;
+  44:../main.c     **** 
+  45:../main.c     **** void Capture_read();
+  46:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN );
+  47:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN);
+  48:../main.c     **** 
+  49:../main.c     **** int main(void)
+  50:../main.c     **** {
+ 107              	 .loc 1 50 0
+ 108              	 .cfi_startproc
+ 109 0000 90B5     	 push {r4,r7,lr}
+ 110              	.LCFI0:
+ 111              	 .cfi_def_cfa_offset 12
+ 112              	 .cfi_offset 4,-12
+ 113              	 .cfi_offset 7,-8
+ 114              	 .cfi_offset 14,-4
+ 115 0002 83B0     	 sub sp,sp,#12
+ 116              	.LCFI1:
+ 117              	 .cfi_def_cfa_offset 24
+ 118 0004 00AF     	 add r7,sp,#0
+ 119              	.LCFI2:
+ 120              	 .cfi_def_cfa_register 7
+  51:../main.c     ****   DAVE_STATUS_t status;
+  52:../main.c     **** 
+  53:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
+ 121              	 .loc 1 53 0
+ 122 0006 FC1D     	 add r4,r7,#7
+ 123 0008 FFF7FEFF 	 bl DAVE_Init
+ 124 000c 031C     	 mov r3,r0
+ 125 000e 2370     	 strb r3,[r4]
+  54:../main.c     **** 
+  55:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
+ 126              	 .loc 1 55 0
+ 127 0010 FB1D     	 add r3,r7,#7
+ 128 0012 1B78     	 ldrb r3,[r3]
+ 129 0014 002B     	 cmp r3,#0
+ 130 0016 00D0     	 beq .L2
+ 131              	.L3:
+  56:../main.c     ****   {
+  57:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
+  58:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
+  59:../main.c     **** 
+  60:../main.c     ****     while(1U)
+  61:../main.c     ****     {
+  62:../main.c     **** 
+  63:../main.c     ****     }
+ 132              	 .loc 1 63 0 discriminator 1
+ 133 0018 FEE7     	 b .L3
+ 134              	.L2:
+  64:../main.c     ****   }
+  65:../main.c     **** 
+  66:../main.c     ****   //Initialization of CAN
+  67:../main.c     ****  	//CAN_NODE_STATUS_t init_status;
+  68:../main.c     ****  	init_status = CAN_NODE_Init(&CAN_NODE_0);
+ 135              	 .loc 1 68 0
+ 136 001a 084B     	 ldr r3,.L5
+ 137 001c 181C     	 mov r0,r3
+ 138 001e FFF7FEFF 	 bl CAN_NODE_Init
+ 139 0022 031C     	 mov r3,r0
+ 140 0024 1A1C     	 mov r2,r3
+ 141 0026 064B     	 ldr r3,.L5+4
+ 142 0028 1A70     	 strb r2,[r3]
+  69:../main.c     **** 
+  70:../main.c     ****  	if (init_status != CAN_NODE_STATUS_SUCCESS) {
+ 143              	 .loc 1 70 0
+ 144 002a 054B     	 ldr r3,.L5+4
+ 145 002c 1B78     	 ldrb r3,[r3]
+ 146 002e 002B     	 cmp r3,#0
+ 147 0030 02D1     	 bne .L4
+  71:../main.c     ****  		XMC_DEBUG("CAN initialization failed\n");
+  72:../main.c     ****  	}
+  73:../main.c     ****  	else{
+  74:../main.c     ****  		CAN_OK = 1;
+ 148              	 .loc 1 74 0
+ 149 0032 044B     	 ldr r3,.L5+8
+ 150 0034 0122     	 mov r2,#1
+ 151 0036 1A70     	 strb r2,[r3]
+ 152              	.L4:
+  75:../main.c     ****  	}
+  76:../main.c     **** 
+  77:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
+  78:../main.c     ****   while(1U)
+  79:../main.c     ****   {
+  80:../main.c     **** 
+  81:../main.c     ****   }
+ 153              	 .loc 1 81 0 discriminator 3
+ 154 0038 FEE7     	 b .L4
+ 155              	.L6:
+ 156 003a C046     	 .align 2
+ 157              	.L5:
+ 158 003c 00000000 	 .word CAN_NODE_0
+ 159 0040 00000000 	 .word init_status
+ 160 0044 00000000 	 .word CAN_OK
+ 161              	 .cfi_endproc
+ 162              	.LFE195:
+ 164              	 .section .text.IRQ21_Handler,"ax",%progbits
+ 165              	 .align 2
+ 166              	 .global IRQ21_Handler
+ 167              	 .code 16
+ 168              	 .thumb_func
+ 170              	IRQ21_Handler:
+ 171              	.LFB196:
+  82:../main.c     **** }
+  83:../main.c     **** 
+  84:../main.c     **** void TIMER_100us_ISR(){
+ 172              	 .loc 1 84 0
+ 173              	 .cfi_startproc
+ 174 0000 80B5     	 push {r7,lr}
+ 175              	.LCFI3:
+ 176              	 .cfi_def_cfa_offset 8
+ 177              	 .cfi_offset 7,-8
+ 178              	 .cfi_offset 14,-4
+ 179 0002 00AF     	 add r7,sp,#0
+ 180              	.LCFI4:
+ 181              	 .cfi_def_cfa_register 7
+  85:../main.c     **** 	t_100us_count ++;
+ 182              	 .loc 1 85 0
+ 183 0004 204B     	 ldr r3,.L11
+ 184 0006 1B88     	 ldrh r3,[r3]
+ 185 0008 9BB2     	 uxth r3,r3
+ 186 000a 0133     	 add r3,r3,#1
+ 187 000c 9AB2     	 uxth r2,r3
+ 188 000e 1E4B     	 ldr r3,.L11
+ 189 0010 1A80     	 strh r2,[r3]
+  86:../main.c     **** 
+  87:../main.c     **** 	if(t_100us_count == 1){
+ 190              	 .loc 1 87 0
+ 191 0012 1D4B     	 ldr r3,.L11
+ 192 0014 1B88     	 ldrh r3,[r3]
+ 193 0016 9BB2     	 uxth r3,r3
+ 194 0018 012B     	 cmp r3,#1
+ 195 001a 11D1     	 bne .L8
+  88:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b111);
+ 196              	 .loc 1 88 0
+ 197 001c 1B4B     	 ldr r3,.L11+4
+ 198 001e 181C     	 mov r0,r3
+ 199 0020 0721     	 mov r1,#7
+ 200 0022 FFF7FEFF 	 bl BUS_IO_Write
+  89:../main.c     **** 
+  90:../main.c     **** 		CAPTURE_Start(&CAPTURE_C);
+ 201              	 .loc 1 90 0
+ 202 0026 1A4B     	 ldr r3,.L11+8
+ 203 0028 181C     	 mov r0,r3
+ 204 002a FFF7FEFF 	 bl CAPTURE_Start
+  91:../main.c     **** 		CAPTURE_Start(&CAPTURE_L);
+ 205              	 .loc 1 91 0
+ 206 002e 194B     	 ldr r3,.L11+12
+ 207 0030 181C     	 mov r0,r3
+ 208 0032 FFF7FEFF 	 bl CAPTURE_Start
+  92:../main.c     **** 		CAPTURE_Start(&CAPTURE_R);
+ 209              	 .loc 1 92 0
+ 210 0036 184B     	 ldr r3,.L11+16
+ 211 0038 181C     	 mov r0,r3
+ 212 003a FFF7FEFF 	 bl CAPTURE_Start
+ 213 003e 20E0     	 b .L7
+ 214              	.L8:
+  93:../main.c     **** 	}
+  94:../main.c     **** 	else if (t_100us_count == 2) {
+ 215              	 .loc 1 94 0
+ 216 0040 114B     	 ldr r3,.L11
+ 217 0042 1B88     	 ldrh r3,[r3]
+ 218 0044 9BB2     	 uxth r3,r3
+ 219 0046 022B     	 cmp r3,#2
+ 220 0048 05D1     	 bne .L10
+  95:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
+ 221              	 .loc 1 95 0
+ 222 004a 104B     	 ldr r3,.L11+4
+ 223 004c 181C     	 mov r0,r3
+ 224 004e 0021     	 mov r1,#0
+ 225 0050 FFF7FEFF 	 bl BUS_IO_Write
+ 226 0054 15E0     	 b .L7
+ 227              	.L10:
+  96:../main.c     **** 	}
+  97:../main.c     **** 	else if (t_100us_count == 1500) {
+ 228              	 .loc 1 97 0
+ 229 0056 0C4B     	 ldr r3,.L11
+ 230 0058 1B88     	 ldrh r3,[r3]
+ 231 005a 9BB2     	 uxth r3,r3
+ 232 005c 0F4A     	 ldr r2,.L11+20
+ 233 005e 9342     	 cmp r3,r2
+ 234 0060 0FD1     	 bne .L7
+  98:../main.c     **** 		Capture_read();
+ 235              	 .loc 1 98 0
+ 236 0062 FFF7FEFF 	 bl Capture_read
+  99:../main.c     **** 		CAN_send_vaules(distance_C, distance_L, distance_R );
+ 237              	 .loc 1 99 0
+ 238 0066 0E4B     	 ldr r3,.L11+24
+ 239 0068 1988     	 ldrh r1,[r3]
+ 240 006a 0E4B     	 ldr r3,.L11+28
+ 241 006c 1A88     	 ldrh r2,[r3]
+ 242 006e 0E4B     	 ldr r3,.L11+32
+ 243 0070 1B88     	 ldrh r3,[r3]
+ 244 0072 081C     	 mov r0,r1
+ 245 0074 111C     	 mov r1,r2
+ 246 0076 1A1C     	 mov r2,r3
+ 247 0078 FFF7FEFF 	 bl CAN_send_vaules
+ 100:../main.c     **** 		t_100us_count = 0;
+ 248              	 .loc 1 100 0
+ 249 007c 024B     	 ldr r3,.L11
+ 250 007e 0022     	 mov r2,#0
+ 251 0080 1A80     	 strh r2,[r3]
+ 252              	.L7:
+ 101:../main.c     **** 	}
+ 102:../main.c     **** }
+ 253              	 .loc 1 102 0
+ 254 0082 BD46     	 mov sp,r7
+ 255              	 
+ 256 0084 80BD     	 pop {r7,pc}
+ 257              	.L12:
+ 258 0086 C046     	 .align 2
+ 259              	.L11:
+ 260 0088 00000000 	 .word t_100us_count
+ 261 008c 00000000 	 .word BUS_IO_TRIGGER
+ 262 0090 00000000 	 .word CAPTURE_C
+ 263 0094 00000000 	 .word CAPTURE_L
+ 264 0098 00000000 	 .word CAPTURE_R
+ 265 009c DC050000 	 .word 1500
+ 266 00a0 00000000 	 .word distance_C
+ 267 00a4 00000000 	 .word distance_L
+ 268 00a8 00000000 	 .word distance_R
+ 269              	 .cfi_endproc
+ 270              	.LFE196:
+ 272              	 .global __aeabi_ui2d
+ 273              	 .global __aeabi_dmul
+ 274              	 .global __aeabi_d2uiz
+ 275              	 .section .text.Capture_read,"ax",%progbits
+ 276              	 .align 2
+ 277              	 .global Capture_read
+ 278              	 .code 16
+ 279              	 .thumb_func
+ 281              	Capture_read:
+ 282              	.LFB197:
+ 103:../main.c     **** 
+ 104:../main.c     **** void Capture_read(){
+ 283              	 .loc 1 104 0
+ 284              	 .cfi_startproc
+ 285 0000 98B5     	 push {r3,r4,r7,lr}
+ 286              	.LCFI5:
+ 287              	 .cfi_def_cfa_offset 16
+ 288              	 .cfi_offset 3,-16
+ 289              	 .cfi_offset 4,-12
+ 290              	 .cfi_offset 7,-8
+ 291              	 .cfi_offset 14,-4
+ 292 0002 00AF     	 add r7,sp,#0
+ 293              	.LCFI6:
+ 294              	 .cfi_def_cfa_register 7
+ 105:../main.c     **** 
+ 106:../main.c     **** 	if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_C, &captured_time) == CAPTURE_STATUS_SUCCESS){
+ 295              	 .loc 1 106 0
+ 296 0004 5C4A     	 ldr r2,.L26
+ 297 0006 5D4B     	 ldr r3,.L26+4
+ 298 0008 101C     	 mov r0,r2
+ 299 000a 191C     	 mov r1,r3
+ 300 000c FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
+ 301 0010 031E     	 sub r3,r0,#0
+ 302 0012 2ED1     	 bne .L14
+ 107:../main.c     **** 		echo_time_C = captured_time;
+ 303              	 .loc 1 107 0
+ 304 0014 594B     	 ldr r3,.L26+4
+ 305 0016 1A68     	 ldr r2,[r3]
+ 306 0018 594B     	 ldr r3,.L26+8
+ 307 001a 1A60     	 str r2,[r3]
+ 108:../main.c     **** 		flag_C = 0;
+ 308              	 .loc 1 108 0
+ 309 001c 594B     	 ldr r3,.L26+12
+ 310 001e 0022     	 mov r2,#0
+ 311 0020 1A70     	 strb r2,[r3]
+ 109:../main.c     **** 
+ 110:../main.c     **** 		if(within_MAX_MIN_check_int(echo_time_C, ECHO_TIME_MAX, ECHO_TIME_MIN))	distance_C = echo_time_C 
+ 312              	 .loc 1 110 0
+ 313 0022 574B     	 ldr r3,.L26+8
+ 314 0024 1B68     	 ldr r3,[r3]
+ 315 0026 191C     	 mov r1,r3
+ 316 0028 574A     	 ldr r2,.L26+16
+ 317 002a 584B     	 ldr r3,.L26+20
+ 318 002c 081C     	 mov r0,r1
+ 319 002e 111C     	 mov r1,r2
+ 320 0030 1A1C     	 mov r2,r3
+ 321 0032 FFF7FEFF 	 bl within_MAX_MIN_check_int
+ 322 0036 031E     	 sub r3,r0,#0
+ 323 0038 17D0     	 beq .L15
+ 324              	 .loc 1 110 0 is_stmt 0 discriminator 1
+ 325 003a 514B     	 ldr r3,.L26+8
+ 326 003c 1B68     	 ldr r3,[r3]
+ 327 003e 181C     	 mov r0,r3
+ 328 0040 FFF7FEFF 	 bl __aeabi_ui2d
+ 329 0044 031C     	 mov r3,r0
+ 330 0046 0C1C     	 mov r4,r1
+ 331 0048 181C     	 mov r0,r3
+ 332 004a 211C     	 mov r1,r4
+ 333 004c 504A     	 ldr r2,.L26+24
+ 334 004e 514B     	 ldr r3,.L26+28
+ 335 0050 FFF7FEFF 	 bl __aeabi_dmul
+ 336 0054 031C     	 mov r3,r0
+ 337 0056 0C1C     	 mov r4,r1
+ 338 0058 181C     	 mov r0,r3
+ 339 005a 211C     	 mov r1,r4
+ 340 005c FFF7FEFF 	 bl __aeabi_d2uiz
+ 341 0060 031C     	 mov r3,r0
+ 342 0062 9AB2     	 uxth r2,r3
+ 343 0064 4C4B     	 ldr r3,.L26+32
+ 344 0066 1A80     	 strh r2,[r3]
+ 345 0068 09E0     	 b .L17
+ 346              	.L15:
+ 111:../main.c     **** 		else distance_C = 0;
+ 347              	 .loc 1 111 0 is_stmt 1
+ 348 006a 4B4B     	 ldr r3,.L26+32
+ 349 006c 0022     	 mov r2,#0
+ 350 006e 1A80     	 strh r2,[r3]
+ 351 0070 05E0     	 b .L17
+ 352              	.L14:
+ 112:../main.c     **** 	}
+ 113:../main.c     **** 	else{
+ 114:../main.c     **** 		flag_C = 1;
+ 353              	 .loc 1 114 0
+ 354 0072 444B     	 ldr r3,.L26+12
+ 355 0074 0122     	 mov r2,#1
+ 356 0076 1A70     	 strb r2,[r3]
+ 115:../main.c     **** 		distance_C = 0;
+ 357              	 .loc 1 115 0
+ 358 0078 474B     	 ldr r3,.L26+32
+ 359 007a 0022     	 mov r2,#0
+ 360 007c 1A80     	 strh r2,[r3]
+ 361              	.L17:
+ 116:../main.c     **** 	}
+ 117:../main.c     **** 
+ 118:../main.c     **** 	if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_L, &captured_time) == CAPTURE_STATUS_SUCCESS){
+ 362              	 .loc 1 118 0
+ 363 007e 474A     	 ldr r2,.L26+36
+ 364 0080 3E4B     	 ldr r3,.L26+4
+ 365 0082 101C     	 mov r0,r2
+ 366 0084 191C     	 mov r1,r3
+ 367 0086 FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
+ 368 008a 031E     	 sub r3,r0,#0
+ 369 008c 2ED1     	 bne .L18
+ 119:../main.c     **** 			echo_time_L = captured_time;
+ 370              	 .loc 1 119 0
+ 371 008e 3B4B     	 ldr r3,.L26+4
+ 372 0090 1A68     	 ldr r2,[r3]
+ 373 0092 434B     	 ldr r3,.L26+40
+ 374 0094 1A60     	 str r2,[r3]
+ 120:../main.c     **** 			flag_L = 0;
+ 375              	 .loc 1 120 0
+ 376 0096 434B     	 ldr r3,.L26+44
+ 377 0098 0022     	 mov r2,#0
+ 378 009a 1A70     	 strb r2,[r3]
+ 121:../main.c     **** 
+ 122:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time_L, ECHO_TIME_MAX, ECHO_TIME_MIN))	distance_L = echo_time_L
+ 379              	 .loc 1 122 0
+ 380 009c 404B     	 ldr r3,.L26+40
+ 381 009e 1B68     	 ldr r3,[r3]
+ 382 00a0 191C     	 mov r1,r3
+ 383 00a2 394A     	 ldr r2,.L26+16
+ 384 00a4 394B     	 ldr r3,.L26+20
+ 385 00a6 081C     	 mov r0,r1
+ 386 00a8 111C     	 mov r1,r2
+ 387 00aa 1A1C     	 mov r2,r3
+ 388 00ac FFF7FEFF 	 bl within_MAX_MIN_check_int
+ 389 00b0 031E     	 sub r3,r0,#0
+ 390 00b2 17D0     	 beq .L19
+ 391              	 .loc 1 122 0 is_stmt 0 discriminator 1
+ 392 00b4 3A4B     	 ldr r3,.L26+40
+ 393 00b6 1B68     	 ldr r3,[r3]
+ 394 00b8 181C     	 mov r0,r3
+ 395 00ba FFF7FEFF 	 bl __aeabi_ui2d
+ 396 00be 031C     	 mov r3,r0
+ 397 00c0 0C1C     	 mov r4,r1
+ 398 00c2 181C     	 mov r0,r3
+ 399 00c4 211C     	 mov r1,r4
+ 400 00c6 324A     	 ldr r2,.L26+24
+ 401 00c8 324B     	 ldr r3,.L26+28
+ 402 00ca FFF7FEFF 	 bl __aeabi_dmul
+ 403 00ce 031C     	 mov r3,r0
+ 404 00d0 0C1C     	 mov r4,r1
+ 405 00d2 181C     	 mov r0,r3
+ 406 00d4 211C     	 mov r1,r4
+ 407 00d6 FFF7FEFF 	 bl __aeabi_d2uiz
+ 408 00da 031C     	 mov r3,r0
+ 409 00dc 9AB2     	 uxth r2,r3
+ 410 00de 324B     	 ldr r3,.L26+48
+ 411 00e0 1A80     	 strh r2,[r3]
+ 412 00e2 09E0     	 b .L21
+ 413              	.L19:
+ 123:../main.c     **** 			else distance_L = 0;
+ 414              	 .loc 1 123 0 is_stmt 1
+ 415 00e4 304B     	 ldr r3,.L26+48
+ 416 00e6 0022     	 mov r2,#0
+ 417 00e8 1A80     	 strh r2,[r3]
+ 418 00ea 05E0     	 b .L21
+ 419              	.L18:
+ 124:../main.c     **** 		}
+ 125:../main.c     **** 		else{
+ 126:../main.c     **** 			flag_L = 1;
+ 420              	 .loc 1 126 0
+ 421 00ec 2D4B     	 ldr r3,.L26+44
+ 422 00ee 0122     	 mov r2,#1
+ 423 00f0 1A70     	 strb r2,[r3]
+ 127:../main.c     **** 			distance_L = 0;
+ 424              	 .loc 1 127 0
+ 425 00f2 2D4B     	 ldr r3,.L26+48
+ 426 00f4 0022     	 mov r2,#0
+ 427 00f6 1A80     	 strh r2,[r3]
+ 428              	.L21:
+ 128:../main.c     **** 		}
+ 129:../main.c     **** 
+ 130:../main.c     **** 
+ 131:../main.c     **** 	if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_R, &captured_time) == CAPTURE_STATUS_SUCCESS){
+ 429              	 .loc 1 131 0
+ 430 00f8 2C4A     	 ldr r2,.L26+52
+ 431 00fa 204B     	 ldr r3,.L26+4
+ 432 00fc 101C     	 mov r0,r2
+ 433 00fe 191C     	 mov r1,r3
+ 434 0100 FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
+ 435 0104 031E     	 sub r3,r0,#0
+ 436 0106 2ED1     	 bne .L22
+ 132:../main.c     **** 			echo_time_R = captured_time;
+ 437              	 .loc 1 132 0
+ 438 0108 1C4B     	 ldr r3,.L26+4
+ 439 010a 1A68     	 ldr r2,[r3]
+ 440 010c 284B     	 ldr r3,.L26+56
+ 441 010e 1A60     	 str r2,[r3]
+ 133:../main.c     **** 			flag_R = 0;
+ 442              	 .loc 1 133 0
+ 443 0110 284B     	 ldr r3,.L26+60
+ 444 0112 0022     	 mov r2,#0
+ 445 0114 1A70     	 strb r2,[r3]
+ 134:../main.c     **** 
+ 135:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time_R, ECHO_TIME_MAX, ECHO_TIME_MIN))	distance_R = echo_time_R
+ 446              	 .loc 1 135 0
+ 447 0116 264B     	 ldr r3,.L26+56
+ 448 0118 1B68     	 ldr r3,[r3]
+ 449 011a 191C     	 mov r1,r3
+ 450 011c 1A4A     	 ldr r2,.L26+16
+ 451 011e 1B4B     	 ldr r3,.L26+20
+ 452 0120 081C     	 mov r0,r1
+ 453 0122 111C     	 mov r1,r2
+ 454 0124 1A1C     	 mov r2,r3
+ 455 0126 FFF7FEFF 	 bl within_MAX_MIN_check_int
+ 456 012a 031E     	 sub r3,r0,#0
+ 457 012c 17D0     	 beq .L23
+ 458              	 .loc 1 135 0 is_stmt 0 discriminator 1
+ 459 012e 204B     	 ldr r3,.L26+56
+ 460 0130 1B68     	 ldr r3,[r3]
+ 461 0132 181C     	 mov r0,r3
+ 462 0134 FFF7FEFF 	 bl __aeabi_ui2d
+ 463 0138 031C     	 mov r3,r0
+ 464 013a 0C1C     	 mov r4,r1
+ 465 013c 181C     	 mov r0,r3
+ 466 013e 211C     	 mov r1,r4
+ 467 0140 134A     	 ldr r2,.L26+24
+ 468 0142 144B     	 ldr r3,.L26+28
+ 469 0144 FFF7FEFF 	 bl __aeabi_dmul
+ 470 0148 031C     	 mov r3,r0
+ 471 014a 0C1C     	 mov r4,r1
+ 472 014c 181C     	 mov r0,r3
+ 473 014e 211C     	 mov r1,r4
+ 474 0150 FFF7FEFF 	 bl __aeabi_d2uiz
+ 475 0154 031C     	 mov r3,r0
+ 476 0156 9AB2     	 uxth r2,r3
+ 477 0158 174B     	 ldr r3,.L26+64
+ 478 015a 1A80     	 strh r2,[r3]
+ 479 015c 09E0     	 b .L13
+ 480              	.L23:
+ 136:../main.c     **** 			else distance_R = 0;
+ 481              	 .loc 1 136 0 is_stmt 1
+ 482 015e 164B     	 ldr r3,.L26+64
+ 483 0160 0022     	 mov r2,#0
+ 484 0162 1A80     	 strh r2,[r3]
+ 485 0164 05E0     	 b .L13
+ 486              	.L22:
+ 137:../main.c     **** 		}
+ 138:../main.c     **** 		else{
+ 139:../main.c     **** 			flag_R = 1;
+ 487              	 .loc 1 139 0
+ 488 0166 134B     	 ldr r3,.L26+60
+ 489 0168 0122     	 mov r2,#1
+ 490 016a 1A70     	 strb r2,[r3]
+ 140:../main.c     **** 			distance_R = 0;
+ 491              	 .loc 1 140 0
+ 492 016c 124B     	 ldr r3,.L26+64
+ 493 016e 0022     	 mov r2,#0
+ 494 0170 1A80     	 strh r2,[r3]
+ 495              	.L13:
+ 141:../main.c     **** 		}
+ 142:../main.c     **** }
+ 496              	 .loc 1 142 0
+ 497 0172 BD46     	 mov sp,r7
+ 498              	 
+ 499 0174 98BD     	 pop {r3,r4,r7,pc}
+ 500              	.L27:
+ 501 0176 C046     	 .align 2
+ 502              	.L26:
+ 503 0178 00000000 	 .word CAPTURE_C
+ 504 017c 00000000 	 .word captured_time
+ 505 0180 00000000 	 .word echo_time_C
+ 506 0184 00000000 	 .word flag_C
+ 507 0188 002D3101 	 .word 20000000
+ 508 018c 400D0300 	 .word 200000
+ 509 0190 664CC11A 	 .word 448875622
+ 510 0194 67D3F13E 	 .word 1056035687
+ 511 0198 00000000 	 .word distance_C
+ 512 019c 00000000 	 .word CAPTURE_L
+ 513 01a0 00000000 	 .word echo_time_L
+ 514 01a4 00000000 	 .word flag_L
+ 515 01a8 00000000 	 .word distance_L
+ 516 01ac 00000000 	 .word CAPTURE_R
+ 517 01b0 00000000 	 .word echo_time_R
+ 518 01b4 00000000 	 .word flag_R
+ 519 01b8 00000000 	 .word distance_R
+ 520              	 .cfi_endproc
+ 521              	.LFE197:
+ 523              	 .section .text.within_MAX_MIN_check_int,"ax",%progbits
+ 524              	 .align 2
+ 525              	 .global within_MAX_MIN_check_int
+ 526              	 .code 16
+ 527              	 .thumb_func
+ 529              	within_MAX_MIN_check_int:
+ 530              	.LFB198:
+ 143:../main.c     **** 
+ 144:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN)
+ 145:../main.c     **** {
+ 531              	 .loc 1 145 0
+ 532              	 .cfi_startproc
+ 533 0000 80B5     	 push {r7,lr}
+ 534              	.LCFI7:
+ 535              	 .cfi_def_cfa_offset 8
+ 536              	 .cfi_offset 7,-8
+ 537              	 .cfi_offset 14,-4
+ 538 0002 84B0     	 sub sp,sp,#16
+ 539              	.LCFI8:
+ 540              	 .cfi_def_cfa_offset 24
+ 541 0004 00AF     	 add r7,sp,#0
+ 542              	.LCFI9:
+ 543              	 .cfi_def_cfa_register 7
+ 544 0006 F860     	 str r0,[r7,#12]
+ 545 0008 B960     	 str r1,[r7,#8]
+ 546 000a 7A60     	 str r2,[r7,#4]
+ 146:../main.c     **** 	if((x - MIN) * (x - MAX) <= 0) return 1;
+ 547              	 .loc 1 146 0
+ 548 000c FA68     	 ldr r2,[r7,#12]
+ 549 000e 7B68     	 ldr r3,[r7,#4]
+ 550 0010 D31A     	 sub r3,r2,r3
+ 551 0012 F968     	 ldr r1,[r7,#12]
+ 552 0014 BA68     	 ldr r2,[r7,#8]
+ 553 0016 8A1A     	 sub r2,r1,r2
+ 554 0018 5343     	 mul r3,r2
+ 555 001a 002B     	 cmp r3,#0
+ 556 001c 01DC     	 bgt .L29
+ 557              	 .loc 1 146 0 is_stmt 0 discriminator 1
+ 558 001e 0123     	 mov r3,#1
+ 559 0020 00E0     	 b .L30
+ 560              	.L29:
+ 147:../main.c     **** 	else return 0;
+ 561              	 .loc 1 147 0 is_stmt 1
+ 562 0022 0023     	 mov r3,#0
+ 563              	.L30:
+ 148:../main.c     **** 
+ 149:../main.c     **** }
+ 564              	 .loc 1 149 0
+ 565 0024 181C     	 mov r0,r3
+ 566 0026 BD46     	 mov sp,r7
+ 567 0028 04B0     	 add sp,sp,#16
+ 568              	 
+ 569 002a 80BD     	 pop {r7,pc}
+ 570              	 .cfi_endproc
+ 571              	.LFE198:
+ 573              	 .section .text.CAN_send_vaules,"ax",%progbits
+ 574              	 .align 2
+ 575              	 .global CAN_send_vaules
+ 576              	 .code 16
+ 577              	 .thumb_func
+ 579              	CAN_send_vaules:
+ 580              	.LFB199:
+ 150:../main.c     **** 
+ 151:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN ){
+ 581              	 .loc 1 151 0
+ 582              	 .cfi_startproc
+ 583 0000 90B5     	 push {r4,r7,lr}
+ 584              	.LCFI10:
+ 585              	 .cfi_def_cfa_offset 12
+ 586              	 .cfi_offset 4,-12
+ 587              	 .cfi_offset 7,-8
+ 588              	 .cfi_offset 14,-4
+ 589 0002 85B0     	 sub sp,sp,#20
+ 590              	.LCFI11:
+ 591              	 .cfi_def_cfa_offset 32
+ 592 0004 00AF     	 add r7,sp,#0
+ 593              	.LCFI12:
+ 594              	 .cfi_def_cfa_register 7
+ 595 0006 041C     	 mov r4,r0
+ 596 0008 081C     	 mov r0,r1
+ 597 000a 111C     	 mov r1,r2
+ 598 000c BB1D     	 add r3,r7,#6
+ 599 000e 221C     	 add r2,r4,#0
+ 600 0010 1A80     	 strh r2,[r3]
+ 601 0012 3B1D     	 add r3,r7,#4
+ 602 0014 021C     	 add r2,r0,#0
+ 603 0016 1A80     	 strh r2,[r3]
+ 604 0018 BB1C     	 add r3,r7,#2
+ 605 001a 0A1C     	 add r2,r1,#0
+ 606 001c 1A80     	 strh r2,[r3]
+ 152:../main.c     **** 
+ 153:../main.c     **** 	uint16_t RX_Data[4] ={CAN_OK, distance_C_CAN, distance_L_CAN, distance_R_CAN}; // in int16_t mm/s 
+ 607              	 .loc 1 153 0
+ 608 001e 124B     	 ldr r3,.L32
+ 609 0020 1B78     	 ldrb r3,[r3]
+ 610 0022 9AB2     	 uxth r2,r3
+ 611 0024 0823     	 mov r3,#8
+ 612 0026 FB18     	 add r3,r7,r3
+ 613 0028 1A80     	 strh r2,[r3]
+ 614 002a 0823     	 mov r3,#8
+ 615 002c FB18     	 add r3,r7,r3
+ 616 002e BA1D     	 add r2,r7,#6
+ 617 0030 1288     	 ldrh r2,[r2]
+ 618 0032 5A80     	 strh r2,[r3,#2]
+ 619 0034 0823     	 mov r3,#8
+ 620 0036 FB18     	 add r3,r7,r3
+ 621 0038 3A1D     	 add r2,r7,#4
+ 622 003a 1288     	 ldrh r2,[r2]
+ 623 003c 9A80     	 strh r2,[r3,#4]
+ 624 003e 0823     	 mov r3,#8
+ 625 0040 FB18     	 add r3,r7,r3
+ 626 0042 BA1C     	 add r2,r7,#2
+ 627 0044 1288     	 ldrh r2,[r2]
+ 628 0046 DA80     	 strh r2,[r3,#6]
+ 154:../main.c     **** 
+ 155:../main.c     **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)RX_Data);
+ 629              	 .loc 1 155 0
+ 630 0048 084B     	 ldr r3,.L32+4
+ 631 004a DA68     	 ldr r2,[r3,#12]
+ 632 004c 0823     	 mov r3,#8
+ 633 004e FB18     	 add r3,r7,r3
+ 634 0050 101C     	 mov r0,r2
+ 635 0052 191C     	 mov r1,r3
+ 636 0054 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
+ 156:../main.c     **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
+ 637              	 .loc 1 156 0
+ 638 0058 044B     	 ldr r3,.L32+4
+ 639 005a DB68     	 ldr r3,[r3,#12]
+ 640 005c 181C     	 mov r0,r3
+ 641 005e FFF7FEFF 	 bl CAN_NODE_MO_Transmit
+ 157:../main.c     **** }
+ 642              	 .loc 1 157 0
+ 643 0062 BD46     	 mov sp,r7
+ 644 0064 05B0     	 add sp,sp,#20
+ 645              	 
+ 646 0066 90BD     	 pop {r4,r7,pc}
+ 647              	.L33:
+ 648              	 .align 2
+ 649              	.L32:
+ 650 0068 00000000 	 .word CAN_OK
+ 651 006c 00000000 	 .word CAN_NODE_0
+ 652              	 .cfi_endproc
+ 653              	.LFE199:
+ 655              	 .text
+ 656              	.Letext0:
+ 657              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 658              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 659              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 660              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc/xmc1_scu.h"
+ 661              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc/xmc_ccu4.h"
+ 662              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
+ 663              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc/xmc_gpio.h"
+ 664              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 665              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated/CAPTURE/capture.h"
+ 666              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated/BUS_IO/bus_io.h"
+ 667              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc/xmc_can.h"
+ 668              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 669              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated/CAN_NODE/can_node.h"
+ 670              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated/DAVE.h"
+ 671              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 672              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 673              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated/CAPTURE/capture_extern.h"
+ 674              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated/BUS_IO/bus_io_extern.h"
+ 675              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated/CAN_NODE/can_node_extern.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+    {standard input}:21     .bss.CAN_OK:00000000 CAN_OK
+    {standard input}:22     .bss.CAN_OK:00000000 $d
+                            *COM*:00000001 init_status
+    {standard input}:29     .bss.t_100us_count:00000000 t_100us_count
+    {standard input}:26     .bss.t_100us_count:00000000 $d
+    {standard input}:36     .bss.captured_time:00000000 captured_time
+    {standard input}:33     .bss.captured_time:00000000 $d
+    {standard input}:42     .bss.flag_C:00000000 flag_C
+    {standard input}:43     .bss.flag_C:00000000 $d
+    {standard input}:48     .bss.flag_L:00000000 flag_L
+    {standard input}:49     .bss.flag_L:00000000 $d
+    {standard input}:54     .bss.flag_R:00000000 flag_R
+    {standard input}:55     .bss.flag_R:00000000 $d
+    {standard input}:61     .bss.distance_C:00000000 distance_C
+    {standard input}:58     .bss.distance_C:00000000 $d
+    {standard input}:68     .bss.echo_time_C:00000000 echo_time_C
+    {standard input}:65     .bss.echo_time_C:00000000 $d
+    {standard input}:75     .bss.distance_L:00000000 distance_L
+    {standard input}:72     .bss.distance_L:00000000 $d
+    {standard input}:82     .bss.echo_time_L:00000000 echo_time_L
+    {standard input}:79     .bss.echo_time_L:00000000 $d
+    {standard input}:89     .bss.distance_R:00000000 distance_R
+    {standard input}:86     .bss.distance_R:00000000 $d
+    {standard input}:96     .bss.echo_time_R:00000000 echo_time_R
+    {standard input}:93     .bss.echo_time_R:00000000 $d
+    {standard input}:99     .text.main:00000000 $t
+    {standard input}:104    .text.main:00000000 main
+    {standard input}:158    .text.main:0000003c $d
+    {standard input}:165    .text.IRQ21_Handler:00000000 $t
+    {standard input}:170    .text.IRQ21_Handler:00000000 IRQ21_Handler
+    {standard input}:281    .text.Capture_read:00000000 Capture_read
+    {standard input}:579    .text.CAN_send_vaules:00000000 CAN_send_vaules
+    {standard input}:260    .text.IRQ21_Handler:00000088 $d
+    {standard input}:276    .text.Capture_read:00000000 $t
+    {standard input}:529    .text.within_MAX_MIN_check_int:00000000 within_MAX_MIN_check_int
+    {standard input}:503    .text.Capture_read:00000178 $d
+    {standard input}:524    .text.within_MAX_MIN_check_int:00000000 $t
+    {standard input}:574    .text.CAN_send_vaules:00000000 $t
+    {standard input}:650    .text.CAN_send_vaules:00000068 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+DAVE_Init
+CAN_NODE_Init
+CAN_NODE_0
+BUS_IO_Write
+CAPTURE_Start
+BUS_IO_TRIGGER
+CAPTURE_C
+CAPTURE_L
+CAPTURE_R
+__aeabi_ui2d
+__aeabi_dmul
+__aeabi_d2uiz
+CAPTURE_GetCapturedTimeInNanoSec
+CAN_NODE_MO_UpdateData
+CAN_NODE_MO_Transmit
