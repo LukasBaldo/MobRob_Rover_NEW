@@ -724,3 +724,275 @@ rm -rf Libraries/XMCLib/src/xmc_ledts.o Libraries/XMCLib/src/xmc_posif.o Librari
   32088	   1028	   2264	  35380	   8a34	Mobrob_Inverter.elf
 'Finished building: Mobrob_Inverter.siz'
 
+12:18:19 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32144	   1028	   2264	  35436	   8a6c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+12:19:22 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32144	   1028	   2264	  35436	   8a6c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+12:19:47 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32144	   1028	   2264	  35436	   8a6c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+12:20:28 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32144	   1028	   2264	  35436	   8a6c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+12:20:47 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32144	   1028	   2264	  35436	   8a6c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+12:37:02 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'Calculation':
+'Building file: ../main.c'
+../main.c:429:22: warning: suggest parentheses around comparison in operand of '|' [-Wparentheses]
+'Invoking: ARM-GCC C Compiler'
+    if(omega_ele_rads > 13823 | omega_ele_rads < -13823) omega_ele_rads = omega_ele_rads_old;
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                      ^
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32288	   1028	   2264	  35580	   8afc	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+12:37:26 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32264	   1028	   2264	  35556	   8ae4	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+12:37:32 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32264	   1028	   2264	  35556	   8ae4	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+12:38:48 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32144	   1028	   2264	  35436	   8a6c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+12:43:49 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32144	   1028	   2264	  35436	   8a6c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+12:49:26 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32144	   1028	   2264	  35436	   8a6c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+12:58:37 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'Calculation':
+'Building file: ../main.c'
+../main.c:423:3: error: 'C' undeclared (first use in this function)
+'Invoking: ARM-GCC C Compiler'
+   C = omega_mech_rps*2*PI*PPZ; //omega_ electrica in rads / s
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+   ^
+subdir.mk:18: recipe for target 'main.o' failed
+../main.c:423:3: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [main.o] Error 1
+12:59:10 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32216	   1028	   2264	  35508	   8ab4	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+12:59:56 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32176	   1028	   2264	  35468	   8a8c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+13:00:17 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  32176	   1028	   2264	  35468	   8a8c	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+

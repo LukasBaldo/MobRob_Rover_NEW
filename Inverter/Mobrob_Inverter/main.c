@@ -25,8 +25,8 @@ void Calculation(void);
 
 // NEED to be set
 //motor
-#define MOTOR_NUM 1 // for trque dirction motro 1 differtn form rest so far
-#define MOTOR_ON_ROVER 3// 0 front left 1 front right 2 back left 3 back right
+#define MOTOR_NUM 6 // for trque dirction motro 1 differtn form rest so far
+#define MOTOR_ON_ROVER 1// 0 front left 1 front right 2 back left 3 back right
 
 //control type
 uint8_t Speed_control = 1; //if 0 is torque control if 1 is speed control
@@ -88,14 +88,16 @@ float angle_in_sector = 30;// in deg // 30 defalut becasue in the mideel of the 
 float angle_phi = 0;
 float ialpha,ibeta,iq,id,Valpha,Vbeta;
 
-volatile float omega_ele_rads = 0; //SK		// electrical rad / sec //current real velocity calculated from angles from hall sensors and time between interrupts
-volatile float omega_mech_rads_ = 0;	//SK	//mechanical rounds per second
-volatile float omega_mech_rads_temp = 0; //SK	//since dividing through the incremental (counted up) value of time_180deg can lead to ridiculously high velocities a plausability check is performed before temp is stored to the value
-//volatile float omega_ref = -2*69.11; //1*69.11; //SK		//target velocity electrical in rad/s --> 1 rpsmech = 2*pi*11 = 69.11 rad/s electrical --> will be received later
+volatile float omega_ele_rads = 0; 	// electrical rad / sec //current real velocity calculated from angles from hall sensors and time between interrupts
+volatile float omega_mech_rps = 0;	//SK	//mechanical rounds per second
+volatile float omega_mech_rps_temp = 0; //SK	//since dividing through the incremental (counted up) value of time_180deg can lead to ridiculously high velocities a plausability check is performed before temp is stored to the value
+//volatile float omega_ele_rads_ref = -2*69.11; //1*69.11; //SK		//target velocity electrical in rad/s --> 1 rpsmech = 2*pi*11 = 69.11 rad/s electrical --> will be received later
+
+volatile float omega_ele_degs = 0;
 
 // REF vaules given to PI controller
 float speed_ref = 0.0; //meters per second
-float omega_ref = 0.0; // electrical rad per second
+float omega_ele_rads_ref = 0.0; // electrical rad per second
 float iq_ref = 0.0;
 float T_ref = 0.0;
 float Vd_ref = 0;
@@ -277,7 +279,7 @@ void CAN_TX_ISR(void){
 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[CAN_MO]); //Transmit the data of message object1
 }
 
-// 10us Timer for speed measurement
+// 100us Timer for speed measurement
 void TimeCounterISR(void){
 	time_since_A ++;
 	time_since_B ++;
@@ -400,7 +402,7 @@ void Calculation(void){
 			angle_phi=angle_phi+offset_pos;
 			if(angle_phi > 360.0){angle_phi=angle_phi-360.0;}
 
-			omega_mech_rads_temp = (float)450/((float)time_180deg_cal);
+			omega_mech_rps_temp = (float)450/((float)time_180deg_cal);
 		}
 		// CCW
 		else{
@@ -410,17 +412,18 @@ void Calculation(void){
 			angle_phi=angle_phi+offset_neg;
 			if(angle_phi > 360.0){angle_phi=angle_phi-360.0;}
 
-			omega_mech_rads_temp = -(float)450/((float)time_180deg_cal);
+			omega_mech_rps_temp = -(float)450/((float)time_180deg_cal);
 		}
 
-		if(omega_mech_rads_temp<200 && omega_mech_rads_temp>(-200)) //plausibility check to avoid large peaks due to small time_180deg --> caused problems
+		if(omega_mech_rps_temp<200 && omega_mech_rps_temp>(-200)) //plausibility check to avoid large peaks due to small time_180deg --> caused problems
 		{
-			omega_mech_rads_ = (float)omega_mech_rads_temp;
+			omega_mech_rps = (float)omega_mech_rps_temp;
 		}
-
-		omega_ele_rads = omega_mech_rads_*2*PI*PPZ; //omega_is hall electrica in rads / s
 
 		if(t > TIME_OMEGA_0){omega_ele_rads = 0;} // set omega  to 0 if no more hall detected
+		else omega_ele_rads = omega_mech_rps*2*PI*PPZ; //omega_ electrica in rads / s
+
+		omega_ele_degs = omega_ele_rads / Pi180;
 
 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 8% duyt  // change to angel_in secotr 7% duty
 
@@ -461,17 +464,17 @@ void Calculation(void){
 			}
 		}
 
-		omega_ref = ( speed_ref * PPZ ) / WHEEL_R;
+		omega_ele_rads_ref = ( speed_ref * PPZ ) / WHEEL_R;
 
-		if((omega_ref == 0 && Speed_control == 1) && (( -200 < omega_ele_rads) && (omega_ele_rads < 200))){ // no contorl is standing stil
+		if((omega_ele_rads_ref == 0 && Speed_control == 1) && (( -200 < omega_ele_rads) && (omega_ele_rads < 200))){ // no contorl is standing stil
 			T_ref = 0;
 		}
 		else{
 			if(MOTOR_NUM == 1){
-				T_ref = PID_Controller(omega_ref,omega_ele_rads,&T_param_1); // outer control loop q for omega
+				T_ref = PID_Controller(omega_ele_rads_ref,omega_ele_rads,&T_param_1); // outer control loop q for omega
 			}
 			else{
-				T_ref = PID_Controller(omega_ref,omega_ele_rads,&T_param);
+				T_ref = PID_Controller(omega_ele_rads_ref,omega_ele_rads,&T_param);
 			}
 		}
 

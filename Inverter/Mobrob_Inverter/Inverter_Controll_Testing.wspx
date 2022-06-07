@@ -9,7 +9,7 @@
     <screen RegisteredName="DataScreen2" ScreenHeader="DataScreen1" ScreenType="DataScreen" />
   </screens>
   <nodes>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode1" OffsetX="190" OffsetY="330" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="100" Height="27" ZIndex="0" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode1" OffsetX="180" OffsetY="360" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="100" Height="27" ZIndex="0" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
       <innercontent>
         <content ControlType="IPhoneSwitch" Type="iPhoneSwitch">
           <definitions Width="100" Height="27" ButtonValue="1" ToggleOnValue="1" ToggleOffValue="0" ButtonLabel="" IsButtonChecked="true" LabelOffValue="" LabelOnValue="" FontColor="#FF000000" FontFamily="Segoe UI" FontSize="12" />
@@ -19,17 +19,17 @@
         <symbol path="Speed_control" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
       </symbols>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode2" OffsetX="90" OffsetY="150" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="2" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode2" OffsetX="80" OffsetY="180" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="2" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
       <innercontent>
         <content ControlType="TextboxControl" Type="TextboxControl">
           <definitions ColorBackground="#FFF5F5F5" Font="Arial Black" FontSizeValue="50" FontStyleValue="Normal" FontWeightValue="Normal" ColorFont="#FF000000" TextAlignmentValue="Right" SeparateThousandsWithComma="false" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" LeadingZeroes="0" NumberOfDecimalPlaces="1" ColorBorder="#FFA9A9A9" BorderThickness="1" CornerRadius="1" Width="300" Height="60" IsVerticalText="false" ContainsAssignedSymbols="true" Text="" />
         </content>
       </innercontent>
       <symbols>
-        <symbol path="omega_ref" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+        <symbol path="omega_ele_rads_ref" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
       </symbols>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode3" OffsetX="80" OffsetY="50" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="3" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode3" OffsetX="80" OffsetY="20" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="3" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
       <innercontent>
         <content ControlType="TextboxControl" Type="TextboxControl">
           <definitions ColorBackground="#FFF5F5F5" Font="Arial Black" FontSizeValue="50" FontStyleValue="Normal" FontWeightValue="Normal" ColorFont="#FF000000" TextAlignmentValue="Right" SeparateThousandsWithComma="false" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" LeadingZeroes="0" NumberOfDecimalPlaces="1" ColorBorder="#FFA9A9A9" BorderThickness="1" CornerRadius="1" Width="300" Height="60" IsVerticalText="false" ContainsAssignedSymbols="true" Text="" />
@@ -77,7 +77,7 @@
           <datalogging>
             <configuration>
               <settings CurrentCfgFile="" StopLoggingBasedOnMaximunFileSize="false" MaximumFileSize="0" Units="MB">
-                <output Outputfile="C:\Users\lukas\AppData\Roaming\Micrium\DataLogging\2022-04-27-12-11-08_DataLoggingSession_267.csv" ShowTime="true" ShowDate="true" AutoIncrementFileName="true" ReuseSameFile="false" />
+                <output Outputfile="C:\Users\lukas\AppData\Roaming\Micrium\DataLogging\2022-04-27-12-11-08_DataLoggingSession_299.csv" ShowTime="true" ShowDate="true" AutoIncrementFileName="true" ReuseSameFile="false" />
                 <repeat IsUntilDateEnabled="false" IsNumberOfTimesEnabled="true" NumberOfTimes="0" Until="4/27/2022" UseSameLogFile="false" IsEnabled="false">
                   <time>
                     <milliseconds>100</milliseconds>
@@ -114,61 +114,40 @@
         <symbol path="omega_is_hall" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
       </symbols>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode7" OffsetX="1100" OffsetY="10" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="600" Height="350" ZIndex="2" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="false" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
-      <innercontent>
-        <content ControlType="XYGraph" Type="Graph4">
-          <definitions Width="600" Height="350" TypeOfXAxisValues="SampleNumber" TypeOfUpdateStyle="ScrollLeft" MaxNumSamples="200" IsLegendVisible="true" ChartType="MarkerChart" EraseTrace="false" XAxisFrom="0" XAxisTo="200" XAxisStep="20" PrimaryYAxisFrom="-400" PrimaryYAxisTo="400" PrimaryYAxisStep="10" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" DecimalPlaces="0" LeadingZeroes="0" LegendPosition="InsideTopRight" ShowLegend="true" Show_XAxisLabels="true" />
-          <symbolseries>
-            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="omega_ref">
-              <seriesmodel EraseTrace="false" MaxNumSamples="200" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
-              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF0000FF" PointStroke="#FF0000FF" PointStrokeThickness="1" PointFill="#FF0000FF" PointSize="5" LineStroke="#FF0000FF" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
-            </serie>
-            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="omega_ele_rads">
-              <seriesmodel EraseTrace="false" MaxNumSamples="200" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
-              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF00FF00" PointStroke="#FF00FF00" PointStrokeThickness="1" PointFill="#FF00FF00" PointSize="5" LineStroke="#FF00FF00" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
-            </serie>
-          </symbolseries>
-        </content>
-      </innercontent>
-      <symbols>
-        <symbol path="omega_ref" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
-        <symbol path="omega_ele_rads" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
-      </symbols>
-    </node>
     <node ScreenId="DataScreen2" NodeId="CustomDiagramNode8" OffsetX="480" OffsetY="10" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="600" Height="350" ZIndex="3" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="false" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
       <innercontent>
         <content ControlType="XYGraph" Type="Graph4">
           <definitions Width="600" Height="350" TypeOfXAxisValues="SampleNumber" TypeOfUpdateStyle="ScrollLeft" MaxNumSamples="200" IsLegendVisible="true" ChartType="MarkerChart" EraseTrace="false" XAxisFrom="0" XAxisTo="200" XAxisStep="20" PrimaryYAxisFrom="-10" PrimaryYAxisTo="10" PrimaryYAxisStep="10" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" DecimalPlaces="0" LeadingZeroes="0" LegendPosition="InsideTopRight" ShowLegend="true" Show_XAxisLabels="true" />
           <symbolseries>
-            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="iq">
+            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="Current_W">
               <seriesmodel EraseTrace="false" MaxNumSamples="200" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
-              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF0000FF" PointStroke="#FF0000FF" PointStrokeThickness="1" PointFill="#FF0000FF" PointSize="5" LineStroke="#FF0000FF" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
-            </serie>
-            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="iq_ref">
-              <seriesmodel EraseTrace="false" MaxNumSamples="200" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
-              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FFFF0000" PointStroke="#FFFF0000" PointStrokeThickness="1" PointFill="#FFFF0000" PointSize="5" LineStroke="#FFFF0000" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
-            </serie>
-            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="Current_U">
-              <seriesmodel EraseTrace="false" MaxNumSamples="200" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
-              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF00FF00" PointStroke="#FF00FF00" PointStrokeThickness="1" PointFill="#FF00FF00" PointSize="5" LineStroke="#FF00FF00" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
+              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FFFF00FF" PointStroke="#FFFF00FF" PointStrokeThickness="1" PointFill="#FFFF00FF" PointSize="5" LineStroke="#FFFF00FF" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
             </serie>
             <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="Current_V">
               <seriesmodel EraseTrace="false" MaxNumSamples="200" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
               <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FFFFFF00" PointStroke="#FFFFFF00" PointStrokeThickness="1" PointFill="#FFFFFF00" PointSize="5" LineStroke="#FFFFFF00" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
             </serie>
-            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="Current_W">
+            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="Current_U">
               <seriesmodel EraseTrace="false" MaxNumSamples="200" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
-              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FFFF00FF" PointStroke="#FFFF00FF" PointStrokeThickness="1" PointFill="#FFFF00FF" PointSize="5" LineStroke="#FFFF00FF" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
+              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF00FF00" PointStroke="#FF00FF00" PointStrokeThickness="1" PointFill="#FF00FF00" PointSize="5" LineStroke="#FF00FF00" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
+            </serie>
+            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="iq_ref">
+              <seriesmodel EraseTrace="false" MaxNumSamples="200" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
+              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FFFF0000" PointStroke="#FFFF0000" PointStrokeThickness="1" PointFill="#FFFF0000" PointSize="5" LineStroke="#FFFF0000" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
+            </serie>
+            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="iq">
+              <seriesmodel EraseTrace="false" MaxNumSamples="200" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
+              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF0000FF" PointStroke="#FF0000FF" PointStrokeThickness="1" PointFill="#FF0000FF" PointSize="5" LineStroke="#FF0000FF" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
             </serie>
           </symbolseries>
         </content>
       </innercontent>
       <symbols>
-        <symbol path="iq" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
-        <symbol path="iq_ref" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
-        <symbol path="Current_U" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
-        <symbol path="Current_V" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
         <symbol path="Current_W" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+        <symbol path="Current_V" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+        <symbol path="Current_U" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+        <symbol path="iq_ref" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+        <symbol path="iq" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
       </symbols>
     </node>
     <node ScreenId="DataScreen2" NodeId="CustomDiagramNode9" OffsetX="480" OffsetY="390" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="600" Height="350" ZIndex="4" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="false" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
@@ -187,10 +166,10 @@
         <symbol path="Vq_ref" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
       </symbols>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode10" OffsetX="190" OffsetY="389.99999999999994" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="100" Height="27" ZIndex="5" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode10" OffsetX="180" OffsetY="410" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="100" Height="27" ZIndex="5" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
       <innercontent>
         <content ControlType="IPhoneSwitch" Type="iPhoneSwitch">
-          <definitions Width="100" Height="27" ButtonValue="1" ToggleOnValue="1" ToggleOffValue="0" ButtonLabel="" IsButtonChecked="true" LabelOffValue="" LabelOnValue="" FontColor="#FF000000" FontFamily="Segoe UI" FontSize="12" />
+          <definitions Width="100" Height="27" ButtonValue="1" ToggleOnValue="1" ToggleOffValue="0" ButtonLabel="" IsButtonChecked="false" LabelOffValue="" LabelOnValue="" FontColor="#FF000000" FontFamily="Segoe UI" FontSize="12" />
         </content>
       </innercontent>
       <symbols>
@@ -217,27 +196,27 @@
         <symbol path="CAN_no_com_counter" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
       </symbols>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode13" OffsetX="310" OffsetY="318.50000000000006" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode13" OffsetX="310" OffsetY="350.00000000000006" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
       <shape>
         <properties Fill="#00FFFFFF" Thickness="2" Stroke="#00FFFFFF" DashDot="1, 0" Opacity="1" Label="Speed controll" Font="Segoe UI" FontSize="18" FontWeight="Bold" FontStyle="Normal" Bold="true" UnderLine="false" Strike="false" Italic="false" TextAlignment="Center" LabelHAlign="Center" LabelVAlign="Center" LabelMargin="5,5,5,5" LabelBackground="#00FFFFFF" LabelForeground="#FF000000" />
       </shape>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode14" OffsetX="310" OffsetY="378.49999999999994" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode14" OffsetX="310" OffsetY="400" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
       <shape>
         <properties Fill="#00FFFFFF" Thickness="2" Stroke="#00FFFFFF" DashDot="1, 0" Opacity="1" Label="CAN controll" Font="Segoe UI" FontSize="18" FontWeight="Bold" FontStyle="Normal" Bold="true" UnderLine="false" Strike="false" Italic="false" TextAlignment="Center" LabelHAlign="Center" LabelVAlign="Center" LabelMargin="5,5,5,5" LabelBackground="#00FFFFFF" LabelForeground="#FF000000" />
       </shape>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode15" OffsetX="190" OffsetY="210" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode15" OffsetX="190" OffsetY="230" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
       <shape>
         <properties Fill="#00FFFFFF" Thickness="2" Stroke="#00FFFFFF" DashDot="1, 0" Opacity="1" Label="Speed_ref" Font="Segoe UI" FontSize="18" FontWeight="Bold" FontStyle="Normal" Bold="true" UnderLine="false" Strike="false" Italic="false" TextAlignment="Center" LabelHAlign="Center" LabelVAlign="Center" LabelMargin="5,5,5,5" LabelBackground="#00FFFFFF" LabelForeground="#FF000000" />
       </shape>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode16" OffsetX="190" OffsetY="110" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode16" OffsetX="170" OffsetY="130" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
       <shape>
         <properties Fill="#00FFFFFF" Thickness="2" Stroke="#00FFFFFF" DashDot="1, 0" Opacity="1" Label="Omega_ref" Font="Segoe UI" FontSize="18" FontWeight="Bold" FontStyle="Normal" Bold="true" UnderLine="false" Strike="false" Italic="false" TextAlignment="Center" LabelHAlign="Center" LabelVAlign="Center" LabelMargin="5,5,5,5" LabelBackground="#00FFFFFF" LabelForeground="#FF000000" />
       </shape>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode17" OffsetX="200" OffsetY="0" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode17" OffsetX="200" OffsetY="-20" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="150" Height="50" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" IsWritableControl="false" WritableValue="0" IsDrawingShape="true" ShapeTypeStr="Rectangle" RibbonTool="None">
       <shape>
         <properties Fill="#00FFFFFF" Thickness="2" Stroke="#00FFFFFF" DashDot="1, 0" Opacity="1" Label="Iq_ref" Font="Segoe UI" FontSize="18" FontWeight="Bold" FontStyle="Normal" Bold="true" UnderLine="false" Strike="false" Italic="false" TextAlignment="Center" LabelHAlign="Center" LabelVAlign="Center" LabelMargin="5,5,5,5" LabelBackground="#00FFFFFF" LabelForeground="#FF000000" />
       </shape>
@@ -322,7 +301,7 @@
         </symbol>
       </symbols>
     </node>
-    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode26" OffsetX="90" OffsetY="250.00000000000006" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="9" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode26" OffsetX="80" OffsetY="270" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="9" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
       <innercontent>
         <content ControlType="TextboxControl" Type="TextboxControl">
           <definitions ColorBackground="#FFF5F5F5" Font="Arial Black" FontSizeValue="50" FontStyleValue="Normal" FontWeightValue="Normal" ColorFont="#FF000000" TextAlignmentValue="Right" SeparateThousandsWithComma="false" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" LeadingZeroes="0" NumberOfDecimalPlaces="1" ColorBorder="#FFA9A9A9" BorderThickness="1" CornerRadius="1" Width="300" Height="60" IsVerticalText="false" ContainsAssignedSymbols="true" Text="" />
@@ -406,6 +385,37 @@
         <symbol path="distance" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
       </symbols>
     </node>
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode34" OffsetX="1730" OffsetY="20" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="300" Height="60" ZIndex="1" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="true" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+      <innercontent>
+        <content ControlType="TextboxControl" Type="TextboxControl">
+          <definitions ColorBackground="#FFF5F5F5" Font="Arial Black" FontSizeValue="50" FontStyleValue="Normal" FontWeightValue="Normal" ColorFont="#FF000000" TextAlignmentValue="Right" SeparateThousandsWithComma="false" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" LeadingZeroes="0" NumberOfDecimalPlaces="1" ColorBorder="#FFA9A9A9" BorderThickness="1" CornerRadius="1" Width="300" Height="60" IsVerticalText="false" ContainsAssignedSymbols="true" Text="" />
+        </content>
+      </innercontent>
+      <symbols>
+        <symbol path="omega_mech_rps" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+      </symbols>
+    </node>
+    <node ScreenId="DataScreen2" NodeId="CustomDiagramNode37" OffsetX="1110" OffsetY="0" AllowMove="true" AllowResize="true" AllowRotate="true" AllowSelect="true" IsInRuntimeMode="false" Width="600" Height="350" ZIndex="3" IsLocked="false" RotateAngle="0" Pivot="0.5,0.5" UpdateWhenVisible="false" IsWritableControl="false" WritableValue="0" IsDrawingShape="false" ShapeTypeStr="" RibbonTool="None">
+      <innercontent>
+        <content ControlType="XYGraph" Type="Graph4">
+          <definitions Width="600" Height="350" TypeOfXAxisValues="SampleNumber" TypeOfUpdateStyle="ScrollLeft" MaxNumSamples="2000" IsLegendVisible="true" ChartType="MarkerChart" EraseTrace="false" XAxisFrom="0" XAxisTo="200" XAxisStep="20" PrimaryYAxisFrom="-500" PrimaryYAxisTo="500" PrimaryYAxisStep="10" ScalingFactor="1" ScalingOffset="0" ScalingFormat="" DecimalPlaces="0" LeadingZeroes="0" LegendPosition="InsideTopRight" ShowLegend="true" Show_XAxisLabels="true" />
+          <symbolseries>
+            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="omega_ele_rads">
+              <seriesmodel EraseTrace="false" MaxNumSamples="2000" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
+              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FFFF0000" PointStroke="#FFFF0000" PointStrokeThickness="1" PointFill="#FFFF0000" PointSize="5" LineStroke="#FFFF0000" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
+            </serie>
+            <serie YAxisFrom="0" YAxisStep="20" YAxisTo="200" Path="omega_ele_rads_ref">
+              <seriesmodel EraseTrace="false" MaxNumSamples="2000" TypeOfUpdateStyle="ScrollLeft" TypeOfXAxisValues="SampleNumber" XAxisOffset="0" />
+              <seriesview ShowArea="false" ShowLine="false" ShowPoints="true" AreaFill="#FF0000FF" PointStroke="#FF0000FF" PointStrokeThickness="1" PointFill="#FF0000FF" PointSize="5" LineStroke="#FF0000FF" LineStrokeThickness="1" HighlightingEnabled="false" PointShape="Ellipse" />
+            </serie>
+          </symbolseries>
+        </content>
+      </innercontent>
+      <symbols>
+        <symbol path="omega_ele_rads" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+        <symbol path="omega_ele_rads_ref" IsAnArrayElement="false" ElementIndex="0" IsCustomSymbol="false" Mask_Enabled="false" Mask_Start_Bit="0" Mask_End_Bit="0" />
+      </symbols>
+    </node>
   </nodes>
   <screens_objects />
   <explorer>
@@ -447,9 +457,9 @@
           <CanDock>true</CanDock>
           <CanClose>false</CanClose>
           <IsSelectedTab>false</IsSelectedTab>
-          <IsActiveWindow>true</IsActiveWindow>
+          <IsActiveWindow>false</IsActiveWindow>
           <WindowRect />
-          <TabGroupName>23438230</TabGroupName>
+          <TabGroupName>58769241</TabGroupName>
           <IsTabGroupOwner>false</IsTabGroupOwner>
           <SideTabOrder>0</SideTabOrder>
           <IndexInDockMode>4</IndexInDockMode>
@@ -487,7 +497,7 @@
           <FixedWidth>0</FixedWidth>
           <ContainerSize>
             <Width>1642</Width>
-            <Height>869</Height>
+            <Height>989</Height>
           </ContainerSize>
           <PreviousHostWidth>90</PreviousHostWidth>
           <PreviousHostHeight>90</PreviousHostHeight>
@@ -516,7 +526,7 @@
           <TargetDocked />
           <TargetFloating />
           <DesiredWidthInDockedMode>270</DesiredWidthInDockedMode>
-          <DesiredHeightInDockedMode>144</DesiredHeightInDockedMode>
+          <DesiredHeightInDockedMode>162</DesiredHeightInDockedMode>
           <DesiredWidthInFloatingMode>270</DesiredWidthInFloatingMode>
           <DesiredHeightInFloatingMode>30</DesiredHeightInFloatingMode>
           <NoDock>false</NoDock>
@@ -525,7 +535,7 @@
           <IsSelectedTab>false</IsSelectedTab>
           <IsActiveWindow>false</IsActiveWindow>
           <WindowRect />
-          <TabGroupName>46940446</TabGroupName>
+          <TabGroupName>27321481</TabGroupName>
           <IsTabGroupOwner>false</IsTabGroupOwner>
           <SideTabOrder>0</SideTabOrder>
           <IndexInDockMode>3</IndexInDockMode>
@@ -563,7 +573,7 @@
           <FixedWidth>0</FixedWidth>
           <ContainerSize>
             <Width>270</Width>
-            <Height>869</Height>
+            <Height>989</Height>
           </ContainerSize>
           <PreviousHostWidth>90</PreviousHostWidth>
           <PreviousHostHeight>90</PreviousHostHeight>
@@ -592,7 +602,7 @@
           <TargetDocked>workspaceExplorerMainView</TargetDocked>
           <TargetFloating />
           <DesiredWidthInDockedMode>270</DesiredWidthInDockedMode>
-          <DesiredHeightInDockedMode>430</DesiredHeightInDockedMode>
+          <DesiredHeightInDockedMode>493</DesiredHeightInDockedMode>
           <DesiredWidthInFloatingMode>90</DesiredWidthInFloatingMode>
           <DesiredHeightInFloatingMode>90</DesiredHeightInFloatingMode>
           <NoDock>false</NoDock>
@@ -601,7 +611,7 @@
           <IsSelectedTab>false</IsSelectedTab>
           <IsActiveWindow>false</IsActiveWindow>
           <WindowRect />
-          <TabGroupName>39718677</TabGroupName>
+          <TabGroupName>65556329</TabGroupName>
           <IsTabGroupOwner>false</IsTabGroupOwner>
           <SideTabOrder>0</SideTabOrder>
           <IndexInDockMode>1</IndexInDockMode>
@@ -639,7 +649,7 @@
           <FixedWidth>0</FixedWidth>
           <ContainerSize>
             <Width>270</Width>
-            <Height>869</Height>
+            <Height>989</Height>
           </ContainerSize>
           <PreviousHostWidth>90</PreviousHostWidth>
           <PreviousHostHeight>90</PreviousHostHeight>
@@ -668,16 +678,16 @@
           <TargetDocked>workspaceExplorerMainView</TargetDocked>
           <TargetFloating />
           <DesiredWidthInDockedMode>270</DesiredWidthInDockedMode>
-          <DesiredHeightInDockedMode>287</DesiredHeightInDockedMode>
+          <DesiredHeightInDockedMode>325</DesiredHeightInDockedMode>
           <DesiredWidthInFloatingMode>90</DesiredWidthInFloatingMode>
           <DesiredHeightInFloatingMode>60</DesiredHeightInFloatingMode>
           <NoDock>false</NoDock>
           <CanDock>true</CanDock>
           <CanClose>false</CanClose>
           <IsSelectedTab>true</IsSelectedTab>
-          <IsActiveWindow>false</IsActiveWindow>
+          <IsActiveWindow>true</IsActiveWindow>
           <WindowRect />
-          <TabGroupName>44079761</TabGroupName>
+          <TabGroupName>8462442</TabGroupName>
           <IsTabGroupOwner>false</IsTabGroupOwner>
           <SideTabOrder>0</SideTabOrder>
           <IndexInDockMode>2</IndexInDockMode>
@@ -715,7 +725,7 @@
           <FixedWidth>0</FixedWidth>
           <ContainerSize>
             <Width>270</Width>
-            <Height>869</Height>
+            <Height>989</Height>
           </ContainerSize>
           <PreviousHostWidth>90</PreviousHostWidth>
           <PreviousHostHeight>90</PreviousHostHeight>
