@@ -137,3 +137,15 @@ const DIGITAL_IO_t LED_CAN_ERROR =
   .hwctrl = XMC_GPIO_HWCTRL_DISABLED
 };
 		
+const DIGITAL_IO_t LED_COLLISION_AVOID =
+{
+  .gpio_port = XMC_GPIO_PORT0,
+  .gpio_pin = 8U,
+  .gpio_config = {
+    .mode = XMC_GPIO_MODE_OUTPUT_PUSH_PULL,
+    .output_level = XMC_GPIO_OUTPUT_LEVEL_LOW,
+
+  },
+  .hwctrl = XMC_GPIO_HWCTRL_DISABLED
+};
+		

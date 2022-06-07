@@ -1,11 +1,56 @@
-16:06:38 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+18:12:55 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
 "\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ4_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:441:75: warning: passing argument 4 of 'Ultra_sonic_filter' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+'Finished building: ../main.c'
+                                                                           ^
+
+../main.c:149:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+      ^
+../main.c: In function 'IRQ7_Handler':
+../main.c:763:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+  Steering_set_Angles(Steering_Angles);
+                      ^
+../main.c:612:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data[4]){
+      ^
+../main.c: In function 'Collision_voidance':
+../main.c:783:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+  avg_Speeds = average(Speeds,4);
+                       ^
+../main.c:146:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+../main.c:835:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds);
+                  ^
+../main.c:598:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]){
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
 'Invoking: ARM-GCC Print Size'
 "C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
    text	   data	    bss	    dec	    hex	filename
-  42412	    792	   1564	  44768	   aee0	MobRob_Steering_Controller.elf
+  43180	    808	   1564	  45552	   b1f0	MobRob_Steering_Controller.elf
 'Finished building: MobRob_Steering_Controller.siz'
 
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
 
-16:06:39 Build Finished (took 614ms)
+
+18:12:56 Build Finished (took 1s.212ms)
 

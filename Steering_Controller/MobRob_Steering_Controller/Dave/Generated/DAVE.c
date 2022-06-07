@@ -186,6 +186,11 @@ __WEAK DAVE_STATUS_t DAVE_Init(void)
   {
 	 /**  Initialization of DIGITAL_IO APP instance LED_CAN_ERROR */
 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&LED_CAN_ERROR); 
+   } 
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+	 /**  Initialization of DIGITAL_IO APP instance LED_COLLISION_AVOID */
+	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&LED_COLLISION_AVOID); 
    }  
   return init_status;
 } /**  End of function DAVE_Init */

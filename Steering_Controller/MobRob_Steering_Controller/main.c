@@ -80,16 +80,25 @@ float ALPHA_ULTARSONIC = 0.5; // giltering prameter for the Exponential moving a
 #define NEG_OBSTRUCTED_ANGLE_MIN -150
 #define NEG_OBSTRUCTED_ANGLE_MAX -310
 uint8_t obstructed_L = 0, obstructed_R = 0;
-float Fil_Ultrasonic_m_C = 0;
-float Fil_Ultrasonic_m_L = 0;
-float Fil_Ultrasonic_m_R = 0;
+float Fil_Ultrasonic_m_C = 4;
+float Fil_Ultrasonic_m_L = 4;
+float Fil_Ultrasonic_m_R = 4;
+
+#define ULRTA_NUM_NO_DATA_INVALID 40
+uint8_t Ultrsonic_data_invaildcounter[3] = {ULRTA_NUM_NO_DATA_INVALID, ULRTA_NUM_NO_DATA_INVALID, ULRTA_NUM_NO_DATA_INVALID};
+
 // obstacels
 float Obstacel_F[2] = {4, 0};
 float Obstacel_L[2] = {4, -4};
 float Obstacel_R[2] = {4, 4};
 
 float obstacel_F_x = 0, obstacel_L_x = 0, obstacel_L_y = 0, obstacel_R_x = 0, obstacel_R_y = 0;
+uint8_t Obstacel_valid[3] = {0, 0, 0};
 
+// collison avdoidance
+#define COLLISION_ADOIVANCE_START 1
+float avg_Speeds = 0;
+float act_trajctory_x = 0, act_trajctory_y = 0;
 
 
 // Var RC
@@ -140,7 +149,7 @@ void CAN_RX_Inverter_Read_Data();
 void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
 float Exp_moving_average(float new_value, float value, float ALPHA);
 uint8_t Ultrasoinc_Obstructet_Test(float Angle);
-void calc_act_trajctory();
+void Collision_voidance();
 
 
 int main(void)
@@ -433,41 +442,59 @@ void CAN_RX_ULTRASONIC_ISR(void) { // recide data
 }
 
 void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC){
-	uint8_t Ultrsonic_data_vaild[3] = {0, 0, 0};
 
 	if(Ultrasonic_cm_C_clc != 0){
-		Ultrsonic_data_vaild[0] = 1;
-		Fil_Ultrasonic_m_C = Exp_moving_average(Ultrasonic_cm_C_clc, Fil_Ultrasonic_m_C, ALPHA_ULTARSONIC);// / 100;
+		Ultrsonic_data_invaildcounter[0] = 0;
+		Fil_Ultrasonic_m_C = Exp_moving_average((float)Ultrasonic_cm_C_clc / 100 , Fil_Ultrasonic_m_C, ALPHA_ULTARSONIC);
+		//Fil_Ultrasonic_m_C = (float)Ultrasonic_cm_C_clc /100;
 	}
+	else Ultrsonic_data_invaildcounter[0]++;
+
 	if(Ultrasonic_cm_L_clc != 0){
 		obstructed_L = Ultrasoinc_Obstructet_Test(Steering_Angles_clc[0]);
 		if(obstructed_L == 0) {
-			Ultrsonic_data_vaild[1] = 1;
-			Fil_Ultrasonic_m_L = Exp_moving_average(Ultrasonic_cm_L_clc, Fil_Ultrasonic_m_L, ALPHA_ULTARSONIC);// / 100;
+			Ultrsonic_data_invaildcounter[1] = 0;
+			//Fil_Ultrasonic_m_L = Exp_moving_average(Ultrasonic_cm_L_clc, Fil_Ultrasonic_m_L, ALPHA_ULTARSONIC) / 100;
+			Fil_Ultrasonic_m_L = (float)Ultrasonic_cm_L_clc /100;
 		}
 	}
+	else Ultrsonic_data_invaildcounter[1]++;
+
 	if(Ultrasonic_cm_R_clc != 0){
 		obstructed_R = Ultrasoinc_Obstructet_Test( - Steering_Angles_clc[1]); // neagtiv becasue right wheel
 		if(obstructed_R == 0){
-			Fil_Ultrasonic_m_R = Exp_moving_average(Ultrasonic_cm_R_clc, Fil_Ultrasonic_m_R, ALPHA_ULTARSONIC);// / 100;
-			Ultrsonic_data_vaild[2] = 1;
+			Fil_Ultrasonic_m_R = Exp_moving_average(Ultrasonic_cm_R_clc, Fil_Ultrasonic_m_R, ALPHA_ULTARSONIC) / 100;
+			Ultrsonic_data_invaildcounter[2] = 1;
 		}
+	}
+	else Ultrsonic_data_invaildcounter[2]++;
+
+	uint8_t i;
+	for(i = 0; i < 3; i++){
+		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i] = ULRTA_NUM_NO_DATA_INVALID;
 	}
 
 	// front obstacel
-	if(Ultrsonic_data_vaild[0] == 1){
+	if(Ultrsonic_data_invaildcounter[0] < ULRTA_NUM_NO_DATA_INVALID ){
 		Obstacel_F[0] = Fil_Ultrasonic_m_C;
+		Obstacel_valid[0] = 1;
 	}
+	else Obstacel_valid[0] = 0;
 
-	if(Ultrsonic_data_vaild[1] == 1){
+	if(Ultrsonic_data_invaildcounter[1] < ULRTA_NUM_NO_DATA_INVALID ){
 		Obstacel_L[0] = Fil_Ultrasonic_m_L * cos(Steering_Angles[0] / RAD_TO_DEG);
 		Obstacel_L[1] = Fil_Ultrasonic_m_L * sin(Steering_Angles[0] / RAD_TO_DEG);
+		Obstacel_valid[1] = 1;
 	}
+	else Obstacel_valid[1] = 0;
 
-	if(Ultrsonic_data_vaild[2] == 1){
+	if(Ultrsonic_data_invaildcounter[2]  < ULRTA_NUM_NO_DATA_INVALID ){
 		Obstacel_R[0] = Fil_Ultrasonic_m_R * cos(Steering_Angles[1] / RAD_TO_DEG);
 		Obstacel_R[1] = Fil_Ultrasonic_m_R * sin(Steering_Angles[1] / RAD_TO_DEG);
+		Obstacel_valid[2] = 1;
 	}
+	else Obstacel_valid[2] = 0;
+
 	obstacel_F_x = Obstacel_F[0];
 	obstacel_L_x = Obstacel_L[0];
 	obstacel_L_y = Obstacel_L[1];
@@ -497,7 +524,7 @@ uint8_t Ultrasoinc_Obstructet_Test(float Angle){
 }
 
 float Exp_moving_average(float new_value, float value, float ALPHA){
-	return new_value * ALPHA + (1 - ALPHA) * value;
+	return ((new_value * ALPHA) + ((1 - ALPHA) * value));
 }
 
 void CAN_RX_INVERTER_ISR(void) {
@@ -713,6 +740,7 @@ void TIMER_CONTROL_ISR(void){
 	if(New_Input == 1){
 	Steering_Function(Steering_direction, Driving_speed, Steering_mode);
 	NO_New_Input_counter = 0;
+
 	}
 	else{
 		NO_New_Input_counter ++;
@@ -731,15 +759,13 @@ void TIMER_CONTROL_ISR(void){
 		}
 	}
 
-	//trajectoryact calc
-	//calc_act_trajctory();
-
-
 	//set Angles PWM
 	Steering_set_Angles(Steering_Angles);
 
+	Collision_voidance();
+
 	//send traget speeds to inverter
-	CAN_send_Speeds(Speeds);
+	//CAN_send_Speeds(Speeds);
 
 	//
 	if(reset_distance == 1){
@@ -752,11 +778,11 @@ void TIMER_CONTROL_ISR(void){
 	DIGITAL_IO_SetOutputLow(&CALC_TIME_INDICATOR);
 }
 
-/*
-void calc_act_trajctory(){
-	float avg_Actual_Speeds = average(Actual_Speeds,4);
+void Collision_voidance(){
+	DIGITAL_IO_SetOutputLow(&LED_COLLISION_AVOID);
+	avg_Speeds = average(Speeds,4);
 
-	switch(Steering_mode_cal) // options 'Front'; 'Rear'; '4_Wheel'; 'Carb'; 'Rotate'
+	switch(Steering_mode) // options 'Front'; 'Rear'; '4_Wheel'; 'Carb'; 'Rotate'
 		{
 			case FRONT://#############################################################
 				//act_trajctory_x =
@@ -770,44 +796,45 @@ void calc_act_trajctory(){
 				break;
 
 			case CRAB:  //carb //#############################################################
-				act_trajctory_x = avg_Actual_Speeds * cos(Steering_Angles[0]);
-				act_trajctory_y = avg_Actual_Speeds * sin(Steering_Angles[0]);
+				act_trajctory_x = avg_Speeds * cos(Steering_Angles[0]);
+				act_trajctory_y = avg_Speeds * sin(Steering_Angles[0]);
+
 				break;
 
-			case ROTATE: // rotate #############################################################
-				// steering agel for turng in place
-				angle_fl = ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
-				angle_fr = -ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
-				angle_rl = -ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
-				angle_rr = ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
+			case ROTATE: // rotate ############################################################
 
-				 // speed
-				if (Steering_direction_cal > 10){
-					speed_fl = ROTATION_SPEED;
-					speed_fr = -ROTATION_SPEED;
-					speed_rl = ROTATION_SPEED;
-					speed_rr = -ROTATION_SPEED;
-				}
-				else if(Steering_direction_cal < -10){
-					speed_fl = -ROTATION_SPEED;
-					speed_fr = ROTATION_SPEED;
-					speed_rl = -ROTATION_SPEED;
-					speed_rr = ROTATION_SPEED;
-				}
-				else{
-					speed_fl = 0;
-					speed_fr = 0;
-					speed_rl = 0;
-					speed_rr = 0;
-				}
 				break;
 
-			default:
+			default :
 
+			act_trajctory_x = 0;
+			act_trajctory_y = 0;
 		}
 
+		//if(Obstacel_valid[0]){
+			if(Obstacel_F[0] < COLLISION_ADOIVANCE_START){
+				if(act_trajctory_x > Obstacel_F[0]){
+					DIGITAL_IO_SetOutputHigh(&LED_COLLISION_AVOID);
+					uint8_t i;
+					for(i = 0; i < 4; i ++){
+						if(Obstacel_F[0] < 0.2) Speeds[i] = 0;
+						else Speeds[i] = Speeds[i] * 2 * copysign(Obstacel_F[0],1);
+					}
+
+				}
+			}
+
+		//}
+
+
+	speed_fl = Speeds[0];
+	speed_fr = Speeds[1];
+	speed_rl = Speeds[2];
+	speed_rr = Speeds[3];
+
+	CAN_send_Speeds(Speeds);
 }
-*/
+
 
 void Servo_NP_setting(void){
 	  NP[0] = NPfl;

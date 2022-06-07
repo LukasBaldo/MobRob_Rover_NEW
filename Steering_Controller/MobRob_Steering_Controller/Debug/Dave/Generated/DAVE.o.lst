@@ -115,7 +115,7 @@
   73:../Dave/Generated/DAVE.c ****      init_status = (DAVE_STATUS_t)CLOCK_XMC1_Init(&CLOCK_XMC1_0);
   44              	 .loc 1 73 0
   45 000c FC1D     	 add r4,r7,#7
-  46 000e 844B     	 ldr r3,.L26
+  46 000e 8A4B     	 ldr r3,.L27
   47 0010 181C     	 mov r0,r3
   48 0012 FFF7FEFF 	 bl CLOCK_XMC1_Init
   49 0016 031C     	 mov r3,r0
@@ -132,7 +132,7 @@
   78:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)CAN_NODE_Init(&CAN_NODE_0); 
   56              	 .loc 1 78 0
   57 0022 FC1D     	 add r4,r7,#7
-  58 0024 7F4B     	 ldr r3,.L26+4
+  58 0024 854B     	 ldr r3,.L27+4
   59 0026 181C     	 mov r0,r3
   60 0028 FFF7FEFF 	 bl CAN_NODE_Init
   61 002c 031C     	 mov r3,r0
@@ -150,7 +150,7 @@
   83:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&CAN_RX_ULTRASONIC); 
   69              	 .loc 1 83 0
   70 0038 FC1D     	 add r4,r7,#7
-  71 003a 7B4B     	 ldr r3,.L26+8
+  71 003a 814B     	 ldr r3,.L27+8
   72 003c 181C     	 mov r0,r3
   73 003e FFF7FEFF 	 bl INTERRUPT_Init
   74 0042 031C     	 mov r3,r0
@@ -168,7 +168,7 @@
   88:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PWM_Init(&PWM_servo_fl); 
   82              	 .loc 1 88 0
   83 004e FC1D     	 add r4,r7,#7
-  84 0050 764B     	 ldr r3,.L26+12
+  84 0050 7C4B     	 ldr r3,.L27+12
   85 0052 181C     	 mov r0,r3
   86 0054 FFF7FEFF 	 bl PWM_Init
   87 0058 031C     	 mov r3,r0
@@ -186,7 +186,7 @@
   93:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PWM_Init(&PWM_servo_fr); 
   95              	 .loc 1 93 0
   96 0064 FC1D     	 add r4,r7,#7
-  97 0066 724B     	 ldr r3,.L26+16
+  97 0066 784B     	 ldr r3,.L27+16
   98 0068 181C     	 mov r0,r3
   99 006a FFF7FEFF 	 bl PWM_Init
  100 006e 031C     	 mov r3,r0
@@ -204,7 +204,7 @@
   98:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PWM_Init(&PWM_servo_rl); 
  108              	 .loc 1 98 0
  109 007a FC1D     	 add r4,r7,#7
- 110 007c 6D4B     	 ldr r3,.L26+20
+ 110 007c 734B     	 ldr r3,.L27+20
  111 007e 181C     	 mov r0,r3
  112 0080 FFF7FEFF 	 bl PWM_Init
  113 0084 031C     	 mov r3,r0
@@ -222,7 +222,7 @@
  103:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PWM_Init(&PWM_servo_rr); 
  121              	 .loc 1 103 0
  122 0090 FC1D     	 add r4,r7,#7
- 123 0092 694B     	 ldr r3,.L26+24
+ 123 0092 6F4B     	 ldr r3,.L27+24
  124 0094 181C     	 mov r0,r3
  125 0096 FFF7FEFF 	 bl PWM_Init
  126 009a 031C     	 mov r3,r0
@@ -240,7 +240,7 @@
  108:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)TIMER_Init(&TIMER_10us); 
  134              	 .loc 1 108 0
  135 00a6 FC1D     	 add r4,r7,#7
- 136 00a8 644B     	 ldr r3,.L26+28
+ 136 00a8 6A4B     	 ldr r3,.L27+28
  137 00aa 181C     	 mov r0,r3
  138 00ac FFF7FEFF 	 bl TIMER_Init
  139 00b0 031C     	 mov r3,r0
@@ -258,7 +258,7 @@
  113:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_TIMER_10us); 
  147              	 .loc 1 113 0
  148 00bc FC1D     	 add r4,r7,#7
- 149 00be 604B     	 ldr r3,.L26+32
+ 149 00be 664B     	 ldr r3,.L27+32
  150 00c0 181C     	 mov r0,r3
  151 00c2 FFF7FEFF 	 bl INTERRUPT_Init
  152 00c6 031C     	 mov r3,r0
@@ -276,7 +276,7 @@
  118:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)CAPTURE_Init(&CAPTURE_RC_Steering); 
  160              	 .loc 1 118 0
  161 00d2 FC1D     	 add r4,r7,#7
- 162 00d4 5B4B     	 ldr r3,.L26+36
+ 162 00d4 614B     	 ldr r3,.L27+36
  163 00d6 181C     	 mov r0,r3
  164 00d8 FFF7FEFF 	 bl CAPTURE_Init
  165 00dc 031C     	 mov r3,r0
@@ -294,7 +294,7 @@
  123:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)CAPTURE_Init(&CAPTURE_RC_Speed); 
  173              	 .loc 1 123 0
  174 00e8 FC1D     	 add r4,r7,#7
- 175 00ea 574B     	 ldr r3,.L26+40
+ 175 00ea 5D4B     	 ldr r3,.L27+40
  176 00ec 181C     	 mov r0,r3
  177 00ee FFF7FEFF 	 bl CAPTURE_Init
  178 00f2 031C     	 mov r3,r0
@@ -312,7 +312,7 @@
  128:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&RC_no_data_LED); 
  186              	 .loc 1 128 0
  187 00fe FC1D     	 add r4,r7,#7
- 188 0100 524B     	 ldr r3,.L26+44
+ 188 0100 584B     	 ldr r3,.L27+44
  189 0102 181C     	 mov r0,r3
  190 0104 FFF7FEFF 	 bl DIGITAL_IO_Init
  191 0108 031C     	 mov r3,r0
@@ -330,7 +330,7 @@
  133:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)TIMER_Init(&TIMER_CONTROL); 
  199              	 .loc 1 133 0
  200 0114 FC1D     	 add r4,r7,#7
- 201 0116 4E4B     	 ldr r3,.L26+48
+ 201 0116 544B     	 ldr r3,.L27+48
  202 0118 181C     	 mov r0,r3
  203 011a FFF7FEFF 	 bl TIMER_Init
  204 011e 031C     	 mov r3,r0
@@ -348,7 +348,7 @@
  138:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_TIMER_CONTROL); 
  212              	 .loc 1 138 0
  213 012a FC1D     	 add r4,r7,#7
- 214 012c 494B     	 ldr r3,.L26+52
+ 214 012c 4F4B     	 ldr r3,.L27+52
  215 012e 181C     	 mov r0,r3
  216 0130 FFF7FEFF 	 bl INTERRUPT_Init
  217 0134 031C     	 mov r3,r0
@@ -366,7 +366,7 @@
  143:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&RC_Connected); 
  225              	 .loc 1 143 0
  226 0140 FC1D     	 add r4,r7,#7
- 227 0142 454B     	 ldr r3,.L26+56
+ 227 0142 4B4B     	 ldr r3,.L27+56
  228 0144 181C     	 mov r0,r3
  229 0146 FFF7FEFF 	 bl PIN_INTERRUPT_Init
  230 014a 031C     	 mov r3,r0
@@ -384,7 +384,7 @@
  148:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&CALC_TIME_INDICATOR); 
  238              	 .loc 1 148 0
  239 0156 FC1D     	 add r4,r7,#7
- 240 0158 404B     	 ldr r3,.L26+60
+ 240 0158 464B     	 ldr r3,.L27+60
  241 015a 181C     	 mov r0,r3
  242 015c FFF7FEFF 	 bl DIGITAL_IO_Init
  243 0160 031C     	 mov r3,r0
@@ -402,7 +402,7 @@
  153:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&MODE_001); 
  251              	 .loc 1 153 0
  252 016c FC1D     	 add r4,r7,#7
- 253 016e 3C4B     	 ldr r3,.L26+64
+ 253 016e 424B     	 ldr r3,.L27+64
  254 0170 181C     	 mov r0,r3
  255 0172 FFF7FEFF 	 bl DIGITAL_IO_Init
  256 0176 031C     	 mov r3,r0
@@ -420,7 +420,7 @@
  158:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&MODE_010); 
  264              	 .loc 1 158 0
  265 0182 FC1D     	 add r4,r7,#7
- 266 0184 374B     	 ldr r3,.L26+68
+ 266 0184 3D4B     	 ldr r3,.L27+68
  267 0186 181C     	 mov r0,r3
  268 0188 FFF7FEFF 	 bl DIGITAL_IO_Init
  269 018c 031C     	 mov r3,r0
@@ -438,7 +438,7 @@
  163:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&MODE_100); 
  277              	 .loc 1 163 0
  278 0198 FC1D     	 add r4,r7,#7
- 279 019a 334B     	 ldr r3,.L26+72
+ 279 019a 394B     	 ldr r3,.L27+72
  280 019c 181C     	 mov r0,r3
  281 019e FFF7FEFF 	 bl DIGITAL_IO_Init
  282 01a2 031C     	 mov r3,r0
@@ -456,7 +456,7 @@
  168:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)WATCHDOG_Init(&WATCHDOG_0); 
  290              	 .loc 1 168 0
  291 01ae FC1D     	 add r4,r7,#7
- 292 01b0 2E4B     	 ldr r3,.L26+76
+ 292 01b0 344B     	 ldr r3,.L27+76
  293 01b2 181C     	 mov r0,r3
  294 01b4 FFF7FEFF 	 bl WATCHDOG_Init
  295 01b8 031C     	 mov r3,r0
@@ -474,7 +474,7 @@
  173:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&WATCHDOG_LED_BLUE); 
  303              	 .loc 1 173 0
  304 01c4 FC1D     	 add r4,r7,#7
- 305 01c6 2A4B     	 ldr r3,.L26+80
+ 305 01c6 304B     	 ldr r3,.L27+80
  306 01c8 181C     	 mov r0,r3
  307 01ca FFF7FEFF 	 bl DIGITAL_IO_Init
  308 01ce 031C     	 mov r3,r0
@@ -492,7 +492,7 @@
  178:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&CAN_RX_INVERTER); 
  316              	 .loc 1 178 0
  317 01da FC1D     	 add r4,r7,#7
- 318 01dc 254B     	 ldr r3,.L26+84
+ 318 01dc 2B4B     	 ldr r3,.L27+84
  319 01de 181C     	 mov r0,r3
  320 01e0 FFF7FEFF 	 bl INTERRUPT_Init
  321 01e4 031C     	 mov r3,r0
@@ -510,7 +510,7 @@
  183:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&RC_AUX1); 
  329              	 .loc 1 183 0
  330 01f0 FC1D     	 add r4,r7,#7
- 331 01f2 214B     	 ldr r3,.L26+88
+ 331 01f2 274B     	 ldr r3,.L27+88
  332 01f4 181C     	 mov r0,r3
  333 01f6 FFF7FEFF 	 bl PIN_INTERRUPT_Init
  334 01fa 031C     	 mov r3,r0
@@ -528,95 +528,114 @@
  188:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&LED_CAN_ERROR); 
  342              	 .loc 1 188 0
  343 0206 FC1D     	 add r4,r7,#7
- 344 0208 1C4B     	 ldr r3,.L26+92
+ 344 0208 224B     	 ldr r3,.L27+92
  345 020a 181C     	 mov r0,r3
  346 020c FFF7FEFF 	 bl DIGITAL_IO_Init
  347 0210 031C     	 mov r3,r0
  348 0212 2370     	 strb r3,[r4]
  349              	.L24:
- 189:../Dave/Generated/DAVE.c ****    }  
- 190:../Dave/Generated/DAVE.c ****   return init_status;
+ 189:../Dave/Generated/DAVE.c ****    } 
+ 190:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
  350              	 .loc 1 190 0
  351 0214 FB1D     	 add r3,r7,#7
  352 0216 1B78     	 ldrb r3,[r3]
- 191:../Dave/Generated/DAVE.c **** } /**  End of function DAVE_Init */
- 353              	 .loc 1 191 0
- 354 0218 181C     	 mov r0,r3
- 355 021a BD46     	 mov sp,r7
- 356 021c 03B0     	 add sp,sp,#12
- 357              	 
- 358 021e 90BD     	 pop {r4,r7,pc}
- 359              	.L27:
- 360              	 .align 2
- 361              	.L26:
- 362 0220 00000000 	 .word CLOCK_XMC1_0
- 363 0224 00000000 	 .word CAN_NODE_0
- 364 0228 00000000 	 .word CAN_RX_ULTRASONIC
- 365 022c 00000000 	 .word PWM_servo_fl
- 366 0230 00000000 	 .word PWM_servo_fr
- 367 0234 00000000 	 .word PWM_servo_rl
- 368 0238 00000000 	 .word PWM_servo_rr
- 369 023c 00000000 	 .word TIMER_10us
- 370 0240 00000000 	 .word INTERRUPT_TIMER_10us
- 371 0244 00000000 	 .word CAPTURE_RC_Steering
- 372 0248 00000000 	 .word CAPTURE_RC_Speed
- 373 024c 00000000 	 .word RC_no_data_LED
- 374 0250 00000000 	 .word TIMER_CONTROL
- 375 0254 00000000 	 .word INTERRUPT_TIMER_CONTROL
- 376 0258 00000000 	 .word RC_Connected
- 377 025c 00000000 	 .word CALC_TIME_INDICATOR
- 378 0260 00000000 	 .word MODE_001
- 379 0264 00000000 	 .word MODE_010
- 380 0268 00000000 	 .word MODE_100
- 381 026c 00000000 	 .word WATCHDOG_0
- 382 0270 00000000 	 .word WATCHDOG_LED_BLUE
- 383 0274 00000000 	 .word CAN_RX_INVERTER
- 384 0278 00000000 	 .word RC_AUX1
- 385 027c 00000000 	 .word LED_CAN_ERROR
- 386              	 .cfi_endproc
- 387              	.LFE224:
- 389              	 .text
- 390              	.Letext0:
- 391              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 392              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 393              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
- 394              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_scu.h"
- 395              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_scu.h"
- 396              	 .file 7 "../Dave/Generated/CLOCK_XMC1/clock_xmc1.h"
- 397              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_can.h"
- 398              	 .file 9 "../Dave/Generated/GLOBAL_CAN/global_can.h"
- 399              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_gpio.h"
- 400              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
- 401              	 .file 12 "../Dave/Generated/CAN_NODE/can_node.h"
- 402              	 .file 13 "../Dave/Generated/INTERRUPT/interrupt.h"
- 403              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_ccu4.h"
- 404              	 .file 15 "../Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
- 405              	 .file 16 "../Dave/Generated/PWM/pwm.h"
- 406              	 .file 17 "../Dave/Generated/TIMER/timer.h"
- 407              	 .file 18 "../Dave/Generated/CAPTURE/capture.h"
- 408              	 .file 19 "../Dave/Generated/DIGITAL_IO/digital_io.h"
- 409              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_eru.h"
- 410              	 .file 21 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
- 411              	 .file 22 "../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h"
- 412              	 .file 23 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_wdt.h"
- 413              	 .file 24 "../Dave/Generated/WATCHDOG/watchdog.h"
- 414              	 .file 25 "../Dave/Generated/DAVE.h"
- 415              	 .file 26 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 416              	 .file 27 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 417              	 .file 28 "../Dave/Generated/CLOCK_XMC1/clock_xmc1_extern.h"
- 418              	 .file 29 "../Dave/Generated/CAN_NODE/can_node_extern.h"
- 419              	 .file 30 "../Dave/Generated/INTERRUPT/interrupt_extern.h"
- 420              	 .file 31 "../Dave/Generated/PWM/PWM_Extern.h"
- 421              	 .file 32 "../Dave/Generated/TIMER/timer_extern.h"
- 422              	 .file 33 "../Dave/Generated/CAPTURE/capture_extern.h"
- 423              	 .file 34 "../Dave/Generated/DIGITAL_IO/digital_io_extern.h"
- 424              	 .file 35 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
- 425              	 .file 36 "../Dave/Generated/WATCHDOG/watchdog_extern.h"
+ 353 0218 002B     	 cmp r3,#0
+ 354 021a 06D1     	 bne .L25
+ 191:../Dave/Generated/DAVE.c ****   {
+ 192:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance LED_COLLISION_AVOID */
+ 193:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&LED_COLLISION_AVOID); 
+ 355              	 .loc 1 193 0
+ 356 021c FC1D     	 add r4,r7,#7
+ 357 021e 1E4B     	 ldr r3,.L27+96
+ 358 0220 181C     	 mov r0,r3
+ 359 0222 FFF7FEFF 	 bl DIGITAL_IO_Init
+ 360 0226 031C     	 mov r3,r0
+ 361 0228 2370     	 strb r3,[r4]
+ 362              	.L25:
+ 194:../Dave/Generated/DAVE.c ****    }  
+ 195:../Dave/Generated/DAVE.c ****   return init_status;
+ 363              	 .loc 1 195 0
+ 364 022a FB1D     	 add r3,r7,#7
+ 365 022c 1B78     	 ldrb r3,[r3]
+ 196:../Dave/Generated/DAVE.c **** } /**  End of function DAVE_Init */
+ 366              	 .loc 1 196 0
+ 367 022e 181C     	 mov r0,r3
+ 368 0230 BD46     	 mov sp,r7
+ 369 0232 03B0     	 add sp,sp,#12
+ 370              	 
+ 371 0234 90BD     	 pop {r4,r7,pc}
+ 372              	.L28:
+ 373 0236 C046     	 .align 2
+ 374              	.L27:
+ 375 0238 00000000 	 .word CLOCK_XMC1_0
+ 376 023c 00000000 	 .word CAN_NODE_0
+ 377 0240 00000000 	 .word CAN_RX_ULTRASONIC
+ 378 0244 00000000 	 .word PWM_servo_fl
+ 379 0248 00000000 	 .word PWM_servo_fr
+ 380 024c 00000000 	 .word PWM_servo_rl
+ 381 0250 00000000 	 .word PWM_servo_rr
+ 382 0254 00000000 	 .word TIMER_10us
+ 383 0258 00000000 	 .word INTERRUPT_TIMER_10us
+ 384 025c 00000000 	 .word CAPTURE_RC_Steering
+ 385 0260 00000000 	 .word CAPTURE_RC_Speed
+ 386 0264 00000000 	 .word RC_no_data_LED
+ 387 0268 00000000 	 .word TIMER_CONTROL
+ 388 026c 00000000 	 .word INTERRUPT_TIMER_CONTROL
+ 389 0270 00000000 	 .word RC_Connected
+ 390 0274 00000000 	 .word CALC_TIME_INDICATOR
+ 391 0278 00000000 	 .word MODE_001
+ 392 027c 00000000 	 .word MODE_010
+ 393 0280 00000000 	 .word MODE_100
+ 394 0284 00000000 	 .word WATCHDOG_0
+ 395 0288 00000000 	 .word WATCHDOG_LED_BLUE
+ 396 028c 00000000 	 .word CAN_RX_INVERTER
+ 397 0290 00000000 	 .word RC_AUX1
+ 398 0294 00000000 	 .word LED_CAN_ERROR
+ 399 0298 00000000 	 .word LED_COLLISION_AVOID
+ 400              	 .cfi_endproc
+ 401              	.LFE224:
+ 403              	 .text
+ 404              	.Letext0:
+ 405              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 406              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 407              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 408              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_scu.h"
+ 409              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_scu.h"
+ 410              	 .file 7 "../Dave/Generated/CLOCK_XMC1/clock_xmc1.h"
+ 411              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_can.h"
+ 412              	 .file 9 "../Dave/Generated/GLOBAL_CAN/global_can.h"
+ 413              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_gpio.h"
+ 414              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 415              	 .file 12 "../Dave/Generated/CAN_NODE/can_node.h"
+ 416              	 .file 13 "../Dave/Generated/INTERRUPT/interrupt.h"
+ 417              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_ccu4.h"
+ 418              	 .file 15 "../Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
+ 419              	 .file 16 "../Dave/Generated/PWM/pwm.h"
+ 420              	 .file 17 "../Dave/Generated/TIMER/timer.h"
+ 421              	 .file 18 "../Dave/Generated/CAPTURE/capture.h"
+ 422              	 .file 19 "../Dave/Generated/DIGITAL_IO/digital_io.h"
+ 423              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_eru.h"
+ 424              	 .file 21 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
+ 425              	 .file 22 "../Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h"
+ 426              	 .file 23 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_wdt.h"
+ 427              	 .file 24 "../Dave/Generated/WATCHDOG/watchdog.h"
+ 428              	 .file 25 "../Dave/Generated/DAVE.h"
+ 429              	 .file 26 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 430              	 .file 27 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 431              	 .file 28 "../Dave/Generated/CLOCK_XMC1/clock_xmc1_extern.h"
+ 432              	 .file 29 "../Dave/Generated/CAN_NODE/can_node_extern.h"
+ 433              	 .file 30 "../Dave/Generated/INTERRUPT/interrupt_extern.h"
+ 434              	 .file 31 "../Dave/Generated/PWM/PWM_Extern.h"
+ 435              	 .file 32 "../Dave/Generated/TIMER/timer_extern.h"
+ 436              	 .file 33 "../Dave/Generated/CAPTURE/capture_extern.h"
+ 437              	 .file 34 "../Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 438              	 .file 35 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
+ 439              	 .file 36 "../Dave/Generated/WATCHDOG/watchdog_extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 DAVE.c
     {standard input}:18     .text.DAVE_Init:00000000 $t
     {standard input}:23     .text.DAVE_Init:00000000 DAVE_Init
-    {standard input}:362    .text.DAVE_Init:00000220 $d
+    {standard input}:375    .text.DAVE_Init:00000238 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -653,3 +672,4 @@ WATCHDOG_LED_BLUE
 CAN_RX_INVERTER
 RC_AUX1
 LED_CAN_ERROR
+LED_COLLISION_AVOID
