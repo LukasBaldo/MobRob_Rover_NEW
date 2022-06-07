@@ -85,51 +85,38 @@
    4:../main.c     ****  *  Created on: 2022 May 31 16:22:54
    5:../main.c     ****  *  Author: lukas
    6:../main.c     ****  */
-   7:../main.c     **** 
+   7:../main.c     **** #include "DAVE.h"                 //Declarations from DAVE Code Generation (includes SFR declaratio
    8:../main.c     **** 
-   9:../main.c     **** 
-  10:../main.c     **** 
-  11:../main.c     **** #include "DAVE.h"                 //Declarations from DAVE Code Generation (includes SFR declaratio
+   9:../main.c     **** #define ECHO_TIME_ns_TO_DISTANCE_cm 0.000017
+  10:../main.c     **** #define ECHO_TIME_MIN 200000
+  11:../main.c     **** #define ECHO_TIME_MAX 20000000
   12:../main.c     **** 
-  13:../main.c     **** /**
-  14:../main.c     **** 
-  15:../main.c     ****  * @brief main() - Application entry point
-  16:../main.c     ****  *
-  17:../main.c     ****  * <b>Details of function</b><br>
-  18:../main.c     ****  * This routine is the application entry point. It is invoked by the device startup code. It is res
-  19:../main.c     ****  * invoking the APP initialization dispatcher routine - DAVE_Init() and hosting the place-holder fo
-  20:../main.c     ****  * code.
-  21:../main.c     ****  */
-  22:../main.c     **** #define ECHO_TIME_ns_TO_DISTANCE_cm 0.000017
-  23:../main.c     **** #define ECHO_TIME_MIN 200000
-  24:../main.c     **** #define ECHO_TIME_MAX 20000000
+  13:../main.c     **** uint8_t CAN_OK = 0;
+  14:../main.c     **** CAN_NODE_STATUS_t init_status;
+  15:../main.c     **** 
+  16:../main.c     **** volatile uint16_t t_100us_count = 0;
+  17:../main.c     **** 
+  18:../main.c     **** uint32_t captured_time = 0;
+  19:../main.c     **** uint8_t flag_C = 0;
+  20:../main.c     **** uint8_t flag_L = 0;
+  21:../main.c     **** uint8_t flag_R = 0;
+  22:../main.c     **** 
+  23:../main.c     **** uint16_t distance_C = 0;
+  24:../main.c     **** uint32_t echo_time_C = 0;
   25:../main.c     **** 
-  26:../main.c     **** uint8_t CAN_OK = 0;
-  27:../main.c     **** CAN_NODE_STATUS_t init_status;
+  26:../main.c     **** uint16_t distance_L = 0;
+  27:../main.c     **** uint32_t echo_time_L = 0;
   28:../main.c     **** 
-  29:../main.c     **** volatile uint16_t t_100us_count = 0;
-  30:../main.c     **** 
-  31:../main.c     **** uint32_t captured_time = 0;
-  32:../main.c     **** uint8_t flag_C = 0;
-  33:../main.c     **** uint8_t flag_L = 0;
-  34:../main.c     **** uint8_t flag_R = 0;
+  29:../main.c     **** uint16_t distance_R = 0;
+  30:../main.c     **** uint32_t echo_time_R = 0;
+  31:../main.c     **** 
+  32:../main.c     **** void Capture_read();
+  33:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN );
+  34:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN);
   35:../main.c     **** 
-  36:../main.c     **** uint16_t distance_C = 0;
-  37:../main.c     **** uint32_t echo_time_C = 0;
-  38:../main.c     **** 
-  39:../main.c     **** uint16_t distance_L = 0;
-  40:../main.c     **** uint32_t echo_time_L = 0;
-  41:../main.c     **** 
-  42:../main.c     **** uint16_t distance_R = 0;
-  43:../main.c     **** uint32_t echo_time_R = 0;
-  44:../main.c     **** 
-  45:../main.c     **** void Capture_read();
-  46:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN );
-  47:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN);
-  48:../main.c     **** 
-  49:../main.c     **** int main(void)
-  50:../main.c     **** {
- 107              	 .loc 1 50 0
+  36:../main.c     **** int main(void)
+  37:../main.c     **** {
+ 107              	 .loc 1 37 0
  108              	 .cfi_startproc
  109 0000 90B5     	 push {r4,r7,lr}
  110              	.LCFI0:
@@ -143,39 +130,39 @@
  118 0004 00AF     	 add r7,sp,#0
  119              	.LCFI2:
  120              	 .cfi_def_cfa_register 7
-  51:../main.c     ****   DAVE_STATUS_t status;
-  52:../main.c     **** 
-  53:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
- 121              	 .loc 1 53 0
+  38:../main.c     ****   DAVE_STATUS_t status;
+  39:../main.c     **** 
+  40:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
+ 121              	 .loc 1 40 0
  122 0006 FC1D     	 add r4,r7,#7
  123 0008 FFF7FEFF 	 bl DAVE_Init
  124 000c 031C     	 mov r3,r0
  125 000e 2370     	 strb r3,[r4]
-  54:../main.c     **** 
-  55:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
- 126              	 .loc 1 55 0
+  41:../main.c     **** 
+  42:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
+ 126              	 .loc 1 42 0
  127 0010 FB1D     	 add r3,r7,#7
  128 0012 1B78     	 ldrb r3,[r3]
  129 0014 002B     	 cmp r3,#0
  130 0016 00D0     	 beq .L2
  131              	.L3:
-  56:../main.c     ****   {
-  57:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
-  58:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
-  59:../main.c     **** 
-  60:../main.c     ****     while(1U)
-  61:../main.c     ****     {
-  62:../main.c     **** 
-  63:../main.c     ****     }
- 132              	 .loc 1 63 0 discriminator 1
+  43:../main.c     ****   {
+  44:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
+  45:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
+  46:../main.c     **** 
+  47:../main.c     ****     while(1U)
+  48:../main.c     ****     {
+  49:../main.c     **** 
+  50:../main.c     ****     }
+ 132              	 .loc 1 50 0 discriminator 1
  133 0018 FEE7     	 b .L3
  134              	.L2:
-  64:../main.c     ****   }
-  65:../main.c     **** 
-  66:../main.c     ****   //Initialization of CAN
-  67:../main.c     ****  	//CAN_NODE_STATUS_t init_status;
-  68:../main.c     ****  	init_status = CAN_NODE_Init(&CAN_NODE_0);
- 135              	 .loc 1 68 0
+  51:../main.c     ****   }
+  52:../main.c     **** 
+  53:../main.c     ****   //Initialization of CAN
+  54:../main.c     ****  	//CAN_NODE_STATUS_t init_status;
+  55:../main.c     ****  	init_status = CAN_NODE_Init(&CAN_NODE_0);
+ 135              	 .loc 1 55 0
  136 001a 084B     	 ldr r3,.L5
  137 001c 181C     	 mov r0,r3
  138 001e FFF7FEFF 	 bl CAN_NODE_Init
@@ -183,30 +170,30 @@
  140 0024 1A1C     	 mov r2,r3
  141 0026 064B     	 ldr r3,.L5+4
  142 0028 1A70     	 strb r2,[r3]
-  69:../main.c     **** 
-  70:../main.c     ****  	if (init_status != CAN_NODE_STATUS_SUCCESS) {
- 143              	 .loc 1 70 0
+  56:../main.c     **** 
+  57:../main.c     ****  	if (init_status != CAN_NODE_STATUS_SUCCESS) {
+ 143              	 .loc 1 57 0
  144 002a 054B     	 ldr r3,.L5+4
  145 002c 1B78     	 ldrb r3,[r3]
  146 002e 002B     	 cmp r3,#0
  147 0030 02D1     	 bne .L4
-  71:../main.c     ****  		XMC_DEBUG("CAN initialization failed\n");
-  72:../main.c     ****  	}
-  73:../main.c     ****  	else{
-  74:../main.c     ****  		CAN_OK = 1;
- 148              	 .loc 1 74 0
+  58:../main.c     ****  		XMC_DEBUG("CAN initialization failed\n");
+  59:../main.c     ****  	}
+  60:../main.c     ****  	else{
+  61:../main.c     ****  		CAN_OK = 1;
+ 148              	 .loc 1 61 0
  149 0032 044B     	 ldr r3,.L5+8
  150 0034 0122     	 mov r2,#1
  151 0036 1A70     	 strb r2,[r3]
  152              	.L4:
-  75:../main.c     ****  	}
-  76:../main.c     **** 
-  77:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
-  78:../main.c     ****   while(1U)
-  79:../main.c     ****   {
-  80:../main.c     **** 
-  81:../main.c     ****   }
- 153              	 .loc 1 81 0 discriminator 3
+  62:../main.c     ****  	}
+  63:../main.c     **** 
+  64:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
+  65:../main.c     ****   while(1U)
+  66:../main.c     ****   {
+  67:../main.c     **** 
+  68:../main.c     ****   }
+ 153              	 .loc 1 68 0 discriminator 3
  154 0038 FEE7     	 b .L4
  155              	.L6:
  156 003a C046     	 .align 2
@@ -223,10 +210,10 @@
  168              	 .thumb_func
  170              	IRQ21_Handler:
  171              	.LFB196:
-  82:../main.c     **** }
-  83:../main.c     **** 
-  84:../main.c     **** void TIMER_100us_ISR(){
- 172              	 .loc 1 84 0
+  69:../main.c     **** }
+  70:../main.c     **** 
+  71:../main.c     **** void TIMER_100us_ISR(){
+ 172              	 .loc 1 71 0
  173              	 .cfi_startproc
  174 0000 80B5     	 push {r7,lr}
  175              	.LCFI3:
@@ -236,8 +223,8 @@
  179 0002 00AF     	 add r7,sp,#0
  180              	.LCFI4:
  181              	 .cfi_def_cfa_register 7
-  85:../main.c     **** 	t_100us_count ++;
- 182              	 .loc 1 85 0
+  72:../main.c     **** 	t_100us_count ++;
+ 182              	 .loc 1 72 0
  183 0004 204B     	 ldr r3,.L11
  184 0006 1B88     	 ldrh r3,[r3]
  185 0008 9BB2     	 uxth r3,r3
@@ -245,102 +232,102 @@
  187 000c 9AB2     	 uxth r2,r3
  188 000e 1E4B     	 ldr r3,.L11
  189 0010 1A80     	 strh r2,[r3]
-  86:../main.c     **** 
-  87:../main.c     **** 	if(t_100us_count == 1){
- 190              	 .loc 1 87 0
+  73:../main.c     **** 
+  74:../main.c     **** 	if(t_100us_count == 1){
+ 190              	 .loc 1 74 0
  191 0012 1D4B     	 ldr r3,.L11
  192 0014 1B88     	 ldrh r3,[r3]
  193 0016 9BB2     	 uxth r3,r3
  194 0018 012B     	 cmp r3,#1
  195 001a 11D1     	 bne .L8
-  88:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b111);
- 196              	 .loc 1 88 0
+  75:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b111);
+ 196              	 .loc 1 75 0
  197 001c 1B4B     	 ldr r3,.L11+4
  198 001e 181C     	 mov r0,r3
  199 0020 0721     	 mov r1,#7
  200 0022 FFF7FEFF 	 bl BUS_IO_Write
-  89:../main.c     **** 
-  90:../main.c     **** 		CAPTURE_Start(&CAPTURE_C);
- 201              	 .loc 1 90 0
+  76:../main.c     **** 
+  77:../main.c     **** 		CAPTURE_Start(&CAPTURE_C);
+ 201              	 .loc 1 77 0
  202 0026 1A4B     	 ldr r3,.L11+8
  203 0028 181C     	 mov r0,r3
  204 002a FFF7FEFF 	 bl CAPTURE_Start
-  91:../main.c     **** 		CAPTURE_Start(&CAPTURE_L);
- 205              	 .loc 1 91 0
+  78:../main.c     **** 		CAPTURE_Start(&CAPTURE_L);
+ 205              	 .loc 1 78 0
  206 002e 194B     	 ldr r3,.L11+12
  207 0030 181C     	 mov r0,r3
  208 0032 FFF7FEFF 	 bl CAPTURE_Start
-  92:../main.c     **** 		CAPTURE_Start(&CAPTURE_R);
- 209              	 .loc 1 92 0
+  79:../main.c     **** 		CAPTURE_Start(&CAPTURE_R);
+ 209              	 .loc 1 79 0
  210 0036 184B     	 ldr r3,.L11+16
  211 0038 181C     	 mov r0,r3
  212 003a FFF7FEFF 	 bl CAPTURE_Start
- 213 003e 20E0     	 b .L7
+ 213 003e 21E0     	 b .L7
  214              	.L8:
-  93:../main.c     **** 	}
-  94:../main.c     **** 	else if (t_100us_count == 2) {
- 215              	 .loc 1 94 0
+  80:../main.c     **** 	}
+  81:../main.c     **** 	else if (t_100us_count == 2) {
+ 215              	 .loc 1 81 0
  216 0040 114B     	 ldr r3,.L11
  217 0042 1B88     	 ldrh r3,[r3]
  218 0044 9BB2     	 uxth r3,r3
  219 0046 022B     	 cmp r3,#2
  220 0048 05D1     	 bne .L10
-  95:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
- 221              	 .loc 1 95 0
+  82:../main.c     **** 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
+ 221              	 .loc 1 82 0
  222 004a 104B     	 ldr r3,.L11+4
  223 004c 181C     	 mov r0,r3
  224 004e 0021     	 mov r1,#0
  225 0050 FFF7FEFF 	 bl BUS_IO_Write
- 226 0054 15E0     	 b .L7
+ 226 0054 16E0     	 b .L7
  227              	.L10:
-  96:../main.c     **** 	}
-  97:../main.c     **** 	else if (t_100us_count == 1500) {
- 228              	 .loc 1 97 0
+  83:../main.c     **** 	}
+  84:../main.c     **** 	else if (t_100us_count == 280) { // runnig at 35 Hz no probelm with long distasnce anymore
+ 228              	 .loc 1 84 0
  229 0056 0C4B     	 ldr r3,.L11
  230 0058 1B88     	 ldrh r3,[r3]
- 231 005a 9BB2     	 uxth r3,r3
- 232 005c 0F4A     	 ldr r2,.L11+20
- 233 005e 9342     	 cmp r3,r2
- 234 0060 0FD1     	 bne .L7
-  98:../main.c     **** 		Capture_read();
- 235              	 .loc 1 98 0
- 236 0062 FFF7FEFF 	 bl Capture_read
-  99:../main.c     **** 		CAN_send_vaules(distance_C, distance_L, distance_R );
- 237              	 .loc 1 99 0
- 238 0066 0E4B     	 ldr r3,.L11+24
- 239 0068 1988     	 ldrh r1,[r3]
- 240 006a 0E4B     	 ldr r3,.L11+28
- 241 006c 1A88     	 ldrh r2,[r3]
- 242 006e 0E4B     	 ldr r3,.L11+32
- 243 0070 1B88     	 ldrh r3,[r3]
- 244 0072 081C     	 mov r0,r1
- 245 0074 111C     	 mov r1,r2
- 246 0076 1A1C     	 mov r2,r3
- 247 0078 FFF7FEFF 	 bl CAN_send_vaules
- 100:../main.c     **** 		t_100us_count = 0;
- 248              	 .loc 1 100 0
- 249 007c 024B     	 ldr r3,.L11
- 250 007e 0022     	 mov r2,#0
- 251 0080 1A80     	 strh r2,[r3]
- 252              	.L7:
- 101:../main.c     **** 	}
- 102:../main.c     **** }
- 253              	 .loc 1 102 0
- 254 0082 BD46     	 mov sp,r7
- 255              	 
- 256 0084 80BD     	 pop {r7,pc}
- 257              	.L12:
- 258 0086 C046     	 .align 2
- 259              	.L11:
- 260 0088 00000000 	 .word t_100us_count
- 261 008c 00000000 	 .word BUS_IO_TRIGGER
- 262 0090 00000000 	 .word CAPTURE_C
- 263 0094 00000000 	 .word CAPTURE_L
- 264 0098 00000000 	 .word CAPTURE_R
- 265 009c DC050000 	 .word 1500
- 266 00a0 00000000 	 .word distance_C
- 267 00a4 00000000 	 .word distance_L
- 268 00a8 00000000 	 .word distance_R
+ 231 005a 9AB2     	 uxth r2,r3
+ 232 005c 8C23     	 mov r3,#140
+ 233 005e 5B00     	 lsl r3,r3,#1
+ 234 0060 9A42     	 cmp r2,r3
+ 235 0062 0FD1     	 bne .L7
+  85:../main.c     **** 		Capture_read();
+ 236              	 .loc 1 85 0
+ 237 0064 FFF7FEFF 	 bl Capture_read
+  86:../main.c     **** 		CAN_send_vaules(distance_C, distance_L, distance_R );
+ 238              	 .loc 1 86 0
+ 239 0068 0C4B     	 ldr r3,.L11+20
+ 240 006a 1988     	 ldrh r1,[r3]
+ 241 006c 0C4B     	 ldr r3,.L11+24
+ 242 006e 1A88     	 ldrh r2,[r3]
+ 243 0070 0C4B     	 ldr r3,.L11+28
+ 244 0072 1B88     	 ldrh r3,[r3]
+ 245 0074 081C     	 mov r0,r1
+ 246 0076 111C     	 mov r1,r2
+ 247 0078 1A1C     	 mov r2,r3
+ 248 007a FFF7FEFF 	 bl CAN_send_vaules
+  87:../main.c     **** 		t_100us_count = 0;
+ 249              	 .loc 1 87 0
+ 250 007e 024B     	 ldr r3,.L11
+ 251 0080 0022     	 mov r2,#0
+ 252 0082 1A80     	 strh r2,[r3]
+ 253              	.L7:
+  88:../main.c     **** 	}
+  89:../main.c     **** }
+ 254              	 .loc 1 89 0
+ 255 0084 BD46     	 mov sp,r7
+ 256              	 
+ 257 0086 80BD     	 pop {r7,pc}
+ 258              	.L12:
+ 259              	 .align 2
+ 260              	.L11:
+ 261 0088 00000000 	 .word t_100us_count
+ 262 008c 00000000 	 .word BUS_IO_TRIGGER
+ 263 0090 00000000 	 .word CAPTURE_C
+ 264 0094 00000000 	 .word CAPTURE_L
+ 265 0098 00000000 	 .word CAPTURE_R
+ 266 009c 00000000 	 .word distance_C
+ 267 00a0 00000000 	 .word distance_L
+ 268 00a4 00000000 	 .word distance_R
  269              	 .cfi_endproc
  270              	.LFE196:
  272              	 .global __aeabi_ui2d
@@ -353,9 +340,9 @@
  279              	 .thumb_func
  281              	Capture_read:
  282              	.LFB197:
- 103:../main.c     **** 
- 104:../main.c     **** void Capture_read(){
- 283              	 .loc 1 104 0
+  90:../main.c     **** 
+  91:../main.c     **** void Capture_read(){
+ 283              	 .loc 1 91 0
  284              	 .cfi_startproc
  285 0000 98B5     	 push {r3,r4,r7,lr}
  286              	.LCFI5:
@@ -367,9 +354,9 @@
  292 0002 00AF     	 add r7,sp,#0
  293              	.LCFI6:
  294              	 .cfi_def_cfa_register 7
- 105:../main.c     **** 
- 106:../main.c     **** 	if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_C, &captured_time) == CAPTURE_STATUS_SUCCESS){
- 295              	 .loc 1 106 0
+  92:../main.c     **** 
+  93:../main.c     **** 	if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_C, &captured_time) == CAPTURE_STATUS_SUCCESS){
+ 295              	 .loc 1 93 0
  296 0004 5C4A     	 ldr r2,.L26
  297 0006 5D4B     	 ldr r3,.L26+4
  298 0008 101C     	 mov r0,r2
@@ -377,20 +364,20 @@
  300 000c FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
  301 0010 031E     	 sub r3,r0,#0
  302 0012 2ED1     	 bne .L14
- 107:../main.c     **** 		echo_time_C = captured_time;
- 303              	 .loc 1 107 0
+  94:../main.c     **** 		echo_time_C = captured_time;
+ 303              	 .loc 1 94 0
  304 0014 594B     	 ldr r3,.L26+4
  305 0016 1A68     	 ldr r2,[r3]
  306 0018 594B     	 ldr r3,.L26+8
  307 001a 1A60     	 str r2,[r3]
- 108:../main.c     **** 		flag_C = 0;
- 308              	 .loc 1 108 0
+  95:../main.c     **** 		flag_C = 0;
+ 308              	 .loc 1 95 0
  309 001c 594B     	 ldr r3,.L26+12
  310 001e 0022     	 mov r2,#0
  311 0020 1A70     	 strb r2,[r3]
- 109:../main.c     **** 
- 110:../main.c     **** 		if(within_MAX_MIN_check_int(echo_time_C, ECHO_TIME_MAX, ECHO_TIME_MIN))	distance_C = echo_time_C 
- 312              	 .loc 1 110 0
+  96:../main.c     **** 
+  97:../main.c     **** 		if(within_MAX_MIN_check_int(echo_time_C, ECHO_TIME_MAX, ECHO_TIME_MIN))	distance_C = echo_time_C 
+ 312              	 .loc 1 97 0
  313 0022 574B     	 ldr r3,.L26+8
  314 0024 1B68     	 ldr r3,[r3]
  315 0026 191C     	 mov r1,r3
@@ -402,7 +389,7 @@
  321 0032 FFF7FEFF 	 bl within_MAX_MIN_check_int
  322 0036 031E     	 sub r3,r0,#0
  323 0038 17D0     	 beq .L15
- 324              	 .loc 1 110 0 is_stmt 0 discriminator 1
+ 324              	 .loc 1 97 0 is_stmt 0 discriminator 1
  325 003a 514B     	 ldr r3,.L26+8
  326 003c 1B68     	 ldr r3,[r3]
  327 003e 181C     	 mov r0,r3
@@ -425,30 +412,30 @@
  344 0066 1A80     	 strh r2,[r3]
  345 0068 09E0     	 b .L17
  346              	.L15:
- 111:../main.c     **** 		else distance_C = 0;
- 347              	 .loc 1 111 0 is_stmt 1
+  98:../main.c     **** 		else distance_C = 0;
+ 347              	 .loc 1 98 0 is_stmt 1
  348 006a 4B4B     	 ldr r3,.L26+32
  349 006c 0022     	 mov r2,#0
  350 006e 1A80     	 strh r2,[r3]
  351 0070 05E0     	 b .L17
  352              	.L14:
- 112:../main.c     **** 	}
- 113:../main.c     **** 	else{
- 114:../main.c     **** 		flag_C = 1;
- 353              	 .loc 1 114 0
+  99:../main.c     **** 	}
+ 100:../main.c     **** 	else{
+ 101:../main.c     **** 		flag_C = 1;
+ 353              	 .loc 1 101 0
  354 0072 444B     	 ldr r3,.L26+12
  355 0074 0122     	 mov r2,#1
  356 0076 1A70     	 strb r2,[r3]
- 115:../main.c     **** 		distance_C = 0;
- 357              	 .loc 1 115 0
+ 102:../main.c     **** 		distance_C = 0;
+ 357              	 .loc 1 102 0
  358 0078 474B     	 ldr r3,.L26+32
  359 007a 0022     	 mov r2,#0
  360 007c 1A80     	 strh r2,[r3]
  361              	.L17:
- 116:../main.c     **** 	}
- 117:../main.c     **** 
- 118:../main.c     **** 	if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_L, &captured_time) == CAPTURE_STATUS_SUCCESS){
- 362              	 .loc 1 118 0
+ 103:../main.c     **** 	}
+ 104:../main.c     **** 
+ 105:../main.c     **** 	if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_L, &captured_time) == CAPTURE_STATUS_SUCCESS){
+ 362              	 .loc 1 105 0
  363 007e 474A     	 ldr r2,.L26+36
  364 0080 3E4B     	 ldr r3,.L26+4
  365 0082 101C     	 mov r0,r2
@@ -456,20 +443,20 @@
  367 0086 FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
  368 008a 031E     	 sub r3,r0,#0
  369 008c 2ED1     	 bne .L18
- 119:../main.c     **** 			echo_time_L = captured_time;
- 370              	 .loc 1 119 0
+ 106:../main.c     **** 			echo_time_L = captured_time;
+ 370              	 .loc 1 106 0
  371 008e 3B4B     	 ldr r3,.L26+4
  372 0090 1A68     	 ldr r2,[r3]
  373 0092 434B     	 ldr r3,.L26+40
  374 0094 1A60     	 str r2,[r3]
- 120:../main.c     **** 			flag_L = 0;
- 375              	 .loc 1 120 0
+ 107:../main.c     **** 			flag_L = 0;
+ 375              	 .loc 1 107 0
  376 0096 434B     	 ldr r3,.L26+44
  377 0098 0022     	 mov r2,#0
  378 009a 1A70     	 strb r2,[r3]
- 121:../main.c     **** 
- 122:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time_L, ECHO_TIME_MAX, ECHO_TIME_MIN))	distance_L = echo_time_L
- 379              	 .loc 1 122 0
+ 108:../main.c     **** 
+ 109:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time_L, ECHO_TIME_MAX, ECHO_TIME_MIN))	distance_L = echo_time_L
+ 379              	 .loc 1 109 0
  380 009c 404B     	 ldr r3,.L26+40
  381 009e 1B68     	 ldr r3,[r3]
  382 00a0 191C     	 mov r1,r3
@@ -481,7 +468,7 @@
  388 00ac FFF7FEFF 	 bl within_MAX_MIN_check_int
  389 00b0 031E     	 sub r3,r0,#0
  390 00b2 17D0     	 beq .L19
- 391              	 .loc 1 122 0 is_stmt 0 discriminator 1
+ 391              	 .loc 1 109 0 is_stmt 0 discriminator 1
  392 00b4 3A4B     	 ldr r3,.L26+40
  393 00b6 1B68     	 ldr r3,[r3]
  394 00b8 181C     	 mov r0,r3
@@ -504,31 +491,31 @@
  411 00e0 1A80     	 strh r2,[r3]
  412 00e2 09E0     	 b .L21
  413              	.L19:
- 123:../main.c     **** 			else distance_L = 0;
- 414              	 .loc 1 123 0 is_stmt 1
+ 110:../main.c     **** 			else distance_L = 0;
+ 414              	 .loc 1 110 0 is_stmt 1
  415 00e4 304B     	 ldr r3,.L26+48
  416 00e6 0022     	 mov r2,#0
  417 00e8 1A80     	 strh r2,[r3]
  418 00ea 05E0     	 b .L21
  419              	.L18:
- 124:../main.c     **** 		}
- 125:../main.c     **** 		else{
- 126:../main.c     **** 			flag_L = 1;
- 420              	 .loc 1 126 0
+ 111:../main.c     **** 		}
+ 112:../main.c     **** 		else{
+ 113:../main.c     **** 			flag_L = 1;
+ 420              	 .loc 1 113 0
  421 00ec 2D4B     	 ldr r3,.L26+44
  422 00ee 0122     	 mov r2,#1
  423 00f0 1A70     	 strb r2,[r3]
- 127:../main.c     **** 			distance_L = 0;
- 424              	 .loc 1 127 0
+ 114:../main.c     **** 			distance_L = 0;
+ 424              	 .loc 1 114 0
  425 00f2 2D4B     	 ldr r3,.L26+48
  426 00f4 0022     	 mov r2,#0
  427 00f6 1A80     	 strh r2,[r3]
  428              	.L21:
- 128:../main.c     **** 		}
- 129:../main.c     **** 
- 130:../main.c     **** 
- 131:../main.c     **** 	if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_R, &captured_time) == CAPTURE_STATUS_SUCCESS){
- 429              	 .loc 1 131 0
+ 115:../main.c     **** 		}
+ 116:../main.c     **** 
+ 117:../main.c     **** 
+ 118:../main.c     **** 	if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_R, &captured_time) == CAPTURE_STATUS_SUCCESS){
+ 429              	 .loc 1 118 0
  430 00f8 2C4A     	 ldr r2,.L26+52
  431 00fa 204B     	 ldr r3,.L26+4
  432 00fc 101C     	 mov r0,r2
@@ -536,20 +523,20 @@
  434 0100 FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
  435 0104 031E     	 sub r3,r0,#0
  436 0106 2ED1     	 bne .L22
- 132:../main.c     **** 			echo_time_R = captured_time;
- 437              	 .loc 1 132 0
+ 119:../main.c     **** 			echo_time_R = captured_time;
+ 437              	 .loc 1 119 0
  438 0108 1C4B     	 ldr r3,.L26+4
  439 010a 1A68     	 ldr r2,[r3]
  440 010c 284B     	 ldr r3,.L26+56
  441 010e 1A60     	 str r2,[r3]
- 133:../main.c     **** 			flag_R = 0;
- 442              	 .loc 1 133 0
+ 120:../main.c     **** 			flag_R = 0;
+ 442              	 .loc 1 120 0
  443 0110 284B     	 ldr r3,.L26+60
  444 0112 0022     	 mov r2,#0
  445 0114 1A70     	 strb r2,[r3]
- 134:../main.c     **** 
- 135:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time_R, ECHO_TIME_MAX, ECHO_TIME_MIN))	distance_R = echo_time_R
- 446              	 .loc 1 135 0
+ 121:../main.c     **** 
+ 122:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time_R, ECHO_TIME_MAX, ECHO_TIME_MIN))	distance_R = echo_time_R
+ 446              	 .loc 1 122 0
  447 0116 264B     	 ldr r3,.L26+56
  448 0118 1B68     	 ldr r3,[r3]
  449 011a 191C     	 mov r1,r3
@@ -561,7 +548,7 @@
  455 0126 FFF7FEFF 	 bl within_MAX_MIN_check_int
  456 012a 031E     	 sub r3,r0,#0
  457 012c 17D0     	 beq .L23
- 458              	 .loc 1 135 0 is_stmt 0 discriminator 1
+ 458              	 .loc 1 122 0 is_stmt 0 discriminator 1
  459 012e 204B     	 ldr r3,.L26+56
  460 0130 1B68     	 ldr r3,[r3]
  461 0132 181C     	 mov r0,r3
@@ -584,29 +571,29 @@
  478 015a 1A80     	 strh r2,[r3]
  479 015c 09E0     	 b .L13
  480              	.L23:
- 136:../main.c     **** 			else distance_R = 0;
- 481              	 .loc 1 136 0 is_stmt 1
+ 123:../main.c     **** 			else distance_R = 0;
+ 481              	 .loc 1 123 0 is_stmt 1
  482 015e 164B     	 ldr r3,.L26+64
  483 0160 0022     	 mov r2,#0
  484 0162 1A80     	 strh r2,[r3]
  485 0164 05E0     	 b .L13
  486              	.L22:
- 137:../main.c     **** 		}
- 138:../main.c     **** 		else{
- 139:../main.c     **** 			flag_R = 1;
- 487              	 .loc 1 139 0
+ 124:../main.c     **** 		}
+ 125:../main.c     **** 		else{
+ 126:../main.c     **** 			flag_R = 1;
+ 487              	 .loc 1 126 0
  488 0166 134B     	 ldr r3,.L26+60
  489 0168 0122     	 mov r2,#1
  490 016a 1A70     	 strb r2,[r3]
- 140:../main.c     **** 			distance_R = 0;
- 491              	 .loc 1 140 0
+ 127:../main.c     **** 			distance_R = 0;
+ 491              	 .loc 1 127 0
  492 016c 124B     	 ldr r3,.L26+64
  493 016e 0022     	 mov r2,#0
  494 0170 1A80     	 strh r2,[r3]
  495              	.L13:
- 141:../main.c     **** 		}
- 142:../main.c     **** }
- 496              	 .loc 1 142 0
+ 128:../main.c     **** 		}
+ 129:../main.c     **** }
+ 496              	 .loc 1 129 0
  497 0172 BD46     	 mov sp,r7
  498              	 
  499 0174 98BD     	 pop {r3,r4,r7,pc}
@@ -639,10 +626,10 @@
  527              	 .thumb_func
  529              	within_MAX_MIN_check_int:
  530              	.LFB198:
- 143:../main.c     **** 
- 144:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN)
- 145:../main.c     **** {
- 531              	 .loc 1 145 0
+ 130:../main.c     **** 
+ 131:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN)
+ 132:../main.c     **** {
+ 531              	 .loc 1 132 0
  532              	 .cfi_startproc
  533 0000 80B5     	 push {r7,lr}
  534              	.LCFI7:
@@ -658,8 +645,8 @@
  544 0006 F860     	 str r0,[r7,#12]
  545 0008 B960     	 str r1,[r7,#8]
  546 000a 7A60     	 str r2,[r7,#4]
- 146:../main.c     **** 	if((x - MIN) * (x - MAX) <= 0) return 1;
- 547              	 .loc 1 146 0
+ 133:../main.c     **** 	if((x - MIN) * (x - MAX) <= 0) return 1;
+ 547              	 .loc 1 133 0
  548 000c FA68     	 ldr r2,[r7,#12]
  549 000e 7B68     	 ldr r3,[r7,#4]
  550 0010 D31A     	 sub r3,r2,r3
@@ -669,17 +656,17 @@
  554 0018 5343     	 mul r3,r2
  555 001a 002B     	 cmp r3,#0
  556 001c 01DC     	 bgt .L29
- 557              	 .loc 1 146 0 is_stmt 0 discriminator 1
+ 557              	 .loc 1 133 0 is_stmt 0 discriminator 1
  558 001e 0123     	 mov r3,#1
  559 0020 00E0     	 b .L30
  560              	.L29:
- 147:../main.c     **** 	else return 0;
- 561              	 .loc 1 147 0 is_stmt 1
+ 134:../main.c     **** 	else return 0;
+ 561              	 .loc 1 134 0 is_stmt 1
  562 0022 0023     	 mov r3,#0
  563              	.L30:
- 148:../main.c     **** 
- 149:../main.c     **** }
- 564              	 .loc 1 149 0
+ 135:../main.c     **** 
+ 136:../main.c     **** }
+ 564              	 .loc 1 136 0
  565 0024 181C     	 mov r0,r3
  566 0026 BD46     	 mov sp,r7
  567 0028 04B0     	 add sp,sp,#16
@@ -694,9 +681,9 @@
  577              	 .thumb_func
  579              	CAN_send_vaules:
  580              	.LFB199:
- 150:../main.c     **** 
- 151:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN ){
- 581              	 .loc 1 151 0
+ 137:../main.c     **** 
+ 138:../main.c     **** void CAN_send_vaules(uint16_t distance_C_CAN, uint16_t distance_L_CAN, uint16_t distance_R_CAN ){
+ 581              	 .loc 1 138 0
  582              	 .cfi_startproc
  583 0000 90B5     	 push {r4,r7,lr}
  584              	.LCFI10:
@@ -722,9 +709,9 @@
  604 0018 BB1C     	 add r3,r7,#2
  605 001a 0A1C     	 add r2,r1,#0
  606 001c 1A80     	 strh r2,[r3]
- 152:../main.c     **** 
- 153:../main.c     **** 	uint16_t RX_Data[4] ={CAN_OK, distance_C_CAN, distance_L_CAN, distance_R_CAN}; // in int16_t mm/s 
- 607              	 .loc 1 153 0
+ 139:../main.c     **** 
+ 140:../main.c     **** 	uint16_t RX_Data[4] ={CAN_OK, distance_C_CAN, distance_L_CAN, distance_R_CAN}; // in int16_t mm/s 
+ 607              	 .loc 1 140 0
  608 001e 124B     	 ldr r3,.L32
  609 0020 1B78     	 ldrb r3,[r3]
  610 0022 9AB2     	 uxth r2,r3
@@ -746,9 +733,9 @@
  626 0042 BA1C     	 add r2,r7,#2
  627 0044 1288     	 ldrh r2,[r2]
  628 0046 DA80     	 strh r2,[r3,#6]
- 154:../main.c     **** 
- 155:../main.c     **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)RX_Data);
- 629              	 .loc 1 155 0
+ 141:../main.c     **** 
+ 142:../main.c     **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)RX_Data);
+ 629              	 .loc 1 142 0
  630 0048 084B     	 ldr r3,.L32+4
  631 004a DA68     	 ldr r2,[r3,#12]
  632 004c 0823     	 mov r3,#8
@@ -756,14 +743,14 @@
  634 0050 101C     	 mov r0,r2
  635 0052 191C     	 mov r1,r3
  636 0054 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
- 156:../main.c     **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
- 637              	 .loc 1 156 0
+ 143:../main.c     **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
+ 637              	 .loc 1 143 0
  638 0058 044B     	 ldr r3,.L32+4
  639 005a DB68     	 ldr r3,[r3,#12]
  640 005c 181C     	 mov r0,r3
  641 005e FFF7FEFF 	 bl CAN_NODE_MO_Transmit
- 157:../main.c     **** }
- 642              	 .loc 1 157 0
+ 144:../main.c     **** }
+ 642              	 .loc 1 144 0
  643 0062 BD46     	 mov sp,r7
  644 0064 05B0     	 add sp,sp,#20
  645              	 
@@ -830,7 +817,7 @@ DEFINED SYMBOLS
     {standard input}:170    .text.IRQ21_Handler:00000000 IRQ21_Handler
     {standard input}:281    .text.Capture_read:00000000 Capture_read
     {standard input}:579    .text.CAN_send_vaules:00000000 CAN_send_vaules
-    {standard input}:260    .text.IRQ21_Handler:00000088 $d
+    {standard input}:261    .text.IRQ21_Handler:00000088 $d
     {standard input}:276    .text.Capture_read:00000000 $t
     {standard input}:529    .text.within_MAX_MIN_check_int:00000000 within_MAX_MIN_check_int
     {standard input}:503    .text.Capture_read:00000178 $d

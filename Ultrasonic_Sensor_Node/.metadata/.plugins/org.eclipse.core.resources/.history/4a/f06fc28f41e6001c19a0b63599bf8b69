@@ -4,8 +4,21 @@
  *  Created on: 2022 May 31 16:22:54
  *  Author: lukas
  */
+
+
+
+
 #include "DAVE.h"                 //Declarations from DAVE Code Generation (includes SFR declaration)
 
+/**
+
+ * @brief main() - Application entry point
+ *
+ * <b>Details of function</b><br>
+ * This routine is the application entry point. It is invoked by the device startup code. It is responsible for
+ * invoking the APP initialization dispatcher routine - DAVE_Init() and hosting the place-holder for user application
+ * code.
+ */
 #define ECHO_TIME_ns_TO_DISTANCE_cm 0.000017
 #define ECHO_TIME_MIN 200000
 #define ECHO_TIME_MAX 20000000
@@ -81,7 +94,7 @@ void TIMER_100us_ISR(){
 	else if (t_100us_count == 2) {
 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
 	}
-	else if (t_100us_count == 280) { // runnig at 35 Hz no probelm with long distasnce anymore
+	else if (t_100us_count == 270) {
 		Capture_read();
 		CAN_send_vaules(distance_C, distance_L, distance_R );
 		t_100us_count = 0;

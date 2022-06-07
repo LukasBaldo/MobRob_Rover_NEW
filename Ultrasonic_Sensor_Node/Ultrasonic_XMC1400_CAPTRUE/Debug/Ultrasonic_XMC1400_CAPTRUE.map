@@ -1723,7 +1723,7 @@ END GROUP
                 0x00000400                stack_size = DEFINED (stack_size)?stack_size:0x400
                 0x00000004                no_init_size = 0x4
 
-.text           0x10001000     0x3d3c
+.text           0x10001000     0x3d38
                 0x10001000                sText = .
  *(.reset)
  .reset         0x10001000       0xa0 ./Startup/startup_XMC1400.o
@@ -2015,68 +2015,68 @@ END GROUP
  .text.main     0x1000333c       0x48 ./main.o
                 0x1000333c                main
  .text.IRQ21_Handler
-                0x10003384       0xac ./main.o
+                0x10003384       0xa8 ./main.o
                 0x10003384                IRQ21_Handler
  .text.Capture_read
-                0x10003430      0x1bc ./main.o
-                0x10003430                Capture_read
+                0x1000342c      0x1bc ./main.o
+                0x1000342c                Capture_read
  .text.within_MAX_MIN_check_int
-                0x100035ec       0x2c ./main.o
-                0x100035ec                within_MAX_MIN_check_int
+                0x100035e8       0x2c ./main.o
+                0x100035e8                within_MAX_MIN_check_int
  .text.CAN_send_vaules
-                0x10003618       0x70 ./main.o
-                0x10003618                CAN_send_vaules
- .text          0x10003688       0x3c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzsi2.o)
-                0x10003688                __clzsi2
- .text          0x100036c4       0x40 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_aeabi_uldivmod.o)
-                0x100036c4                __aeabi_uldivmod
- .text          0x10003704       0x54 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_muldi3.o)
-                0x10003704                __muldi3
-                0x10003704                __aeabi_lmul
- .text          0x10003758       0x3c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunsdfsi.o)
-                0x10003758                __aeabi_d2uiz
-                0x10003758                __fixunsdfsi
- .text          0x10003794       0x6c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o)
-                0x10003794                __gnu_ldivmod_helper
-                0x100037cc                __gnu_uldivmod_helper
- .text          0x10003800      0x534 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(muldf3.o)
-                0x10003800                __aeabi_dmul
- .text          0x10003d34      0x6f4 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(subdf3.o)
-                0x10003d34                __aeabi_dsub
- .text          0x10004428       0x6c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(fixdfsi.o)
-                0x10004428                __aeabi_d2iz
- .text          0x10004494       0x64 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(floatunsidf.o)
-                0x10004494                __aeabi_ui2d
- .text          0x100044f8        0x4 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_dvmd_tls.o)
-                0x100044f8                __aeabi_idiv0
-                0x100044f8                __aeabi_ldiv0
- .text          0x100044fc       0x7c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpdf2.o)
-                0x100044fc                __aeabi_cdrcmple
-                0x1000450c                __aeabi_cdcmple
-                0x1000450c                __aeabi_cdcmpeq
-                0x1000451c                __aeabi_dcmpeq
-                0x10004528                __aeabi_dcmplt
-                0x1000453c                __aeabi_dcmple
-                0x10004550                __aeabi_dcmpgt
-                0x10004564                __aeabi_dcmpge
- .text          0x10004578      0x1f0 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
-                0x10004578                __divdi3
- .text          0x10004768      0x158 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
-                0x10004768                __udivdi3
- .text          0x100048c0       0x88 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(eqdf2.o)
-                0x100048c0                __nedf2
-                0x100048c0                __eqdf2
- .text          0x10004948       0xe0 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(gedf2.o)
-                0x10004948                __gedf2
-                0x10004948                __gtdf2
- .text          0x10004a28       0xcc c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(ledf2.o)
-                0x10004a28                __ledf2
-                0x10004a28                __ltdf2
- .text          0x10004af4       0x18 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzdi2.o)
-                0x10004af4                __clzdi2
+                0x10003614       0x70 ./main.o
+                0x10003614                CAN_send_vaules
+ .text          0x10003684       0x3c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzsi2.o)
+                0x10003684                __clzsi2
+ .text          0x100036c0       0x40 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_aeabi_uldivmod.o)
+                0x100036c0                __aeabi_uldivmod
+ .text          0x10003700       0x54 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_muldi3.o)
+                0x10003700                __muldi3
+                0x10003700                __aeabi_lmul
+ .text          0x10003754       0x3c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunsdfsi.o)
+                0x10003754                __aeabi_d2uiz
+                0x10003754                __fixunsdfsi
+ .text          0x10003790       0x6c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o)
+                0x10003790                __gnu_ldivmod_helper
+                0x100037c8                __gnu_uldivmod_helper
+ .text          0x100037fc      0x534 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(muldf3.o)
+                0x100037fc                __aeabi_dmul
+ .text          0x10003d30      0x6f4 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(subdf3.o)
+                0x10003d30                __aeabi_dsub
+ .text          0x10004424       0x6c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(fixdfsi.o)
+                0x10004424                __aeabi_d2iz
+ .text          0x10004490       0x64 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(floatunsidf.o)
+                0x10004490                __aeabi_ui2d
+ .text          0x100044f4        0x4 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_dvmd_tls.o)
+                0x100044f4                __aeabi_idiv0
+                0x100044f4                __aeabi_ldiv0
+ .text          0x100044f8       0x7c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpdf2.o)
+                0x100044f8                __aeabi_cdrcmple
+                0x10004508                __aeabi_cdcmple
+                0x10004508                __aeabi_cdcmpeq
+                0x10004518                __aeabi_dcmpeq
+                0x10004524                __aeabi_dcmplt
+                0x10004538                __aeabi_dcmple
+                0x1000454c                __aeabi_dcmpgt
+                0x10004560                __aeabi_dcmpge
+ .text          0x10004574      0x1f0 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+                0x10004574                __divdi3
+ .text          0x10004764      0x158 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+                0x10004764                __udivdi3
+ .text          0x100048bc       0x88 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(eqdf2.o)
+                0x100048bc                __nedf2
+                0x100048bc                __eqdf2
+ .text          0x10004944       0xe0 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(gedf2.o)
+                0x10004944                __gedf2
+                0x10004944                __gtdf2
+ .text          0x10004a24       0xcc c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(ledf2.o)
+                0x10004a24                __ledf2
+                0x10004a24                __ltdf2
+ .text          0x10004af0       0x18 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzdi2.o)
+                0x10004af0                __clzdi2
  .text.__libc_init_array
-                0x10004b0c       0x4c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
-                0x10004b0c                __libc_init_array
+                0x10004b08       0x4c c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+                0x10004b08                __libc_init_array
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -2091,95 +2091,95 @@ END GROUP
  *(.dtors)
  *(.rodata .rodata.*)
  .rodata.XMC_CCU4_SLICE_SetInterruptNode
-                0x10004b58       0x30 ./Libraries/XMCLib/src/xmc_ccu4.o
+                0x10004b54       0x30 ./Libraries/XMCLib/src/xmc_ccu4.o
  .rodata.TIMER_100us_INT
-                0x10004b88        0x8 ./Dave/Generated/INTERRUPT/interrupt_conf.o
-                0x10004b88                TIMER_100us_INT
- .rodata        0x10004b90       0x10 ./Dave/Generated/CLOCK_XMC1/clock_xmc1_conf.o
+                0x10004b84        0x8 ./Dave/Generated/INTERRUPT/interrupt_conf.o
+                0x10004b84                TIMER_100us_INT
+ .rodata        0x10004b8c       0x10 ./Dave/Generated/CLOCK_XMC1/clock_xmc1_conf.o
  .rodata.CAPTURE_C_input
-                0x10004ba0        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004ba0                CAPTURE_C_input
+                0x10004b9c        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004b9c                CAPTURE_C_input
  .rodata.CAPTURE_C_input_pin_config
-                0x10004ba8        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004ba8                CAPTURE_C_input_pin_config
+                0x10004ba4        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004ba4                CAPTURE_C_input_pin_config
  .rodata.CAPTURE_C_event0_config
-                0x10004bb0        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bb0                CAPTURE_C_event0_config
+                0x10004bac        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bac                CAPTURE_C_event0_config
  .rodata.CAPTURE_C_event1_config
-                0x10004bb4        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bb4                CAPTURE_C_event1_config
+                0x10004bb0        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bb0                CAPTURE_C_event1_config
  .rodata.CAPTURE_C_config
-                0x10004bb8        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bb8                CAPTURE_C_config
+                0x10004bb4        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bb4                CAPTURE_C_config
  .rodata.CAPTURE_R_input
-                0x10004bc0        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bc0                CAPTURE_R_input
+                0x10004bbc        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bbc                CAPTURE_R_input
  .rodata.CAPTURE_R_input_pin_config
-                0x10004bc8        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bc8                CAPTURE_R_input_pin_config
+                0x10004bc4        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bc4                CAPTURE_R_input_pin_config
  .rodata.CAPTURE_R_event0_config
-                0x10004bd0        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bd0                CAPTURE_R_event0_config
+                0x10004bcc        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bcc                CAPTURE_R_event0_config
  .rodata.CAPTURE_R_event1_config
-                0x10004bd4        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bd4                CAPTURE_R_event1_config
+                0x10004bd0        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bd0                CAPTURE_R_event1_config
  .rodata.CAPTURE_R_config
-                0x10004bd8        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bd8                CAPTURE_R_config
+                0x10004bd4        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bd4                CAPTURE_R_config
  .rodata.CAPTURE_L_input
-                0x10004be0        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004be0                CAPTURE_L_input
+                0x10004bdc        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bdc                CAPTURE_L_input
  .rodata.CAPTURE_L_input_pin_config
-                0x10004be8        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004be8                CAPTURE_L_input_pin_config
+                0x10004be4        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004be4                CAPTURE_L_input_pin_config
  .rodata.CAPTURE_L_event0_config
-                0x10004bf0        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bf0                CAPTURE_L_event0_config
+                0x10004bec        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bec                CAPTURE_L_event0_config
  .rodata.CAPTURE_L_event1_config
-                0x10004bf4        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bf4                CAPTURE_L_event1_config
+                0x10004bf0        0x4 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bf0                CAPTURE_L_event1_config
  .rodata.CAPTURE_L_config
-                0x10004bf8        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
-                0x10004bf8                CAPTURE_L_config
+                0x10004bf4        0x8 ./Dave/Generated/CAPTURE/capture_conf.o
+                0x10004bf4                CAPTURE_L_config
  .rodata.CAN_NODE_0_gpio_out
-                0x10004c00        0x8 ./Dave/Generated/CAN_NODE/can_node_conf.o
+                0x10004bfc        0x8 ./Dave/Generated/CAN_NODE/can_node_conf.o
  .rodata.CAN_NODE_0_gpio_out_config
-                0x10004c08        0x8 ./Dave/Generated/CAN_NODE/can_node_conf.o
+                0x10004c04        0x8 ./Dave/Generated/CAN_NODE/can_node_conf.o
  .rodata.CAN_NODE_0_gpio_in
-                0x10004c10        0x8 ./Dave/Generated/CAN_NODE/can_node_conf.o
+                0x10004c0c        0x8 ./Dave/Generated/CAN_NODE/can_node_conf.o
  .rodata.CAN_NODE_0_gpio_in_config
-                0x10004c18        0x8 ./Dave/Generated/CAN_NODE/can_node_conf.o
+                0x10004c14        0x8 ./Dave/Generated/CAN_NODE/can_node_conf.o
  .rodata.CAN_NODE_0_BitTimeConfig
-                0x10004c20        0xc ./Dave/Generated/CAN_NODE/can_node_conf.o
+                0x10004c1c        0xc ./Dave/Generated/CAN_NODE/can_node_conf.o
  .rodata.CAN_NODE_0_sr
-                0x10004c2c        0x4 ./Dave/Generated/CAN_NODE/can_node_conf.o
+                0x10004c28        0x4 ./Dave/Generated/CAN_NODE/can_node_conf.o
  .rodata.CAN_NODE_0_LMO_01_Config
-                0x10004c30        0xc ./Dave/Generated/CAN_NODE/can_node_conf.o
-                0x10004c30                CAN_NODE_0_LMO_01_Config
+                0x10004c2c        0xc ./Dave/Generated/CAN_NODE/can_node_conf.o
+                0x10004c2c                CAN_NODE_0_LMO_01_Config
  .rodata.CAN_NODE_0
-                0x10004c3c       0xa8 ./Dave/Generated/CAN_NODE/can_node_conf.o
-                0x10004c3c                CAN_NODE_0
+                0x10004c38       0xa8 ./Dave/Generated/CAN_NODE/can_node_conf.o
+                0x10004c38                CAN_NODE_0
  .rodata.BUS_IO_TRIGGER_pin_list
-                0x10004ce4       0x18 ./Dave/Generated/BUS_IO/bus_io_conf.o
-                0x10004ce4                BUS_IO_TRIGGER_pin_list
- .rodata        0x10004cfc       0x40 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(muldf3.o)
+                0x10004ce0       0x18 ./Dave/Generated/BUS_IO/bus_io_conf.o
+                0x10004ce0                BUS_IO_TRIGGER_pin_list
+ .rodata        0x10004cf8       0x40 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(muldf3.o)
  *(.gnu.linkonce.r*)
  *(vtable)
-                0x10004d3c                . = ALIGN (0x4)
+                0x10004d38                . = ALIGN (0x4)
 
-.glue_7         0x10004d3c        0x0
+.glue_7         0x10004d38        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x10004d3c        0x0
+.glue_7t        0x10004d38        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x10004d3c        0x0
+.vfp11_veneer   0x10004d38        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x10004d3c        0x0
+.v4_bx          0x10004d38        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x10004d3c        0x0
+.iplt           0x10004d38        0x0
  .iplt          0x00000000        0x0 ./Startup/startup_XMC1400.o
 
 .eh_frame_hdr
@@ -2190,18 +2190,18 @@ END GROUP
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x10004d3c                . = ALIGN (0x4)
-                0x10004d3c                __exidx_start = .
+                0x10004d38                . = ALIGN (0x4)
+                0x10004d38                __exidx_start = .
 
-.ARM.exidx      0x10004d3c        0x8
+.ARM.exidx      0x10004d38        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x10004d3c        0x8 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
- .ARM.exidx     0x10004d44        0x0 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x10004d38        0x8 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.exidx     0x10004d40        0x0 c:/dave/dave-ide-4.4.2-64bit/dave-ide-4.4.2-64bit/eclipse/arm-gcc-49/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
                                   0x8 (size before relaxing)
-                0x10004d44                __exidx_end = .
-                0x10004d44                . = ALIGN (0x4)
+                0x10004d40                __exidx_end = .
+                0x10004d40                . = ALIGN (0x4)
 
-.VENEER_Code    0x2000000c      0x144 load address 0x10004d44
+.VENEER_Code    0x2000000c      0x144 load address 0x10004d40
                 0x2000000c                . = ALIGN (0x4)
                 0x2000000c                VeneerStart = .
  *(.XmcVeneerCode)
@@ -2245,10 +2245,10 @@ END GROUP
                 0x200000bc                IRQ31_Veener
                 0x20000150                . = ALIGN (0x4)
                 0x20000150                VeneerEnd = .
-                0x10004d44                eROData = LOADADDR (.VENEER_Code)
+                0x10004d40                eROData = LOADADDR (.VENEER_Code)
                 0x00000144                VeneerSize = (ABSOLUTE (VeneerEnd) - ABSOLUTE (VeneerStart))
 
-.rel.dyn        0x20000150        0x0 load address 0x10004e88
+.rel.dyn        0x20000150        0x0 load address 0x10004e84
  .rel.iplt      0x00000000        0x0 ./Startup/startup_XMC1400.o
 
 Stack           0x20000150      0x400 load address 0x00000000
@@ -2257,7 +2257,7 @@ Stack           0x20000150      0x400 load address 0x00000000
  *fill*         0x20000150      0x400 
                 0x20000550                __initial_sp = .
 
-.data           0x20000550      0x120 load address 0x10004e88
+.data           0x20000550      0x120 load address 0x10004e84
                 0x20000550                . = ALIGN (0x4)
                 0x20000550                __data_start = .
  *(.data)
@@ -2306,24 +2306,24 @@ Stack           0x20000150      0x400 load address 0x00000000
                 0x20000670                PROVIDE (__fini_array_end, .)
                 0x20000670                . = ALIGN (0x4)
                 0x20000670                __data_end = .
-                0x10004e88                DataLoadAddr = LOADADDR (.data)
+                0x10004e84                DataLoadAddr = LOADADDR (.data)
                 0x00000120                __data_size = (__data_end - __data_start)
 
-.igot.plt       0x20000670        0x0 load address 0x10004fa8
+.igot.plt       0x20000670        0x0 load address 0x10004fa4
  .igot.plt      0x00000000        0x0 ./Startup/startup_XMC1400.o
 
-.ram_code       0x20000670        0x0 load address 0x10004fa8
+.ram_code       0x20000670        0x0 load address 0x10004fa4
                 0x20000670                . = ALIGN (0x4)
                 0x20000670                __ram_code_start = .
  *(.ram_code)
                 0x20000670                . = ALIGN (0x4)
                 0x20000670                __ram_code_end = .
-                0x10004fa8                __ram_code_load = LOADADDR (.ram_code)
+                0x10004fa4                __ram_code_load = LOADADDR (.ram_code)
                 0x00000000                __ram_code_size = (__ram_code_end - __ram_code_start)
-                0x00003fa8                __text_size = ((((__exidx_end - sText) + VeneerSize) + __data_size) + __ram_code_size)
-                0x10004fa8                eText = (sText + __text_size)
+                0x00003fa4                __text_size = ((((__exidx_end - sText) + VeneerSize) + __data_size) + __ram_code_size)
+                0x10004fa4                eText = (sText + __text_size)
 
-.bss            0x20000670       0x40 load address 0x10004fa8
+.bss            0x20000670       0x40 load address 0x10004fa4
                 0x20000670                . = ALIGN (0x4)
                 0x20000670                __bss_start = .
  *(.bss)
