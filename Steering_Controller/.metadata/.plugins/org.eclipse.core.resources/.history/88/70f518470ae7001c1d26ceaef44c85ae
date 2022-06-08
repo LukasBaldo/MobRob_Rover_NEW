@@ -69,7 +69,6 @@ volatile uint8_t CAN_RX_Inverter_count = 0;
 
 //ULTRASOCNIC
 // reciving
-volatile uint8_t CAN_Ultrasonic_No_messasge_count = 100;
 volatile uint8_t CAN_state_Ultrasonic = 0;
 volatile uint16_t Ultrasonic_cm_C = 0;
 volatile uint16_t Ultrasonic_cm_L = 0;
@@ -97,8 +96,7 @@ float obstacel_F_x = 0, obstacel_L_x = 0, obstacel_L_y = 0, obstacel_R_x = 0, ob
 uint8_t Obstacel_valid[3] = {0, 0, 0};
 
 // collison avdoidance
-#define CA_START 1
-#define CA_STOP 0.2
+#define COLLISION_ADOIVANCE_START 1
 float avg_Speeds = 0;
 float act_trajctory_x = 0, act_trajctory_y = 0;
 
@@ -442,8 +440,6 @@ void CAN_RX_ULTRASONIC_ISR(void) { // recide data
 
 	Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
 
-	CAN_Ultrasonic_No_messasge_count = 0;
-
 	WATCHDOG_Service();
 	DIGITAL_IO_SetOutputLow(&WATCHDOG_LED_BLUE);
 }
@@ -786,12 +782,6 @@ void TIMER_CONTROL_ISR(void){
 }
 
 void Collision_voidance(){
-	CAN_Ultrasonic_No_messasge_count ++;
-	if(CAN_Ultrasonic_No_messasge_count > 100) {
-		CAN_Ultrasonic_No_messasge_count = 100;
-		return;
-	}
-
 	DIGITAL_IO_SetOutputLow(&LED_COLLISION_AVOID);
 	avg_Speeds = average(Speeds,4);
 
@@ -825,13 +815,13 @@ void Collision_voidance(){
 		}
 
 		//if(Obstacel_valid[0]){
-			if(Obstacel_F[0] < CA_START){
-				if(act_trajctory_x > Obstacel_F[0] - CA_STOP){
+			if(Obstacel_F[0] < COLLISION_ADOIVANCE_START){
+				if(act_trajctory_x > Obstacel_F[0]){
 					DIGITAL_IO_SetOutputHigh(&LED_COLLISION_AVOID);
 					uint8_t i;
 					for(i = 0; i < 4; i ++){
-						if(Obstacel_F[0] < CA_STOP) Speeds[i] = 0;
-						else Speeds[i] = copysign(Obstacel_F[0],1) - CA_STOP;
+						if(Obstacel_F[0] < 0.2) Speeds[i] = 0;
+						else Speeds[i] = Speeds[i] * 2 * copysign(Obstacel_F[0],1);
 					}
 
 				}

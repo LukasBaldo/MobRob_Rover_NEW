@@ -97,8 +97,8 @@ float obstacel_F_x = 0, obstacel_L_x = 0, obstacel_L_y = 0, obstacel_R_x = 0, ob
 uint8_t Obstacel_valid[3] = {0, 0, 0};
 
 // collison avdoidance
-#define CA_START 1
-#define CA_STOP 0.2
+#define COLLISION_ADOIVANCE_START 1
+#define COLLISION_ADOIVANCE_STOP_DISTANCE 0.2
 float avg_Speeds = 0;
 float act_trajctory_x = 0, act_trajctory_y = 0;
 
@@ -825,13 +825,13 @@ void Collision_voidance(){
 		}
 
 		//if(Obstacel_valid[0]){
-			if(Obstacel_F[0] < CA_START){
-				if(act_trajctory_x > Obstacel_F[0] - CA_STOP){
+			if(Obstacel_F[0] < COLLISION_ADOIVANCE_START){
+				if(act_trajctory_x > Obstacel_F[0] - COLLISION_ADOIVANCE_STOP_DISTANCE){
 					DIGITAL_IO_SetOutputHigh(&LED_COLLISION_AVOID);
 					uint8_t i;
 					for(i = 0; i < 4; i ++){
-						if(Obstacel_F[0] < CA_STOP) Speeds[i] = 0;
-						else Speeds[i] = copysign(Obstacel_F[0],1) - CA_STOP;
+						if(Obstacel_F[0] < COLLISION_ADOIVANCE_STOP_DISTANCE) Speeds[i] = 0;
+						else Speeds[i] = copysign(Obstacel_F[0],1) -0.2;
 					}
 
 				}
