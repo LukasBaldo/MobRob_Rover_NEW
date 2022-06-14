@@ -98,7 +98,7 @@ const XMC_CCU4_SLICE_CAPTURE_CONFIG_t CAPTURE_C_config =
 
 CAPTURE_t CAPTURE_C = 
 {
-  .min_frequency           = 40U,
+  .min_frequency           = 4U,
   .max_frequency           = 30000000U,
   .ccu4_slice_ptr          = (XMC_CCU4_SLICE_t*) CCU40_CC40,
   .ccu_slice_number        = 0U,
@@ -162,7 +162,7 @@ const XMC_CCU4_SLICE_CAPTURE_CONFIG_t CAPTURE_R_config =
 
 CAPTURE_t CAPTURE_R = 
 {
-  .min_frequency           = 40U,
+  .min_frequency           = 4U,
   .max_frequency           = 30000000U,
   .ccu4_slice_ptr          = (XMC_CCU4_SLICE_t*) CCU40_CC42,
   .ccu_slice_number        = 2U,
@@ -226,7 +226,7 @@ const XMC_CCU4_SLICE_CAPTURE_CONFIG_t CAPTURE_L_config =
 
 CAPTURE_t CAPTURE_L = 
 {
-  .min_frequency           = 40U,
+  .min_frequency           = 4U,
   .max_frequency           = 30000000U,
   .ccu4_slice_ptr          = (XMC_CCU4_SLICE_t*) CCU40_CC41,
   .ccu_slice_number        = 1U,

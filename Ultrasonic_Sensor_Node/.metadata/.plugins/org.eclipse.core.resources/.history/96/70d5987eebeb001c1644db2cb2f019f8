@@ -100,19 +100,17 @@ void TIMER_100us_ISR(){
 	else if (t_100us_count == 2) {
 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
 	}
-	else if (t_100us_count == 250) { // runnig at 35 Hz no probelm with long distasnce anymore
+	else if (t_100us_count == 280) { // runnig at 35 Hz no probelm with long distasnce anymore
 		Capture_read();
+		CAN_send_vaules(distance_C, distance_L, distance_R );
 		t_100us_count = 0;
-
 		Sensor++;
-		if(Sensor > 2){
-			Sensor = 0;
-			CAN_send_vaules(distance_C, distance_L, distance_R );
-		}
+		if(Sensor > 2) Sensor = 0;
 	}
 }
 
 void Capture_read(){
+
 	switch(Sensor)
 	{
 		case CENTER:
@@ -128,7 +126,6 @@ void Capture_read(){
 				distance_C = 0;
 			}
 			break;
-			CAPTURE_Stop(&CAPTURE_C);
 		case LEFT:
 			if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_L, &captured_time) == CAPTURE_STATUS_SUCCESS){
 					echo_time_L = captured_time;
@@ -142,7 +139,6 @@ void Capture_read(){
 					distance_L = 0;
 				}
 			break;
-			CAPTURE_Stop(&CAPTURE_L);
 		case RIGHT:
 			if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_R, &captured_time) == CAPTURE_STATUS_SUCCESS){
 					echo_time_R = captured_time;
@@ -155,11 +151,16 @@ void Capture_read(){
 					flag_R = 1;
 					distance_R = 0;
 				}
-			CAPTURE_Stop(&CAPTURE_R);
 			break;
 		default:
 			break;
 	}
+
+
+
+
+
+
 }
 
 bool within_MAX_MIN_check_int(int x, int MAX, int MIN)

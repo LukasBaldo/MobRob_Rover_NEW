@@ -58,7 +58,7 @@
   67              	 .section .data.CAPTURE_C,"aw",%progbits
   68              	 .align 2
   71              	CAPTURE_C:
-  72 0000 28000000 	 .word 40
+  72 0000 04000000 	 .word 4
   73 0004 80C3C901 	 .word 30000000
   74 0008 05000000 	 .word 5
   75 000c 00000000 	 .word CAPTURE_C_event0_config
@@ -121,7 +121,7 @@
  141              	 .section .data.CAPTURE_R,"aw",%progbits
  142              	 .align 2
  145              	CAPTURE_R:
- 146 0000 28000000 	 .word 40
+ 146 0000 04000000 	 .word 4
  147 0004 80C3C901 	 .word 30000000
  148 0008 00050000 	 .word 1280
  149 000c 00000000 	 .word CAPTURE_R_event0_config
@@ -184,7 +184,7 @@
  215              	 .section .data.CAPTURE_L,"aw",%progbits
  216              	 .align 2
  219              	CAPTURE_L:
- 220 0000 28000000 	 .word 40
+ 220 0000 04000000 	 .word 4
  221 0004 80C3C901 	 .word 30000000
  222 0008 50000000 	 .word 80
  223 000c 00000000 	 .word CAPTURE_L_event0_config

@@ -128,7 +128,6 @@ void Capture_read(){
 				distance_C = 0;
 			}
 			break;
-			CAPTURE_Stop(&CAPTURE_C);
 		case LEFT:
 			if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_L, &captured_time) == CAPTURE_STATUS_SUCCESS){
 					echo_time_L = captured_time;
@@ -142,7 +141,6 @@ void Capture_read(){
 					distance_L = 0;
 				}
 			break;
-			CAPTURE_Stop(&CAPTURE_L);
 		case RIGHT:
 			if(CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_R, &captured_time) == CAPTURE_STATUS_SUCCESS){
 					echo_time_R = captured_time;
@@ -155,7 +153,6 @@ void Capture_read(){
 					flag_R = 1;
 					distance_R = 0;
 				}
-			CAPTURE_Stop(&CAPTURE_R);
 			break;
 		default:
 			break;

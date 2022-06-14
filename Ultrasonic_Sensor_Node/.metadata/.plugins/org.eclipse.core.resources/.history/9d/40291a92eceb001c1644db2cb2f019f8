@@ -100,7 +100,7 @@ void TIMER_100us_ISR(){
 	else if (t_100us_count == 2) {
 		 BUS_IO_Write(&BUS_IO_TRIGGER,0b000);
 	}
-	else if (t_100us_count == 250) { // runnig at 35 Hz no probelm with long distasnce anymore
+	else if (t_100us_count == 25) { // runnig at 35 Hz no probelm with long distasnce anymore
 		Capture_read();
 		t_100us_count = 0;
 

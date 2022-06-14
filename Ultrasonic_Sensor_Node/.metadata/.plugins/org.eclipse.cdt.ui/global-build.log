@@ -3584,3 +3584,298 @@ make: *** [main.o] Error 1
 "C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC1400_CAPTRUE.elf" > "Ultrasonic_XMC1400_CAPTRUE.lst"
 'Finished building: Ultrasonic_XMC1400_CAPTRUE.lst'
 
+15:14:34 **** Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16004	    288	   1092	  17384	   43e8	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+15:14:49 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16004	    288	   1092	  17384	   43e8	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+15:17:08 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC1400_CAPTRUE.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC1400_CAPTRUE.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC1400_CAPTRUE.elf" "Ultrasonic_XMC1400_CAPTRUE.hex"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16004	    288	   1092	  17384	   43e8	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC1400_CAPTRUE.elf" > "Ultrasonic_XMC1400_CAPTRUE.lst"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.lst'
+
+15:34:36 **** Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c:20:32: error: 'FRONT' undeclared here (not in a function)
+'Invoking: ARM-GCC C Compiler'
+ volatile enum SENSORS Sensor = FRONT;
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                                ^
+subdir.mk:18: recipe for target 'main.o' failed
+make: *** [main.o] Error 1
+15:34:58 **** Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC1400_CAPTRUE.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC1400_CAPTRUE.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC1400_CAPTRUE.elf" "Ultrasonic_XMC1400_CAPTRUE.hex"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16112	    288	   1092	  17492	   4454	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC1400_CAPTRUE.elf" > "Ultrasonic_XMC1400_CAPTRUE.lst"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.lst'
+
+15:35:19 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16112	    288	   1092	  17492	   4454	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+15:45:06 **** Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC1400_CAPTRUE.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC1400_CAPTRUE.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC1400_CAPTRUE.elf" "Ultrasonic_XMC1400_CAPTRUE.hex"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16116	    288	   1092	  17496	   4458	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC1400_CAPTRUE.elf" > "Ultrasonic_XMC1400_CAPTRUE.lst"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.lst'
+
+15:45:33 **** Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16116	    288	   1092	  17496	   4458	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+15:45:52 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16116	    288	   1092	  17496	   4458	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+16:08:41 **** Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC1400_CAPTRUE.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC1400_CAPTRUE.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC1400_CAPTRUE.elf" "Ultrasonic_XMC1400_CAPTRUE.hex"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16112	    288	   1092	  17492	   4454	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC1400_CAPTRUE.elf" > "Ultrasonic_XMC1400_CAPTRUE.lst"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.lst'
+
+16:08:47 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16112	    288	   1092	  17492	   4454	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+16:10:32 **** Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Dave/Generated/CAPTURE/capture_conf.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Dave/Generated/CAPTURE/capture_conf.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Dave/Generated/CAPTURE/capture_conf.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Dave/Generated/CAPTURE/capture_conf.d" -MT"Dave/Generated/CAPTURE/capture_conf.d Dave/Generated/CAPTURE/capture_conf.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Dave/Generated/CAPTURE/capture_conf.o" "../Dave/Generated/CAPTURE/capture_conf.c" 
+'Finished building: ../Dave/Generated/CAPTURE/capture_conf.c'
+
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC1400_CAPTRUE.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC1400_CAPTRUE.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC1400_CAPTRUE.elf" "Ultrasonic_XMC1400_CAPTRUE.hex"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16212	    288	   1092	  17592	   44b8	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC1400_CAPTRUE.elf" > "Ultrasonic_XMC1400_CAPTRUE.lst"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.lst'
+
+16:10:36 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16212	    288	   1092	  17592	   44b8	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+16:13:00 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC1400_CAPTRUE.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC1400_CAPTRUE.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC1400_CAPTRUE.elf" "Ultrasonic_XMC1400_CAPTRUE.hex"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16212	    288	   1092	  17592	   44b8	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC1400_CAPTRUE.elf" > "Ultrasonic_XMC1400_CAPTRUE.lst"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.lst'
+
+16:16:23 **** Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC1400_CAPTRUE.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC1400_CAPTRUE.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC1400_CAPTRUE.elf" "Ultrasonic_XMC1400_CAPTRUE.hex"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16220	    288	   1092	  17600	   44c0	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC1400_CAPTRUE.elf" > "Ultrasonic_XMC1400_CAPTRUE.lst"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.lst'
+
+16:16:42 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16220	    288	   1092	  17600	   44c0	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+16:18:24 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC1400_CAPTRUE/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC1400_CAPTRUE.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC1400_CAPTRUE.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC1400_CAPTRUE.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC1400_CAPTRUE.elf" "Ultrasonic_XMC1400_CAPTRUE.hex"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16212	    288	   1092	  17592	   44b8	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC1400_CAPTRUE.elf" > "Ultrasonic_XMC1400_CAPTRUE.lst"
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.lst'
+
+16:21:07 **** Incremental Build of configuration Debug for project Ultrasonic_XMC1400_CAPTRUE ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC1400_CAPTRUE.elf"
+   text	   data	    bss	    dec	    hex	filename
+  16212	    288	   1092	  17592	   44b8	Ultrasonic_XMC1400_CAPTRUE.elf
+'Finished building: Ultrasonic_XMC1400_CAPTRUE.siz'
+
