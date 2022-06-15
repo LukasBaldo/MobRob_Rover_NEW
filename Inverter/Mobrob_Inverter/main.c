@@ -25,12 +25,14 @@ void Calculation(void);
 
 // NEED to be set
 //motor
-#define MOTOR_NUM 6 // for trque dirction motro 1 differtn form rest so far
-#define MOTOR_ON_ROVER 1// 0 front left 1 front right 2 back left 3 back right
+#define MOTOR_NUM 1 // for trque dirction motro 1 differtn form rest so far
+#define MOTOR_ON_ROVER 3// 0 front left 1 front right 2 back left 3 back right
 
 //control type
-uint8_t Speed_control = 1; //if 0 is torque control if 1 is speed control
-uint8_t CAN_control = 1; // id 1 CAN speed controll aktive
+uint8_t Torque_control = 0;
+uint8_t Speed_control = 0; //if 0 is torque control if 1 is speed control
+uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
+
 
 #define IQ_REF_MAX 5
 #define CAN_NO_COM_TH 250
@@ -458,7 +460,7 @@ void Calculation(void){
 			}
 
 			if(CAN_no_com_counter > CAN_NO_COM_TH){
-				CAN_new_meassage = 0;
+				//CAN_new_meassage = 0;
 				CAN_no_com_counter = CAN_NO_COM_TH;
 				speed_ref = 0;
 			}
@@ -491,8 +493,10 @@ void Calculation(void){
 		if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
 		if(iq_ref > IQ_REF_MAX) iq_ref = IQ_REF_MAX;
 
-		Vd_ref = PID_Controller(0.0,id,&Id_param);
-		Vq_ref = PID_Controller(iq_ref,iq,&Iq_param); // toque controll
+		if(Torque_control == 1){
+			Vd_ref = PID_Controller(0.0,id,&Id_param);
+			Vq_ref = PID_Controller(iq_ref,iq,&Iq_param); // toque controll
+		}
 
 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // %67 duyt   control takes 4% of the time 9ms
 
