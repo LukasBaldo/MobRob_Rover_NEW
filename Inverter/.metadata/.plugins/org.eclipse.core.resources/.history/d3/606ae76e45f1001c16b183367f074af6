@@ -1,0 +1,15 @@
+#ifndef REC_DATA_FUNCTION
+#define REC_DATA_FUNCTION
+
+//#include <stdint.h> // othersie errro beascue of uint16_t
+// data record func
+#define REC_DATA_NUM_POINTS 1000
+//#define SKIP_5kHz 100
+uint16_t rec_5kHz_counter = 0;
+uint16_t rec_data_index = 0;
+float rec_data[REC_DATA_NUM_POINTS] = {0};
+uint8_t rec_data_contorl = 0;// 0 noiting 1 record
+
+void f_rec_data(float data_point, float trigger, float trigger_vaule, int SKIP_5kHz);
+
+#endif /* REC_DATA_FUNCTION */

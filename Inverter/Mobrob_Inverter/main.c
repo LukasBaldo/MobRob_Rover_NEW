@@ -29,7 +29,7 @@ void Calculation(void);
 #define MOTOR_ON_ROVER 3// 0 front left 1 front right 2 back left 3 back right
 
 //control type
-uint8_t Torque_control = 0;
+uint8_t Torque_control = 1;
 uint8_t Speed_control = 0; //if 0 is torque control if 1 is speed control
 uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
 
@@ -59,7 +59,7 @@ uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
 #define ChipSelect_W 0b011
 #define J 0.0023064 //SK J = 1/2 * m_wheel * r_wheel^2 = 1/2*1.2kg*(62mm)^2
 #define K_T 0.21 //SK torque constant in Nm/A
-#define K_inv 30/1.732 // K_inv = V / m = V_DC / 2 * 2/sqrt(3) = V_DC/sqrt(3)
+#define K_inv (15.7/1.732) // K_inv = V / m = V_DC / 2 * 2/sqrt(3) = V_DC/sqrt(3)
 //#define Psi_p 0.0082  60/  (2 * PI) * 1.4142 // Psi_p = K_back_EMF = 0.0082 V / rpm_mech --> 60 to convert in sec and /2Pi to convert in rad, sqrt(2) for amplitude value
 //#define Ls 0.00088 // Ls = Lm*1.1 = 0.8mH * 1.1 = 0.00088H
 #define PPZ 11
@@ -150,9 +150,12 @@ typedef struct{
 }PID_param;
 
 //Vuales 14/04 mit maurzio
-//PID_param omegaq = {.P = 0.004, .I = 0.004, .D = 0.0, .MaxLimit =  0.5, .MinLimit = -0.5, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
-PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
-PID_param Id_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+//PID_param omegaq = {.P = 0.004, .I = 0.004, .D = 0.0, .MaxLimit =  0.5, .MinLimit = -0.5, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A//PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
+//PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
+//PID_param Id_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+
+PID_param Iq_param = {.P = 0.5768, .I = 422.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
+PID_param Id_param = {.P = 0.5768, .I = 422.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
 PID_param T_param = {.P = 0.01, .I = 0.01, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
 
 // for motro 1
@@ -160,6 +163,20 @@ PID_param T_param_1 = {.P = 0.005, .I = 0.01, .D = 0.0, .MaxLimit =  1.5, .MinLi
 
 float PID_Controller(float,float,PID_param *param);
 
+
+void f_rec_data(float data_point_var1, float data_point_var2, float start_step_from, float step_to);
+//data rec
+uint8_t rec_data_contorl = 0;// 0 noiting 1 record
+#define REC_DATA_NUM_POINTS 1000
+#define NUM_VARS_REC 2
+uint16_t rec_data_index = 0;
+float rec_data[REC_DATA_NUM_POINTS] = {0};
+float rec_data2[REC_DATA_NUM_POINTS] = {0};
+
+float test2[5] = { 0,1,2,3,4};
+
+uint8_t start_rec = 0;
+uint32_t start_rec_copunt = 0;
 
 //########################
 // MAIN
@@ -202,14 +219,14 @@ int main(void)
   while(1U)
   {
 	  PWM_SVM_Start(&PWM_SVM_0); // synchronous start for the CC8 slices.
-
 		  while(1U)
 		    {
-
 			  if(count >=4)		//only calculate a multiple of 20kHz -> 4*50us=200us
 			  {
 				  count=0;
 				  Calculation();
+
+				  f_rec_data(iq,Vq_ref,2,4);
 			  }
 		    }
   }
@@ -489,7 +506,7 @@ void Calculation(void){
 			}
 		}
 
-		//saturation to IQ_REF_MAC limit
+		//limit to IQ_REF_MAx limit
 		if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
 		if(iq_ref > IQ_REF_MAX) iq_ref = IQ_REF_MAX;
 
@@ -511,7 +528,7 @@ void Calculation(void){
 		if(Valpha < 0.0){angle_ab = angle_ab + 180.0;}			// failure correction of angle (tangens)
 		else if(Vbeta < 0.0){angle_ab = angle_ab + 360.0;}
 
-		/*  shortend to one line
+		// shortend to one line
 		// amplitude calculation
 		amplitude_ab = sqrtf(Valpha*Valpha + Vbeta*Vbeta);
 
@@ -521,9 +538,9 @@ void Calculation(void){
 		//scale maximum 1 to 10000 -->
 		modulation_index_scaled = 10000*modulation_index;
 
-		*/
+
 		// shortened ca 4% improvemnt
-		modulation_index_scaled = sqrtf(Valpha*Valpha + Vbeta*Vbeta) * 577.3339;
+		//modulation_index_scaled = sqrtf(Valpha*Valpha + Vbeta*Vbeta) * 577.3339;
 
 		DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 83% duty amplitued calc takes 16% of the time
 
@@ -568,6 +585,44 @@ float readCurrent(uint8_t ChipSelect){
 	float fCurrent = ((float)iCurrent - 4096.0)/160.0;					// ATTENTION: value has to be divided by 160 for the 25A Sensor and 80 for the 50A Sensor
 
 	return fCurrent;
+}
+
+
+
+
+
+
+void f_rec_data(float data_point_var1, float data_point_var2, float start_step_from, float step_to){
+	  if(start_rec  == 1){
+		  start_rec_copunt ++;
+
+		  if(start_rec_copunt == 1){
+			  iq_ref = start_step_from;
+		  }
+
+		  if(start_rec_copunt ==10000){
+			  rec_data_contorl = 1;
+		  }
+
+
+		  if(start_rec_copunt == 10100){ //laster
+			  iq_ref = step_to;
+		  }
+
+		  if(start_rec_copunt == 20000){
+			  iq_ref = 0;
+			  start_rec = 0;
+		  }
+	  }
+
+
+	if(rec_data_contorl == 1){
+		  if(rec_data_index < REC_DATA_NUM_POINTS){
+				rec_data[rec_data_index] = data_point_var1;
+				rec_data2[rec_data_index] = data_point_var2;
+				rec_data_index ++;
+		  }
+	}
 }
 
 

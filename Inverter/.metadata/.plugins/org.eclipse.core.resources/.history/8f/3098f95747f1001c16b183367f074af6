@@ -1,0 +1,32 @@
+/*
+ * rec_data_function.c
+ *
+ *  Created on: 21 Jun 2022
+ *      Author: lukas
+ */
+#include "rec_data_function.h"
+
+//#include <stdint.h> // othersie errro beascue of uint16_t
+
+// rec data
+#define REC_DATA_NUM_POINTS 10000
+#define NUM_VARS_REC 2
+uint16_t rec_data_index = 0;
+float rec_data[REC_DATA_NUM_POINTS][NUM_VARS_REC] = {0};
+
+//data rec
+uint8_t rec_data_contorl = 0;// 0 noiting 1 record
+
+
+void f_rec_data_trigger(float trigger, float trigger_vaule){
+	if(trigger == trigger_vaule && rec_data_contorl == 0) rec_data_contorl 1;
+}
+
+void f_rec_data(float data_point, uint8_t var_num, uint16_t SKIP_5kHz){
+	if(rec_data_contorl == 1){
+		  if(rec_data_index < REC_DATA_NUM_POINTS){
+			  rec_data[rec_data_index][var_num] = data_point;
+			  rec_data_index ++;
+		  }
+	}
+}

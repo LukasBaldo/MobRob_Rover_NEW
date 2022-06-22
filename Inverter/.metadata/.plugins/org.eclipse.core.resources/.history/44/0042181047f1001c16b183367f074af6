@@ -1,0 +1,10 @@
+#ifndef REC_DATA_FUNCTION
+#define REC_DATA_FUNCTION
+
+#include <stdint.h> // othersie errro beascue of uint16_t
+#include <stdbool.h>
+
+void f_rec_data(float data_point, uint18_t var_num, uint16_t SKIP_5kHz);
+bool f_rec_data_trigger(float trigger, float trigger_vaule);
+
+#endif /* REC_DATA_FUNCTION */
