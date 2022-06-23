@@ -10,6 +10,7 @@
 #include <DAVE.h>                 //Declarations from DAVE Code Generation (includes SFR declaration)
 #include <math.h>
 #include <stdio.h> //for printf
+#include "rec_data_function.h"
 
 //#######################
 //FUNCTION DECLARATION
@@ -29,7 +30,7 @@ void Calculation(void);
 #define MOTOR_ON_ROVER 3// 0 front left 1 front right 2 back left 3 back right
 
 //control type
-uint8_t Torque_control = 1;
+uint8_t Torque_control = 0;
 uint8_t Speed_control = 0; //if 0 is torque control if 1 is speed control
 uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
 
@@ -102,8 +103,8 @@ float speed_ref = 0.0; //meters per second
 float omega_ele_rads_ref = 0.0; // electrical rad per second
 float iq_ref = 0.0;
 float T_ref = 0.0;
-float Vd_ref = 0;
-float Vq_ref = 0;
+float Vd = 0;
+float Vq = 0;
 
 // CAN vars
 int16_t Speeds_int16_r[4];
@@ -154,8 +155,8 @@ typedef struct{
 //PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
 //PID_param Id_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
 
-PID_param Iq_param = {.P = 0.5768, .I = 422.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
-PID_param Id_param = {.P = 0.5768, .I = 422.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+PID_param Iq_param = {.P = 0.50, .I = 424.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
+PID_param Id_param = {.P = 0.50, .I = 424.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
 PID_param T_param = {.P = 0.01, .I = 0.01, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
 
 // for motro 1
@@ -163,20 +164,6 @@ PID_param T_param_1 = {.P = 0.005, .I = 0.01, .D = 0.0, .MaxLimit =  1.5, .MinLi
 
 float PID_Controller(float,float,PID_param *param);
 
-
-void f_rec_data(float data_point_var1, float data_point_var2, float start_step_from, float step_to);
-//data rec
-uint8_t rec_data_contorl = 0;// 0 noiting 1 record
-#define REC_DATA_NUM_POINTS 1000
-#define NUM_VARS_REC 2
-uint16_t rec_data_index = 0;
-float rec_data[REC_DATA_NUM_POINTS] = {0};
-float rec_data2[REC_DATA_NUM_POINTS] = {0};
-
-float test2[5] = { 0,1,2,3,4};
-
-uint8_t start_rec = 0;
-uint32_t start_rec_copunt = 0;
 
 //########################
 // MAIN
@@ -226,7 +213,7 @@ int main(void)
 				  count=0;
 				  Calculation();
 
-				  f_rec_data(iq,Vq_ref,2,4);
+				  f_rec_data(iq,Vq,&iq_ref,2,4);
 			  }
 		    }
   }
@@ -511,15 +498,15 @@ void Calculation(void){
 		if(iq_ref > IQ_REF_MAX) iq_ref = IQ_REF_MAX;
 
 		if(Torque_control == 1){
-			Vd_ref = PID_Controller(0.0,id,&Id_param);
-			Vq_ref = PID_Controller(iq_ref,iq,&Iq_param); // toque controll
+			Vd = PID_Controller(0.0,id,&Id_param);
+			Vq = PID_Controller(iq_ref,iq,&Iq_param); // toque controll
 		}
 
 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // %67 duyt   control takes 4% of the time 9ms
 
 		// dq to alpha beta for voltage
-		Valpha = Vd_ref*cos_phi - Vq_ref*sin_phi;
-		Vbeta = Vd_ref*sin_phi + Vq_ref*cos_phi;
+		Valpha = Vd*cos_phi - Vq*sin_phi;
+		Vbeta = Vd*sin_phi + Vq*cos_phi;
 
 		// calc angle for SVM app
 		angle_ab_rad = atanf(Vbeta/Valpha);
@@ -591,39 +578,6 @@ float readCurrent(uint8_t ChipSelect){
 
 
 
-
-void f_rec_data(float data_point_var1, float data_point_var2, float start_step_from, float step_to){
-	  if(start_rec  == 1){
-		  start_rec_copunt ++;
-
-		  if(start_rec_copunt == 1){
-			  iq_ref = start_step_from;
-		  }
-
-		  if(start_rec_copunt ==10000){
-			  rec_data_contorl = 1;
-		  }
-
-
-		  if(start_rec_copunt == 10100){ //laster
-			  iq_ref = step_to;
-		  }
-
-		  if(start_rec_copunt == 20000){
-			  iq_ref = 0;
-			  start_rec = 0;
-		  }
-	  }
-
-
-	if(rec_data_contorl == 1){
-		  if(rec_data_index < REC_DATA_NUM_POINTS){
-				rec_data[rec_data_index] = data_point_var1;
-				rec_data2[rec_data_index] = data_point_var2;
-				rec_data_index ++;
-		  }
-	}
-}
 
 
 

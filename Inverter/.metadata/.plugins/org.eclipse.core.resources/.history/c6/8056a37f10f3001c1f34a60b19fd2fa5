@@ -1,0 +1,37 @@
+#include "PI_Controller_Antiwindup.h"
+
+
+PID_param Iq_param = {.P = 0.66, .I = 432.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
+PID_param Id_param = {.P = 0.66, .I = 432.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+PID_param T_param = {.P = 0.01, .I = 0.01, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
+
+// for motro 1
+PID_param T_param_1 = {.P = 0.005, .I = 0.01, .MaxLimit =  1.5, .MinLimit = -1.5, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+
+
+
+float Tcyc = 1.0 /5000.0; //Tcyc sample correspond to control update rate to PI controler for I
+
+// PID Controller
+float PID_Controller(float SetPoint,float ActValue,PID_param *param){
+
+	float Deviation = SetPoint - ActValue;
+	float temp1, temp2;
+
+	 temp1 = param->P*Deviation;
+	 temp2 = temp1 + param->I*Tcyc*Deviation + param->Output_z;
+
+	 if (temp2 >= param->MaxLimit){
+		 temp2 = param->MaxLimit;
+	 }
+	 else if (temp2 < param->MinLimit){
+		 temp2 = param->MinLimit;
+	 }
+
+	 param->Output_z = temp2 - temp1;
+
+	 param->Output = temp2;
+
+	return param->Output;
+
+}
