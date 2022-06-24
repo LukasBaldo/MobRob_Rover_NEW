@@ -26,12 +26,12 @@ void Calculation(void);
 
 // NEED to be set
 //motor
-#define MOTOR_NUM 1 // for trque dirction motro 1 differtn form rest so far
+#define MOTOR_NUM 10 // for trque dirction motro 1 differtn form rest so far
 #define MOTOR_ON_ROVER 3// 0 front left 1 front right 2 back left 3 back right
 
 //control type
-uint8_t Torque_control = 0;
-uint8_t Speed_control = 0; //if 0 is torque control if 1 is speed control
+uint8_t Torque_control = 1;
+uint8_t Speed_control = 1; //if 0 is torque control if 1 is speed control
 uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
 
 
@@ -105,6 +105,7 @@ float iq_ref = 0.0;
 float T_ref = 0.0;
 float Vd = 0;
 float Vq = 0;
+float omega_mech_rps_ref = 0;
 
 // CAN vars
 int16_t Speeds_int16_r[4];
@@ -155,16 +156,18 @@ typedef struct{
 //PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
 //PID_param Id_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
 
-PID_param Iq_param = {.P = 0.50, .I = 424.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
-PID_param Id_param = {.P = 0.50, .I = 424.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
-PID_param T_param = {.P = 0.01, .I = 0.01, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
+//PID_param Iq_param = {.P = 0.50, .I = 424.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
+//PID_param Id_param = {.P = 0.50, .I = 424.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+PID_param Iq_param = {.P = 0.28, .I = 232.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
+PID_param Id_param = {.P = 0.28, .I = 232.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+PID_param omega_param = {.P = 0.3979, .I = 0.1901, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // 3Hz wbw // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
 
 // for motro 1
 PID_param T_param_1 = {.P = 0.005, .I = 0.01, .D = 0.0, .MaxLimit =  1.5, .MinLimit = -1.5, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
 
 float PID_Controller(float,float,PID_param *param);
 
-
+uint8_t falg_speed_not_new = 0;
 //########################
 // MAIN
 //########################
@@ -213,7 +216,7 @@ int main(void)
 				  count=0;
 				  Calculation();
 
-				  f_rec_data(iq,Vq,&iq_ref,2,4);
+				  f_rec_data(omega_mech_rps	,omega_mech_rps_ref,&omega_mech_rps_ref,2,4,10,0.6);
 			  }
 		    }
   }
@@ -421,12 +424,17 @@ void Calculation(void){
 			omega_mech_rps_temp = -(float)450/((float)time_180deg_cal);
 		}
 
+		falg_speed_not_new = 0;
 		if(omega_mech_rps_temp<200 && omega_mech_rps_temp>(-200)) //plausibility check to avoid large peaks due to small time_180deg --> caused problems
 		{
-			omega_mech_rps = (float)omega_mech_rps_temp;
+			omega_mech_rps = omega_mech_rps_temp;
+			falg_speed_not_new = 1;
 		}
 
-		if(t > TIME_OMEGA_0){omega_ele_rads = 0;} // set omega  to 0 if no more hall detected
+		if(t > TIME_OMEGA_0){
+			omega_ele_rads = 0;
+			omega_mech_rps = 0;
+		} // set omega  to 0 if no more hall detected
 		else omega_ele_rads = omega_mech_rps*2*PI*PPZ; //omega_ electrica in rads / s
 
 		omega_ele_degs = omega_ele_rads / Pi180;
@@ -471,7 +479,7 @@ void Calculation(void){
 		}
 
 		omega_ele_rads_ref = ( speed_ref * PPZ ) / WHEEL_R;
-
+		 /*
 		if((omega_ele_rads_ref == 0 && Speed_control == 1) && (( -200 < omega_ele_rads) && (omega_ele_rads < 200))){ // no contorl is standing stil
 			T_ref = 0;
 		}
@@ -480,18 +488,44 @@ void Calculation(void){
 				T_ref = PID_Controller(omega_ele_rads_ref,omega_ele_rads,&T_param_1); // outer control loop q for omega
 			}
 			else{
-				T_ref = PID_Controller(omega_ele_rads_ref,omega_ele_rads,&T_param);
+				T_ref = PID_Controller(omega_ele_rads_ref,omega_ele_rads,&omega_param);
 			}
 		}
+		*/
 
-		if (Speed_control == 1){ // 1 speed contola aktive 0 not aktive torqe contol aktive
-			if(MOTOR_NUM == 1) {
+		if (Speed_control == 1){
+			if(omega_mech_rps_ref == 0  && (( -2 < omega_mech_rps) && (omega_mech_rps < 2))){ // no contorl is standing stil
+					T_ref = 0;
+				}
+			else{
+				if(MOTOR_NUM == 1){
+					T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&T_param_1); // outer control loop q for omega
+				}
+				else{
+					T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param);
+				}
+			}
+			/*
+			// start help
+			if(omega_mech_rps_ref != 0 && omega_mech_rps == 0){
+				//start_help_count
+
+				if(omega_mech_rps_ref > 0)T_ref = T_ref + 0.15;
+				else if(omega_mech_rps_ref > 0)T_ref = T_ref - 0.15;
+			}
+			*/
+
+			if(MOTOR_NUM == 1 || MOTOR_NUM == 10) {
 				iq_ref =  T_ref / K_T; // dirction for motor 1
 			}
 			else{
-				iq_ref = - T_ref / K_T;// dirction for motor 1
+				iq_ref = - T_ref / K_T;// dirction for motor not 1
 			}
+
 		}
+
+
+		//iq_ref = T_ref / K_T;// dirction for motor 1
 
 		//limit to IQ_REF_MAx limit
 		if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;

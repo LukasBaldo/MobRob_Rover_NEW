@@ -4,7 +4,6 @@
 #include <stdint.h> // othersie errro beascue of uint16_t
 #include <stdbool.h>
 
-void f_rec_data(float data_point_var1, float data_point_var2,float* x_ref, float start_step_from, float step_to);
-
+void f_rec_data(float data_point_var1, float data_point_var2,float* x_ref, float start_step_from, float step_to, uint8_t rec_every_x_5kHz, float setting_time_scalar);
 
 #endif /* REC_DATA_FUNCTION */
