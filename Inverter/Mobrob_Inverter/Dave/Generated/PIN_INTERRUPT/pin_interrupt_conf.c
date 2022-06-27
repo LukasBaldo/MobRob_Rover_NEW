@@ -172,7 +172,7 @@ const PIN_INTERRUPT_t Hall_A_ISR =
     .source = XMC_ERU_ETL_SOURCE_A
   },
   .IRQn = (IRQn_Type)7,  /* Mapped Interrupt Request Number */
-  .irq_priority = 63, /* Priority of the Interrupt */
+  .irq_priority = 11, /* Priority of the Interrupt */
 #if(UC_FAMILY == XMC4)
   .irq_subpriority = 0,  /* Subpriority of the Interrupt */
 #endif
@@ -205,7 +205,7 @@ const PIN_INTERRUPT_t Hall_B_ISR =
     .source = XMC_ERU_ETL_SOURCE_A
   },
   .IRQn = (IRQn_Type)5,  /* Mapped Interrupt Request Number */
-  .irq_priority = 63, /* Priority of the Interrupt */
+  .irq_priority = 11, /* Priority of the Interrupt */
 #if(UC_FAMILY == XMC4)
   .irq_subpriority = 0,  /* Subpriority of the Interrupt */
 #endif
@@ -238,7 +238,7 @@ const PIN_INTERRUPT_t Hall_C_ISR =
     .source = XMC_ERU_ETL_SOURCE_A
   },
   .IRQn = (IRQn_Type)8,  /* Mapped Interrupt Request Number */
-  .irq_priority = 63, /* Priority of the Interrupt */
+  .irq_priority = 11, /* Priority of the Interrupt */
 #if(UC_FAMILY == XMC4)
   .irq_subpriority = 0,  /* Subpriority of the Interrupt */
 #endif

@@ -70,7 +70,7 @@ const INTERRUPT_t INTERRUPT_0 =
  .irqctrl = (XMC_SCU_IRQCTRL_t)0U,
 #endif
   .node = (IRQn_Type)63,
-  .priority = 63,  
+  .priority = 5,  
 #if(UC_FAMILY == XMC4)  
   .subpriority = 0,
 #endif  
@@ -84,7 +84,7 @@ const INTERRUPT_t Time_Counter =
  .irqctrl = (XMC_SCU_IRQCTRL_t)0U,
 #endif
   .node = (IRQn_Type)59,
-  .priority = 63,  
+  .priority = 10,  
 #if(UC_FAMILY == XMC4)  
   .subpriority = 0,
 #endif  
@@ -126,7 +126,7 @@ const INTERRUPT_t INTERRUPT_1 =
  .irqctrl = (XMC_SCU_IRQCTRL_t)0U,
 #endif
   .node = (IRQn_Type)57,
-  .priority = 63,  
+  .priority = 20,  
 #if(UC_FAMILY == XMC4)  
   .subpriority = 0,
 #endif  

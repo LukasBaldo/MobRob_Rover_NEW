@@ -39,7 +39,7 @@ void f_rec_data(float data_point_var1, float data_point_var2,float* x_ref, float
 				  *x_ref = step_to;
 			  }
 
-			  if(start_rec_copunt == 20000 *setting_time_scalar){
+			  if(start_rec_copunt == 20000 *setting_time_scalar + 1000){
 				  *x_ref = 0;
 				  start_rec = 0;
 			  }

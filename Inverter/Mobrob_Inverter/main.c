@@ -160,7 +160,7 @@ typedef struct{
 //PID_param Id_param = {.P = 0.50, .I = 424.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
 PID_param Iq_param = {.P = 0.28, .I = 232.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
 PID_param Id_param = {.P = 0.28, .I = 232.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
-PID_param omega_param = {.P = 0.3979, .I = 0.1901, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // 3Hz wbw // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
+PID_param omega_param = {.P = 0.3949, .I = 0.1619, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // 3Hz wbw // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
 
 // for motro 1
 PID_param T_param_1 = {.P = 0.005, .I = 0.01, .D = 0.0, .MaxLimit =  1.5, .MinLimit = -1.5, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
@@ -168,6 +168,14 @@ PID_param T_param_1 = {.P = 0.005, .I = 0.01, .D = 0.0, .MaxLimit =  1.5, .MinLi
 float PID_Controller(float,float,PID_param *param);
 
 uint8_t falg_speed_not_new = 0;
+float setting_time_scalar = 0.6, step_start =0, step = 1;
+
+uint8_t start_help_count = 0, start_hilfe = 0;
+#define START_HELP_T 0.2
+
+float V_DC_link = 14.8; // nominal batt voltage
+
+
 //########################
 // MAIN
 //########################
@@ -216,7 +224,10 @@ int main(void)
 				  count=0;
 				  Calculation();
 
-				  f_rec_data(omega_mech_rps	,omega_mech_rps_ref,&omega_mech_rps_ref,2,4,10,0.6);
+				  //f_rec_data(omega_mech_rps	,T_ref,&T_ref,0.15,0.2,10,1);
+				  f_rec_data(omega_mech_rps	,T_ref,&omega_mech_rps_ref,step_start,step,10,0.4);
+
+				  ADC_MEASUREMENT_StartConversion(&ADC_MEASUREMENT_0);
 			  }
 		    }
   }
@@ -271,9 +282,12 @@ void CAN_TX_ISR(void){
 	int16_t Inverter_state[4] = {0};
 
 	Inverter_state[0] = MOTOR_ON_ROVER; // for identification apart form CAN ID
-
+	/*
 	if(CAN_no_com_counter > CAN_NO_COM_TH) Inverter_state[0] = 0;
 	else Inverter_state[1] = 1;
+	*/
+
+	Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
 
 	Speed_act = omega_ele_rads * WHEEL_R / PPZ;
 	if(MOTOR_NUM == 6) Speed_act = -Speed_act;
@@ -286,6 +300,13 @@ void CAN_TX_ISR(void){
 	uint8_t CAN_MO = MOTOR_ON_ROVER + 2;
 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[CAN_MO], (uint8_t*)Inverter_state);
 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[CAN_MO]); //Transmit the data of message object1
+}
+
+void Adc_Measurement_Handler(void){
+	uint32_t result  = ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A);
+
+	V_DC_link =  result /79.5; // conversion to DClink
+
 }
 
 // 100us Timer for speed measurement
@@ -505,15 +526,19 @@ void Calculation(void){
 					T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param);
 				}
 			}
-			/*
-			// start help
-			if(omega_mech_rps_ref != 0 && omega_mech_rps == 0){
-				//start_help_count
 
-				if(omega_mech_rps_ref > 0)T_ref = T_ref + 0.15;
-				else if(omega_mech_rps_ref > 0)T_ref = T_ref - 0.15;
+			if(start_hilfe ==1 ){
+				// start help
+				if(omega_mech_rps_ref != 0 && omega_mech_rps == 0){
+					start_help_count = 10;
+				}
+
+				if(start_help_count> 0){
+					start_help_count --;
+					if(omega_mech_rps_ref > 0)T_ref = T_ref + START_HELP_T;
+					else if(omega_mech_rps_ref < 0)T_ref = T_ref - START_HELP_T;
+				}
 			}
-			*/
 
 			if(MOTOR_NUM == 1 || MOTOR_NUM == 10) {
 				iq_ref =  T_ref / K_T; // dirction for motor 1
@@ -525,7 +550,7 @@ void Calculation(void){
 		}
 
 
-		//iq_ref = T_ref / K_T;// dirction for motor 1
+		iq_ref = T_ref / K_T;// dirction for motor 1
 
 		//limit to IQ_REF_MAx limit
 		if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
@@ -554,7 +579,10 @@ void Calculation(void){
 		amplitude_ab = sqrtf(Valpha*Valpha + Vbeta*Vbeta);
 
 		//K_inv = V/m --> m = V / K_inv
-		modulation_index = amplitude_ab/K_inv;
+		//modulation_index = amplitude_ab/K_inv;
+
+		if(V_DC_link < 0 || V_DC_link > 50) V_DC_link = 14.8;  // plauseblyt check if not set to nom bat volatge
+		modulation_index = amplitude_ab/(V_DC_link /1.732);
 
 		//scale maximum 1 to 10000 -->
 		modulation_index_scaled = 10000*modulation_index;

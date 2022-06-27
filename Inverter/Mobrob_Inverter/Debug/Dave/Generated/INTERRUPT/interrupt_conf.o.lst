@@ -21,7 +21,7 @@
   21              	 .align 2
   24              	INTERRUPT_0:
   25 0000 3F       	 .byte 63
-  26 0001 3F       	 .byte 63
+  26 0001 05       	 .byte 5
   27 0002 00       	 .byte 0
   28 0003 01       	 .byte 1
   29              	 .global Time_Counter
@@ -29,7 +29,7 @@
   31              	 .align 2
   34              	Time_Counter:
   35 0000 3B       	 .byte 59
-  36 0001 3F       	 .byte 63
+  36 0001 0A       	 .byte 10
   37 0002 00       	 .byte 0
   38 0003 01       	 .byte 1
   39              	 .global calc_ISR
@@ -53,7 +53,7 @@
   61              	 .align 2
   64              	INTERRUPT_1:
   65 0000 39       	 .byte 57
-  66 0001 3F       	 .byte 63
+  66 0001 14       	 .byte 20
   67 0002 00       	 .byte 0
   68 0003 01       	 .byte 1
   69              	 .global CAN_TX

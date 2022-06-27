@@ -73,6 +73,15 @@ main.o main.d main.o: ../main.c \
  c:\github\mobrob_rover_new\inverter\mobrob_inverter\dave\generated\global_can\global_can.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node_conf.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node_extern.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc_map.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc_conf.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc_extern.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_conf.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h \
  ../rec_data_function.h
 
 C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h:
@@ -222,5 +231,23 @@ c:\github\mobrob_rover_new\inverter\mobrob_inverter\dave\generated\global_can\gl
 C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node_conf.h:
 
 C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node_extern.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc_map.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc_conf.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc_extern.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_conf.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h:
 
 ../rec_data_function.h:

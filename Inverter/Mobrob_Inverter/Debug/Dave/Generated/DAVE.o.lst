@@ -22,7 +22,7 @@
   22              	 .thumb
   23              	 .thumb_func
   25              	DAVE_Init:
-  26              	.LFB473:
+  26              	.LFB552:
   27              	 .file 1 "../Dave/Generated/DAVE.c"
    1:../Dave/Generated/DAVE.c **** 
    2:../Dave/Generated/DAVE.c **** /**
@@ -112,7 +112,7 @@
   68:../Dave/Generated/DAVE.c ****      /** @Initialization of APPs Init Functions */
   69:../Dave/Generated/DAVE.c ****      init_status = (DAVE_STATUS_t)CLOCK_XMC4_Init(&CLOCK_XMC4_0);
   46              	 .loc 1 69 0
-  47 000a 5D48     	 ldr r0,.L25
+  47 000a 6148     	 ldr r0,.L26
   48 000c FFF7FEFF 	 bl CLOCK_XMC4_Init
   49 0010 0346     	 mov r3,r0
   50 0012 FB71     	 strb r3,[r7,#7]
@@ -126,7 +126,7 @@
   73:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance status_LED_green */
   74:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&status_LED_green); 
   55              	 .loc 1 74 0
-  56 001a 5A48     	 ldr r0,.L25+4
+  56 001a 5E48     	 ldr r0,.L26+4
   57 001c FFF7FEFF 	 bl DIGITAL_IO_Init
   58 0020 0346     	 mov r3,r0
   59 0022 FB71     	 strb r3,[r7,#7]
@@ -141,7 +141,7 @@
   78:../Dave/Generated/DAVE.c **** 	 /**  Initialization of DIGITAL_IO APP instance status_LED_red_cal_time */
   79:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&status_LED_red_cal_time); 
   65              	 .loc 1 79 0
-  66 002a 5748     	 ldr r0,.L25+8
+  66 002a 5B48     	 ldr r0,.L26+8
   67 002c FFF7FEFF 	 bl DIGITAL_IO_Init
   68 0030 0346     	 mov r3,r0
   69 0032 FB71     	 strb r3,[r7,#7]
@@ -156,7 +156,7 @@
   83:../Dave/Generated/DAVE.c **** 	 /**  Initialization of SPI_MASTER APP instance SPI_MASTER_0 */
   84:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)SPI_MASTER_Init(&SPI_MASTER_0); 
   75              	 .loc 1 84 0
-  76 003a 5448     	 ldr r0,.L25+12
+  76 003a 5848     	 ldr r0,.L26+12
   77 003c FFF7FEFF 	 bl SPI_MASTER_Init
   78 0040 0346     	 mov r3,r0
   79 0042 FB71     	 strb r3,[r7,#7]
@@ -171,7 +171,7 @@
   88:../Dave/Generated/DAVE.c **** 	 /**  Initialization of BUS_IO APP instance SPI_ChipSelect */
   89:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)BUS_IO_Init(&SPI_ChipSelect); 
   85              	 .loc 1 89 0
-  86 004a 5148     	 ldr r0,.L25+16
+  86 004a 5548     	 ldr r0,.L26+16
   87 004c FFF7FEFF 	 bl BUS_IO_Init
   88 0050 0346     	 mov r3,r0
   89 0052 FB71     	 strb r3,[r7,#7]
@@ -186,7 +186,7 @@
   93:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PIN_INTERRUPT APP instance OverCurrent_U */
   94:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&OverCurrent_U); 
   95              	 .loc 1 94 0
-  96 005a 4E48     	 ldr r0,.L25+20
+  96 005a 5248     	 ldr r0,.L26+20
   97 005c FFF7FEFF 	 bl PIN_INTERRUPT_Init
   98 0060 0346     	 mov r3,r0
   99 0062 FB71     	 strb r3,[r7,#7]
@@ -201,7 +201,7 @@
   98:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PIN_INTERRUPT APP instance OverCurrent_V */
   99:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&OverCurrent_V); 
  105              	 .loc 1 99 0
- 106 006a 4B48     	 ldr r0,.L25+24
+ 106 006a 4F48     	 ldr r0,.L26+24
  107 006c FFF7FEFF 	 bl PIN_INTERRUPT_Init
  108 0070 0346     	 mov r3,r0
  109 0072 FB71     	 strb r3,[r7,#7]
@@ -216,7 +216,7 @@
  103:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PIN_INTERRUPT APP instance OverCurrent_W */
  104:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&OverCurrent_W); 
  115              	 .loc 1 104 0
- 116 007a 4848     	 ldr r0,.L25+28
+ 116 007a 4C48     	 ldr r0,.L26+28
  117 007c FFF7FEFF 	 bl PIN_INTERRUPT_Init
  118 0080 0346     	 mov r3,r0
  119 0082 FB71     	 strb r3,[r7,#7]
@@ -231,7 +231,7 @@
  108:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PWM_SVM APP instance PWM_SVM_0 */
  109:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PWM_SVM_Init(&PWM_SVM_0); 
  125              	 .loc 1 109 0
- 126 008a 4548     	 ldr r0,.L25+32
+ 126 008a 4948     	 ldr r0,.L26+32
  127 008c FFF7FEFF 	 bl PWM_SVM_Init
  128 0090 0346     	 mov r3,r0
  129 0092 FB71     	 strb r3,[r7,#7]
@@ -246,7 +246,7 @@
  113:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance INTERRUPT_0 */
  114:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_0); 
  135              	 .loc 1 114 0
- 136 009a 4248     	 ldr r0,.L25+36
+ 136 009a 4648     	 ldr r0,.L26+36
  137 009c FFF7FEFF 	 bl INTERRUPT_Init
  138 00a0 0346     	 mov r3,r0
  139 00a2 FB71     	 strb r3,[r7,#7]
@@ -261,7 +261,7 @@
  118:../Dave/Generated/DAVE.c **** 	 /**  Initialization of TIMER APP instance TIMER_0 */
  119:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)TIMER_Init(&TIMER_0); 
  145              	 .loc 1 119 0
- 146 00aa 3F48     	 ldr r0,.L25+40
+ 146 00aa 4348     	 ldr r0,.L26+40
  147 00ac FFF7FEFF 	 bl TIMER_Init
  148 00b0 0346     	 mov r3,r0
  149 00b2 FB71     	 strb r3,[r7,#7]
@@ -276,7 +276,7 @@
  123:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance Time_Counter */
  124:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&Time_Counter); 
  155              	 .loc 1 124 0
- 156 00ba 3C48     	 ldr r0,.L25+44
+ 156 00ba 4048     	 ldr r0,.L26+44
  157 00bc FFF7FEFF 	 bl INTERRUPT_Init
  158 00c0 0346     	 mov r3,r0
  159 00c2 FB71     	 strb r3,[r7,#7]
@@ -291,7 +291,7 @@
  128:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PIN_INTERRUPT APP instance Hall_A_ISR */
  129:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&Hall_A_ISR); 
  165              	 .loc 1 129 0
- 166 00ca 3948     	 ldr r0,.L25+48
+ 166 00ca 3D48     	 ldr r0,.L26+48
  167 00cc FFF7FEFF 	 bl PIN_INTERRUPT_Init
  168 00d0 0346     	 mov r3,r0
  169 00d2 FB71     	 strb r3,[r7,#7]
@@ -306,7 +306,7 @@
  133:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PIN_INTERRUPT APP instance Hall_B_ISR */
  134:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&Hall_B_ISR); 
  175              	 .loc 1 134 0
- 176 00da 3648     	 ldr r0,.L25+52
+ 176 00da 3A48     	 ldr r0,.L26+52
  177 00dc FFF7FEFF 	 bl PIN_INTERRUPT_Init
  178 00e0 0346     	 mov r3,r0
  179 00e2 FB71     	 strb r3,[r7,#7]
@@ -321,7 +321,7 @@
  138:../Dave/Generated/DAVE.c **** 	 /**  Initialization of PIN_INTERRUPT APP instance Hall_C_ISR */
  139:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)PIN_INTERRUPT_Init(&Hall_C_ISR); 
  185              	 .loc 1 139 0
- 186 00ea 3348     	 ldr r0,.L25+56
+ 186 00ea 3748     	 ldr r0,.L26+56
  187 00ec FFF7FEFF 	 bl PIN_INTERRUPT_Init
  188 00f0 0346     	 mov r3,r0
  189 00f2 FB71     	 strb r3,[r7,#7]
@@ -336,7 +336,7 @@
  143:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance calc_ISR */
  144:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&calc_ISR); 
  195              	 .loc 1 144 0
- 196 00fa 3048     	 ldr r0,.L25+60
+ 196 00fa 3448     	 ldr r0,.L26+60
  197 00fc FFF7FEFF 	 bl INTERRUPT_Init
  198 0100 0346     	 mov r3,r0
  199 0102 FB71     	 strb r3,[r7,#7]
@@ -351,7 +351,7 @@
  148:../Dave/Generated/DAVE.c **** 	 /**  Initialization of CAN_NODE APP instance CAN_NODE_0 */
  149:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)CAN_NODE_Init(&CAN_NODE_0); 
  205              	 .loc 1 149 0
- 206 010a 2D48     	 ldr r0,.L25+64
+ 206 010a 3148     	 ldr r0,.L26+64
  207 010c FFF7FEFF 	 bl CAN_NODE_Init
  208 0110 0346     	 mov r3,r0
  209 0112 FB71     	 strb r3,[r7,#7]
@@ -366,7 +366,7 @@
  153:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance CAN_RX_MO2 */
  154:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&CAN_RX_MO2); 
  215              	 .loc 1 154 0
- 216 011a 2A48     	 ldr r0,.L25+68
+ 216 011a 2E48     	 ldr r0,.L26+68
  217 011c FFF7FEFF 	 bl INTERRUPT_Init
  218 0120 0346     	 mov r3,r0
  219 0122 FB71     	 strb r3,[r7,#7]
@@ -381,7 +381,7 @@
  158:../Dave/Generated/DAVE.c **** 	 /**  Initialization of TIMER APP instance TIMER_1 */
  159:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)TIMER_Init(&TIMER_1); 
  225              	 .loc 1 159 0
- 226 012a 2748     	 ldr r0,.L25+72
+ 226 012a 2B48     	 ldr r0,.L26+72
  227 012c FFF7FEFF 	 bl TIMER_Init
  228 0130 0346     	 mov r3,r0
  229 0132 FB71     	 strb r3,[r7,#7]
@@ -396,7 +396,7 @@
  163:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance INTERRUPT_1 */
  164:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_1); 
  235              	 .loc 1 164 0
- 236 013a 2448     	 ldr r0,.L25+76
+ 236 013a 2848     	 ldr r0,.L26+76
  237 013c FFF7FEFF 	 bl INTERRUPT_Init
  238 0140 0346     	 mov r3,r0
  239 0142 FB71     	 strb r3,[r7,#7]
@@ -411,7 +411,7 @@
  168:../Dave/Generated/DAVE.c **** 	 /**  Initialization of TIMER APP instance TIMER_CAN_TX */
  169:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)TIMER_Init(&TIMER_CAN_TX); 
  245              	 .loc 1 169 0
- 246 014a 2148     	 ldr r0,.L25+80
+ 246 014a 2548     	 ldr r0,.L26+80
  247 014c FFF7FEFF 	 bl TIMER_Init
  248 0150 0346     	 mov r3,r0
  249 0152 FB71     	 strb r3,[r7,#7]
@@ -426,7 +426,7 @@
  173:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance CAN_TX */
  174:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&CAN_TX); 
  255              	 .loc 1 174 0
- 256 015a 1E48     	 ldr r0,.L25+84
+ 256 015a 2248     	 ldr r0,.L26+84
  257 015c FFF7FEFF 	 bl INTERRUPT_Init
  258 0160 0346     	 mov r3,r0
  259 0162 FB71     	 strb r3,[r7,#7]
@@ -441,97 +441,117 @@
  178:../Dave/Generated/DAVE.c **** 	 /**  Initialization of INTERRUPT APP instance CAN_RX_MO7 */
  179:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&CAN_RX_MO7); 
  265              	 .loc 1 179 0
- 266 016a 1B48     	 ldr r0,.L25+88
+ 266 016a 1F48     	 ldr r0,.L26+88
  267 016c FFF7FEFF 	 bl INTERRUPT_Init
  268 0170 0346     	 mov r3,r0
  269 0172 FB71     	 strb r3,[r7,#7]
  270              	.L23:
- 180:../Dave/Generated/DAVE.c ****    }  
- 181:../Dave/Generated/DAVE.c ****   return init_status;
+ 180:../Dave/Generated/DAVE.c ****    } 
+ 181:../Dave/Generated/DAVE.c ****   if (init_status == DAVE_STATUS_SUCCESS)
  271              	 .loc 1 181 0
  272 0174 FB79     	 ldrb r3,[r7,#7]
- 182:../Dave/Generated/DAVE.c **** } /**  End of function DAVE_Init */
- 273              	 .loc 1 182 0
- 274 0176 1846     	 mov r0,r3
- 275 0178 0837     	 adds r7,r7,#8
- 276              	.LCFI3:
- 277              	 .cfi_def_cfa_offset 8
- 278 017a BD46     	 mov sp,r7
- 279              	.LCFI4:
- 280              	 .cfi_def_cfa_register 13
- 281              	 
- 282 017c 80BD     	 pop {r7,pc}
- 283              	.L26:
- 284 017e 00BF     	 .align 2
- 285              	.L25:
- 286 0180 00000000 	 .word CLOCK_XMC4_0
- 287 0184 00000000 	 .word status_LED_green
- 288 0188 00000000 	 .word status_LED_red_cal_time
- 289 018c 00000000 	 .word SPI_MASTER_0
- 290 0190 00000000 	 .word SPI_ChipSelect
- 291 0194 00000000 	 .word OverCurrent_U
- 292 0198 00000000 	 .word OverCurrent_V
- 293 019c 00000000 	 .word OverCurrent_W
- 294 01a0 00000000 	 .word PWM_SVM_0
- 295 01a4 00000000 	 .word INTERRUPT_0
- 296 01a8 00000000 	 .word TIMER_0
- 297 01ac 00000000 	 .word Time_Counter
- 298 01b0 00000000 	 .word Hall_A_ISR
- 299 01b4 00000000 	 .word Hall_B_ISR
- 300 01b8 00000000 	 .word Hall_C_ISR
- 301 01bc 00000000 	 .word calc_ISR
- 302 01c0 00000000 	 .word CAN_NODE_0
- 303 01c4 00000000 	 .word CAN_RX_MO2
- 304 01c8 00000000 	 .word TIMER_1
- 305 01cc 00000000 	 .word INTERRUPT_1
- 306 01d0 00000000 	 .word TIMER_CAN_TX
- 307 01d4 00000000 	 .word CAN_TX
- 308 01d8 00000000 	 .word CAN_RX_MO7
- 309              	 .cfi_endproc
- 310              	.LFE473:
- 312              	 .text
- 313              	.Letext0:
- 314              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 315              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 316              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
- 317              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_gpio.h"
- 318              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
- 319              	 .file 7 "../Dave/Generated/DIGITAL_IO/digital_io.h"
- 320              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_scu.h"
- 321              	 .file 9 "../Dave/Generated/CLOCK_XMC4/clock_xmc4.h"
- 322              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_usic.h"
- 323              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_spi.h"
- 324              	 .file 12 "../Dave/Generated/SPI_MASTER/spi_master.h"
- 325              	 .file 13 "../Dave/Generated/BUS_IO/bus_io.h"
- 326              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_eru.h"
- 327              	 .file 15 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
- 328              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_ccu8.h"
- 329              	 .file 17 "../Dave/Generated/GLOBAL_CCU8/global_ccu8.h"
- 330              	 .file 18 "../Dave/Generated/PWM_SVM/pwm_svm.h"
- 331              	 .file 19 "../Dave/Generated/INTERRUPT/interrupt.h"
- 332              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_ccu4.h"
- 333              	 .file 21 "../Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
- 334              	 .file 22 "../Dave/Generated/TIMER/timer.h"
- 335              	 .file 23 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_can.h"
- 336              	 .file 24 "../Dave/Generated/GLOBAL_CAN/global_can.h"
- 337              	 .file 25 "../Dave/Generated/CAN_NODE/can_node.h"
- 338              	 .file 26 "../Dave/Generated/DAVE.h"
- 339              	 .file 27 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
- 340              	 .file 28 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/system_XMC4500.h"
- 341              	 .file 29 "../Dave/Generated/DIGITAL_IO/digital_io_extern.h"
- 342              	 .file 30 "../Dave/Generated/CLOCK_XMC4/clock_xmc4_extern.h"
- 343              	 .file 31 "../Dave/Generated/SPI_MASTER/spi_master_extern.h"
- 344              	 .file 32 "../Dave/Generated/BUS_IO/bus_io_extern.h"
- 345              	 .file 33 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
- 346              	 .file 34 "../Dave/Generated/PWM_SVM/pwm_svm_extern.h"
- 347              	 .file 35 "../Dave/Generated/INTERRUPT/interrupt_extern.h"
- 348              	 .file 36 "../Dave/Generated/TIMER/timer_extern.h"
- 349              	 .file 37 "../Dave/Generated/CAN_NODE/can_node_extern.h"
+ 273 0176 002B     	 cmp r3,#0
+ 274 0178 04D1     	 bne .L24
+ 182:../Dave/Generated/DAVE.c ****   {
+ 183:../Dave/Generated/DAVE.c **** 	 /**  Initialization of ADC_MEASUREMENT APP instance ADC_MEASUREMENT_0 */
+ 184:../Dave/Generated/DAVE.c **** 	 init_status = (DAVE_STATUS_t)ADC_MEASUREMENT_Init(&ADC_MEASUREMENT_0); 
+ 275              	 .loc 1 184 0
+ 276 017a 1C48     	 ldr r0,.L26+92
+ 277 017c FFF7FEFF 	 bl ADC_MEASUREMENT_Init
+ 278 0180 0346     	 mov r3,r0
+ 279 0182 FB71     	 strb r3,[r7,#7]
+ 280              	.L24:
+ 185:../Dave/Generated/DAVE.c ****    }  
+ 186:../Dave/Generated/DAVE.c ****   return init_status;
+ 281              	 .loc 1 186 0
+ 282 0184 FB79     	 ldrb r3,[r7,#7]
+ 187:../Dave/Generated/DAVE.c **** } /**  End of function DAVE_Init */
+ 283              	 .loc 1 187 0
+ 284 0186 1846     	 mov r0,r3
+ 285 0188 0837     	 adds r7,r7,#8
+ 286              	.LCFI3:
+ 287              	 .cfi_def_cfa_offset 8
+ 288 018a BD46     	 mov sp,r7
+ 289              	.LCFI4:
+ 290              	 .cfi_def_cfa_register 13
+ 291              	 
+ 292 018c 80BD     	 pop {r7,pc}
+ 293              	.L27:
+ 294 018e 00BF     	 .align 2
+ 295              	.L26:
+ 296 0190 00000000 	 .word CLOCK_XMC4_0
+ 297 0194 00000000 	 .word status_LED_green
+ 298 0198 00000000 	 .word status_LED_red_cal_time
+ 299 019c 00000000 	 .word SPI_MASTER_0
+ 300 01a0 00000000 	 .word SPI_ChipSelect
+ 301 01a4 00000000 	 .word OverCurrent_U
+ 302 01a8 00000000 	 .word OverCurrent_V
+ 303 01ac 00000000 	 .word OverCurrent_W
+ 304 01b0 00000000 	 .word PWM_SVM_0
+ 305 01b4 00000000 	 .word INTERRUPT_0
+ 306 01b8 00000000 	 .word TIMER_0
+ 307 01bc 00000000 	 .word Time_Counter
+ 308 01c0 00000000 	 .word Hall_A_ISR
+ 309 01c4 00000000 	 .word Hall_B_ISR
+ 310 01c8 00000000 	 .word Hall_C_ISR
+ 311 01cc 00000000 	 .word calc_ISR
+ 312 01d0 00000000 	 .word CAN_NODE_0
+ 313 01d4 00000000 	 .word CAN_RX_MO2
+ 314 01d8 00000000 	 .word TIMER_1
+ 315 01dc 00000000 	 .word INTERRUPT_1
+ 316 01e0 00000000 	 .word TIMER_CAN_TX
+ 317 01e4 00000000 	 .word CAN_TX
+ 318 01e8 00000000 	 .word CAN_RX_MO7
+ 319 01ec 00000000 	 .word ADC_MEASUREMENT_0
+ 320              	 .cfi_endproc
+ 321              	.LFE552:
+ 323              	 .text
+ 324              	.Letext0:
+ 325              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 326              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 327              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 328              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_gpio.h"
+ 329              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 330              	 .file 7 "../Dave/Generated/DIGITAL_IO/digital_io.h"
+ 331              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_scu.h"
+ 332              	 .file 9 "../Dave/Generated/CLOCK_XMC4/clock_xmc4.h"
+ 333              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_usic.h"
+ 334              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_spi.h"
+ 335              	 .file 12 "../Dave/Generated/SPI_MASTER/spi_master.h"
+ 336              	 .file 13 "../Dave/Generated/BUS_IO/bus_io.h"
+ 337              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_eru.h"
+ 338              	 .file 15 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
+ 339              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_ccu8.h"
+ 340              	 .file 17 "../Dave/Generated/GLOBAL_CCU8/global_ccu8.h"
+ 341              	 .file 18 "../Dave/Generated/PWM_SVM/pwm_svm.h"
+ 342              	 .file 19 "../Dave/Generated/INTERRUPT/interrupt.h"
+ 343              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_ccu4.h"
+ 344              	 .file 21 "../Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
+ 345              	 .file 22 "../Dave/Generated/TIMER/timer.h"
+ 346              	 .file 23 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_can.h"
+ 347              	 .file 24 "../Dave/Generated/GLOBAL_CAN/global_can.h"
+ 348              	 .file 25 "../Dave/Generated/CAN_NODE/can_node.h"
+ 349              	 .file 26 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc.h"
+ 350              	 .file 27 "../Dave/Generated/GLOBAL_ADC/global_adc.h"
+ 351              	 .file 28 "../Dave/Generated/ADC_MEASUREMENT/adc_measurement.h"
+ 352              	 .file 29 "../Dave/Generated/DAVE.h"
+ 353              	 .file 30 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
+ 354              	 .file 31 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/system_XMC4500.h"
+ 355              	 .file 32 "../Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 356              	 .file 33 "../Dave/Generated/CLOCK_XMC4/clock_xmc4_extern.h"
+ 357              	 .file 34 "../Dave/Generated/SPI_MASTER/spi_master_extern.h"
+ 358              	 .file 35 "../Dave/Generated/BUS_IO/bus_io_extern.h"
+ 359              	 .file 36 "../Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
+ 360              	 .file 37 "../Dave/Generated/PWM_SVM/pwm_svm_extern.h"
+ 361              	 .file 38 "../Dave/Generated/INTERRUPT/interrupt_extern.h"
+ 362              	 .file 39 "../Dave/Generated/TIMER/timer_extern.h"
+ 363              	 .file 40 "../Dave/Generated/CAN_NODE/can_node_extern.h"
+ 364              	 .file 41 "../Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 DAVE.c
     {standard input}:20     .text.DAVE_Init:00000000 $t
     {standard input}:25     .text.DAVE_Init:00000000 DAVE_Init
-    {standard input}:286    .text.DAVE_Init:00000180 $d
+    {standard input}:296    .text.DAVE_Init:00000190 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -544,6 +564,7 @@ PWM_SVM_Init
 INTERRUPT_Init
 TIMER_Init
 CAN_NODE_Init
+ADC_MEASUREMENT_Init
 CLOCK_XMC4_0
 status_LED_green
 status_LED_red_cal_time
@@ -567,3 +588,4 @@ INTERRUPT_1
 TIMER_CAN_TX
 CAN_TX
 CAN_RX_MO7
+ADC_MEASUREMENT_0

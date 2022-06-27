@@ -71,7 +71,16 @@ Dave/Generated/DAVE.o Dave/Generated/DAVE.d Dave/Generated/DAVE.o: \
  ../Dave/Generated/CAN_NODE/can_node.h \
  ../Dave/Generated/CAN_NODE/../GLOBAL_CAN/global_can.h \
  ../Dave/Generated/CAN_NODE/can_node_conf.h \
- ../Dave/Generated/CAN_NODE/can_node_extern.h
+ ../Dave/Generated/CAN_NODE/can_node_extern.h \
+ ../Dave/Generated/GLOBAL_ADC/global_adc.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc_map.h \
+ ../Dave/Generated/GLOBAL_ADC/global_adc_conf.h \
+ ../Dave/Generated/GLOBAL_ADC/global_adc_extern.h \
+ ../Dave/Generated/ADC_MEASUREMENT/adc_measurement.h \
+ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h \
+ ../Dave/Generated/ADC_MEASUREMENT/adc_measurement_conf.h \
+ ../Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h
 
 ../Dave/Generated/DAVE.h:
 
@@ -220,3 +229,21 @@ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_can
 ../Dave/Generated/CAN_NODE/can_node_conf.h:
 
 ../Dave/Generated/CAN_NODE/can_node_extern.h:
+
+../Dave/Generated/GLOBAL_ADC/global_adc.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc_map.h:
+
+../Dave/Generated/GLOBAL_ADC/global_adc_conf.h:
+
+../Dave/Generated/GLOBAL_ADC/global_adc_extern.h:
+
+../Dave/Generated/ADC_MEASUREMENT/adc_measurement.h:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h:
+
+../Dave/Generated/ADC_MEASUREMENT/adc_measurement_conf.h:
+
+../Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h:
