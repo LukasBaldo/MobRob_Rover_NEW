@@ -26,14 +26,14 @@ void Calculation(void);
 
 // NEED to be set
 //motor
-#define MOTOR_NUM 10 // for trque dirction motro 1 differtn form rest so far
-#define MOTOR_ON_ROVER 3// 0 front left 1 front right 2 back left 3 back right
+#define MOTOR_NUM 6 // for trque dirction motro 1 differtn form rest so far
+#define MOTOR_ON_ROVER 1// 0 front left 1 front right 2 back left 3 back right
+#define INVERTER_NUM 1 //witch board for ADC_TO_DCLINK factor version 2 boards: B3 right rear rover = 4, B2 left rear rover = 3, B5 left front rover = 0, B4 right front rover = 1,  version one borads: B10, = 5 B11 = 6,
 
 //control type
 uint8_t Torque_control = 1;
-uint8_t Speed_control = 1; //if 0 is torque control if 1 is speed control
+uint8_t Speed_control = 0; //if 0 is torque control if 1 is speed control
 uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
-
 
 #define IQ_REF_MAX 5
 #define CAN_NO_COM_TH 250
@@ -152,28 +152,36 @@ typedef struct{
 }PID_param;
 
 //Vuales 14/04 mit maurzio
-//PID_param omegaq = {.P = 0.004, .I = 0.004, .D = 0.0, .MaxLimit =  0.5, .MinLimit = -0.5, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A//PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
+//PID_param omega_param = {.P = 0.004, .I = 0.004, .D = 0.0, .MaxLimit =  1, .MinLimit = -1, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A//PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
 //PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
 //PID_param Id_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
 
-//PID_param Iq_param = {.P = 0.50, .I = 424.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
-//PID_param Id_param = {.P = 0.50, .I = 424.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+// max ested iq 100Hz wbw
+//PID_param Iq_param = {.P = 0.56, .I = 465.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
+//PID_param Id_param = {.P = 0.56, .I = 465.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+//PID_param omega_param = {.P = 0.2921, .I = 0.1213, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // M6
+
+// crretn best on motor 10 iq 50Hz wbw
 PID_param Iq_param = {.P = 0.28, .I = 232.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
 PID_param Id_param = {.P = 0.28, .I = 232.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
-PID_param omega_param = {.P = 0.3949, .I = 0.1619, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // 3Hz wbw // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
+//PID_param omega_param10 = {.P = 0.3949, .I = 0.1619, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // 3Hz wbw // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
+PID_param omega_param = {.P = 0.2859, .I = 0.1289, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};// M6
 
 // for motro 1
-PID_param T_param_1 = {.P = 0.005, .I = 0.01, .D = 0.0, .MaxLimit =  1.5, .MinLimit = -1.5, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+PID_param omega_param1 = {.P = 0.005, .I = 0.01, .D = 0.0, .MaxLimit =  1.5, .MinLimit = -1.5, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
+
 
 float PID_Controller(float,float,PID_param *param);
 
-uint8_t falg_speed_not_new = 0;
+uint8_t Speed_detection_OK = 0;
 float setting_time_scalar = 0.6, step_start =0, step = 1;
 
-uint8_t start_help_count = 0, start_hilfe = 0;
-#define START_HELP_T 0.2
+uint8_t start_help_count = 0, start_help = 0, start_help_flag = 0;
+#define START_HELP_T 0.1
 
 float V_DC_link = 14.8; // nominal batt voltage
+float ADC_TO_DCLINK[6] = {77, 80.4, 77, 77, 77, 79.5}; // 77 defalft value
+
 
 
 //########################
@@ -213,6 +221,13 @@ int main(void)
 	      }
   }
 
+  if((INVERTER_NUM > 6) || INVERTER_NUM < 0){ // if possibel number eneterd
+ 	  while(1U)
+ 	      {
+ 		//  printf("INVERTER_NUM num false");
+ 	      }
+   }
+
   /* Placeholder for user application code. The while loop below can be replaced with user application code. */
   while(1U)
   {
@@ -224,8 +239,12 @@ int main(void)
 				  count=0;
 				  Calculation();
 
-				  //f_rec_data(omega_mech_rps	,T_ref,&T_ref,0.15,0.2,10,1);
-				  f_rec_data(omega_mech_rps	,T_ref,&omega_mech_rps_ref,step_start,step,10,0.4);
+				  // f_rec_data(omega_mech_rps	,T_ref,&T_ref,0.12,0.16,10,10000);  //  tref speedd spech char
+
+				  //f_rec_data(omega_mech_rps	,T_ref,&omega_mech_rps_ref,step_start,step,2,5000);
+
+				   rec_step_from_0(omega_mech_rps, T_ref,start_help_flag, &omega_mech_rps_ref, 1, 10); // start help test
+				   start_help_flag = 0;
 
 				  ADC_MEASUREMENT_StartConversion(&ADC_MEASUREMENT_0);
 			  }
@@ -305,7 +324,7 @@ void CAN_TX_ISR(void){
 void Adc_Measurement_Handler(void){
 	uint32_t result  = ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A);
 
-	V_DC_link =  result /79.5; // conversion to DClink
+	V_DC_link =  result / ADC_TO_DCLINK[INVERTER_NUM]; // conversion to DClink
 
 }
 
@@ -445,11 +464,11 @@ void Calculation(void){
 			omega_mech_rps_temp = -(float)450/((float)time_180deg_cal);
 		}
 
-		falg_speed_not_new = 0;
+		Speed_detection_OK = 0;
 		if(omega_mech_rps_temp<200 && omega_mech_rps_temp>(-200)) //plausibility check to avoid large peaks due to small time_180deg --> caused problems
 		{
 			omega_mech_rps = omega_mech_rps_temp;
-			falg_speed_not_new = 1;
+			Speed_detection_OK = 1;
 		}
 
 		if(t > TIME_OMEGA_0){
@@ -519,24 +538,21 @@ void Calculation(void){
 					T_ref = 0;
 				}
 			else{
-				if(MOTOR_NUM == 1){
-					T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&T_param_1); // outer control loop q for omega
-				}
-				else{
-					T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param);
-				}
-			}
+				if(MOTOR_NUM == 1) T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param1); // outer control loop q for omega
+				else T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param);
 
-			if(start_hilfe ==1 ){
-				// start help
-				if(omega_mech_rps_ref != 0 && omega_mech_rps == 0){
-					start_help_count = 10;
-				}
+				if(start_help ==1 ){
+					// start help
+					if(omega_mech_rps_ref != 0 && (copysign(1,omega_mech_rps_ref) != copysign(1,omega_mech_rps) || omega_mech_rps == 0)){
+						start_help_count = 1;
+					}
 
-				if(start_help_count> 0){
-					start_help_count --;
-					if(omega_mech_rps_ref > 0)T_ref = T_ref + START_HELP_T;
-					else if(omega_mech_rps_ref < 0)T_ref = T_ref - START_HELP_T;
+					if(start_help_count > 0){
+						start_help_flag = 1;
+						start_help_count --;
+						if(omega_mech_rps_ref > 0)T_ref = T_ref + START_HELP_T;
+						else if(omega_mech_rps_ref < 0)T_ref = T_ref - START_HELP_T;
+					}
 				}
 			}
 
@@ -550,7 +566,7 @@ void Calculation(void){
 		}
 
 
-		iq_ref = T_ref / K_T;// dirction for motor 1
+		iq_ref = - T_ref / K_T;// dirction for motor 1
 
 		//limit to IQ_REF_MAx limit
 		if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
