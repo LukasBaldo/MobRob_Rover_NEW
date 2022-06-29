@@ -9252,3 +9252,1469 @@ make: *** [main.o] Error 1
   35948	   1196	  14296	  51440	   c8f0	Mobrob_Inverter.elf
 'Finished building: Mobrob_Inverter.siz'
 
+15:49:39 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  14296	  51376	   c8b0	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+15:50:27 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  14296	  51376	   c8b0	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+15:51:25 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  14296	  51376	   c8b0	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+16:10:45 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../rec_data_function.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "rec_data_function.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="rec_data_function.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"rec_data_function.d" -MT"rec_data_function.d rec_data_function.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "rec_data_function.o" "../rec_data_function.c" 
+'Finished building: ../rec_data_function.c'
+
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  38296	  75376	  12670	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+16:52:06 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../rec_data_function.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "rec_data_function.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="rec_data_function.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"rec_data_function.d" -MT"rec_data_function.d rec_data_function.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "rec_data_function.o" "../rec_data_function.c" 
+'Finished building: ../rec_data_function.c'
+
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  14296	  51376	   c8b0	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+17:02:00 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  14296	  51376	   c8b0	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+17:11:03 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  14296	  51376	   c8b0	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+17:11:40 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  14296	  51376	   c8b0	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+17:20:39 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  14296	  51376	   c8b0	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+17:32:38 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35884	   1196	  14296	  51376	   c8b0	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+17:38:00 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35820	   1196	  14296	  51312	   c870	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+17:38:24 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35820	   1196	  14296	  51312	   c870	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+17:39:36 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35820	   1196	  14296	  51312	   c870	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+18:02:59 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35820	   1196	  14296	  51312	   c870	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+18:05:53 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35820	   1196	  14296	  51312	   c870	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+18:09:52 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35820	   1196	  14296	  51312	   c870	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+18:21:49 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35820	   1196	  14296	  51312	   c870	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+18:25:50 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35820	   1196	  14296	  51312	   c870	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+18:35:14 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+18:35:27 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+18:38:46 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+18:39:01 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+18:39:23 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+18:44:59 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Read_Current_Sensor.c'
+../Read_Current_Sensor.c:2:19: error: unknown type name 'uint8_t'
+'Invoking: ARM-GCC C Compiler'
+ float readCurrent(uint8_t ChipSelect){
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Read_Current_Sensor.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Read_Current_Sensor.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Read_Current_Sensor.d" -MT"Read_Current_Sensor.d Read_Current_Sensor.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Read_Current_Sensor.o" "../Read_Current_Sensor.c" 
+                   ^
+subdir.mk:24: recipe for target 'Read_Current_Sensor.o' failed
+make: *** [Read_Current_Sensor.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+18:45:43 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../Read_Current_Sensor.c:2:19: error: unknown type name 'uint8_t'
+'Building file: ../Read_Current_Sensor.c'
+ float readCurrent(uint8_t ChipSelect){
+'Invoking: ARM-GCC C Compiler'
+                   ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Read_Current_Sensor.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Read_Current_Sensor.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Read_Current_Sensor.d" -MT"Read_Current_Sensor.d Read_Current_Sensor.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Read_Current_Sensor.o" "../Read_Current_Sensor.c" 
+make: *** [Read_Current_Sensor.o] Error 1
+subdir.mk:24: recipe for target 'Read_Current_Sensor.o' failed
+make: *** Waiting for unfinished jobs....
+'Building file: ../rec_data_function.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "rec_data_function.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="rec_data_function.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"rec_data_function.d" -MT"rec_data_function.d rec_data_function.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "rec_data_function.o" "../rec_data_function.c" 
+'Finished building: ../rec_data_function.c'
+
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+18:45:54 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../Read_Current_Sensor.c: In function 'readCurrent':
+'Building file: ../Read_Current_Sensor.c'
+../Read_Current_Sensor.c:7:2: warning: implicit declaration of function 'BUS_IO_Write' [-Wimplicit-function-declaration]
+'Invoking: ARM-GCC C Compiler'
+  BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Read_Current_Sensor.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Read_Current_Sensor.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Read_Current_Sensor.d" -MT"Read_Current_Sensor.d Read_Current_Sensor.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Read_Current_Sensor.o" "../Read_Current_Sensor.c" 
+  ^
+subdir.mk:24: recipe for target 'Read_Current_Sensor.o' failed
+../Read_Current_Sensor.c:7:16: error: 'SPI_ChipSelect' undeclared (first use in this function)
+  BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
+                ^
+../Read_Current_Sensor.c:7:16: note: each undeclared identifier is reported only once for each function it appears in
+../Read_Current_Sensor.c:8:2: warning: implicit declaration of function 'SPI_MASTER_Receive' [-Wimplicit-function-declaration]
+  SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
+  ^
+../Read_Current_Sensor.c:8:22: error: 'SPI_MASTER_0' undeclared (first use in this function)
+  SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
+                      ^
+make: *** [Read_Current_Sensor.o] Error 1
+18:46:09 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../Read_Current_Sensor.c: In function 'readCurrent':
+'Building file: ../Read_Current_Sensor.c'
+../Read_Current_Sensor.c:7:2: warning: implicit declaration of function 'BUS_IO_Write' [-Wimplicit-function-declaration]
+'Invoking: ARM-GCC C Compiler'
+  BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Read_Current_Sensor.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Read_Current_Sensor.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Read_Current_Sensor.d" -MT"Read_Current_Sensor.d Read_Current_Sensor.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Read_Current_Sensor.o" "../Read_Current_Sensor.c" 
+  ^
+subdir.mk:24: recipe for target 'Read_Current_Sensor.o' failed
+../Read_Current_Sensor.c:7:16: error: 'SPI_ChipSelect' undeclared (first use in this function)
+  BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
+                ^
+../Read_Current_Sensor.c:7:16: note: each undeclared identifier is reported only once for each function it appears in
+../Read_Current_Sensor.c:8:2: warning: implicit declaration of function 'SPI_MASTER_Receive' [-Wimplicit-function-declaration]
+  SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
+  ^
+../Read_Current_Sensor.c:8:22: error: 'SPI_MASTER_0' undeclared (first use in this function)
+  SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
+                      ^
+make: *** [Read_Current_Sensor.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+18:46:30 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Read_Current_Sensor.c'
+../Read_Current_Sensor.c: In function 'readCurrent':
+'Invoking: ARM-GCC C Compiler'
+../Read_Current_Sensor.c:7:2: warning: implicit declaration of function 'BUS_IO_Write' [-Wimplicit-function-declaration]
+  BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
+  ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Read_Current_Sensor.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Read_Current_Sensor.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Read_Current_Sensor.d" -MT"Read_Current_Sensor.d Read_Current_Sensor.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Read_Current_Sensor.o" "../Read_Current_Sensor.c" 
+../Read_Current_Sensor.c:7:16: error: 'SPI_ChipSelect' undeclared (first use in this function)
+subdir.mk:24: recipe for target 'Read_Current_Sensor.o' failed
+  BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
+                ^
+../Read_Current_Sensor.c:7:16: note: each undeclared identifier is reported only once for each function it appears in
+../Read_Current_Sensor.c:8:2: warning: implicit declaration of function 'SPI_MASTER_Receive' [-Wimplicit-function-declaration]
+  SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
+  ^
+../Read_Current_Sensor.c:8:22: error: 'SPI_MASTER_0' undeclared (first use in this function)
+  SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
+                      ^
+make: *** [Read_Current_Sensor.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+18:47:36 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Read_Current_Sensor.c'
+../Read_Current_Sensor.c: In function 'readCurrent':
+'Invoking: ARM-GCC C Compiler'
+../Read_Current_Sensor.c:7:2: warning: implicit declaration of function 'BUS_IO_Write' [-Wimplicit-function-declaration]
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Read_Current_Sensor.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Read_Current_Sensor.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Read_Current_Sensor.d" -MT"Read_Current_Sensor.d Read_Current_Sensor.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Read_Current_Sensor.o" "../Read_Current_Sensor.c" 
+  BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
+subdir.mk:24: recipe for target 'Read_Current_Sensor.o' failed
+  ^
+../Read_Current_Sensor.c:7:16: error: 'SPI_ChipSelect' undeclared (first use in this function)
+  BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
+                ^
+../Read_Current_Sensor.c:7:16: note: each undeclared identifier is reported only once for each function it appears in
+../Read_Current_Sensor.c:8:2: warning: implicit declaration of function 'SPI_MASTER_Receive' [-Wimplicit-function-declaration]
+  SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
+  ^
+../Read_Current_Sensor.c:8:22: error: 'SPI_MASTER_0' undeclared (first use in this function)
+  SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
+                      ^
+make: *** [Read_Current_Sensor.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../rec_data_function.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "rec_data_function.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="rec_data_function.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"rec_data_function.d" -MT"rec_data_function.d rec_data_function.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "rec_data_function.o" "../rec_data_function.c" 
+'Finished building: ../rec_data_function.c'
+
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+18:49:10 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Read_Current_Sensor.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Read_Current_Sensor.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Read_Current_Sensor.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Read_Current_Sensor.d" -MT"Read_Current_Sensor.d Read_Current_Sensor.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Read_Current_Sensor.o" "../Read_Current_Sensor.c" 
+'Finished building: ../Read_Current_Sensor.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+18:49:12 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+18:49:37 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../rec_data_function.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "rec_data_function.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="rec_data_function.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"rec_data_function.d" -MT"rec_data_function.d rec_data_function.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "rec_data_function.o" "../rec_data_function.c" 
+'Finished building: ../rec_data_function.c'
+
+'Building file: ../Read_Current_Sensor.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Read_Current_Sensor.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Read_Current_Sensor.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Read_Current_Sensor.d" -MT"Read_Current_Sensor.d Read_Current_Sensor.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Read_Current_Sensor.o" "../Read_Current_Sensor.c" 
+'Finished building: ../Read_Current_Sensor.c'
+
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+18:49:59 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+18:50:17 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+18:55:34 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../CAN.c'
+../CAN.c: In function 'CAN_RX_MO2_ISR':
+'Invoking: ARM-GCC C Compiler'
+../CAN.c:3:3: error: unknown type name 'XMC_CAN_MO_t'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+   XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[1]->mo_ptr;
+subdir.mk:27: recipe for target 'CAN.o' failed
+   ^
+../CAN.c:3:35: error: 'CAN_NODE_0' undeclared (first use in this function)
+   XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[1]->mo_ptr;
+                                   ^
+../CAN.c:3:35: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:4:3: warning: implicit declaration of function 'CAN_NODE_MO_Receive' [-Wimplicit-function-declaration]
+   CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[1]); // reset for incremental encoder
+   ^
+../CAN.c:6:3: error: unknown type name 'uint8_t'
+   uint8_t data_r[8];
+   ^
+../CAN.c:9:32: error: request for member 'can_data_byte' in something not a structure or union
+     data_r[i] = lmsgobjct_ptr_1->can_data_byte[i];
+                                ^
+../CAN.c:13:5: error: 'Speeds_int16_r' undeclared (first use in this function)
+     Speeds_int16_r[i] = (data_r[i * 2 + 1] << 8) | data_r[i * 2];
+     ^
+../CAN.c:16:3: error: 'CAN_speed_ref' undeclared (first use in this function)
+   CAN_speed_ref = (float)Speeds_int16_r[MOTOR_ON_ROVER] / 1000; // converting back from mm/s to m/s
+   ^
+../CAN.c:16:41: error: 'MOTOR_ON_ROVER' undeclared (first use in this function)
+   CAN_speed_ref = (float)Speeds_int16_r[MOTOR_ON_ROVER] / 1000; // converting back from mm/s to m/s
+                                         ^
+../CAN.c:18:6: error: 'MOTOR_NUM' undeclared (first use in this function)
+   if(MOTOR_NUM == 6)CAN_speed_ref = -CAN_speed_ref; // exeption for motor 6
+      ^
+../CAN.c:20:22: error: 'MAX_Speed_CAN' undeclared (first use in this function)
+   if(CAN_speed_ref > MAX_Speed_CAN) CAN_speed_ref = MAX_Speed_CAN;
+                      ^
+../CAN.c:23:3: error: 'CAN_new_meassage' undeclared (first use in this function)
+   CAN_new_meassage = 1;
+   ^
+../CAN.c:24:3: error: 'CAN_no_com_counter' undeclared (first use in this function)
+   CAN_no_com_counter = 0;
+   ^
+../CAN.c: In function 'CAN_RX_MO7_ISR':
+../CAN.c:29:2: error: unknown type name 'XMC_CAN_MO_t'
+  XMC_CAN_MO_t* lmsgobjct_ptr = CAN_NODE_0.lmobj_ptr[6]->mo_ptr;
+  ^
+../CAN.c:29:32: error: 'CAN_NODE_0' undeclared (first use in this function)
+  XMC_CAN_MO_t* lmsgobjct_ptr = CAN_NODE_0.lmobj_ptr[6]->mo_ptr;
+                                ^
+../CAN.c:32:2: error: unknown type name 'uint8_t'
+  uint8_t data_r[4];
+  ^
+../CAN.c:35:29: error: request for member 'can_data_byte' in something not a structure or union
+    data_r[i] = lmsgobjct_ptr->can_data_byte[i];
+                             ^
+../CAN.c:38:13: error: 'MOTOR_ON_ROVER' undeclared (first use in this function)
+   if(data_r[MOTOR_ON_ROVER] == 1) distance_180deg_ele_count = 0;
+             ^
+../CAN.c:38:35: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+   if(data_r[MOTOR_ON_ROVER] == 1) distance_180deg_ele_count = 0;
+                                   ^
+../CAN.c:32:10: warning: variable 'data_r' set but not used [-Wunused-but-set-variable]
+  uint8_t data_r[4];
+          ^
+../CAN.c: In function 'CAN_TX_ISR':
+../CAN.c:42:2: error: unknown type name 'int16_t'
+  int16_t Inverter_state[4] = {0};
+  ^
+../CAN.c:44:22: error: 'MOTOR_ON_ROVER' undeclared (first use in this function)
+  Inverter_state[0] = MOTOR_ON_ROVER; // for identification apart form CAN ID
+                      ^
+../CAN.c:50:22: error: 'V_DC_link' undeclared (first use in this function)
+  Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
+                      ^
+../CAN.c:52:2: error: 'Speed_act' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+  ^
+../CAN.c:52:14: error: 'omega_ele_rads' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+              ^
+../CAN.c:52:31: error: 'WHEEL_R' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                               ^
+../CAN.c:52:41: error: 'PPZ' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                                         ^
+../CAN.c:53:5: error: 'MOTOR_NUM' undeclared (first use in this function)
+  if(MOTOR_NUM == 6) Speed_act = -Speed_act;
+     ^
+../CAN.c:56:2: error: 'distance' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+  ^
+../CAN.c:56:22: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+                      ^
+../CAN.c:56:62: error: 'PI' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+                                                              ^
+../CAN.c:60:2: error: unknown type name 'uint8_t'
+  uint8_t CAN_MO = MOTOR_ON_ROVER + 2;
+  ^
+../CAN.c:61:2: warning: implicit declaration of function 'CAN_NODE_MO_UpdateData' [-Wimplicit-function-declaration]
+  CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[CAN_MO], (uint8_t*)Inverter_state);
+  ^
+../CAN.c:61:33: error: 'CAN_NODE_0' undeclared (first use in this function)
+  CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[CAN_MO], (uint8_t*)Inverter_state);
+                                 ^
+../CAN.c:61:64: error: 'uint8_t' undeclared (first use in this function)
+  CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[CAN_MO], (uint8_t*)Inverter_state);
+                                                                ^
+../CAN.c:61:72: error: expected expression before ')' token
+  CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[CAN_MO], (uint8_t*)Inverter_state);
+                                                                        ^
+../CAN.c:62:2: warning: implicit declaration of function 'CAN_NODE_MO_Transmit' [-Wimplicit-function-declaration]
+  CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[CAN_MO]); //Transmit the data of message object1
+  ^
+../CAN.c:60:10: warning: variable 'CAN_MO' set but not used [-Wunused-but-set-variable]
+  uint8_t CAN_MO = MOTOR_ON_ROVER + 2;
+          ^
+../CAN.c:42:10: warning: variable 'Inverter_state' set but not used [-Wunused-but-set-variable]
+  int16_t Inverter_state[4] = {0};
+          ^
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+18:57:55 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../CAN.c'
+In file included from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_device.h:1499:0,
+'Invoking: ARM-GCC C Compiler'
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_common.h:79,
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h:50,
+subdir.mk:27: recipe for target 'CAN.o' failed
+                 from ../CAN.h:5,
+                 from ../CAN.c:3:
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h:16369:0: warning: "CAN" redefined
+ #define CAN                             ((CAN_GLOBAL_TypeDef                *) CAN_BASE)
+ ^
+In file included from ../CAN.c:3:0:
+../CAN.h:2:0: note: this is the location of the previous definition
+ #define CAN
+ ^
+../CAN.c: In function 'CAN0_1_IRQHandler':
+../CAN.c:19:41: error: 'MOTOR_ON_ROVER' undeclared (first use in this function)
+   CAN_speed_ref = (float)Speeds_int16_r[MOTOR_ON_ROVER] / 1000; // converting back from mm/s to m/s
+                                         ^
+../CAN.c:19:41: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:21:6: error: 'MOTOR_NUM' undeclared (first use in this function)
+   if(MOTOR_NUM == 6)CAN_speed_ref = -CAN_speed_ref; // exeption for motor 6
+      ^
+../CAN.c:23:22: error: 'MAX_Speed_CAN' undeclared (first use in this function)
+   if(CAN_speed_ref > MAX_Speed_CAN) CAN_speed_ref = MAX_Speed_CAN;
+                      ^
+../CAN.c: In function 'CAN0_0_IRQHandler':
+../CAN.c:41:13: error: 'MOTOR_ON_ROVER' undeclared (first use in this function)
+   if(data_r[MOTOR_ON_ROVER] == 1) distance_180deg_ele_count = 0;
+             ^
+../CAN.c:35:10: warning: variable 'data_r' set but not used [-Wunused-but-set-variable]
+  uint8_t data_r[4];
+          ^
+../CAN.c: In function 'CCU43_0_IRQHandler':
+../CAN.c:47:22: error: 'MOTOR_ON_ROVER' undeclared (first use in this function)
+  Inverter_state[0] = MOTOR_ON_ROVER; // for identification apart form CAN ID
+                      ^
+../CAN.c:55:14: error: 'omega_ele_rads' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+              ^
+../CAN.c:55:31: error: 'WHEEL_R' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                               ^
+../CAN.c:55:41: error: 'PPZ' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                                         ^
+../CAN.c:56:5: error: 'MOTOR_NUM' undeclared (first use in this function)
+  if(MOTOR_NUM == 6) Speed_act = -Speed_act;
+     ^
+../CAN.c:59:62: error: 'PI' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+                                                              ^
+make: *** [CAN.o] Error 1
+19:01:24 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../CAN.c'
+In file included from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_device.h:1499:0,
+'Invoking: ARM-GCC C Compiler'
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_common.h:79,
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h:50,
+subdir.mk:27: recipe for target 'CAN.o' failed
+                 from ../CAN.h:5,
+                 from ../CAN.c:3:
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h:16369:0: warning: "CAN" redefined
+ #define CAN                             ((CAN_GLOBAL_TypeDef                *) CAN_BASE)
+ ^
+In file included from ../CAN.c:3:0:
+../CAN.h:2:0: note: this is the location of the previous definition
+ #define CAN
+ ^
+../CAN.c: In function 'CCU43_0_IRQHandler':
+../CAN.c:56:14: error: 'omega_ele_rads' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+              ^
+../CAN.c:56:14: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:56:31: error: 'WHEEL_R' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                               ^
+../CAN.c:56:41: error: 'PPZ' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                                         ^
+../CAN.c:60:62: error: 'PI' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+                                                              ^
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../main.c'
+../main.c: In function 'main':
+'Invoking: ARM-GCC C Compiler'
+../main.c:223:7: error: 'MOTOR_ON_ROVER' undeclared (first use in this function)
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+   if((MOTOR_ON_ROVER > 3) || MOTOR_ON_ROVER < 0){ // if possibel number eneterd
+subdir.mk:27: recipe for target 'main.o' failed
+       ^
+../main.c:223:7: note: each undeclared identifier is reported only once for each function it appears in
+../main.c: In function 'Calculation':
+../main.c:522:28: error: 'CAN_NO_COM_TH' undeclared (first use in this function)
+    if(CAN_no_com_counter > CAN_NO_COM_TH){
+                            ^
+../main.c:549:7: error: 'MOTOR_NUM' undeclared (first use in this function)
+    if(MOTOR_NUM == 1) T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param1); // outer control loop q for omega
+       ^
+make: *** [main.o] Error 1
+19:02:02 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+In file included from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_device.h:1499:0,
+'Building file: ../CAN.c'
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_common.h:79,
+'Invoking: ARM-GCC C Compiler'
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h:50,
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+                 from ../CAN.h:5,
+subdir.mk:27: recipe for target 'CAN.o' failed
+                 from ../CAN.c:3:
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h:16369:0: warning: "CAN" redefined
+ #define CAN                             ((CAN_GLOBAL_TypeDef                *) CAN_BASE)
+ ^
+In file included from ../CAN.c:3:0:
+../CAN.h:2:0: note: this is the location of the previous definition
+ #define CAN
+ ^
+../CAN.c: In function 'CCU43_0_IRQHandler':
+../CAN.c:56:31: error: 'WHEEL_R' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                               ^
+../CAN.c:56:31: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:56:41: error: 'PPZ' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                                         ^
+../CAN.c:60:62: error: 'PI' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+                                                              ^
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+../main.c: In function 'main':
+'Building file: ../main.c'
+../main.c:223:7: error: 'MOTOR_ON_ROVER' undeclared (first use in this function)
+'Invoking: ARM-GCC C Compiler'
+   if((MOTOR_ON_ROVER > 3) || MOTOR_ON_ROVER < 0){ // if possibel number eneterd
+       ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+../main.c:223:7: note: each undeclared identifier is reported only once for each function it appears in
+subdir.mk:27: recipe for target 'main.o' failed
+../main.c: In function 'Calculation':
+../main.c:522:28: error: 'CAN_NO_COM_TH' undeclared (first use in this function)
+    if(CAN_no_com_counter > CAN_NO_COM_TH){
+                            ^
+../main.c:549:7: error: 'MOTOR_NUM' undeclared (first use in this function)
+    if(MOTOR_NUM == 1) T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param1); // outer control loop q for omega
+       ^
+make: *** [main.o] Error 1
+19:02:31 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../CAN.c'
+In file included from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_device.h:1499:0,
+'Invoking: ARM-GCC C Compiler'
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_common.h:79,
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h:50,
+subdir.mk:27: recipe for target 'CAN.o' failed
+                 from ../CAN.h:5,
+                 from ../CAN.c:3:
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h:16369:0: warning: "CAN" redefined
+ #define CAN                             ((CAN_GLOBAL_TypeDef                *) CAN_BASE)
+ ^
+In file included from ../CAN.c:3:0:
+../CAN.h:2:0: note: this is the location of the previous definition
+ #define CAN
+ ^
+../CAN.c: In function 'CCU43_0_IRQHandler':
+../CAN.c:56:31: error: 'WHEEL_R' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                               ^
+../CAN.c:56:31: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:56:41: error: 'PPZ' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+                                         ^
+../CAN.c:60:62: error: 'PI' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+                                                              ^
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+../main.c: In function 'Calculation':
+../main.c:523:28: error: 'CAN_NO_COM_TH' undeclared (first use in this function)
+    if(CAN_no_com_counter > CAN_NO_COM_TH){
+                            ^
+'Building file: ../main.c'
+../main.c:523:28: note: each undeclared identifier is reported only once for each function it appears in
+'Invoking: ARM-GCC C Compiler'
+make: *** [main.o] Error 1
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+subdir.mk:27: recipe for target 'main.o' failed
+19:03:29 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'Calculation':
+'Building file: ../main.c'
+../main.c:523:28: error: 'CAN_NO_COM_TH' undeclared (first use in this function)
+'Invoking: ARM-GCC C Compiler'
+    if(CAN_no_com_counter > CAN_NO_COM_TH){
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                            ^
+subdir.mk:27: recipe for target 'main.o' failed
+../main.c:523:28: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [main.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_device.h:1499:0,
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_common.h:79,
+'Building file: ../CAN.c'
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h:50,
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+                 from ../CAN.h:5,
+'Finished building: ../CAN.c'
+                 from ../CAN.c:3:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h:16369:0: warning: "CAN" redefined
+ #define CAN                             ((CAN_GLOBAL_TypeDef                *) CAN_BASE)
+ ^
+In file included from ../CAN.c:3:0:
+../CAN.h:2:0: note: this is the location of the previous definition
+ #define CAN
+ ^
+19:04:02 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+In file included from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_device.h:1499:0,
+'Building file: ../CAN.c'
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_common.h:79,
+'Invoking: ARM-GCC C Compiler'
+                 from C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h:50,
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+                 from ../CAN.h:5,
+'Finished building: ../CAN.c'
+                 from ../CAN.c:3:
+
+C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h:16369:0: warning: "CAN" redefined
+ #define CAN                             ((CAN_GLOBAL_TypeDef                *) CAN_BASE)
+ ^
+In file included from ../CAN.c:3:0:
+../CAN.h:2:0: note: this is the location of the previous definition
+ #define CAN
+ ^
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+19:04:45 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+19:04:52 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1196	  14296	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+19:12:40 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../CAN.c: In function 'CCU43_0_IRQHandler':
+'Building file: ../CAN.c'
+../CAN.c:66:22: error: 'V_DC_link' undeclared (first use in this function)
+'Invoking: ARM-GCC C Compiler'
+  Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+                      ^
+subdir.mk:27: recipe for target 'CAN.o' failed
+../CAN.c:66:22: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:68:14: error: 'omega_ele_rads' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+              ^
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+../main.c: In function 'ERU1_2_IRQHandler':
+'Building file: ../main.c'
+../main.c:353:22: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+'Invoking: ARM-GCC C Compiler'
+  if(direction == 1 ) distance_180deg_ele_count ++;
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                      ^
+subdir.mk:27: recipe for target 'main.o' failed
+../main.c:353:22: note: each undeclared identifier is reported only once for each function it appears in
+../main.c: In function 'Calculation':
+../main.c:514:7: error: 'CAN_new_meassage' undeclared (first use in this function)
+    if(CAN_new_meassage == 1){
+       ^
+../main.c:515:17: error: 'CAN_speed_ref' undeclared (first use in this function)
+     speed_ref = CAN_speed_ref;
+                 ^
+../main.c:519:5: error: 'CAN_no_com_counter' undeclared (first use in this function)
+     CAN_no_com_counter ++;
+     ^
+make: *** [main.o] Error 1
+19:13:23 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../CAN.c: In function 'CCU43_0_IRQHandler':
+'Building file: ../CAN.c'
+../CAN.c:66:22: error: 'V_DC_link' undeclared (first use in this function)
+'Invoking: ARM-GCC C Compiler'
+  Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+                      ^
+subdir.mk:27: recipe for target 'CAN.o' failed
+../CAN.c:66:22: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:68:14: error: 'omega_ele_rads' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+              ^
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+../main.c: In function 'ERU1_2_IRQHandler':
+'Building file: ../main.c'
+../main.c:353:22: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+'Invoking: ARM-GCC C Compiler'
+  if(direction == 1 ) distance_180deg_ele_count ++;
+                      ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+../main.c:353:22: note: each undeclared identifier is reported only once for each function it appears in
+subdir.mk:27: recipe for target 'main.o' failed
+../main.c: In function 'Calculation':
+../main.c:514:7: error: 'CAN_new_meassage' undeclared (first use in this function)
+    if(CAN_new_meassage == 1){
+       ^
+../main.c:515:17: error: 'CAN_speed_ref' undeclared (first use in this function)
+     speed_ref = CAN_speed_ref;
+                 ^
+../main.c:519:5: error: 'CAN_no_com_counter' undeclared (first use in this function)
+     CAN_no_com_counter ++;
+     ^
+make: *** [main.o] Error 1
+19:13:38 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../CAN.c: In function 'CCU43_0_IRQHandler':
+'Building file: ../CAN.c'
+../CAN.c:66:22: error: 'V_DC_link' undeclared (first use in this function)
+'Invoking: ARM-GCC C Compiler'
+  Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+                      ^
+subdir.mk:27: recipe for target 'CAN.o' failed
+../CAN.c:66:22: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:68:14: error: 'omega_ele_rads' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+              ^
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../main.c'
+../main.c: In function 'ERU1_2_IRQHandler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:353:22: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  if(direction == 1 ) distance_180deg_ele_count ++;
+subdir.mk:27: recipe for target 'main.o' failed
+                      ^
+../main.c:353:22: note: each undeclared identifier is reported only once for each function it appears in
+../main.c: In function 'Calculation':
+../main.c:514:7: error: 'CAN_new_meassage' undeclared (first use in this function)
+    if(CAN_new_meassage == 1){
+       ^
+../main.c:515:17: error: 'CAN_speed_ref' undeclared (first use in this function)
+     speed_ref = CAN_speed_ref;
+                 ^
+../main.c:519:5: error: 'CAN_no_com_counter' undeclared (first use in this function)
+     CAN_no_com_counter ++;
+     ^
+make: *** [main.o] Error 1
+19:14:25 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../CAN.c: In function 'CCU43_0_IRQHandler':
+'Building file: ../CAN.c'
+../CAN.c:70:14: error: 'omega_ele_rads' undeclared (first use in this function)
+'Invoking: ARM-GCC C Compiler'
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+              ^
+subdir.mk:27: recipe for target 'CAN.o' failed
+../CAN.c:70:14: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../main.c'
+../main.c: In function 'ERU1_2_IRQHandler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:353:22: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  if(direction == 1 ) distance_180deg_ele_count ++;
+subdir.mk:27: recipe for target 'main.o' failed
+                      ^
+../main.c:353:22: note: each undeclared identifier is reported only once for each function it appears in
+../main.c: In function 'Calculation':
+../main.c:514:7: error: 'CAN_new_meassage' undeclared (first use in this function)
+    if(CAN_new_meassage == 1){
+       ^
+../main.c:515:17: error: 'CAN_speed_ref' undeclared (first use in this function)
+     speed_ref = CAN_speed_ref;
+                 ^
+../main.c:519:5: error: 'CAN_no_com_counter' undeclared (first use in this function)
+     CAN_no_com_counter ++;
+     ^
+make: *** [main.o] Error 1
+19:14:41 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'ERU1_2_IRQHandler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:353:22: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  if(direction == 1 ) distance_180deg_ele_count ++;
+                      ^
+subdir.mk:27: recipe for target 'main.o' failed
+../main.c:353:22: note: each undeclared identifier is reported only once for each function it appears in
+../main.c: In function 'Calculation':
+../main.c:514:7: error: 'CAN_new_meassage' undeclared (first use in this function)
+    if(CAN_new_meassage == 1){
+       ^
+../main.c:515:17: error: 'CAN_speed_ref' undeclared (first use in this function)
+     speed_ref = CAN_speed_ref;
+                 ^
+../main.c:519:5: error: 'CAN_no_com_counter' undeclared (first use in this function)
+     CAN_no_com_counter ++;
+     ^
+make: *** [main.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../CAN.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+'Finished building: ../CAN.c'
+
+19:15:24 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'ERU1_2_IRQHandler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:353:22: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  if(direction == 1 ) distance_180deg_ele_count ++;
+subdir.mk:27: recipe for target 'main.o' failed
+                      ^
+../main.c:353:22: note: each undeclared identifier is reported only once for each function it appears in
+../main.c: In function 'Calculation':
+../main.c:514:7: error: 'CAN_new_meassage' undeclared (first use in this function)
+    if(CAN_new_meassage == 1){
+       ^
+../main.c:515:17: error: 'CAN_speed_ref' undeclared (first use in this function)
+     speed_ref = CAN_speed_ref;
+                 ^
+../main.c:519:5: error: 'CAN_no_com_counter' undeclared (first use in this function)
+     CAN_no_com_counter ++;
+     ^
+make: *** [main.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../CAN.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+'Finished building: ../CAN.c'
+
+19:21:31 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../Globals.c:7:1: error: unknown type name 'uint8_t'
+'Building file: ../Globals.c'
+ uint8_t CAN_new_meassage = 0;// if 1 recived can data
+'Invoking: ARM-GCC C Compiler'
+ ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Globals.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Globals.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Globals.d" -MT"Globals.d Globals.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Globals.o" "../Globals.c" 
+../Globals.c:8:1: error: unknown type name 'uint8_t'
+subdir.mk:30: recipe for target 'Globals.o' failed
+ uint8_t CAN_no_com_counter = 0;
+ ^
+make: *** [Globals.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../CAN.c'
+../CAN.c: In function 'CAN0_1_IRQHandler':
+'Invoking: ARM-GCC C Compiler'
+../CAN.c:18:5: error: 'Speeds_int16_r' undeclared (first use in this function)
+     Speeds_int16_r[i] = (data_r[i * 2 + 1] << 8) | data_r[i * 2];
+     ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+../CAN.c:18:5: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:21:3: error: 'CAN_speed_ref' undeclared (first use in this function)
+subdir.mk:30: recipe for target 'CAN.o' failed
+   CAN_speed_ref = (float)Speeds_int16_r[MOTOR_ON_ROVER] / 1000; // converting back from mm/s to m/s
+   ^
+../CAN.c:28:3: error: 'CAN_new_meassage' undeclared (first use in this function)
+   CAN_new_meassage = 1;
+   ^
+../CAN.c:29:3: error: 'CAN_no_com_counter' undeclared (first use in this function)
+   CAN_no_com_counter = 0;
+   ^
+../CAN.c: In function 'CAN0_0_IRQHandler':
+../CAN.c:43:35: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+   if(data_r[MOTOR_ON_ROVER] == 1) distance_180deg_ele_count = 0;
+                                   ^
+../CAN.c: In function 'CCU43_0_IRQHandler':
+../CAN.c:55:22: error: 'V_DC_link' undeclared (first use in this function)
+  Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
+                      ^
+../CAN.c:57:2: error: 'Speed_act' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+  ^
+../CAN.c:57:14: error: 'omega_ele_rads' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+              ^
+../CAN.c:61:2: error: 'distance' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+  ^
+../CAN.c:61:22: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+                      ^
+make: *** [CAN.o] Error 1
+'Building file: ../main.c'
+../main.c:97:16: error: conflicting type qualifiers for 'omega_ele_rads'
+'Invoking: ARM-GCC C Compiler'
+ volatile float omega_ele_rads = 0;  // electrical rad / sec //current real velocity calculated from angles from hall sensors and time between interrupts
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                ^
+subdir.mk:30: recipe for target 'main.o' failed
+In file included from ../main.c:17:0:
+../Globals.h:8:14: note: previous declaration of 'omega_ele_rads' was here
+ extern float omega_ele_rads;
+              ^
+make: *** [main.o] Error 1
+19:21:53 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../CAN.c'
+../CAN.c: In function 'CAN0_1_IRQHandler':
+'Invoking: ARM-GCC C Compiler'
+../CAN.c:18:5: error: 'Speeds_int16_r' undeclared (first use in this function)
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+     Speeds_int16_r[i] = (data_r[i * 2 + 1] << 8) | data_r[i * 2];
+subdir.mk:30: recipe for target 'CAN.o' failed
+     ^
+../CAN.c:18:5: note: each undeclared identifier is reported only once for each function it appears in
+../CAN.c:21:3: error: 'CAN_speed_ref' undeclared (first use in this function)
+   CAN_speed_ref = (float)Speeds_int16_r[MOTOR_ON_ROVER] / 1000; // converting back from mm/s to m/s
+   ^
+../CAN.c:28:3: error: 'CAN_new_meassage' undeclared (first use in this function)
+   CAN_new_meassage = 1;
+   ^
+../CAN.c:29:3: error: 'CAN_no_com_counter' undeclared (first use in this function)
+   CAN_no_com_counter = 0;
+   ^
+../CAN.c: In function 'CAN0_0_IRQHandler':
+../CAN.c:43:35: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+   if(data_r[MOTOR_ON_ROVER] == 1) distance_180deg_ele_count = 0;
+                                   ^
+../CAN.c: In function 'CCU43_0_IRQHandler':
+../CAN.c:55:22: error: 'V_DC_link' undeclared (first use in this function)
+  Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
+                      ^
+../CAN.c:57:2: error: 'Speed_act' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+  ^
+../CAN.c:57:14: error: 'omega_ele_rads' undeclared (first use in this function)
+  Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+              ^
+../CAN.c:61:2: error: 'distance' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+  ^
+../CAN.c:61:22: error: 'distance_180deg_ele_count' undeclared (first use in this function)
+  distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+                      ^
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../Globals.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Globals.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Globals.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Globals.d" -MT"Globals.d Globals.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Globals.o" "../Globals.c" 
+'Finished building: ../Globals.c'
+
+../main.c:97:16: error: conflicting type qualifiers for 'omega_ele_rads'
+'Building file: ../main.c'
+ volatile float omega_ele_rads = 0;  // electrical rad / sec //current real velocity calculated from angles from hall sensors and time between interrupts
+'Invoking: ARM-GCC C Compiler'
+                ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+subdir.mk:30: recipe for target 'main.o' failed
+In file included from ../main.c:17:0:
+../Globals.h:8:14: note: previous declaration of 'omega_ele_rads' was here
+ extern float omega_ele_rads;
+              ^
+make: *** [main.o] Error 1
+19:22:17 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../CAN.c'
+../CAN.c: In function 'CAN0_1_IRQHandler':
+'Invoking: ARM-GCC C Compiler'
+../CAN.c:19:5: error: 'Speeds_int16_r' undeclared (first use in this function)
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+     Speeds_int16_r[i] = (data_r[i * 2 + 1] << 8) | data_r[i * 2];
+subdir.mk:30: recipe for target 'CAN.o' failed
+     ^
+../CAN.c:19:5: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [CAN.o] Error 1
+make: *** Waiting for unfinished jobs....
+../main.c:97:16: error: conflicting type qualifiers for 'omega_ele_rads'
+'Building file: ../main.c'
+ volatile float omega_ele_rads = 0;  // electrical rad / sec //current real velocity calculated from angles from hall sensors and time between interrupts
+'Invoking: ARM-GCC C Compiler'
+                ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+In file included from ../main.c:17:0:
+../Globals.h:8:14: note: previous declaration of 'omega_ele_rads' was here
+subdir.mk:30: recipe for target 'main.o' failed
+ extern float omega_ele_rads;
+              ^
+make: *** [main.o] Error 1
+19:23:07 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Globals.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Globals.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Globals.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Globals.d" -MT"Globals.d Globals.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Globals.o" "../Globals.c" 
+'Finished building: ../Globals.c'
+
+'Building file: ../main.c'
+../main.c:97:16: error: conflicting type qualifiers for 'omega_ele_rads'
+'Invoking: ARM-GCC C Compiler'
+ volatile float omega_ele_rads = 0;  // electrical rad / sec //current real velocity calculated from angles from hall sensors and time between interrupts
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                ^
+subdir.mk:30: recipe for target 'main.o' failed
+In file included from ../main.c:17:0:
+../Globals.h:8:14: note: previous declaration of 'omega_ele_rads' was here
+ extern float omega_ele_rads;
+              ^
+make: *** [main.o] Error 1
+make: *** Waiting for unfinished jobs....
+'Building file: ../CAN.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "CAN.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="CAN.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"CAN.d" -MT"CAN.d CAN.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "CAN.o" "../CAN.c" 
+'Finished building: ../CAN.c'
+
+19:23:31 **** Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Globals.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Globals.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="Globals.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Globals.d" -MT"Globals.d Globals.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "Globals.o" "../Globals.c" 
+'Finished building: ../Globals.c'
+
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC4500_F100x1024 -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -mfloat-abi=softfp -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Mobrob_Inverter.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Mobrob_Inverter.map" -specs=rdimon.specs -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mthumb -g -gdwarf-2 -o "Mobrob_Inverter.elf" "@objects.rsp"  -lm
+'Finished building target: Mobrob_Inverter.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Mobrob_Inverter.elf" "Mobrob_Inverter.hex"
+'Finished building: Mobrob_Inverter.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1192	  14300	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Mobrob_Inverter.elf" > "Mobrob_Inverter.lst"
+'Finished building: Mobrob_Inverter.lst'
+
+19:23:43 **** Incremental Build of configuration Debug for project Mobrob_Inverter ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Mobrob_Inverter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35836	   1192	  14300	  51328	   c880	Mobrob_Inverter.elf
+'Finished building: Mobrob_Inverter.siz'
+

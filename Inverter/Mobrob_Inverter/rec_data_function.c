@@ -73,7 +73,7 @@ void rec_step_from_0(float data_point_var1, float data_point_var2, float data_po
 			  rec_data_contorl  = 1;
 			  *x_ref = step_to;
 
-			  if(start_rec_copunt == 1000){
+			  if(start_rec_copunt == REC_DATA_NUM_POINTS){
 				  *x_ref = 0;
 				  start_rec = 0;
 			  }

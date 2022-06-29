@@ -19,6 +19,7 @@ TOOLCHAIN_ROOT :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+. \
 Dave/Generated/ADC_MEASUREMENT \
 Dave/Generated/BUS_IO \
 Dave/Generated/CAN_NODE \
@@ -38,5 +39,4 @@ Dave/Generated/TIMER \
 Libraries/Newlib \
 Libraries/XMCLib/src \
 Startup \
-. \
 

@@ -4,14 +4,23 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../CAN.c \
+../Globals.c \
+../Read_Current_Sensor.c \
 ../main.c \
 ../rec_data_function.c 
 
 OBJS += \
+./CAN.o \
+./Globals.o \
+./Read_Current_Sensor.o \
 ./main.o \
 ./rec_data_function.o 
 
 C_DEPS += \
+./CAN.d \
+./Globals.d \
+./Read_Current_Sensor.d \
 ./main.d \
 ./rec_data_function.d 
 
