@@ -1,0 +1,560 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "CAN.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .comm Speeds_int16_r,8,4
+  20              	 .section .text.CAN0_1_IRQHandler,"ax",%progbits
+  21              	 .align 2
+  22              	 .global CAN0_1_IRQHandler
+  23              	 .thumb
+  24              	 .thumb_func
+  26              	CAN0_1_IRQHandler:
+  27              	.LFB552:
+  28              	 .file 1 "../CAN.c"
+   1:../CAN.c      **** // CAN Communication
+   2:../CAN.c      **** #include "DEFINE.h"
+   3:../CAN.c      **** #include <stdint.h> // need for data types
+   4:../CAN.c      **** #include <DAVE.h>
+   5:../CAN.c      **** #include "Globals.h"
+   6:../CAN.c      **** 
+   7:../CAN.c      **** int16_t Speeds_int16_r[4];
+   8:../CAN.c      **** 
+   9:../CAN.c      **** 
+  10:../CAN.c      **** void CAN_RX_MO2_ISR(void){
+  29              	 .loc 1 10 0
+  30              	 .cfi_startproc
+  31              	 
+  32              	 
+  33 0000 80B5     	 push {r7,lr}
+  34              	.LCFI0:
+  35              	 .cfi_def_cfa_offset 8
+  36              	 .cfi_offset 7,-8
+  37              	 .cfi_offset 14,-4
+  38 0002 84B0     	 sub sp,sp,#16
+  39              	.LCFI1:
+  40              	 .cfi_def_cfa_offset 24
+  41 0004 00AF     	 add r7,sp,#0
+  42              	.LCFI2:
+  43              	 .cfi_def_cfa_register 7
+  11:../CAN.c      **** 		XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[1]->mo_ptr;
+  44              	 .loc 1 11 0
+  45 0006 384B     	 ldr r3,.L12
+  46 0008 1B69     	 ldr r3,[r3,#16]
+  47 000a 1B68     	 ldr r3,[r3]
+  48 000c BB60     	 str r3,[r7,#8]
+  12:../CAN.c      **** 		CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[1]); // reset for incremental encoder
+  49              	 .loc 1 12 0
+  50 000e 364B     	 ldr r3,.L12
+  51 0010 1B69     	 ldr r3,[r3,#16]
+  52 0012 1846     	 mov r0,r3
+  53 0014 FFF7FEFF 	 bl CAN_NODE_MO_Receive
+  13:../CAN.c      **** 
+  14:../CAN.c      **** 		uint8_t data_r[8];
+  15:../CAN.c      **** 		 int i;
+  16:../CAN.c      **** 		 for(i = 0 ; i < 8 ; i ++){
+  54              	 .loc 1 16 0
+  55 0018 0023     	 movs r3,#0
+  56 001a FB60     	 str r3,[r7,#12]
+  57 001c 0CE0     	 b .L2
+  58              	.L3:
+  17:../CAN.c      **** 			 data_r[i] = lmsgobjct_ptr_1->can_data_byte[i];
+  59              	 .loc 1 17 0 discriminator 3
+  60 001e BA68     	 ldr r2,[r7,#8]
+  61 0020 FB68     	 ldr r3,[r7,#12]
+  62 0022 1344     	 add r3,r3,r2
+  63 0024 1033     	 adds r3,r3,#16
+  64 0026 1978     	 ldrb r1,[r3]
+  65 0028 3A46     	 mov r2,r7
+  66 002a FB68     	 ldr r3,[r7,#12]
+  67 002c 1344     	 add r3,r3,r2
+  68 002e 0A46     	 mov r2,r1
+  69 0030 1A70     	 strb r2,[r3]
+  16:../CAN.c      **** 			 data_r[i] = lmsgobjct_ptr_1->can_data_byte[i];
+  70              	 .loc 1 16 0 discriminator 3
+  71 0032 FB68     	 ldr r3,[r7,#12]
+  72 0034 0133     	 adds r3,r3,#1
+  73 0036 FB60     	 str r3,[r7,#12]
+  74              	.L2:
+  16:../CAN.c      **** 			 data_r[i] = lmsgobjct_ptr_1->can_data_byte[i];
+  75              	 .loc 1 16 0 is_stmt 0 discriminator 1
+  76 0038 FB68     	 ldr r3,[r7,#12]
+  77 003a 072B     	 cmp r3,#7
+  78 003c EFDD     	 ble .L3
+  18:../CAN.c      **** 		 }
+  19:../CAN.c      **** 
+  20:../CAN.c      **** 		 for(i = 0 ; i < 4 ; i ++){
+  79              	 .loc 1 20 0 is_stmt 1
+  80 003e 0023     	 movs r3,#0
+  81 0040 FB60     	 str r3,[r7,#12]
+  82 0042 1AE0     	 b .L4
+  83              	.L5:
+  21:../CAN.c      **** 			 Speeds_int16_r[i] = (data_r[i * 2 + 1] << 8) | data_r[i * 2];
+  84              	 .loc 1 21 0 discriminator 3
+  85 0044 FB68     	 ldr r3,[r7,#12]
+  86 0046 5B00     	 lsls r3,r3,#1
+  87 0048 0133     	 adds r3,r3,#1
+  88 004a 07F11002 	 add r2,r7,#16
+  89 004e 1344     	 add r3,r3,r2
+  90 0050 13F8103C 	 ldrb r3,[r3,#-16]
+  91 0054 1B02     	 lsls r3,r3,#8
+  92 0056 9AB2     	 uxth r2,r3
+  93 0058 FB68     	 ldr r3,[r7,#12]
+  94 005a 5B00     	 lsls r3,r3,#1
+  95 005c 07F11001 	 add r1,r7,#16
+  96 0060 0B44     	 add r3,r3,r1
+  97 0062 13F8103C 	 ldrb r3,[r3,#-16]
+  98 0066 9BB2     	 uxth r3,r3
+  99 0068 1343     	 orrs r3,r3,r2
+ 100 006a 99B2     	 uxth r1,r3
+ 101 006c 1F4A     	 ldr r2,.L12+4
+ 102 006e FB68     	 ldr r3,[r7,#12]
+ 103 0070 22F81310 	 strh r1,[r2,r3,lsl#1]
+  20:../CAN.c      **** 			 Speeds_int16_r[i] = (data_r[i * 2 + 1] << 8) | data_r[i * 2];
+ 104              	 .loc 1 20 0 discriminator 3
+ 105 0074 FB68     	 ldr r3,[r7,#12]
+ 106 0076 0133     	 adds r3,r3,#1
+ 107 0078 FB60     	 str r3,[r7,#12]
+ 108              	.L4:
+  20:../CAN.c      **** 			 Speeds_int16_r[i] = (data_r[i * 2 + 1] << 8) | data_r[i * 2];
+ 109              	 .loc 1 20 0 is_stmt 0 discriminator 1
+ 110 007a FB68     	 ldr r3,[r7,#12]
+ 111 007c 032B     	 cmp r3,#3
+ 112 007e E1DD     	 ble .L5
+  22:../CAN.c      **** 			 }
+  23:../CAN.c      **** 
+  24:../CAN.c      **** 		CAN_speed_ref = (float)Speeds_int16_r[MOTOR_ON_ROVER] / 1000; // converting back from mm/s to m/s
+ 113              	 .loc 1 24 0 is_stmt 1
+ 114 0080 1A4B     	 ldr r3,.L12+4
+ 115 0082 1B88     	 ldrh r3,[r3]
+ 116 0084 1BB2     	 sxth r3,r3
+ 117 0086 07EE903A 	 fmsr s15,r3
+ 118 008a F8EEE77A 	 fsitos s15,s15
+ 119 008e 9FED187A 	 flds s14,.L12+8
+ 120 0092 C7EE877A 	 fdivs s15,s15,s14
+ 121 0096 174B     	 ldr r3,.L12+12
+ 122 0098 C3ED007A 	 fsts s15,[r3]
+  25:../CAN.c      **** 
+  26:../CAN.c      **** 		if(MOTOR_NUM == 6)CAN_speed_ref = -CAN_speed_ref; // exeption for motor 6
+  27:../CAN.c      **** 
+  28:../CAN.c      **** 		if(CAN_speed_ref > MAX_Speed_CAN) CAN_speed_ref = MAX_Speed_CAN;
+ 123              	 .loc 1 28 0
+ 124 009c 154B     	 ldr r3,.L12+12
+ 125 009e D3ED007A 	 flds s15,[r3]
+ 126 00a2 B0EE007A 	 fconsts s14,#0
+ 127 00a6 F4EEC77A 	 fcmpes s15,s14
+ 128 00aa F1EE10FA 	 fmstat
+ 129 00ae 03DD     	 ble .L6
+ 130              	 .loc 1 28 0 is_stmt 0 discriminator 1
+ 131 00b0 104B     	 ldr r3,.L12+12
+ 132 00b2 4FF08042 	 mov r2,#1073741824
+ 133 00b6 1A60     	 str r2,[r3]
+ 134              	.L6:
+  29:../CAN.c      **** 		if(CAN_speed_ref < -MAX_Speed_CAN) CAN_speed_ref = -MAX_Speed_CAN;
+ 135              	 .loc 1 29 0 is_stmt 1
+ 136 00b8 0E4B     	 ldr r3,.L12+12
+ 137 00ba D3ED007A 	 flds s15,[r3]
+ 138 00be B8EE007A 	 fconsts s14,#128
+ 139 00c2 F4EEC77A 	 fcmpes s15,s14
+ 140 00c6 F1EE10FA 	 fmstat
+ 141 00ca 03D5     	 bpl .L8
+ 142              	 .loc 1 29 0 is_stmt 0 discriminator 1
+ 143 00cc 094B     	 ldr r3,.L12+12
+ 144 00ce 4FF04042 	 mov r2,#-1073741824
+ 145 00d2 1A60     	 str r2,[r3]
+ 146              	.L8:
+  30:../CAN.c      **** 
+  31:../CAN.c      **** 		CAN_new_meassage = 1;
+ 147              	 .loc 1 31 0 is_stmt 1
+ 148 00d4 084B     	 ldr r3,.L12+16
+ 149 00d6 0122     	 movs r2,#1
+ 150 00d8 1A70     	 strb r2,[r3]
+  32:../CAN.c      **** 		CAN_no_com_counter = 0;
+ 151              	 .loc 1 32 0
+ 152 00da 084B     	 ldr r3,.L12+20
+ 153 00dc 0022     	 movs r2,#0
+ 154 00de 1A70     	 strb r2,[r3]
+  33:../CAN.c      **** }
+ 155              	 .loc 1 33 0
+ 156 00e0 1037     	 adds r7,r7,#16
+ 157              	.LCFI3:
+ 158              	 .cfi_def_cfa_offset 8
+ 159 00e2 BD46     	 mov sp,r7
+ 160              	.LCFI4:
+ 161              	 .cfi_def_cfa_register 13
+ 162              	 
+ 163 00e4 80BD     	 pop {r7,pc}
+ 164              	.L13:
+ 165 00e6 00BF     	 .align 2
+ 166              	.L12:
+ 167 00e8 00000000 	 .word CAN_NODE_0
+ 168 00ec 00000000 	 .word Speeds_int16_r
+ 169 00f0 00007A44 	 .word 1148846080
+ 170 00f4 00000000 	 .word CAN_speed_ref
+ 171 00f8 00000000 	 .word CAN_new_meassage
+ 172 00fc 00000000 	 .word CAN_no_com_counter
+ 173              	 .cfi_endproc
+ 174              	.LFE552:
+ 176              	 .section .text.CAN0_0_IRQHandler,"ax",%progbits
+ 177              	 .align 2
+ 178              	 .global CAN0_0_IRQHandler
+ 179              	 .thumb
+ 180              	 .thumb_func
+ 182              	CAN0_0_IRQHandler:
+ 183              	.LFB553:
+  34:../CAN.c      **** 
+  35:../CAN.c      **** //CAN RX reste distance
+  36:../CAN.c      **** void CAN_RX_MO7_ISR(void){
+ 184              	 .loc 1 36 0
+ 185              	 .cfi_startproc
+ 186              	 
+ 187              	 
+ 188 0000 80B5     	 push {r7,lr}
+ 189              	.LCFI5:
+ 190              	 .cfi_def_cfa_offset 8
+ 191              	 .cfi_offset 7,-8
+ 192              	 .cfi_offset 14,-4
+ 193 0002 84B0     	 sub sp,sp,#16
+ 194              	.LCFI6:
+ 195              	 .cfi_def_cfa_offset 24
+ 196 0004 00AF     	 add r7,sp,#0
+ 197              	.LCFI7:
+ 198              	 .cfi_def_cfa_register 7
+  37:../CAN.c      **** 	XMC_CAN_MO_t* lmsgobjct_ptr = CAN_NODE_0.lmobj_ptr[6]->mo_ptr;
+ 199              	 .loc 1 37 0
+ 200 0006 124B     	 ldr r3,.L18
+ 201 0008 5B6A     	 ldr r3,[r3,#36]
+ 202 000a 1B68     	 ldr r3,[r3]
+ 203 000c BB60     	 str r3,[r7,#8]
+  38:../CAN.c      **** 	CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[6]); // reset for incremental encoder
+ 204              	 .loc 1 38 0
+ 205 000e 104B     	 ldr r3,.L18
+ 206 0010 5B6A     	 ldr r3,[r3,#36]
+ 207 0012 1846     	 mov r0,r3
+ 208 0014 FFF7FEFF 	 bl CAN_NODE_MO_Receive
+  39:../CAN.c      **** 
+  40:../CAN.c      **** 	uint8_t data_r[4];
+  41:../CAN.c      **** 	 int i;
+  42:../CAN.c      **** 	 for(i = 0 ; i < 4 ; i ++){
+ 209              	 .loc 1 42 0
+ 210 0018 0023     	 movs r3,#0
+ 211 001a FB60     	 str r3,[r7,#12]
+ 212 001c 0CE0     	 b .L15
+ 213              	.L16:
+  43:../CAN.c      **** 		 data_r[i] = lmsgobjct_ptr->can_data_byte[i];
+ 214              	 .loc 1 43 0 discriminator 3
+ 215 001e BA68     	 ldr r2,[r7,#8]
+ 216 0020 FB68     	 ldr r3,[r7,#12]
+ 217 0022 1344     	 add r3,r3,r2
+ 218 0024 1033     	 adds r3,r3,#16
+ 219 0026 1978     	 ldrb r1,[r3]
+ 220 0028 3A1D     	 adds r2,r7,#4
+ 221 002a FB68     	 ldr r3,[r7,#12]
+ 222 002c 1344     	 add r3,r3,r2
+ 223 002e 0A46     	 mov r2,r1
+ 224 0030 1A70     	 strb r2,[r3]
+  42:../CAN.c      **** 		 data_r[i] = lmsgobjct_ptr->can_data_byte[i];
+ 225              	 .loc 1 42 0 discriminator 3
+ 226 0032 FB68     	 ldr r3,[r7,#12]
+ 227 0034 0133     	 adds r3,r3,#1
+ 228 0036 FB60     	 str r3,[r7,#12]
+ 229              	.L15:
+  42:../CAN.c      **** 		 data_r[i] = lmsgobjct_ptr->can_data_byte[i];
+ 230              	 .loc 1 42 0 is_stmt 0 discriminator 1
+ 231 0038 FB68     	 ldr r3,[r7,#12]
+ 232 003a 032B     	 cmp r3,#3
+ 233 003c EFDD     	 ble .L16
+  44:../CAN.c      **** 	 }
+  45:../CAN.c      **** 
+  46:../CAN.c      **** 	 if(data_r[MOTOR_ON_ROVER] == 1) distance_180deg_ele_count = 0;
+ 234              	 .loc 1 46 0 is_stmt 1
+ 235 003e 3B79     	 ldrb r3,[r7,#4]
+ 236 0040 012B     	 cmp r3,#1
+ 237 0042 02D1     	 bne .L14
+ 238              	 .loc 1 46 0 is_stmt 0 discriminator 1
+ 239 0044 034B     	 ldr r3,.L18+4
+ 240 0046 0022     	 movs r2,#0
+ 241 0048 1A60     	 str r2,[r3]
+ 242              	.L14:
+  47:../CAN.c      **** }
+ 243              	 .loc 1 47 0 is_stmt 1
+ 244 004a 1037     	 adds r7,r7,#16
+ 245              	.LCFI8:
+ 246              	 .cfi_def_cfa_offset 8
+ 247 004c BD46     	 mov sp,r7
+ 248              	.LCFI9:
+ 249              	 .cfi_def_cfa_register 13
+ 250              	 
+ 251 004e 80BD     	 pop {r7,pc}
+ 252              	.L19:
+ 253              	 .align 2
+ 254              	.L18:
+ 255 0050 00000000 	 .word CAN_NODE_0
+ 256 0054 00000000 	 .word distance_180deg_ele_count
+ 257              	 .cfi_endproc
+ 258              	.LFE553:
+ 260              	 .global __aeabi_f2d
+ 261              	 .global __aeabi_dmul
+ 262              	 .global __aeabi_ddiv
+ 263              	 .global __aeabi_d2f
+ 264              	 .global __aeabi_dadd
+ 265              	 .section .text.CCU43_0_IRQHandler,"ax",%progbits
+ 266              	 .align 2
+ 267              	 .global CCU43_0_IRQHandler
+ 268              	 .thumb
+ 269              	 .thumb_func
+ 271              	CCU43_0_IRQHandler:
+ 272              	.LFB554:
+  48:../CAN.c      **** 
+  49:../CAN.c      **** void CAN_TX_ISR(void){
+ 273              	 .loc 1 49 0
+ 274              	 .cfi_startproc
+ 275              	 
+ 276              	 
+ 277 0000 80B5     	 push {r7,lr}
+ 278              	.LCFI10:
+ 279              	 .cfi_def_cfa_offset 8
+ 280              	 .cfi_offset 7,-8
+ 281              	 .cfi_offset 14,-4
+ 282 0002 86B0     	 sub sp,sp,#24
+ 283              	.LCFI11:
+ 284              	 .cfi_def_cfa_offset 32
+ 285 0004 00AF     	 add r7,sp,#0
+ 286              	.LCFI12:
+ 287              	 .cfi_def_cfa_register 7
+  50:../CAN.c      **** 	int16_t Inverter_state[4] = {0};
+ 288              	 .loc 1 50 0
+ 289 0006 0023     	 movs r3,#0
+ 290 0008 FB60     	 str r3,[r7,#12]
+ 291 000a 0023     	 movs r3,#0
+ 292 000c 3B61     	 str r3,[r7,#16]
+  51:../CAN.c      **** 
+  52:../CAN.c      **** 	Inverter_state[0] = MOTOR_ON_ROVER; // for identification apart form CAN ID
+ 293              	 .loc 1 52 0
+ 294 000e 0023     	 movs r3,#0
+ 295 0010 BB81     	 strh r3,[r7,#12]
+  53:../CAN.c      **** 
+  54:../CAN.c      **** 	//if(CAN_no_com_counter > CAN_NO_COM_TH) Inverter_state[0] = 0;
+  55:../CAN.c      **** 	//else Inverter_state[1] = 1;
+  56:../CAN.c      **** 
+  57:../CAN.c      **** 
+  58:../CAN.c      **** 	Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
+ 296              	 .loc 1 58 0
+ 297 0012 4F4B     	 ldr r3,.L21+16
+ 298 0014 D3ED007A 	 flds s15,[r3]
+ 299 0018 9FED4E7A 	 flds s14,.L21+20
+ 300 001c 67EE877A 	 fmuls s15,s15,s14
+ 301 0020 FDEEE77A 	 ftosizs s15,s15
+ 302 0024 C7ED017A 	 fsts s15,[r7,#4]
+ 303 0028 BB88     	 ldrh r3,[r7,#4]
+ 304 002a 9BB2     	 uxth r3,r3
+ 305 002c FB81     	 strh r3,[r7,#14]
+  59:../CAN.c      **** 
+  60:../CAN.c      **** 	Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+ 306              	 .loc 1 60 0
+ 307 002e 4A4B     	 ldr r3,.L21+24
+ 308 0030 1B68     	 ldr r3,[r3]
+ 309 0032 1846     	 mov r0,r3
+ 310 0034 FFF7FEFF 	 bl __aeabi_f2d
+ 311 0038 0246     	 mov r2,r0
+ 312 003a 0B46     	 mov r3,r1
+ 313 003c 1046     	 mov r0,r2
+ 314 003e 1946     	 mov r1,r3
+ 315 0040 3FA3     	 adr r3,.L21
+ 316 0042 D3E90023 	 ldrd r2,[r3]
+ 317 0046 FFF7FEFF 	 bl __aeabi_dmul
+ 318 004a 0246     	 mov r2,r0
+ 319 004c 0B46     	 mov r3,r1
+ 320 004e 1046     	 mov r0,r2
+ 321 0050 1946     	 mov r1,r3
+ 322 0052 4FF00002 	 mov r2,#0
+ 323 0056 414B     	 ldr r3,.L21+28
+ 324 0058 FFF7FEFF 	 bl __aeabi_ddiv
+ 325 005c 0246     	 mov r2,r0
+ 326 005e 0B46     	 mov r3,r1
+ 327 0060 1046     	 mov r0,r2
+ 328 0062 1946     	 mov r1,r3
+ 329 0064 FFF7FEFF 	 bl __aeabi_d2f
+ 330 0068 0246     	 mov r2,r0
+ 331 006a 3D4B     	 ldr r3,.L21+32
+ 332 006c 1A60     	 str r2,[r3]
+  61:../CAN.c      **** 	if(MOTOR_NUM == 6) Speed_act = -Speed_act;
+  62:../CAN.c      **** 	Inverter_state[2] = Speed_act * 1000; // to mm/sconverstoion
+ 333              	 .loc 1 62 0
+ 334 006e 3C4B     	 ldr r3,.L21+32
+ 335 0070 D3ED007A 	 flds s15,[r3]
+ 336 0074 9FED3B7A 	 flds s14,.L21+36
+ 337 0078 67EE877A 	 fmuls s15,s15,s14
+ 338 007c FDEEE77A 	 ftosizs s15,s15
+ 339 0080 C7ED017A 	 fsts s15,[r7,#4]
+ 340 0084 BB88     	 ldrh r3,[r7,#4]
+ 341 0086 9BB2     	 uxth r3,r3
+ 342 0088 3B82     	 strh r3,[r7,#16]
+  63:../CAN.c      **** 
+  64:../CAN.c      **** 	distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
+ 343              	 .loc 1 64 0
+ 344 008a 374B     	 ldr r3,.L21+40
+ 345 008c 1B68     	 ldr r3,[r3]
+ 346 008e 07EE903A 	 fmsr s15,r3
+ 347 0092 F8EEE77A 	 fsitos s15,s15
+ 348 0096 B0EE007A 	 fconsts s14,#0
+ 349 009a C7EE877A 	 fdivs s15,s15,s14
+ 350 009e B2EE067A 	 fconsts s14,#38
+ 351 00a2 C7EE877A 	 fdivs s15,s15,s14
+ 352 00a6 17EE900A 	 fmrs r0,s15
+ 353 00aa FFF7FEFF 	 bl __aeabi_f2d
+ 354 00ae 0246     	 mov r2,r0
+ 355 00b0 0B46     	 mov r3,r1
+ 356 00b2 1046     	 mov r0,r2
+ 357 00b4 1946     	 mov r1,r3
+ 358 00b6 24A3     	 adr r3,.L21+8
+ 359 00b8 D3E90023 	 ldrd r2,[r3]
+ 360 00bc FFF7FEFF 	 bl __aeabi_dmul
+ 361 00c0 0246     	 mov r2,r0
+ 362 00c2 0B46     	 mov r3,r1
+ 363 00c4 1046     	 mov r0,r2
+ 364 00c6 1946     	 mov r1,r3
+ 365 00c8 FFF7FEFF 	 bl __aeabi_dadd
+ 366 00cc 0246     	 mov r2,r0
+ 367 00ce 0B46     	 mov r3,r1
+ 368 00d0 1046     	 mov r0,r2
+ 369 00d2 1946     	 mov r1,r3
+ 370 00d4 1AA3     	 adr r3,.L21
+ 371 00d6 D3E90023 	 ldrd r2,[r3]
+ 372 00da FFF7FEFF 	 bl __aeabi_dmul
+ 373 00de 0246     	 mov r2,r0
+ 374 00e0 0B46     	 mov r3,r1
+ 375 00e2 1046     	 mov r0,r2
+ 376 00e4 1946     	 mov r1,r3
+ 377 00e6 FFF7FEFF 	 bl __aeabi_d2f
+ 378 00ea 0246     	 mov r2,r0
+ 379 00ec 1F4B     	 ldr r3,.L21+44
+ 380 00ee 1A60     	 str r2,[r3]
+  65:../CAN.c      **** 	if(MOTOR_NUM == 6) distance = -distance;
+  66:../CAN.c      **** 	Inverter_state[3] = distance * 1000; // to mm
+ 381              	 .loc 1 66 0
+ 382 00f0 1E4B     	 ldr r3,.L21+44
+ 383 00f2 D3ED007A 	 flds s15,[r3]
+ 384 00f6 9FED1B7A 	 flds s14,.L21+36
+ 385 00fa 67EE877A 	 fmuls s15,s15,s14
+ 386 00fe FDEEE77A 	 ftosizs s15,s15
+ 387 0102 C7ED017A 	 fsts s15,[r7,#4]
+ 388 0106 BB88     	 ldrh r3,[r7,#4]
+ 389 0108 9BB2     	 uxth r3,r3
+ 390 010a 7B82     	 strh r3,[r7,#18]
+  67:../CAN.c      **** 
+  68:../CAN.c      **** 	uint8_t CAN_MO = MOTOR_ON_ROVER + 2;
+ 391              	 .loc 1 68 0
+ 392 010c 0223     	 movs r3,#2
+ 393 010e FB75     	 strb r3,[r7,#23]
+  69:../CAN.c      **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[CAN_MO], (uint8_t*)Inverter_state);
+ 394              	 .loc 1 69 0
+ 395 0110 FB7D     	 ldrb r3,[r7,#23]
+ 396 0112 174A     	 ldr r2,.L21+48
+ 397 0114 0233     	 adds r3,r3,#2
+ 398 0116 9B00     	 lsls r3,r3,#2
+ 399 0118 1344     	 add r3,r3,r2
+ 400 011a 5A68     	 ldr r2,[r3,#4]
+ 401 011c 07F10C03 	 add r3,r7,#12
+ 402 0120 1046     	 mov r0,r2
+ 403 0122 1946     	 mov r1,r3
+ 404 0124 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
+  70:../CAN.c      **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[CAN_MO]); //Transmit the data of message object1
+ 405              	 .loc 1 70 0
+ 406 0128 FB7D     	 ldrb r3,[r7,#23]
+ 407 012a 114A     	 ldr r2,.L21+48
+ 408 012c 0233     	 adds r3,r3,#2
+ 409 012e 9B00     	 lsls r3,r3,#2
+ 410 0130 1344     	 add r3,r3,r2
+ 411 0132 5B68     	 ldr r3,[r3,#4]
+ 412 0134 1846     	 mov r0,r3
+ 413 0136 FFF7FEFF 	 bl CAN_NODE_MO_Transmit
+  71:../CAN.c      **** }
+ 414              	 .loc 1 71 0
+ 415 013a 1837     	 adds r7,r7,#24
+ 416              	.LCFI13:
+ 417              	 .cfi_def_cfa_offset 8
+ 418 013c BD46     	 mov sp,r7
+ 419              	.LCFI14:
+ 420              	 .cfi_def_cfa_register 13
+ 421              	 
+ 422 013e 80BD     	 pop {r7,pc}
+ 423              	.L22:
+ 424              	 .align 3
+ 425              	.L21:
+ 426 0140 48E17A14 	 .word 343597384
+ 427 0144 AE47B13F 	 .word 1068582830
+ 428 0148 F1D4C853 	 .word 1405670641
+ 429 014c FB210940 	 .word 1074340347
+ 430 0150 00000000 	 .word V_DC_link
+ 431 0154 0000C842 	 .word 1120403456
+ 432 0158 00000000 	 .word omega_ele_rads
+ 433 015c 00002640 	 .word 1076232192
+ 434 0160 00000000 	 .word Speed_act
+ 435 0164 00007A44 	 .word 1148846080
+ 436 0168 00000000 	 .word distance_180deg_ele_count
+ 437 016c 00000000 	 .word distance
+ 438 0170 00000000 	 .word CAN_NODE_0
+ 439              	 .cfi_endproc
+ 440              	.LFE554:
+ 442 0174 AFF30080 	 .text
+ 443              	.Letext0:
+ 444              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 445              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 446              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 447              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_gpio.h"
+ 448              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 449              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_usic.h"
+ 450              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_can.h"
+ 451              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 452              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node.h"
+ 453              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
+ 454              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/system_XMC4500.h"
+ 455              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node_extern.h"
+ 456              	 .file 14 "../Globals.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 CAN.c
+                            *COM*:00000008 Speeds_int16_r
+    {standard input}:21     .text.CAN0_1_IRQHandler:00000000 $t
+    {standard input}:26     .text.CAN0_1_IRQHandler:00000000 CAN0_1_IRQHandler
+    {standard input}:167    .text.CAN0_1_IRQHandler:000000e8 $d
+    {standard input}:177    .text.CAN0_0_IRQHandler:00000000 $t
+    {standard input}:182    .text.CAN0_0_IRQHandler:00000000 CAN0_0_IRQHandler
+    {standard input}:255    .text.CAN0_0_IRQHandler:00000050 $d
+    {standard input}:266    .text.CCU43_0_IRQHandler:00000000 $t
+    {standard input}:271    .text.CCU43_0_IRQHandler:00000000 CCU43_0_IRQHandler
+    {standard input}:426    .text.CCU43_0_IRQHandler:00000140 $d
+                     .debug_frame:00000010 $d
+    {standard input}:442    .text.CCU43_0_IRQHandler:00000174 $t
+
+UNDEFINED SYMBOLS
+CAN_NODE_MO_Receive
+CAN_NODE_0
+CAN_speed_ref
+CAN_new_meassage
+CAN_no_com_counter
+distance_180deg_ele_count
+__aeabi_f2d
+__aeabi_dmul
+__aeabi_ddiv
+__aeabi_d2f
+__aeabi_dadd
+CAN_NODE_MO_UpdateData
+CAN_NODE_MO_Transmit
+V_DC_link
+omega_ele_rads
+Speed_act
+distance

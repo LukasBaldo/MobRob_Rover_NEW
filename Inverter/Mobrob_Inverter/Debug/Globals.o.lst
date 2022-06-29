@@ -1,0 +1,66 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "Globals.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .comm V_DC_link,4,4
+  20              	 .comm omega_ele_rads,4,4
+  21              	 .comm CAN_speed_ref,4,4
+  22              	 .global CAN_new_meassage
+  23              	 .section .bss.CAN_new_meassage,"aw",%nobits
+  26              	CAN_new_meassage:
+  27 0000 00       	 .space 1
+  28              	 .global CAN_no_com_counter
+  29              	 .section .bss.CAN_no_com_counter,"aw",%nobits
+  32              	CAN_no_com_counter:
+  33 0000 00       	 .space 1
+  34              	 .global distance_180deg_ele_count
+  35              	 .section .bss.distance_180deg_ele_count,"aw",%nobits
+  36              	 .align 2
+  39              	distance_180deg_ele_count:
+  40 0000 00000000 	 .space 4
+  41              	 .global Speed_act
+  42              	 .section .bss.Speed_act,"aw",%nobits
+  43              	 .align 2
+  46              	Speed_act:
+  47 0000 00000000 	 .space 4
+  48              	 .global distance
+  49              	 .section .bss.distance,"aw",%nobits
+  50              	 .align 2
+  53              	distance:
+  54 0000 00000000 	 .space 4
+  55              	 .text
+  56              	.Letext0:
+  57              	 .file 1 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+  58              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+  59              	 .file 3 "../Globals.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 Globals.c
+                            *COM*:00000004 V_DC_link
+                            *COM*:00000004 omega_ele_rads
+                            *COM*:00000004 CAN_speed_ref
+    {standard input}:26     .bss.CAN_new_meassage:00000000 CAN_new_meassage
+    {standard input}:27     .bss.CAN_new_meassage:00000000 $d
+    {standard input}:32     .bss.CAN_no_com_counter:00000000 CAN_no_com_counter
+    {standard input}:33     .bss.CAN_no_com_counter:00000000 $d
+    {standard input}:39     .bss.distance_180deg_ele_count:00000000 distance_180deg_ele_count
+    {standard input}:36     .bss.distance_180deg_ele_count:00000000 $d
+    {standard input}:46     .bss.Speed_act:00000000 Speed_act
+    {standard input}:43     .bss.Speed_act:00000000 $d
+    {standard input}:53     .bss.distance:00000000 distance
+    {standard input}:50     .bss.distance:00000000 $d
+
+NO UNDEFINED SYMBOLS
