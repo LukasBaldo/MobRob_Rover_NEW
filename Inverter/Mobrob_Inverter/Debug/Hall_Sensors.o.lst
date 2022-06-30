@@ -1,0 +1,1545 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "Hall_Sensors.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .section .text.XMC_GPIO_GetInput,"ax",%progbits
+  20              	 .align 2
+  21              	 .thumb
+  22              	 .thumb_func
+  24              	XMC_GPIO_GetInput:
+  25              	.LFB140:
+  26              	 .file 1 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_gpio.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+   2:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @file xmc_gpio.h
+   3:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @date 2015-06-20
+   4:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   5:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @cond
+   6:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+   7:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMClib v2.1.20 - XMC Peripheral Driver Library 
+   8:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   9:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Copyright (c) 2015-2018, Infineon Technologies AG
+  10:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * All rights reserved.                        
+  11:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                             
+  12:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  13:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * following conditions are met:   
+  14:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                                                              
+  15:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Redistributions of source code must retain the above copyright notice, this list of conditions a
+  16:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * disclaimer.                        
+  17:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 
+  18:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Redistributions in binary form must reproduce the above copyright notice, this list of condition
+  19:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * disclaimer in the documentation and/or other materials provided with the distribution.          
+  20:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 
+  21:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Neither the name of the copyright holders nor the names of its contributors may be used to endor
+  22:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * products derived from this software without specific prior written permission.                  
+  23:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                                                              
+  24:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  25:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  26:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  27:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  28:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  29:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  30:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                            
+  31:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                                                              
+  32:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  33:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Infineon Technologies AG dave@infineon.com).                                                    
+  34:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  35:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  36:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Change History
+  37:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * --------------
+  38:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  39:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-02-20:
+  40:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Initial draft<br>
+  41:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Documentation improved <br>
+  42:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *      
+  43:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-06-20:
+  44:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Removed version macros and declaration of GetDriverVersion API
+  45:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  46:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @endcond
+  47:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  48:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  49:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  50:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #ifndef XMC_GPIO_H
+  51:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_H
+  52:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  53:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  54:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * HEADER FILES
+  55:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  56:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  57:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc_common.h"
+  58:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  59:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  60:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup XMClib XMC Peripheral Library
+  61:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @{
+  62:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  63:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  64:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  65:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup GPIO
+  66:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @brief General Purpose Input Output (GPIO) driver for the XMC microcontroller family.
+  67:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  68:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * GPIO driver provide a generic and very flexible software interface for all standard digital I/O 
+  69:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Each port slice has individual interfaces for the operation as General Purpose I/O and it furthe
+  70:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * connectivity to the on-chip periphery and the control for the pad characteristics. 
+  71:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  72:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * The driver is divided into Input and Output mode.
+  73:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  74:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Input mode features:
+  75:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Configuration structure XMC_GPIO_CONFIG_t and initialization function XMC_GPIO_Init()
+  76:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of weak pull-up or pull-down device. Configuration structure XMC_GPIO_MO
+  77:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+  78:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of input hysteresis. XMC_GPIO_SetInputHysteresis()
+  79:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  80:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  81:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 
+  82:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Output mode features:
+  83:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of push pull/open drain and Alternate output. Configuration structure XM
+  84:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+  85:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of pad driver strength. Configuration structure XMC_GPIO_OUTPUT_STRENGTH
+  86:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  87:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  88:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of initial output level. Configuration structure XMC_GPIO_OUTPUT_LEVEL_t
+  89:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  90:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *@{
+  91:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  92:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  
+  93:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  94:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * MACROS
+  95:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  96:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  97:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Pos PORT0_IOCR0_PC0_Pos
+  98:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Msk PORT0_IOCR0_PC0_Msk
+  99:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 100:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Size 				(8U)
+ 101:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 											
+ 102:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 103:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_OUTPUT_LEVEL(level) ((level == XMC_GPIO_OUTPUT_LEVEL_LOW) || \
+ 104:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                             (level == XMC_GPIO_OUTPUT_LEVEL_HIGH))
+ 105:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                             
+ 106:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_HWCTRL(hwctrl) ((hwctrl == XMC_GPIO_HWCTRL_DISABLED) || \
+ 107:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL1) || \
+ 108:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL2))                    
+ 109:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                             
+ 110:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 111:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * ENUMS
+ 112:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 113:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 114:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 115:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 116:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines output level of a pin. Use type \a XMC_GPIO_OUTPUT_LEVEL_t for this enum.
+ 117:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 118:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_OUTPUT_LEVEL
+ 119:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 120:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_LOW  = 0x10000U, /**<  Reset bit */
+ 121:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_HIGH = 0x1U, 	/**< Set bit  */
+ 122:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_OUTPUT_LEVEL_t;
+ 123:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 124:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 125:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines direct hardware control characteristics of the pin . Use type \a XMC_GPIO_HWCTRL_t for t
+ 126:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 127:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_HWCTRL
+ 128:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 129:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_DISABLED     = 0x0U, /**<  Software control only */
+ 130:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL1  = 0x1U, /**<  HWI0/HWO0 control path can override the software confi
+ 131:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL2  = 0x2U  /**<  HWI1/HWO1 control path can override the software confi
+ 132:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_HWCTRL_t;
+ 133:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 134:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 135:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * DEVICE FAMILY EXTENSIONS
+ 136:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 137:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 138:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  #if UC_FAMILY == XMC1
+ 139:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc1_gpio.h"
+ 140:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #elif UC_FAMILY == XMC4
+ 141:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc4_gpio.h"
+ 142:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #else
+ 143:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #error "xmc_gpio.h: family device not supported"
+ 144:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 145:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 146:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 147:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * API PROTOTYPES
+ 148:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 149:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 150:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #ifdef __cplusplus
+ 151:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** extern "C" {
+ 152:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 153:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 154:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 155:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 156:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	  Constant pointer pointing to GPIO port, to access port registers like Pn_OUT,Pn_O
+ 157:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	  Port pin number.
+ 158:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  config GPIO configuration data structure. Refer data structure @ref XMC_GPIO_CONFIG_t fo
+ 159:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 160:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 161:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 162:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 163:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+ 164:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,hysteresis, push pull
+ 165:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for a selected \a po
+ 166:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \a config provides selected I/O settings. It configures hardware registers Pn_IOCR,Pn_OUT, Pn_OM
+ 167:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 168:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+ 169:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,push pull /open drain
+ 170:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for selected \a port
+ 171:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * It configures hardware registers Pn_IOCR,Pn_OUT,Pn_OMR,Pn_PDISC and Pn_PDR.\n
+ 172:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 173:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 174:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 175:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 176:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 177:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 178:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * This API is called in definition of DAVE_init by code generation and therefore should not be exp
+ 179:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * for the normal operation. Use other APIs only after DAVE_init is called successfully (returns DA
+ 180:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 181:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 182:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 183:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 184:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  
+ 185:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_Init(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_CONFIG_t *const c
+ 186:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  
+ 187:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 188:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 189:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	Constant pointer pointing to GPIO port, to access hardware register Pn_IOCR.
+ 190:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 191:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  mode input / output functionality selection. Refer @ref XMC_GPIO_MODE_t for valid values
+ 192:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 193:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 194:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 195:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 196:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets digital input and output driver functionality and characteristics of a GPIO port pin. It co
+ 197:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * registers Pn_IOCR. \a mode is initially configured during initialization in XMC_GPIO_Init(). Cal
+ 198:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * the port direction functionality as needed later in the program.
+ 199:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 200:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 201:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 202:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 203:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 204:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 205:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_SetMode(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_MODE_t mode);
+ 206:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 207:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 208:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 209:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 210:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	 Constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 211:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	 Port pin number.
+ 212:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  level output level selection. Refer @ref XMC_GPIO_OUTPUT_LEVEL_t for valid values.
+ 213:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 214:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 215:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 216:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 217:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Set port pin output level to high or low.It configures hardware registers Pn_OMR.\a level is ini
+ 218:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * configured during initialization in XMC_GPIO_Init(). Call this API to alter output level as need
+ 219:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 220:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 221:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputHigh(), XMC_GPIO_SetOutputLow().
+ 222:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 223:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 224:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 225:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 226:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 227:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 228:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 229:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT_t *const port, const uint8_t pin, const 
+ 230:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 231:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 232:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid output level", XMC_GPIO_CHECK_OUTPUT_LEVEL(level));
+ 233:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   
+ 234:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)level << pin;
+ 235:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 236:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 237:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 238:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 239:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 240:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 241:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 242:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 243:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 244:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 245:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  Sets port pin output to high. It configures hardware registers Pn_OMR.
+ 246:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 247:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  \par<b>Related APIs:</b><BR>
+ 248:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputLow()
+ 249:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 250:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 251:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().\n
+ 252:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 253:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 254:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 255:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 256:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputHigh(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 257:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 258:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputHigh: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 259:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 260:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)0x1U << pin;
+ 261:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 262:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 263:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 264:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 265:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 266:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	port pin number.
+ 267:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 268:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return  None
+ 269:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 270:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Description:</b><br>
+ 271:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets port pin output to low. It configures hardware registers Pn_OMR.\n
+ 272:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 273:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>>
+ 274:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMC_GPIO_SetOutputHigh()
+ 275:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 276:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Note:</b><br>
+ 277:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 278:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 279:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 280:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 281:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 282:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLow(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 283:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 284:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLow: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 285:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 286:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = 0x10000U << pin;
+ 287:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 288:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 289:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 290:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 291:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param port constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 292:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param pin  port pin number.
+ 293:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 294:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 295:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 296:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 297:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Configures port pin output to Toggle. It configures hardware registers Pn_OMR.
+ 298:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 299:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 300:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMC_GPIO_SetOutputHigh(), XMC_GPIO_SetOutputLow().
+ 301:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 302:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 303:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode(). Regis
+ 304:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * and does not contain any flip-flop. A read action delivers the value of 0.
+ 305:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 306:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 307:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 308:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_ToggleOutput(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 309:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 310:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_ToggleOutput: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 311:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 312:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = 0x10001U << pin;
+ 313:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 314:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 315:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 316:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 317:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param port constant pointer pointing to GPIO port, to access hardware register Pn_IN.
+ 318:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param pin  Port pin number.
+ 319:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 320:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return uint32_t pin logic level status.
+ 321:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 322:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Description:</b><br>
+ 323:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Reads the Pn_IN register and returns the current logical value at the GPIO pin.
+ 324:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 325:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 326:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * None
+ 327:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 328:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 329:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to input mode using XMC_GPIO_SetMode().
+ 330:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 331:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 332:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 333:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE uint32_t XMC_GPIO_GetInput(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 334:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  27              	 .loc 1 334 0
+  28              	 .cfi_startproc
+  29              	 
+  30              	 
+  31              	 
+  32 0000 80B4     	 push {r7}
+  33              	.LCFI0:
+  34              	 .cfi_def_cfa_offset 4
+  35              	 .cfi_offset 7,-4
+  36 0002 83B0     	 sub sp,sp,#12
+  37              	.LCFI1:
+  38              	 .cfi_def_cfa_offset 16
+  39 0004 00AF     	 add r7,sp,#0
+  40              	.LCFI2:
+  41              	 .cfi_def_cfa_register 7
+  42 0006 7860     	 str r0,[r7,#4]
+  43 0008 0B46     	 mov r3,r1
+  44 000a FB70     	 strb r3,[r7,#3]
+ 335:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_GetInput: Invalid port", XMC_GPIO_CHECK_PORT(port));
+ 336:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 337:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   return (((port->IN) >> pin) & 0x1U);
+  45              	 .loc 1 337 0
+  46 000c 7B68     	 ldr r3,[r7,#4]
+  47 000e 5A6A     	 ldr r2,[r3,#36]
+  48 0010 FB78     	 ldrb r3,[r7,#3]
+  49 0012 22FA03F3 	 lsr r3,r2,r3
+  50 0016 03F00103 	 and r3,r3,#1
+ 338:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  51              	 .loc 1 338 0
+  52 001a 1846     	 mov r0,r3
+  53 001c 0C37     	 adds r7,r7,#12
+  54              	.LCFI3:
+  55              	 .cfi_def_cfa_offset 4
+  56 001e BD46     	 mov sp,r7
+  57              	.LCFI4:
+  58              	 .cfi_def_cfa_register 13
+  59              	 
+  60 0020 5DF8047B 	 ldr r7,[sp],#4
+  61              	.LCFI5:
+  62              	 .cfi_restore 7
+  63              	 .cfi_def_cfa_offset 0
+  64 0024 7047     	 bx lr
+  65              	 .cfi_endproc
+  66              	.LFE140:
+  68 0026 00BF     	 .section .text.PIN_INTERRUPT_GetPinValue,"ax",%progbits
+  69              	 .align 2
+  70              	 .thumb
+  71              	 .thumb_func
+  73              	PIN_INTERRUPT_GetPinValue:
+  74              	.LFB308:
+  75              	 .file 2 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT/pin_interrupt.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+   2:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @file pin_interrupt.h
+   3:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @date 2016-03-02
+   4:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+   5:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * NOTE:
+   6:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * This file is generated by DAVE. Any manual modification done to this file will be lost when the 
+   7:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+   8:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @cond
+   9:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  10:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * PIN_INTERRUPT v4.0.2 - The PIN_INTERRUPT APP invokes user interrupt handler in a response to ris
+  11:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                        edge event signal on a pin.
+  12:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+  13:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * Copyright (c) 2016, Infineon Technologies AG
+  14:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * All rights reserved.                        
+  15:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                                             
+  16:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  17:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * following conditions are met:   
+  18:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                                                                              
+  19:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  20:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   disclaimer.                        
+  21:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * 
+  22:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  23:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   disclaimer in the documentation and/or other materials provided with the distribution.     
+  24:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                         
+  25:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  26:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   products derived from this software without specific prior written permission. 
+  27:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                                             
+  28:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  29:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  30:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  31:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  32:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  33:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  34:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.    
+  35:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *                                                                              
+  36:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  37:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * with Infineon Technologies AG (dave@infineon.com).         
+  38:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  39:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+  40:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * Change History
+  41:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * --------------
+  42:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * 2015-12-03:
+  43:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     - Initial version for DAVEv4. <BR>
+  44:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcond 
+  45:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+  46:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  47:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  48:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #ifndef PIN_INTERRUPT_H
+  49:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #define PIN_INTERRUPT_H
+  50:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  51:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**************************************************************************************************
+  52:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * HEADER FILES                                                                                    
+  53:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  54:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #if (UC_SERIES == XMC14)
+  55:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include <xmc_scu.h>
+  56:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+  57:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include <xmc_gpio.h>
+  58:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include <xmc_eru.h>
+  59:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include <DAVE_Common.h>
+  60:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #include "pin_interrupt_conf.h"
+  61:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  /*************************************************************************************************
+  62:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * MACROS                                                                                          
+  63:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  64:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #if (!((XMC_LIB_MAJOR_VERSION == 2U) && \
+  65:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****       (XMC_LIB_MINOR_VERSION >= 1U) && \
+  66:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****       (XMC_LIB_PATCH_VERSION >= 6U)))
+  67:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #error "PIN_INTERRUPT requires XMC Peripheral Library v2.1.6 or higher"
+  68:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+  69:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  70:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+  71:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @ingroup App_publicparam
+  72:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @{
+  73:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  74:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+  75:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  @brief Initialization data structure for PIN_INTERRUPT APP
+  76:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  77:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  78:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+  79:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @}
+  80:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  81:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  82:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  /*************************************************************************************************
+  83:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * ENUMS
+  84:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+  85:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+  86:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @ingroup PIN_INTERRUPT_enumerations
+  87:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @{
+  88:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  89:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /*
+  90:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief enumeration for PIN_INTERRUPT APP
+  91:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+  92:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** typedef enum PIN_INTERRUPT_STATUS
+  93:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+  94:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_STATUS_SUCCESS = 0U,        /**<APP initialization is success */
+  95:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_STATUS_FAILURE = 1U         /**<APP initialization is failure */
+  96:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** } PIN_INTERRUPT_STATUS_t;
+  97:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  98:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+  99:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 100:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * Defines trigger edge for the event generation by ETLx (Event Trigger Logic, x = [0 to 3]) unit, 
+ 101:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * from ERSx(Event request source, x = [0 to 3]) unit.
+ 102:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 103:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** typedef enum PIN_INTERRUPT_EDGE
+ 104:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+ 105:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_EDGE_NONE = 0U, /**< no event enabled */
+ 106:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_EDGE_RISING = 1U,   /**< detection of rising edge generates the event */
+ 107:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_EDGE_FALLING = 2U,  /**< detection of falling edge generates the event */
+ 108:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   PIN_INTERRUPT_EDGE_BOTH = 3U      /**< detection of either edges generates the event */
+ 109:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** } PIN_INTERRUPT_EDGE_t;
+ 110:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 111:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @}
+ 112:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 113:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 114:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**************************************************************************************************
+ 115:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * DATA STRUCTURES
+ 116:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** ***************************************************************************************************
+ 117:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 118:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @ingroup PIN_INTERRUPT_datastructures
+ 119:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @{
+ 120:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 121:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 122:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 123:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Configuration structure for PIN_INTERRUPT APP
+ 124:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 125:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** typedef struct PIN_INTERRUPT
+ 126:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+ 127:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ERU_t *eru;  /**< Mapped ERU module */
+ 128:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_GPIO_PORT_t *port;  /**< Mapped port number */
+ 129:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_GPIO_CONFIG_t gpio_config;   /**< Initializes the input pin characteristics */
+ 130:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ERU_ETL_CONFIG_t etl_config;  /**< reference to ERUx_ETLy (x = [0..1], y = [0..4])
+ 131:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****                                                       module configuration */
+ 132:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #if (UC_SERIES == XMC14)
+ 133:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_SCU_IRQCTRL_t irqctrl;  /**< selects the interrupt source for a NVIC interrupt node*/
+ 134:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+ 135:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   IRQn_Type IRQn;       /**< Mapped NVIC Node */
+ 136:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t irq_priority; 	  /**< Node Interrupt Priority */
+ 137:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #if (UC_FAMILY == XMC4)
+ 138:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t irq_subpriority;  /**< Node Interrupt SubPriority only valid for XMC4x */
+ 139:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+ 140:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t etl; /*< ETLx channel (x = [0..3])*/
+ 141:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t ogu; /*< OGUy channel (y = [0..3])*/
+ 142:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   uint8_t pin; /*< Mapped pin number */
+ 143:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   bool enable_at_init;  /**< Interrupt enable for Node at initialization*/
+ 144:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** } PIN_INTERRUPT_t;
+ 145:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 146:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @}
+ 147:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 148:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 149:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #ifdef __cplusplus
+ 150:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** extern "C" {
+ 151:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** #endif
+ 152:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**************************************************************************************************
+ 153:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * API Prototypes
+ 154:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  **************************************************************************************************
+ 155:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 156:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @ingroup PIN_INTERRUPT_apidoc
+ 157:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @{
+ 158:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 159:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 160:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Get PIN_INTERRUPT APP version
+ 161:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @return DAVE_APP_VERSION_t APP version information (major, minor and patch number)
+ 162:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 163:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * \par<b>Description: </b><br>
+ 164:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * The function can be used to check application software compatibility with a
+ 165:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * specific version of the APP.
+ 166:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 167:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * \par<b>Example Usage:</b><br>
+ 168:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 169:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @code
+ 170:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * #include <DAVE.h>
+ 171:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 172:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * int main(void) {
+ 173:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   DAVE_STATUS_t init_status;
+ 174:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   DAVE_APP_VERSION_t version;
+ 175:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 176:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   // Initialize PIN_INTERRUPT APP:
+ 177:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   // PIN_INTERRUPT_Init() is called from within DAVE_Init().
+ 178:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   init_status = DAVE_Init();
+ 179:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 180:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   if (DAVE_STATUS_SUCCESS == init_status)
+ 181:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   {
+ 182:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     version = PIN_INTERRUPT_GetAppVersion();
+ 183:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     if (version.major != 4U) {
+ 184:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *       // Probably, not the right version.
+ 185:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     }
+ 186:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   }
+ 187:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 188:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     // More code here
+ 189:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     while(1)
+ 190:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     {
+ 191:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     }
+ 192:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   return (1);
+ 193:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * }
+ 194:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcode<BR>
+ 195:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 196:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** DAVE_APP_VERSION_t PIN_INTERRUPT_GetAppVersion(void);
+ 197:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 198:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 199:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Initializes a PIN_INTERRUPT APP instance
+ 200:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @param handle Pointer pointing to APP data structure. Refer @ref PIN_INTERRUPT_t for details.
+ 201:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @return
+ 202:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *            PIN_INTERRUPT_STATUS_SUCCESS             : if initialization is successful\n
+ 203:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *            PIN_INTERRUPT_STATUS_FAILURE             : if initialization is failed
+ 204:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 205:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * \par<b>Description:</b><br>
+ 206:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * PIN_INTERRUPT_Init API is called during initialization of DAVE APPS. This API Initializes input 
+ 207:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * ERU and OGU hardware module initialization, Configures NVIC node and its priority in order to ge
+ 208:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 209:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * \par<b>Example Usage:</b><br>
+ 210:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 211:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @code
+ 212:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * #include <DAVE.h>
+ 213:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 214:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * int main(void)
+ 215:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * {
+ 216:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   DAVE_STATUS_t status;
+ 217:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 218:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   status = DAVE_Init();  //  PIN_INTERRUPT_Init API is called during initialization of DAVE APPS
+ 219:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   if(DAVE_STATUS_SUCCESS == status)
+ 220:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   {
+ 221:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    // user code
+ 222:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 223:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     while(1)
+ 224:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     {
+ 225:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 226:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *     }
+ 227:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   }
+ 228:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   return (1);
+ 229:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * }
+ 230:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 231:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcode<BR>
+ 232:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 233:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** PIN_INTERRUPT_STATUS_t PIN_INTERRUPT_Init(const PIN_INTERRUPT_t *const handle);
+ 234:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 235:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 236:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Enables the IRQ.
+ 237:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @param handle Pointer pointing to APP data structure. Refer @ref PIN_INTERRUPT_t for details.
+ 238:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @return None
+ 239:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * <BR><P ALIGN="LEFT"><B>Example:</B>
+ 240:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 241:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @code
+ 242:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  #include <DAVE.h>
+ 243:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 244:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  int main(void)
+ 245:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  {
+ 246:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    DAVE_STATUS_t status;
+ 247:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 248:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   status = DAVE_Init();  //  PIN_INTERRUPT_Init API is called during initialization of DAVE APPS
+ 249:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   if(DAVE_STATUS_SUCCESS == status)
+ 250:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   {
+ 251:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    // user code
+ 252:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 253:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    PIN_INTERRUPT_Enable(&PIN_INTERRUPT_0);
+ 254:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    while(1)
+ 255:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    {}
+ 256:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   }
+ 257:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 258:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    return (1);
+ 259:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  }
+ 260:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcode<BR> </p>
+ 261:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 262:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** __STATIC_INLINE void PIN_INTERRUPT_Enable(const PIN_INTERRUPT_t *const handle)
+ 263:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+ 264:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ASSERT("PIN_INTERRUPT_Enable: Handler null pointer", handle != NULL);
+ 265:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   NVIC_EnableIRQ(handle->IRQn);
+ 266:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** }
+ 267:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 268:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 269:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @brief Disables the IRQ.
+ 270:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @param handle Pointer pointing to APP data structure. Refer @ref PIN_INTERRUPT_t for details.
+ 271:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @return None
+ 272:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * <BR><P ALIGN="LEFT"><B>Example:</B>
+ 273:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 274:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @code
+ 275:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  #include <DAVE.h>
+ 276:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 277:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  int main(void)
+ 278:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  {
+ 279:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 280:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    DAVE_STATUS_t status;
+ 281:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 282:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   status = DAVE_Init();  //  PIN_INTERRUPT_Init API is called during initialization of DAVE APPS
+ 283:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   if(DAVE_STATUS_SUCCESS == status)
+ 284:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   {
+ 285:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    // user code
+ 286:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 287:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    PIN_INTERRUPT_Disable(&PIN_INTERRUPT_0);
+ 288:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    while(1)
+ 289:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    {}
+ 290:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *   }
+ 291:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 292:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *    return (1);
+ 293:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *
+ 294:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  *  }
+ 295:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  * @endcode<BR> </p>
+ 296:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****  */
+ 297:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** __STATIC_INLINE void PIN_INTERRUPT_Disable(const PIN_INTERRUPT_t *const handle)
+ 298:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+ 299:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ASSERT("PIN_INTERRUPT_Disable: Handler null pointer", handle != NULL);
+ 300:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   NVIC_DisableIRQ(handle->IRQn);
+ 301:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** }
+ 302:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** 
+ 303:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** /**
+ 304:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * @brief Read input level of port pin.
+ 305:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * @param handle Pointer pointing to APP data structure. Refer @ref PIN_INTERRUPT_t for details.
+ 306:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * @return uint32_t input logic level. Range:0-1
+ 307:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *
+ 308:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * \par<b>Description:</b><br>
+ 309:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * This function reads the Pn_IN register and returns the current logical value at the GPIO pin.
+ 310:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *
+ 311:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *
+ 312:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * Example Usage:
+ 313:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * @code
+ 314:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * #include <DAVE.h>//Declarations from DAVE Code Generation (includes SFR declaration)
+ 315:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * int main(void)
+ 316:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * {
+ 317:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   DAVE_STATUS_t status;
+ 318:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   uint32_t pin_status;
+ 319:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   status = DAVE_Init();   // (DAVE_STATUS_t)PIN_INTERRUPT_Init(&PIN_INTERRUPT_0) is called within
+ 320:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   if(status == DAVE_STATUS_SUCCESS)
+ 321:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   {
+ 322:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     XMC_DEBUG("DAVE Apps initialization success\n");
+ 323:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   }
+ 324:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   else
+ 325:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   {
+ 326:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 327:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     while(1U)
+ 328:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     {
+ 329:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     }
+ 330:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   }
+ 331:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   //Placeholder for user application code. The while loop below can be replaced with user applica
+ 332:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   while(1U)
+ 333:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   {
+ 334:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     pin_status = PIN_INTERRUPT_GetPinValue(&PIN_INTERRUPT_0);
+ 335:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     if(pin_status == 1)
+ 336:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     {
+ 337:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *       // Add application code here
+ 338:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     }
+ 339:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     else
+ 340:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     {
+ 341:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *       // Add application code here
+ 342:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *     }
+ 343:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   }
+ 344:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *   return (1);
+ 345:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** * }
+ 346:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** *  @endcode
+ 347:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** */
+ 348:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** __STATIC_INLINE uint32_t PIN_INTERRUPT_GetPinValue(const PIN_INTERRUPT_t *const handle)
+ 349:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** {
+  76              	 .loc 2 349 0
+  77              	 .cfi_startproc
+  78              	 
+  79              	 
+  80 0000 80B5     	 push {r7,lr}
+  81              	.LCFI6:
+  82              	 .cfi_def_cfa_offset 8
+  83              	 .cfi_offset 7,-8
+  84              	 .cfi_offset 14,-4
+  85 0002 82B0     	 sub sp,sp,#8
+  86              	.LCFI7:
+  87              	 .cfi_def_cfa_offset 16
+  88 0004 00AF     	 add r7,sp,#0
+  89              	.LCFI8:
+  90              	 .cfi_def_cfa_register 7
+  91 0006 7860     	 str r0,[r7,#4]
+ 350:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   XMC_ASSERT("PIN_INTERRUPT_GetPinValue: Handler null pointer", handle != NULL);
+ 351:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h ****   return (XMC_GPIO_GetInput(handle->port, handle->pin));
+  92              	 .loc 2 351 0
+  93 0008 7B68     	 ldr r3,[r7,#4]
+  94 000a 5A68     	 ldr r2,[r3,#4]
+  95 000c 7B68     	 ldr r3,[r7,#4]
+  96 000e 93F82130 	 ldrb r3,[r3,#33]
+  97 0012 1046     	 mov r0,r2
+  98 0014 1946     	 mov r1,r3
+  99 0016 FFF7FEFF 	 bl XMC_GPIO_GetInput
+ 100 001a 0346     	 mov r3,r0
+ 352:C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT\pin_interrupt.h **** }
+ 101              	 .loc 2 352 0
+ 102 001c 1846     	 mov r0,r3
+ 103 001e 0837     	 adds r7,r7,#8
+ 104              	.LCFI9:
+ 105              	 .cfi_def_cfa_offset 8
+ 106 0020 BD46     	 mov sp,r7
+ 107              	.LCFI10:
+ 108              	 .cfi_def_cfa_register 13
+ 109              	 
+ 110 0022 80BD     	 pop {r7,pc}
+ 111              	 .cfi_endproc
+ 112              	.LFE308:
+ 114              	 .global lookup_table
+ 115              	 .section .data.lookup_table,"aw",%progbits
+ 116              	 .align 2
+ 119              	lookup_table:
+ 120 0000 00       	 .byte 0
+ 121 0001 00       	 .byte 0
+ 122 0002 00       	 .byte 0
+ 123 0003 00       	 .byte 0
+ 124 0004 00       	 .byte 0
+ 125 0005 00       	 .byte 0
+ 126 0006 00       	 .byte 0
+ 127 0007 00       	 .byte 0
+ 128 0008 00       	 .byte 0
+ 129 0009 00       	 .byte 0
+ 130 000a 00       	 .byte 0
+ 131 000b FF       	 .byte -1
+ 132 000c 00       	 .byte 0
+ 133 000d 01       	 .byte 1
+ 134 000e 00       	 .byte 0
+ 135 000f 00       	 .byte 0
+ 136 0010 00       	 .byte 0
+ 137 0011 00       	 .byte 0
+ 138 0012 00       	 .byte 0
+ 139 0013 01       	 .byte 1
+ 140 0014 00       	 .byte 0
+ 141 0015 00       	 .byte 0
+ 142 0016 FF       	 .byte -1
+ 143 0017 00       	 .byte 0
+ 144 0018 00       	 .byte 0
+ 145 0019 01       	 .byte 1
+ 146 001a FF       	 .byte -1
+ 147 001b 00       	 .byte 0
+ 148 001c 00       	 .byte 0
+ 149 001d 00       	 .byte 0
+ 150 001e 00       	 .byte 0
+ 151 001f 00       	 .byte 0
+ 152 0020 00       	 .byte 0
+ 153 0021 00       	 .byte 0
+ 154 0022 00       	 .byte 0
+ 155 0023 00       	 .byte 0
+ 156 0024 00       	 .byte 0
+ 157 0025 FF       	 .byte -1
+ 158 0026 01       	 .byte 1
+ 159 0027 00       	 .byte 0
+ 160 0028 00       	 .byte 0
+ 161 0029 FF       	 .byte -1
+ 162 002a 00       	 .byte 0
+ 163 002b 00       	 .byte 0
+ 164 002c 01       	 .byte 1
+ 165 002d 00       	 .byte 0
+ 166 002e 00       	 .byte 0
+ 167 002f 00       	 .byte 0
+ 168 0030 00       	 .byte 0
+ 169 0031 00       	 .byte 0
+ 170 0032 01       	 .byte 1
+ 171 0033 00       	 .byte 0
+ 172 0034 FF       	 .byte -1
+ 173 0035 00       	 .byte 0
+ 174 0036 00       	 .byte 0
+ 175 0037 00       	 .byte 0
+ 176 0038 00       	 .byte 0
+ 177 0039 00       	 .byte 0
+ 178 003a 00       	 .byte 0
+ 179 003b 00       	 .byte 0
+ 180 003c 00       	 .byte 0
+ 181 003d 00       	 .byte 0
+ 182 003e 00       	 .byte 0
+ 183 003f 00       	 .byte 0
+ 184              	 .global sector
+ 185              	 .section .bss.sector,"aw",%nobits
+ 188              	sector:
+ 189 0000 00       	 .space 1
+ 190              	 .global direction
+ 191              	 .section .bss.direction,"aw",%nobits
+ 194              	direction:
+ 195 0000 00       	 .space 1
+ 196              	 .global enc_val
+ 197              	 .section .bss.enc_val,"aw",%nobits
+ 198              	 .align 1
+ 201              	enc_val:
+ 202 0000 0000     	 .space 2
+ 203              	 .global time_since_A
+ 204              	 .section .bss.time_since_A,"aw",%nobits
+ 205              	 .align 2
+ 208              	time_since_A:
+ 209 0000 00000000 	 .space 4
+ 210              	 .global time_since_B
+ 211              	 .section .bss.time_since_B,"aw",%nobits
+ 212              	 .align 2
+ 215              	time_since_B:
+ 216 0000 00000000 	 .space 4
+ 217              	 .global time_since_C
+ 218              	 .section .bss.time_since_C,"aw",%nobits
+ 219              	 .align 2
+ 222              	time_since_C:
+ 223 0000 00000000 	 .space 4
+ 224              	 .global time_180deg
+ 225              	 .section .data.time_180deg,"aw",%progbits
+ 226              	 .align 2
+ 229              	time_180deg:
+ 230 0000 E8030000 	 .word 1000
+ 231              	 .comm last_Hall_trig,1,1
+ 232              	 .section .text.CCU43_3_IRQHandler,"ax",%progbits
+ 233              	 .align 2
+ 234              	 .global CCU43_3_IRQHandler
+ 235              	 .thumb
+ 236              	 .thumb_func
+ 238              	CCU43_3_IRQHandler:
+ 239              	.LFB552:
+ 240              	 .file 3 "../Hall_Sensors.c"
+   1:../Hall_Sensors.c **** /*
+   2:../Hall_Sensors.c ****  * Hall_Sensors.c
+   3:../Hall_Sensors.c ****  *
+   4:../Hall_Sensors.c ****  *  Created on: 30 Jun 2022
+   5:../Hall_Sensors.c ****  *      Author: lukas
+   6:../Hall_Sensors.c ****  */
+   7:../Hall_Sensors.c **** #include "Hall_Sensors.h"
+   8:../Hall_Sensors.c **** #include <DAVE.h>
+   9:../Hall_Sensors.c **** #include "Globals.h"
+  10:../Hall_Sensors.c **** 
+  11:../Hall_Sensors.c **** // Declaration of Lookup Table
+  12:../Hall_Sensors.c **** int8_t lookup_table[] = {0,0,0,0,0,0,0,0,0,0,0,-1,0,1,0,0,0,0,0,1,0,0,-1,0,0,1,-1,0,0,0,0,0,0,0,0,0
+  13:../Hall_Sensors.c **** //access via the index in the  form of the 6 bits (3 previous hall states and 3 actual  hall states
+  14:../Hall_Sensors.c **** //for each of the 2^6 possibilities of sequence of hall events  it has been thought about the wavef
+  15:../Hall_Sensors.c **** 
+  16:../Hall_Sensors.c **** volatile int8_t sector = 0;
+  17:../Hall_Sensors.c **** volatile int8_t direction = 0;              // direction +1/-1 -> CW and CCW
+  18:../Hall_Sensors.c **** volatile uint16_t enc_val = 0;          // old and new values of all Hall Sensors
+  19:../Hall_Sensors.c **** volatile uint32_t time_since_A = 0;	// time between to edges Hall A
+  20:../Hall_Sensors.c **** volatile uint32_t time_since_B = 0; // time between to edges Hall B
+  21:../Hall_Sensors.c **** volatile uint32_t time_since_C = 0; // time between to edges Hall C
+  22:../Hall_Sensors.c **** volatile uint32_t time_180deg = 1000;        // time which last triggered HAL sensor needed for 180
+  23:../Hall_Sensors.c **** volatile char last_Hall_trig;			//last triggered Hall Sensor A/B/C
+  24:../Hall_Sensors.c **** 
+  25:../Hall_Sensors.c **** 
+  26:../Hall_Sensors.c **** //########################
+  27:../Hall_Sensors.c **** // INTERRUPTS
+  28:../Hall_Sensors.c **** //########################
+  29:../Hall_Sensors.c **** 
+  30:../Hall_Sensors.c **** // 100us Timer for speed measurement
+  31:../Hall_Sensors.c **** void TimeCounterISR(void){
+ 241              	 .loc 3 31 0
+ 242              	 .cfi_startproc
+ 243              	 
+ 244              	 
+ 245              	 
+ 246 0000 80B4     	 push {r7}
+ 247              	.LCFI11:
+ 248              	 .cfi_def_cfa_offset 4
+ 249              	 .cfi_offset 7,-4
+ 250 0002 00AF     	 add r7,sp,#0
+ 251              	.LCFI12:
+ 252              	 .cfi_def_cfa_register 7
+  32:../Hall_Sensors.c **** 	time_since_A ++;
+ 253              	 .loc 3 32 0
+ 254 0004 094B     	 ldr r3,.L6
+ 255 0006 1B68     	 ldr r3,[r3]
+ 256 0008 0133     	 adds r3,r3,#1
+ 257 000a 084A     	 ldr r2,.L6
+ 258 000c 1360     	 str r3,[r2]
+  33:../Hall_Sensors.c **** 	time_since_B ++;
+ 259              	 .loc 3 33 0
+ 260 000e 084B     	 ldr r3,.L6+4
+ 261 0010 1B68     	 ldr r3,[r3]
+ 262 0012 0133     	 adds r3,r3,#1
+ 263 0014 064A     	 ldr r2,.L6+4
+ 264 0016 1360     	 str r3,[r2]
+  34:../Hall_Sensors.c **** 	time_since_C ++;
+ 265              	 .loc 3 34 0
+ 266 0018 064B     	 ldr r3,.L6+8
+ 267 001a 1B68     	 ldr r3,[r3]
+ 268 001c 0133     	 adds r3,r3,#1
+ 269 001e 054A     	 ldr r2,.L6+8
+ 270 0020 1360     	 str r3,[r2]
+  35:../Hall_Sensors.c **** }
+ 271              	 .loc 3 35 0
+ 272 0022 BD46     	 mov sp,r7
+ 273              	.LCFI13:
+ 274              	 .cfi_def_cfa_register 13
+ 275              	 
+ 276 0024 5DF8047B 	 ldr r7,[sp],#4
+ 277              	.LCFI14:
+ 278              	 .cfi_restore 7
+ 279              	 .cfi_def_cfa_offset 0
+ 280 0028 7047     	 bx lr
+ 281              	.L7:
+ 282 002a 00BF     	 .align 2
+ 283              	.L6:
+ 284 002c 00000000 	 .word time_since_A
+ 285 0030 00000000 	 .word time_since_B
+ 286 0034 00000000 	 .word time_since_C
+ 287              	 .cfi_endproc
+ 288              	.LFE552:
+ 290              	 .section .text.ERU1_2_IRQHandler,"ax",%progbits
+ 291              	 .align 2
+ 292              	 .global ERU1_2_IRQHandler
+ 293              	 .thumb
+ 294              	 .thumb_func
+ 296              	ERU1_2_IRQHandler:
+ 297              	.LFB553:
+  36:../Hall_Sensors.c **** 
+  37:../Hall_Sensors.c **** // Hall Sensors
+  38:../Hall_Sensors.c **** void HallSensor_A_ISR(void){
+ 298              	 .loc 3 38 0
+ 299              	 .cfi_startproc
+ 300              	 
+ 301              	 
+ 302 0000 80B5     	 push {r7,lr}
+ 303              	.LCFI15:
+ 304              	 .cfi_def_cfa_offset 8
+ 305              	 .cfi_offset 7,-8
+ 306              	 .cfi_offset 14,-4
+ 307 0002 00AF     	 add r7,sp,#0
+ 308              	.LCFI16:
+ 309              	 .cfi_def_cfa_register 7
+  39:../Hall_Sensors.c **** 	HallSensor();
+ 310              	 .loc 3 39 0
+ 311 0004 FFF7FEFF 	 bl HallSensor
+  40:../Hall_Sensors.c **** 	time_180deg = time_since_A;				// Actual velocity value calculated with Hall A
+ 312              	 .loc 3 40 0
+ 313 0008 114B     	 ldr r3,.L11
+ 314 000a 1B68     	 ldr r3,[r3]
+ 315 000c 114A     	 ldr r2,.L11+4
+ 316 000e 1360     	 str r3,[r2]
+  41:../Hall_Sensors.c **** 	time_since_A = 0;						// measurement of speed -> time between change of Hall A
+ 317              	 .loc 3 41 0
+ 318 0010 0F4B     	 ldr r3,.L11
+ 319 0012 0022     	 movs r2,#0
+ 320 0014 1A60     	 str r2,[r3]
+  42:../Hall_Sensors.c **** 	last_Hall_trig = 'A';
+ 321              	 .loc 3 42 0
+ 322 0016 104B     	 ldr r3,.L11+8
+ 323 0018 4122     	 movs r2,#65
+ 324 001a 1A70     	 strb r2,[r3]
+  43:../Hall_Sensors.c **** 
+  44:../Hall_Sensors.c **** 	if(direction == 1 ) distance_180deg_ele_count ++;
+ 325              	 .loc 3 44 0
+ 326 001c 0F4B     	 ldr r3,.L11+12
+ 327 001e 1B78     	 ldrb r3,[r3]
+ 328 0020 DBB2     	 uxtb r3,r3
+ 329 0022 5BB2     	 sxtb r3,r3
+ 330 0024 012B     	 cmp r3,#1
+ 331 0026 05D1     	 bne .L9
+ 332              	 .loc 3 44 0 is_stmt 0 discriminator 1
+ 333 0028 0D4B     	 ldr r3,.L11+16
+ 334 002a 1B68     	 ldr r3,[r3]
+ 335 002c 0133     	 adds r3,r3,#1
+ 336 002e 0C4A     	 ldr r2,.L11+16
+ 337 0030 1360     	 str r3,[r2]
+ 338 0032 0BE0     	 b .L8
+ 339              	.L9:
+  45:../Hall_Sensors.c **** 	else if(direction == -1 ) distance_180deg_ele_count --;
+ 340              	 .loc 3 45 0 is_stmt 1
+ 341 0034 094B     	 ldr r3,.L11+12
+ 342 0036 1B78     	 ldrb r3,[r3]
+ 343 0038 DBB2     	 uxtb r3,r3
+ 344 003a 5BB2     	 sxtb r3,r3
+ 345 003c B3F1FF3F 	 cmp r3,#-1
+ 346 0040 04D1     	 bne .L8
+ 347              	 .loc 3 45 0 is_stmt 0 discriminator 1
+ 348 0042 074B     	 ldr r3,.L11+16
+ 349 0044 1B68     	 ldr r3,[r3]
+ 350 0046 013B     	 subs r3,r3,#1
+ 351 0048 054A     	 ldr r2,.L11+16
+ 352 004a 1360     	 str r3,[r2]
+ 353              	.L8:
+  46:../Hall_Sensors.c **** }
+ 354              	 .loc 3 46 0 is_stmt 1
+ 355 004c 80BD     	 pop {r7,pc}
+ 356              	.L12:
+ 357 004e 00BF     	 .align 2
+ 358              	.L11:
+ 359 0050 00000000 	 .word time_since_A
+ 360 0054 00000000 	 .word time_180deg
+ 361 0058 00000000 	 .word last_Hall_trig
+ 362 005c 00000000 	 .word direction
+ 363 0060 00000000 	 .word distance_180deg_ele_count
+ 364              	 .cfi_endproc
+ 365              	.LFE553:
+ 367              	 .section .text.ERU1_0_IRQHandler,"ax",%progbits
+ 368              	 .align 2
+ 369              	 .global ERU1_0_IRQHandler
+ 370              	 .thumb
+ 371              	 .thumb_func
+ 373              	ERU1_0_IRQHandler:
+ 374              	.LFB554:
+  47:../Hall_Sensors.c **** void HallSensor_B_ISR(void){
+ 375              	 .loc 3 47 0
+ 376              	 .cfi_startproc
+ 377              	 
+ 378              	 
+ 379 0000 80B5     	 push {r7,lr}
+ 380              	.LCFI17:
+ 381              	 .cfi_def_cfa_offset 8
+ 382              	 .cfi_offset 7,-8
+ 383              	 .cfi_offset 14,-4
+ 384 0002 00AF     	 add r7,sp,#0
+ 385              	.LCFI18:
+ 386              	 .cfi_def_cfa_register 7
+  48:../Hall_Sensors.c **** 	HallSensor();
+ 387              	 .loc 3 48 0
+ 388 0004 FFF7FEFF 	 bl HallSensor
+  49:../Hall_Sensors.c **** 	time_180deg = time_since_B;
+ 389              	 .loc 3 49 0
+ 390 0008 054B     	 ldr r3,.L14
+ 391 000a 1B68     	 ldr r3,[r3]
+ 392 000c 054A     	 ldr r2,.L14+4
+ 393 000e 1360     	 str r3,[r2]
+  50:../Hall_Sensors.c **** 	time_since_B = 0;
+ 394              	 .loc 3 50 0
+ 395 0010 034B     	 ldr r3,.L14
+ 396 0012 0022     	 movs r2,#0
+ 397 0014 1A60     	 str r2,[r3]
+  51:../Hall_Sensors.c **** 	last_Hall_trig = 'B';
+ 398              	 .loc 3 51 0
+ 399 0016 044B     	 ldr r3,.L14+8
+ 400 0018 4222     	 movs r2,#66
+ 401 001a 1A70     	 strb r2,[r3]
+  52:../Hall_Sensors.c **** }
+ 402              	 .loc 3 52 0
+ 403 001c 80BD     	 pop {r7,pc}
+ 404              	.L15:
+ 405 001e 00BF     	 .align 2
+ 406              	.L14:
+ 407 0020 00000000 	 .word time_since_B
+ 408 0024 00000000 	 .word time_180deg
+ 409 0028 00000000 	 .word last_Hall_trig
+ 410              	 .cfi_endproc
+ 411              	.LFE554:
+ 413              	 .section .text.ERU1_3_IRQHandler,"ax",%progbits
+ 414              	 .align 2
+ 415              	 .global ERU1_3_IRQHandler
+ 416              	 .thumb
+ 417              	 .thumb_func
+ 419              	ERU1_3_IRQHandler:
+ 420              	.LFB555:
+  53:../Hall_Sensors.c **** void HallSensor_C_ISR(void){
+ 421              	 .loc 3 53 0
+ 422              	 .cfi_startproc
+ 423              	 
+ 424              	 
+ 425 0000 80B5     	 push {r7,lr}
+ 426              	.LCFI19:
+ 427              	 .cfi_def_cfa_offset 8
+ 428              	 .cfi_offset 7,-8
+ 429              	 .cfi_offset 14,-4
+ 430 0002 00AF     	 add r7,sp,#0
+ 431              	.LCFI20:
+ 432              	 .cfi_def_cfa_register 7
+  54:../Hall_Sensors.c **** 	HallSensor();
+ 433              	 .loc 3 54 0
+ 434 0004 FFF7FEFF 	 bl HallSensor
+  55:../Hall_Sensors.c **** 	time_180deg = time_since_C;
+ 435              	 .loc 3 55 0
+ 436 0008 054B     	 ldr r3,.L17
+ 437 000a 1B68     	 ldr r3,[r3]
+ 438 000c 054A     	 ldr r2,.L17+4
+ 439 000e 1360     	 str r3,[r2]
+  56:../Hall_Sensors.c **** 	time_since_C = 0;
+ 440              	 .loc 3 56 0
+ 441 0010 034B     	 ldr r3,.L17
+ 442 0012 0022     	 movs r2,#0
+ 443 0014 1A60     	 str r2,[r3]
+  57:../Hall_Sensors.c **** 	last_Hall_trig = 'C';
+ 444              	 .loc 3 57 0
+ 445 0016 044B     	 ldr r3,.L17+8
+ 446 0018 4322     	 movs r2,#67
+ 447 001a 1A70     	 strb r2,[r3]
+  58:../Hall_Sensors.c **** }
+ 448              	 .loc 3 58 0
+ 449 001c 80BD     	 pop {r7,pc}
+ 450              	.L18:
+ 451 001e 00BF     	 .align 2
+ 452              	.L17:
+ 453 0020 00000000 	 .word time_since_C
+ 454 0024 00000000 	 .word time_180deg
+ 455 0028 00000000 	 .word last_Hall_trig
+ 456              	 .cfi_endproc
+ 457              	.LFE555:
+ 459              	 .section .text.Hall_init,"ax",%progbits
+ 460              	 .align 2
+ 461              	 .global Hall_init
+ 462              	 .thumb
+ 463              	 .thumb_func
+ 465              	Hall_init:
+ 466              	.LFB556:
+  59:../Hall_Sensors.c **** 
+  60:../Hall_Sensors.c **** 
+  61:../Hall_Sensors.c **** //########################
+  62:../Hall_Sensors.c **** // FUNCTIONS
+  63:../Hall_Sensors.c **** //########################
+  64:../Hall_Sensors.c **** 
+  65:../Hall_Sensors.c **** 
+  66:../Hall_Sensors.c **** // Hall init -> readout of actual Hall pattern to determine the motor position
+  67:../Hall_Sensors.c **** void Hall_init(void){
+ 467              	 .loc 3 67 0
+ 468              	 .cfi_startproc
+ 469              	 
+ 470              	 
+ 471 0000 90B5     	 push {r4,r7,lr}
+ 472              	.LCFI21:
+ 473              	 .cfi_def_cfa_offset 12
+ 474              	 .cfi_offset 4,-12
+ 475              	 .cfi_offset 7,-8
+ 476              	 .cfi_offset 14,-4
+ 477 0002 83B0     	 sub sp,sp,#12
+ 478              	.LCFI22:
+ 479              	 .cfi_def_cfa_offset 24
+ 480 0004 00AF     	 add r7,sp,#0
+ 481              	.LCFI23:
+ 482              	 .cfi_def_cfa_register 7
+  68:../Hall_Sensors.c **** 
+  69:../Hall_Sensors.c **** 	  uint8_t Hall_Initial =  ((((PIN_INTERRUPT_GetPinValue(&Hall_A_ISR) << 1) | PIN_INTERRUPT_GetPinV
+ 483              	 .loc 3 69 0
+ 484 0006 2148     	 ldr r0,.L26
+ 485 0008 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 486 000c 0346     	 mov r3,r0
+ 487 000e DBB2     	 uxtb r3,r3
+ 488 0010 5B00     	 lsls r3,r3,#1
+ 489 0012 DCB2     	 uxtb r4,r3
+ 490 0014 1E48     	 ldr r0,.L26+4
+ 491 0016 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 492 001a 0346     	 mov r3,r0
+ 493 001c DBB2     	 uxtb r3,r3
+ 494 001e 2343     	 orrs r3,r3,r4
+ 495 0020 DBB2     	 uxtb r3,r3
+ 496 0022 5B00     	 lsls r3,r3,#1
+ 497 0024 DCB2     	 uxtb r4,r3
+ 498 0026 1B48     	 ldr r0,.L26+8
+ 499 0028 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 500 002c 0346     	 mov r3,r0
+ 501 002e DBB2     	 uxtb r3,r3
+ 502 0030 2343     	 orrs r3,r3,r4
+ 503 0032 FB71     	 strb r3,[r7,#7]
+  70:../Hall_Sensors.c **** 
+  71:../Hall_Sensors.c **** 	 if(Hall_Initial == 0b100){sector = 0;}
+ 504              	 .loc 3 71 0
+ 505 0034 FB79     	 ldrb r3,[r7,#7]
+ 506 0036 042B     	 cmp r3,#4
+ 507 0038 03D1     	 bne .L20
+ 508              	 .loc 3 71 0 is_stmt 0 discriminator 1
+ 509 003a 174B     	 ldr r3,.L26+12
+ 510 003c 0022     	 movs r2,#0
+ 511 003e 1A70     	 strb r2,[r3]
+ 512 0040 21E0     	 b .L19
+ 513              	.L20:
+  72:../Hall_Sensors.c **** 	 else if(Hall_Initial == 0b110){sector = 1;}
+ 514              	 .loc 3 72 0 is_stmt 1
+ 515 0042 FB79     	 ldrb r3,[r7,#7]
+ 516 0044 062B     	 cmp r3,#6
+ 517 0046 03D1     	 bne .L22
+ 518              	 .loc 3 72 0 is_stmt 0 discriminator 1
+ 519 0048 134B     	 ldr r3,.L26+12
+ 520 004a 0122     	 movs r2,#1
+ 521 004c 1A70     	 strb r2,[r3]
+ 522 004e 1AE0     	 b .L19
+ 523              	.L22:
+  73:../Hall_Sensors.c **** 	 else if(Hall_Initial == 0b010){sector = 2;}
+ 524              	 .loc 3 73 0 is_stmt 1
+ 525 0050 FB79     	 ldrb r3,[r7,#7]
+ 526 0052 022B     	 cmp r3,#2
+ 527 0054 03D1     	 bne .L23
+ 528              	 .loc 3 73 0 is_stmt 0 discriminator 1
+ 529 0056 104B     	 ldr r3,.L26+12
+ 530 0058 0222     	 movs r2,#2
+ 531 005a 1A70     	 strb r2,[r3]
+ 532 005c 13E0     	 b .L19
+ 533              	.L23:
+  74:../Hall_Sensors.c **** 	 else if(Hall_Initial == 0b011){sector = 3;}
+ 534              	 .loc 3 74 0 is_stmt 1
+ 535 005e FB79     	 ldrb r3,[r7,#7]
+ 536 0060 032B     	 cmp r3,#3
+ 537 0062 03D1     	 bne .L24
+ 538              	 .loc 3 74 0 is_stmt 0 discriminator 1
+ 539 0064 0C4B     	 ldr r3,.L26+12
+ 540 0066 0322     	 movs r2,#3
+ 541 0068 1A70     	 strb r2,[r3]
+ 542 006a 0CE0     	 b .L19
+ 543              	.L24:
+  75:../Hall_Sensors.c **** 	 else if(Hall_Initial == 0b001){sector = 4;}
+ 544              	 .loc 3 75 0 is_stmt 1
+ 545 006c FB79     	 ldrb r3,[r7,#7]
+ 546 006e 012B     	 cmp r3,#1
+ 547 0070 03D1     	 bne .L25
+ 548              	 .loc 3 75 0 is_stmt 0 discriminator 1
+ 549 0072 094B     	 ldr r3,.L26+12
+ 550 0074 0422     	 movs r2,#4
+ 551 0076 1A70     	 strb r2,[r3]
+ 552 0078 05E0     	 b .L19
+ 553              	.L25:
+  76:../Hall_Sensors.c **** 	 else if(Hall_Initial == 0b101){sector = 5;}
+ 554              	 .loc 3 76 0 is_stmt 1
+ 555 007a FB79     	 ldrb r3,[r7,#7]
+ 556 007c 052B     	 cmp r3,#5
+ 557 007e 02D1     	 bne .L19
+ 558              	 .loc 3 76 0 is_stmt 0 discriminator 1
+ 559 0080 054B     	 ldr r3,.L26+12
+ 560 0082 0522     	 movs r2,#5
+ 561 0084 1A70     	 strb r2,[r3]
+ 562              	.L19:
+  77:../Hall_Sensors.c **** }
+ 563              	 .loc 3 77 0 is_stmt 1
+ 564 0086 0C37     	 adds r7,r7,#12
+ 565              	.LCFI24:
+ 566              	 .cfi_def_cfa_offset 12
+ 567 0088 BD46     	 mov sp,r7
+ 568              	.LCFI25:
+ 569              	 .cfi_def_cfa_register 13
+ 570              	 
+ 571 008a 90BD     	 pop {r4,r7,pc}
+ 572              	.L27:
+ 573              	 .align 2
+ 574              	.L26:
+ 575 008c 00000000 	 .word Hall_A_ISR
+ 576 0090 00000000 	 .word Hall_B_ISR
+ 577 0094 00000000 	 .word Hall_C_ISR
+ 578 0098 00000000 	 .word sector
+ 579              	 .cfi_endproc
+ 580              	.LFE556:
+ 582              	 .section .text.HallSensor,"ax",%progbits
+ 583              	 .align 2
+ 584              	 .global HallSensor
+ 585              	 .thumb
+ 586              	 .thumb_func
+ 588              	HallSensor:
+ 589              	.LFB557:
+  78:../Hall_Sensors.c **** 
+  79:../Hall_Sensors.c **** // Function to determine direction and current Sector
+  80:../Hall_Sensors.c **** void HallSensor(void){
+ 590              	 .loc 3 80 0
+ 591              	 .cfi_startproc
+ 592              	 
+ 593              	 
+ 594 0000 90B5     	 push {r4,r7,lr}
+ 595              	.LCFI26:
+ 596              	 .cfi_def_cfa_offset 12
+ 597              	 .cfi_offset 4,-12
+ 598              	 .cfi_offset 7,-8
+ 599              	 .cfi_offset 14,-4
+ 600 0002 83B0     	 sub sp,sp,#12
+ 601              	.LCFI27:
+ 602              	 .cfi_def_cfa_offset 24
+ 603 0004 00AF     	 add r7,sp,#0
+ 604              	.LCFI28:
+ 605              	 .cfi_def_cfa_register 7
+  81:../Hall_Sensors.c **** 	enc_val = enc_val << 3; //shift old values and make space for new ones
+ 606              	 .loc 3 81 0
+ 607 0006 2E4B     	 ldr r3,.L35
+ 608 0008 1B88     	 ldrh r3,[r3]
+ 609 000a 9BB2     	 uxth r3,r3
+ 610 000c DB00     	 lsls r3,r3,#3
+ 611 000e 9AB2     	 uxth r2,r3
+ 612 0010 2B4B     	 ldr r3,.L35
+ 613 0012 1A80     	 strh r2,[r3]
+  82:../Hall_Sensors.c **** 	uint8_t Hall_status =((((PIN_INTERRUPT_GetPinValue(&Hall_A_ISR) << 1) | PIN_INTERRUPT_GetPinValue(
+ 614              	 .loc 3 82 0
+ 615 0014 2B48     	 ldr r0,.L35+4
+ 616 0016 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 617 001a 0346     	 mov r3,r0
+ 618 001c DBB2     	 uxtb r3,r3
+ 619 001e 5B00     	 lsls r3,r3,#1
+ 620 0020 DCB2     	 uxtb r4,r3
+ 621 0022 2948     	 ldr r0,.L35+8
+ 622 0024 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 623 0028 0346     	 mov r3,r0
+ 624 002a DBB2     	 uxtb r3,r3
+ 625 002c 2343     	 orrs r3,r3,r4
+ 626 002e DBB2     	 uxtb r3,r3
+ 627 0030 5B00     	 lsls r3,r3,#1
+ 628 0032 DCB2     	 uxtb r4,r3
+ 629 0034 2548     	 ldr r0,.L35+12
+ 630 0036 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 631 003a 0346     	 mov r3,r0
+ 632 003c DBB2     	 uxtb r3,r3
+ 633 003e 2343     	 orrs r3,r3,r4
+ 634 0040 FB71     	 strb r3,[r7,#7]
+  83:../Hall_Sensors.c **** 	enc_val = enc_val | Hall_status; //read Sensor values and store them
+ 635              	 .loc 3 83 0
+ 636 0042 FB79     	 ldrb r3,[r7,#7]
+ 637 0044 9AB2     	 uxth r2,r3
+ 638 0046 1E4B     	 ldr r3,.L35
+ 639 0048 1B88     	 ldrh r3,[r3]
+ 640 004a 9BB2     	 uxth r3,r3
+ 641 004c 1343     	 orrs r3,r3,r2
+ 642 004e 9AB2     	 uxth r2,r3
+ 643 0050 1B4B     	 ldr r3,.L35
+ 644 0052 1A80     	 strh r2,[r3]
+  84:../Hall_Sensors.c **** 	direction = lookup_table[enc_val & 0b111111];  //direction due to look up table, look at actual an
+ 645              	 .loc 3 84 0
+ 646 0054 1A4B     	 ldr r3,.L35
+ 647 0056 1B88     	 ldrh r3,[r3]
+ 648 0058 9BB2     	 uxth r3,r3
+ 649 005a 03F03F03 	 and r3,r3,#63
+ 650 005e 1C4A     	 ldr r2,.L35+16
+ 651 0060 D25C     	 ldrb r2,[r2,r3]
+ 652 0062 1C4B     	 ldr r3,.L35+20
+ 653 0064 1A70     	 strb r2,[r3]
+  85:../Hall_Sensors.c **** 
+  86:../Hall_Sensors.c **** 	if(Hall_status == 0b100){sector = 0;}
+ 654              	 .loc 3 86 0
+ 655 0066 FB79     	 ldrb r3,[r7,#7]
+ 656 0068 042B     	 cmp r3,#4
+ 657 006a 03D1     	 bne .L29
+ 658              	 .loc 3 86 0 is_stmt 0 discriminator 1
+ 659 006c 1A4B     	 ldr r3,.L35+24
+ 660 006e 0022     	 movs r2,#0
+ 661 0070 1A70     	 strb r2,[r3]
+ 662 0072 21E0     	 b .L28
+ 663              	.L29:
+  87:../Hall_Sensors.c **** 		 else if(Hall_status == 0b110){sector = 1;}
+ 664              	 .loc 3 87 0 is_stmt 1
+ 665 0074 FB79     	 ldrb r3,[r7,#7]
+ 666 0076 062B     	 cmp r3,#6
+ 667 0078 03D1     	 bne .L31
+ 668              	 .loc 3 87 0 is_stmt 0 discriminator 1
+ 669 007a 174B     	 ldr r3,.L35+24
+ 670 007c 0122     	 movs r2,#1
+ 671 007e 1A70     	 strb r2,[r3]
+ 672 0080 1AE0     	 b .L28
+ 673              	.L31:
+  88:../Hall_Sensors.c **** 		 else if(Hall_status == 0b010){sector = 2;}
+ 674              	 .loc 3 88 0 is_stmt 1
+ 675 0082 FB79     	 ldrb r3,[r7,#7]
+ 676 0084 022B     	 cmp r3,#2
+ 677 0086 03D1     	 bne .L32
+ 678              	 .loc 3 88 0 is_stmt 0 discriminator 1
+ 679 0088 134B     	 ldr r3,.L35+24
+ 680 008a 0222     	 movs r2,#2
+ 681 008c 1A70     	 strb r2,[r3]
+ 682 008e 13E0     	 b .L28
+ 683              	.L32:
+  89:../Hall_Sensors.c **** 		 else if(Hall_status == 0b011){sector = 3;}
+ 684              	 .loc 3 89 0 is_stmt 1
+ 685 0090 FB79     	 ldrb r3,[r7,#7]
+ 686 0092 032B     	 cmp r3,#3
+ 687 0094 03D1     	 bne .L33
+ 688              	 .loc 3 89 0 is_stmt 0 discriminator 1
+ 689 0096 104B     	 ldr r3,.L35+24
+ 690 0098 0322     	 movs r2,#3
+ 691 009a 1A70     	 strb r2,[r3]
+ 692 009c 0CE0     	 b .L28
+ 693              	.L33:
+  90:../Hall_Sensors.c **** 		 else if(Hall_status == 0b001){sector = 4;}
+ 694              	 .loc 3 90 0 is_stmt 1
+ 695 009e FB79     	 ldrb r3,[r7,#7]
+ 696 00a0 012B     	 cmp r3,#1
+ 697 00a2 03D1     	 bne .L34
+ 698              	 .loc 3 90 0 is_stmt 0 discriminator 1
+ 699 00a4 0C4B     	 ldr r3,.L35+24
+ 700 00a6 0422     	 movs r2,#4
+ 701 00a8 1A70     	 strb r2,[r3]
+ 702 00aa 05E0     	 b .L28
+ 703              	.L34:
+  91:../Hall_Sensors.c **** 		 else if(Hall_status == 0b101){sector = 5;}
+ 704              	 .loc 3 91 0 is_stmt 1
+ 705 00ac FB79     	 ldrb r3,[r7,#7]
+ 706 00ae 052B     	 cmp r3,#5
+ 707 00b0 02D1     	 bne .L28
+ 708              	 .loc 3 91 0 is_stmt 0 discriminator 1
+ 709 00b2 094B     	 ldr r3,.L35+24
+ 710 00b4 0522     	 movs r2,#5
+ 711 00b6 1A70     	 strb r2,[r3]
+ 712              	.L28:
+  92:../Hall_Sensors.c **** 
+  93:../Hall_Sensors.c **** }
+ 713              	 .loc 3 93 0 is_stmt 1
+ 714 00b8 0C37     	 adds r7,r7,#12
+ 715              	.LCFI29:
+ 716              	 .cfi_def_cfa_offset 12
+ 717 00ba BD46     	 mov sp,r7
+ 718              	.LCFI30:
+ 719              	 .cfi_def_cfa_register 13
+ 720              	 
+ 721 00bc 90BD     	 pop {r4,r7,pc}
+ 722              	.L36:
+ 723 00be 00BF     	 .align 2
+ 724              	.L35:
+ 725 00c0 00000000 	 .word enc_val
+ 726 00c4 00000000 	 .word Hall_A_ISR
+ 727 00c8 00000000 	 .word Hall_B_ISR
+ 728 00cc 00000000 	 .word Hall_C_ISR
+ 729 00d0 00000000 	 .word lookup_table
+ 730 00d4 00000000 	 .word direction
+ 731 00d8 00000000 	 .word sector
+ 732              	 .cfi_endproc
+ 733              	.LFE557:
+ 735              	 .text
+ 736              	.Letext0:
+ 737              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 738              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 739              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 740              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 741              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_usic.h"
+ 742              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_eru.h"
+ 743              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
+ 744              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/system_XMC4500.h"
+ 745              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
+ 746              	 .file 13 "../Globals.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 Hall_Sensors.c
+    {standard input}:20     .text.XMC_GPIO_GetInput:00000000 $t
+    {standard input}:24     .text.XMC_GPIO_GetInput:00000000 XMC_GPIO_GetInput
+    {standard input}:69     .text.PIN_INTERRUPT_GetPinValue:00000000 $t
+    {standard input}:73     .text.PIN_INTERRUPT_GetPinValue:00000000 PIN_INTERRUPT_GetPinValue
+    {standard input}:119    .data.lookup_table:00000000 lookup_table
+    {standard input}:116    .data.lookup_table:00000000 $d
+    {standard input}:188    .bss.sector:00000000 sector
+    {standard input}:189    .bss.sector:00000000 $d
+    {standard input}:194    .bss.direction:00000000 direction
+    {standard input}:195    .bss.direction:00000000 $d
+    {standard input}:201    .bss.enc_val:00000000 enc_val
+    {standard input}:198    .bss.enc_val:00000000 $d
+    {standard input}:208    .bss.time_since_A:00000000 time_since_A
+    {standard input}:205    .bss.time_since_A:00000000 $d
+    {standard input}:215    .bss.time_since_B:00000000 time_since_B
+    {standard input}:212    .bss.time_since_B:00000000 $d
+    {standard input}:222    .bss.time_since_C:00000000 time_since_C
+    {standard input}:219    .bss.time_since_C:00000000 $d
+    {standard input}:229    .data.time_180deg:00000000 time_180deg
+    {standard input}:226    .data.time_180deg:00000000 $d
+                            *COM*:00000001 last_Hall_trig
+    {standard input}:233    .text.CCU43_3_IRQHandler:00000000 $t
+    {standard input}:238    .text.CCU43_3_IRQHandler:00000000 CCU43_3_IRQHandler
+    {standard input}:284    .text.CCU43_3_IRQHandler:0000002c $d
+    {standard input}:291    .text.ERU1_2_IRQHandler:00000000 $t
+    {standard input}:296    .text.ERU1_2_IRQHandler:00000000 ERU1_2_IRQHandler
+    {standard input}:588    .text.HallSensor:00000000 HallSensor
+    {standard input}:359    .text.ERU1_2_IRQHandler:00000050 $d
+    {standard input}:368    .text.ERU1_0_IRQHandler:00000000 $t
+    {standard input}:373    .text.ERU1_0_IRQHandler:00000000 ERU1_0_IRQHandler
+    {standard input}:407    .text.ERU1_0_IRQHandler:00000020 $d
+    {standard input}:414    .text.ERU1_3_IRQHandler:00000000 $t
+    {standard input}:419    .text.ERU1_3_IRQHandler:00000000 ERU1_3_IRQHandler
+    {standard input}:453    .text.ERU1_3_IRQHandler:00000020 $d
+    {standard input}:460    .text.Hall_init:00000000 $t
+    {standard input}:465    .text.Hall_init:00000000 Hall_init
+    {standard input}:575    .text.Hall_init:0000008c $d
+    {standard input}:583    .text.HallSensor:00000000 $t
+    {standard input}:725    .text.HallSensor:000000c0 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+distance_180deg_ele_count
+Hall_A_ISR
+Hall_B_ISR
+Hall_C_ISR

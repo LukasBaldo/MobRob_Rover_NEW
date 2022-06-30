@@ -1,4 +1,4 @@
-CAN.o CAN.d CAN.o: ../CAN.c ../DEFINE.h \
+CAN.o CAN.d CAN.o: ../CAN.c ../DEFINE_CONST.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_common.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_device.h \
@@ -82,9 +82,9 @@ CAN.o CAN.d CAN.o: ../CAN.c ../DEFINE.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_conf.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h \
- ../Globals.h
+ ../Globals.h ../CAN.h
 
-../DEFINE.h:
+../DEFINE_CONST.h:
 
 C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h:
 
@@ -253,3 +253,5 @@ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREME
 C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h:
 
 ../Globals.h:
+
+../CAN.h:

@@ -1,11 +1,20 @@
 // CAN Communication
-#include "DEFINE.h"
-#include <stdint.h> // need for data types
+#include "DEFINE_CONST.h"
 #include <DAVE.h>
 #include "Globals.h"
+#include "CAN.h"
+
+#define MAX_Speed_CAN 2
 
 int16_t Speeds_int16_r[4];
 
+float CAN_speed_ref;
+uint8_t CAN_new_meassage = 0;// if 1 recived can data
+uint8_t CAN_no_com_counter = 0;
+
+// distacne vaule back over can
+float Speed_act = 0;
+float distance = 0;
 
 void CAN_RX_MO2_ISR(void){
 		XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[1]->mo_ptr;

@@ -82,7 +82,8 @@ main.o main.d main.o: ../main.c \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_conf.h \
  C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h \
- ../DEFINE.h ../rec_data_function.h ../Read_Current_Sensor.h ../Globals.h
+ ../Globals.h ../DEFINE_CONST.h ../Hall_Sensors.h ../rec_data_function.h \
+ ../Read_Current_Sensor.h ../CAN.h ../PI_Controller.h
 
 C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h:
 
@@ -250,10 +251,16 @@ C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREME
 
 C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h:
 
-../DEFINE.h:
+../Globals.h:
+
+../DEFINE_CONST.h:
+
+../Hall_Sensors.h:
 
 ../rec_data_function.h:
 
 ../Read_Current_Sensor.h:
 
-../Globals.h:
+../CAN.h:
+
+../PI_Controller.h:

@@ -6,6 +6,8 @@
 C_SRCS += \
 ../CAN.c \
 ../Globals.c \
+../Hall_Sensors.c \
+../PI_Controller.c \
 ../Read_Current_Sensor.c \
 ../main.c \
 ../rec_data_function.c 
@@ -13,6 +15,8 @@ C_SRCS += \
 OBJS += \
 ./CAN.o \
 ./Globals.o \
+./Hall_Sensors.o \
+./PI_Controller.o \
 ./Read_Current_Sensor.o \
 ./main.o \
 ./rec_data_function.o 
@@ -20,6 +24,8 @@ OBJS += \
 C_DEPS += \
 ./CAN.d \
 ./Globals.d \
+./Hall_Sensors.d \
+./PI_Controller.d \
 ./Read_Current_Sensor.d \
 ./main.d \
 ./rec_data_function.d 

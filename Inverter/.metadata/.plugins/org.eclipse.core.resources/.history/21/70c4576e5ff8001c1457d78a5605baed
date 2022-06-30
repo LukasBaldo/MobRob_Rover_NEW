@@ -1,0 +1,33 @@
+/*
+ * PI_Controller.c
+ *
+ *  Created on: 30 Jun 2022
+ *      Author: lukas
+ */
+#include "PI_Controller.h"
+
+/*
+// PID Controller
+float PI_Controller(float SetPoint,float ActValue,PI_param *param){
+
+	float Deviation = SetPoint - ActValue;
+	float temp1, temp2;
+
+	 temp1 = param->P*Deviation;
+	 temp2 = temp1 + param->I*Tcyc*Deviation + param->Output_z;
+
+	 if (temp2 >= param->MaxLimit){
+		 temp2 = param->MaxLimit;
+	 }
+	 else if (temp2 < param->MinLimit){
+		 temp2 = param->MinLimit;
+	 }
+
+	 param->Output_z = temp2 - temp1;
+
+	 param->Output = temp2;
+
+	return param->Output;
+
+}
+*/

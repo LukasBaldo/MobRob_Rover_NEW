@@ -11,116 +11,50 @@
 #include <math.h>
 #include <stdio.h> //for printf
 
-#include "DEFINE.h"
+#include "Globals.h"
+#include "DEFINE_CONST.h"
+#include "Hall_Sensors.h"
 #include "rec_data_function.h"
 #include "Read_Current_Sensor.h"
-#include "Globals.h"
+#include "CAN.h"
+#include "PI_Controller.h"
 
 //#######################
 //FUNCTION DECLARATION
 //########################
-//float readCurrent(uint8_t);
-void Hall_init(void);
-void HallSensor(void);
 void Calculation(void);
 
 //########################
 //VARIABLE DECLARATION
 //########################
 
-// NEED to be set
-//motor
-//#define MOTOR_NUM 2 // for trque dirction motro 1 differtn form rest so far
-//#define MOTOR_ON_ROVER 0// 0 front left 1 front right 2 back left 3 back right
-#define INVERTER_NUM 0 //witch board for ADC_TO_DCLINK factor version 2 boards: B3 right rear rover = 3, B2 left rear rover = 2, B5 left front rover = 0, B4 right front rover = 1,  version one borads: B10, = 4 B11 = 5,
-
 //control type
 uint8_t Torque_control = 1;
 uint8_t Speed_control = 1; //if 0 is torque control if 1 is speed control
 uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
 
-#define IQ_REF_MAX 5
-//#define CAN_NO_COM_TH 250
-#define MAX_Speed_CAN 2
-//#define SPEED_LIMIT_CTRL_TO_ZERO 100 //omega_ele rad/s
-#define TIME_OMEGA_0  5000 //time since last hall before omgea set to 0 in 100us
+float Current_U, Current_V, Current_W;
 
-// Define often used vaules to decrease computational effort
-//#define PI 3.14159265
-#define TwoThird 0.66666667
-#define TwoPiThird 2.0943951
-#define FourPiThird 4.1887902
-#define Pi180 0.01745329
-
-#define ANGLE_ONE_DEGREE (46603U)
-
-// Define Chip select Pins for Current measurement via SPI Interface
-#define ChipSelect_U 0b110
-#define ChipSelect_V 0b101
-#define ChipSelect_W 0b011
-
-float Current_U;
-float Current_V;
-float Current_W;
-
-
-#define J 0.0023064 //SK J = 1/2 * m_wheel * r_wheel^2 = 1/2*1.2kg*(62mm)^2
-#define K_T 0.21 //SK torque constant in Nm/A
-#define K_inv (15.7/1.732) // K_inv = V / m = V_DC / 2 * 2/sqrt(3) = V_DC/sqrt(3)
-//#define Psi_p 0.0082  60/  (2 * PI) * 1.4142 // Psi_p = K_back_EMF = 0.0082 V / rpm_mech --> 60 to convert in sec and /2Pi to convert in rad, sqrt(2) for amplitude value
-//#define Ls 0.00088 // Ls = Lm*1.1 = 0.8mH * 1.1 = 0.00088H
-//#define PPZ 11
-//#define WHEEL_R 0.0675 //0.135/2 straigt vaule other thing casued problems
-
-
-// Declaration of Lookup Table
-int8_t lookup_table[] = {0,0,0,0,0,0,0,0,0,0,0,-1,0,1,0,0,0,0,0,1,0,0,-1,0,0,1,-1,0,0,0,0,0,0,0,0,0,0,-1,1,0,0,-1,0,0,1,0,0,0,0,0,1,0,-1,0,0,0,0,0,0,0,0,0,0,0};
-//access via the index in the  form of the 6 bits (3 previous hall states and 3 actual  hall states)
-//for each of the 2^6 possibilities of sequence of hall events  it has been thought about the waveforms and thus in which direction the motor has to turn!
-
-volatile int8_t sector = 0;
-volatile int8_t direction = 0;              // direction +1/-1 -> CW and CCW
-volatile uint16_t enc_val = 0;          // old and new values of all Hall Sensors
-volatile uint32_t time_since_A = 0;	// time between to edges Hall A
-volatile uint32_t time_since_B = 0; // time between to edges Hall B
-volatile uint32_t time_since_C = 0; // time between to edges Hall C
-volatile uint32_t time_180deg = 1000;        // time which last triggered HAL sensor needed for 180°
-volatile uint32_t time_180deg_cal = 1000;
-volatile char last_Hall_trig;			//last triggered Hall Sensor A/B/C
-
+uint32_t time_180deg_cal = 1000;
 float angle_in_sector = 30;// in deg // 30 defalut becasue in the mideel of the 60°
-//volatile uint32_t TIME_OMEGA_0 = 50000; // t over this therschold assumed to be zero
 
 float angle_phi = 0;
 float ialpha,ibeta,iq,id,Valpha,Vbeta;
 
-//volatile float omega_ele_rads = 0; 	// electrical rad / sec //current real velocity calculated from angles from hall sensors and time between interrupts
 volatile float omega_mech_rps = 0;	//SK	//mechanical rounds per second
 volatile float omega_mech_rps_temp = 0; //SK	//since dividing through the incremental (counted up) value of time_180deg can lead to ridiculously high velocities a plausability check is performed before temp is stored to the value
-//volatile float omega_ele_rads_ref = -2*69.11; //1*69.11; //SK		//target velocity electrical in rad/s --> 1 rpsmech = 2*pi*11 = 69.11 rad/s electrical --> will be received later
 
-volatile float omega_ele_degs = 0;
 
 // REF vaules given to PI controller
 float speed_ref = 0.0; //meters per second
 float omega_ele_rads_ref = 0.0; // electrical rad per second
 float iq_ref = 0.0;
 float T_ref = 0.0;
-float Vd = 0;
-float Vq = 0;
 float omega_mech_rps_ref = 0;
 
-/*
-// CAN vars
-//int16_t Speeds_int16_r[4];
-float CAN_speed_ref = 0.0;
-uint8_t CAN_new_meassage = 0; // if 1 recived can data
-uint8_t CAN_no_com_counter = 0;
-// distacne vaule back over can
-int distance_180deg_ele_count = 0;
-float Speed_act = 0;
-float distance = 0;
-*/
+float Vd = 0;
+float Vq = 0;
+
 
 volatile float modulation_index; //SK		// modulation index --> calculated via m = V / K_inv
 volatile float modulation_index_scaled; //SK	//scaled from -1 to +1 towards -10000 to +10000 which is required from the SVM app
@@ -132,12 +66,9 @@ float amplitude_ab;
 float Ts = 1.0 /20000.0; //T sample correspond to SPVM update rate
 float Tcyc = 1.0 /5000.0; //Tcyc sample correspond to control update rate to PI controler for I
 
-//float amp_limit_SVM_app = 2500;  Bo
-
 // scaling factor for SVM Update -> amplitude scaling (max_amplitude = 16384U)
 float scaling_factor = 135;
 float amplitude_corrected;
-
 
 // Counter for calculation function -> only use a multiple of the SVM Interrupt
 volatile uint8_t count = 0;
@@ -146,49 +77,18 @@ volatile uint8_t count = 0;
 float offset_pos = -27.0;				//Offset to reduce Hall Sensor Offset in CW direction
 float offset_neg = -20.0;			//Offset to reduce Hall Sensor Offset in CCW direction
 
-//################ PI
-// PID Controller declaration for Id and Iq component
-typedef struct{
-	float P,I,D;
-	float MaxLimit, MinLimit;
-	float Output;
-	float Deviation_old, Deviation_old2;
-	float Output_z;
-}PID_param;
-
-//Vuales 14/04 mit maurzio
-//PID_param omega_param = {.P = 0.004, .I = 0.004, .D = 0.0, .MaxLimit =  1, .MinLimit = -1, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A//PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
-//PID_param Iq_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
-//PID_param Id_param = {.P = 0.05, .I = 25.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
-
-// max ested iq 100Hz wbw
-//PID_param Iq_param = {.P = 0.56, .I = 465.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
-//PID_param Id_param = {.P = 0.56, .I = 465.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
-//PID_param omega_param = {.P = 0.2921, .I = 0.1213, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // M6
-
-// crretn best on motor 10 iq 50Hz wbw
-PID_param Iq_param = {.P = 0.28, .I = 232.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // Voltage limit to 1/2 of DC link.
-PID_param Id_param = {.P = 0.28, .I = 232.0, .D = 0.0, .MaxLimit =  100, .MinLimit = -100, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
-//PID_param omega_param10 = {.P = 0.3949, .I = 0.1619, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0}; // 3Hz wbw // limits of 2 are derived from T = K_t * I = 0.21 Nm/A * 2A = 1.47A --> 2A
-
-PID_param omega_param = {.P = 0.2859, .I = 0.1289, .D = 0.0, .MaxLimit =  2, .MinLimit = -2, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};// M6
-
-// for motro 1
-PID_param omega_param1 = {.P = 0.005, .I = 0.01, .D = 0.0, .MaxLimit =  1.5, .MinLimit = -1.5, .Output = 0.0, .Deviation_old = 0.0, .Deviation_old2 = 0.0};
-
-
-float PID_Controller(float,float,PID_param *param);
 
 uint8_t Speed_detection_OK = 0;
+
+//step rec
 float setting_time_scalar = 0.6, step_start =0, step = 1;
 
+//satrt help
 uint8_t start_help_count = 0, start_help = 0, start_help_flag = 0;
 #define START_HELP_T 0.1
 
-//float V_DC_link = 14.8; // nominal batt voltage
+
 float ADC_TO_DCLINK[6] = {80.2, 80.4, 77, 77, 77, 79.5}; // 77 defalft value
-
-
 
 //########################
 // MAIN
@@ -237,6 +137,8 @@ int main(void)
   /* Placeholder for user application code. The while loop below can be replaced with user application code. */
   while(1U)
   {
+	  omega_param_selctor(MOTOR_NUM); //set motor spefici speeed parameters
+
 	  PWM_SVM_Start(&PWM_SVM_0); // synchronous start for the CC8 slices.
 		  while(1U)
 		    {
@@ -263,108 +165,12 @@ int main(void)
 // INTERRUPTS
 //########################
 
-/*
-// CAN Communication
-void CAN_RX_MO2_ISR(void){
-		XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[1]->mo_ptr;
-		CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[1]); // reset for incremental encoder
-
-		uint8_t data_r[8];
-		 int i;
-		 for(i = 0 ; i < 8 ; i ++){
-			 data_r[i] = lmsgobjct_ptr_1->can_data_byte[i];
-		 }
-
-		 for(i = 0 ; i < 4 ; i ++){
-			 Speeds_int16_r[i] = (data_r[i * 2 + 1] << 8) | data_r[i * 2];
-			 }
-
-		CAN_speed_ref = (float)Speeds_int16_r[MOTOR_ON_ROVER] / 1000; // converting back from mm/s to m/s
-
-		if(MOTOR_NUM == 6)CAN_speed_ref = -CAN_speed_ref; // exeption for motor 6
-
-		if(CAN_speed_ref > MAX_Speed_CAN) CAN_speed_ref = MAX_Speed_CAN;
-		if(CAN_speed_ref < -MAX_Speed_CAN) CAN_speed_ref = -MAX_Speed_CAN;
-
-		CAN_new_meassage = 1;
-		CAN_no_com_counter = 0;
-}
-
-//CAN RX reste distance
-void CAN_RX_MO7_ISR(void){
-	XMC_CAN_MO_t* lmsgobjct_ptr = CAN_NODE_0.lmobj_ptr[6]->mo_ptr;
-	CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[6]); // reset for incremental encoder
-
-	uint8_t data_r[4];
-	 int i;
-	 for(i = 0 ; i < 4 ; i ++){
-		 data_r[i] = lmsgobjct_ptr->can_data_byte[i];
-	 }
-
-	 if(data_r[MOTOR_ON_ROVER] == 1) distance_180deg_ele_count = 0;
-}
-
-void CAN_TX_ISR(void){
-	int16_t Inverter_state[4] = {0};
-
-	Inverter_state[0] = MOTOR_ON_ROVER; // for identification apart form CAN ID
-
-	//if(CAN_no_com_counter > CAN_NO_COM_TH) Inverter_state[0] = 0;
-	//else Inverter_state[1] = 1;
-
-
-	Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
-
-	Speed_act = omega_ele_rads * WHEEL_R / PPZ;
-	if(MOTOR_NUM == 6) Speed_act = -Speed_act;
-	Inverter_state[2] = Speed_act * 1000; // to mm/sconverstoion
-
-	distance = (((float)distance_180deg_ele_count / 2) / PPZ) * PI * 2 * WHEEL_R;
-	if(MOTOR_NUM == 6) distance = -distance;
-	Inverter_state[3] = distance * 1000; // to mm
-
-	uint8_t CAN_MO = MOTOR_ON_ROVER + 2;
-	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[CAN_MO], (uint8_t*)Inverter_state);
-	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[CAN_MO]); //Transmit the data of message object1
-}
-*/
-
 void Adc_Measurement_Handler(void){
 	uint32_t result  = ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A);
 
 	V_DC_link =  result / ADC_TO_DCLINK[INVERTER_NUM]; // conversion to DClink
-
 }
 
-// 100us Timer for speed measurement
-void TimeCounterISR(void){
-	time_since_A ++;
-	time_since_B ++;
-	time_since_C ++;
-}
-
-// Hall Sensors
-void HallSensor_A_ISR(void){
-	HallSensor();
-	time_180deg = time_since_A;				// Actual velocity value calculated with Hall A
-	time_since_A = 0;						// measurement of speed -> time between change of Hall A
-	last_Hall_trig = 'A';
-
-	if(direction == 1 ) distance_180deg_ele_count ++;
-	else if(direction == -1 ) distance_180deg_ele_count --;
-}
-void HallSensor_B_ISR(void){
-	HallSensor();
-	time_180deg = time_since_B;
-	time_since_B = 0;
-	last_Hall_trig = 'B';
-}
-void HallSensor_C_ISR(void){
-	HallSensor();
-	time_180deg = time_since_C;
-	time_since_C = 0;
-	last_Hall_trig = 'C';
-}
 
 /*
 // Turn off driver at Overcurrent
@@ -400,36 +206,8 @@ void PeriodMatchInterruptHandler(void)
 // FUNCTIONS
 //########################
 
-// Hall init -> readout of actual Hall pattern to determine the motor position
-void Hall_init(void){
 
-	  uint8_t Hall_Initial =  ((((PIN_INTERRUPT_GetPinValue(&Hall_A_ISR) << 1) | PIN_INTERRUPT_GetPinValue(&Hall_B_ISR)) << 1) | PIN_INTERRUPT_GetPinValue(&Hall_C_ISR));
-
-	 if(Hall_Initial == 0b100){sector = 0;}
-	 else if(Hall_Initial == 0b110){sector = 1;}
-	 else if(Hall_Initial == 0b010){sector = 2;}
-	 else if(Hall_Initial == 0b011){sector = 3;}
-	 else if(Hall_Initial == 0b001){sector = 4;}
-	 else if(Hall_Initial == 0b101){sector = 5;}
-}
-
-// Function to determine direction and current Sector
-void HallSensor(void){
-	enc_val = enc_val << 3; //shift old values and make space for new ones
-	uint8_t Hall_status =((((PIN_INTERRUPT_GetPinValue(&Hall_A_ISR) << 1) | PIN_INTERRUPT_GetPinValue(&Hall_B_ISR)) << 1) | PIN_INTERRUPT_GetPinValue(&Hall_C_ISR));
-	enc_val = enc_val | Hall_status; //read Sensor values and store them
-	direction = lookup_table[enc_val & 0b111111];  //direction due to look up table, look at actual and prev measurement
-
-	if(Hall_status == 0b100){sector = 0;}
-		 else if(Hall_status == 0b110){sector = 1;}
-		 else if(Hall_status == 0b010){sector = 2;}
-		 else if(Hall_status == 0b011){sector = 3;}
-		 else if(Hall_status == 0b001){sector = 4;}
-		 else if(Hall_status == 0b101){sector = 5;}
-
-}
 // Routine for calculation (sector, clark-Park trans.,...)
-
 //5kHz loop since every 4th step of 50us --> 200us --> 5kHz
 void Calculation(void){
 		DIGITAL_IO_SetOutputHigh(&status_LED_red_cal_time);
@@ -485,8 +263,6 @@ void Calculation(void){
 		} // set omega  to 0 if no more hall detected
 		else omega_ele_rads = omega_mech_rps*2*PI*PPZ; //omega_ electrica in rads / s
 
-		omega_ele_degs = omega_ele_rads / Pi180;
-
 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 8% duyt  // change to angel_in secotr 7% duty
 
 		// Current read out over SPI
@@ -541,15 +317,14 @@ void Calculation(void){
 		}
 		*/
 
-
+		// Always run speed controll calc
 		if(Speed_control == 1 && omega_mech_rps_ref == 0  && (( -2 < omega_mech_rps) && (omega_mech_rps < 2))){ // no contorl is standing stil
-				T_ref = 0;
-			}
+			T_ref = 0;
+		}
 		else{
-			if(MOTOR_NUM == 1) T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param1); // outer control loop q for omega
-			else T_ref = PID_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param);
+			T_ref = PI_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param); // outer control loop q for omega
 
-			if(start_help ==1 ){
+			if(start_help == 1 ){
 				// start help
 				if(omega_mech_rps_ref != 0 && (copysign(1,omega_mech_rps_ref) != copysign(1,omega_mech_rps) || omega_mech_rps == 0)){
 					start_help_count = 1;
@@ -564,7 +339,7 @@ void Calculation(void){
 			}
 		}
 
-		if (Speed_control == 1){
+		if (Speed_control == 1){// activation of speed control
 			if(MOTOR_NUM == 1 || MOTOR_NUM == 10) {
 				iq_ref =  T_ref / K_T; // dirction for motor 1
 			}
@@ -574,7 +349,6 @@ void Calculation(void){
 
 		}
 
-
 		//iq_ref = - T_ref / K_T;// dirction for motor 1
 
 		//limit to IQ_REF_MAx limit
@@ -582,8 +356,11 @@ void Calculation(void){
 		if(iq_ref > IQ_REF_MAX) iq_ref = IQ_REF_MAX;
 
 		if(Torque_control == 1){
-			Vd = PID_Controller(0.0,id,&Id_param);
-			Vq = PID_Controller(iq_ref,iq,&Iq_param); // toque controll
+			//Vd = PID_Controller(0.0,id,&Id_param);
+			//Vq = PID_Controller(iq_ref,iq,&Iq_param); // toque controll
+
+			Vd = PI_Controller(0.0,id,&Id_param);
+			Vq = PI_Controller(iq_ref,iq,&Iq_param); // toque controll
 		}
 
 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // %67 duyt   control takes 4% of the time 9ms
@@ -619,52 +396,6 @@ void Calculation(void){
 		DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 83% duty amplitued calc takes 16% of the time
 
 }
-
-// PID Controller
-float PID_Controller(float SetPoint,float ActValue,PID_param *param){
-
-	float Deviation = SetPoint - ActValue;
-	float temp1, temp2;
-
-	 temp1 = param->P*Deviation;
-	 temp2 = temp1 + param->I*Tcyc*Deviation + param->Output_z;
-
-	 if (temp2 >= param->MaxLimit){
-		 temp2 = param->MaxLimit;
-	 }
-	 else if (temp2 < param->MinLimit){
-		 temp2 = param->MinLimit;
-	 }
-
-	 param->Output_z = temp2 - temp1;
-
-	 param->Output = temp2;
-
-	return param->Output;
-
-}
-
-/*
-//Read Current  via SPI-Interface
-float readCurrent(uint8_t ChipSelect){
-	uint8_t ReadData[2];
-
-	BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
-	SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
-	BUS_IO_Write(&SPI_ChipSelect, 0b111);
-	ReadData[0] = ReadData[0] & 0X1F; 									//cutting away the 3 info bits
-	uint16_t iCurrent = ReadData[0]<<8 | ReadData[1];					//combine Data
-
-	// calculation of the current
-	float fCurrent = ((float)iCurrent - 4096.0)/160.0;					// ATTENTION: value has to be divided by 160 for the 25A Sensor and 80 for the 50A Sensor
-
-	return fCurrent;
-}
-
-*/
-
-
-
 
 
 
