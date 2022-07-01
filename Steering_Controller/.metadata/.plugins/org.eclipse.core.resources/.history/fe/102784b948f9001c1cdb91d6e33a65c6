@@ -1,0 +1,118 @@
+/*
+ * Ultrasonic_Collision_Avoidance.c
+ *
+ *  Created on: 1 Jul 2022
+ *      Author: lukas
+ */
+#include "Ultrasonic_Collision_Avoidance.h"
+
+// filtering
+float ALPHA_ULTARSONIC = 0.3; // giltering prameter for the Exponential moving average
+#define POS_OBSTRUCTED_ANGLE_MIN 50
+#define POS_OBSTRUCTED_ANGLE_MAX 210
+#define NEG_OBSTRUCTED_ANGLE_MIN -150
+#define NEG_OBSTRUCTED_ANGLE_MAX -310
+uint8_t obstructed_L = 0, obstructed_R = 0;
+float Ultra_m_C = 4, Ultra_m_L = 4, Ultra_m_R = 4;
+
+#define ULRTA_NUM_NO_DATA_INVALID 40
+uint8_t Ultrsonic_data_invaildcounter[3] = {ULRTA_NUM_NO_DATA_INVALID, ULRTA_NUM_NO_DATA_INVALID, ULRTA_NUM_NO_DATA_INVALID};
+
+// obstacels
+float Obstacel_F = 4, Obstacel_L = 4, Obstacel_R = 4; // y vaule alwasy stays 4
+
+
+
+void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC){
+
+	if(Ultrasonic_cm_C_clc != 0){
+		Ultrsonic_data_invaildcounter[0] = 0;
+		Ultra_m_C = Exp_moving_average((float)Ultrasonic_cm_C_clc / 100 , Ultra_m_C, ALPHA_ULTARSONIC);
+	}
+	else Ultrsonic_data_invaildcounter[0]++;
+
+	if(Ultrasonic_cm_L_clc != 0){
+		obstructed_L = Ultrasoinc_Obstructet_Test(Steering_Angles_clc[0]);
+		if(obstructed_L == 0) {
+			Ultrsonic_data_invaildcounter[1] = 0;
+			Ultra_m_L = Exp_moving_average((float)Ultrasonic_cm_L_clc / 100 , Ultra_m_L, ALPHA_ULTARSONIC);
+		}
+	}
+	else Ultrsonic_data_invaildcounter[1]++;
+
+	if(Ultrasonic_cm_R_clc != 0){
+		obstructed_R = Ultrasoinc_Obstructet_Test( - Steering_Angles_clc[1]); // neagtiv becasue right wheel
+		if(obstructed_R == 0){
+			Ultrsonic_data_invaildcounter[2] = 0;
+			Ultra_m_R = Exp_moving_average((float)Ultrasonic_cm_R_clc / 100 , Ultra_m_R, ALPHA_ULTARSONIC);
+		}
+	}
+	else Ultrsonic_data_invaildcounter[2]++;
+
+	uint8_t i;
+	for(i = 0; i < 3; i++){
+		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i] = ULRTA_NUM_NO_DATA_INVALID;
+	}
+
+	// front obstacel
+	if(Ultrsonic_data_invaildcounter[0] < ULRTA_NUM_NO_DATA_INVALID ){
+	//	Obstacel_F[0] = Ultra_m_C;
+		Obstacel_F = Ultra_m_C;
+		Obstacel_valid[0] = 1;
+	}
+	else {
+		Obstacel_valid[0] = 0;
+		//Obstacel_F[0]  = 4;
+	}
+
+	if(Ultrsonic_data_invaildcounter[1] < ULRTA_NUM_NO_DATA_INVALID && obstructed_L == 0 ){
+		//Obstacel_L[0] = Ultra_m_L * cos(Steering_Angles[0] / RAD_TO_DEG);
+		//Obstacel_L[1] = Ultra_m_L * sin(Steering_Angles[0] / RAD_TO_DEG);
+		Obstacel_L = Ultra_m_L;
+		Obstacel_valid[1] = 1;
+	}
+	else {
+		Obstacel_valid[1] = 0;
+		//Obstacel_L[0]  = 4;
+		//Obstacel_L[1]  = 4;
+	}
+
+	if(Ultrsonic_data_invaildcounter[2]  < ULRTA_NUM_NO_DATA_INVALID && obstructed_R == 0 ){
+		//Obstacel_R[0] = Ultra_m_R * cos(Steering_Angles[1] / RAD_TO_DEG);
+		//Obstacel_R[1] = Ultra_m_R * sin(Steering_Angles[1] / RAD_TO_DEG);
+		Obstacel_valid[2] = 1;
+		Obstacel_R = Ultra_m_R;
+	}
+	else {
+		Obstacel_valid[2] = 0;
+		//Obstacel_R[0]  = 4;
+		//Obstacel_R[1]  = 4;
+	}
+
+	/*
+	obstacel_F_x = Obstacel_F[0];
+	obstacel_L_x = Obstacel_L[0];
+	obstacel_L_y = Obstacel_L[1];
+	obstacel_R_x = Obstacel_R[0];
+	obstacel_R_y = Obstacel_R[1];
+	*/
+}
+
+uint8_t Ultrasoinc_Obstructet_Test(float Angle){
+	uint8_t i;
+	for(i = 0; i < 3; i++){ // if rotate around multipel times
+		if(Angle > 0){
+			if((Angle - (POS_OBSTRUCTED_ANGLE_MIN + (i * 360))) * (Angle - (POS_OBSTRUCTED_ANGLE_MAX + (i * 360))) <= 0){
+				return 1;
+			}
+		}
+
+		if(Angle < 0){
+			if((Angle - (NEG_OBSTRUCTED_ANGLE_MIN - (i * 360))) * (Angle - (NEG_OBSTRUCTED_ANGLE_MAX - (i * 360))) <= 0){
+						return 1;
+			}
+		}
+	}
+
+	return 0;
+}

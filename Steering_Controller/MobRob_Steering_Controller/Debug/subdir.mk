@@ -4,13 +4,34 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../main.c 
+../CAN.c \
+../Driving_dynamics.c \
+../Globas.c \
+../RC_data_recive.c \
+../Steering_Servos.c \
+../Ultrasonic_Collision_Avoidance.c \
+../main.c \
+../other_functions.c 
 
 OBJS += \
-./main.o 
+./CAN.o \
+./Driving_dynamics.o \
+./Globas.o \
+./RC_data_recive.o \
+./Steering_Servos.o \
+./Ultrasonic_Collision_Avoidance.o \
+./main.o \
+./other_functions.o 
 
 C_DEPS += \
-./main.d 
+./CAN.d \
+./Driving_dynamics.d \
+./Globas.d \
+./RC_data_recive.d \
+./Steering_Servos.d \
+./Ultrasonic_Collision_Avoidance.d \
+./main.d \
+./other_functions.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

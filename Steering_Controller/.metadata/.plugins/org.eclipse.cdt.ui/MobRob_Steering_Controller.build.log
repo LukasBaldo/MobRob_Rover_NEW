@@ -1,11 +1,29 @@
-14:12:34 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+17:08:53 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
 "\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../RC_data_recive.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "RC_data_recive.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="RC_data_recive.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"RC_data_recive.d" -MT"RC_data_recive.d RC_data_recive.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "RC_data_recive.o" "../RC_data_recive.c" 
+'Finished building: ../RC_data_recive.c'
+
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
 'Invoking: ARM-GCC Print Size'
 "C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
    text	   data	    bss	    dec	    hex	filename
-  43492	    808	   1564	  45864	   b328	MobRob_Steering_Controller.elf
+  41636	    788	   1504	  43928	   ab98	MobRob_Steering_Controller.elf
 'Finished building: MobRob_Steering_Controller.siz'
 
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
 
-14:12:35 Build Finished (took 872ms)
+
+17:08:54 Build Finished (took 1s.428ms)
 

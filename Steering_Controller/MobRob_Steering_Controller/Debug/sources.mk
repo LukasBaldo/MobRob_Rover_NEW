@@ -19,6 +19,7 @@ TOOLCHAIN_ROOT :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+. \
 Dave/Generated/CAN_NODE \
 Dave/Generated/CAPTURE \
 Dave/Generated/CLOCK_XMC1 \
@@ -36,5 +37,4 @@ Dave/Generated/WATCHDOG \
 Libraries/Newlib \
 Libraries/XMCLib/src \
 Startup \
-. \
 

@@ -1,0 +1,25 @@
+/*
+ * CAN.c
+ *
+ *  Created on: 1 Jul 2022
+ *      Author: lukas
+ */
+#include "DAVE.h"
+
+void CAN_reset_distance(uint8_t distance_to_reset[4]){
+	uint8_t TX[8] ={0};
+	uint8_t i;
+	for(i = 0; i < 4; i++){	TX[i] = distance_to_reset[i];}
+
+	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[1], (uint8_t*)TX);
+	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[1]); //Transmit the data of message object1
+}
+
+void CAN_send_Speeds(float Speed_data[4]){
+
+	int16_t Speeds_int16[4] ={Speed_data[0] *1000, Speed_data[1] *1000, Speed_data[2] *1000, Speed_data[3] *1000}; // in int16_t mm/s converter back on inverter
+
+	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)Speeds_int16);
+	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
+
+}

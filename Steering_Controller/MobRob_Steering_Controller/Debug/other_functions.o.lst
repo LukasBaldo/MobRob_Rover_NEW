@@ -1,0 +1,552 @@
+   1              	 .cpu cortex-m0
+   2              	 .fpu softvfp
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,0
+  11              	 .eabi_attribute 18,4
+  12              	 .code 16
+  13              	 .file "other_functions.c"
+  14              	 .text
+  15              	.Ltext0:
+  16              	 .cfi_sections .debug_frame
+  17              	 .global __aeabi_fsub
+  18              	 .global __aeabi_fmul
+  19              	 .global __aeabi_fcmple
+  20              	 .section .text.within_MAX_MIN,"ax",%progbits
+  21              	 .align 2
+  22              	 .global within_MAX_MIN
+  23              	 .code 16
+  24              	 .thumb_func
+  26              	within_MAX_MIN:
+  27              	.LFB0:
+  28              	 .file 1 "../other_functions.c"
+   1:../other_functions.c **** /*
+   2:../other_functions.c ****  * other_functions.c
+   3:../other_functions.c ****  *
+   4:../other_functions.c ****  *  Created on: 13 Jun 2022
+   5:../other_functions.c ****  *      Author: lukas
+   6:../other_functions.c ****  */
+   7:../other_functions.c **** 
+   8:../other_functions.c **** #include "other_functions.h"
+   9:../other_functions.c **** /* Always include the header file that declares something
+  10:../other_functions.c ****                      * in the C file that defines it. This makes sure that the
+  11:../other_functions.c ****                      * declaration and definition are always in-sync.  Put this
+  12:../other_functions.c ****                      * header first in foo.c to ensure the header is self-contained.
+  13:../other_functions.c ****                      */
+  14:../other_functions.c **** 
+  15:../other_functions.c **** 
+  16:../other_functions.c **** /**
+  17:../other_functions.c ****  * This is the function definition.
+  18:../other_functions.c ****  * It is the actual body of the function which was declared elsewhere.
+  19:../other_functions.c ****  */
+  20:../other_functions.c **** bool within_MAX_MIN(float num, float max, float min){
+  29              	 .loc 1 20 0
+  30              	 .cfi_startproc
+  31 0000 90B5     	 push {r4,r7,lr}
+  32              	.LCFI0:
+  33              	 .cfi_def_cfa_offset 12
+  34              	 .cfi_offset 4,-12
+  35              	 .cfi_offset 7,-8
+  36              	 .cfi_offset 14,-4
+  37 0002 85B0     	 sub sp,sp,#20
+  38              	.LCFI1:
+  39              	 .cfi_def_cfa_offset 32
+  40 0004 00AF     	 add r7,sp,#0
+  41              	.LCFI2:
+  42              	 .cfi_def_cfa_register 7
+  43 0006 F860     	 str r0,[r7,#12]
+  44 0008 B960     	 str r1,[r7,#8]
+  45 000a 7A60     	 str r2,[r7,#4]
+  21:../other_functions.c **** 	if((num-min)*(num-max) <= 0) return 1;
+  46              	 .loc 1 21 0
+  47 000c F868     	 ldr r0,[r7,#12]
+  48 000e 7968     	 ldr r1,[r7,#4]
+  49 0010 FFF7FEFF 	 bl __aeabi_fsub
+  50 0014 031C     	 add r3,r0,#0
+  51 0016 1C1C     	 add r4,r3,#0
+  52 0018 F868     	 ldr r0,[r7,#12]
+  53 001a B968     	 ldr r1,[r7,#8]
+  54 001c FFF7FEFF 	 bl __aeabi_fsub
+  55 0020 031C     	 add r3,r0,#0
+  56 0022 201C     	 add r0,r4,#0
+  57 0024 191C     	 add r1,r3,#0
+  58 0026 FFF7FEFF 	 bl __aeabi_fmul
+  59 002a 031C     	 add r3,r0,#0
+  60 002c 181C     	 add r0,r3,#0
+  61 002e 0021     	 mov r1,#0
+  62 0030 FFF7FEFF 	 bl __aeabi_fcmple
+  63 0034 031E     	 sub r3,r0,#0
+  64 0036 01D0     	 beq .L6
+  65              	 .loc 1 21 0 is_stmt 0 discriminator 1
+  66 0038 0123     	 mov r3,#1
+  67 003a 00E0     	 b .L4
+  68              	.L6:
+  22:../other_functions.c **** 	else return 0;
+  69              	 .loc 1 22 0 is_stmt 1
+  70 003c 0023     	 mov r3,#0
+  71              	.L4:
+  23:../other_functions.c **** }
+  72              	 .loc 1 23 0
+  73 003e 181C     	 mov r0,r3
+  74 0040 BD46     	 mov sp,r7
+  75 0042 05B0     	 add sp,sp,#20
+  76              	 
+  77 0044 90BD     	 pop {r4,r7,pc}
+  78              	 .cfi_endproc
+  79              	.LFE0:
+  81              	 .global __aeabi_fadd
+  82              	 .global __aeabi_f2d
+  83              	 .global __aeabi_dadd
+  84              	 .global __aeabi_ddiv
+  85              	 .global __aeabi_d2f
+  86 0046 C046     	 .section .text.distance_trajectory_obstacel,"ax",%progbits
+  87              	 .align 2
+  88              	 .global distance_trajectory_obstacel
+  89              	 .code 16
+  90              	 .thumb_func
+  92              	distance_trajectory_obstacel:
+  93              	.LFB1:
+  24:../other_functions.c **** 
+  25:../other_functions.c **** 
+  26:../other_functions.c **** float distance_trajectory_obstacel(float a, float b, float o_x, float o_y){
+  94              	 .loc 1 26 0
+  95              	 .cfi_startproc
+  96 0000 F0B5     	 push {r4,r5,r6,r7,lr}
+  97              	.LCFI3:
+  98              	 .cfi_def_cfa_offset 20
+  99              	 .cfi_offset 4,-20
+ 100              	 .cfi_offset 5,-16
+ 101              	 .cfi_offset 6,-12
+ 102              	 .cfi_offset 7,-8
+ 103              	 .cfi_offset 14,-4
+ 104 0002 87B0     	 sub sp,sp,#28
+ 105              	.LCFI4:
+ 106              	 .cfi_def_cfa_offset 48
+ 107 0004 00AF     	 add r7,sp,#0
+ 108              	.LCFI5:
+ 109              	 .cfi_def_cfa_register 7
+ 110 0006 7861     	 str r0,[r7,#20]
+ 111 0008 3961     	 str r1,[r7,#16]
+ 112 000a FA60     	 str r2,[r7,#12]
+ 113 000c BB60     	 str r3,[r7,#8]
+  27:../other_functions.c **** 	return fabs(a * o_x +  b* o_y) / sqrt(pow(a,2) + pow(b,2));
+ 114              	 .loc 1 27 0
+ 115 000e 7869     	 ldr r0,[r7,#20]
+ 116 0010 F968     	 ldr r1,[r7,#12]
+ 117 0012 FFF7FEFF 	 bl __aeabi_fmul
+ 118 0016 031C     	 add r3,r0,#0
+ 119 0018 1C1C     	 add r4,r3,#0
+ 120 001a 3869     	 ldr r0,[r7,#16]
+ 121 001c B968     	 ldr r1,[r7,#8]
+ 122 001e FFF7FEFF 	 bl __aeabi_fmul
+ 123 0022 031C     	 add r3,r0,#0
+ 124 0024 201C     	 add r0,r4,#0
+ 125 0026 191C     	 add r1,r3,#0
+ 126 0028 FFF7FEFF 	 bl __aeabi_fadd
+ 127 002c 031C     	 add r3,r0,#0
+ 128 002e 5B00     	 lsl r3,r3,#1
+ 129 0030 5B08     	 lsr r3,r3,#1
+ 130 0032 181C     	 add r0,r3,#0
+ 131 0034 FFF7FEFF 	 bl __aeabi_f2d
+ 132 0038 051C     	 mov r5,r0
+ 133 003a 0E1C     	 mov r6,r1
+ 134 003c 7869     	 ldr r0,[r7,#20]
+ 135 003e FFF7FEFF 	 bl __aeabi_f2d
+ 136 0042 0A1C     	 mov r2,r1
+ 137 0044 011C     	 mov r1,r0
+ 138 0046 0023     	 mov r3,#0
+ 139 0048 8024     	 mov r4,#128
+ 140 004a E405     	 lsl r4,r4,#23
+ 141 004c 081C     	 mov r0,r1
+ 142 004e 111C     	 mov r1,r2
+ 143 0050 1A1C     	 mov r2,r3
+ 144 0052 231C     	 mov r3,r4
+ 145 0054 FFF7FEFF 	 bl pow
+ 146 0058 3860     	 str r0,[r7]
+ 147 005a 7960     	 str r1,[r7,#4]
+ 148 005c 3869     	 ldr r0,[r7,#16]
+ 149 005e FFF7FEFF 	 bl __aeabi_f2d
+ 150 0062 0A1C     	 mov r2,r1
+ 151 0064 011C     	 mov r1,r0
+ 152 0066 0023     	 mov r3,#0
+ 153 0068 8024     	 mov r4,#128
+ 154 006a E405     	 lsl r4,r4,#23
+ 155 006c 081C     	 mov r0,r1
+ 156 006e 111C     	 mov r1,r2
+ 157 0070 1A1C     	 mov r2,r3
+ 158 0072 231C     	 mov r3,r4
+ 159 0074 FFF7FEFF 	 bl pow
+ 160 0078 031C     	 mov r3,r0
+ 161 007a 0C1C     	 mov r4,r1
+ 162 007c 3868     	 ldr r0,[r7]
+ 163 007e 7968     	 ldr r1,[r7,#4]
+ 164 0080 1A1C     	 mov r2,r3
+ 165 0082 231C     	 mov r3,r4
+ 166 0084 FFF7FEFF 	 bl __aeabi_dadd
+ 167 0088 031C     	 mov r3,r0
+ 168 008a 0C1C     	 mov r4,r1
+ 169 008c 181C     	 mov r0,r3
+ 170 008e 211C     	 mov r1,r4
+ 171 0090 FFF7FEFF 	 bl sqrt
+ 172 0094 031C     	 mov r3,r0
+ 173 0096 0C1C     	 mov r4,r1
+ 174 0098 281C     	 mov r0,r5
+ 175 009a 311C     	 mov r1,r6
+ 176 009c 1A1C     	 mov r2,r3
+ 177 009e 231C     	 mov r3,r4
+ 178 00a0 FFF7FEFF 	 bl __aeabi_ddiv
+ 179 00a4 031C     	 mov r3,r0
+ 180 00a6 0C1C     	 mov r4,r1
+ 181 00a8 181C     	 mov r0,r3
+ 182 00aa 211C     	 mov r1,r4
+ 183 00ac FFF7FEFF 	 bl __aeabi_d2f
+ 184 00b0 031C     	 add r3,r0,#0
+  28:../other_functions.c **** }
+ 185              	 .loc 1 28 0
+ 186 00b2 181C     	 add r0,r3,#0
+ 187 00b4 BD46     	 mov sp,r7
+ 188 00b6 07B0     	 add sp,sp,#28
+ 189              	 
+ 190 00b8 F0BD     	 pop {r4,r5,r6,r7,pc}
+ 191              	 .cfi_endproc
+ 192              	.LFE1:
+ 194 00ba C046     	 .section .text.pythagoras,"ax",%progbits
+ 195              	 .align 2
+ 196              	 .global pythagoras
+ 197              	 .code 16
+ 198              	 .thumb_func
+ 200              	pythagoras:
+ 201              	.LFB2:
+  29:../other_functions.c **** 
+  30:../other_functions.c **** float pythagoras(float a, float b){
+ 202              	 .loc 1 30 0
+ 203              	 .cfi_startproc
+ 204 0000 F0B5     	 push {r4,r5,r6,r7,lr}
+ 205              	.LCFI6:
+ 206              	 .cfi_def_cfa_offset 20
+ 207              	 .cfi_offset 4,-20
+ 208              	 .cfi_offset 5,-16
+ 209              	 .cfi_offset 6,-12
+ 210              	 .cfi_offset 7,-8
+ 211              	 .cfi_offset 14,-4
+ 212 0002 83B0     	 sub sp,sp,#12
+ 213              	.LCFI7:
+ 214              	 .cfi_def_cfa_offset 32
+ 215 0004 00AF     	 add r7,sp,#0
+ 216              	.LCFI8:
+ 217              	 .cfi_def_cfa_register 7
+ 218 0006 7860     	 str r0,[r7,#4]
+ 219 0008 3960     	 str r1,[r7]
+  31:../other_functions.c **** 	return sqrt(pow(a,2) + pow(b,2));
+ 220              	 .loc 1 31 0
+ 221 000a 7868     	 ldr r0,[r7,#4]
+ 222 000c FFF7FEFF 	 bl __aeabi_f2d
+ 223 0010 0A1C     	 mov r2,r1
+ 224 0012 011C     	 mov r1,r0
+ 225 0014 0023     	 mov r3,#0
+ 226 0016 8024     	 mov r4,#128
+ 227 0018 E405     	 lsl r4,r4,#23
+ 228 001a 081C     	 mov r0,r1
+ 229 001c 111C     	 mov r1,r2
+ 230 001e 1A1C     	 mov r2,r3
+ 231 0020 231C     	 mov r3,r4
+ 232 0022 FFF7FEFF 	 bl pow
+ 233 0026 051C     	 mov r5,r0
+ 234 0028 0E1C     	 mov r6,r1
+ 235 002a 3868     	 ldr r0,[r7]
+ 236 002c FFF7FEFF 	 bl __aeabi_f2d
+ 237 0030 0A1C     	 mov r2,r1
+ 238 0032 011C     	 mov r1,r0
+ 239 0034 0023     	 mov r3,#0
+ 240 0036 8024     	 mov r4,#128
+ 241 0038 E405     	 lsl r4,r4,#23
+ 242 003a 081C     	 mov r0,r1
+ 243 003c 111C     	 mov r1,r2
+ 244 003e 1A1C     	 mov r2,r3
+ 245 0040 231C     	 mov r3,r4
+ 246 0042 FFF7FEFF 	 bl pow
+ 247 0046 031C     	 mov r3,r0
+ 248 0048 0C1C     	 mov r4,r1
+ 249 004a 281C     	 mov r0,r5
+ 250 004c 311C     	 mov r1,r6
+ 251 004e 1A1C     	 mov r2,r3
+ 252 0050 231C     	 mov r3,r4
+ 253 0052 FFF7FEFF 	 bl __aeabi_dadd
+ 254 0056 031C     	 mov r3,r0
+ 255 0058 0C1C     	 mov r4,r1
+ 256 005a 181C     	 mov r0,r3
+ 257 005c 211C     	 mov r1,r4
+ 258 005e FFF7FEFF 	 bl sqrt
+ 259 0062 031C     	 mov r3,r0
+ 260 0064 0C1C     	 mov r4,r1
+ 261 0066 181C     	 mov r0,r3
+ 262 0068 211C     	 mov r1,r4
+ 263 006a FFF7FEFF 	 bl __aeabi_d2f
+ 264 006e 031C     	 add r3,r0,#0
+  32:../other_functions.c **** }
+ 265              	 .loc 1 32 0
+ 266 0070 181C     	 add r0,r3,#0
+ 267 0072 BD46     	 mov sp,r7
+ 268 0074 03B0     	 add sp,sp,#12
+ 269              	 
+ 270 0076 F0BD     	 pop {r4,r5,r6,r7,pc}
+ 271              	 .cfi_endproc
+ 272              	.LFE2:
+ 274              	 .section .text.vector_abs_value,"ax",%progbits
+ 275              	 .align 2
+ 276              	 .global vector_abs_value
+ 277              	 .code 16
+ 278              	 .thumb_func
+ 280              	vector_abs_value:
+ 281              	.LFB3:
+  33:../other_functions.c **** 
+  34:../other_functions.c **** float vector_abs_value(float a[2]){
+ 282              	 .loc 1 34 0
+ 283              	 .cfi_startproc
+ 284 0000 F0B5     	 push {r4,r5,r6,r7,lr}
+ 285              	.LCFI9:
+ 286              	 .cfi_def_cfa_offset 20
+ 287              	 .cfi_offset 4,-20
+ 288              	 .cfi_offset 5,-16
+ 289              	 .cfi_offset 6,-12
+ 290              	 .cfi_offset 7,-8
+ 291              	 .cfi_offset 14,-4
+ 292 0002 83B0     	 sub sp,sp,#12
+ 293              	.LCFI10:
+ 294              	 .cfi_def_cfa_offset 32
+ 295 0004 00AF     	 add r7,sp,#0
+ 296              	.LCFI11:
+ 297              	 .cfi_def_cfa_register 7
+ 298 0006 7860     	 str r0,[r7,#4]
+  35:../other_functions.c **** 	return sqrt(pow(a[0],2) + pow(a[1],2));
+ 299              	 .loc 1 35 0
+ 300 0008 7B68     	 ldr r3,[r7,#4]
+ 301 000a 1B68     	 ldr r3,[r3]
+ 302 000c 181C     	 add r0,r3,#0
+ 303 000e FFF7FEFF 	 bl __aeabi_f2d
+ 304 0012 0A1C     	 mov r2,r1
+ 305 0014 011C     	 mov r1,r0
+ 306 0016 0023     	 mov r3,#0
+ 307 0018 8024     	 mov r4,#128
+ 308 001a E405     	 lsl r4,r4,#23
+ 309 001c 081C     	 mov r0,r1
+ 310 001e 111C     	 mov r1,r2
+ 311 0020 1A1C     	 mov r2,r3
+ 312 0022 231C     	 mov r3,r4
+ 313 0024 FFF7FEFF 	 bl pow
+ 314 0028 051C     	 mov r5,r0
+ 315 002a 0E1C     	 mov r6,r1
+ 316 002c 7B68     	 ldr r3,[r7,#4]
+ 317 002e 0433     	 add r3,r3,#4
+ 318 0030 1B68     	 ldr r3,[r3]
+ 319 0032 181C     	 add r0,r3,#0
+ 320 0034 FFF7FEFF 	 bl __aeabi_f2d
+ 321 0038 0A1C     	 mov r2,r1
+ 322 003a 011C     	 mov r1,r0
+ 323 003c 0023     	 mov r3,#0
+ 324 003e 8024     	 mov r4,#128
+ 325 0040 E405     	 lsl r4,r4,#23
+ 326 0042 081C     	 mov r0,r1
+ 327 0044 111C     	 mov r1,r2
+ 328 0046 1A1C     	 mov r2,r3
+ 329 0048 231C     	 mov r3,r4
+ 330 004a FFF7FEFF 	 bl pow
+ 331 004e 031C     	 mov r3,r0
+ 332 0050 0C1C     	 mov r4,r1
+ 333 0052 281C     	 mov r0,r5
+ 334 0054 311C     	 mov r1,r6
+ 335 0056 1A1C     	 mov r2,r3
+ 336 0058 231C     	 mov r3,r4
+ 337 005a FFF7FEFF 	 bl __aeabi_dadd
+ 338 005e 031C     	 mov r3,r0
+ 339 0060 0C1C     	 mov r4,r1
+ 340 0062 181C     	 mov r0,r3
+ 341 0064 211C     	 mov r1,r4
+ 342 0066 FFF7FEFF 	 bl sqrt
+ 343 006a 031C     	 mov r3,r0
+ 344 006c 0C1C     	 mov r4,r1
+ 345 006e 181C     	 mov r0,r3
+ 346 0070 211C     	 mov r1,r4
+ 347 0072 FFF7FEFF 	 bl __aeabi_d2f
+ 348 0076 031C     	 add r3,r0,#0
+  36:../other_functions.c **** }
+ 349              	 .loc 1 36 0
+ 350 0078 181C     	 add r0,r3,#0
+ 351 007a BD46     	 mov sp,r7
+ 352 007c 03B0     	 add sp,sp,#12
+ 353              	 
+ 354 007e F0BD     	 pop {r4,r5,r6,r7,pc}
+ 355              	 .cfi_endproc
+ 356              	.LFE3:
+ 358              	 .section .text.Exp_moving_average,"ax",%progbits
+ 359              	 .align 2
+ 360              	 .global Exp_moving_average
+ 361              	 .code 16
+ 362              	 .thumb_func
+ 364              	Exp_moving_average:
+ 365              	.LFB4:
+  37:../other_functions.c **** 
+  38:../other_functions.c **** float Exp_moving_average(float new_value, float value, float ALPHA){
+ 366              	 .loc 1 38 0
+ 367              	 .cfi_startproc
+ 368 0000 90B5     	 push {r4,r7,lr}
+ 369              	.LCFI12:
+ 370              	 .cfi_def_cfa_offset 12
+ 371              	 .cfi_offset 4,-12
+ 372              	 .cfi_offset 7,-8
+ 373              	 .cfi_offset 14,-4
+ 374 0002 85B0     	 sub sp,sp,#20
+ 375              	.LCFI13:
+ 376              	 .cfi_def_cfa_offset 32
+ 377 0004 00AF     	 add r7,sp,#0
+ 378              	.LCFI14:
+ 379              	 .cfi_def_cfa_register 7
+ 380 0006 F860     	 str r0,[r7,#12]
+ 381 0008 B960     	 str r1,[r7,#8]
+ 382 000a 7A60     	 str r2,[r7,#4]
+  39:../other_functions.c **** 	return ((new_value * ALPHA) + ((1 - ALPHA) * value));
+ 383              	 .loc 1 39 0
+ 384 000c F868     	 ldr r0,[r7,#12]
+ 385 000e 7968     	 ldr r1,[r7,#4]
+ 386 0010 FFF7FEFF 	 bl __aeabi_fmul
+ 387 0014 031C     	 add r3,r0,#0
+ 388 0016 1C1C     	 add r4,r3,#0
+ 389 0018 FE20     	 mov r0,#254
+ 390 001a 8005     	 lsl r0,r0,#22
+ 391 001c 7968     	 ldr r1,[r7,#4]
+ 392 001e FFF7FEFF 	 bl __aeabi_fsub
+ 393 0022 031C     	 add r3,r0,#0
+ 394 0024 181C     	 add r0,r3,#0
+ 395 0026 B968     	 ldr r1,[r7,#8]
+ 396 0028 FFF7FEFF 	 bl __aeabi_fmul
+ 397 002c 031C     	 add r3,r0,#0
+ 398 002e 201C     	 add r0,r4,#0
+ 399 0030 191C     	 add r1,r3,#0
+ 400 0032 FFF7FEFF 	 bl __aeabi_fadd
+ 401 0036 031C     	 add r3,r0,#0
+  40:../other_functions.c **** }
+ 402              	 .loc 1 40 0
+ 403 0038 181C     	 add r0,r3,#0
+ 404 003a BD46     	 mov sp,r7
+ 405 003c 05B0     	 add sp,sp,#20
+ 406              	 
+ 407 003e 90BD     	 pop {r4,r7,pc}
+ 408              	 .cfi_endproc
+ 409              	.LFE4:
+ 411              	 .global __aeabi_i2f
+ 412              	 .global __aeabi_fdiv
+ 413              	 .section .text.average,"ax",%progbits
+ 414              	 .align 2
+ 415              	 .global average
+ 416              	 .code 16
+ 417              	 .thumb_func
+ 419              	average:
+ 420              	.LFB5:
+  41:../other_functions.c **** 
+  42:../other_functions.c **** float average(float a[],int num_values) {
+ 421              	 .loc 1 42 0
+ 422              	 .cfi_startproc
+ 423 0000 80B5     	 push {r7,lr}
+ 424              	.LCFI15:
+ 425              	 .cfi_def_cfa_offset 8
+ 426              	 .cfi_offset 7,-8
+ 427              	 .cfi_offset 14,-4
+ 428 0002 84B0     	 sub sp,sp,#16
+ 429              	.LCFI16:
+ 430              	 .cfi_def_cfa_offset 24
+ 431 0004 00AF     	 add r7,sp,#0
+ 432              	.LCFI17:
+ 433              	 .cfi_def_cfa_register 7
+ 434 0006 7860     	 str r0,[r7,#4]
+ 435 0008 3960     	 str r1,[r7]
+  43:../other_functions.c ****     float sum = 0;
+ 436              	 .loc 1 43 0
+ 437 000a 0023     	 mov r3,#0
+ 438 000c FB60     	 str r3,[r7,#12]
+  44:../other_functions.c ****     int i;
+  45:../other_functions.c ****     for(i = 0; i < num_values; i++){
+ 439              	 .loc 1 45 0
+ 440 000e 0023     	 mov r3,#0
+ 441 0010 BB60     	 str r3,[r7,#8]
+ 442 0012 0DE0     	 b .L16
+ 443              	.L17:
+  46:../other_functions.c ****         sum += a[i];
+ 444              	 .loc 1 46 0 discriminator 3
+ 445 0014 BB68     	 ldr r3,[r7,#8]
+ 446 0016 9B00     	 lsl r3,r3,#2
+ 447 0018 7A68     	 ldr r2,[r7,#4]
+ 448 001a D318     	 add r3,r2,r3
+ 449 001c 1B68     	 ldr r3,[r3]
+ 450 001e F868     	 ldr r0,[r7,#12]
+ 451 0020 191C     	 add r1,r3,#0
+ 452 0022 FFF7FEFF 	 bl __aeabi_fadd
+ 453 0026 031C     	 add r3,r0,#0
+ 454 0028 FB60     	 str r3,[r7,#12]
+  45:../other_functions.c ****         sum += a[i];
+ 455              	 .loc 1 45 0 discriminator 3
+ 456 002a BB68     	 ldr r3,[r7,#8]
+ 457 002c 0133     	 add r3,r3,#1
+ 458 002e BB60     	 str r3,[r7,#8]
+ 459              	.L16:
+  45:../other_functions.c ****         sum += a[i];
+ 460              	 .loc 1 45 0 is_stmt 0 discriminator 1
+ 461 0030 BA68     	 ldr r2,[r7,#8]
+ 462 0032 3B68     	 ldr r3,[r7]
+ 463 0034 9A42     	 cmp r2,r3
+ 464 0036 EDDB     	 blt .L17
+  47:../other_functions.c ****     }
+  48:../other_functions.c ****     return sum / num_values;
+ 465              	 .loc 1 48 0 is_stmt 1
+ 466 0038 3868     	 ldr r0,[r7]
+ 467 003a FFF7FEFF 	 bl __aeabi_i2f
+ 468 003e 031C     	 add r3,r0,#0
+ 469 0040 F868     	 ldr r0,[r7,#12]
+ 470 0042 191C     	 add r1,r3,#0
+ 471 0044 FFF7FEFF 	 bl __aeabi_fdiv
+ 472 0048 031C     	 add r3,r0,#0
+  49:../other_functions.c **** }
+ 473              	 .loc 1 49 0
+ 474 004a 181C     	 add r0,r3,#0
+ 475 004c BD46     	 mov sp,r7
+ 476 004e 04B0     	 add sp,sp,#16
+ 477              	 
+ 478 0050 80BD     	 pop {r7,pc}
+ 479              	 .cfi_endproc
+ 480              	.LFE5:
+ 482 0052 C046     	 .text
+ 483              	.Letext0:
+ 484              	 .file 2 "<built-in>"
+DEFINED SYMBOLS
+                            *ABS*:00000000 other_functions.c
+    {standard input}:21     .text.within_MAX_MIN:00000000 $t
+    {standard input}:26     .text.within_MAX_MIN:00000000 within_MAX_MIN
+    {standard input}:87     .text.distance_trajectory_obstacel:00000000 $t
+    {standard input}:92     .text.distance_trajectory_obstacel:00000000 distance_trajectory_obstacel
+    {standard input}:195    .text.pythagoras:00000000 $t
+    {standard input}:200    .text.pythagoras:00000000 pythagoras
+    {standard input}:275    .text.vector_abs_value:00000000 $t
+    {standard input}:280    .text.vector_abs_value:00000000 vector_abs_value
+    {standard input}:359    .text.Exp_moving_average:00000000 $t
+    {standard input}:364    .text.Exp_moving_average:00000000 Exp_moving_average
+    {standard input}:414    .text.average:00000000 $t
+    {standard input}:419    .text.average:00000000 average
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_fsub
+__aeabi_fmul
+__aeabi_fcmple
+__aeabi_fadd
+__aeabi_f2d
+__aeabi_dadd
+__aeabi_ddiv
+__aeabi_d2f
+pow
+sqrt
+__aeabi_i2f
+__aeabi_fdiv

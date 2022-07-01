@@ -1,0 +1,598 @@
+/*
+ * main.c
+ *
+ *  Created on: 2022 Apr 25 09:31:37
+ *  Author: lukas
+ */
+#include "DAVE.h"                 //Declarations from DAVE Code Generation (includes SFR declaration)
+#include <math.h>
+
+#include "Globals.h"
+#include "other_functions.h"
+#include "DEFINE_CONST.h"
+#include "Steering_servos.h"
+#include "Driving_dynamics.h"
+
+//#define CHECK_BIT(var,pos) (((var)>>(pos)) & 1)
+
+//constant
+//int NP[4] = {715, 733, 792, 700}; //servo nutral points PWM duty values
+//int NPfl = 750; int NPfr = 750; int NPrl = 750; int NPrr = 750; // serov defalut 750
+
+/*
+#define MIN_Speed  0.05
+#define MAX_Speed  1
+
+#define ROTATION_ANGLE 53.96
+#define ROTATION_ANGLE_OFFSET 5
+#define ROTATION_SPEED  0.25
+
+//#define PI180 0.01745329
+#define PI 3.14
+#define HALF_PI 1.57
+#define RAD_TO_DEG 57.296
+
+// steering parameter
+//const float WHEEL_BASE = 0.448;
+#define WHEEL_BASE 0.448
+#define	HALF_WHEEL_BASE 			0.22				// halfbase of mobrob
+//#define 	HALFBASEPOW2 		(HALFBASE*HALFBASE)		// halfbase of mobrob to the power of two
+#define	HALF_TRACK_WIDTH		0.163					// halftrack of mobrob
+#define 	R_WHEEL				0.067			// wheel radius of mobrob
+#define	R_TRUN_MAX				20.000				// maximum corner radius (before straight)
+#define 	R_TRUN_MIN				0.05				// minimum corner/reorientation radius
+//#define		P_RO_VEL			0.500					// reduction factor for reorientation velocity
+//#define		CWHEEL				(2.000*M_PI*RWHEEL)		// wheel circumference of mobrob
+*/
+
+// Var MODES
+volatile uint8_t RC_controll = 1; // if 1 RC controll
+//uint8_t Steering_mode = 3; // otions 1 'Front';  2'Rear'; 3 '4_Wheel'; 4 'Carb'; 5 'Rotate' 0 nothing set in mircum or all 0
+
+
+
+//VAR CAN
+CAN_NODE_STATUS_t init_status;
+int CAN_OK = 0;
+
+
+//ULTRASOCNIC
+// reciving
+volatile uint8_t CAN_Ultrasonic_No_messasge_count = 100;
+volatile uint8_t CAN_state_Ultrasonic = 0;
+volatile uint16_t Ultrasonic_cm_C = 0;
+volatile uint16_t Ultrasonic_cm_L = 0;
+volatile uint16_t Ultrasonic_cm_R = 0;
+// filtering
+float ALPHA_ULTARSONIC = 0.3; // giltering prameter for the Exponential moving average
+#define POS_OBSTRUCTED_ANGLE_MIN 50
+#define POS_OBSTRUCTED_ANGLE_MAX 210
+#define NEG_OBSTRUCTED_ANGLE_MIN -150
+#define NEG_OBSTRUCTED_ANGLE_MAX -310
+uint8_t obstructed_L = 0, obstructed_R = 0;
+float Ultra_m_C = 4, Ultra_m_L = 4, Ultra_m_R = 4;
+
+#define ULRTA_NUM_NO_DATA_INVALID 40
+uint8_t Ultrsonic_data_invaildcounter[3] = {ULRTA_NUM_NO_DATA_INVALID, ULRTA_NUM_NO_DATA_INVALID, ULRTA_NUM_NO_DATA_INVALID};
+
+// obstacels
+float Obstacel_F = 4, Obstacel_L = 4, Obstacel_R = 4; // y vaule alwasy stays 4
+
+/*
+float Obstacel_F[2] = {4, 4}; // y vaule alwasy stays 4
+float Obstacel_L[2] = {4, -4};
+float Obstacel_R[2] = {4, 4};
+*/
+
+float obstacel_F_x = 0, obstacel_L_x = 0, obstacel_L_y = 0, obstacel_R_x = 0, obstacel_R_y = 0;
+uint8_t Obstacel_valid[3] = {0, 0, 0};
+
+// collison avdoidance
+#define CA_START 1
+#define CA_STOP 0.2
+float avg_Speeds = 0;
+float trajctory_x = 0, trajctory_y = 0;
+float Trajctory[2] = {0, 0};
+float trajctory_Angel = 0;
+
+
+// Var RC
+uint8_t RC_Signal_OK = 0, RC_Signal_not_OK_counter = 0; // 0 no ok 1 OK
+uint32_t  captured_time_Steering=0, captured_time_Speed=0;
+uint8_t RC_no_Speed_data_counter = 0, RC_no_Steering_data_counter = 0;
+float RC_Speed = 0, RC_Steering = 0;
+#define RC_NP_SPEED  1500000
+#define RC_NP_STEERING  1540000
+float RC_Speed_ns_to_mps = 0.00000125;
+float RC_Steering_ns_to_deg = 0.00021;
+
+volatile uint32_t RC_gear_100us_counter = 0, RC_AUX1_100us_counter = 0;
+volatile uint8_t RC_Gear_state = 2, RC_AUX1_state = 2;
+volatile uint8_t RC_Gear_duty = 2, RC_Gear_duty_OLD =2, RC_AUX1_duty = 2;
+uint8_t RC_Speed_Stop = 1;
+
+// FUNCTIONS
+void RC_Recive(void);
+
+void mode_led(uint8_t var);
+float average(float a[],int num_values);
+void CAN_Inveter_RX_Interperter(uint8_t data_RX[8], uint8_t Motor_on_rover);
+
+void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC);
+uint8_t Ultrasoinc_Obstructet_Test(float Angle);
+void Collision_voidance();
+void Trajcetory_calc();
+
+
+int main(void)
+{
+  DAVE_STATUS_t status;
+
+  status = DAVE_Init();           /* Initialization of DAVE APPs  */
+
+  if (status != DAVE_STATUS_SUCCESS)
+  {
+    /* Placeholder for error handler code. The while loop below can be replaced with an user error handler. */
+    XMC_DEBUG("DAVE APPs initialization failed\n");
+
+    while(1U)
+    {
+
+    }
+  }
+
+  //Initialization of CAN
+  	//CAN_NODE_STATUS_t init_status;
+  	init_status = CAN_NODE_Init(&CAN_NODE_0);
+
+  	if (init_status != CAN_NODE_STATUS_SUCCESS) {
+  		XMC_DEBUG("CAN initialization failed\n");
+  	}
+  	else{
+  		CAN_OK = 1;
+  	}
+
+  	// watchdog
+  	WATCHDOG_Start();
+
+  /* Placeholder for user application code. The while loop below can be replaced with user application code. */
+  while(1U)
+  {
+	//Servo_NP_setting();	  // nutral point servo setting
+  }
+}
+
+
+
+void CAN_RX_ULTRASONIC_ISR(void) { // recide data
+	XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[6]->mo_ptr;
+	CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[6]);
+
+	uint8_t data_RX[8];
+	uint8_t i;
+	for(i = 0 ; i < 8 ; i ++){
+		 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
+	}
+
+	CAN_state_Ultrasonic = (data_RX[0 * 2 + 1] << 8) | data_RX[0 * 2];
+	Ultrasonic_cm_C = (data_RX[1 * 2 + 1] << 8) | data_RX[1 * 2];
+	Ultrasonic_cm_L = (data_RX[2 * 2 + 1] << 8) | data_RX[2 * 2];
+	Ultrasonic_cm_R = (data_RX[3 * 2 + 1] << 8) | data_RX[3 * 2];
+
+	Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+
+	CAN_Ultrasonic_No_messasge_count = 0;
+
+	WATCHDOG_Service();
+	DIGITAL_IO_SetOutputLow(&WATCHDOG_LED_BLUE);
+}
+
+void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasonic_cm_R_clc, float Steering_Angles_clc[4], float ALPHA_ULTARSONIC){
+
+	if(Ultrasonic_cm_C_clc != 0){
+		Ultrsonic_data_invaildcounter[0] = 0;
+		Ultra_m_C = Exp_moving_average((float)Ultrasonic_cm_C_clc / 100 , Ultra_m_C, ALPHA_ULTARSONIC);
+	}
+	else Ultrsonic_data_invaildcounter[0]++;
+
+	if(Ultrasonic_cm_L_clc != 0){
+		obstructed_L = Ultrasoinc_Obstructet_Test(Steering_Angles_clc[0]);
+		if(obstructed_L == 0) {
+			Ultrsonic_data_invaildcounter[1] = 0;
+			Ultra_m_L = Exp_moving_average((float)Ultrasonic_cm_L_clc / 100 , Ultra_m_L, ALPHA_ULTARSONIC);
+		}
+	}
+	else Ultrsonic_data_invaildcounter[1]++;
+
+	if(Ultrasonic_cm_R_clc != 0){
+		obstructed_R = Ultrasoinc_Obstructet_Test( - Steering_Angles_clc[1]); // neagtiv becasue right wheel
+		if(obstructed_R == 0){
+			Ultrsonic_data_invaildcounter[2] = 0;
+			Ultra_m_R = Exp_moving_average((float)Ultrasonic_cm_R_clc / 100 , Ultra_m_R, ALPHA_ULTARSONIC);
+		}
+	}
+	else Ultrsonic_data_invaildcounter[2]++;
+
+	uint8_t i;
+	for(i = 0; i < 3; i++){
+		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i] = ULRTA_NUM_NO_DATA_INVALID;
+	}
+
+	// front obstacel
+	if(Ultrsonic_data_invaildcounter[0] < ULRTA_NUM_NO_DATA_INVALID ){
+	//	Obstacel_F[0] = Ultra_m_C;
+		Obstacel_F = Ultra_m_C;
+		Obstacel_valid[0] = 1;
+	}
+	else {
+		Obstacel_valid[0] = 0;
+		//Obstacel_F[0]  = 4;
+	}
+
+	if(Ultrsonic_data_invaildcounter[1] < ULRTA_NUM_NO_DATA_INVALID && obstructed_L == 0 ){
+		//Obstacel_L[0] = Ultra_m_L * cos(Steering_Angles[0] / RAD_TO_DEG);
+		//Obstacel_L[1] = Ultra_m_L * sin(Steering_Angles[0] / RAD_TO_DEG);
+		Obstacel_L = Ultra_m_L;
+		Obstacel_valid[1] = 1;
+	}
+	else {
+		Obstacel_valid[1] = 0;
+		//Obstacel_L[0]  = 4;
+		//Obstacel_L[1]  = 4;
+	}
+
+	if(Ultrsonic_data_invaildcounter[2]  < ULRTA_NUM_NO_DATA_INVALID && obstructed_R == 0 ){
+		//Obstacel_R[0] = Ultra_m_R * cos(Steering_Angles[1] / RAD_TO_DEG);
+		//Obstacel_R[1] = Ultra_m_R * sin(Steering_Angles[1] / RAD_TO_DEG);
+		Obstacel_valid[2] = 1;
+		Obstacel_R = Ultra_m_R;
+	}
+	else {
+		Obstacel_valid[2] = 0;
+		//Obstacel_R[0]  = 4;
+		//Obstacel_R[1]  = 4;
+	}
+
+	/*
+	obstacel_F_x = Obstacel_F[0];
+	obstacel_L_x = Obstacel_L[0];
+	obstacel_L_y = Obstacel_L[1];
+	obstacel_R_x = Obstacel_R[0];
+	obstacel_R_y = Obstacel_R[1];
+	*/
+}
+
+uint8_t Ultrasoinc_Obstructet_Test(float Angle){
+	uint8_t i;
+	for(i = 0; i < 3; i++){ // if rotate around multipel times
+		if(Angle > 0){
+			if((Angle - (POS_OBSTRUCTED_ANGLE_MIN + (i * 360))) * (Angle - (POS_OBSTRUCTED_ANGLE_MAX + (i * 360))) <= 0){
+				return 1;
+			}
+		}
+
+		if(Angle < 0){
+			if((Angle - (NEG_OBSTRUCTED_ANGLE_MIN - (i * 360))) * (Angle - (NEG_OBSTRUCTED_ANGLE_MAX - (i * 360))) <= 0){
+						return 1;
+			}
+		}
+	}
+
+	return 0;
+}
+
+
+
+
+void Watchdog_Handler(void) // to do restates if can is not working a problem wenn power from the buck or plab supplie but ok like this
+{
+  WATCHDOG_ClearAlarm(); /* Clear the alarm event */
+  DIGITAL_IO_SetOutputHigh(&WATCHDOG_LED_BLUE);
+}
+
+
+void INTERRUPT_TIMER_10us_ISR(void){ // every 1ms so 10kHz
+	if(RC_Gear_state == 1)RC_gear_100us_counter ++;
+	if(RC_AUX1_state == 1)RC_AUX1_100us_counter ++;
+}
+
+
+
+void RC_Recive(void){
+
+	CAPTURE_Start(&CAPTURE_RC_Steering);
+	CAPTURE_Start(&CAPTURE_RC_Speed);
+
+	CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_RC_Steering, &captured_time_Steering);
+	CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_RC_Speed, &captured_time_Speed);
+
+	if(RC_Speed_Stop == 1){
+		if((captured_time_Speed >= 1000000) && (captured_time_Speed <= 2000000)){
+		  RC_Speed = ((double)captured_time_Speed - RC_NP_SPEED) * RC_Speed_ns_to_mps; // form +-0.6m/s
+		  if((RC_Speed < 0.1) && (RC_Speed > -0.1)) RC_Speed = 0; // to have accutal 0
+		  RC_no_Speed_data_counter = 0;
+		}
+		else{
+			RC_no_Speed_data_counter ++;
+		}
+	}
+	else RC_Speed = 0;
+
+	if((captured_time_Steering >= 1000000) && (captured_time_Steering <= 2000000)){
+	  RC_Steering = (((double)captured_time_Steering - RC_NP_STEERING) * RC_Steering_ns_to_deg); // form +-90m/s
+	  if((RC_Steering < 2) && (RC_Steering > -2)) RC_Steering = 0; // to have accutal 0
+	  RC_no_Steering_data_counter = 0;
+	}
+	else{
+	  RC_no_Steering_data_counter ++;
+	}
+
+	if(RC_no_Speed_data_counter > 20 || RC_no_Steering_data_counter > 20 ){ // internall values not ok
+	  DIGITAL_IO_SetOutputLow(&RC_no_data_LED);
+	  RC_no_Speed_data_counter = 20;
+	  RC_no_Steering_data_counter = 20;
+
+	  //set gobal vars 0
+	  Driving_speed = 0;
+	  Steering_direction = 0;
+	}
+	else{ // values filternig
+	  DIGITAL_IO_SetOutputHigh(&RC_no_data_LED);
+
+	  //set gobal vars stanart
+	  Driving_speed = RC_Speed;
+	  Steering_direction = RC_Steering;
+	}
+
+	New_Input = 1; //goalb var to tell it that there in new data to calculate
+}
+
+void RC_Connected_ISR(void){
+
+	if(RC_controll == 1){
+
+		RC_Gear_state =  PIN_INTERRUPT_GetPinValue(&RC_Connected); // pin haig or low
+
+		if(RC_Gear_state == 0){// do nothing during high
+
+			RC_Recive(); // get speed and steering data
+
+			uint32_t RC_Gear_on_time_100us = RC_gear_100us_counter;
+			RC_gear_100us_counter = 0;
+
+			if((80 < RC_Gear_on_time_100us) && (RC_Gear_on_time_100us < 150)) RC_Gear_duty= 0;
+			else if ((150 < RC_Gear_on_time_100us) && (RC_Gear_on_time_100us < 210)) RC_Gear_duty = 1;
+			else RC_Gear_duty = 2;
+
+
+			if(modeswitch_colldown == 0){
+				if(RC_Gear_duty == 0 && RC_Gear_duty_OLD == 1){
+					Steering_mode ++;
+					if(Steering_mode > 5)Steering_mode = 0;
+					modeswitch_colldown = 10;
+				}
+			}
+			else modeswitch_colldown--;
+			RC_Gear_duty_OLD = RC_Gear_duty;
+		}
+	}
+}
+
+void RC_AUX1_ISR(void){
+	if(RC_controll == 1){
+		RC_AUX1_state =  PIN_INTERRUPT_GetPinValue(&RC_AUX1); // pin haig or low
+
+		if(RC_AUX1_state == 0){// do nothing during high
+			uint32_t RC_AUX1_on_time_100us = RC_AUX1_100us_counter;
+			RC_AUX1_100us_counter = 0;
+
+			if((80 < RC_AUX1_on_time_100us) && (RC_AUX1_on_time_100us < 150)) RC_AUX1_duty= 0;
+			else if ((150 < RC_AUX1_on_time_100us) && (RC_AUX1_on_time_100us < 210)) RC_AUX1_duty = 1;
+			else RC_AUX1_duty = 2;
+
+
+			if(RC_AUX1_duty == 1)RC_Speed_Stop = 1;
+			else RC_Speed_Stop = 0;
+		}
+	}
+}
+
+void TIMER_CONTROL_ISR(void){
+	DIGITAL_IO_SetOutputHigh(&CALC_TIME_INDICATOR);
+	mode_led(Steering_mode);
+
+	if(RC_controll == 1){
+		if( NO_New_Input_counter > 9){
+			DIGITAL_IO_SetOutputLow(&RC_no_data_LED);
+		}
+	}
+
+
+	if(New_Input == 1){
+	Steering_Function(Steering_direction, Driving_speed, Steering_mode);
+	NO_New_Input_counter = 0;
+
+	}
+	else{
+		NO_New_Input_counter ++;
+		if( NO_New_Input_counter > 10){
+			NO_New_Input_counter = 10;
+
+			  Steering_Angles[0] = 0;
+			  Steering_Angles[1] = 0;
+			  Steering_Angles[2] = 0;
+			  Steering_Angles[3] = 0;
+
+			  Speeds[0] = 0;
+			  Speeds[1] = 0;
+			  Speeds[2] = 0;
+			  Speeds[3] = 0;
+		}
+	}
+
+	//set Angles PWM
+	Steering_set_Angles(Steering_Angles);
+
+	Trajcetory_calc();
+
+
+	Collision_voidance();
+
+	//send traget speeds to inverter
+	CAN_send_Speeds(Speeds);
+
+	//
+	if(reset_distance == 1){
+		reset_distance = 0;
+		uint8_t all[4] = {1,1,1,1};
+		CAN_reset_distance(all);
+	}
+
+
+	DIGITAL_IO_SetOutputLow(&CALC_TIME_INDICATOR);
+}
+
+void Trajcetory_calc(){
+
+	avg_Speeds = average(Speeds,4);
+
+	switch(Steering_mode) // options 'Front'; 'Rear'; '4_Wheel'; 'Carb'; 'Rotate'
+		{
+			case FRONT://#############################################################
+				//trajctory_x =
+				break;
+
+			case BACK:// rear #############################################################
+
+
+			case ALL_WHEEL: // 4 wheel #############################################################
+
+				break;
+
+			case CRAB:  //carb //#############################################################
+				trajctory_x = avg_Speeds * cos(Steering_Angles[0] / RAD_TO_DEG);
+				trajctory_y = avg_Speeds * sin(Steering_Angles[0] / RAD_TO_DEG);
+				trajctory_Angel = Steering_Angles[0];
+
+				break;
+
+			case ROTATE: // rotate ############################################################
+
+				break;
+
+			default :
+
+			trajctory_x = 0;
+			trajctory_y = 0;
+		}
+
+	//trajctory_Angel = cos(trajctory_x / trajctory_y);
+	Trajctory[0] = trajctory_x;
+	Trajctory[1] = trajctory_y;
+
+}
+
+
+
+
+void Collision_voidance(){
+	DIGITAL_IO_SetOutputLow(&LED_COLLISION_AVOID);
+	CAN_Ultrasonic_No_messasge_count ++;
+	if(CAN_Ultrasonic_No_messasge_count > 200) {
+		CAN_Ultrasonic_No_messasge_count = 200;
+		return;
+	}
+
+	float Speed_reduction_ratio = 1;
+	float Max_Speed = 0;
+
+	float trajctory_dist_O_L = 4;
+
+	float Obstacel_Angel_L = Steering_Angles[0];
+	float Obstacel_Angel_R = Steering_Angles[1];
+	float CA_Angel = 15;
+
+
+	if(Steering_mode == CRAB){
+		// Front sensor
+		if(Obstacel_valid[0] == 1){
+			if(Obstacel_F < CA_START){
+				if(trajctory_x > 0.01){ // // check that we are goig in dirction of obstacel and at a no practical 0 speed
+					if(Obstacel_F < CA_STOP) Speed_reduction_ratio = 0; // stop
+					else if(trajctory_x > Obstacel_F - CA_STOP)	Max_Speed = Obstacel_F - CA_STOP; // speed reduction
+				}
+			}
+		}
+
+
+
+		/// left
+		if(Obstacel_valid[1] == 1){
+			if(Obstacel_L < CA_START){
+				if((trajctory_Angel - Obstacel_Angel_L - CA_Angel) * (trajctory_Angel - Obstacel_Angel_L + CA_Angel)){
+					float abs_trajctory = vector_abs_value(Trajctory);
+					if( abs_trajctory > 0.01){
+						if(Obstacel_L < CA_STOP) Speed_reduction_ratio = 0; // stop
+						else if(abs_trajctory > Obstacel_L - CA_STOP)	Max_Speed = Obstacel_L - CA_STOP; // speed reduction
+					}
+				}
+			}
+		}
+
+
+
+
+	}
+
+	if(Speed_reduction_ratio != 1)DIGITAL_IO_SetOutputHigh(&LED_COLLISION_AVOID);
+	else if(Max_Speed != 0){
+		Speed_reduction_ratio = Max_Speed / Speeds[0];
+		DIGITAL_IO_SetOutputHigh(&LED_COLLISION_AVOID);
+	}
+
+
+
+	uint8_t i;
+	for(i = 0; i < 4; i ++){
+		Speeds[i] = Speeds[i] * Speed_reduction_ratio;
+	}
+	/*
+	speed_fl = Speeds[0];
+	speed_fr = Speeds[1];
+	speed_rl = Speeds[2];
+	speed_rr = Speeds[3];
+	*/
+}
+
+
+float average(float a[],int num_values) {
+    float sum = 0;
+    int i;
+    for(i = 0; i < num_values; i++){
+        sum += a[i];
+    }
+    return sum / num_values;
+}
+
+void mode_led(uint8_t var){
+	if(CHECK_BIT(var,0)){
+		DIGITAL_IO_SetOutputLow(&MODE_001);
+	}
+	else{
+		DIGITAL_IO_SetOutputHigh(&MODE_001);
+	}
+
+	if(CHECK_BIT(var,1)){
+		DIGITAL_IO_SetOutputLow(&MODE_010);
+	}
+	else{
+		DIGITAL_IO_SetOutputHigh(&MODE_010);
+	}
+
+	if(CHECK_BIT(var,2)){
+		DIGITAL_IO_SetOutputLow(&MODE_100);
+	}
+	else{
+		DIGITAL_IO_SetOutputHigh(&MODE_100);
+	}
+}

@@ -1,0 +1,154 @@
+   1              	 .cpu cortex-m0
+   2              	 .fpu softvfp
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,0
+  11              	 .eabi_attribute 18,4
+  12              	 .code 16
+  13              	 .file "Globas.c"
+  14              	 .text
+  15              	.Ltext0:
+  16              	 .cfi_sections .debug_frame
+  17              	 .global RC_controll
+  18              	 .section .data.RC_controll,"aw",%progbits
+  21              	RC_controll:
+  22 0000 01       	 .byte 1
+  23              	 .global Steering_direction
+  24              	 .section .bss.Steering_direction,"aw",%nobits
+  25              	 .align 2
+  28              	Steering_direction:
+  29 0000 00000000 	 .space 4
+  30              	 .global Driving_speed
+  31              	 .section .bss.Driving_speed,"aw",%nobits
+  32              	 .align 2
+  35              	Driving_speed:
+  36 0000 00000000 	 .space 4
+  37              	 .global Speeds
+  38              	 .section .bss.Speeds,"aw",%nobits
+  39              	 .align 2
+  42              	Speeds:
+  43 0000 00000000 	 .space 16
+  43      00000000 
+  43      00000000 
+  43      00000000 
+  44              	 .global Steering_Angles
+  45              	 .section .bss.Steering_Angles,"aw",%nobits
+  46              	 .align 2
+  49              	Steering_Angles:
+  50 0000 00000000 	 .space 16
+  50      00000000 
+  50      00000000 
+  50      00000000 
+  51              	 .global Actual_Speeds
+  52              	 .section .bss.Actual_Speeds,"aw",%nobits
+  53              	 .align 2
+  56              	Actual_Speeds:
+  57 0000 00000000 	 .space 16
+  57      00000000 
+  57      00000000 
+  57      00000000 
+  58              	 .global Actual_Distance
+  59              	 .section .bss.Actual_Distance,"aw",%nobits
+  60              	 .align 2
+  63              	Actual_Distance:
+  64 0000 00000000 	 .space 16
+  64      00000000 
+  64      00000000 
+  64      00000000 
+  65              	 .global Steering_mode
+  66              	 .section .bss.Steering_mode,"aw",%nobits
+  69              	Steering_mode:
+  70 0000 00       	 .space 1
+  71              	 .global New_Input
+  72              	 .section .bss.New_Input,"aw",%nobits
+  75              	New_Input:
+  76 0000 00       	 .space 1
+  77              	 .global NO_New_Input_counter
+  78              	 .section .bss.NO_New_Input_counter,"aw",%nobits
+  79              	 .align 2
+  82              	NO_New_Input_counter:
+  83 0000 00000000 	 .space 4
+  84              	 .global modeswitch_colldown
+  85              	 .section .data.modeswitch_colldown,"aw",%progbits
+  88              	modeswitch_colldown:
+  89 0000 0A       	 .byte 10
+  90              	 .global reset_distance
+  91              	 .section .bss.reset_distance,"aw",%nobits
+  94              	reset_distance:
+  95 0000 00       	 .space 1
+  96              	 .global CAN_Ultrasonic_No_messasge_count
+  97              	 .section .data.CAN_Ultrasonic_No_messasge_count,"aw",%progbits
+ 100              	CAN_Ultrasonic_No_messasge_count:
+ 101 0000 64       	 .byte 100
+ 102              	 .global CAN_state_Ultrasonic
+ 103              	 .section .bss.CAN_state_Ultrasonic,"aw",%nobits
+ 106              	CAN_state_Ultrasonic:
+ 107 0000 00       	 .space 1
+ 108              	 .global Ultrasonic_cm_C
+ 109              	 .section .bss.Ultrasonic_cm_C,"aw",%nobits
+ 110              	 .align 1
+ 113              	Ultrasonic_cm_C:
+ 114 0000 0000     	 .space 2
+ 115              	 .global Ultrasonic_cm_L
+ 116              	 .section .bss.Ultrasonic_cm_L,"aw",%nobits
+ 117              	 .align 1
+ 120              	Ultrasonic_cm_L:
+ 121 0000 0000     	 .space 2
+ 122              	 .global Ultrasonic_cm_R
+ 123              	 .section .bss.Ultrasonic_cm_R,"aw",%nobits
+ 124              	 .align 1
+ 127              	Ultrasonic_cm_R:
+ 128 0000 0000     	 .space 2
+ 129              	 .global ALPHA_ULTARSONIC
+ 130              	 .section .data.ALPHA_ULTARSONIC,"aw",%progbits
+ 131              	 .align 2
+ 134              	ALPHA_ULTARSONIC:
+ 135 0000 9A99993E 	 .word 1050253722
+ 136              	 .text
+ 137              	.Letext0:
+ 138              	 .file 1 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 139              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 140              	 .file 3 "../Globas.c"
+ 141              	 .file 4 "../Globals.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 Globas.c
+    {standard input}:21     .data.RC_controll:00000000 RC_controll
+    {standard input}:28     .bss.Steering_direction:00000000 Steering_direction
+    {standard input}:25     .bss.Steering_direction:00000000 $d
+    {standard input}:35     .bss.Driving_speed:00000000 Driving_speed
+    {standard input}:32     .bss.Driving_speed:00000000 $d
+    {standard input}:42     .bss.Speeds:00000000 Speeds
+    {standard input}:39     .bss.Speeds:00000000 $d
+    {standard input}:49     .bss.Steering_Angles:00000000 Steering_Angles
+    {standard input}:46     .bss.Steering_Angles:00000000 $d
+    {standard input}:56     .bss.Actual_Speeds:00000000 Actual_Speeds
+    {standard input}:53     .bss.Actual_Speeds:00000000 $d
+    {standard input}:63     .bss.Actual_Distance:00000000 Actual_Distance
+    {standard input}:60     .bss.Actual_Distance:00000000 $d
+    {standard input}:69     .bss.Steering_mode:00000000 Steering_mode
+    {standard input}:70     .bss.Steering_mode:00000000 $d
+    {standard input}:75     .bss.New_Input:00000000 New_Input
+    {standard input}:76     .bss.New_Input:00000000 $d
+    {standard input}:82     .bss.NO_New_Input_counter:00000000 NO_New_Input_counter
+    {standard input}:79     .bss.NO_New_Input_counter:00000000 $d
+    {standard input}:88     .data.modeswitch_colldown:00000000 modeswitch_colldown
+    {standard input}:94     .bss.reset_distance:00000000 reset_distance
+    {standard input}:95     .bss.reset_distance:00000000 $d
+    {standard input}:100    .data.CAN_Ultrasonic_No_messasge_count:00000000 CAN_Ultrasonic_No_messasge_count
+    {standard input}:106    .bss.CAN_state_Ultrasonic:00000000 CAN_state_Ultrasonic
+    {standard input}:107    .bss.CAN_state_Ultrasonic:00000000 $d
+    {standard input}:113    .bss.Ultrasonic_cm_C:00000000 Ultrasonic_cm_C
+    {standard input}:110    .bss.Ultrasonic_cm_C:00000000 $d
+    {standard input}:120    .bss.Ultrasonic_cm_L:00000000 Ultrasonic_cm_L
+    {standard input}:117    .bss.Ultrasonic_cm_L:00000000 $d
+    {standard input}:127    .bss.Ultrasonic_cm_R:00000000 Ultrasonic_cm_R
+    {standard input}:124    .bss.Ultrasonic_cm_R:00000000 $d
+    {standard input}:134    .data.ALPHA_ULTARSONIC:00000000 ALPHA_ULTARSONIC
+    {standard input}:131    .data.ALPHA_ULTARSONIC:00000000 $d
+
+NO UNDEFINED SYMBOLS
