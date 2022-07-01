@@ -1,0 +1,44 @@
+22:43:32 **** Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+In file included from C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/PIN_INTERRUPT/pin_interrupt.h:65:0,
+'Invoking: ARM-GCC C Compiler'
+                 from C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/DAVE.h:67,
+                 from ../main.c:7:
+C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/PIN_INTERRUPT/pin_interrupt_conf.h:70:0: warning: "UserIRQHandler" redefined
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+ #define UserIRQHandler IRQ_Hdlr_6  
+'Finished building: ../main.c'
+ ^
+
+C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/PIN_INTERRUPT/pin_interrupt_conf.h:67:0: note: this is the location of the previous definition
+ #define UserIRQHandler IRQ_Hdlr_3  
+ ^
+C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/PIN_INTERRUPT/pin_interrupt_conf.h:73:0: warning: "UserIRQHandler" redefined
+ #define UserIRQHandler IRQ_Hdlr_4  
+ ^
+C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/PIN_INTERRUPT/pin_interrupt_conf.h:70:0: note: this is the location of the previous definition
+ #define UserIRQHandler IRQ_Hdlr_6  
+ ^
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  13512	    124	   1072	  14708	   3974	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+
+22:43:34 Build Finished (took 1s.806ms)
+
