@@ -66,6 +66,9 @@
 /* Extern declaration of EVENT_DET APP handler */
 extern TIMER_t TIMER_0;
 
+/* Extern declaration of EVENT_DET APP handler */
+extern TIMER_t TIMER_1s;
+
 #endif /* TIMER_EXTERN_H */
 
 

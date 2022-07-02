@@ -61,14 +61,14 @@
  * EXTERN DECLARATIONS
 ***********************************************************************************************************************/
 
-/* Extern declaration for ECHO_0 */
-extern const PIN_INTERRUPT_t ECHO_0;
+/* Extern declaration for ECHO_C */
+extern const PIN_INTERRUPT_t ECHO_C;
 
-/* Extern declaration for PIN_INTERRUPT_1 */
-extern const PIN_INTERRUPT_t PIN_INTERRUPT_1;
+/* Extern declaration for ECHO_L */
+extern const PIN_INTERRUPT_t ECHO_L;
 
-/* Extern declaration for PIN_INTERRUPT_2 */
-extern const PIN_INTERRUPT_t PIN_INTERRUPT_2;
+/* Extern declaration for ECHO_R */
+extern const PIN_INTERRUPT_t ECHO_R;
 
 /* Extern declaration for PIN_INTERRUPT_3 */
 extern const PIN_INTERRUPT_t PIN_INTERRUPT_3;

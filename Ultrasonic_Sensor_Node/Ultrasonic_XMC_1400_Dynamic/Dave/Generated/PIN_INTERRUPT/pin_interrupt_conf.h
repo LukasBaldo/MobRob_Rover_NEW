@@ -61,13 +61,13 @@
 #define PIN_INTERRUPT_PATCH_VERSION (4U)
 
 /**< Mapped IRQ Node Number */
-#define ISR_ECHO_0 IRQ_Hdlr_5  
+#define ISR_ECHO_C IRQ_Hdlr_5  
 		
 /**< Mapped IRQ Node Number */
-#define UserIRQHandler IRQ_Hdlr_3  
+#define ISR_ECHO_L IRQ_Hdlr_3  
 		
 /**< Mapped IRQ Node Number */
-#define UserIRQHandler IRQ_Hdlr_6  
+#define ISR_ECHO_R IRQ_Hdlr_6  
 		
 /**< Mapped IRQ Node Number */
 #define UserIRQHandler IRQ_Hdlr_4  

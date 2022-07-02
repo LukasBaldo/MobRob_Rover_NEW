@@ -55,7 +55,7 @@
 /**
 * @brief Contents entered via GUI
 */
-const PIN_INTERRUPT_t ECHO_0 =
+const PIN_INTERRUPT_t ECHO_C =
 {
   .eru = XMC_ERU0,  /* ERU module 0 Mapped */
   .port = XMC_GPIO_PORT2,  /* PORT 2 Mapped */
@@ -78,13 +78,13 @@ const PIN_INTERRUPT_t ECHO_0 =
 #endif
 
   .IRQn = (IRQn_Type)5,  /* Mapped Interrupt Request Number */
-  .irq_priority = 3, /* Priority of the Interrupt */
+  .irq_priority = 2, /* Priority of the Interrupt */
 #if(UC_FAMILY == XMC4)
   .irq_subpriority = 0,  /* Subpriority of the Interrupt */
 #endif
-  .etl = 3U,  /* ERU ETL channel number */
+  .etl = 2U,  /* ERU ETL channel number */
   .ogu = 2U,  /* ERU OGU channel number */
-  .pin = 7U, /* Mapped pin number */ 
+  .pin = 6U, /* Mapped pin number */ 
   .enable_at_init = true /* Enable Interrupt during initialization */ 
   };
 /**********************************************************************************************************************
@@ -93,7 +93,7 @@ const PIN_INTERRUPT_t ECHO_0 =
 /**
 * @brief Contents entered via GUI
 */
-const PIN_INTERRUPT_t PIN_INTERRUPT_1 =
+const PIN_INTERRUPT_t ECHO_L =
 {
   .eru = XMC_ERU0,  /* ERU module 0 Mapped */
   .port = XMC_GPIO_PORT2,  /* PORT 2 Mapped */
@@ -104,26 +104,26 @@ const PIN_INTERRUPT_t PIN_INTERRUPT_1 =
    },
   .etl_config = 
   {
-    .input_a = (uint32_t)XMC_ERU_ETL_INPUT_A1, /* Event input selection for A(0-3) */
-    .input_b = (uint32_t)XMC_ERU_ETL_INPUT_B0, /* Event input selection for B(0-3) */
+    .input_a = (uint32_t)XMC_ERU_ETL_INPUT_A0, /* Event input selection for A(0-3) */
+    .input_b = (uint32_t)XMC_ERU_ETL_INPUT_B1, /* Event input selection for B(0-3) */
     .enable_output_trigger = (uint32_t)1,
-    .edge_detection = (XMC_ERU_ETL_EDGE_DETECTION_t)PIN_INTERRUPT_EDGE_RISING, /* Select the edge to convert as event */
+    .edge_detection = (XMC_ERU_ETL_EDGE_DETECTION_t)PIN_INTERRUPT_EDGE_BOTH, /* Select the edge to convert as event */
     .output_trigger_channel = XMC_ERU_ETL_OUTPUT_TRIGGER_CHANNEL0, /* Select the source for event */
-    .source = XMC_ERU_ETL_SOURCE_A
+    .source = XMC_ERU_ETL_SOURCE_B
   },
 #if(UC_SERIES == XMC14)
   .irqctrl = (XMC_SCU_IRQCTRL_t)0U,  /* Interrupt Source */
 #endif
 
   .IRQn = (IRQn_Type)3,  /* Mapped Interrupt Request Number */
-  .irq_priority = 3, /* Priority of the Interrupt */
+  .irq_priority = 2, /* Priority of the Interrupt */
 #if(UC_FAMILY == XMC4)
   .irq_subpriority = 0,  /* Subpriority of the Interrupt */
 #endif
-  .etl = 0U,  /* ERU ETL channel number */
+  .etl = 3U,  /* ERU ETL channel number */
   .ogu = 0U,  /* ERU OGU channel number */
-  .pin = 4U, /* Mapped pin number */ 
-  .enable_at_init = false /* Enable Interrupt during initialization */ 
+  .pin = 8U, /* Mapped pin number */ 
+  .enable_at_init = true /* Enable Interrupt during initialization */ 
   };
 /**********************************************************************************************************************
  * DATA STRUCTURES
@@ -131,7 +131,7 @@ const PIN_INTERRUPT_t PIN_INTERRUPT_1 =
 /**
 * @brief Contents entered via GUI
 */
-const PIN_INTERRUPT_t PIN_INTERRUPT_2 =
+const PIN_INTERRUPT_t ECHO_R =
 {
   .eru = XMC_ERU0,  /* ERU module 0 Mapped */
   .port = XMC_GPIO_PORT2,  /* PORT 2 Mapped */
@@ -142,26 +142,26 @@ const PIN_INTERRUPT_t PIN_INTERRUPT_2 =
    },
   .etl_config = 
   {
-    .input_a = (uint32_t)XMC_ERU_ETL_INPUT_A1, /* Event input selection for A(0-3) */
+    .input_a = (uint32_t)XMC_ERU_ETL_INPUT_A0, /* Event input selection for A(0-3) */
     .input_b = (uint32_t)XMC_ERU_ETL_INPUT_B0, /* Event input selection for B(0-3) */
     .enable_output_trigger = (uint32_t)1,
-    .edge_detection = (XMC_ERU_ETL_EDGE_DETECTION_t)PIN_INTERRUPT_EDGE_RISING, /* Select the edge to convert as event */
+    .edge_detection = (XMC_ERU_ETL_EDGE_DETECTION_t)PIN_INTERRUPT_EDGE_BOTH, /* Select the edge to convert as event */
     .output_trigger_channel = XMC_ERU_ETL_OUTPUT_TRIGGER_CHANNEL3, /* Select the source for event */
-    .source = XMC_ERU_ETL_SOURCE_A
+    .source = XMC_ERU_ETL_SOURCE_B
   },
 #if(UC_SERIES == XMC14)
   .irqctrl = (XMC_SCU_IRQCTRL_t)0U,  /* Interrupt Source */
 #endif
 
   .IRQn = (IRQn_Type)6,  /* Mapped Interrupt Request Number */
-  .irq_priority = 3, /* Priority of the Interrupt */
+  .irq_priority = 2, /* Priority of the Interrupt */
 #if(UC_FAMILY == XMC4)
   .irq_subpriority = 0,  /* Subpriority of the Interrupt */
 #endif
-  .etl = 2U,  /* ERU ETL channel number */
+  .etl = 0U,  /* ERU ETL channel number */
   .ogu = 3U,  /* ERU OGU channel number */
-  .pin = 6U, /* Mapped pin number */ 
-  .enable_at_init = false /* Enable Interrupt during initialization */ 
+  .pin = 0U, /* Mapped pin number */ 
+  .enable_at_init = true /* Enable Interrupt during initialization */ 
   };
 /**********************************************************************************************************************
  * DATA STRUCTURES

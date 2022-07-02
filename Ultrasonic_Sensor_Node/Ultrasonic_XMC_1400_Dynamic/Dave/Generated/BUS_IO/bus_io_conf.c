@@ -52,18 +52,17 @@
 
 const BUS_IO_PORT_PIN_t BUS_IO_0_pin_list[] =
 {
-       {P1_1},
-       {P1_0},
+       {P1_4},
        {P1_5},
-       {P1_4}
+       {P1_6}
 }; 
  
 BUS_IO_t BUS_IO_0 =
 {
   .pin_array = BUS_IO_0_pin_list,
   .gpio_config = {
-  .mode = XMC_GPIO_MODE_INPUT_TRISTATE,  
-    .input_hysteresis = XMC_GPIO_INPUT_HYSTERESIS_STANDARD,
+  .mode = XMC_GPIO_MODE_OUTPUT_PUSH_PULL, 
+    .output_level = XMC_GPIO_OUTPUT_LEVEL_LOW, 
   },
-  .number_of_pins = (uint8_t)4
+  .number_of_pins = (uint8_t)3
 };
