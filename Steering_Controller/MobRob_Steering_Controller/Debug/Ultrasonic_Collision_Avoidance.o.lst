@@ -15,92 +15,856 @@
   15              	.Ltext0:
   16              	 .cfi_sections .debug_frame
   17              	 .comm RC_controll,1,1
-  18              	 .global obstructed_L
-  19              	 .section .bss.obstructed_L,"aw",%nobits
-  22              	obstructed_L:
-  23 0000 00       	 .space 1
-  24              	 .global obstructed_R
-  25              	 .section .bss.obstructed_R,"aw",%nobits
-  28              	obstructed_R:
-  29 0000 00       	 .space 1
-  30              	 .global Ultra_m_C
-  31              	 .section .data.Ultra_m_C,"aw",%progbits
-  32              	 .align 2
-  35              	Ultra_m_C:
-  36 0000 00008040 	 .word 1082130432
-  37              	 .global Ultra_m_L
-  38              	 .section .data.Ultra_m_L,"aw",%progbits
-  39              	 .align 2
-  42              	Ultra_m_L:
-  43 0000 00008040 	 .word 1082130432
-  44              	 .global Ultra_m_R
-  45              	 .section .data.Ultra_m_R,"aw",%progbits
-  46              	 .align 2
-  49              	Ultra_m_R:
-  50 0000 00008040 	 .word 1082130432
-  51              	 .global Ultrsonic_data_invaildcounter
-  52              	 .section .data.Ultrsonic_data_invaildcounter,"aw",%progbits
-  53              	 .align 2
-  56              	Ultrsonic_data_invaildcounter:
-  57 0000 28       	 .byte 40
-  58 0001 28       	 .byte 40
-  59 0002 28       	 .byte 40
-  60              	 .global obstacel_F_x
-  61 0003 00       	 .section .bss.obstacel_F_x,"aw",%nobits
-  62              	 .align 2
-  65              	obstacel_F_x:
-  66 0000 00000000 	 .space 4
-  67              	 .global obstacel_L_x
-  68              	 .section .bss.obstacel_L_x,"aw",%nobits
-  69              	 .align 2
-  72              	obstacel_L_x:
-  73 0000 00000000 	 .space 4
-  74              	 .global obstacel_L_y
-  75              	 .section .bss.obstacel_L_y,"aw",%nobits
-  76              	 .align 2
-  79              	obstacel_L_y:
-  80 0000 00000000 	 .space 4
-  81              	 .global obstacel_R_x
-  82              	 .section .bss.obstacel_R_x,"aw",%nobits
-  83              	 .align 2
-  86              	obstacel_R_x:
-  87 0000 00000000 	 .space 4
-  88              	 .global obstacel_R_y
-  89              	 .section .bss.obstacel_R_y,"aw",%nobits
-  90              	 .align 2
-  93              	obstacel_R_y:
-  94 0000 00000000 	 .space 4
-  95              	 .global Obstacel_valid
-  96              	 .section .bss.Obstacel_valid,"aw",%nobits
-  97              	 .align 2
- 100              	Obstacel_valid:
- 101 0000 000000   	 .space 3
- 102              	 .global Obstacel_F
- 103 0003 00       	 .section .data.Obstacel_F,"aw",%progbits
- 104              	 .align 2
- 107              	Obstacel_F:
- 108 0000 00008040 	 .word 1082130432
- 109              	 .global Obstacel_L
- 110              	 .section .data.Obstacel_L,"aw",%progbits
- 111              	 .align 2
- 114              	Obstacel_L:
- 115 0000 00008040 	 .word 1082130432
- 116              	 .global Obstacel_R
- 117              	 .section .data.Obstacel_R,"aw",%progbits
- 118              	 .align 2
- 121              	Obstacel_R:
- 122 0000 00008040 	 .word 1082130432
- 123              	 .global __aeabi_i2f
- 124              	 .global __aeabi_fdiv
- 125              	 .global __aeabi_f2d
- 126              	 .section .text.Ultra_sonic_filter,"ax",%progbits
- 127              	 .align 2
- 128              	 .global Ultra_sonic_filter
- 129              	 .code 16
- 130              	 .thumb_func
- 132              	Ultra_sonic_filter:
- 133              	.LFB224:
- 134              	 .file 1 "../Ultrasonic_Collision_Avoidance.c"
+  18              	 .section .text.XMC_GPIO_SetOutputHigh,"ax",%progbits
+  19              	 .align 2
+  20              	 .code 16
+  21              	 .thumb_func
+  23              	XMC_GPIO_SetOutputHigh:
+  24              	.LFB122:
+  25              	 .file 1 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_gpio.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+   2:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @file xmc_gpio.h
+   3:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @date 2015-06-20
+   4:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   5:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @cond
+   6:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *****************************************************************************
+   7:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMClib v2.2.0 - XMC Peripheral Driver Library
+   8:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   9:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Copyright (c) 2015-2020, Infineon Technologies AG
+  10:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * All rights reserved.
+  11:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  12:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Boost Software License - Version 1.0 - August 17th, 2003
+  13:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  14:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Permission is hereby granted, free of charge, to any person or organization
+  15:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * obtaining a copy of the software and accompanying documentation covered by
+  16:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * this license (the "Software") to use, reproduce, display, distribute,
+  17:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * execute, and transmit the Software, and to prepare derivative works of the
+  18:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Software, and to permit third-parties to whom the Software is furnished to
+  19:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * do so, all subject to the following:
+  20:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  21:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * The copyright notices in the Software and this entire statement, including
+  22:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * the above license grant, this restriction and the following disclaimer,
+  23:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * must be included in all copies of the Software, in whole or in part, and
+  24:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * all derivative works of the Software, unless such copies or derivative
+  25:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * works are solely in the form of machine-executable object code generated by
+  26:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * a source language processor.
+  27:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  28:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  29:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  30:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+  31:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+  32:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+  33:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  34:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * DEALINGS IN THE SOFTWARE.
+  35:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  36:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * To improve the quality of the software, users are encouraged to share
+  37:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * modifications, enhancements or bug fixes with Infineon Technologies AG
+  38:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * at XMCSupport@infineon.com.
+  39:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *****************************************************************************
+  40:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  41:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Change History
+  42:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * --------------
+  43:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  44:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-02-20:
+  45:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Initial draft<br>
+  46:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Documentation improved <br>
+  47:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  48:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-06-20:
+  49:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Removed version macros and declaration of GetDriverVersion API
+  50:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  51:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @endcond
+  52:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  53:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  54:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  55:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #ifndef XMC_GPIO_H
+  56:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_H
+  57:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  58:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  59:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * HEADER FILES
+  60:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  61:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  62:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc_common.h"
+  63:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  64:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  65:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup XMClib XMC Peripheral Library
+  66:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @{
+  67:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  68:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  69:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  70:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup GPIO
+  71:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @brief General Purpose Input Output (GPIO) driver for the XMC microcontroller family.
+  72:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  73:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * GPIO driver provide a generic and very flexible software interface for all standard digital I/O 
+  74:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Each port slice has individual interfaces for the operation as General Purpose I/O and it furthe
+  75:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * connectivity to the on-chip periphery and the control for the pad characteristics.
+  76:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  77:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * The driver is divided into Input and Output mode.
+  78:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  79:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Input mode features:
+  80:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Configuration structure XMC_GPIO_CONFIG_t and initialization function XMC_GPIO_Init()
+  81:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of weak pull-up or pull-down device. Configuration structure XMC_GPIO_MO
+  82:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+  83:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of input hysteresis. XMC_GPIO_SetInputHysteresis()
+  84:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  85:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  86:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  87:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Output mode features:
+  88:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of push pull/open drain and Alternate output. Configuration structure XM
+  89:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+  90:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of pad driver strength. Configuration structure XMC_GPIO_OUTPUT_STRENGTH
+  91:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  92:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  93:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of initial output level. Configuration structure XMC_GPIO_OUTPUT_LEVEL_t
+  94:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  95:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *@{
+  96:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  97:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  98:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  99:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * MACROS
+ 100:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 101:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 102:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Pos PORT0_IOCR0_PC0_Pos
+ 103:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Msk PORT0_IOCR0_PC0_Msk
+ 104:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 105:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Size 				(8U)
+ 106:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 107:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 108:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_OUTPUT_LEVEL(level) ((level == XMC_GPIO_OUTPUT_LEVEL_LOW) || \
+ 109:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****                                             (level == XMC_GPIO_OUTPUT_LEVEL_HIGH))
+ 110:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 111:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_HWCTRL(hwctrl) ((hwctrl == XMC_GPIO_HWCTRL_DISABLED) || \
+ 112:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL1) || \
+ 113:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL2))
+ 114:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 115:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 116:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * ENUMS
+ 117:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 118:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 119:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 120:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 121:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines output level of a pin. Use type \a XMC_GPIO_OUTPUT_LEVEL_t for this enum.
+ 122:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 123:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_OUTPUT_LEVEL
+ 124:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 125:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_LOW  = 0x10000U, /**<  Reset bit */
+ 126:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_HIGH = 0x1U, 	/**< Set bit  */
+ 127:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_OUTPUT_LEVEL_t;
+ 128:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 129:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 130:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines direct hardware control characteristics of the pin . Use type \a XMC_GPIO_HWCTRL_t for t
+ 131:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 132:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_HWCTRL
+ 133:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 134:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_DISABLED     = 0x0U, /**<  Software control only */
+ 135:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL1  = 0x1U, /**<  HWI0/HWO0 control path can override the software confi
+ 136:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL2  = 0x2U  /**<  HWI1/HWO1 control path can override the software confi
+ 137:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_HWCTRL_t;
+ 138:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 139:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 140:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * DEVICE FAMILY EXTENSIONS
+ 141:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 142:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 143:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #if UC_FAMILY == XMC1
+ 144:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc1_gpio.h"
+ 145:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #elif UC_FAMILY == XMC4
+ 146:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc4_gpio.h"
+ 147:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #else
+ 148:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #error "xmc_gpio.h: family device not supported"
+ 149:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 150:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 151:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 152:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * API PROTOTYPES
+ 153:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 154:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 155:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #ifdef __cplusplus
+ 156:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** extern "C" {
+ 157:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 158:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 159:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 160:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 161:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	  Constant pointer pointing to GPIO port, to access port registers like Pn_OUT,Pn_O
+ 162:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	  Port pin number.
+ 163:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  config GPIO configuration data structure. Refer data structure @ref XMC_GPIO_CONFIG_t fo
+ 164:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 165:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 166:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 167:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 168:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+ 169:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,hysteresis, push pull
+ 170:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for a selected \a po
+ 171:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \a config provides selected I/O settings. It configures hardware registers Pn_IOCR,Pn_OUT, Pn_OM
+ 172:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 173:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+ 174:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,push pull /open drain
+ 175:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for selected \a port
+ 176:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * It configures hardware registers Pn_IOCR,Pn_OUT,Pn_OMR,Pn_PDISC and Pn_PDR.\n
+ 177:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 178:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 179:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 180:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 181:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 182:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 183:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * This API is called in definition of DAVE_init by code generation and therefore should not be exp
+ 184:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * for the normal operation. Use other APIs only after DAVE_init is called successfully (returns DA
+ 185:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 186:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 187:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 188:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 189:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 190:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_Init(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_CONFIG_t *const c
+ 191:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 192:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 193:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 194:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	Constant pointer pointing to GPIO port, to access hardware register Pn_IOCR.
+ 195:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 196:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  mode input / output functionality selection. Refer @ref XMC_GPIO_MODE_t for valid values
+ 197:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 198:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 199:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 200:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 201:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets digital input and output driver functionality and characteristics of a GPIO port pin. It co
+ 202:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * registers Pn_IOCR. \a mode is initially configured during initialization in XMC_GPIO_Init(). Cal
+ 203:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * the port direction functionality as needed later in the program.
+ 204:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 205:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 206:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 207:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 208:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 209:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 210:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_SetMode(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_MODE_t mode);
+ 211:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 212:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 213:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 214:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 215:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	 Constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 216:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	 Port pin number.
+ 217:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  level output level selection. Refer @ref XMC_GPIO_OUTPUT_LEVEL_t for valid values.
+ 218:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 219:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 220:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 221:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 222:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Set port pin output level to high or low.It configures hardware registers Pn_OMR.\a level is ini
+ 223:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * configured during initialization in XMC_GPIO_Init(). Call this API to alter output level as need
+ 224:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 225:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 226:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputHigh(), XMC_GPIO_SetOutputLow().
+ 227:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 228:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 229:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 230:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 231:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 232:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 233:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 234:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT_t *const port, const uint8_t pin, const 
+ 235:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 236:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 237:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid output level", XMC_GPIO_CHECK_OUTPUT_LEVEL(level));
+ 238:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 239:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)level << pin;
+ 240:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 241:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 242:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 243:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 244:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 245:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 246:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 247:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 248:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 249:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 250:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *  Sets port pin output to high. It configures hardware registers Pn_OMR.
+ 251:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 252:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *  \par<b>Related APIs:</b><BR>
+ 253:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputLow()
+ 254:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 255:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 256:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().\n
+ 257:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 258:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 259:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 260:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 261:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputHigh(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 262:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  26              	 .loc 1 262 0
+  27              	 .cfi_startproc
+  28 0000 80B5     	 push {r7,lr}
+  29              	.LCFI0:
+  30              	 .cfi_def_cfa_offset 8
+  31              	 .cfi_offset 7,-8
+  32              	 .cfi_offset 14,-4
+  33 0002 82B0     	 sub sp,sp,#8
+  34              	.LCFI1:
+  35              	 .cfi_def_cfa_offset 16
+  36 0004 00AF     	 add r7,sp,#0
+  37              	.LCFI2:
+  38              	 .cfi_def_cfa_register 7
+  39 0006 7860     	 str r0,[r7,#4]
+  40 0008 0A1C     	 mov r2,r1
+  41 000a FB1C     	 add r3,r7,#3
+  42 000c 1A70     	 strb r2,[r3]
+ 263:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputHigh: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 264:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 265:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)0x1U << pin;
+  43              	 .loc 1 265 0
+  44 000e FB1C     	 add r3,r7,#3
+  45 0010 1B78     	 ldrb r3,[r3]
+  46 0012 0122     	 mov r2,#1
+  47 0014 9A40     	 lsl r2,r2,r3
+  48 0016 7B68     	 ldr r3,[r7,#4]
+  49 0018 5A60     	 str r2,[r3,#4]
+ 266:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  50              	 .loc 1 266 0
+  51 001a BD46     	 mov sp,r7
+  52 001c 02B0     	 add sp,sp,#8
+  53              	 
+  54 001e 80BD     	 pop {r7,pc}
+  55              	 .cfi_endproc
+  56              	.LFE122:
+  58              	 .section .text.XMC_GPIO_SetOutputLow,"ax",%progbits
+  59              	 .align 2
+  60              	 .code 16
+  61              	 .thumb_func
+  63              	XMC_GPIO_SetOutputLow:
+  64              	.LFB123:
+ 267:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 268:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 269:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 270:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 271:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	port pin number.
+ 272:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 273:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return  None
+ 274:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 275:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Description:</b><br>
+ 276:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets port pin output to low. It configures hardware registers Pn_OMR.\n
+ 277:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 278:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>>
+ 279:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMC_GPIO_SetOutputHigh()
+ 280:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 281:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Note:</b><br>
+ 282:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 283:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 284:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 285:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 286:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 287:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLow(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 288:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  65              	 .loc 1 288 0
+  66              	 .cfi_startproc
+  67 0000 80B5     	 push {r7,lr}
+  68              	.LCFI3:
+  69              	 .cfi_def_cfa_offset 8
+  70              	 .cfi_offset 7,-8
+  71              	 .cfi_offset 14,-4
+  72 0002 82B0     	 sub sp,sp,#8
+  73              	.LCFI4:
+  74              	 .cfi_def_cfa_offset 16
+  75 0004 00AF     	 add r7,sp,#0
+  76              	.LCFI5:
+  77              	 .cfi_def_cfa_register 7
+  78 0006 7860     	 str r0,[r7,#4]
+  79 0008 0A1C     	 mov r2,r1
+  80 000a FB1C     	 add r3,r7,#3
+  81 000c 1A70     	 strb r2,[r3]
+ 289:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLow: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 290:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 291:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = 0x10000U << pin;
+  82              	 .loc 1 291 0
+  83 000e FB1C     	 add r3,r7,#3
+  84 0010 1B78     	 ldrb r3,[r3]
+  85 0012 8022     	 mov r2,#128
+  86 0014 5202     	 lsl r2,r2,#9
+  87 0016 9A40     	 lsl r2,r2,r3
+  88 0018 7B68     	 ldr r3,[r7,#4]
+  89 001a 5A60     	 str r2,[r3,#4]
+ 292:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  90              	 .loc 1 292 0
+  91 001c BD46     	 mov sp,r7
+  92 001e 02B0     	 add sp,sp,#8
+  93              	 
+  94 0020 80BD     	 pop {r7,pc}
+  95              	 .cfi_endproc
+  96              	.LFE123:
+  98 0022 C046     	 .section .text.DIGITAL_IO_SetOutputHigh,"ax",%progbits
+  99              	 .align 2
+ 100              	 .code 16
+ 101              	 .thumb_func
+ 103              	DIGITAL_IO_SetOutputHigh:
+ 104              	.LFB195:
+ 105              	 .file 2 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io.h"
+   1:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /*
+   2:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+   3:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @file digital_io.h
+   4:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @date 2021-01-08
+   5:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+   6:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * NOTE:
+   7:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * This file is generated by DAVE. Any manual modification done to this file will be lost when the 
+   8:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+   9:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @cond
+  10:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  11:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * DIGITAL_IO v4.0.18 - The DIGITAL_IO APP is used to configure a port pin as digital Input/Output.
+  12:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  13:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * Copyright (c) 2015-2020, Infineon Technologies AG
+  14:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * All rights reserved.
+  15:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  16:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  17:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * following conditions are met:
+  18:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  19:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  20:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   disclaimer.
+  21:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  22:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  23:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  24:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  25:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  26:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   products derived from this software without specific prior written permission.
+  27:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  28:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  29:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  30:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  31:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  32:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  33:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  34:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  35:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  36:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  37:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * with Infineon Technologies AG (dave@infineon.com).
+  38:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  39:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  40:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * Change History
+  41:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * --------------
+  42:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  43:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-02-16
+  44:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Initial version
+  45:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  46:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-04-22
+  47:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - XMC_ASSERT is added in static inline functions.<br>
+  48:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  49:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-06-20
+  50:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Version check added for XMCLib dependency.<br>
+  51:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  52:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-12-22
+  53:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Added hardware controlled IO feature.
+  54:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2016-07-08:
+  55:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Fixed incorrect case for an included header.<br>
+  56:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2021-01-08:
+  57:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Modified check for minimum XMCLib version
+  58:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  59:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @endcond
+  60:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  61:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  */
+  62:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  63:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+  64:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * HEADER FILES
+  65:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  66:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  67:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #ifndef DIGITAL_IO_H
+  68:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #define DIGITAL_IO_H
+  69:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  70:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #include "xmc_gpio.h"
+  71:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #include "DAVE_Common.h"
+  72:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #include "digital_io_conf.h"
+  73:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  74:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+  75:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * MACROS
+  76:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  77:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #define DIGITAL_IO_XMC_LIB_MAJOR_VERSION 2
+  78:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #define DIGITAL_IO_XMC_LIB_MINOR_VERSION 0
+  79:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #define DIGITAL_IO_XMC_LIB_PATCH_VERSION 0
+  80:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  81:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #if !((XMC_LIB_MAJOR_VERSION > DIGITAL_IO_XMC_LIB_MAJOR_VERSION) ||\
+  82:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****       ((XMC_LIB_MAJOR_VERSION == DIGITAL_IO_XMC_LIB_MAJOR_VERSION) && (XMC_LIB_MINOR_VERSION > DIGI
+  83:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****       ((XMC_LIB_MAJOR_VERSION == DIGITAL_IO_XMC_LIB_MAJOR_VERSION) && (XMC_LIB_MINOR_VERSION == DIG
+  84:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #error "DIGITAL_IO requires XMC Peripheral Library v2.0.0 or higher"
+  85:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #endif
+  86:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  87:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  /*************************************************************************************************
+  88:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * ENUMS
+  89:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  90:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  91:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+  92:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @ingroup DIGITAL_IO_enumerations
+  93:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @{
+  94:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+  95:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  96:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+  97:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Initialization status of DIGITAL_IO APP.
+  98:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+  99:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** typedef enum DIGITAL_IO_STATUS
+ 100:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 101:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   DIGITAL_IO_STATUS_OK = 0U,/**< 0=Status OK */
+ 102:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   DIGITAL_IO_STATUS_FAILURE = 1U/**< 1=Status Failed */
+ 103:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** } DIGITAL_IO_STATUS_t;
+ 104:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 105:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 106:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @}
+ 107:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 108:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 109:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+ 110:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * DATA STRUCTURES
+ 111:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+ 112:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 113:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @ingroup DIGITAL_IO_datastructures
+ 114:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @{
+ 115:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 116:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 117:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 118:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Initialization data structure of DIGITAL_IO APP
+ 119:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 120:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** typedef struct DIGITAL_IO
+ 121:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 122:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_GPIO_PORT_t *const gpio_port;             /**< port number */
+ 123:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   const XMC_GPIO_CONFIG_t gpio_config;          /**< mode, initial output level and pad driver stre
+ 124:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   const uint8_t gpio_pin;                       /**< pin number */
+ 125:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   const XMC_GPIO_HWCTRL_t hwctrl;               /**< Hardware port control */
+ 126:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** } DIGITAL_IO_t;
+ 127:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 128:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 129:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 130:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @}
+ 131:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 132:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 133:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 134:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+ 135:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  * API Prototypes
+ 136:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+ 137:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 138:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 139:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #ifdef __cplusplus
+ 140:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** extern "C" {
+ 141:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** #endif
+ 142:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 143:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 144:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @ingroup DIGITAL_IO_apidoc
+ 145:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @{
+ 146:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 147:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 148:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 149:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 150:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 151:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Get DIGITAL_IO APP version
+ 152:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return DAVE_APP_VERSION_t APP version information (major, minor and patch number)
+ 153:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 154:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description: </b><br>
+ 155:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * The function can be used to check application software compatibility with a
+ 156:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * specific version of the APP.
+ 157:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 158:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 159:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 160:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 161:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * #include "DAVE.h"
+ 162:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 163:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * int main(void)
+ 164:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * {
+ 165:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_STATUS_t init_status;
+ 166:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_APP_VERSION_t version;
+ 167:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 168:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   // Initialize DIGITAL_IO APP:
+ 169:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   // DIGITAL_IO_Init() is called from within DAVE_Init().
+ 170:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   init_status = DAVE_Init();
+ 171:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   if(init_status == DAVE_STATUS_SUCCESS)
+ 172:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 173:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     version = DIGITAL_IO_GetAppVersion();
+ 174:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     if (version.major != 4U) {
+ 175:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     // Probably, not the right version.
+ 176:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 177:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 178:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 179:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     // More code here
+ 180:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     while(1) {
+ 181:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 182:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 183:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     return (1);
+ 184:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *  }
+ 185:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @endcode<BR>
+ 186:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 187:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 188:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** DAVE_APP_VERSION_t DIGITAL_IO_GetAppVersion(void);
+ 189:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 190:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 191:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 192:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Function to initialize the port pin as per UI settings.
+ 193:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @param handler Pointer pointing to APP data structure. Refer @ref DIGITAL_IO_t for details.
+ 194:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return DIGITAL_IO_STATUS_t DIGITAL_IO APP status. Refer @ref DIGITAL_IO_STATUS_t structure for d
+ 195:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 196:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description:</b><br>
+ 197:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * This function initializes GPIO port registers IOCR,PDISC,OMR,PDR/PHCR to configure pin direction,
+ 198:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * and pad driver strength/hysteresis.
+ 199:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 200:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Related APIs:</b><BR>
+ 201:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * None
+ 202:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 203:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 204:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 205:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * #include "DAVE.h" //Declarations from DAVE Code Generation (includes SFR declaration)
+ 206:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 207:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * int main(void)
+ 208:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * {
+ 209:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_STATUS_t status;
+ 210:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   status = DAVE_Init();  //(DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0) is called within DAVE_In
+ 211:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   if(status == DAVE_STATUS_SUCCESS)
+ 212:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 213:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG("DAVE Apps initialization success\n");
+ 214:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 215:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   else
+ 216:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 217:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 218:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     while(1U)
+ 219:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     {
+ 220:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 221:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 222:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   //Placeholder for user application code. The while loop below can be replaced with user applica
+ 223:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   while(1U)
+ 224:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 225:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 226:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   return 1U;
+ 227:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *  }
+ 228:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *  @endcode
+ 229:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 230:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 231:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** DIGITAL_IO_STATUS_t DIGITAL_IO_Init(const DIGITAL_IO_t *const handler);
+ 232:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 233:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 234:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 235:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Function to set port pin high.
+ 236:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @param handler Pointer pointing to APP data structure. Refer @ref DIGITAL_IO_t for details.
+ 237:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return None
+ 238:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 239:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description:</b><br>
+ 240:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * This function configures port output modification register Pn_OMR, to make port pin to high level
+ 241:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 242:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Related APIs:</b><BR>
+ 243:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *  DIGITAL_IO_SetOutputLow()
+ 244:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 245:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 246:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 247:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * #include "DAVE.h" //Declarations from DAVE Code Generation (includes SFR declaration)
+ 248:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 249:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * int main(void)
+ 250:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * {
+ 251:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_STATUS_t status;
+ 252:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   status = DAVE_Init();  //(DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0) is called within DAVE_In
+ 253:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   if(status == DAVE_STATUS_SUCCESS)
+ 254:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 255:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG("DAVE Apps initialization success\n");
+ 256:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 257:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   else
+ 258:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 259:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 260:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     while(1U)
+ 261:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     {
+ 262:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 263:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 264:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   //Placeholder for user application code. The while loop below can be replaced with user applica
+ 265:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
+ 266:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   while(1U)
+ 267:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 268:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *     // Add application code here
+ 269:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 270:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 271:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   return (1);
+ 272:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * }
+ 273:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *  @endcode
+ 274:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 275:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 276:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** __STATIC_INLINE void DIGITAL_IO_SetOutputHigh(const DIGITAL_IO_t *const handler)
+ 277:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 106              	 .loc 2 277 0
+ 107              	 .cfi_startproc
+ 108 0000 80B5     	 push {r7,lr}
+ 109              	.LCFI6:
+ 110              	 .cfi_def_cfa_offset 8
+ 111              	 .cfi_offset 7,-8
+ 112              	 .cfi_offset 14,-4
+ 113 0002 82B0     	 sub sp,sp,#8
+ 114              	.LCFI7:
+ 115              	 .cfi_def_cfa_offset 16
+ 116 0004 00AF     	 add r7,sp,#0
+ 117              	.LCFI8:
+ 118              	 .cfi_def_cfa_register 7
+ 119 0006 7860     	 str r0,[r7,#4]
+ 278:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_ASSERT("DIGITAL_IO_SetOutputHigh: handler null pointer", handler != NULL);
+ 279:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_GPIO_SetOutputHigh(handler->gpio_port, handler->gpio_pin);
+ 120              	 .loc 2 279 0
+ 121 0008 7B68     	 ldr r3,[r7,#4]
+ 122 000a 1A68     	 ldr r2,[r3]
+ 123 000c 7B68     	 ldr r3,[r7,#4]
+ 124 000e 1B7B     	 ldrb r3,[r3,#12]
+ 125 0010 101C     	 mov r0,r2
+ 126 0012 191C     	 mov r1,r3
+ 127 0014 FFF7FEFF 	 bl XMC_GPIO_SetOutputHigh
+ 280:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** }
+ 128              	 .loc 2 280 0
+ 129 0018 BD46     	 mov sp,r7
+ 130 001a 02B0     	 add sp,sp,#8
+ 131              	 
+ 132 001c 80BD     	 pop {r7,pc}
+ 133              	 .cfi_endproc
+ 134              	.LFE195:
+ 136 001e C046     	 .section .text.DIGITAL_IO_SetOutputLow,"ax",%progbits
+ 137              	 .align 2
+ 138              	 .code 16
+ 139              	 .thumb_func
+ 141              	DIGITAL_IO_SetOutputLow:
+ 142              	.LFB196:
+ 281:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 282:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 283:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Function to reset port pin.
+ 284:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @param handler Pointer pointing to APP data structure. Refer @ref DIGITAL_IO_t for details.
+ 285:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return None
+ 286:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 287:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description:</b><br>
+ 288:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * This function configures port output modification register Pn_OMR, to make port pin to low level.
+ 289:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 290:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Related APIs:</b><BR>
+ 291:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * DIGITAL_IO_SetOutputHigh()
+ 292:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 293:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 294:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 295:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *  #include "DAVE.h" //Declarations from DAVE Code Generation (includes SFR declaration)
+ 296:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 297:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *  int main(void)
+ 298:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *  {
+ 299:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    DAVE_STATUS_t status;
+ 300:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    status = DAVE_Init();  //(DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0) is called within DAVE_I
+ 301:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    if(status == DAVE_STATUS_SUCCESS)
+ 302:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    {
+ 303:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *      XMC_DEBUG("DAVE Apps initialization success\n");
+ 304:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    }
+ 305:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    else
+ 306:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    {
+ 307:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *      XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 308:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *      while(1U)
+ 309:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *      {
+ 310:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *      }
+ 311:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    }
+ 312:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    //Placeholder for user application code. The while loop below can be replaced with user applic
+ 313:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
+ 314:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    while(1U)
+ 315:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    {
+ 316:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *      // Add application code here
+ 317:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *    }
+ 318:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 319:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *   return (1);
+ 320:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** * }
+ 321:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** *  @endcode
+ 322:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 323:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 324:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** __STATIC_INLINE void DIGITAL_IO_SetOutputLow(const DIGITAL_IO_t *const handler)
+ 325:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 143              	 .loc 2 325 0
+ 144              	 .cfi_startproc
+ 145 0000 80B5     	 push {r7,lr}
+ 146              	.LCFI9:
+ 147              	 .cfi_def_cfa_offset 8
+ 148              	 .cfi_offset 7,-8
+ 149              	 .cfi_offset 14,-4
+ 150 0002 82B0     	 sub sp,sp,#8
+ 151              	.LCFI10:
+ 152              	 .cfi_def_cfa_offset 16
+ 153 0004 00AF     	 add r7,sp,#0
+ 154              	.LCFI11:
+ 155              	 .cfi_def_cfa_register 7
+ 156 0006 7860     	 str r0,[r7,#4]
+ 326:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_ASSERT("DIGITAL_IO_SetOutputLow: handler null pointer", handler != NULL);
+ 327:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_GPIO_SetOutputLow(handler->gpio_port,handler->gpio_pin);
+ 157              	 .loc 2 327 0
+ 158 0008 7B68     	 ldr r3,[r7,#4]
+ 159 000a 1A68     	 ldr r2,[r3]
+ 160 000c 7B68     	 ldr r3,[r7,#4]
+ 161 000e 1B7B     	 ldrb r3,[r3,#12]
+ 162 0010 101C     	 mov r0,r2
+ 163 0012 191C     	 mov r1,r3
+ 164 0014 FFF7FEFF 	 bl XMC_GPIO_SetOutputLow
+ 328:C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO\digital_io.h **** }
+ 165              	 .loc 2 328 0
+ 166 0018 BD46     	 mov sp,r7
+ 167 001a 02B0     	 add sp,sp,#8
+ 168              	 
+ 169 001c 80BD     	 pop {r7,pc}
+ 170              	 .cfi_endproc
+ 171              	.LFE196:
+ 173              	 .global obstructed_L
+ 174 001e C046     	 .section .bss.obstructed_L,"aw",%nobits
+ 177              	obstructed_L:
+ 178 0000 00       	 .space 1
+ 179              	 .global obstructed_R
+ 180              	 .section .bss.obstructed_R,"aw",%nobits
+ 183              	obstructed_R:
+ 184 0000 00       	 .space 1
+ 185              	 .global Ultra_m_C
+ 186              	 .section .data.Ultra_m_C,"aw",%progbits
+ 187              	 .align 2
+ 190              	Ultra_m_C:
+ 191 0000 00008040 	 .word 1082130432
+ 192              	 .global Ultra_m_L
+ 193              	 .section .data.Ultra_m_L,"aw",%progbits
+ 194              	 .align 2
+ 197              	Ultra_m_L:
+ 198 0000 00008040 	 .word 1082130432
+ 199              	 .global Ultra_m_R
+ 200              	 .section .data.Ultra_m_R,"aw",%progbits
+ 201              	 .align 2
+ 204              	Ultra_m_R:
+ 205 0000 00008040 	 .word 1082130432
+ 206              	 .global Ultrsonic_data_invaildcounter
+ 207              	 .section .data.Ultrsonic_data_invaildcounter,"aw",%progbits
+ 208              	 .align 2
+ 211              	Ultrsonic_data_invaildcounter:
+ 212 0000 28       	 .byte 40
+ 213 0001 28       	 .byte 40
+ 214 0002 28       	 .byte 40
+ 215              	 .global Obstacel_valid
+ 216 0003 00       	 .section .bss.Obstacel_valid,"aw",%nobits
+ 217              	 .align 2
+ 220              	Obstacel_valid:
+ 221 0000 000000   	 .space 3
+ 222              	 .comm Obstacel_F,12,4
+ 223              	 .comm Obstacel_L,12,4
+ 224              	 .comm Obstacel_R,12,4
+ 225              	 .global Speed_reduction_ratio
+ 226 0003 00       	 .section .data.Speed_reduction_ratio,"aw",%progbits
+ 227              	 .align 2
+ 230              	Speed_reduction_ratio:
+ 231 0000 0000803F 	 .word 1065353216
+ 232              	 .global Speed_limit
+ 233              	 .section .data.Speed_limit,"aw",%progbits
+ 234              	 .align 2
+ 237              	Speed_limit:
+ 238 0000 0000803F 	 .word 1065353216
+ 239              	 .global new_Speed_limit
+ 240              	 .section .data.new_Speed_limit,"aw",%progbits
+ 241              	 .align 2
+ 244              	new_Speed_limit:
+ 245 0000 0000803F 	 .word 1065353216
+ 246              	 .global speed_CA_fl
+ 247              	 .section .bss.speed_CA_fl,"aw",%nobits
+ 248              	 .align 2
+ 251              	speed_CA_fl:
+ 252 0000 00000000 	 .space 4
+ 253              	 .global speed_CA_fr
+ 254              	 .section .bss.speed_CA_fr,"aw",%nobits
+ 255              	 .align 2
+ 258              	speed_CA_fr:
+ 259 0000 00000000 	 .space 4
+ 260              	 .global speed_CA_rl
+ 261              	 .section .bss.speed_CA_rl,"aw",%nobits
+ 262              	 .align 2
+ 265              	speed_CA_rl:
+ 266 0000 00000000 	 .space 4
+ 267              	 .global speed_CA_rr
+ 268              	 .section .bss.speed_CA_rr,"aw",%nobits
+ 269              	 .align 2
+ 272              	speed_CA_rr:
+ 273 0000 00000000 	 .space 4
+ 274              	 .global __aeabi_i2f
+ 275              	 .global __aeabi_fdiv
+ 276              	 .section .text.Ultra_sonic_filter,"ax",%progbits
+ 277              	 .align 2
+ 278              	 .global Ultra_sonic_filter
+ 279              	 .code 16
+ 280              	 .thumb_func
+ 282              	Ultra_sonic_filter:
+ 283              	.LFB224:
+ 284              	 .file 3 "../Ultrasonic_Collision_Avoidance.c"
    1:../Ultrasonic_Collision_Avoidance.c **** /*
    2:../Ultrasonic_Collision_Avoidance.c ****  * Ultrasonic_Collision_Avoidance.c
    3:../Ultrasonic_Collision_Avoidance.c ****  *
@@ -108,779 +872,1204 @@
    5:../Ultrasonic_Collision_Avoidance.c ****  *      Author: lukas
    6:../Ultrasonic_Collision_Avoidance.c ****  */
    7:../Ultrasonic_Collision_Avoidance.c **** #include "Ultrasonic_Collision_Avoidance.h"
-   8:../Ultrasonic_Collision_Avoidance.c **** 
-   9:../Ultrasonic_Collision_Avoidance.c **** // filtering
-  10:../Ultrasonic_Collision_Avoidance.c **** //float ALPHA_ULTARSONIC = 0.3; // giltering prameter for the Exponential moving average
-  11:../Ultrasonic_Collision_Avoidance.c **** #define POS_OBSTRUCTED_ANGLE_MIN 50
-  12:../Ultrasonic_Collision_Avoidance.c **** #define POS_OBSTRUCTED_ANGLE_MAX 210
-  13:../Ultrasonic_Collision_Avoidance.c **** #define NEG_OBSTRUCTED_ANGLE_MIN -150
-  14:../Ultrasonic_Collision_Avoidance.c **** #define NEG_OBSTRUCTED_ANGLE_MAX -310
-  15:../Ultrasonic_Collision_Avoidance.c **** uint8_t obstructed_L = 0, obstructed_R = 0;
-  16:../Ultrasonic_Collision_Avoidance.c **** float Ultra_m_C = 4, Ultra_m_L = 4, Ultra_m_R = 4;
+   8:../Ultrasonic_Collision_Avoidance.c **** #include<stdio.h>
+   9:../Ultrasonic_Collision_Avoidance.c **** 
+  10:../Ultrasonic_Collision_Avoidance.c **** // filtering
+  11:../Ultrasonic_Collision_Avoidance.c **** //float ALPHA_ULTARSONIC = 0.3; // giltering prameter for the Exponential moving average
+  12:../Ultrasonic_Collision_Avoidance.c **** #define POS_OBSTRUCTED_ANGLE_MIN 50
+  13:../Ultrasonic_Collision_Avoidance.c **** #define POS_OBSTRUCTED_ANGLE_MAX 210
+  14:../Ultrasonic_Collision_Avoidance.c **** #define NEG_OBSTRUCTED_ANGLE_MIN -150
+  15:../Ultrasonic_Collision_Avoidance.c **** #define NEG_OBSTRUCTED_ANGLE_MAX -310
+  16:../Ultrasonic_Collision_Avoidance.c **** uint8_t obstructed_L = 0, obstructed_R = 0;
   17:../Ultrasonic_Collision_Avoidance.c **** 
-  18:../Ultrasonic_Collision_Avoidance.c **** #define ULRTA_NUM_NO_DATA_INVALID 40
-  19:../Ultrasonic_Collision_Avoidance.c **** uint8_t Ultrsonic_data_invaildcounter[3] = {ULRTA_NUM_NO_DATA_INVALID, ULRTA_NUM_NO_DATA_INVALID, U
+  18:../Ultrasonic_Collision_Avoidance.c **** float Ultra_m_C = 4, Ultra_m_L = 4, Ultra_m_R = 4;
+  19:../Ultrasonic_Collision_Avoidance.c **** 
   20:../Ultrasonic_Collision_Avoidance.c **** 
-  21:../Ultrasonic_Collision_Avoidance.c **** 
-  22:../Ultrasonic_Collision_Avoidance.c **** float obstacel_F_x = 0, obstacel_L_x = 0, obstacel_L_y = 0, obstacel_R_x = 0, obstacel_R_y = 0;
-  23:../Ultrasonic_Collision_Avoidance.c **** uint8_t Obstacel_valid[3] = {0, 0, 0};
+  21:../Ultrasonic_Collision_Avoidance.c **** // collison avdoidance
+  22:../Ultrasonic_Collision_Avoidance.c **** #define ULRTA_NUM_NO_DATA_INVALID 40
+  23:../Ultrasonic_Collision_Avoidance.c **** uint8_t Ultrsonic_data_invaildcounter[3] = {ULRTA_NUM_NO_DATA_INVALID, ULRTA_NUM_NO_DATA_INVALID, U
   24:../Ultrasonic_Collision_Avoidance.c **** 
-  25:../Ultrasonic_Collision_Avoidance.c **** 
-  26:../Ultrasonic_Collision_Avoidance.c **** // collison avdoidance
+  25:../Ultrasonic_Collision_Avoidance.c **** uint8_t Obstacel_valid[3] = {0, 0, 0};
+  26:../Ultrasonic_Collision_Avoidance.c **** 
   27:../Ultrasonic_Collision_Avoidance.c **** #define CA_START 1
   28:../Ultrasonic_Collision_Avoidance.c **** #define CA_STOP 0.2
-  29:../Ultrasonic_Collision_Avoidance.c **** /*
-  30:../Ultrasonic_Collision_Avoidance.c **** float avg_Speeds = 0;
-  31:../Ultrasonic_Collision_Avoidance.c **** float trajctory_x = 0, trajctory_y = 0;
-  32:../Ultrasonic_Collision_Avoidance.c **** float Trajctory[2] = {0, 0};
-  33:../Ultrasonic_Collision_Avoidance.c **** float trajctory_Angel = 0;
-  34:../Ultrasonic_Collision_Avoidance.c **** */
-  35:../Ultrasonic_Collision_Avoidance.c **** 
-  36:../Ultrasonic_Collision_Avoidance.c **** // obstacels
-  37:../Ultrasonic_Collision_Avoidance.c **** float Obstacel_F = 4, Obstacel_L = 4, Obstacel_R = 4; // y vaule alwasy stays 4
+  29:../Ultrasonic_Collision_Avoidance.c **** #define CA_ANGLE 15
+  30:../Ultrasonic_Collision_Avoidance.c **** 
+  31:../Ultrasonic_Collision_Avoidance.c **** Obstacel Obstacel_F;
+  32:../Ultrasonic_Collision_Avoidance.c **** Obstacel Obstacel_L;
+  33:../Ultrasonic_Collision_Avoidance.c **** Obstacel Obstacel_R;
+  34:../Ultrasonic_Collision_Avoidance.c **** 
+  35:../Ultrasonic_Collision_Avoidance.c **** float Speed_reduction_ratio = 1;
+  36:../Ultrasonic_Collision_Avoidance.c **** float Speed_limit = MAX_Speed;
+  37:../Ultrasonic_Collision_Avoidance.c **** float new_Speed_limit = MAX_Speed;
   38:../Ultrasonic_Collision_Avoidance.c **** 
   39:../Ultrasonic_Collision_Avoidance.c **** 
-  40:../Ultrasonic_Collision_Avoidance.c **** 
-  41:../Ultrasonic_Collision_Avoidance.c **** void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasoni
- 135              	 .loc 1 41 0
- 136              	 .cfi_startproc
- 137 0000 F0B5     	 push {r4,r5,r6,r7,lr}
- 138              	.LCFI0:
- 139              	 .cfi_def_cfa_offset 20
- 140              	 .cfi_offset 4,-20
- 141              	 .cfi_offset 5,-16
- 142              	 .cfi_offset 6,-12
- 143              	 .cfi_offset 7,-8
- 144              	 .cfi_offset 14,-4
- 145 0002 8BB0     	 sub sp,sp,#44
- 146              	.LCFI1:
- 147              	 .cfi_def_cfa_offset 64
- 148 0004 02AF     	 add r7,sp,#8
- 149              	.LCFI2:
- 150              	 .cfi_def_cfa 7,56
- 151 0006 041C     	 mov r4,r0
- 152 0008 081C     	 mov r0,r1
- 153 000a 111C     	 mov r1,r2
- 154 000c FB60     	 str r3,[r7,#12]
- 155 000e 0E23     	 mov r3,#14
- 156 0010 0822     	 mov r2,#8
- 157 0012 9446     	 mov ip,r2
- 158 0014 BC44     	 add ip,ip,r7
- 159 0016 6344     	 add r3,r3,ip
- 160 0018 221C     	 add r2,r4,#0
- 161 001a 1A80     	 strh r2,[r3]
- 162 001c 0C23     	 mov r3,#12
- 163 001e 0822     	 mov r2,#8
- 164 0020 9446     	 mov ip,r2
- 165 0022 BC44     	 add ip,ip,r7
- 166 0024 6344     	 add r3,r3,ip
- 167 0026 021C     	 add r2,r0,#0
- 168 0028 1A80     	 strh r2,[r3]
- 169 002a 0A23     	 mov r3,#10
- 170 002c 0822     	 mov r2,#8
- 171 002e 9446     	 mov ip,r2
- 172 0030 BC44     	 add ip,ip,r7
- 173 0032 6344     	 add r3,r3,ip
- 174 0034 0A1C     	 add r2,r1,#0
- 175 0036 1A80     	 strh r2,[r3]
-  42:../Ultrasonic_Collision_Avoidance.c **** 
-  43:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrasonic_cm_C_clc != 0){
- 176              	 .loc 1 43 0
- 177 0038 0E23     	 mov r3,#14
- 178 003a 0822     	 mov r2,#8
- 179 003c 9446     	 mov ip,r2
- 180 003e BC44     	 add ip,ip,r7
- 181 0040 6344     	 add r3,r3,ip
- 182 0042 0022     	 mov r2,#0
- 183 0044 9B5E     	 ldrsh r3,[r3,r2]
- 184 0046 002B     	 cmp r3,#0
- 185 0048 33D0     	 beq .L2
- 186              	.LBB2:
-  44:../Ultrasonic_Collision_Avoidance.c **** 		Ultrsonic_data_invaildcounter[0] = 0;
- 187              	 .loc 1 44 0
- 188 004a A34B     	 ldr r3,.L19
- 189 004c 0022     	 mov r2,#0
- 190 004e 1A70     	 strb r2,[r3]
-  45:../Ultrasonic_Collision_Avoidance.c **** 		Ultra_m_C = Exp_moving_average((float)Ultrasonic_cm_C_clc / 100 , Ultra_m_C, ALPHA_ULTARSONIC);
- 191              	 .loc 1 45 0
- 192 0050 0E23     	 mov r3,#14
- 193 0052 0822     	 mov r2,#8
- 194 0054 9446     	 mov ip,r2
- 195 0056 BC44     	 add ip,ip,r7
- 196 0058 6344     	 add r3,r3,ip
- 197 005a 0022     	 mov r2,#0
- 198 005c 9B5E     	 ldrsh r3,[r3,r2]
- 199 005e 181C     	 mov r0,r3
- 200 0060 FFF7FEFF 	 bl __aeabi_i2f
- 201 0064 031C     	 add r3,r0,#0
- 202 0066 181C     	 add r0,r3,#0
- 203 0068 9C49     	 ldr r1,.L19+4
- 204 006a FFF7FEFF 	 bl __aeabi_fdiv
- 205 006e 031C     	 add r3,r0,#0
- 206 0070 181C     	 add r0,r3,#0
- 207 0072 FFF7FEFF 	 bl __aeabi_f2d
- 208 0076 3860     	 str r0,[r7]
- 209 0078 7960     	 str r1,[r7,#4]
- 210 007a 994B     	 ldr r3,.L19+8
- 211 007c 1B68     	 ldr r3,[r3]
- 212 007e 181C     	 add r0,r3,#0
- 213 0080 FFF7FEFF 	 bl __aeabi_f2d
- 214 0084 051C     	 mov r5,r0
- 215 0086 0E1C     	 mov r6,r1
- 216 0088 B86B     	 ldr r0,[r7,#56]
- 217 008a FFF7FEFF 	 bl __aeabi_f2d
- 218 008e 031C     	 mov r3,r0
- 219 0090 0C1C     	 mov r4,r1
- 220 0092 0093     	 str r3,[sp]
- 221 0094 0194     	 str r4,[sp,#4]
- 222 0096 3868     	 ldr r0,[r7]
- 223 0098 7968     	 ldr r1,[r7,#4]
- 224 009a 2A1C     	 mov r2,r5
- 225 009c 331C     	 mov r3,r6
- 226 009e FFF7FEFF 	 bl Exp_moving_average
- 227 00a2 031C     	 mov r3,r0
- 228 00a4 181C     	 mov r0,r3
- 229 00a6 FFF7FEFF 	 bl __aeabi_i2f
- 230 00aa 021C     	 add r2,r0,#0
- 231 00ac 8C4B     	 ldr r3,.L19+8
- 232 00ae 1A60     	 str r2,[r3]
- 233              	.LBE2:
- 234 00b0 05E0     	 b .L3
- 235              	.L2:
-  46:../Ultrasonic_Collision_Avoidance.c **** 	}
-  47:../Ultrasonic_Collision_Avoidance.c **** 	else Ultrsonic_data_invaildcounter[0]++;
- 236              	 .loc 1 47 0
- 237 00b2 894B     	 ldr r3,.L19
- 238 00b4 1B78     	 ldrb r3,[r3]
- 239 00b6 0133     	 add r3,r3,#1
- 240 00b8 DAB2     	 uxtb r2,r3
- 241 00ba 874B     	 ldr r3,.L19
- 242 00bc 1A70     	 strb r2,[r3]
- 243              	.L3:
+  40:../Ultrasonic_Collision_Avoidance.c **** float speed_CA_fl = 0;
+  41:../Ultrasonic_Collision_Avoidance.c **** float speed_CA_fr = 0;
+  42:../Ultrasonic_Collision_Avoidance.c **** float speed_CA_rl = 0;
+  43:../Ultrasonic_Collision_Avoidance.c **** float speed_CA_rr = 0;
+  44:../Ultrasonic_Collision_Avoidance.c **** 
+  45:../Ultrasonic_Collision_Avoidance.c **** 
+  46:../Ultrasonic_Collision_Avoidance.c **** // obstacels
+  47:../Ultrasonic_Collision_Avoidance.c **** //float Obstacel_F = 4, Obstacel_L = 4, Obstacel_R = 4; // y vaule alwasy stays 4
   48:../Ultrasonic_Collision_Avoidance.c **** 
-  49:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrasonic_cm_L_clc != 0){
- 244              	 .loc 1 49 0
- 245 00be 0C23     	 mov r3,#12
- 246 00c0 0822     	 mov r2,#8
- 247 00c2 9446     	 mov ip,r2
- 248 00c4 BC44     	 add ip,ip,r7
- 249 00c6 6344     	 add r3,r3,ip
- 250 00c8 0022     	 mov r2,#0
- 251 00ca 9B5E     	 ldrsh r3,[r3,r2]
- 252 00cc 002B     	 cmp r3,#0
- 253 00ce 40D0     	 beq .L4
-  50:../Ultrasonic_Collision_Avoidance.c **** 		obstructed_L = Ultrasoinc_Obstructet_Test(Steering_Angles_clc[0]);
- 254              	 .loc 1 50 0
- 255 00d0 FB68     	 ldr r3,[r7,#12]
- 256 00d2 1B68     	 ldr r3,[r3]
- 257 00d4 181C     	 add r0,r3,#0
- 258 00d6 FFF7FEFF 	 bl Ultrasoinc_Obstructet_Test
- 259 00da 031C     	 mov r3,r0
- 260 00dc 1A1C     	 mov r2,r3
- 261 00de 814B     	 ldr r3,.L19+12
- 262 00e0 1A70     	 strb r2,[r3]
-  51:../Ultrasonic_Collision_Avoidance.c **** 		if(obstructed_L == 0) {
- 263              	 .loc 1 51 0
- 264 00e2 804B     	 ldr r3,.L19+12
- 265 00e4 1B78     	 ldrb r3,[r3]
- 266 00e6 002B     	 cmp r3,#0
- 267 00e8 39D1     	 bne .L6
- 268              	.LBB3:
-  52:../Ultrasonic_Collision_Avoidance.c **** 			Ultrsonic_data_invaildcounter[1] = 0;
- 269              	 .loc 1 52 0
- 270 00ea 7B4B     	 ldr r3,.L19
- 271 00ec 0022     	 mov r2,#0
- 272 00ee 5A70     	 strb r2,[r3,#1]
-  53:../Ultrasonic_Collision_Avoidance.c **** 			Ultra_m_L = Exp_moving_average((float)Ultrasonic_cm_L_clc / 100 , Ultra_m_L, ALPHA_ULTARSONIC);
- 273              	 .loc 1 53 0
- 274 00f0 0C23     	 mov r3,#12
- 275 00f2 0822     	 mov r2,#8
- 276 00f4 9446     	 mov ip,r2
- 277 00f6 BC44     	 add ip,ip,r7
- 278 00f8 6344     	 add r3,r3,ip
- 279 00fa 0022     	 mov r2,#0
- 280 00fc 9B5E     	 ldrsh r3,[r3,r2]
- 281 00fe 181C     	 mov r0,r3
- 282 0100 FFF7FEFF 	 bl __aeabi_i2f
- 283 0104 031C     	 add r3,r0,#0
- 284 0106 181C     	 add r0,r3,#0
- 285 0108 7449     	 ldr r1,.L19+4
- 286 010a FFF7FEFF 	 bl __aeabi_fdiv
- 287 010e 031C     	 add r3,r0,#0
- 288 0110 181C     	 add r0,r3,#0
- 289 0112 FFF7FEFF 	 bl __aeabi_f2d
- 290 0116 3860     	 str r0,[r7]
- 291 0118 7960     	 str r1,[r7,#4]
- 292 011a 734B     	 ldr r3,.L19+16
- 293 011c 1B68     	 ldr r3,[r3]
- 294 011e 181C     	 add r0,r3,#0
- 295 0120 FFF7FEFF 	 bl __aeabi_f2d
- 296 0124 051C     	 mov r5,r0
- 297 0126 0E1C     	 mov r6,r1
- 298 0128 B86B     	 ldr r0,[r7,#56]
- 299 012a FFF7FEFF 	 bl __aeabi_f2d
- 300 012e 031C     	 mov r3,r0
- 301 0130 0C1C     	 mov r4,r1
- 302 0132 0093     	 str r3,[sp]
- 303 0134 0194     	 str r4,[sp,#4]
- 304 0136 3868     	 ldr r0,[r7]
- 305 0138 7968     	 ldr r1,[r7,#4]
- 306 013a 2A1C     	 mov r2,r5
- 307 013c 331C     	 mov r3,r6
- 308 013e FFF7FEFF 	 bl Exp_moving_average
- 309 0142 031C     	 mov r3,r0
- 310 0144 181C     	 mov r0,r3
- 311 0146 FFF7FEFF 	 bl __aeabi_i2f
- 312 014a 021C     	 add r2,r0,#0
- 313 014c 664B     	 ldr r3,.L19+16
- 314 014e 1A60     	 str r2,[r3]
- 315 0150 05E0     	 b .L6
- 316              	.L4:
- 317              	.LBE3:
-  54:../Ultrasonic_Collision_Avoidance.c **** 		}
-  55:../Ultrasonic_Collision_Avoidance.c **** 	}
-  56:../Ultrasonic_Collision_Avoidance.c **** 	else Ultrsonic_data_invaildcounter[1]++;
- 318              	 .loc 1 56 0
- 319 0152 614B     	 ldr r3,.L19
- 320 0154 5B78     	 ldrb r3,[r3,#1]
- 321 0156 0133     	 add r3,r3,#1
- 322 0158 DAB2     	 uxtb r2,r3
- 323 015a 5F4B     	 ldr r3,.L19
- 324 015c 5A70     	 strb r2,[r3,#1]
- 325              	.L6:
-  57:../Ultrasonic_Collision_Avoidance.c **** 
-  58:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrasonic_cm_R_clc != 0){
- 326              	 .loc 1 58 0
- 327 015e 0A23     	 mov r3,#10
- 328 0160 0822     	 mov r2,#8
- 329 0162 9446     	 mov ip,r2
- 330 0164 BC44     	 add ip,ip,r7
- 331 0166 6344     	 add r3,r3,ip
- 332 0168 0022     	 mov r2,#0
- 333 016a 9B5E     	 ldrsh r3,[r3,r2]
- 334 016c 002B     	 cmp r3,#0
- 335 016e 44D0     	 beq .L7
-  59:../Ultrasonic_Collision_Avoidance.c **** 		obstructed_R = Ultrasoinc_Obstructet_Test( - Steering_Angles_clc[1]); // neagtiv becasue right wh
- 336              	 .loc 1 59 0
- 337 0170 FB68     	 ldr r3,[r7,#12]
- 338 0172 0433     	 add r3,r3,#4
- 339 0174 1B68     	 ldr r3,[r3]
- 340 0176 8022     	 mov r2,#128
- 341 0178 1206     	 lsl r2,r2,#24
- 342 017a 5340     	 eor r3,r2
- 343 017c 181C     	 add r0,r3,#0
- 344 017e FFF7FEFF 	 bl Ultrasoinc_Obstructet_Test
- 345 0182 031C     	 mov r3,r0
- 346 0184 1A1C     	 mov r2,r3
- 347 0186 594B     	 ldr r3,.L19+20
- 348 0188 1A70     	 strb r2,[r3]
-  60:../Ultrasonic_Collision_Avoidance.c **** 		if(obstructed_R == 0){
- 349              	 .loc 1 60 0
- 350 018a 584B     	 ldr r3,.L19+20
- 351 018c 1B78     	 ldrb r3,[r3]
- 352 018e 002B     	 cmp r3,#0
- 353 0190 39D1     	 bne .L9
- 354              	.LBB4:
-  61:../Ultrasonic_Collision_Avoidance.c **** 			Ultrsonic_data_invaildcounter[2] = 0;
- 355              	 .loc 1 61 0
- 356 0192 514B     	 ldr r3,.L19
- 357 0194 0022     	 mov r2,#0
- 358 0196 9A70     	 strb r2,[r3,#2]
-  62:../Ultrasonic_Collision_Avoidance.c **** 			Ultra_m_R = Exp_moving_average((float)Ultrasonic_cm_R_clc / 100 , Ultra_m_R, ALPHA_ULTARSONIC);
- 359              	 .loc 1 62 0
- 360 0198 0A23     	 mov r3,#10
- 361 019a 0822     	 mov r2,#8
- 362 019c 9446     	 mov ip,r2
- 363 019e BC44     	 add ip,ip,r7
- 364 01a0 6344     	 add r3,r3,ip
- 365 01a2 0022     	 mov r2,#0
- 366 01a4 9B5E     	 ldrsh r3,[r3,r2]
- 367 01a6 181C     	 mov r0,r3
- 368 01a8 FFF7FEFF 	 bl __aeabi_i2f
- 369 01ac 031C     	 add r3,r0,#0
- 370 01ae 181C     	 add r0,r3,#0
- 371 01b0 4A49     	 ldr r1,.L19+4
- 372 01b2 FFF7FEFF 	 bl __aeabi_fdiv
- 373 01b6 031C     	 add r3,r0,#0
- 374 01b8 181C     	 add r0,r3,#0
- 375 01ba FFF7FEFF 	 bl __aeabi_f2d
- 376 01be 3860     	 str r0,[r7]
- 377 01c0 7960     	 str r1,[r7,#4]
- 378 01c2 4B4B     	 ldr r3,.L19+24
- 379 01c4 1B68     	 ldr r3,[r3]
- 380 01c6 181C     	 add r0,r3,#0
- 381 01c8 FFF7FEFF 	 bl __aeabi_f2d
- 382 01cc 051C     	 mov r5,r0
- 383 01ce 0E1C     	 mov r6,r1
- 384 01d0 B86B     	 ldr r0,[r7,#56]
- 385 01d2 FFF7FEFF 	 bl __aeabi_f2d
- 386 01d6 031C     	 mov r3,r0
- 387 01d8 0C1C     	 mov r4,r1
- 388 01da 0093     	 str r3,[sp]
- 389 01dc 0194     	 str r4,[sp,#4]
- 390 01de 3868     	 ldr r0,[r7]
- 391 01e0 7968     	 ldr r1,[r7,#4]
- 392 01e2 2A1C     	 mov r2,r5
- 393 01e4 331C     	 mov r3,r6
- 394 01e6 FFF7FEFF 	 bl Exp_moving_average
- 395 01ea 031C     	 mov r3,r0
- 396 01ec 181C     	 mov r0,r3
- 397 01ee FFF7FEFF 	 bl __aeabi_i2f
- 398 01f2 021C     	 add r2,r0,#0
- 399 01f4 3E4B     	 ldr r3,.L19+24
- 400 01f6 1A60     	 str r2,[r3]
- 401 01f8 05E0     	 b .L9
- 402              	.L7:
- 403              	.LBE4:
-  63:../Ultrasonic_Collision_Avoidance.c **** 		}
-  64:../Ultrasonic_Collision_Avoidance.c **** 	}
-  65:../Ultrasonic_Collision_Avoidance.c **** 	else Ultrsonic_data_invaildcounter[2]++;
- 404              	 .loc 1 65 0
- 405 01fa 374B     	 ldr r3,.L19
- 406 01fc 9B78     	 ldrb r3,[r3,#2]
- 407 01fe 0133     	 add r3,r3,#1
- 408 0200 DAB2     	 uxtb r2,r3
- 409 0202 354B     	 ldr r3,.L19
- 410 0204 9A70     	 strb r2,[r3,#2]
- 411              	.L9:
-  66:../Ultrasonic_Collision_Avoidance.c **** 
-  67:../Ultrasonic_Collision_Avoidance.c **** 	uint8_t i;
-  68:../Ultrasonic_Collision_Avoidance.c **** 	for(i = 0; i < 3; i++){
- 412              	 .loc 1 68 0
- 413 0206 1723     	 mov r3,#23
- 414 0208 0822     	 mov r2,#8
- 415 020a 9446     	 mov ip,r2
- 416 020c BC44     	 add ip,ip,r7
- 417 020e 6344     	 add r3,r3,ip
- 418 0210 0022     	 mov r2,#0
- 419 0212 1A70     	 strb r2,[r3]
- 420 0214 1FE0     	 b .L10
- 421              	.L12:
-  69:../Ultrasonic_Collision_Avoidance.c **** 		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i
- 422              	 .loc 1 69 0
- 423 0216 1723     	 mov r3,#23
- 424 0218 0822     	 mov r2,#8
- 425 021a 9446     	 mov ip,r2
- 426 021c BC44     	 add ip,ip,r7
- 427 021e 6344     	 add r3,r3,ip
- 428 0220 1B78     	 ldrb r3,[r3]
- 429 0222 2D4A     	 ldr r2,.L19
- 430 0224 D35C     	 ldrb r3,[r2,r3]
- 431 0226 282B     	 cmp r3,#40
- 432 0228 08D9     	 bls .L11
- 433              	 .loc 1 69 0 is_stmt 0 discriminator 1
- 434 022a 1723     	 mov r3,#23
- 435 022c 0822     	 mov r2,#8
- 436 022e 9446     	 mov ip,r2
- 437 0230 BC44     	 add ip,ip,r7
- 438 0232 6344     	 add r3,r3,ip
- 439 0234 1B78     	 ldrb r3,[r3]
- 440 0236 284A     	 ldr r2,.L19
- 441 0238 2821     	 mov r1,#40
- 442 023a D154     	 strb r1,[r2,r3]
- 443              	.L11:
-  68:../Ultrasonic_Collision_Avoidance.c **** 		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i
- 444              	 .loc 1 68 0 is_stmt 1 discriminator 2
- 445 023c 1723     	 mov r3,#23
- 446 023e 0822     	 mov r2,#8
- 447 0240 9446     	 mov ip,r2
- 448 0242 BC44     	 add ip,ip,r7
- 449 0244 6344     	 add r3,r3,ip
- 450 0246 1A78     	 ldrb r2,[r3]
- 451 0248 1723     	 mov r3,#23
- 452 024a 0821     	 mov r1,#8
- 453 024c 8C46     	 mov ip,r1
- 454 024e BC44     	 add ip,ip,r7
- 455 0250 6344     	 add r3,r3,ip
- 456 0252 0132     	 add r2,r2,#1
- 457 0254 1A70     	 strb r2,[r3]
- 458              	.L10:
-  68:../Ultrasonic_Collision_Avoidance.c **** 		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i
- 459              	 .loc 1 68 0 is_stmt 0 discriminator 1
- 460 0256 1723     	 mov r3,#23
- 461 0258 0822     	 mov r2,#8
- 462 025a 9446     	 mov ip,r2
- 463 025c BC44     	 add ip,ip,r7
- 464 025e 6344     	 add r3,r3,ip
- 465 0260 1B78     	 ldrb r3,[r3]
- 466 0262 022B     	 cmp r3,#2
- 467 0264 D7D9     	 bls .L12
-  70:../Ultrasonic_Collision_Avoidance.c **** 	}
-  71:../Ultrasonic_Collision_Avoidance.c **** 
-  72:../Ultrasonic_Collision_Avoidance.c **** 	// front obstacel
-  73:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[0] < ULRTA_NUM_NO_DATA_INVALID ){
- 468              	 .loc 1 73 0 is_stmt 1
- 469 0266 1C4B     	 ldr r3,.L19
- 470 0268 1B78     	 ldrb r3,[r3]
- 471 026a 272B     	 cmp r3,#39
- 472 026c 07D8     	 bhi .L13
-  74:../Ultrasonic_Collision_Avoidance.c **** 	//	Obstacel_F[0] = Ultra_m_C;
-  75:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F = Ultra_m_C;
- 473              	 .loc 1 75 0
- 474 026e 1C4B     	 ldr r3,.L19+8
- 475 0270 1A68     	 ldr r2,[r3]
- 476 0272 204B     	 ldr r3,.L19+28
- 477 0274 1A60     	 str r2,[r3]
-  76:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[0] = 1;
- 478              	 .loc 1 76 0
- 479 0276 204B     	 ldr r3,.L19+32
- 480 0278 0122     	 mov r2,#1
- 481 027a 1A70     	 strb r2,[r3]
- 482 027c 02E0     	 b .L14
- 483              	.L13:
-  77:../Ultrasonic_Collision_Avoidance.c **** 	}
-  78:../Ultrasonic_Collision_Avoidance.c **** 	else {
-  79:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[0] = 0;
- 484              	 .loc 1 79 0
- 485 027e 1E4B     	 ldr r3,.L19+32
- 486 0280 0022     	 mov r2,#0
- 487 0282 1A70     	 strb r2,[r3]
- 488              	.L14:
-  80:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_F[0]  = 4;
-  81:../Ultrasonic_Collision_Avoidance.c **** 	}
-  82:../Ultrasonic_Collision_Avoidance.c **** 
-  83:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[1] < ULRTA_NUM_NO_DATA_INVALID && obstructed_L == 0 ){
- 489              	 .loc 1 83 0
- 490 0284 144B     	 ldr r3,.L19
- 491 0286 5B78     	 ldrb r3,[r3,#1]
- 492 0288 272B     	 cmp r3,#39
- 493 028a 0BD8     	 bhi .L15
- 494              	 .loc 1 83 0 is_stmt 0 discriminator 1
- 495 028c 154B     	 ldr r3,.L19+12
- 496 028e 1B78     	 ldrb r3,[r3]
- 497 0290 002B     	 cmp r3,#0
- 498 0292 07D1     	 bne .L15
-  84:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_L[0] = Ultra_m_L * cos(Steering_Angles[0] / RAD_TO_DEG);
-  85:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_L[1] = Ultra_m_L * sin(Steering_Angles[0] / RAD_TO_DEG);
-  86:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L = Ultra_m_L;
- 499              	 .loc 1 86 0 is_stmt 1
- 500 0294 144B     	 ldr r3,.L19+16
- 501 0296 1A68     	 ldr r2,[r3]
- 502 0298 184B     	 ldr r3,.L19+36
- 503 029a 1A60     	 str r2,[r3]
-  87:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[1] = 1;
- 504              	 .loc 1 87 0
- 505 029c 164B     	 ldr r3,.L19+32
- 506 029e 0122     	 mov r2,#1
- 507 02a0 5A70     	 strb r2,[r3,#1]
- 508 02a2 02E0     	 b .L16
- 509              	.L15:
-  88:../Ultrasonic_Collision_Avoidance.c **** 	}
-  89:../Ultrasonic_Collision_Avoidance.c **** 	else {
-  90:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[1] = 0;
- 510              	 .loc 1 90 0
- 511 02a4 144B     	 ldr r3,.L19+32
- 512 02a6 0022     	 mov r2,#0
- 513 02a8 5A70     	 strb r2,[r3,#1]
- 514              	.L16:
-  91:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_L[0]  = 4;
-  92:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_L[1]  = 4;
-  93:../Ultrasonic_Collision_Avoidance.c **** 	}
+  49:../Ultrasonic_Collision_Avoidance.c **** 
+  50:../Ultrasonic_Collision_Avoidance.c **** 
+  51:../Ultrasonic_Collision_Avoidance.c **** void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasoni
+ 285              	 .loc 3 51 0
+ 286              	 .cfi_startproc
+ 287 0000 90B5     	 push {r4,r7,lr}
+ 288              	.LCFI12:
+ 289              	 .cfi_def_cfa_offset 12
+ 290              	 .cfi_offset 4,-12
+ 291              	 .cfi_offset 7,-8
+ 292              	 .cfi_offset 14,-4
+ 293 0002 87B0     	 sub sp,sp,#28
+ 294              	.LCFI13:
+ 295              	 .cfi_def_cfa_offset 40
+ 296 0004 00AF     	 add r7,sp,#0
+ 297              	.LCFI14:
+ 298              	 .cfi_def_cfa_register 7
+ 299 0006 041C     	 mov r4,r0
+ 300 0008 081C     	 mov r0,r1
+ 301 000a 111C     	 mov r1,r2
+ 302 000c 7B60     	 str r3,[r7,#4]
+ 303 000e 0E23     	 mov r3,#14
+ 304 0010 FB18     	 add r3,r7,r3
+ 305 0012 221C     	 add r2,r4,#0
+ 306 0014 1A80     	 strh r2,[r3]
+ 307 0016 0C23     	 mov r3,#12
+ 308 0018 FB18     	 add r3,r7,r3
+ 309 001a 021C     	 add r2,r0,#0
+ 310 001c 1A80     	 strh r2,[r3]
+ 311 001e 0A23     	 mov r3,#10
+ 312 0020 FB18     	 add r3,r7,r3
+ 313 0022 0A1C     	 add r2,r1,#0
+ 314 0024 1A80     	 strh r2,[r3]
+  52:../Ultrasonic_Collision_Avoidance.c **** 
+  53:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrasonic_cm_C_clc != 0){
+ 315              	 .loc 3 53 0
+ 316 0026 0E23     	 mov r3,#14
+ 317 0028 FB18     	 add r3,r7,r3
+ 318 002a 0022     	 mov r2,#0
+ 319 002c 9B5E     	 ldrsh r3,[r3,r2]
+ 320 002e 002B     	 cmp r3,#0
+ 321 0030 1CD0     	 beq .L6
+  54:../Ultrasonic_Collision_Avoidance.c **** 		Ultrsonic_data_invaildcounter[0] = 0;
+ 322              	 .loc 3 54 0
+ 323 0032 754B     	 ldr r3,.L23
+ 324 0034 0022     	 mov r2,#0
+ 325 0036 1A70     	 strb r2,[r3]
+  55:../Ultrasonic_Collision_Avoidance.c **** 		Ultra_m_C = Exp_moving_average((float)Ultrasonic_cm_C_clc / 100 , Ultra_m_C, ALPHA_ULTARSONIC);
+ 326              	 .loc 3 55 0
+ 327 0038 0E23     	 mov r3,#14
+ 328 003a FB18     	 add r3,r7,r3
+ 329 003c 0022     	 mov r2,#0
+ 330 003e 9B5E     	 ldrsh r3,[r3,r2]
+ 331 0040 181C     	 mov r0,r3
+ 332 0042 FFF7FEFF 	 bl __aeabi_i2f
+ 333 0046 031C     	 add r3,r0,#0
+ 334 0048 181C     	 add r0,r3,#0
+ 335 004a 7049     	 ldr r1,.L23+4
+ 336 004c FFF7FEFF 	 bl __aeabi_fdiv
+ 337 0050 031C     	 add r3,r0,#0
+ 338 0052 191C     	 add r1,r3,#0
+ 339 0054 6E4B     	 ldr r3,.L23+8
+ 340 0056 1A68     	 ldr r2,[r3]
+ 341 0058 7B68     	 ldr r3,[r7,#4]
+ 342 005a 081C     	 add r0,r1,#0
+ 343 005c 111C     	 add r1,r2,#0
+ 344 005e 1A1C     	 add r2,r3,#0
+ 345 0060 FFF7FEFF 	 bl Exp_moving_average
+ 346 0064 021C     	 add r2,r0,#0
+ 347 0066 6A4B     	 ldr r3,.L23+8
+ 348 0068 1A60     	 str r2,[r3]
+ 349 006a 05E0     	 b .L7
+ 350              	.L6:
+  56:../Ultrasonic_Collision_Avoidance.c **** 	}
+  57:../Ultrasonic_Collision_Avoidance.c **** 	else Ultrsonic_data_invaildcounter[0]++;
+ 351              	 .loc 3 57 0
+ 352 006c 664B     	 ldr r3,.L23
+ 353 006e 1B78     	 ldrb r3,[r3]
+ 354 0070 0133     	 add r3,r3,#1
+ 355 0072 DAB2     	 uxtb r2,r3
+ 356 0074 644B     	 ldr r3,.L23
+ 357 0076 1A70     	 strb r2,[r3]
+ 358              	.L7:
+  58:../Ultrasonic_Collision_Avoidance.c **** 
+  59:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrasonic_cm_L_clc != 0){
+ 359              	 .loc 3 59 0
+ 360 0078 0C23     	 mov r3,#12
+ 361 007a FB18     	 add r3,r7,r3
+ 362 007c 0022     	 mov r2,#0
+ 363 007e 9B5E     	 ldrsh r3,[r3,r2]
+ 364 0080 002B     	 cmp r3,#0
+ 365 0082 29D0     	 beq .L8
+  60:../Ultrasonic_Collision_Avoidance.c **** 		obstructed_L = Ultrasoinc_Obstructet_Test(Steering_Angles[0]);
+ 366              	 .loc 3 60 0
+ 367 0084 634B     	 ldr r3,.L23+12
+ 368 0086 1B68     	 ldr r3,[r3]
+ 369 0088 181C     	 add r0,r3,#0
+ 370 008a FFF7FEFF 	 bl Ultrasoinc_Obstructet_Test
+ 371 008e 031C     	 mov r3,r0
+ 372 0090 1A1C     	 mov r2,r3
+ 373 0092 614B     	 ldr r3,.L23+16
+ 374 0094 1A70     	 strb r2,[r3]
+  61:../Ultrasonic_Collision_Avoidance.c **** 		if(obstructed_L == 0) {
+ 375              	 .loc 3 61 0
+ 376 0096 604B     	 ldr r3,.L23+16
+ 377 0098 1B78     	 ldrb r3,[r3]
+ 378 009a 002B     	 cmp r3,#0
+ 379 009c 22D1     	 bne .L10
+  62:../Ultrasonic_Collision_Avoidance.c **** 			Ultrsonic_data_invaildcounter[1] = 0;
+ 380              	 .loc 3 62 0
+ 381 009e 5A4B     	 ldr r3,.L23
+ 382 00a0 0022     	 mov r2,#0
+ 383 00a2 5A70     	 strb r2,[r3,#1]
+  63:../Ultrasonic_Collision_Avoidance.c **** 			Ultra_m_L = Exp_moving_average((float)Ultrasonic_cm_L_clc / 100 , Ultra_m_L, ALPHA_ULTARSONIC);
+ 384              	 .loc 3 63 0
+ 385 00a4 0C23     	 mov r3,#12
+ 386 00a6 FB18     	 add r3,r7,r3
+ 387 00a8 0022     	 mov r2,#0
+ 388 00aa 9B5E     	 ldrsh r3,[r3,r2]
+ 389 00ac 181C     	 mov r0,r3
+ 390 00ae FFF7FEFF 	 bl __aeabi_i2f
+ 391 00b2 031C     	 add r3,r0,#0
+ 392 00b4 181C     	 add r0,r3,#0
+ 393 00b6 5549     	 ldr r1,.L23+4
+ 394 00b8 FFF7FEFF 	 bl __aeabi_fdiv
+ 395 00bc 031C     	 add r3,r0,#0
+ 396 00be 191C     	 add r1,r3,#0
+ 397 00c0 564B     	 ldr r3,.L23+20
+ 398 00c2 1A68     	 ldr r2,[r3]
+ 399 00c4 7B68     	 ldr r3,[r7,#4]
+ 400 00c6 081C     	 add r0,r1,#0
+ 401 00c8 111C     	 add r1,r2,#0
+ 402 00ca 1A1C     	 add r2,r3,#0
+ 403 00cc FFF7FEFF 	 bl Exp_moving_average
+ 404 00d0 021C     	 add r2,r0,#0
+ 405 00d2 524B     	 ldr r3,.L23+20
+ 406 00d4 1A60     	 str r2,[r3]
+ 407 00d6 05E0     	 b .L10
+ 408              	.L8:
+  64:../Ultrasonic_Collision_Avoidance.c **** 		}
+  65:../Ultrasonic_Collision_Avoidance.c **** 	}
+  66:../Ultrasonic_Collision_Avoidance.c **** 	else Ultrsonic_data_invaildcounter[1]++;
+ 409              	 .loc 3 66 0
+ 410 00d8 4B4B     	 ldr r3,.L23
+ 411 00da 5B78     	 ldrb r3,[r3,#1]
+ 412 00dc 0133     	 add r3,r3,#1
+ 413 00de DAB2     	 uxtb r2,r3
+ 414 00e0 494B     	 ldr r3,.L23
+ 415 00e2 5A70     	 strb r2,[r3,#1]
+ 416              	.L10:
+  67:../Ultrasonic_Collision_Avoidance.c **** 
+  68:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrasonic_cm_R_clc != 0){
+ 417              	 .loc 3 68 0
+ 418 00e4 0A23     	 mov r3,#10
+ 419 00e6 FB18     	 add r3,r7,r3
+ 420 00e8 0022     	 mov r2,#0
+ 421 00ea 9B5E     	 ldrsh r3,[r3,r2]
+ 422 00ec 002B     	 cmp r3,#0
+ 423 00ee 2CD0     	 beq .L11
+  69:../Ultrasonic_Collision_Avoidance.c **** 		obstructed_R = Ultrasoinc_Obstructet_Test( - Steering_Angles[1]); // neagtiv becasue right wheel
+ 424              	 .loc 3 69 0
+ 425 00f0 484B     	 ldr r3,.L23+12
+ 426 00f2 5B68     	 ldr r3,[r3,#4]
+ 427 00f4 8022     	 mov r2,#128
+ 428 00f6 1206     	 lsl r2,r2,#24
+ 429 00f8 5340     	 eor r3,r2
+ 430 00fa 181C     	 add r0,r3,#0
+ 431 00fc FFF7FEFF 	 bl Ultrasoinc_Obstructet_Test
+ 432 0100 031C     	 mov r3,r0
+ 433 0102 1A1C     	 mov r2,r3
+ 434 0104 464B     	 ldr r3,.L23+24
+ 435 0106 1A70     	 strb r2,[r3]
+  70:../Ultrasonic_Collision_Avoidance.c **** 		if(obstructed_R == 0){
+ 436              	 .loc 3 70 0
+ 437 0108 454B     	 ldr r3,.L23+24
+ 438 010a 1B78     	 ldrb r3,[r3]
+ 439 010c 002B     	 cmp r3,#0
+ 440 010e 22D1     	 bne .L13
+  71:../Ultrasonic_Collision_Avoidance.c **** 			Ultrsonic_data_invaildcounter[2] = 0;
+ 441              	 .loc 3 71 0
+ 442 0110 3D4B     	 ldr r3,.L23
+ 443 0112 0022     	 mov r2,#0
+ 444 0114 9A70     	 strb r2,[r3,#2]
+  72:../Ultrasonic_Collision_Avoidance.c **** 			Ultra_m_R = Exp_moving_average((float)Ultrasonic_cm_R_clc / 100 , Ultra_m_R, ALPHA_ULTARSONIC);
+ 445              	 .loc 3 72 0
+ 446 0116 0A23     	 mov r3,#10
+ 447 0118 FB18     	 add r3,r7,r3
+ 448 011a 0022     	 mov r2,#0
+ 449 011c 9B5E     	 ldrsh r3,[r3,r2]
+ 450 011e 181C     	 mov r0,r3
+ 451 0120 FFF7FEFF 	 bl __aeabi_i2f
+ 452 0124 031C     	 add r3,r0,#0
+ 453 0126 181C     	 add r0,r3,#0
+ 454 0128 3849     	 ldr r1,.L23+4
+ 455 012a FFF7FEFF 	 bl __aeabi_fdiv
+ 456 012e 031C     	 add r3,r0,#0
+ 457 0130 191C     	 add r1,r3,#0
+ 458 0132 3C4B     	 ldr r3,.L23+28
+ 459 0134 1A68     	 ldr r2,[r3]
+ 460 0136 7B68     	 ldr r3,[r7,#4]
+ 461 0138 081C     	 add r0,r1,#0
+ 462 013a 111C     	 add r1,r2,#0
+ 463 013c 1A1C     	 add r2,r3,#0
+ 464 013e FFF7FEFF 	 bl Exp_moving_average
+ 465 0142 021C     	 add r2,r0,#0
+ 466 0144 374B     	 ldr r3,.L23+28
+ 467 0146 1A60     	 str r2,[r3]
+ 468 0148 05E0     	 b .L13
+ 469              	.L11:
+  73:../Ultrasonic_Collision_Avoidance.c **** 		}
+  74:../Ultrasonic_Collision_Avoidance.c **** 	}
+  75:../Ultrasonic_Collision_Avoidance.c **** 	else Ultrsonic_data_invaildcounter[2]++;
+ 470              	 .loc 3 75 0
+ 471 014a 2F4B     	 ldr r3,.L23
+ 472 014c 9B78     	 ldrb r3,[r3,#2]
+ 473 014e 0133     	 add r3,r3,#1
+ 474 0150 DAB2     	 uxtb r2,r3
+ 475 0152 2D4B     	 ldr r3,.L23
+ 476 0154 9A70     	 strb r2,[r3,#2]
+ 477              	.L13:
+ 478              	.LBB2:
+  76:../Ultrasonic_Collision_Avoidance.c **** 
+  77:../Ultrasonic_Collision_Avoidance.c **** 	for(uint8_t i = 0; i < 3; i++){ // counter overflow stop
+ 479              	 .loc 3 77 0
+ 480 0156 1723     	 mov r3,#23
+ 481 0158 FB18     	 add r3,r7,r3
+ 482 015a 0022     	 mov r2,#0
+ 483 015c 1A70     	 strb r2,[r3]
+ 484 015e 13E0     	 b .L14
+ 485              	.L16:
+  78:../Ultrasonic_Collision_Avoidance.c **** 		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i
+ 486              	 .loc 3 78 0
+ 487 0160 1723     	 mov r3,#23
+ 488 0162 FB18     	 add r3,r7,r3
+ 489 0164 1B78     	 ldrb r3,[r3]
+ 490 0166 284A     	 ldr r2,.L23
+ 491 0168 D35C     	 ldrb r3,[r2,r3]
+ 492 016a 282B     	 cmp r3,#40
+ 493 016c 05D9     	 bls .L15
+ 494              	 .loc 3 78 0 is_stmt 0 discriminator 1
+ 495 016e 1723     	 mov r3,#23
+ 496 0170 FB18     	 add r3,r7,r3
+ 497 0172 1B78     	 ldrb r3,[r3]
+ 498 0174 244A     	 ldr r2,.L23
+ 499 0176 2821     	 mov r1,#40
+ 500 0178 D154     	 strb r1,[r2,r3]
+ 501              	.L15:
+  77:../Ultrasonic_Collision_Avoidance.c **** 		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i
+ 502              	 .loc 3 77 0 is_stmt 1 discriminator 2
+ 503 017a 1723     	 mov r3,#23
+ 504 017c FB18     	 add r3,r7,r3
+ 505 017e 1A78     	 ldrb r2,[r3]
+ 506 0180 1723     	 mov r3,#23
+ 507 0182 FB18     	 add r3,r7,r3
+ 508 0184 0132     	 add r2,r2,#1
+ 509 0186 1A70     	 strb r2,[r3]
+ 510              	.L14:
+  77:../Ultrasonic_Collision_Avoidance.c **** 		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i
+ 511              	 .loc 3 77 0 is_stmt 0 discriminator 1
+ 512 0188 1723     	 mov r3,#23
+ 513 018a FB18     	 add r3,r7,r3
+ 514 018c 1B78     	 ldrb r3,[r3]
+ 515 018e 022B     	 cmp r3,#2
+ 516 0190 E6D9     	 bls .L16
+ 517              	.LBE2:
+  79:../Ultrasonic_Collision_Avoidance.c **** 	}
+  80:../Ultrasonic_Collision_Avoidance.c **** 
+  81:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[0] < ULRTA_NUM_NO_DATA_INVALID ){
+ 518              	 .loc 3 81 0 is_stmt 1
+ 519 0192 1D4B     	 ldr r3,.L23
+ 520 0194 1B78     	 ldrb r3,[r3]
+ 521 0196 272B     	 cmp r3,#39
+ 522 0198 0AD8     	 bhi .L17
+  82:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.angle = 0;
+ 523              	 .loc 3 82 0
+ 524 019a 234B     	 ldr r3,.L23+32
+ 525 019c 0022     	 mov r2,#0
+ 526 019e 9A60     	 str r2,[r3,#8]
+  83:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.distance = Ultra_m_C;
+ 527              	 .loc 3 83 0
+ 528 01a0 1B4B     	 ldr r3,.L23+8
+ 529 01a2 1A68     	 ldr r2,[r3]
+ 530 01a4 204B     	 ldr r3,.L23+32
+ 531 01a6 5A60     	 str r2,[r3,#4]
+  84:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.isValid = 1;
+ 532              	 .loc 3 84 0
+ 533 01a8 1F4B     	 ldr r3,.L23+32
+ 534 01aa 0122     	 mov r2,#1
+ 535 01ac 1A70     	 strb r2,[r3]
+ 536 01ae 02E0     	 b .L18
+ 537              	.L17:
+  85:../Ultrasonic_Collision_Avoidance.c **** 	}
+  86:../Ultrasonic_Collision_Avoidance.c **** 	else Obstacel_F.isValid = 0;
+ 538              	 .loc 3 86 0
+ 539 01b0 1D4B     	 ldr r3,.L23+32
+ 540 01b2 0022     	 mov r2,#0
+ 541 01b4 1A70     	 strb r2,[r3]
+ 542              	.L18:
+  87:../Ultrasonic_Collision_Avoidance.c **** 
+  88:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[1] < ULRTA_NUM_NO_DATA_INVALID ){
+ 543              	 .loc 3 88 0
+ 544 01b6 144B     	 ldr r3,.L23
+ 545 01b8 5B78     	 ldrb r3,[r3,#1]
+ 546 01ba 272B     	 cmp r3,#39
+ 547 01bc 0BD8     	 bhi .L19
+  89:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.angle = Steering_Angles[0];
+ 548              	 .loc 3 89 0
+ 549 01be 154B     	 ldr r3,.L23+12
+ 550 01c0 1A68     	 ldr r2,[r3]
+ 551 01c2 1A4B     	 ldr r3,.L23+36
+ 552 01c4 9A60     	 str r2,[r3,#8]
+  90:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.distance = Ultra_m_L;
+ 553              	 .loc 3 90 0
+ 554 01c6 154B     	 ldr r3,.L23+20
+ 555 01c8 1A68     	 ldr r2,[r3]
+ 556 01ca 184B     	 ldr r3,.L23+36
+ 557 01cc 5A60     	 str r2,[r3,#4]
+  91:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.isValid = 1;
+ 558              	 .loc 3 91 0
+ 559 01ce 174B     	 ldr r3,.L23+36
+ 560 01d0 0122     	 mov r2,#1
+ 561 01d2 1A70     	 strb r2,[r3]
+ 562 01d4 02E0     	 b .L20
+ 563              	.L19:
+  92:../Ultrasonic_Collision_Avoidance.c **** 	}
+  93:../Ultrasonic_Collision_Avoidance.c **** 	else Obstacel_L.isValid = 0;
+ 564              	 .loc 3 93 0
+ 565 01d6 154B     	 ldr r3,.L23+36
+ 566 01d8 0022     	 mov r2,#0
+ 567 01da 1A70     	 strb r2,[r3]
+ 568              	.L20:
   94:../Ultrasonic_Collision_Avoidance.c **** 
-  95:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[2]  < ULRTA_NUM_NO_DATA_INVALID && obstructed_R == 0 ){
- 515              	 .loc 1 95 0
- 516 02aa 0B4B     	 ldr r3,.L19
- 517 02ac 9B78     	 ldrb r3,[r3,#2]
- 518 02ae 272B     	 cmp r3,#39
- 519 02b0 0BD8     	 bhi .L17
- 520              	 .loc 1 95 0 is_stmt 0 discriminator 1
- 521 02b2 0E4B     	 ldr r3,.L19+20
- 522 02b4 1B78     	 ldrb r3,[r3]
- 523 02b6 002B     	 cmp r3,#0
- 524 02b8 07D1     	 bne .L17
-  96:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_R[0] = Ultra_m_R * cos(Steering_Angles[1] / RAD_TO_DEG);
-  97:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_R[1] = Ultra_m_R * sin(Steering_Angles[1] / RAD_TO_DEG);
-  98:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[2] = 1;
- 525              	 .loc 1 98 0 is_stmt 1
- 526 02ba 0F4B     	 ldr r3,.L19+32
- 527 02bc 0122     	 mov r2,#1
- 528 02be 9A70     	 strb r2,[r3,#2]
-  99:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R = Ultra_m_R;
- 529              	 .loc 1 99 0
- 530 02c0 0B4B     	 ldr r3,.L19+24
- 531 02c2 1A68     	 ldr r2,[r3]
- 532 02c4 0E4B     	 ldr r3,.L19+40
- 533 02c6 1A60     	 str r2,[r3]
- 534 02c8 02E0     	 b .L1
- 535              	.L17:
- 100:../Ultrasonic_Collision_Avoidance.c **** 	}
- 101:../Ultrasonic_Collision_Avoidance.c **** 	else {
- 102:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[2] = 0;
- 536              	 .loc 1 102 0
- 537 02ca 0B4B     	 ldr r3,.L19+32
- 538 02cc 0022     	 mov r2,#0
- 539 02ce 9A70     	 strb r2,[r3,#2]
- 540              	.L1:
- 103:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_R[0]  = 4;
- 104:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_R[1]  = 4;
- 105:../Ultrasonic_Collision_Avoidance.c **** 	}
- 106:../Ultrasonic_Collision_Avoidance.c **** 
- 107:../Ultrasonic_Collision_Avoidance.c **** 	/*
- 108:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_F_x = Obstacel_F[0];
- 109:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_L_x = Obstacel_L[0];
- 110:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_L_y = Obstacel_L[1];
- 111:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_R_x = Obstacel_R[0];
- 112:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_R_y = Obstacel_R[1];
- 113:../Ultrasonic_Collision_Avoidance.c **** 	*/
- 114:../Ultrasonic_Collision_Avoidance.c **** }
- 541              	 .loc 1 114 0
- 542 02d0 BD46     	 mov sp,r7
- 543 02d2 09B0     	 add sp,sp,#36
- 544              	 
- 545 02d4 F0BD     	 pop {r4,r5,r6,r7,pc}
- 546              	.L20:
- 547 02d6 C046     	 .align 2
- 548              	.L19:
- 549 02d8 00000000 	 .word Ultrsonic_data_invaildcounter
- 550 02dc 0000C842 	 .word 1120403456
- 551 02e0 00000000 	 .word Ultra_m_C
- 552 02e4 00000000 	 .word obstructed_L
- 553 02e8 00000000 	 .word Ultra_m_L
- 554 02ec 00000000 	 .word obstructed_R
- 555 02f0 00000000 	 .word Ultra_m_R
- 556 02f4 00000000 	 .word Obstacel_F
- 557 02f8 00000000 	 .word Obstacel_valid
- 558 02fc 00000000 	 .word Obstacel_L
- 559 0300 00000000 	 .word Obstacel_R
- 560              	 .cfi_endproc
- 561              	.LFE224:
- 563              	 .global __aeabi_fcmpgt
- 564              	 .global __aeabi_fsub
- 565              	 .global __aeabi_fmul
- 566              	 .global __aeabi_fcmple
- 567              	 .global __aeabi_fcmplt
- 568              	 .section .text.Ultrasoinc_Obstructet_Test,"ax",%progbits
- 569              	 .align 2
- 570              	 .global Ultrasoinc_Obstructet_Test
- 571              	 .code 16
- 572              	 .thumb_func
- 574              	Ultrasoinc_Obstructet_Test:
- 575              	.LFB225:
- 115:../Ultrasonic_Collision_Avoidance.c **** 
- 116:../Ultrasonic_Collision_Avoidance.c **** uint8_t Ultrasoinc_Obstructet_Test(float Angle){
- 576              	 .loc 1 116 0
- 577              	 .cfi_startproc
- 578 0000 90B5     	 push {r4,r7,lr}
- 579              	.LCFI3:
- 580              	 .cfi_def_cfa_offset 12
- 581              	 .cfi_offset 4,-12
- 582              	 .cfi_offset 7,-8
- 583              	 .cfi_offset 14,-4
- 584 0002 85B0     	 sub sp,sp,#20
- 585              	.LCFI4:
- 586              	 .cfi_def_cfa_offset 32
- 587 0004 00AF     	 add r7,sp,#0
- 588              	.LCFI5:
- 589              	 .cfi_def_cfa_register 7
- 590 0006 7860     	 str r0,[r7,#4]
- 117:../Ultrasonic_Collision_Avoidance.c **** 	uint8_t i;
- 118:../Ultrasonic_Collision_Avoidance.c **** 	for(i = 0; i < 3; i++){ // if rotate around multipel times
- 591              	 .loc 1 118 0
- 592 0008 0F23     	 mov r3,#15
- 593 000a FB18     	 add r3,r7,r3
- 594 000c 0022     	 mov r2,#0
- 595 000e 1A70     	 strb r2,[r3]
- 596 0010 6DE0     	 b .L22
- 597              	.L30:
- 119:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
- 598              	 .loc 1 119 0
- 599 0012 7868     	 ldr r0,[r7,#4]
- 600 0014 0021     	 mov r1,#0
- 601 0016 FFF7FEFF 	 bl __aeabi_fcmpgt
- 602 001a 031E     	 sub r3,r0,#0
- 603 001c 2DD0     	 beq .L23
- 120:../Ultrasonic_Collision_Avoidance.c **** 			if((Angle - (POS_OBSTRUCTED_ANGLE_MIN + (i * 360))) * (Angle - (POS_OBSTRUCTED_ANGLE_MAX + (i * 
- 604              	 .loc 1 120 0
- 605 001e 0F23     	 mov r3,#15
- 606 0020 FB18     	 add r3,r7,r3
- 607 0022 1B78     	 ldrb r3,[r3]
- 608 0024 B422     	 mov r2,#180
- 609 0026 5200     	 lsl r2,r2,#1
- 610 0028 5343     	 mul r3,r2
- 611 002a 3233     	 add r3,r3,#50
- 612 002c 181C     	 mov r0,r3
- 613 002e FFF7FEFF 	 bl __aeabi_i2f
- 614 0032 031C     	 add r3,r0,#0
- 615 0034 7868     	 ldr r0,[r7,#4]
- 616 0036 191C     	 add r1,r3,#0
- 617 0038 FFF7FEFF 	 bl __aeabi_fsub
- 618 003c 031C     	 add r3,r0,#0
- 619 003e 1C1C     	 add r4,r3,#0
- 620 0040 0F23     	 mov r3,#15
- 621 0042 FB18     	 add r3,r7,r3
- 622 0044 1B78     	 ldrb r3,[r3]
- 623 0046 B422     	 mov r2,#180
- 624 0048 5200     	 lsl r2,r2,#1
- 625 004a 5343     	 mul r3,r2
- 626 004c D233     	 add r3,r3,#210
- 627 004e 181C     	 mov r0,r3
- 628 0050 FFF7FEFF 	 bl __aeabi_i2f
- 629 0054 031C     	 add r3,r0,#0
- 630 0056 7868     	 ldr r0,[r7,#4]
- 631 0058 191C     	 add r1,r3,#0
- 632 005a FFF7FEFF 	 bl __aeabi_fsub
- 633 005e 031C     	 add r3,r0,#0
- 634 0060 201C     	 add r0,r4,#0
- 635 0062 191C     	 add r1,r3,#0
- 636 0064 FFF7FEFF 	 bl __aeabi_fmul
- 637 0068 031C     	 add r3,r0,#0
- 638 006a 181C     	 add r0,r3,#0
- 639 006c 0021     	 mov r1,#0
- 640 006e FFF7FEFF 	 bl __aeabi_fcmple
- 641 0072 031E     	 sub r3,r0,#0
- 642 0074 01D0     	 beq .L23
- 121:../Ultrasonic_Collision_Avoidance.c **** 				return 1;
- 643              	 .loc 1 121 0
- 644 0076 0123     	 mov r3,#1
- 645 0078 3FE0     	 b .L26
- 646              	.L23:
- 122:../Ultrasonic_Collision_Avoidance.c **** 			}
- 123:../Ultrasonic_Collision_Avoidance.c **** 		}
- 124:../Ultrasonic_Collision_Avoidance.c **** 
- 125:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle < 0){
- 647              	 .loc 1 125 0
- 648 007a 7868     	 ldr r0,[r7,#4]
- 649 007c 0021     	 mov r1,#0
- 650 007e FFF7FEFF 	 bl __aeabi_fcmplt
- 651 0082 031E     	 sub r3,r0,#0
- 652 0084 2CD0     	 beq .L27
- 126:../Ultrasonic_Collision_Avoidance.c **** 			if((Angle - (NEG_OBSTRUCTED_ANGLE_MIN - (i * 360))) * (Angle - (NEG_OBSTRUCTED_ANGLE_MAX - (i * 
- 653              	 .loc 1 126 0
- 654 0086 0F23     	 mov r3,#15
- 655 0088 FB18     	 add r3,r7,r3
- 656 008a 1B78     	 ldrb r3,[r3]
- 657 008c 1D4A     	 ldr r2,.L35
- 658 008e 5343     	 mul r3,r2
- 659 0090 963B     	 sub r3,r3,#150
- 660 0092 181C     	 mov r0,r3
- 661 0094 FFF7FEFF 	 bl __aeabi_i2f
- 662 0098 031C     	 add r3,r0,#0
- 663 009a 7868     	 ldr r0,[r7,#4]
- 664 009c 191C     	 add r1,r3,#0
- 665 009e FFF7FEFF 	 bl __aeabi_fsub
- 666 00a2 031C     	 add r3,r0,#0
- 667 00a4 1C1C     	 add r4,r3,#0
- 668 00a6 0F23     	 mov r3,#15
- 669 00a8 FB18     	 add r3,r7,r3
- 670 00aa 1B78     	 ldrb r3,[r3]
- 671 00ac 154A     	 ldr r2,.L35
- 672 00ae 5343     	 mul r3,r2
- 673 00b0 373B     	 sub r3,r3,#55
- 674 00b2 FF3B     	 sub r3,r3,#255
- 675 00b4 181C     	 mov r0,r3
- 676 00b6 FFF7FEFF 	 bl __aeabi_i2f
- 677 00ba 031C     	 add r3,r0,#0
- 678 00bc 7868     	 ldr r0,[r7,#4]
- 679 00be 191C     	 add r1,r3,#0
- 680 00c0 FFF7FEFF 	 bl __aeabi_fsub
- 681 00c4 031C     	 add r3,r0,#0
- 682 00c6 201C     	 add r0,r4,#0
- 683 00c8 191C     	 add r1,r3,#0
- 684 00ca FFF7FEFF 	 bl __aeabi_fmul
- 685 00ce 031C     	 add r3,r0,#0
- 686 00d0 181C     	 add r0,r3,#0
- 687 00d2 0021     	 mov r1,#0
- 688 00d4 FFF7FEFF 	 bl __aeabi_fcmple
- 689 00d8 031E     	 sub r3,r0,#0
- 690 00da 01D0     	 beq .L27
- 127:../Ultrasonic_Collision_Avoidance.c **** 						return 1;
- 691              	 .loc 1 127 0
- 692 00dc 0123     	 mov r3,#1
- 693 00de 0CE0     	 b .L26
- 694              	.L27:
- 118:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
- 695              	 .loc 1 118 0 discriminator 2
- 696 00e0 0F23     	 mov r3,#15
- 697 00e2 FB18     	 add r3,r7,r3
- 698 00e4 1A78     	 ldrb r2,[r3]
- 699 00e6 0F23     	 mov r3,#15
- 700 00e8 FB18     	 add r3,r7,r3
- 701 00ea 0132     	 add r2,r2,#1
- 702 00ec 1A70     	 strb r2,[r3]
- 703              	.L22:
- 118:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
- 704              	 .loc 1 118 0 is_stmt 0 discriminator 1
- 705 00ee 0F23     	 mov r3,#15
- 706 00f0 FB18     	 add r3,r7,r3
- 707 00f2 1B78     	 ldrb r3,[r3]
- 708 00f4 022B     	 cmp r3,#2
- 709 00f6 8CD9     	 bls .L30
- 128:../Ultrasonic_Collision_Avoidance.c **** 			}
- 129:../Ultrasonic_Collision_Avoidance.c **** 		}
- 130:../Ultrasonic_Collision_Avoidance.c **** 	}
- 131:../Ultrasonic_Collision_Avoidance.c **** 
- 132:../Ultrasonic_Collision_Avoidance.c **** 	return 0;
- 710              	 .loc 1 132 0 is_stmt 1
- 711 00f8 0023     	 mov r3,#0
- 712              	.L26:
- 133:../Ultrasonic_Collision_Avoidance.c **** }
- 713              	 .loc 1 133 0
- 714 00fa 181C     	 mov r0,r3
- 715 00fc BD46     	 mov sp,r7
- 716 00fe 05B0     	 add sp,sp,#20
- 717              	 
- 718 0100 90BD     	 pop {r4,r7,pc}
- 719              	.L36:
- 720 0102 C046     	 .align 2
- 721              	.L35:
- 722 0104 98FEFFFF 	 .word -360
- 723              	 .cfi_endproc
- 724              	.LFE225:
- 726              	 .text
- 727              	.Letext0:
- 728              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 729              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 730              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 731              	 .file 5 "../Globals.h"
- 732              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+  95:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[2] < ULRTA_NUM_NO_DATA_INVALID ){
+ 569              	 .loc 3 95 0
+ 570 01dc 0A4B     	 ldr r3,.L23
+ 571 01de 9B78     	 ldrb r3,[r3,#2]
+ 572 01e0 272B     	 cmp r3,#39
+ 573 01e2 0BD8     	 bhi .L21
+  96:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.angle = Steering_Angles[1];
+ 574              	 .loc 3 96 0
+ 575 01e4 0B4B     	 ldr r3,.L23+12
+ 576 01e6 5A68     	 ldr r2,[r3,#4]
+ 577 01e8 114B     	 ldr r3,.L23+40
+ 578 01ea 9A60     	 str r2,[r3,#8]
+  97:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.distance = Ultra_m_R;
+ 579              	 .loc 3 97 0
+ 580 01ec 0D4B     	 ldr r3,.L23+28
+ 581 01ee 1A68     	 ldr r2,[r3]
+ 582 01f0 0F4B     	 ldr r3,.L23+40
+ 583 01f2 5A60     	 str r2,[r3,#4]
+  98:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.isValid = 1;
+ 584              	 .loc 3 98 0
+ 585 01f4 0E4B     	 ldr r3,.L23+40
+ 586 01f6 0122     	 mov r2,#1
+ 587 01f8 1A70     	 strb r2,[r3]
+ 588 01fa 02E0     	 b .L5
+ 589              	.L21:
+  99:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 100:../Ultrasonic_Collision_Avoidance.c **** 	else Obstacel_R.isValid = 0;
+ 590              	 .loc 3 100 0
+ 591 01fc 0C4B     	 ldr r3,.L23+40
+ 592 01fe 0022     	 mov r2,#0
+ 593 0200 1A70     	 strb r2,[r3]
+ 594              	.L5:
+ 101:../Ultrasonic_Collision_Avoidance.c **** 
+ 102:../Ultrasonic_Collision_Avoidance.c **** 
+ 103:../Ultrasonic_Collision_Avoidance.c **** 
+ 104:../Ultrasonic_Collision_Avoidance.c **** 	/*
+ 105:../Ultrasonic_Collision_Avoidance.c **** 
+ 106:../Ultrasonic_Collision_Avoidance.c **** 	// front obstacel
+ 107:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[0] < ULRTA_NUM_NO_DATA_INVALID ){
+ 108:../Ultrasonic_Collision_Avoidance.c **** 	//	Obstacel_F[0] = Ultra_m_C;
+ 109:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F = Ultra_m_C;
+ 110:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[0] = 1;
+ 111:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 112:../Ultrasonic_Collision_Avoidance.c **** 	else {
+ 113:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[0] = 0;
+ 114:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_F[0]  = 4;
+ 115:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 116:../Ultrasonic_Collision_Avoidance.c **** 
+ 117:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[1] < ULRTA_NUM_NO_DATA_INVALID && obstructed_L == 0 ){
+ 118:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_L[0] = Ultra_m_L * cos(Steering_Angles[0] / RAD_TO_DEG);
+ 119:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_L[1] = Ultra_m_L * sin(Steering_Angles[0] / RAD_TO_DEG);
+ 120:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L = Ultra_m_L;
+ 121:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[1] = 1;
+ 122:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 123:../Ultrasonic_Collision_Avoidance.c **** 	else {
+ 124:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[1] = 0;
+ 125:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_L[0]  = 4;
+ 126:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_L[1]  = 4;
+ 127:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 128:../Ultrasonic_Collision_Avoidance.c **** 
+ 129:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[2]  < ULRTA_NUM_NO_DATA_INVALID && obstructed_R == 0 ){
+ 130:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_R[0] = Ultra_m_R * cos(Steering_Angles[1] / RAD_TO_DEG);
+ 131:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_R[1] = Ultra_m_R * sin(Steering_Angles[1] / RAD_TO_DEG);
+ 132:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[2] = 1;
+ 133:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R = Ultra_m_R;
+ 134:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 135:../Ultrasonic_Collision_Avoidance.c **** 	else {
+ 136:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_valid[2] = 0;
+ 137:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_R[0]  = 4;
+ 138:../Ultrasonic_Collision_Avoidance.c **** 		//Obstacel_R[1]  = 4;
+ 139:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 140:../Ultrasonic_Collision_Avoidance.c **** 
+ 141:../Ultrasonic_Collision_Avoidance.c **** 
+ 142:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_F_x = Obstacel_F[0];
+ 143:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_L_x = Obstacel_L[0];
+ 144:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_L_y = Obstacel_L[1];
+ 145:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_R_x = Obstacel_R[0];
+ 146:../Ultrasonic_Collision_Avoidance.c **** 	obstacel_R_y = Obstacel_R[1];
+ 147:../Ultrasonic_Collision_Avoidance.c **** 	*/
+ 148:../Ultrasonic_Collision_Avoidance.c **** 
+ 149:../Ultrasonic_Collision_Avoidance.c **** 
+ 150:../Ultrasonic_Collision_Avoidance.c **** }
+ 595              	 .loc 3 150 0
+ 596 0202 BD46     	 mov sp,r7
+ 597 0204 07B0     	 add sp,sp,#28
+ 598              	 
+ 599 0206 90BD     	 pop {r4,r7,pc}
+ 600              	.L24:
+ 601              	 .align 2
+ 602              	.L23:
+ 603 0208 00000000 	 .word Ultrsonic_data_invaildcounter
+ 604 020c 0000C842 	 .word 1120403456
+ 605 0210 00000000 	 .word Ultra_m_C
+ 606 0214 00000000 	 .word Steering_Angles
+ 607 0218 00000000 	 .word obstructed_L
+ 608 021c 00000000 	 .word Ultra_m_L
+ 609 0220 00000000 	 .word obstructed_R
+ 610 0224 00000000 	 .word Ultra_m_R
+ 611 0228 00000000 	 .word Obstacel_F
+ 612 022c 00000000 	 .word Obstacel_L
+ 613 0230 00000000 	 .word Obstacel_R
+ 614              	 .cfi_endproc
+ 615              	.LFE224:
+ 617              	 .global __aeabi_fcmpgt
+ 618              	 .global __aeabi_fsub
+ 619              	 .global __aeabi_fmul
+ 620              	 .global __aeabi_fcmple
+ 621              	 .global __aeabi_fcmplt
+ 622              	 .section .text.Ultrasoinc_Obstructet_Test,"ax",%progbits
+ 623              	 .align 2
+ 624              	 .global Ultrasoinc_Obstructet_Test
+ 625              	 .code 16
+ 626              	 .thumb_func
+ 628              	Ultrasoinc_Obstructet_Test:
+ 629              	.LFB225:
+ 151:../Ultrasonic_Collision_Avoidance.c **** 
+ 152:../Ultrasonic_Collision_Avoidance.c **** uint8_t Ultrasoinc_Obstructet_Test(float Angle){
+ 630              	 .loc 3 152 0
+ 631              	 .cfi_startproc
+ 632 0000 90B5     	 push {r4,r7,lr}
+ 633              	.LCFI15:
+ 634              	 .cfi_def_cfa_offset 12
+ 635              	 .cfi_offset 4,-12
+ 636              	 .cfi_offset 7,-8
+ 637              	 .cfi_offset 14,-4
+ 638 0002 85B0     	 sub sp,sp,#20
+ 639              	.LCFI16:
+ 640              	 .cfi_def_cfa_offset 32
+ 641 0004 00AF     	 add r7,sp,#0
+ 642              	.LCFI17:
+ 643              	 .cfi_def_cfa_register 7
+ 644 0006 7860     	 str r0,[r7,#4]
+ 153:../Ultrasonic_Collision_Avoidance.c **** 	uint8_t i;
+ 154:../Ultrasonic_Collision_Avoidance.c **** 	for(i = 0; i < 3; i++){ // if rotate around multipel times
+ 645              	 .loc 3 154 0
+ 646 0008 0F23     	 mov r3,#15
+ 647 000a FB18     	 add r3,r7,r3
+ 648 000c 0022     	 mov r2,#0
+ 649 000e 1A70     	 strb r2,[r3]
+ 650 0010 6DE0     	 b .L26
+ 651              	.L34:
+ 155:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
+ 652              	 .loc 3 155 0
+ 653 0012 7868     	 ldr r0,[r7,#4]
+ 654 0014 0021     	 mov r1,#0
+ 655 0016 FFF7FEFF 	 bl __aeabi_fcmpgt
+ 656 001a 031E     	 sub r3,r0,#0
+ 657 001c 2DD0     	 beq .L27
+ 156:../Ultrasonic_Collision_Avoidance.c **** 			if((Angle - (POS_OBSTRUCTED_ANGLE_MIN + (i * 360))) * (Angle - (POS_OBSTRUCTED_ANGLE_MAX + (i * 
+ 658              	 .loc 3 156 0
+ 659 001e 0F23     	 mov r3,#15
+ 660 0020 FB18     	 add r3,r7,r3
+ 661 0022 1B78     	 ldrb r3,[r3]
+ 662 0024 B422     	 mov r2,#180
+ 663 0026 5200     	 lsl r2,r2,#1
+ 664 0028 5343     	 mul r3,r2
+ 665 002a 3233     	 add r3,r3,#50
+ 666 002c 181C     	 mov r0,r3
+ 667 002e FFF7FEFF 	 bl __aeabi_i2f
+ 668 0032 031C     	 add r3,r0,#0
+ 669 0034 7868     	 ldr r0,[r7,#4]
+ 670 0036 191C     	 add r1,r3,#0
+ 671 0038 FFF7FEFF 	 bl __aeabi_fsub
+ 672 003c 031C     	 add r3,r0,#0
+ 673 003e 1C1C     	 add r4,r3,#0
+ 674 0040 0F23     	 mov r3,#15
+ 675 0042 FB18     	 add r3,r7,r3
+ 676 0044 1B78     	 ldrb r3,[r3]
+ 677 0046 B422     	 mov r2,#180
+ 678 0048 5200     	 lsl r2,r2,#1
+ 679 004a 5343     	 mul r3,r2
+ 680 004c D233     	 add r3,r3,#210
+ 681 004e 181C     	 mov r0,r3
+ 682 0050 FFF7FEFF 	 bl __aeabi_i2f
+ 683 0054 031C     	 add r3,r0,#0
+ 684 0056 7868     	 ldr r0,[r7,#4]
+ 685 0058 191C     	 add r1,r3,#0
+ 686 005a FFF7FEFF 	 bl __aeabi_fsub
+ 687 005e 031C     	 add r3,r0,#0
+ 688 0060 201C     	 add r0,r4,#0
+ 689 0062 191C     	 add r1,r3,#0
+ 690 0064 FFF7FEFF 	 bl __aeabi_fmul
+ 691 0068 031C     	 add r3,r0,#0
+ 692 006a 181C     	 add r0,r3,#0
+ 693 006c 0021     	 mov r1,#0
+ 694 006e FFF7FEFF 	 bl __aeabi_fcmple
+ 695 0072 031E     	 sub r3,r0,#0
+ 696 0074 01D0     	 beq .L27
+ 157:../Ultrasonic_Collision_Avoidance.c **** 				return 1;
+ 697              	 .loc 3 157 0
+ 698 0076 0123     	 mov r3,#1
+ 699 0078 3FE0     	 b .L30
+ 700              	.L27:
+ 158:../Ultrasonic_Collision_Avoidance.c **** 			}
+ 159:../Ultrasonic_Collision_Avoidance.c **** 		}
+ 160:../Ultrasonic_Collision_Avoidance.c **** 
+ 161:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle < 0){
+ 701              	 .loc 3 161 0
+ 702 007a 7868     	 ldr r0,[r7,#4]
+ 703 007c 0021     	 mov r1,#0
+ 704 007e FFF7FEFF 	 bl __aeabi_fcmplt
+ 705 0082 031E     	 sub r3,r0,#0
+ 706 0084 2CD0     	 beq .L31
+ 162:../Ultrasonic_Collision_Avoidance.c **** 			if((Angle - (NEG_OBSTRUCTED_ANGLE_MIN - (i * 360))) * (Angle - (NEG_OBSTRUCTED_ANGLE_MAX - (i * 
+ 707              	 .loc 3 162 0
+ 708 0086 0F23     	 mov r3,#15
+ 709 0088 FB18     	 add r3,r7,r3
+ 710 008a 1B78     	 ldrb r3,[r3]
+ 711 008c 1D4A     	 ldr r2,.L39
+ 712 008e 5343     	 mul r3,r2
+ 713 0090 963B     	 sub r3,r3,#150
+ 714 0092 181C     	 mov r0,r3
+ 715 0094 FFF7FEFF 	 bl __aeabi_i2f
+ 716 0098 031C     	 add r3,r0,#0
+ 717 009a 7868     	 ldr r0,[r7,#4]
+ 718 009c 191C     	 add r1,r3,#0
+ 719 009e FFF7FEFF 	 bl __aeabi_fsub
+ 720 00a2 031C     	 add r3,r0,#0
+ 721 00a4 1C1C     	 add r4,r3,#0
+ 722 00a6 0F23     	 mov r3,#15
+ 723 00a8 FB18     	 add r3,r7,r3
+ 724 00aa 1B78     	 ldrb r3,[r3]
+ 725 00ac 154A     	 ldr r2,.L39
+ 726 00ae 5343     	 mul r3,r2
+ 727 00b0 373B     	 sub r3,r3,#55
+ 728 00b2 FF3B     	 sub r3,r3,#255
+ 729 00b4 181C     	 mov r0,r3
+ 730 00b6 FFF7FEFF 	 bl __aeabi_i2f
+ 731 00ba 031C     	 add r3,r0,#0
+ 732 00bc 7868     	 ldr r0,[r7,#4]
+ 733 00be 191C     	 add r1,r3,#0
+ 734 00c0 FFF7FEFF 	 bl __aeabi_fsub
+ 735 00c4 031C     	 add r3,r0,#0
+ 736 00c6 201C     	 add r0,r4,#0
+ 737 00c8 191C     	 add r1,r3,#0
+ 738 00ca FFF7FEFF 	 bl __aeabi_fmul
+ 739 00ce 031C     	 add r3,r0,#0
+ 740 00d0 181C     	 add r0,r3,#0
+ 741 00d2 0021     	 mov r1,#0
+ 742 00d4 FFF7FEFF 	 bl __aeabi_fcmple
+ 743 00d8 031E     	 sub r3,r0,#0
+ 744 00da 01D0     	 beq .L31
+ 163:../Ultrasonic_Collision_Avoidance.c **** 						return 1;
+ 745              	 .loc 3 163 0
+ 746 00dc 0123     	 mov r3,#1
+ 747 00de 0CE0     	 b .L30
+ 748              	.L31:
+ 154:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
+ 749              	 .loc 3 154 0 discriminator 2
+ 750 00e0 0F23     	 mov r3,#15
+ 751 00e2 FB18     	 add r3,r7,r3
+ 752 00e4 1A78     	 ldrb r2,[r3]
+ 753 00e6 0F23     	 mov r3,#15
+ 754 00e8 FB18     	 add r3,r7,r3
+ 755 00ea 0132     	 add r2,r2,#1
+ 756 00ec 1A70     	 strb r2,[r3]
+ 757              	.L26:
+ 154:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
+ 758              	 .loc 3 154 0 is_stmt 0 discriminator 1
+ 759 00ee 0F23     	 mov r3,#15
+ 760 00f0 FB18     	 add r3,r7,r3
+ 761 00f2 1B78     	 ldrb r3,[r3]
+ 762 00f4 022B     	 cmp r3,#2
+ 763 00f6 8CD9     	 bls .L34
+ 164:../Ultrasonic_Collision_Avoidance.c **** 			}
+ 165:../Ultrasonic_Collision_Avoidance.c **** 		}
+ 166:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 167:../Ultrasonic_Collision_Avoidance.c **** 
+ 168:../Ultrasonic_Collision_Avoidance.c **** 	return 0;
+ 764              	 .loc 3 168 0 is_stmt 1
+ 765 00f8 0023     	 mov r3,#0
+ 766              	.L30:
+ 169:../Ultrasonic_Collision_Avoidance.c **** }
+ 767              	 .loc 3 169 0
+ 768 00fa 181C     	 mov r0,r3
+ 769 00fc BD46     	 mov sp,r7
+ 770 00fe 05B0     	 add sp,sp,#20
+ 771              	 
+ 772 0100 90BD     	 pop {r4,r7,pc}
+ 773              	.L40:
+ 774 0102 C046     	 .align 2
+ 775              	.L39:
+ 776 0104 98FEFFFF 	 .word -360
+ 777              	 .cfi_endproc
+ 778              	.LFE225:
+ 780              	 .global __aeabi_fcmpeq
+ 781              	 .section .text.Collision_voidance,"ax",%progbits
+ 782              	 .align 2
+ 783              	 .global Collision_voidance
+ 784              	 .code 16
+ 785              	 .thumb_func
+ 787              	Collision_voidance:
+ 788              	.LFB226:
+ 170:../Ultrasonic_Collision_Avoidance.c **** 
+ 171:../Ultrasonic_Collision_Avoidance.c **** 
+ 172:../Ultrasonic_Collision_Avoidance.c **** void Collision_voidance(){
+ 789              	 .loc 3 172 0
+ 790              	 .cfi_startproc
+ 791 0000 90B5     	 push {r4,r7,lr}
+ 792              	.LCFI18:
+ 793              	 .cfi_def_cfa_offset 12
+ 794              	 .cfi_offset 4,-12
+ 795              	 .cfi_offset 7,-8
+ 796              	 .cfi_offset 14,-4
+ 797 0002 83B0     	 sub sp,sp,#12
+ 798              	.LCFI19:
+ 799              	 .cfi_def_cfa_offset 24
+ 800 0004 00AF     	 add r7,sp,#0
+ 801              	.LCFI20:
+ 802              	 .cfi_def_cfa_register 7
+ 173:../Ultrasonic_Collision_Avoidance.c **** 	DIGITAL_IO_SetOutputLow(&LED_COLLISION_AVOID);
+ 803              	 .loc 3 173 0
+ 804 0006 434B     	 ldr r3,.L56
+ 805 0008 181C     	 mov r0,r3
+ 806 000a FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 174:../Ultrasonic_Collision_Avoidance.c **** 
+ 175:../Ultrasonic_Collision_Avoidance.c **** 	// check if reciveing from Ulatrasoic sesnors node
+ 176:../Ultrasonic_Collision_Avoidance.c **** 	CAN_Ultrasonic_No_messasge_count ++;
+ 807              	 .loc 3 176 0
+ 808 000e 424B     	 ldr r3,.L56+4
+ 809 0010 1B78     	 ldrb r3,[r3]
+ 810 0012 DBB2     	 uxtb r3,r3
+ 811 0014 0133     	 add r3,r3,#1
+ 812 0016 DAB2     	 uxtb r2,r3
+ 813 0018 3F4B     	 ldr r3,.L56+4
+ 814 001a 1A70     	 strb r2,[r3]
+ 177:../Ultrasonic_Collision_Avoidance.c **** 	if(CAN_Ultrasonic_No_messasge_count > 200) {
+ 815              	 .loc 3 177 0
+ 816 001c 3E4B     	 ldr r3,.L56+4
+ 817 001e 1B78     	 ldrb r3,[r3]
+ 818 0020 DBB2     	 uxtb r3,r3
+ 819 0022 C82B     	 cmp r3,#200
+ 820 0024 03D9     	 bls .L42
+ 178:../Ultrasonic_Collision_Avoidance.c **** 		CAN_Ultrasonic_No_messasge_count = 200;
+ 821              	 .loc 3 178 0
+ 822 0026 3C4B     	 ldr r3,.L56+4
+ 823 0028 C822     	 mov r2,#200
+ 824 002a 1A70     	 strb r2,[r3]
+ 179:../Ultrasonic_Collision_Avoidance.c **** 		return;
+ 825              	 .loc 3 179 0
+ 826 002c 6EE0     	 b .L41
+ 827              	.L42:
+ 180:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 181:../Ultrasonic_Collision_Avoidance.c **** 
+ 182:../Ultrasonic_Collision_Avoidance.c **** 	Speed_reduction_ratio = 1;
+ 828              	 .loc 3 182 0
+ 829 002e 3B4B     	 ldr r3,.L56+8
+ 830 0030 FE22     	 mov r2,#254
+ 831 0032 9205     	 lsl r2,r2,#22
+ 832 0034 1A60     	 str r2,[r3]
+ 183:../Ultrasonic_Collision_Avoidance.c **** 	Speed_limit = MAX_Speed + 0.01; // + 0.01 to avoid float bs
+ 833              	 .loc 3 183 0
+ 834 0036 3A4B     	 ldr r3,.L56+12
+ 835 0038 3A4A     	 ldr r2,.L56+16
+ 836 003a 1A60     	 str r2,[r3]
+ 184:../Ultrasonic_Collision_Avoidance.c **** 	new_Speed_limit = MAX_Speed;
+ 837              	 .loc 3 184 0
+ 838 003c 3A4B     	 ldr r3,.L56+20
+ 839 003e FE22     	 mov r2,#254
+ 840 0040 9205     	 lsl r2,r2,#22
+ 841 0042 1A60     	 str r2,[r3]
+ 185:../Ultrasonic_Collision_Avoidance.c **** 
+ 186:../Ultrasonic_Collision_Avoidance.c **** 
+ 187:../Ultrasonic_Collision_Avoidance.c **** 	Obstacel_CA_check(Obstacel_F);
+ 842              	 .loc 3 187 0
+ 843 0044 394B     	 ldr r3,.L56+24
+ 844 0046 1868     	 ldr r0,[r3]
+ 845 0048 5968     	 ldr r1,[r3,#4]
+ 846 004a 9A68     	 ldr r2,[r3,#8]
+ 847 004c FFF7FEFF 	 bl Obstacel_CA_check
+ 188:../Ultrasonic_Collision_Avoidance.c **** 	//Obstacel_CA_check(Obstacel_L);
+ 189:../Ultrasonic_Collision_Avoidance.c **** 	//Obstacel_CA_check(Obstacel_R);
+ 190:../Ultrasonic_Collision_Avoidance.c **** 
+ 191:../Ultrasonic_Collision_Avoidance.c **** 	//CA aktive
+ 192:../Ultrasonic_Collision_Avoidance.c **** 	if(Speed_reduction_ratio != 1)DIGITAL_IO_SetOutputHigh(&LED_COLLISION_AVOID);
+ 848              	 .loc 3 192 0
+ 849 0050 324B     	 ldr r3,.L56+8
+ 850 0052 1B68     	 ldr r3,[r3]
+ 851 0054 181C     	 add r0,r3,#0
+ 852 0056 FE21     	 mov r1,#254
+ 853 0058 8905     	 lsl r1,r1,#22
+ 854 005a FFF7FEFF 	 bl __aeabi_fcmpeq
+ 855 005e 031E     	 sub r3,r0,#0
+ 856 0060 04D1     	 bne .L55
+ 857              	 .loc 3 192 0 is_stmt 0 discriminator 1
+ 858 0062 2C4B     	 ldr r3,.L56
+ 859 0064 181C     	 mov r0,r3
+ 860 0066 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 861 006a 20E0     	 b .L46
+ 862              	.L55:
+ 193:../Ultrasonic_Collision_Avoidance.c **** 	else if(Speed_limit < MAX_Speed){
+ 863              	 .loc 3 193 0 is_stmt 1
+ 864 006c 2C4B     	 ldr r3,.L56+12
+ 865 006e 1B68     	 ldr r3,[r3]
+ 866 0070 181C     	 add r0,r3,#0
+ 867 0072 FE21     	 mov r1,#254
+ 868 0074 8905     	 lsl r1,r1,#22
+ 869 0076 FFF7FEFF 	 bl __aeabi_fcmplt
+ 870 007a 031E     	 sub r3,r0,#0
+ 871 007c 17D0     	 beq .L46
+ 194:../Ultrasonic_Collision_Avoidance.c **** 		if(Speeds[0] != 0) Speed_reduction_ratio = Speed_limit / Speeds[0];
+ 872              	 .loc 3 194 0
+ 873 007e 2C4B     	 ldr r3,.L56+28
+ 874 0080 1B68     	 ldr r3,[r3]
+ 875 0082 181C     	 add r0,r3,#0
+ 876 0084 0021     	 mov r1,#0
+ 877 0086 FFF7FEFF 	 bl __aeabi_fcmpeq
+ 878 008a 031E     	 sub r3,r0,#0
+ 879 008c 0BD1     	 bne .L48
+ 880              	 .loc 3 194 0 is_stmt 0 discriminator 1
+ 881 008e 244B     	 ldr r3,.L56+12
+ 882 0090 1A68     	 ldr r2,[r3]
+ 883 0092 274B     	 ldr r3,.L56+28
+ 884 0094 1B68     	 ldr r3,[r3]
+ 885 0096 101C     	 add r0,r2,#0
+ 886 0098 191C     	 add r1,r3,#0
+ 887 009a FFF7FEFF 	 bl __aeabi_fdiv
+ 888 009e 031C     	 add r3,r0,#0
+ 889 00a0 1A1C     	 add r2,r3,#0
+ 890 00a2 1E4B     	 ldr r3,.L56+8
+ 891 00a4 1A60     	 str r2,[r3]
+ 892              	.L48:
+ 195:../Ultrasonic_Collision_Avoidance.c **** 		DIGITAL_IO_SetOutputHigh(&LED_COLLISION_AVOID);
+ 893              	 .loc 3 195 0 is_stmt 1
+ 894 00a6 1B4B     	 ldr r3,.L56
+ 895 00a8 181C     	 mov r0,r3
+ 896 00aa FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 897              	.L46:
+ 898              	.LBB3:
+ 196:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 197:../Ultrasonic_Collision_Avoidance.c **** 
+ 198:../Ultrasonic_Collision_Avoidance.c **** 	// speed output with reduction if CA active
+ 199:../Ultrasonic_Collision_Avoidance.c **** 	for(uint8_t i = 0; i < 4; i ++){
+ 899              	 .loc 3 199 0
+ 900 00ae FB1D     	 add r3,r7,#7
+ 901 00b0 0022     	 mov r2,#0
+ 902 00b2 1A70     	 strb r2,[r3]
+ 903 00b4 16E0     	 b .L50
+ 904              	.L51:
+ 200:../Ultrasonic_Collision_Avoidance.c **** 		Speeds_CA[i] = Speeds[i] * Speed_reduction_ratio;
+ 905              	 .loc 3 200 0 discriminator 3
+ 906 00b6 FB1D     	 add r3,r7,#7
+ 907 00b8 1C78     	 ldrb r4,[r3]
+ 908 00ba FB1D     	 add r3,r7,#7
+ 909 00bc 1A78     	 ldrb r2,[r3]
+ 910 00be 1C4B     	 ldr r3,.L56+28
+ 911 00c0 9200     	 lsl r2,r2,#2
+ 912 00c2 D258     	 ldr r2,[r2,r3]
+ 913 00c4 154B     	 ldr r3,.L56+8
+ 914 00c6 1B68     	 ldr r3,[r3]
+ 915 00c8 101C     	 add r0,r2,#0
+ 916 00ca 191C     	 add r1,r3,#0
+ 917 00cc FFF7FEFF 	 bl __aeabi_fmul
+ 918 00d0 031C     	 add r3,r0,#0
+ 919 00d2 191C     	 add r1,r3,#0
+ 920 00d4 174B     	 ldr r3,.L56+32
+ 921 00d6 A200     	 lsl r2,r4,#2
+ 922 00d8 D150     	 str r1,[r2,r3]
+ 199:../Ultrasonic_Collision_Avoidance.c **** 		Speeds_CA[i] = Speeds[i] * Speed_reduction_ratio;
+ 923              	 .loc 3 199 0 discriminator 3
+ 924 00da FB1D     	 add r3,r7,#7
+ 925 00dc 1A78     	 ldrb r2,[r3]
+ 926 00de FB1D     	 add r3,r7,#7
+ 927 00e0 0132     	 add r2,r2,#1
+ 928 00e2 1A70     	 strb r2,[r3]
+ 929              	.L50:
+ 199:../Ultrasonic_Collision_Avoidance.c **** 		Speeds_CA[i] = Speeds[i] * Speed_reduction_ratio;
+ 930              	 .loc 3 199 0 is_stmt 0 discriminator 1
+ 931 00e4 FB1D     	 add r3,r7,#7
+ 932 00e6 1B78     	 ldrb r3,[r3]
+ 933 00e8 032B     	 cmp r3,#3
+ 934 00ea E4D9     	 bls .L51
+ 935              	.LBE3:
+ 201:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 202:../Ultrasonic_Collision_Avoidance.c **** 
+ 203:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_fl = Speeds_CA[0];
+ 936              	 .loc 3 203 0 is_stmt 1
+ 937 00ec 114B     	 ldr r3,.L56+32
+ 938 00ee 1A68     	 ldr r2,[r3]
+ 939 00f0 114B     	 ldr r3,.L56+36
+ 940 00f2 1A60     	 str r2,[r3]
+ 204:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_fr = Speeds_CA[1];
+ 941              	 .loc 3 204 0
+ 942 00f4 0F4B     	 ldr r3,.L56+32
+ 943 00f6 5A68     	 ldr r2,[r3,#4]
+ 944 00f8 104B     	 ldr r3,.L56+40
+ 945 00fa 1A60     	 str r2,[r3]
+ 205:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_rl = Speeds_CA[2];
+ 946              	 .loc 3 205 0
+ 947 00fc 0D4B     	 ldr r3,.L56+32
+ 948 00fe 9A68     	 ldr r2,[r3,#8]
+ 949 0100 0F4B     	 ldr r3,.L56+44
+ 950 0102 1A60     	 str r2,[r3]
+ 206:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_rr = Speeds_CA[3];
+ 951              	 .loc 3 206 0
+ 952 0104 0B4B     	 ldr r3,.L56+32
+ 953 0106 DA68     	 ldr r2,[r3,#12]
+ 954 0108 0E4B     	 ldr r3,.L56+48
+ 955 010a 1A60     	 str r2,[r3]
+ 956              	.L41:
+ 207:../Ultrasonic_Collision_Avoidance.c **** 
+ 208:../Ultrasonic_Collision_Avoidance.c **** }
+ 957              	 .loc 3 208 0
+ 958 010c BD46     	 mov sp,r7
+ 959 010e 03B0     	 add sp,sp,#12
+ 960              	 
+ 961 0110 90BD     	 pop {r4,r7,pc}
+ 962              	.L57:
+ 963 0112 C046     	 .align 2
+ 964              	.L56:
+ 965 0114 00000000 	 .word LED_COLLISION_AVOID
+ 966 0118 00000000 	 .word CAN_Ultrasonic_No_messasge_count
+ 967 011c 00000000 	 .word Speed_reduction_ratio
+ 968 0120 00000000 	 .word Speed_limit
+ 969 0124 AE47813F 	 .word 1065437102
+ 970 0128 00000000 	 .word new_Speed_limit
+ 971 012c 00000000 	 .word Obstacel_F
+ 972 0130 00000000 	 .word Speeds
+ 973 0134 00000000 	 .word Speeds_CA
+ 974 0138 00000000 	 .word speed_CA_fl
+ 975 013c 00000000 	 .word speed_CA_fr
+ 976 0140 00000000 	 .word speed_CA_rl
+ 977 0144 00000000 	 .word speed_CA_rr
+ 978              	 .cfi_endproc
+ 979              	.LFE226:
+ 981              	 .global __aeabi_fadd
+ 982              	 .global __aeabi_f2d
+ 983              	 .global __aeabi_dcmpgt
+ 984              	 .global __aeabi_dcmplt
+ 985              	 .global __aeabi_dsub
+ 986              	 .global __aeabi_d2f
+ 987              	 .section .text.Obstacel_CA_check,"ax",%progbits
+ 988              	 .align 2
+ 989              	 .global Obstacel_CA_check
+ 990              	 .code 16
+ 991              	 .thumb_func
+ 993              	Obstacel_CA_check:
+ 994              	.LFB227:
+ 209:../Ultrasonic_Collision_Avoidance.c **** 
+ 210:../Ultrasonic_Collision_Avoidance.c **** void Obstacel_CA_check(Obstacel obstacel){
+ 995              	 .loc 3 210 0
+ 996              	 .cfi_startproc
+ 997 0000 F0B5     	 push {r4,r5,r6,r7,lr}
+ 998              	.LCFI21:
+ 999              	 .cfi_def_cfa_offset 20
+ 1000              	 .cfi_offset 4,-20
+ 1001              	 .cfi_offset 5,-16
+ 1002              	 .cfi_offset 6,-12
+ 1003              	 .cfi_offset 7,-8
+ 1004              	 .cfi_offset 14,-4
+ 1005 0002 87B0     	 sub sp,sp,#28
+ 1006              	.LCFI22:
+ 1007              	 .cfi_def_cfa_offset 48
+ 1008 0004 00AF     	 add r7,sp,#0
+ 1009              	.LCFI23:
+ 1010              	 .cfi_def_cfa_register 7
+ 1011 0006 3B1D     	 add r3,r7,#4
+ 1012 0008 1860     	 str r0,[r3]
+ 1013 000a 5960     	 str r1,[r3,#4]
+ 1014 000c 9A60     	 str r2,[r3,#8]
+ 211:../Ultrasonic_Collision_Avoidance.c **** 	if(obstacel.isValid){
+ 1015              	 .loc 3 211 0
+ 1016 000e 3B1D     	 add r3,r7,#4
+ 1017 0010 1B78     	 ldrb r3,[r3]
+ 1018 0012 002B     	 cmp r3,#0
+ 1019 0014 00D1     	 bne .LCB825
+ 1020 0016 87E0     	 b .L58
+ 1021              	.LCB825:
+ 212:../Ultrasonic_Collision_Avoidance.c **** 		if(obstacel.distance < CA_START){
+ 1022              	 .loc 3 212 0
+ 1023 0018 3B1D     	 add r3,r7,#4
+ 1024 001a 5B68     	 ldr r3,[r3,#4]
+ 1025 001c 181C     	 add r0,r3,#0
+ 1026 001e FE21     	 mov r1,#254
+ 1027 0020 8905     	 lsl r1,r1,#22
+ 1028 0022 FFF7FEFF 	 bl __aeabi_fcmplt
+ 1029 0026 031E     	 sub r3,r0,#0
+ 1030 0028 00D1     	 bne .LCB834
+ 1031 002a 7DE0     	 b .L58
+ 1032              	.LCB834:
+ 213:../Ultrasonic_Collision_Avoidance.c **** 			if(within_MAX_MIN(obstacel.angle, trajectory_angle + CA_ANGLE, trajectory_angle - CA_ANGLE)){
+ 1033              	 .loc 3 213 0
+ 1034 002c 3B1D     	 add r3,r7,#4
+ 1035 002e 9C68     	 ldr r4,[r3,#8]
+ 1036 0030 3F4B     	 ldr r3,.L72
+ 1037 0032 1B68     	 ldr r3,[r3]
+ 1038 0034 181C     	 add r0,r3,#0
+ 1039 0036 3F49     	 ldr r1,.L72+4
+ 1040 0038 FFF7FEFF 	 bl __aeabi_fadd
+ 1041 003c 031C     	 add r3,r0,#0
+ 1042 003e 1D1C     	 add r5,r3,#0
+ 1043 0040 3B4B     	 ldr r3,.L72
+ 1044 0042 1B68     	 ldr r3,[r3]
+ 1045 0044 181C     	 add r0,r3,#0
+ 1046 0046 3B49     	 ldr r1,.L72+4
+ 1047 0048 FFF7FEFF 	 bl __aeabi_fsub
+ 1048 004c 031C     	 add r3,r0,#0
+ 1049 004e 201C     	 add r0,r4,#0
+ 1050 0050 291C     	 add r1,r5,#0
+ 1051 0052 1A1C     	 add r2,r3,#0
+ 1052 0054 FFF7FEFF 	 bl within_MAX_MIN
+ 1053 0058 031E     	 sub r3,r0,#0
+ 1054 005a 65D0     	 beq .L58
+ 1055              	.LBB4:
+ 214:../Ultrasonic_Collision_Avoidance.c **** 				float abs_trajctory = vector_abs_value(Trajctory);
+ 1056              	 .loc 3 214 0
+ 1057 005c 364B     	 ldr r3,.L72+8
+ 1058 005e 181C     	 mov r0,r3
+ 1059 0060 FFF7FEFF 	 bl vector_abs_value
+ 1060 0064 031C     	 add r3,r0,#0
+ 1061 0066 7B61     	 str r3,[r7,#20]
+ 215:../Ultrasonic_Collision_Avoidance.c **** 				if( abs_trajctory > 0.01){
+ 1062              	 .loc 3 215 0
+ 1063 0068 7869     	 ldr r0,[r7,#20]
+ 1064 006a FFF7FEFF 	 bl __aeabi_f2d
+ 1065 006e 031C     	 mov r3,r0
+ 1066 0070 0C1C     	 mov r4,r1
+ 1067 0072 181C     	 mov r0,r3
+ 1068 0074 211C     	 mov r1,r4
+ 1069 0076 314A     	 ldr r2,.L72+12
+ 1070 0078 314B     	 ldr r3,.L72+16
+ 1071 007a FFF7FEFF 	 bl __aeabi_dcmpgt
+ 1072 007e 031E     	 sub r3,r0,#0
+ 1073 0080 52D0     	 beq .L58
+ 216:../Ultrasonic_Collision_Avoidance.c **** 					if(obstacel.distance  < CA_STOP) Speed_reduction_ratio = 0; // stop
+ 1074              	 .loc 3 216 0
+ 1075 0082 3B1D     	 add r3,r7,#4
+ 1076 0084 5B68     	 ldr r3,[r3,#4]
+ 1077 0086 181C     	 add r0,r3,#0
+ 1078 0088 FFF7FEFF 	 bl __aeabi_f2d
+ 1079 008c 031C     	 mov r3,r0
+ 1080 008e 0C1C     	 mov r4,r1
+ 1081 0090 181C     	 mov r0,r3
+ 1082 0092 211C     	 mov r1,r4
+ 1083 0094 2B4A     	 ldr r2,.L72+20
+ 1084 0096 2C4B     	 ldr r3,.L72+24
+ 1085 0098 FFF7FEFF 	 bl __aeabi_dcmplt
+ 1086 009c 031E     	 sub r3,r0,#0
+ 1087 009e 03D0     	 beq .L71
+ 1088              	 .loc 3 216 0 is_stmt 0 discriminator 1
+ 1089 00a0 2A4B     	 ldr r3,.L72+28
+ 1090 00a2 0022     	 mov r2,#0
+ 1091 00a4 1A60     	 str r2,[r3]
+ 1092 00a6 3FE0     	 b .L58
+ 1093              	.L71:
+ 217:../Ultrasonic_Collision_Avoidance.c **** 					else if(abs_trajctory > obstacel.distance  - CA_STOP){
+ 1094              	 .loc 3 217 0 is_stmt 1
+ 1095 00a8 7869     	 ldr r0,[r7,#20]
+ 1096 00aa FFF7FEFF 	 bl __aeabi_f2d
+ 1097 00ae 051C     	 mov r5,r0
+ 1098 00b0 0E1C     	 mov r6,r1
+ 1099 00b2 3B1D     	 add r3,r7,#4
+ 1100 00b4 5B68     	 ldr r3,[r3,#4]
+ 1101 00b6 181C     	 add r0,r3,#0
+ 1102 00b8 FFF7FEFF 	 bl __aeabi_f2d
+ 1103 00bc 031C     	 mov r3,r0
+ 1104 00be 0C1C     	 mov r4,r1
+ 1105 00c0 181C     	 mov r0,r3
+ 1106 00c2 211C     	 mov r1,r4
+ 1107 00c4 1F4A     	 ldr r2,.L72+20
+ 1108 00c6 204B     	 ldr r3,.L72+24
+ 1109 00c8 FFF7FEFF 	 bl __aeabi_dsub
+ 1110 00cc 031C     	 mov r3,r0
+ 1111 00ce 0C1C     	 mov r4,r1
+ 1112 00d0 281C     	 mov r0,r5
+ 1113 00d2 311C     	 mov r1,r6
+ 1114 00d4 1A1C     	 mov r2,r3
+ 1115 00d6 231C     	 mov r3,r4
+ 1116 00d8 FFF7FEFF 	 bl __aeabi_dcmpgt
+ 1117 00dc 031E     	 sub r3,r0,#0
+ 1118 00de 23D0     	 beq .L58
+ 218:../Ultrasonic_Collision_Avoidance.c **** 						   new_Speed_limit = obstacel.distance  - CA_STOP; // speed reduction
+ 1119              	 .loc 3 218 0
+ 1120 00e0 3B1D     	 add r3,r7,#4
+ 1121 00e2 5B68     	 ldr r3,[r3,#4]
+ 1122 00e4 181C     	 add r0,r3,#0
+ 1123 00e6 FFF7FEFF 	 bl __aeabi_f2d
+ 1124 00ea 031C     	 mov r3,r0
+ 1125 00ec 0C1C     	 mov r4,r1
+ 1126 00ee 181C     	 mov r0,r3
+ 1127 00f0 211C     	 mov r1,r4
+ 1128 00f2 144A     	 ldr r2,.L72+20
+ 1129 00f4 144B     	 ldr r3,.L72+24
+ 1130 00f6 FFF7FEFF 	 bl __aeabi_dsub
+ 1131 00fa 031C     	 mov r3,r0
+ 1132 00fc 0C1C     	 mov r4,r1
+ 1133 00fe 181C     	 mov r0,r3
+ 1134 0100 211C     	 mov r1,r4
+ 1135 0102 FFF7FEFF 	 bl __aeabi_d2f
+ 1136 0106 021C     	 add r2,r0,#0
+ 1137 0108 114B     	 ldr r3,.L72+32
+ 1138 010a 1A60     	 str r2,[r3]
+ 219:../Ultrasonic_Collision_Avoidance.c **** 						if( Speed_limit > new_Speed_limit) Speed_limit = new_Speed_limit;
+ 1139              	 .loc 3 219 0
+ 1140 010c 114B     	 ldr r3,.L72+36
+ 1141 010e 1A68     	 ldr r2,[r3]
+ 1142 0110 0F4B     	 ldr r3,.L72+32
+ 1143 0112 1B68     	 ldr r3,[r3]
+ 1144 0114 101C     	 add r0,r2,#0
+ 1145 0116 191C     	 add r1,r3,#0
+ 1146 0118 FFF7FEFF 	 bl __aeabi_fcmpgt
+ 1147 011c 031E     	 sub r3,r0,#0
+ 1148 011e 03D0     	 beq .L58
+ 1149              	 .loc 3 219 0 is_stmt 0 discriminator 1
+ 1150 0120 0B4B     	 ldr r3,.L72+32
+ 1151 0122 1A68     	 ldr r2,[r3]
+ 1152 0124 0B4B     	 ldr r3,.L72+36
+ 1153 0126 1A60     	 str r2,[r3]
+ 1154              	.L58:
+ 1155              	.LBE4:
+ 220:../Ultrasonic_Collision_Avoidance.c **** 					}
+ 221:../Ultrasonic_Collision_Avoidance.c **** 				}
+ 222:../Ultrasonic_Collision_Avoidance.c **** 			}
+ 223:../Ultrasonic_Collision_Avoidance.c **** 		}
+ 224:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 225:../Ultrasonic_Collision_Avoidance.c **** }
+ 1156              	 .loc 3 225 0 is_stmt 1
+ 1157 0128 BD46     	 mov sp,r7
+ 1158 012a 07B0     	 add sp,sp,#28
+ 1159              	 
+ 1160 012c F0BD     	 pop {r4,r5,r6,r7,pc}
+ 1161              	.L73:
+ 1162 012e C046     	 .align 2
+ 1163              	.L72:
+ 1164 0130 00000000 	 .word trajectory_angle
+ 1165 0134 00007041 	 .word 1097859072
+ 1166 0138 00000000 	 .word Trajctory
+ 1167 013c 7B14AE47 	 .word 1202590843
+ 1168 0140 E17A843F 	 .word 1065646817
+ 1169 0144 9A999999 	 .word -1717986918
+ 1170 0148 9999C93F 	 .word 1070176665
+ 1171 014c 00000000 	 .word Speed_reduction_ratio
+ 1172 0150 00000000 	 .word new_Speed_limit
+ 1173 0154 00000000 	 .word Speed_limit
+ 1174              	 .cfi_endproc
+ 1175              	.LFE227:
+ 1177              	 .text
+ 1178              	.Letext0:
+ 1179              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1180              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 1181              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 1182              	 .file 7 "../Ultrasonic_Collision_Avoidance.h"
+ 1183              	 .file 8 "../Globals.h"
+ 1184              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 1185              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 1186              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 1187              	 .file 12 "../CAN.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 Ultrasonic_Collision_Avoidance.c
                             *COM*:00000001 RC_controll
-    {standard input}:22     .bss.obstructed_L:00000000 obstructed_L
-    {standard input}:23     .bss.obstructed_L:00000000 $d
-    {standard input}:28     .bss.obstructed_R:00000000 obstructed_R
-    {standard input}:29     .bss.obstructed_R:00000000 $d
-    {standard input}:35     .data.Ultra_m_C:00000000 Ultra_m_C
-    {standard input}:32     .data.Ultra_m_C:00000000 $d
-    {standard input}:42     .data.Ultra_m_L:00000000 Ultra_m_L
-    {standard input}:39     .data.Ultra_m_L:00000000 $d
-    {standard input}:49     .data.Ultra_m_R:00000000 Ultra_m_R
-    {standard input}:46     .data.Ultra_m_R:00000000 $d
-    {standard input}:56     .data.Ultrsonic_data_invaildcounter:00000000 Ultrsonic_data_invaildcounter
-    {standard input}:53     .data.Ultrsonic_data_invaildcounter:00000000 $d
-    {standard input}:65     .bss.obstacel_F_x:00000000 obstacel_F_x
-    {standard input}:62     .bss.obstacel_F_x:00000000 $d
-    {standard input}:72     .bss.obstacel_L_x:00000000 obstacel_L_x
-    {standard input}:69     .bss.obstacel_L_x:00000000 $d
-    {standard input}:79     .bss.obstacel_L_y:00000000 obstacel_L_y
-    {standard input}:76     .bss.obstacel_L_y:00000000 $d
-    {standard input}:86     .bss.obstacel_R_x:00000000 obstacel_R_x
-    {standard input}:83     .bss.obstacel_R_x:00000000 $d
-    {standard input}:93     .bss.obstacel_R_y:00000000 obstacel_R_y
-    {standard input}:90     .bss.obstacel_R_y:00000000 $d
-    {standard input}:100    .bss.Obstacel_valid:00000000 Obstacel_valid
-    {standard input}:97     .bss.Obstacel_valid:00000000 $d
-    {standard input}:107    .data.Obstacel_F:00000000 Obstacel_F
-    {standard input}:104    .data.Obstacel_F:00000000 $d
-    {standard input}:114    .data.Obstacel_L:00000000 Obstacel_L
-    {standard input}:111    .data.Obstacel_L:00000000 $d
-    {standard input}:121    .data.Obstacel_R:00000000 Obstacel_R
-    {standard input}:118    .data.Obstacel_R:00000000 $d
-    {standard input}:127    .text.Ultra_sonic_filter:00000000 $t
-    {standard input}:132    .text.Ultra_sonic_filter:00000000 Ultra_sonic_filter
-    {standard input}:574    .text.Ultrasoinc_Obstructet_Test:00000000 Ultrasoinc_Obstructet_Test
-    {standard input}:549    .text.Ultra_sonic_filter:000002d8 $d
-    {standard input}:569    .text.Ultrasoinc_Obstructet_Test:00000000 $t
-    {standard input}:722    .text.Ultrasoinc_Obstructet_Test:00000104 $d
+    {standard input}:19     .text.XMC_GPIO_SetOutputHigh:00000000 $t
+    {standard input}:23     .text.XMC_GPIO_SetOutputHigh:00000000 XMC_GPIO_SetOutputHigh
+    {standard input}:59     .text.XMC_GPIO_SetOutputLow:00000000 $t
+    {standard input}:63     .text.XMC_GPIO_SetOutputLow:00000000 XMC_GPIO_SetOutputLow
+    {standard input}:99     .text.DIGITAL_IO_SetOutputHigh:00000000 $t
+    {standard input}:103    .text.DIGITAL_IO_SetOutputHigh:00000000 DIGITAL_IO_SetOutputHigh
+    {standard input}:137    .text.DIGITAL_IO_SetOutputLow:00000000 $t
+    {standard input}:141    .text.DIGITAL_IO_SetOutputLow:00000000 DIGITAL_IO_SetOutputLow
+    {standard input}:177    .bss.obstructed_L:00000000 obstructed_L
+    {standard input}:178    .bss.obstructed_L:00000000 $d
+    {standard input}:183    .bss.obstructed_R:00000000 obstructed_R
+    {standard input}:184    .bss.obstructed_R:00000000 $d
+    {standard input}:190    .data.Ultra_m_C:00000000 Ultra_m_C
+    {standard input}:187    .data.Ultra_m_C:00000000 $d
+    {standard input}:197    .data.Ultra_m_L:00000000 Ultra_m_L
+    {standard input}:194    .data.Ultra_m_L:00000000 $d
+    {standard input}:204    .data.Ultra_m_R:00000000 Ultra_m_R
+    {standard input}:201    .data.Ultra_m_R:00000000 $d
+    {standard input}:211    .data.Ultrsonic_data_invaildcounter:00000000 Ultrsonic_data_invaildcounter
+    {standard input}:208    .data.Ultrsonic_data_invaildcounter:00000000 $d
+    {standard input}:220    .bss.Obstacel_valid:00000000 Obstacel_valid
+    {standard input}:217    .bss.Obstacel_valid:00000000 $d
+                            *COM*:0000000c Obstacel_F
+                            *COM*:0000000c Obstacel_L
+                            *COM*:0000000c Obstacel_R
+    {standard input}:230    .data.Speed_reduction_ratio:00000000 Speed_reduction_ratio
+    {standard input}:227    .data.Speed_reduction_ratio:00000000 $d
+    {standard input}:237    .data.Speed_limit:00000000 Speed_limit
+    {standard input}:234    .data.Speed_limit:00000000 $d
+    {standard input}:244    .data.new_Speed_limit:00000000 new_Speed_limit
+    {standard input}:241    .data.new_Speed_limit:00000000 $d
+    {standard input}:251    .bss.speed_CA_fl:00000000 speed_CA_fl
+    {standard input}:248    .bss.speed_CA_fl:00000000 $d
+    {standard input}:258    .bss.speed_CA_fr:00000000 speed_CA_fr
+    {standard input}:255    .bss.speed_CA_fr:00000000 $d
+    {standard input}:265    .bss.speed_CA_rl:00000000 speed_CA_rl
+    {standard input}:262    .bss.speed_CA_rl:00000000 $d
+    {standard input}:272    .bss.speed_CA_rr:00000000 speed_CA_rr
+    {standard input}:269    .bss.speed_CA_rr:00000000 $d
+    {standard input}:277    .text.Ultra_sonic_filter:00000000 $t
+    {standard input}:282    .text.Ultra_sonic_filter:00000000 Ultra_sonic_filter
+    {standard input}:628    .text.Ultrasoinc_Obstructet_Test:00000000 Ultrasoinc_Obstructet_Test
+    {standard input}:603    .text.Ultra_sonic_filter:00000208 $d
+    {standard input}:623    .text.Ultrasoinc_Obstructet_Test:00000000 $t
+    {standard input}:776    .text.Ultrasoinc_Obstructet_Test:00000104 $d
+    {standard input}:782    .text.Collision_voidance:00000000 $t
+    {standard input}:787    .text.Collision_voidance:00000000 Collision_voidance
+    {standard input}:993    .text.Obstacel_CA_check:00000000 Obstacel_CA_check
+    {standard input}:965    .text.Collision_voidance:00000114 $d
+    {standard input}:988    .text.Obstacel_CA_check:00000000 $t
+    {standard input}:1164   .text.Obstacel_CA_check:00000130 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
 __aeabi_i2f
 __aeabi_fdiv
-__aeabi_f2d
 Exp_moving_average
+Steering_Angles
 __aeabi_fcmpgt
 __aeabi_fsub
 __aeabi_fmul
 __aeabi_fcmple
 __aeabi_fcmplt
+__aeabi_fcmpeq
+LED_COLLISION_AVOID
+CAN_Ultrasonic_No_messasge_count
+Speeds
+Speeds_CA
+__aeabi_fadd
+__aeabi_f2d
+__aeabi_dcmpgt
+__aeabi_dcmplt
+__aeabi_dsub
+__aeabi_d2f
+within_MAX_MIN
+vector_abs_value
+trajectory_angle
+Trajctory

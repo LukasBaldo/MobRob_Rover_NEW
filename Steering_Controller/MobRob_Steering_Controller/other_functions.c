@@ -47,3 +47,20 @@ float average(float a[],int num_values) {
     }
     return sum / num_values;
 }
+
+float angel_of_2D_vetor_deg(float vector[2]){
+	float x = vector[0];
+	float y = vector[1];
+	#define RAD_to_DEG 57.29577951
+
+	if(y == 0){
+		if(copysign(1,x) == 1) return 0;
+		if(copysign(1,x) == -1) return 180;
+	}
+	else{
+		if(copysign(1,x) == 1 && copysign(1,y) == 1) return  atan(x / y) * RAD_to_DEG;
+		else if(copysign(1,x) == -1 && copysign(1,y) == 1) return 180 + ( atan(x / y) * RAD_to_DEG);
+		else if(copysign(1,x) == 1 && copysign(1,y) == -1) return  180 + (atan(x / y) * RAD_to_DEG);
+		else if(copysign(-1,x) == -1 && copysign(1,y) == -1) return 360 + (atan(x / y) * RAD_to_DEG);
+	}
+}

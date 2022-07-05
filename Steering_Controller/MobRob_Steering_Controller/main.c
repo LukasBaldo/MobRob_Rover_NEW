@@ -20,17 +20,6 @@ CAN_NODE_STATUS_t init_status;
 int CAN_OK = 0;
 
 
-float avg_Speeds = 0;
-
-float trajctory_x = 0, trajctory_y = 0;
-float Trajctory[2] = {0, 0};
-float trajctory_Angel = 0;
-
-// FUNCTIONS
-//void Collision_voidance();
-//void Trajcetory_calc();
-
-
 int main(void)
 {
   DAVE_STATUS_t status;
@@ -112,13 +101,12 @@ void TIMER_CONTROL_ISR(void){
 	//set Angles PWM
 	Steering_set_Angles(Steering_Angles);
 
-	//Trajcetory_calc();
+	Trajcetory_calc();
 
-
-	//Collision_voidance();
+	Collision_voidance();
 
 	//send traget speeds to inverter
-	CAN_send_Speeds(Speeds);
+	CAN_send_Speeds(Speeds_CA);
 
 	//
 	if(reset_distance == 1){

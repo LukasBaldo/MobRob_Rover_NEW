@@ -1641,934 +1641,911 @@
  270              	 .section .bss.CAN_RX_Inverter_count,"aw",%nobits
  273              	CAN_RX_Inverter_count:
  274 0000 00       	 .space 1
- 275              	 .section .text.CAN_reset_distance,"ax",%progbits
- 276              	 .align 2
- 277              	 .global CAN_reset_distance
- 278              	 .code 16
- 279              	 .thumb_func
- 281              	CAN_reset_distance:
- 282              	.LFB224:
- 283              	 .file 5 "../CAN.c"
+ 275              	 .global CAN_Ultrasonic_No_messasge_count
+ 276              	 .section .data.CAN_Ultrasonic_No_messasge_count,"aw",%progbits
+ 279              	CAN_Ultrasonic_No_messasge_count:
+ 280 0000 64       	 .byte 100
+ 281              	 .global CAN_state_Ultrasonic
+ 282              	 .section .bss.CAN_state_Ultrasonic,"aw",%nobits
+ 285              	CAN_state_Ultrasonic:
+ 286 0000 00       	 .space 1
+ 287              	 .global Ultrasonic_cm_C
+ 288              	 .section .bss.Ultrasonic_cm_C,"aw",%nobits
+ 289              	 .align 1
+ 292              	Ultrasonic_cm_C:
+ 293 0000 0000     	 .space 2
+ 294              	 .global Ultrasonic_cm_L
+ 295              	 .section .bss.Ultrasonic_cm_L,"aw",%nobits
+ 296              	 .align 1
+ 299              	Ultrasonic_cm_L:
+ 300 0000 0000     	 .space 2
+ 301              	 .global Ultrasonic_cm_R
+ 302              	 .section .bss.Ultrasonic_cm_R,"aw",%nobits
+ 303              	 .align 1
+ 306              	Ultrasonic_cm_R:
+ 307 0000 0000     	 .space 2
+ 308              	 .section .text.CAN_reset_distance,"ax",%progbits
+ 309              	 .align 2
+ 310              	 .global CAN_reset_distance
+ 311              	 .code 16
+ 312              	 .thumb_func
+ 314              	CAN_reset_distance:
+ 315              	.LFB224:
+ 316              	 .file 5 "../CAN.c"
    1:../CAN.c      **** /*
    2:../CAN.c      ****  * CAN.c
-   3:../CAN.c      ****  *
-   4:../CAN.c      ****  *  Created on: 1 Jul 2022
-   5:../CAN.c      ****  *      Author: lukas
-   6:../CAN.c      ****  */
-   7:../CAN.c      **** #include "DAVE.h"
-   8:../CAN.c      **** #include "Globals.h"
+   3:../CAN.c      **** 
+   4:../CAN.c      ****  *
+   5:../CAN.c      ****  *  Created on: 1 Jul 2022
+   6:../CAN.c      ****  *      Author: lukas
+   7:../CAN.c      ****  */
+   8:../CAN.c      **** #include "CAN.h"
    9:../CAN.c      **** 
-  10:../CAN.c      **** //float speed_fl_act = 0, speed_fr_act = 0, speed_rl_act = 0, speed_rr_act = 0; // in m/s
-  11:../CAN.c      **** float distance_fl_act = 0, distance_fr_act = 0;
-  12:../CAN.c      **** float distance_rl_act = 0;
-  13:../CAN.c      **** float distance_rr_act = 0; // in m/s
-  14:../CAN.c      **** 
-  15:../CAN.c      **** volatile uint8_t Inveter_CAN_OK[4] = {0};
-  16:../CAN.c      **** volatile uint8_t CAN_RX_Inverter_count = 0;
-  17:../CAN.c      **** 
-  18:../CAN.c      **** void CAN_reset_distance(uint8_t distance_to_reset[4]){
- 284              	 .loc 5 18 0
- 285              	 .cfi_startproc
- 286 0000 80B5     	 push {r7,lr}
- 287              	.LCFI16:
- 288              	 .cfi_def_cfa_offset 8
- 289              	 .cfi_offset 7,-8
- 290              	 .cfi_offset 14,-4
- 291 0002 86B0     	 sub sp,sp,#24
- 292              	.LCFI17:
- 293              	 .cfi_def_cfa_offset 32
- 294 0004 00AF     	 add r7,sp,#0
- 295              	.LCFI18:
- 296              	 .cfi_def_cfa_register 7
- 297 0006 7860     	 str r0,[r7,#4]
-  19:../CAN.c      **** 	uint8_t TX[8] ={0};
- 298              	 .loc 5 19 0
- 299 0008 0C23     	 mov r3,#12
- 300 000a FB18     	 add r3,r7,r3
- 301 000c 0022     	 mov r2,#0
- 302 000e 1A60     	 str r2,[r3]
- 303 0010 0022     	 mov r2,#0
- 304 0012 5A60     	 str r2,[r3,#4]
-  20:../CAN.c      **** 	uint8_t i;
-  21:../CAN.c      **** 	for(i = 0; i < 4; i++){	TX[i] = distance_to_reset[i];}
- 305              	 .loc 5 21 0
- 306 0014 1723     	 mov r3,#23
- 307 0016 FB18     	 add r3,r7,r3
- 308 0018 0022     	 mov r2,#0
- 309 001a 1A70     	 strb r2,[r3]
- 310 001c 12E0     	 b .L10
- 311              	.L11:
- 312              	 .loc 5 21 0 is_stmt 0 discriminator 3
- 313 001e 1723     	 mov r3,#23
- 314 0020 FB18     	 add r3,r7,r3
- 315 0022 1B78     	 ldrb r3,[r3]
- 316 0024 1722     	 mov r2,#23
- 317 0026 BA18     	 add r2,r7,r2
- 318 0028 1278     	 ldrb r2,[r2]
- 319 002a 7968     	 ldr r1,[r7,#4]
- 320 002c 8A18     	 add r2,r1,r2
- 321 002e 1178     	 ldrb r1,[r2]
- 322 0030 0C22     	 mov r2,#12
- 323 0032 BA18     	 add r2,r7,r2
- 324 0034 D154     	 strb r1,[r2,r3]
- 325 0036 1723     	 mov r3,#23
- 326 0038 FB18     	 add r3,r7,r3
- 327 003a 1A78     	 ldrb r2,[r3]
- 328 003c 1723     	 mov r3,#23
- 329 003e FB18     	 add r3,r7,r3
- 330 0040 0132     	 add r2,r2,#1
- 331 0042 1A70     	 strb r2,[r3]
- 332              	.L10:
- 333              	 .loc 5 21 0 discriminator 1
- 334 0044 1723     	 mov r3,#23
- 335 0046 FB18     	 add r3,r7,r3
- 336 0048 1B78     	 ldrb r3,[r3]
- 337 004a 032B     	 cmp r3,#3
- 338 004c E7D9     	 bls .L11
-  22:../CAN.c      **** 
-  23:../CAN.c      **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[1], (uint8_t*)TX);
- 339              	 .loc 5 23 0 is_stmt 1
- 340 004e 084B     	 ldr r3,.L12
- 341 0050 1A69     	 ldr r2,[r3,#16]
- 342 0052 0C23     	 mov r3,#12
- 343 0054 FB18     	 add r3,r7,r3
- 344 0056 101C     	 mov r0,r2
- 345 0058 191C     	 mov r1,r3
- 346 005a FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
-  24:../CAN.c      **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[1]); //Transmit the data of message object1
- 347              	 .loc 5 24 0
- 348 005e 044B     	 ldr r3,.L12
- 349 0060 1B69     	 ldr r3,[r3,#16]
- 350 0062 181C     	 mov r0,r3
- 351 0064 FFF7FEFF 	 bl CAN_NODE_MO_Transmit
-  25:../CAN.c      **** }
- 352              	 .loc 5 25 0
- 353 0068 BD46     	 mov sp,r7
- 354 006a 06B0     	 add sp,sp,#24
- 355              	 
- 356 006c 80BD     	 pop {r7,pc}
- 357              	.L13:
- 358 006e C046     	 .align 2
- 359              	.L12:
- 360 0070 00000000 	 .word CAN_NODE_0
- 361              	 .cfi_endproc
- 362              	.LFE224:
- 364              	 .global __aeabi_fmul
- 365              	 .global __aeabi_f2iz
- 366              	 .section .text.CAN_send_Speeds,"ax",%progbits
- 367              	 .align 2
- 368              	 .global CAN_send_Speeds
- 369              	 .code 16
- 370              	 .thumb_func
- 372              	CAN_send_Speeds:
- 373              	.LFB225:
-  26:../CAN.c      **** 
-  27:../CAN.c      **** void CAN_send_Speeds(float Speed_data[4]){
- 374              	 .loc 5 27 0
- 375              	 .cfi_startproc
- 376 0000 80B5     	 push {r7,lr}
- 377              	.LCFI19:
- 378              	 .cfi_def_cfa_offset 8
- 379              	 .cfi_offset 7,-8
- 380              	 .cfi_offset 14,-4
- 381 0002 84B0     	 sub sp,sp,#16
- 382              	.LCFI20:
- 383              	 .cfi_def_cfa_offset 24
- 384 0004 00AF     	 add r7,sp,#0
- 385              	.LCFI21:
- 386              	 .cfi_def_cfa_register 7
- 387 0006 7860     	 str r0,[r7,#4]
-  28:../CAN.c      **** 
-  29:../CAN.c      **** 	int16_t Speeds_int16[4] ={Speed_data[0] *1000, Speed_data[1] *1000, Speed_data[2] *1000, Speed_dat
- 388              	 .loc 5 29 0
- 389 0008 7B68     	 ldr r3,[r7,#4]
- 390 000a 1B68     	 ldr r3,[r3]
- 391 000c 181C     	 add r0,r3,#0
- 392 000e 2649     	 ldr r1,.L15
- 393 0010 FFF7FEFF 	 bl __aeabi_fmul
- 394 0014 031C     	 add r3,r0,#0
- 395 0016 181C     	 add r0,r3,#0
- 396 0018 FFF7FEFF 	 bl __aeabi_f2iz
- 397 001c 031C     	 mov r3,r0
- 398 001e 9AB2     	 uxth r2,r3
- 399 0020 0823     	 mov r3,#8
- 400 0022 FB18     	 add r3,r7,r3
- 401 0024 1A80     	 strh r2,[r3]
- 402 0026 7B68     	 ldr r3,[r7,#4]
- 403 0028 0433     	 add r3,r3,#4
- 404 002a 1B68     	 ldr r3,[r3]
- 405 002c 181C     	 add r0,r3,#0
- 406 002e 1E49     	 ldr r1,.L15
- 407 0030 FFF7FEFF 	 bl __aeabi_fmul
- 408 0034 031C     	 add r3,r0,#0
- 409 0036 181C     	 add r0,r3,#0
- 410 0038 FFF7FEFF 	 bl __aeabi_f2iz
- 411 003c 031C     	 mov r3,r0
- 412 003e 9AB2     	 uxth r2,r3
- 413 0040 0823     	 mov r3,#8
- 414 0042 FB18     	 add r3,r7,r3
- 415 0044 5A80     	 strh r2,[r3,#2]
- 416 0046 7B68     	 ldr r3,[r7,#4]
- 417 0048 0833     	 add r3,r3,#8
- 418 004a 1B68     	 ldr r3,[r3]
- 419 004c 181C     	 add r0,r3,#0
- 420 004e 1649     	 ldr r1,.L15
- 421 0050 FFF7FEFF 	 bl __aeabi_fmul
- 422 0054 031C     	 add r3,r0,#0
- 423 0056 181C     	 add r0,r3,#0
- 424 0058 FFF7FEFF 	 bl __aeabi_f2iz
- 425 005c 031C     	 mov r3,r0
- 426 005e 9AB2     	 uxth r2,r3
- 427 0060 0823     	 mov r3,#8
- 428 0062 FB18     	 add r3,r7,r3
- 429 0064 9A80     	 strh r2,[r3,#4]
- 430 0066 7B68     	 ldr r3,[r7,#4]
- 431 0068 0C33     	 add r3,r3,#12
- 432 006a 1B68     	 ldr r3,[r3]
- 433 006c 181C     	 add r0,r3,#0
- 434 006e 0E49     	 ldr r1,.L15
- 435 0070 FFF7FEFF 	 bl __aeabi_fmul
- 436 0074 031C     	 add r3,r0,#0
- 437 0076 181C     	 add r0,r3,#0
- 438 0078 FFF7FEFF 	 bl __aeabi_f2iz
- 439 007c 031C     	 mov r3,r0
- 440 007e 9AB2     	 uxth r2,r3
- 441 0080 0823     	 mov r3,#8
- 442 0082 FB18     	 add r3,r7,r3
- 443 0084 DA80     	 strh r2,[r3,#6]
+  10:../CAN.c      **** 
+  11:../CAN.c      **** //float speed_fl_act = 0, speed_fr_act = 0, speed_rl_act = 0, speed_rr_act = 0; // in m/s
+  12:../CAN.c      **** float distance_fl_act = 0, distance_fr_act = 0;
+  13:../CAN.c      **** float distance_rl_act = 0;
+  14:../CAN.c      **** float distance_rr_act = 0; // in m/s
+  15:../CAN.c      **** 
+  16:../CAN.c      **** volatile uint8_t Inveter_CAN_OK[4] = {0};
+  17:../CAN.c      **** volatile uint8_t CAN_RX_Inverter_count = 0;
+  18:../CAN.c      **** 
+  19:../CAN.c      **** 
+  20:../CAN.c      **** volatile uint8_t CAN_Ultrasonic_No_messasge_count = 100;
+  21:../CAN.c      **** volatile uint8_t CAN_state_Ultrasonic = 0;
+  22:../CAN.c      **** volatile uint16_t Ultrasonic_cm_C = 0;
+  23:../CAN.c      **** volatile uint16_t Ultrasonic_cm_L = 0;
+  24:../CAN.c      **** volatile uint16_t Ultrasonic_cm_R = 0;
+  25:../CAN.c      **** 
+  26:../CAN.c      **** void CAN_reset_distance(uint8_t distance_to_reset[4]){
+ 317              	 .loc 5 26 0
+ 318              	 .cfi_startproc
+ 319 0000 80B5     	 push {r7,lr}
+ 320              	.LCFI16:
+ 321              	 .cfi_def_cfa_offset 8
+ 322              	 .cfi_offset 7,-8
+ 323              	 .cfi_offset 14,-4
+ 324 0002 86B0     	 sub sp,sp,#24
+ 325              	.LCFI17:
+ 326              	 .cfi_def_cfa_offset 32
+ 327 0004 00AF     	 add r7,sp,#0
+ 328              	.LCFI18:
+ 329              	 .cfi_def_cfa_register 7
+ 330 0006 7860     	 str r0,[r7,#4]
+  27:../CAN.c      **** 	uint8_t TX[8] ={0};
+ 331              	 .loc 5 27 0
+ 332 0008 0C23     	 mov r3,#12
+ 333 000a FB18     	 add r3,r7,r3
+ 334 000c 0022     	 mov r2,#0
+ 335 000e 1A60     	 str r2,[r3]
+ 336 0010 0022     	 mov r2,#0
+ 337 0012 5A60     	 str r2,[r3,#4]
+  28:../CAN.c      **** 	uint8_t i;
+  29:../CAN.c      **** 	for(i = 0; i < 4; i++){	TX[i] = distance_to_reset[i];}
+ 338              	 .loc 5 29 0
+ 339 0014 1723     	 mov r3,#23
+ 340 0016 FB18     	 add r3,r7,r3
+ 341 0018 0022     	 mov r2,#0
+ 342 001a 1A70     	 strb r2,[r3]
+ 343 001c 12E0     	 b .L10
+ 344              	.L11:
+ 345              	 .loc 5 29 0 is_stmt 0 discriminator 3
+ 346 001e 1723     	 mov r3,#23
+ 347 0020 FB18     	 add r3,r7,r3
+ 348 0022 1B78     	 ldrb r3,[r3]
+ 349 0024 1722     	 mov r2,#23
+ 350 0026 BA18     	 add r2,r7,r2
+ 351 0028 1278     	 ldrb r2,[r2]
+ 352 002a 7968     	 ldr r1,[r7,#4]
+ 353 002c 8A18     	 add r2,r1,r2
+ 354 002e 1178     	 ldrb r1,[r2]
+ 355 0030 0C22     	 mov r2,#12
+ 356 0032 BA18     	 add r2,r7,r2
+ 357 0034 D154     	 strb r1,[r2,r3]
+ 358 0036 1723     	 mov r3,#23
+ 359 0038 FB18     	 add r3,r7,r3
+ 360 003a 1A78     	 ldrb r2,[r3]
+ 361 003c 1723     	 mov r3,#23
+ 362 003e FB18     	 add r3,r7,r3
+ 363 0040 0132     	 add r2,r2,#1
+ 364 0042 1A70     	 strb r2,[r3]
+ 365              	.L10:
+ 366              	 .loc 5 29 0 discriminator 1
+ 367 0044 1723     	 mov r3,#23
+ 368 0046 FB18     	 add r3,r7,r3
+ 369 0048 1B78     	 ldrb r3,[r3]
+ 370 004a 032B     	 cmp r3,#3
+ 371 004c E7D9     	 bls .L11
   30:../CAN.c      **** 
-  31:../CAN.c      **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)Speeds_int16);
- 444              	 .loc 5 31 0
- 445 0086 094B     	 ldr r3,.L15+4
- 446 0088 DA68     	 ldr r2,[r3,#12]
- 447 008a 0823     	 mov r3,#8
- 448 008c FB18     	 add r3,r7,r3
- 449 008e 101C     	 mov r0,r2
- 450 0090 191C     	 mov r1,r3
- 451 0092 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
-  32:../CAN.c      **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
- 452              	 .loc 5 32 0
- 453 0096 054B     	 ldr r3,.L15+4
- 454 0098 DB68     	 ldr r3,[r3,#12]
- 455 009a 181C     	 mov r0,r3
- 456 009c FFF7FEFF 	 bl CAN_NODE_MO_Transmit
-  33:../CAN.c      **** 
-  34:../CAN.c      **** }
- 457              	 .loc 5 34 0
- 458 00a0 BD46     	 mov sp,r7
- 459 00a2 04B0     	 add sp,sp,#16
- 460              	 
- 461 00a4 80BD     	 pop {r7,pc}
- 462              	.L16:
- 463 00a6 C046     	 .align 2
- 464              	.L15:
- 465 00a8 00007A44 	 .word 1148846080
- 466 00ac 00000000 	 .word CAN_NODE_0
- 467              	 .cfi_endproc
- 468              	.LFE225:
- 470              	 .section .text.IRQ3_Handler,"ax",%progbits
- 471              	 .align 2
- 472              	 .global IRQ3_Handler
- 473              	 .code 16
- 474              	 .thumb_func
- 476              	IRQ3_Handler:
- 477              	.LFB226:
-  35:../CAN.c      **** 
-  36:../CAN.c      **** void CAN_RX_INVERTER_ISR(void) {
- 478              	 .loc 5 36 0
- 479              	 .cfi_startproc
- 480 0000 80B5     	 push {r7,lr}
- 481              	.LCFI22:
- 482              	 .cfi_def_cfa_offset 8
- 483              	 .cfi_offset 7,-8
- 484              	 .cfi_offset 14,-4
- 485 0002 00AF     	 add r7,sp,#0
- 486              	.LCFI23:
- 487              	 .cfi_def_cfa_register 7
-  37:../CAN.c      **** 	WATCHDOG_Service();
- 488              	 .loc 5 37 0
- 489 0004 FFF7FEFF 	 bl WATCHDOG_Service
-  38:../CAN.c      **** 	DIGITAL_IO_SetOutputLow(&WATCHDOG_LED_BLUE);
- 490              	 .loc 5 38 0
- 491 0008 094B     	 ldr r3,.L19
- 492 000a 181C     	 mov r0,r3
- 493 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
-  39:../CAN.c      **** 
-  40:../CAN.c      **** 	CAN_RX_Inverter_count++;
- 494              	 .loc 5 40 0
- 495 0010 084B     	 ldr r3,.L19+4
- 496 0012 1B78     	 ldrb r3,[r3]
- 497 0014 DBB2     	 uxtb r3,r3
- 498 0016 0133     	 add r3,r3,#1
- 499 0018 DAB2     	 uxtb r2,r3
- 500 001a 064B     	 ldr r3,.L19+4
- 501 001c 1A70     	 strb r2,[r3]
-  41:../CAN.c      **** 	if(CAN_RX_Inverter_count == 4) CAN_RX_Inverter_Read_Data(); // read data after all for have revice
- 502              	 .loc 5 41 0
- 503 001e 054B     	 ldr r3,.L19+4
- 504 0020 1B78     	 ldrb r3,[r3]
- 505 0022 DBB2     	 uxtb r3,r3
- 506 0024 042B     	 cmp r3,#4
- 507 0026 01D1     	 bne .L17
- 508              	.LBB2:
- 509              	 .loc 5 41 0 is_stmt 0 discriminator 1
- 510 0028 FFF7FEFF 	 bl CAN_RX_Inverter_Read_Data
- 511              	.L17:
- 512              	.LBE2:
+  31:../CAN.c      **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[1], (uint8_t*)TX);
+ 372              	 .loc 5 31 0 is_stmt 1
+ 373 004e 084B     	 ldr r3,.L12
+ 374 0050 1A69     	 ldr r2,[r3,#16]
+ 375 0052 0C23     	 mov r3,#12
+ 376 0054 FB18     	 add r3,r7,r3
+ 377 0056 101C     	 mov r0,r2
+ 378 0058 191C     	 mov r1,r3
+ 379 005a FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
+  32:../CAN.c      **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[1]); //Transmit the data of message object1
+ 380              	 .loc 5 32 0
+ 381 005e 044B     	 ldr r3,.L12
+ 382 0060 1B69     	 ldr r3,[r3,#16]
+ 383 0062 181C     	 mov r0,r3
+ 384 0064 FFF7FEFF 	 bl CAN_NODE_MO_Transmit
+  33:../CAN.c      **** }
+ 385              	 .loc 5 33 0
+ 386 0068 BD46     	 mov sp,r7
+ 387 006a 06B0     	 add sp,sp,#24
+ 388              	 
+ 389 006c 80BD     	 pop {r7,pc}
+ 390              	.L13:
+ 391 006e C046     	 .align 2
+ 392              	.L12:
+ 393 0070 00000000 	 .word CAN_NODE_0
+ 394              	 .cfi_endproc
+ 395              	.LFE224:
+ 397              	 .global __aeabi_fmul
+ 398              	 .global __aeabi_f2iz
+ 399              	 .section .text.CAN_send_Speeds,"ax",%progbits
+ 400              	 .align 2
+ 401              	 .global CAN_send_Speeds
+ 402              	 .code 16
+ 403              	 .thumb_func
+ 405              	CAN_send_Speeds:
+ 406              	.LFB225:
+  34:../CAN.c      **** 
+  35:../CAN.c      **** void CAN_send_Speeds(float Speed_data[4]){
+ 407              	 .loc 5 35 0
+ 408              	 .cfi_startproc
+ 409 0000 80B5     	 push {r7,lr}
+ 410              	.LCFI19:
+ 411              	 .cfi_def_cfa_offset 8
+ 412              	 .cfi_offset 7,-8
+ 413              	 .cfi_offset 14,-4
+ 414 0002 84B0     	 sub sp,sp,#16
+ 415              	.LCFI20:
+ 416              	 .cfi_def_cfa_offset 24
+ 417 0004 00AF     	 add r7,sp,#0
+ 418              	.LCFI21:
+ 419              	 .cfi_def_cfa_register 7
+ 420 0006 7860     	 str r0,[r7,#4]
+  36:../CAN.c      **** 
+  37:../CAN.c      **** 	int16_t Speeds_int16[4] ={Speed_data[0] *1000, Speed_data[1] *1000, Speed_data[2] *1000, Speed_dat
+ 421              	 .loc 5 37 0
+ 422 0008 7B68     	 ldr r3,[r7,#4]
+ 423 000a 1B68     	 ldr r3,[r3]
+ 424 000c 181C     	 add r0,r3,#0
+ 425 000e 2649     	 ldr r1,.L15
+ 426 0010 FFF7FEFF 	 bl __aeabi_fmul
+ 427 0014 031C     	 add r3,r0,#0
+ 428 0016 181C     	 add r0,r3,#0
+ 429 0018 FFF7FEFF 	 bl __aeabi_f2iz
+ 430 001c 031C     	 mov r3,r0
+ 431 001e 9AB2     	 uxth r2,r3
+ 432 0020 0823     	 mov r3,#8
+ 433 0022 FB18     	 add r3,r7,r3
+ 434 0024 1A80     	 strh r2,[r3]
+ 435 0026 7B68     	 ldr r3,[r7,#4]
+ 436 0028 0433     	 add r3,r3,#4
+ 437 002a 1B68     	 ldr r3,[r3]
+ 438 002c 181C     	 add r0,r3,#0
+ 439 002e 1E49     	 ldr r1,.L15
+ 440 0030 FFF7FEFF 	 bl __aeabi_fmul
+ 441 0034 031C     	 add r3,r0,#0
+ 442 0036 181C     	 add r0,r3,#0
+ 443 0038 FFF7FEFF 	 bl __aeabi_f2iz
+ 444 003c 031C     	 mov r3,r0
+ 445 003e 9AB2     	 uxth r2,r3
+ 446 0040 0823     	 mov r3,#8
+ 447 0042 FB18     	 add r3,r7,r3
+ 448 0044 5A80     	 strh r2,[r3,#2]
+ 449 0046 7B68     	 ldr r3,[r7,#4]
+ 450 0048 0833     	 add r3,r3,#8
+ 451 004a 1B68     	 ldr r3,[r3]
+ 452 004c 181C     	 add r0,r3,#0
+ 453 004e 1649     	 ldr r1,.L15
+ 454 0050 FFF7FEFF 	 bl __aeabi_fmul
+ 455 0054 031C     	 add r3,r0,#0
+ 456 0056 181C     	 add r0,r3,#0
+ 457 0058 FFF7FEFF 	 bl __aeabi_f2iz
+ 458 005c 031C     	 mov r3,r0
+ 459 005e 9AB2     	 uxth r2,r3
+ 460 0060 0823     	 mov r3,#8
+ 461 0062 FB18     	 add r3,r7,r3
+ 462 0064 9A80     	 strh r2,[r3,#4]
+ 463 0066 7B68     	 ldr r3,[r7,#4]
+ 464 0068 0C33     	 add r3,r3,#12
+ 465 006a 1B68     	 ldr r3,[r3]
+ 466 006c 181C     	 add r0,r3,#0
+ 467 006e 0E49     	 ldr r1,.L15
+ 468 0070 FFF7FEFF 	 bl __aeabi_fmul
+ 469 0074 031C     	 add r3,r0,#0
+ 470 0076 181C     	 add r0,r3,#0
+ 471 0078 FFF7FEFF 	 bl __aeabi_f2iz
+ 472 007c 031C     	 mov r3,r0
+ 473 007e 9AB2     	 uxth r2,r3
+ 474 0080 0823     	 mov r3,#8
+ 475 0082 FB18     	 add r3,r7,r3
+ 476 0084 DA80     	 strh r2,[r3,#6]
+  38:../CAN.c      **** 
+  39:../CAN.c      **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)Speeds_int16);
+ 477              	 .loc 5 39 0
+ 478 0086 094B     	 ldr r3,.L15+4
+ 479 0088 DA68     	 ldr r2,[r3,#12]
+ 480 008a 0823     	 mov r3,#8
+ 481 008c FB18     	 add r3,r7,r3
+ 482 008e 101C     	 mov r0,r2
+ 483 0090 191C     	 mov r1,r3
+ 484 0092 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
+  40:../CAN.c      **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
+ 485              	 .loc 5 40 0
+ 486 0096 054B     	 ldr r3,.L15+4
+ 487 0098 DB68     	 ldr r3,[r3,#12]
+ 488 009a 181C     	 mov r0,r3
+ 489 009c FFF7FEFF 	 bl CAN_NODE_MO_Transmit
+  41:../CAN.c      **** 
   42:../CAN.c      **** }
- 513              	 .loc 5 42 0 is_stmt 1
- 514 002c BD46     	 mov sp,r7
- 515              	 
- 516 002e 80BD     	 pop {r7,pc}
- 517              	.L20:
- 518              	 .align 2
- 519              	.L19:
- 520 0030 00000000 	 .word WATCHDOG_LED_BLUE
- 521 0034 00000000 	 .word CAN_RX_Inverter_count
- 522              	 .cfi_endproc
- 523              	.LFE226:
- 525              	 .global __aeabi_i2f
- 526              	 .global __aeabi_fdiv
- 527              	 .section .text.CAN_RX_Inverter_Read_Data,"ax",%progbits
- 528              	 .align 2
- 529              	 .global CAN_RX_Inverter_Read_Data
- 530              	 .code 16
- 531              	 .thumb_func
- 533              	CAN_RX_Inverter_Read_Data:
- 534              	.LFB227:
+ 490              	 .loc 5 42 0
+ 491 00a0 BD46     	 mov sp,r7
+ 492 00a2 04B0     	 add sp,sp,#16
+ 493              	 
+ 494 00a4 80BD     	 pop {r7,pc}
+ 495              	.L16:
+ 496 00a6 C046     	 .align 2
+ 497              	.L15:
+ 498 00a8 00007A44 	 .word 1148846080
+ 499 00ac 00000000 	 .word CAN_NODE_0
+ 500              	 .cfi_endproc
+ 501              	.LFE225:
+ 503              	 .section .text.IRQ3_Handler,"ax",%progbits
+ 504              	 .align 2
+ 505              	 .global IRQ3_Handler
+ 506              	 .code 16
+ 507              	 .thumb_func
+ 509              	IRQ3_Handler:
+ 510              	.LFB226:
   43:../CAN.c      **** 
-  44:../CAN.c      **** void CAN_RX_Inverter_Read_Data(){
- 535              	 .loc 5 44 0
- 536              	 .cfi_startproc
- 537 0000 90B5     	 push {r4,r7,lr}
- 538              	.LCFI24:
- 539              	 .cfi_def_cfa_offset 12
- 540              	 .cfi_offset 4,-12
- 541              	 .cfi_offset 7,-8
- 542              	 .cfi_offset 14,-4
- 543 0002 89B0     	 sub sp,sp,#36
- 544              	.LCFI25:
- 545              	 .cfi_def_cfa_offset 48
- 546 0004 00AF     	 add r7,sp,#0
- 547              	.LCFI26:
- 548              	 .cfi_def_cfa_register 7
-  45:../CAN.c      **** 	uint8_t Motor_on_rover;
-  46:../CAN.c      **** 	for(Motor_on_rover = 0; Motor_on_rover < 4; Motor_on_rover ++){
- 549              	 .loc 5 46 0
- 550 0006 1F23     	 mov r3,#31
- 551 0008 FB18     	 add r3,r7,r3
- 552 000a 0022     	 mov r2,#0
- 553 000c 1A70     	 strb r2,[r3]
- 554 000e 03E1     	 b .L22
- 555              	.L32:
- 556              	.LBB3:
-  47:../CAN.c      **** 		XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[Motor_on_rover + 2]->mo_ptr;
- 557              	 .loc 5 47 0
- 558 0010 1F23     	 mov r3,#31
- 559 0012 FB18     	 add r3,r7,r3
- 560 0014 1B78     	 ldrb r3,[r3]
- 561 0016 0233     	 add r3,r3,#2
- 562 0018 844A     	 ldr r2,.L33
- 563 001a 0233     	 add r3,r3,#2
- 564 001c 9B00     	 lsl r3,r3,#2
- 565 001e D318     	 add r3,r2,r3
- 566 0020 5B68     	 ldr r3,[r3,#4]
- 567 0022 1B68     	 ldr r3,[r3]
- 568 0024 BB61     	 str r3,[r7,#24]
-  48:../CAN.c      **** 		CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[Motor_on_rover + 2]);
- 569              	 .loc 5 48 0
- 570 0026 1F23     	 mov r3,#31
- 571 0028 FB18     	 add r3,r7,r3
- 572 002a 1B78     	 ldrb r3,[r3]
- 573 002c 0233     	 add r3,r3,#2
- 574 002e 7F4A     	 ldr r2,.L33
- 575 0030 0233     	 add r3,r3,#2
- 576 0032 9B00     	 lsl r3,r3,#2
- 577 0034 D318     	 add r3,r2,r3
- 578 0036 5B68     	 ldr r3,[r3,#4]
- 579 0038 181C     	 mov r0,r3
- 580 003a FFF7FEFF 	 bl CAN_NODE_MO_Receive
-  49:../CAN.c      **** 
-  50:../CAN.c      **** 		uint8_t data_RX[8];
-  51:../CAN.c      **** 		uint8_t i;
-  52:../CAN.c      **** 		for(i = 0 ; i < 8 ; i ++){
- 581              	 .loc 5 52 0
- 582 003e 1E23     	 mov r3,#30
- 583 0040 FB18     	 add r3,r7,r3
- 584 0042 0022     	 mov r2,#0
- 585 0044 1A70     	 strb r2,[r3]
- 586 0046 12E0     	 b .L23
- 587              	.L24:
-  53:../CAN.c      **** 			 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
- 588              	 .loc 5 53 0 discriminator 3
- 589 0048 1E23     	 mov r3,#30
- 590 004a FB18     	 add r3,r7,r3
- 591 004c 1B78     	 ldrb r3,[r3]
- 592 004e 1E22     	 mov r2,#30
- 593 0050 BA18     	 add r2,r7,r2
- 594 0052 1278     	 ldrb r2,[r2]
- 595 0054 B969     	 ldr r1,[r7,#24]
- 596 0056 8A18     	 add r2,r1,r2
- 597 0058 117C     	 ldrb r1,[r2,#16]
- 598 005a 0C22     	 mov r2,#12
- 599 005c BA18     	 add r2,r7,r2
- 600 005e D154     	 strb r1,[r2,r3]
-  52:../CAN.c      **** 			 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
- 601              	 .loc 5 52 0 discriminator 3
- 602 0060 1E23     	 mov r3,#30
- 603 0062 FB18     	 add r3,r7,r3
- 604 0064 1A78     	 ldrb r2,[r3]
- 605 0066 1E23     	 mov r3,#30
- 606 0068 FB18     	 add r3,r7,r3
- 607 006a 0132     	 add r2,r2,#1
- 608 006c 1A70     	 strb r2,[r3]
- 609              	.L23:
-  52:../CAN.c      **** 			 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
- 610              	 .loc 5 52 0 is_stmt 0 discriminator 1
- 611 006e 1E23     	 mov r3,#30
- 612 0070 FB18     	 add r3,r7,r3
- 613 0072 1B78     	 ldrb r3,[r3]
- 614 0074 072B     	 cmp r3,#7
- 615 0076 E7D9     	 bls .L24
-  54:../CAN.c      **** 		}
-  55:../CAN.c      **** 
-  56:../CAN.c      **** 		uint8_t Motor_on_rover_RX = (data_RX[0 * 2 + 1] << 8) | data_RX[0 * 2];
- 616              	 .loc 5 56 0 is_stmt 1
- 617 0078 0C23     	 mov r3,#12
- 618 007a FB18     	 add r3,r7,r3
- 619 007c 5B78     	 ldrb r3,[r3,#1]
- 620 007e 1B02     	 lsl r3,r3,#8
- 621 0080 DAB2     	 uxtb r2,r3
- 622 0082 0C23     	 mov r3,#12
- 623 0084 FB18     	 add r3,r7,r3
- 624 0086 1B78     	 ldrb r3,[r3]
- 625 0088 DBB2     	 uxtb r3,r3
- 626 008a 1343     	 orr r3,r2
- 627 008c DAB2     	 uxtb r2,r3
- 628 008e 1723     	 mov r3,#23
- 629 0090 FB18     	 add r3,r7,r3
- 630 0092 1A70     	 strb r2,[r3]
-  57:../CAN.c      **** 		if(Motor_on_rover_RX == Motor_on_rover){
- 631              	 .loc 5 57 0
- 632 0094 1723     	 mov r3,#23
- 633 0096 FA18     	 add r2,r7,r3
- 634 0098 1F23     	 mov r3,#31
- 635 009a FB18     	 add r3,r7,r3
- 636 009c 1278     	 ldrb r2,[r2]
- 637 009e 1B78     	 ldrb r3,[r3]
- 638 00a0 9A42     	 cmp r2,r3
- 639 00a2 00D0     	 beq .LCB514
- 640 00a4 ADE0     	 b .L25
- 641              	.LCB514:
- 642              	.LBB4:
-  58:../CAN.c      **** 			DIGITAL_IO_SetOutputLow(&LED_CAN_ERROR);
- 643              	 .loc 5 58 0
- 644 00a6 624B     	 ldr r3,.L33+4
- 645 00a8 181C     	 mov r0,r3
- 646 00aa FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
-  59:../CAN.c      **** 
-  60:../CAN.c      **** 			uint8_t i;
-  61:../CAN.c      **** 			int16_t values_int16[3] = {0};
- 647              	 .loc 5 61 0
- 648 00ae 3B1D     	 add r3,r7,#4
- 649 00b0 0022     	 mov r2,#0
- 650 00b2 1A60     	 str r2,[r3]
- 651 00b4 0022     	 mov r2,#0
- 652 00b6 9A80     	 strh r2,[r3,#4]
-  62:../CAN.c      **** 			for(i = 1 ; i < 4 ; i ++){
- 653              	 .loc 5 62 0
- 654 00b8 1D23     	 mov r3,#29
- 655 00ba FB18     	 add r3,r7,r3
- 656 00bc 0122     	 mov r2,#1
- 657 00be 1A70     	 strb r2,[r3]
- 658 00c0 6BE0     	 b .L26
- 659              	.L30:
-  63:../CAN.c      **** 				 if(i == 1) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
- 660              	 .loc 5 63 0
- 661 00c2 1D23     	 mov r3,#29
- 662 00c4 FB18     	 add r3,r7,r3
- 663 00c6 1B78     	 ldrb r3,[r3]
- 664 00c8 012B     	 cmp r3,#1
- 665 00ca 1CD1     	 bne .L27
- 666              	 .loc 5 63 0 is_stmt 0 discriminator 1
- 667 00cc 1D23     	 mov r3,#29
- 668 00ce FB18     	 add r3,r7,r3
- 669 00d0 1B78     	 ldrb r3,[r3]
- 670 00d2 5A1E     	 sub r2,r3,#1
- 671 00d4 1D23     	 mov r3,#29
- 672 00d6 FB18     	 add r3,r7,r3
- 673 00d8 1B78     	 ldrb r3,[r3]
- 674 00da 5B00     	 lsl r3,r3,#1
- 675 00dc 0133     	 add r3,r3,#1
- 676 00de 0C21     	 mov r1,#12
- 677 00e0 7918     	 add r1,r7,r1
- 678 00e2 CB5C     	 ldrb r3,[r1,r3]
- 679 00e4 1B02     	 lsl r3,r3,#8
- 680 00e6 98B2     	 uxth r0,r3
- 681 00e8 1D23     	 mov r3,#29
- 682 00ea FB18     	 add r3,r7,r3
- 683 00ec 1B78     	 ldrb r3,[r3]
- 684 00ee 5B00     	 lsl r3,r3,#1
- 685 00f0 0C21     	 mov r1,#12
- 686 00f2 7918     	 add r1,r7,r1
- 687 00f4 CB5C     	 ldrb r3,[r1,r3]
- 688 00f6 9BB2     	 uxth r3,r3
- 689 00f8 011C     	 add r1,r0,#0
- 690 00fa 0B43     	 orr r3,r1
- 691 00fc 99B2     	 uxth r1,r3
- 692 00fe 3B1D     	 add r3,r7,#4
- 693 0100 5200     	 lsl r2,r2,#1
- 694 0102 D152     	 strh r1,[r2,r3]
- 695 0104 42E0     	 b .L28
- 696              	.L27:
-  64:../CAN.c      **** 				 else if(i == 2) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
- 697              	 .loc 5 64 0 is_stmt 1
- 698 0106 1D23     	 mov r3,#29
- 699 0108 FB18     	 add r3,r7,r3
- 700 010a 1B78     	 ldrb r3,[r3]
- 701 010c 022B     	 cmp r3,#2
- 702 010e 1CD1     	 bne .L29
- 703              	 .loc 5 64 0 is_stmt 0 discriminator 1
- 704 0110 1D23     	 mov r3,#29
- 705 0112 FB18     	 add r3,r7,r3
- 706 0114 1B78     	 ldrb r3,[r3]
- 707 0116 5A1E     	 sub r2,r3,#1
- 708 0118 1D23     	 mov r3,#29
- 709 011a FB18     	 add r3,r7,r3
- 710 011c 1B78     	 ldrb r3,[r3]
- 711 011e 5B00     	 lsl r3,r3,#1
- 712 0120 0133     	 add r3,r3,#1
- 713 0122 0C21     	 mov r1,#12
- 714 0124 7918     	 add r1,r7,r1
- 715 0126 CB5C     	 ldrb r3,[r1,r3]
- 716 0128 1B02     	 lsl r3,r3,#8
- 717 012a 98B2     	 uxth r0,r3
- 718 012c 1D23     	 mov r3,#29
- 719 012e FB18     	 add r3,r7,r3
- 720 0130 1B78     	 ldrb r3,[r3]
- 721 0132 5B00     	 lsl r3,r3,#1
- 722 0134 0C21     	 mov r1,#12
- 723 0136 7918     	 add r1,r7,r1
- 724 0138 CB5C     	 ldrb r3,[r1,r3]
- 725 013a 9BB2     	 uxth r3,r3
- 726 013c 011C     	 add r1,r0,#0
- 727 013e 0B43     	 orr r3,r1
- 728 0140 99B2     	 uxth r1,r3
- 729 0142 3B1D     	 add r3,r7,#4
- 730 0144 5200     	 lsl r2,r2,#1
- 731 0146 D152     	 strh r1,[r2,r3]
- 732 0148 20E0     	 b .L28
- 733              	.L29:
-  65:../CAN.c      **** 				 else if(i == 3) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
- 734              	 .loc 5 65 0 is_stmt 1
- 735 014a 1D23     	 mov r3,#29
- 736 014c FB18     	 add r3,r7,r3
- 737 014e 1B78     	 ldrb r3,[r3]
- 738 0150 032B     	 cmp r3,#3
- 739 0152 1BD1     	 bne .L28
- 740              	 .loc 5 65 0 is_stmt 0 discriminator 1
- 741 0154 1D23     	 mov r3,#29
- 742 0156 FB18     	 add r3,r7,r3
- 743 0158 1B78     	 ldrb r3,[r3]
- 744 015a 5A1E     	 sub r2,r3,#1
- 745 015c 1D23     	 mov r3,#29
- 746 015e FB18     	 add r3,r7,r3
- 747 0160 1B78     	 ldrb r3,[r3]
- 748 0162 5B00     	 lsl r3,r3,#1
- 749 0164 0133     	 add r3,r3,#1
- 750 0166 0C21     	 mov r1,#12
- 751 0168 7918     	 add r1,r7,r1
- 752 016a CB5C     	 ldrb r3,[r1,r3]
- 753 016c 1B02     	 lsl r3,r3,#8
- 754 016e 98B2     	 uxth r0,r3
- 755 0170 1D23     	 mov r3,#29
- 756 0172 FB18     	 add r3,r7,r3
- 757 0174 1B78     	 ldrb r3,[r3]
- 758 0176 5B00     	 lsl r3,r3,#1
- 759 0178 0C21     	 mov r1,#12
- 760 017a 7918     	 add r1,r7,r1
- 761 017c CB5C     	 ldrb r3,[r1,r3]
- 762 017e 9BB2     	 uxth r3,r3
- 763 0180 011C     	 add r1,r0,#0
- 764 0182 0B43     	 orr r3,r1
- 765 0184 99B2     	 uxth r1,r3
- 766 0186 3B1D     	 add r3,r7,#4
- 767 0188 5200     	 lsl r2,r2,#1
- 768 018a D152     	 strh r1,[r2,r3]
- 769              	.L28:
-  62:../CAN.c      **** 				 if(i == 1) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
- 770              	 .loc 5 62 0 is_stmt 1 discriminator 2
- 771 018c 1D23     	 mov r3,#29
- 772 018e FB18     	 add r3,r7,r3
- 773 0190 1A78     	 ldrb r2,[r3]
- 774 0192 1D23     	 mov r3,#29
- 775 0194 FB18     	 add r3,r7,r3
- 776 0196 0132     	 add r2,r2,#1
- 777 0198 1A70     	 strb r2,[r3]
- 778              	.L26:
-  62:../CAN.c      **** 				 if(i == 1) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
- 779              	 .loc 5 62 0 is_stmt 0 discriminator 1
- 780 019a 1D23     	 mov r3,#29
- 781 019c FB18     	 add r3,r7,r3
- 782 019e 1B78     	 ldrb r3,[r3]
- 783 01a0 032B     	 cmp r3,#3
- 784 01a2 8ED9     	 bls .L30
-  66:../CAN.c      **** 			 }
+  44:../CAN.c      **** void CAN_RX_INVERTER_ISR(void) {
+ 511              	 .loc 5 44 0
+ 512              	 .cfi_startproc
+ 513 0000 80B5     	 push {r7,lr}
+ 514              	.LCFI22:
+ 515              	 .cfi_def_cfa_offset 8
+ 516              	 .cfi_offset 7,-8
+ 517              	 .cfi_offset 14,-4
+ 518 0002 00AF     	 add r7,sp,#0
+ 519              	.LCFI23:
+ 520              	 .cfi_def_cfa_register 7
+  45:../CAN.c      **** 	WATCHDOG_Service();
+ 521              	 .loc 5 45 0
+ 522 0004 FFF7FEFF 	 bl WATCHDOG_Service
+  46:../CAN.c      **** 	DIGITAL_IO_SetOutputLow(&WATCHDOG_LED_BLUE);
+ 523              	 .loc 5 46 0
+ 524 0008 094B     	 ldr r3,.L19
+ 525 000a 181C     	 mov r0,r3
+ 526 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+  47:../CAN.c      **** 
+  48:../CAN.c      **** 	CAN_RX_Inverter_count++;
+ 527              	 .loc 5 48 0
+ 528 0010 084B     	 ldr r3,.L19+4
+ 529 0012 1B78     	 ldrb r3,[r3]
+ 530 0014 DBB2     	 uxtb r3,r3
+ 531 0016 0133     	 add r3,r3,#1
+ 532 0018 DAB2     	 uxtb r2,r3
+ 533 001a 064B     	 ldr r3,.L19+4
+ 534 001c 1A70     	 strb r2,[r3]
+  49:../CAN.c      **** 	if(CAN_RX_Inverter_count == 4) CAN_RX_Inverter_Read_Data(); // read data after all for have revice
+ 535              	 .loc 5 49 0
+ 536 001e 054B     	 ldr r3,.L19+4
+ 537 0020 1B78     	 ldrb r3,[r3]
+ 538 0022 DBB2     	 uxtb r3,r3
+ 539 0024 042B     	 cmp r3,#4
+ 540 0026 01D1     	 bne .L17
+ 541              	 .loc 5 49 0 is_stmt 0 discriminator 1
+ 542 0028 FFF7FEFF 	 bl CAN_RX_Inverter_Read_Data
+ 543              	.L17:
+  50:../CAN.c      **** }
+ 544              	 .loc 5 50 0 is_stmt 1
+ 545 002c BD46     	 mov sp,r7
+ 546              	 
+ 547 002e 80BD     	 pop {r7,pc}
+ 548              	.L20:
+ 549              	 .align 2
+ 550              	.L19:
+ 551 0030 00000000 	 .word WATCHDOG_LED_BLUE
+ 552 0034 00000000 	 .word CAN_RX_Inverter_count
+ 553              	 .cfi_endproc
+ 554              	.LFE226:
+ 556              	 .global __aeabi_i2f
+ 557              	 .global __aeabi_fdiv
+ 558              	 .section .text.CAN_RX_Inverter_Read_Data,"ax",%progbits
+ 559              	 .align 2
+ 560              	 .global CAN_RX_Inverter_Read_Data
+ 561              	 .code 16
+ 562              	 .thumb_func
+ 564              	CAN_RX_Inverter_Read_Data:
+ 565              	.LFB227:
+  51:../CAN.c      **** 
+  52:../CAN.c      **** void CAN_RX_Inverter_Read_Data(){
+ 566              	 .loc 5 52 0
+ 567              	 .cfi_startproc
+ 568 0000 90B5     	 push {r4,r7,lr}
+ 569              	.LCFI24:
+ 570              	 .cfi_def_cfa_offset 12
+ 571              	 .cfi_offset 4,-12
+ 572              	 .cfi_offset 7,-8
+ 573              	 .cfi_offset 14,-4
+ 574 0002 89B0     	 sub sp,sp,#36
+ 575              	.LCFI25:
+ 576              	 .cfi_def_cfa_offset 48
+ 577 0004 00AF     	 add r7,sp,#0
+ 578              	.LCFI26:
+ 579              	 .cfi_def_cfa_register 7
+  53:../CAN.c      **** 	uint8_t Motor_on_rover;
+  54:../CAN.c      **** 	for(Motor_on_rover = 0; Motor_on_rover < 4; Motor_on_rover ++){
+ 580              	 .loc 5 54 0
+ 581 0006 1F23     	 mov r3,#31
+ 582 0008 FB18     	 add r3,r7,r3
+ 583 000a 0022     	 mov r2,#0
+ 584 000c 1A70     	 strb r2,[r3]
+ 585 000e 03E1     	 b .L22
+ 586              	.L32:
+ 587              	.LBB2:
+  55:../CAN.c      **** 		XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[Motor_on_rover + 2]->mo_ptr;
+ 588              	 .loc 5 55 0
+ 589 0010 1F23     	 mov r3,#31
+ 590 0012 FB18     	 add r3,r7,r3
+ 591 0014 1B78     	 ldrb r3,[r3]
+ 592 0016 0233     	 add r3,r3,#2
+ 593 0018 844A     	 ldr r2,.L33
+ 594 001a 0233     	 add r3,r3,#2
+ 595 001c 9B00     	 lsl r3,r3,#2
+ 596 001e D318     	 add r3,r2,r3
+ 597 0020 5B68     	 ldr r3,[r3,#4]
+ 598 0022 1B68     	 ldr r3,[r3]
+ 599 0024 BB61     	 str r3,[r7,#24]
+  56:../CAN.c      **** 		CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[Motor_on_rover + 2]);
+ 600              	 .loc 5 56 0
+ 601 0026 1F23     	 mov r3,#31
+ 602 0028 FB18     	 add r3,r7,r3
+ 603 002a 1B78     	 ldrb r3,[r3]
+ 604 002c 0233     	 add r3,r3,#2
+ 605 002e 7F4A     	 ldr r2,.L33
+ 606 0030 0233     	 add r3,r3,#2
+ 607 0032 9B00     	 lsl r3,r3,#2
+ 608 0034 D318     	 add r3,r2,r3
+ 609 0036 5B68     	 ldr r3,[r3,#4]
+ 610 0038 181C     	 mov r0,r3
+ 611 003a FFF7FEFF 	 bl CAN_NODE_MO_Receive
+  57:../CAN.c      **** 
+  58:../CAN.c      **** 		uint8_t data_RX[8];
+  59:../CAN.c      **** 		uint8_t i;
+  60:../CAN.c      **** 		for(i = 0 ; i < 8 ; i ++){
+ 612              	 .loc 5 60 0
+ 613 003e 1E23     	 mov r3,#30
+ 614 0040 FB18     	 add r3,r7,r3
+ 615 0042 0022     	 mov r2,#0
+ 616 0044 1A70     	 strb r2,[r3]
+ 617 0046 12E0     	 b .L23
+ 618              	.L24:
+  61:../CAN.c      **** 			 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
+ 619              	 .loc 5 61 0 discriminator 3
+ 620 0048 1E23     	 mov r3,#30
+ 621 004a FB18     	 add r3,r7,r3
+ 622 004c 1B78     	 ldrb r3,[r3]
+ 623 004e 1E22     	 mov r2,#30
+ 624 0050 BA18     	 add r2,r7,r2
+ 625 0052 1278     	 ldrb r2,[r2]
+ 626 0054 B969     	 ldr r1,[r7,#24]
+ 627 0056 8A18     	 add r2,r1,r2
+ 628 0058 117C     	 ldrb r1,[r2,#16]
+ 629 005a 0C22     	 mov r2,#12
+ 630 005c BA18     	 add r2,r7,r2
+ 631 005e D154     	 strb r1,[r2,r3]
+  60:../CAN.c      **** 			 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
+ 632              	 .loc 5 60 0 discriminator 3
+ 633 0060 1E23     	 mov r3,#30
+ 634 0062 FB18     	 add r3,r7,r3
+ 635 0064 1A78     	 ldrb r2,[r3]
+ 636 0066 1E23     	 mov r3,#30
+ 637 0068 FB18     	 add r3,r7,r3
+ 638 006a 0132     	 add r2,r2,#1
+ 639 006c 1A70     	 strb r2,[r3]
+ 640              	.L23:
+  60:../CAN.c      **** 			 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
+ 641              	 .loc 5 60 0 is_stmt 0 discriminator 1
+ 642 006e 1E23     	 mov r3,#30
+ 643 0070 FB18     	 add r3,r7,r3
+ 644 0072 1B78     	 ldrb r3,[r3]
+ 645 0074 072B     	 cmp r3,#7
+ 646 0076 E7D9     	 bls .L24
+  62:../CAN.c      **** 		}
+  63:../CAN.c      **** 
+  64:../CAN.c      **** 		uint8_t Motor_on_rover_RX = (data_RX[0 * 2 + 1] << 8) | data_RX[0 * 2];
+ 647              	 .loc 5 64 0 is_stmt 1
+ 648 0078 0C23     	 mov r3,#12
+ 649 007a FB18     	 add r3,r7,r3
+ 650 007c 5B78     	 ldrb r3,[r3,#1]
+ 651 007e 1B02     	 lsl r3,r3,#8
+ 652 0080 DAB2     	 uxtb r2,r3
+ 653 0082 0C23     	 mov r3,#12
+ 654 0084 FB18     	 add r3,r7,r3
+ 655 0086 1B78     	 ldrb r3,[r3]
+ 656 0088 DBB2     	 uxtb r3,r3
+ 657 008a 1343     	 orr r3,r2
+ 658 008c DAB2     	 uxtb r2,r3
+ 659 008e 1723     	 mov r3,#23
+ 660 0090 FB18     	 add r3,r7,r3
+ 661 0092 1A70     	 strb r2,[r3]
+  65:../CAN.c      **** 		if(Motor_on_rover_RX == Motor_on_rover){
+ 662              	 .loc 5 65 0
+ 663 0094 1723     	 mov r3,#23
+ 664 0096 FA18     	 add r2,r7,r3
+ 665 0098 1F23     	 mov r3,#31
+ 666 009a FB18     	 add r3,r7,r3
+ 667 009c 1278     	 ldrb r2,[r2]
+ 668 009e 1B78     	 ldrb r3,[r3]
+ 669 00a0 9A42     	 cmp r2,r3
+ 670 00a2 00D0     	 beq .LCB512
+ 671 00a4 ADE0     	 b .L25
+ 672              	.LCB512:
+ 673              	.LBB3:
+  66:../CAN.c      **** 			DIGITAL_IO_SetOutputLow(&LED_CAN_ERROR);
+ 674              	 .loc 5 66 0
+ 675 00a6 624B     	 ldr r3,.L33+4
+ 676 00a8 181C     	 mov r0,r3
+ 677 00aa FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
   67:../CAN.c      **** 
-  68:../CAN.c      **** 			Inveter_CAN_OK[Motor_on_rover] = values_int16[0];
- 785              	 .loc 5 68 0 is_stmt 1
- 786 01a4 1F23     	 mov r3,#31
- 787 01a6 FB18     	 add r3,r7,r3
- 788 01a8 1B78     	 ldrb r3,[r3]
- 789 01aa 3A1D     	 add r2,r7,#4
- 790 01ac 1288     	 ldrh r2,[r2]
- 791 01ae D1B2     	 uxtb r1,r2
- 792 01b0 204A     	 ldr r2,.L33+8
- 793 01b2 D154     	 strb r1,[r2,r3]
-  69:../CAN.c      **** 			Actual_Speeds[Motor_on_rover] = (float)values_int16[1] / 1000;
- 794              	 .loc 5 69 0
- 795 01b4 1F23     	 mov r3,#31
- 796 01b6 FB18     	 add r3,r7,r3
- 797 01b8 1C78     	 ldrb r4,[r3]
- 798 01ba 3B1D     	 add r3,r7,#4
- 799 01bc 5B88     	 ldrh r3,[r3,#2]
- 800 01be 1BB2     	 sxth r3,r3
- 801 01c0 181C     	 mov r0,r3
- 802 01c2 FFF7FEFF 	 bl __aeabi_i2f
- 803 01c6 031C     	 add r3,r0,#0
- 804 01c8 181C     	 add r0,r3,#0
- 805 01ca 1B49     	 ldr r1,.L33+12
- 806 01cc FFF7FEFF 	 bl __aeabi_fdiv
- 807 01d0 031C     	 add r3,r0,#0
- 808 01d2 191C     	 add r1,r3,#0
- 809 01d4 194B     	 ldr r3,.L33+16
- 810 01d6 A200     	 lsl r2,r4,#2
- 811 01d8 D150     	 str r1,[r2,r3]
-  70:../CAN.c      **** 			Actual_Distance[Motor_on_rover] = (float)values_int16[2] / 1000;
- 812              	 .loc 5 70 0
- 813 01da 1F23     	 mov r3,#31
- 814 01dc FB18     	 add r3,r7,r3
- 815 01de 1C78     	 ldrb r4,[r3]
- 816 01e0 3B1D     	 add r3,r7,#4
- 817 01e2 9B88     	 ldrh r3,[r3,#4]
- 818 01e4 1BB2     	 sxth r3,r3
- 819 01e6 181C     	 mov r0,r3
- 820 01e8 FFF7FEFF 	 bl __aeabi_i2f
- 821 01ec 031C     	 add r3,r0,#0
- 822 01ee 181C     	 add r0,r3,#0
- 823 01f0 1149     	 ldr r1,.L33+12
- 824 01f2 FFF7FEFF 	 bl __aeabi_fdiv
- 825 01f6 031C     	 add r3,r0,#0
- 826 01f8 191C     	 add r1,r3,#0
- 827 01fa 114B     	 ldr r3,.L33+20
- 828 01fc A200     	 lsl r2,r4,#2
- 829 01fe D150     	 str r1,[r2,r3]
- 830              	.LBE4:
- 831 0200 03E0     	 b .L31
- 832              	.L25:
-  71:../CAN.c      **** 
-  72:../CAN.c      **** 
-  73:../CAN.c      **** 			}
-  74:../CAN.c      **** 		else DIGITAL_IO_SetOutputHigh(&LED_CAN_ERROR);
- 833              	 .loc 5 74 0
- 834 0202 0B4B     	 ldr r3,.L33+4
- 835 0204 181C     	 mov r0,r3
- 836 0206 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
- 837              	.L31:
- 838              	.LBE3:
-  46:../CAN.c      **** 		XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[Motor_on_rover + 2]->mo_ptr;
- 839              	 .loc 5 46 0 discriminator 1
- 840 020a 1F23     	 mov r3,#31
- 841 020c FB18     	 add r3,r7,r3
- 842 020e 1A78     	 ldrb r2,[r3]
- 843 0210 1F23     	 mov r3,#31
- 844 0212 FB18     	 add r3,r7,r3
- 845 0214 0132     	 add r2,r2,#1
- 846 0216 1A70     	 strb r2,[r3]
- 847              	.L22:
-  46:../CAN.c      **** 		XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[Motor_on_rover + 2]->mo_ptr;
- 848              	 .loc 5 46 0 is_stmt 0 discriminator 2
- 849 0218 1F23     	 mov r3,#31
- 850 021a FB18     	 add r3,r7,r3
- 851 021c 1B78     	 ldrb r3,[r3]
- 852 021e 032B     	 cmp r3,#3
- 853 0220 00D8     	 bhi .LCB721
- 854 0222 F5E6     	 b .L32
- 855              	.LCB721:
-  75:../CAN.c      **** 	}
-  76:../CAN.c      **** 
-  77:../CAN.c      **** 	/*
-  78:../CAN.c      **** 	speed_fl_act = Actual_Speeds[0];
-  79:../CAN.c      **** 	speed_fr_act = Actual_Speeds[1];
-  80:../CAN.c      **** 	speed_rl_act = Actual_Speeds[2];
-  81:../CAN.c      **** 	speed_rr_act = Actual_Speeds[3];
-  82:../CAN.c      **** 
-  83:../CAN.c      **** 	distance_fl_act = Actual_Distance[0];
-  84:../CAN.c      **** 	distance_fr_act = Actual_Distance[1];
-  85:../CAN.c      **** 	distance_rl_act = Actual_Distance[2];
-  86:../CAN.c      **** 	distance_rr_act = Actual_Distance[3];
-  87:../CAN.c      **** 	*/
-  88:../CAN.c      **** 
-  89:../CAN.c      **** }
- 856              	 .loc 5 89 0 is_stmt 1
- 857 0224 BD46     	 mov sp,r7
- 858 0226 09B0     	 add sp,sp,#36
- 859              	 
- 860 0228 90BD     	 pop {r4,r7,pc}
- 861              	.L34:
- 862 022a C046     	 .align 2
- 863              	.L33:
- 864 022c 00000000 	 .word CAN_NODE_0
- 865 0230 00000000 	 .word LED_CAN_ERROR
- 866 0234 00000000 	 .word Inveter_CAN_OK
- 867 0238 00007A44 	 .word 1148846080
- 868 023c 00000000 	 .word Actual_Speeds
- 869 0240 00000000 	 .word Actual_Distance
- 870              	 .cfi_endproc
- 871              	.LFE227:
- 873              	 .global __aeabi_f2d
- 874              	 .section .text.IRQ4_Handler,"ax",%progbits
- 875              	 .align 2
- 876              	 .global IRQ4_Handler
- 877              	 .code 16
- 878              	 .thumb_func
- 880              	IRQ4_Handler:
- 881              	.LFB228:
-  90:../CAN.c      **** 
+  68:../CAN.c      **** 			uint8_t i;
+  69:../CAN.c      **** 			int16_t values_int16[3] = {0};
+ 678              	 .loc 5 69 0
+ 679 00ae 3B1D     	 add r3,r7,#4
+ 680 00b0 0022     	 mov r2,#0
+ 681 00b2 1A60     	 str r2,[r3]
+ 682 00b4 0022     	 mov r2,#0
+ 683 00b6 9A80     	 strh r2,[r3,#4]
+  70:../CAN.c      **** 			for(i = 1 ; i < 4 ; i ++){
+ 684              	 .loc 5 70 0
+ 685 00b8 1D23     	 mov r3,#29
+ 686 00ba FB18     	 add r3,r7,r3
+ 687 00bc 0122     	 mov r2,#1
+ 688 00be 1A70     	 strb r2,[r3]
+ 689 00c0 6BE0     	 b .L26
+ 690              	.L30:
+  71:../CAN.c      **** 				 if(i == 1) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
+ 691              	 .loc 5 71 0
+ 692 00c2 1D23     	 mov r3,#29
+ 693 00c4 FB18     	 add r3,r7,r3
+ 694 00c6 1B78     	 ldrb r3,[r3]
+ 695 00c8 012B     	 cmp r3,#1
+ 696 00ca 1CD1     	 bne .L27
+ 697              	 .loc 5 71 0 is_stmt 0 discriminator 1
+ 698 00cc 1D23     	 mov r3,#29
+ 699 00ce FB18     	 add r3,r7,r3
+ 700 00d0 1B78     	 ldrb r3,[r3]
+ 701 00d2 5A1E     	 sub r2,r3,#1
+ 702 00d4 1D23     	 mov r3,#29
+ 703 00d6 FB18     	 add r3,r7,r3
+ 704 00d8 1B78     	 ldrb r3,[r3]
+ 705 00da 5B00     	 lsl r3,r3,#1
+ 706 00dc 0133     	 add r3,r3,#1
+ 707 00de 0C21     	 mov r1,#12
+ 708 00e0 7918     	 add r1,r7,r1
+ 709 00e2 CB5C     	 ldrb r3,[r1,r3]
+ 710 00e4 1B02     	 lsl r3,r3,#8
+ 711 00e6 98B2     	 uxth r0,r3
+ 712 00e8 1D23     	 mov r3,#29
+ 713 00ea FB18     	 add r3,r7,r3
+ 714 00ec 1B78     	 ldrb r3,[r3]
+ 715 00ee 5B00     	 lsl r3,r3,#1
+ 716 00f0 0C21     	 mov r1,#12
+ 717 00f2 7918     	 add r1,r7,r1
+ 718 00f4 CB5C     	 ldrb r3,[r1,r3]
+ 719 00f6 9BB2     	 uxth r3,r3
+ 720 00f8 011C     	 add r1,r0,#0
+ 721 00fa 0B43     	 orr r3,r1
+ 722 00fc 99B2     	 uxth r1,r3
+ 723 00fe 3B1D     	 add r3,r7,#4
+ 724 0100 5200     	 lsl r2,r2,#1
+ 725 0102 D152     	 strh r1,[r2,r3]
+ 726 0104 42E0     	 b .L28
+ 727              	.L27:
+  72:../CAN.c      **** 				 else if(i == 2) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
+ 728              	 .loc 5 72 0 is_stmt 1
+ 729 0106 1D23     	 mov r3,#29
+ 730 0108 FB18     	 add r3,r7,r3
+ 731 010a 1B78     	 ldrb r3,[r3]
+ 732 010c 022B     	 cmp r3,#2
+ 733 010e 1CD1     	 bne .L29
+ 734              	 .loc 5 72 0 is_stmt 0 discriminator 1
+ 735 0110 1D23     	 mov r3,#29
+ 736 0112 FB18     	 add r3,r7,r3
+ 737 0114 1B78     	 ldrb r3,[r3]
+ 738 0116 5A1E     	 sub r2,r3,#1
+ 739 0118 1D23     	 mov r3,#29
+ 740 011a FB18     	 add r3,r7,r3
+ 741 011c 1B78     	 ldrb r3,[r3]
+ 742 011e 5B00     	 lsl r3,r3,#1
+ 743 0120 0133     	 add r3,r3,#1
+ 744 0122 0C21     	 mov r1,#12
+ 745 0124 7918     	 add r1,r7,r1
+ 746 0126 CB5C     	 ldrb r3,[r1,r3]
+ 747 0128 1B02     	 lsl r3,r3,#8
+ 748 012a 98B2     	 uxth r0,r3
+ 749 012c 1D23     	 mov r3,#29
+ 750 012e FB18     	 add r3,r7,r3
+ 751 0130 1B78     	 ldrb r3,[r3]
+ 752 0132 5B00     	 lsl r3,r3,#1
+ 753 0134 0C21     	 mov r1,#12
+ 754 0136 7918     	 add r1,r7,r1
+ 755 0138 CB5C     	 ldrb r3,[r1,r3]
+ 756 013a 9BB2     	 uxth r3,r3
+ 757 013c 011C     	 add r1,r0,#0
+ 758 013e 0B43     	 orr r3,r1
+ 759 0140 99B2     	 uxth r1,r3
+ 760 0142 3B1D     	 add r3,r7,#4
+ 761 0144 5200     	 lsl r2,r2,#1
+ 762 0146 D152     	 strh r1,[r2,r3]
+ 763 0148 20E0     	 b .L28
+ 764              	.L29:
+  73:../CAN.c      **** 				 else if(i == 3) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
+ 765              	 .loc 5 73 0 is_stmt 1
+ 766 014a 1D23     	 mov r3,#29
+ 767 014c FB18     	 add r3,r7,r3
+ 768 014e 1B78     	 ldrb r3,[r3]
+ 769 0150 032B     	 cmp r3,#3
+ 770 0152 1BD1     	 bne .L28
+ 771              	 .loc 5 73 0 is_stmt 0 discriminator 1
+ 772 0154 1D23     	 mov r3,#29
+ 773 0156 FB18     	 add r3,r7,r3
+ 774 0158 1B78     	 ldrb r3,[r3]
+ 775 015a 5A1E     	 sub r2,r3,#1
+ 776 015c 1D23     	 mov r3,#29
+ 777 015e FB18     	 add r3,r7,r3
+ 778 0160 1B78     	 ldrb r3,[r3]
+ 779 0162 5B00     	 lsl r3,r3,#1
+ 780 0164 0133     	 add r3,r3,#1
+ 781 0166 0C21     	 mov r1,#12
+ 782 0168 7918     	 add r1,r7,r1
+ 783 016a CB5C     	 ldrb r3,[r1,r3]
+ 784 016c 1B02     	 lsl r3,r3,#8
+ 785 016e 98B2     	 uxth r0,r3
+ 786 0170 1D23     	 mov r3,#29
+ 787 0172 FB18     	 add r3,r7,r3
+ 788 0174 1B78     	 ldrb r3,[r3]
+ 789 0176 5B00     	 lsl r3,r3,#1
+ 790 0178 0C21     	 mov r1,#12
+ 791 017a 7918     	 add r1,r7,r1
+ 792 017c CB5C     	 ldrb r3,[r1,r3]
+ 793 017e 9BB2     	 uxth r3,r3
+ 794 0180 011C     	 add r1,r0,#0
+ 795 0182 0B43     	 orr r3,r1
+ 796 0184 99B2     	 uxth r1,r3
+ 797 0186 3B1D     	 add r3,r7,#4
+ 798 0188 5200     	 lsl r2,r2,#1
+ 799 018a D152     	 strh r1,[r2,r3]
+ 800              	.L28:
+  70:../CAN.c      **** 				 if(i == 1) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
+ 801              	 .loc 5 70 0 is_stmt 1 discriminator 2
+ 802 018c 1D23     	 mov r3,#29
+ 803 018e FB18     	 add r3,r7,r3
+ 804 0190 1A78     	 ldrb r2,[r3]
+ 805 0192 1D23     	 mov r3,#29
+ 806 0194 FB18     	 add r3,r7,r3
+ 807 0196 0132     	 add r2,r2,#1
+ 808 0198 1A70     	 strb r2,[r3]
+ 809              	.L26:
+  70:../CAN.c      **** 				 if(i == 1) values_int16[i - 1] = (data_RX[i * 2 + 1] << 8) | data_RX[i * 2];
+ 810              	 .loc 5 70 0 is_stmt 0 discriminator 1
+ 811 019a 1D23     	 mov r3,#29
+ 812 019c FB18     	 add r3,r7,r3
+ 813 019e 1B78     	 ldrb r3,[r3]
+ 814 01a0 032B     	 cmp r3,#3
+ 815 01a2 8ED9     	 bls .L30
+  74:../CAN.c      **** 			 }
+  75:../CAN.c      **** 
+  76:../CAN.c      **** 			Inveter_CAN_OK[Motor_on_rover] = values_int16[0];
+ 816              	 .loc 5 76 0 is_stmt 1
+ 817 01a4 1F23     	 mov r3,#31
+ 818 01a6 FB18     	 add r3,r7,r3
+ 819 01a8 1B78     	 ldrb r3,[r3]
+ 820 01aa 3A1D     	 add r2,r7,#4
+ 821 01ac 1288     	 ldrh r2,[r2]
+ 822 01ae D1B2     	 uxtb r1,r2
+ 823 01b0 204A     	 ldr r2,.L33+8
+ 824 01b2 D154     	 strb r1,[r2,r3]
+  77:../CAN.c      **** 			Actual_Speeds[Motor_on_rover] = (float)values_int16[1] / 1000;
+ 825              	 .loc 5 77 0
+ 826 01b4 1F23     	 mov r3,#31
+ 827 01b6 FB18     	 add r3,r7,r3
+ 828 01b8 1C78     	 ldrb r4,[r3]
+ 829 01ba 3B1D     	 add r3,r7,#4
+ 830 01bc 5B88     	 ldrh r3,[r3,#2]
+ 831 01be 1BB2     	 sxth r3,r3
+ 832 01c0 181C     	 mov r0,r3
+ 833 01c2 FFF7FEFF 	 bl __aeabi_i2f
+ 834 01c6 031C     	 add r3,r0,#0
+ 835 01c8 181C     	 add r0,r3,#0
+ 836 01ca 1B49     	 ldr r1,.L33+12
+ 837 01cc FFF7FEFF 	 bl __aeabi_fdiv
+ 838 01d0 031C     	 add r3,r0,#0
+ 839 01d2 191C     	 add r1,r3,#0
+ 840 01d4 194B     	 ldr r3,.L33+16
+ 841 01d6 A200     	 lsl r2,r4,#2
+ 842 01d8 D150     	 str r1,[r2,r3]
+  78:../CAN.c      **** 			Actual_Distance[Motor_on_rover] = (float)values_int16[2] / 1000;
+ 843              	 .loc 5 78 0
+ 844 01da 1F23     	 mov r3,#31
+ 845 01dc FB18     	 add r3,r7,r3
+ 846 01de 1C78     	 ldrb r4,[r3]
+ 847 01e0 3B1D     	 add r3,r7,#4
+ 848 01e2 9B88     	 ldrh r3,[r3,#4]
+ 849 01e4 1BB2     	 sxth r3,r3
+ 850 01e6 181C     	 mov r0,r3
+ 851 01e8 FFF7FEFF 	 bl __aeabi_i2f
+ 852 01ec 031C     	 add r3,r0,#0
+ 853 01ee 181C     	 add r0,r3,#0
+ 854 01f0 1149     	 ldr r1,.L33+12
+ 855 01f2 FFF7FEFF 	 bl __aeabi_fdiv
+ 856 01f6 031C     	 add r3,r0,#0
+ 857 01f8 191C     	 add r1,r3,#0
+ 858 01fa 114B     	 ldr r3,.L33+20
+ 859 01fc A200     	 lsl r2,r4,#2
+ 860 01fe D150     	 str r1,[r2,r3]
+ 861              	.LBE3:
+ 862 0200 03E0     	 b .L31
+ 863              	.L25:
+  79:../CAN.c      **** 
+  80:../CAN.c      **** 
+  81:../CAN.c      **** 			}
+  82:../CAN.c      **** 		else DIGITAL_IO_SetOutputHigh(&LED_CAN_ERROR);
+ 864              	 .loc 5 82 0
+ 865 0202 0B4B     	 ldr r3,.L33+4
+ 866 0204 181C     	 mov r0,r3
+ 867 0206 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 868              	.L31:
+ 869              	.LBE2:
+  54:../CAN.c      **** 		XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[Motor_on_rover + 2]->mo_ptr;
+ 870              	 .loc 5 54 0 discriminator 1
+ 871 020a 1F23     	 mov r3,#31
+ 872 020c FB18     	 add r3,r7,r3
+ 873 020e 1A78     	 ldrb r2,[r3]
+ 874 0210 1F23     	 mov r3,#31
+ 875 0212 FB18     	 add r3,r7,r3
+ 876 0214 0132     	 add r2,r2,#1
+ 877 0216 1A70     	 strb r2,[r3]
+ 878              	.L22:
+  54:../CAN.c      **** 		XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[Motor_on_rover + 2]->mo_ptr;
+ 879              	 .loc 5 54 0 is_stmt 0 discriminator 2
+ 880 0218 1F23     	 mov r3,#31
+ 881 021a FB18     	 add r3,r7,r3
+ 882 021c 1B78     	 ldrb r3,[r3]
+ 883 021e 032B     	 cmp r3,#3
+ 884 0220 00D8     	 bhi .LCB719
+ 885 0222 F5E6     	 b .L32
+ 886              	.LCB719:
+  83:../CAN.c      **** 	}
+  84:../CAN.c      **** 
+  85:../CAN.c      **** }
+ 887              	 .loc 5 85 0 is_stmt 1
+ 888 0224 BD46     	 mov sp,r7
+ 889 0226 09B0     	 add sp,sp,#36
+ 890              	 
+ 891 0228 90BD     	 pop {r4,r7,pc}
+ 892              	.L34:
+ 893 022a C046     	 .align 2
+ 894              	.L33:
+ 895 022c 00000000 	 .word CAN_NODE_0
+ 896 0230 00000000 	 .word LED_CAN_ERROR
+ 897 0234 00000000 	 .word Inveter_CAN_OK
+ 898 0238 00007A44 	 .word 1148846080
+ 899 023c 00000000 	 .word Actual_Speeds
+ 900 0240 00000000 	 .word Actual_Distance
+ 901              	 .cfi_endproc
+ 902              	.LFE227:
+ 904              	 .section .text.IRQ4_Handler,"ax",%progbits
+ 905              	 .align 2
+ 906              	 .global IRQ4_Handler
+ 907              	 .code 16
+ 908              	 .thumb_func
+ 910              	IRQ4_Handler:
+ 911              	.LFB228:
+  86:../CAN.c      **** 
+  87:../CAN.c      **** 
+  88:../CAN.c      **** void CAN_RX_ULTRASONIC_ISR(void) { // recide data
+ 912              	 .loc 5 88 0
+ 913              	 .cfi_startproc
+ 914 0000 80B5     	 push {r7,lr}
+ 915              	.LCFI27:
+ 916              	 .cfi_def_cfa_offset 8
+ 917              	 .cfi_offset 7,-8
+ 918              	 .cfi_offset 14,-4
+ 919 0002 84B0     	 sub sp,sp,#16
+ 920              	.LCFI28:
+ 921              	 .cfi_def_cfa_offset 24
+ 922 0004 00AF     	 add r7,sp,#0
+ 923              	.LCFI29:
+ 924              	 .cfi_def_cfa_register 7
+  89:../CAN.c      **** 	XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[6]->mo_ptr;
+ 925              	 .loc 5 89 0
+ 926 0006 3A4B     	 ldr r3,.L38
+ 927 0008 5B6A     	 ldr r3,[r3,#36]
+ 928 000a 1B68     	 ldr r3,[r3]
+ 929 000c BB60     	 str r3,[r7,#8]
+  90:../CAN.c      **** 	CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[6]);
+ 930              	 .loc 5 90 0
+ 931 000e 384B     	 ldr r3,.L38
+ 932 0010 5B6A     	 ldr r3,[r3,#36]
+ 933 0012 181C     	 mov r0,r3
+ 934 0014 FFF7FEFF 	 bl CAN_NODE_MO_Receive
   91:../CAN.c      **** 
-  92:../CAN.c      **** void CAN_RX_ULTRASONIC_ISR(void) { // recide data
- 882              	 .loc 5 92 0
- 883              	 .cfi_startproc
- 884 0000 F0B5     	 push {r4,r5,r6,r7,lr}
- 885              	.LCFI27:
- 886              	 .cfi_def_cfa_offset 20
- 887              	 .cfi_offset 4,-20
- 888              	 .cfi_offset 5,-16
- 889              	 .cfi_offset 6,-12
- 890              	 .cfi_offset 7,-8
- 891              	 .cfi_offset 14,-4
- 892 0002 89B0     	 sub sp,sp,#36
- 893              	.LCFI28:
- 894              	 .cfi_def_cfa_offset 56
- 895 0004 02AF     	 add r7,sp,#8
- 896              	.LCFI29:
- 897              	 .cfi_def_cfa 7,48
-  93:../CAN.c      **** 	XMC_CAN_MO_t* lmsgobjct_ptr_1 = CAN_NODE_0.lmobj_ptr[6]->mo_ptr;
- 898              	 .loc 5 93 0
- 899 0006 4C4B     	 ldr r3,.L38
- 900 0008 5B6A     	 ldr r3,[r3,#36]
- 901 000a 1B68     	 ldr r3,[r3]
- 902 000c 3B61     	 str r3,[r7,#16]
-  94:../CAN.c      **** 	CAN_NODE_MO_Receive((void*) CAN_NODE_0.lmobj_ptr[6]);
- 903              	 .loc 5 94 0
- 904 000e 4A4B     	 ldr r3,.L38
- 905 0010 5B6A     	 ldr r3,[r3,#36]
- 906 0012 181C     	 mov r0,r3
- 907 0014 FFF7FEFF 	 bl CAN_NODE_MO_Receive
-  95:../CAN.c      **** 
-  96:../CAN.c      **** 	uint8_t data_RX[8];
-  97:../CAN.c      **** 	uint8_t i;
-  98:../CAN.c      **** 	for(i = 0 ; i < 8 ; i ++){
- 908              	 .loc 5 98 0
- 909 0018 0F23     	 mov r3,#15
- 910 001a 0822     	 mov r2,#8
- 911 001c 9446     	 mov ip,r2
- 912 001e BC44     	 add ip,ip,r7
- 913 0020 6344     	 add r3,r3,ip
- 914 0022 0022     	 mov r2,#0
- 915 0024 1A70     	 strb r2,[r3]
- 916 0026 1EE0     	 b .L36
- 917              	.L37:
-  99:../CAN.c      **** 		 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
- 918              	 .loc 5 99 0 discriminator 3
- 919 0028 0F23     	 mov r3,#15
- 920 002a 0822     	 mov r2,#8
- 921 002c 9446     	 mov ip,r2
- 922 002e BC44     	 add ip,ip,r7
- 923 0030 6344     	 add r3,r3,ip
- 924 0032 1B78     	 ldrb r3,[r3]
- 925 0034 0F22     	 mov r2,#15
- 926 0036 0821     	 mov r1,#8
- 927 0038 8C46     	 mov ip,r1
- 928 003a BC44     	 add ip,ip,r7
- 929 003c 6244     	 add r2,r2,ip
- 930 003e 1278     	 ldrb r2,[r2]
- 931 0040 3969     	 ldr r1,[r7,#16]
- 932 0042 8A18     	 add r2,r1,r2
- 933 0044 117C     	 ldrb r1,[r2,#16]
- 934 0046 0822     	 mov r2,#8
- 935 0048 BA18     	 add r2,r7,r2
- 936 004a D154     	 strb r1,[r2,r3]
-  98:../CAN.c      **** 		 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
- 937              	 .loc 5 98 0 discriminator 3
- 938 004c 0F23     	 mov r3,#15
- 939 004e 0822     	 mov r2,#8
- 940 0050 9446     	 mov ip,r2
- 941 0052 BC44     	 add ip,ip,r7
- 942 0054 6344     	 add r3,r3,ip
- 943 0056 1A78     	 ldrb r2,[r3]
- 944 0058 0F23     	 mov r3,#15
- 945 005a 0821     	 mov r1,#8
- 946 005c 8C46     	 mov ip,r1
- 947 005e BC44     	 add ip,ip,r7
- 948 0060 6344     	 add r3,r3,ip
- 949 0062 0132     	 add r2,r2,#1
- 950 0064 1A70     	 strb r2,[r3]
- 951              	.L36:
-  98:../CAN.c      **** 		 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
- 952              	 .loc 5 98 0 is_stmt 0 discriminator 1
- 953 0066 0F23     	 mov r3,#15
- 954 0068 0822     	 mov r2,#8
- 955 006a 9446     	 mov ip,r2
- 956 006c BC44     	 add ip,ip,r7
- 957 006e 6344     	 add r3,r3,ip
- 958 0070 1B78     	 ldrb r3,[r3]
- 959 0072 072B     	 cmp r3,#7
- 960 0074 D8D9     	 bls .L37
- 100:../CAN.c      **** 	}
- 101:../CAN.c      **** 
- 102:../CAN.c      **** 	CAN_state_Ultrasonic = (data_RX[0 * 2 + 1] << 8) | data_RX[0 * 2];
- 961              	 .loc 5 102 0 is_stmt 1
- 962 0076 0823     	 mov r3,#8
- 963 0078 FB18     	 add r3,r7,r3
- 964 007a 5B78     	 ldrb r3,[r3,#1]
- 965 007c 1B02     	 lsl r3,r3,#8
- 966 007e DAB2     	 uxtb r2,r3
- 967 0080 0823     	 mov r3,#8
- 968 0082 FB18     	 add r3,r7,r3
- 969 0084 1B78     	 ldrb r3,[r3]
- 970 0086 DBB2     	 uxtb r3,r3
- 971 0088 1343     	 orr r3,r2
- 972 008a DBB2     	 uxtb r3,r3
- 973 008c DAB2     	 uxtb r2,r3
- 974 008e 2B4B     	 ldr r3,.L38+4
- 975 0090 1A70     	 strb r2,[r3]
- 103:../CAN.c      **** 	Ultrasonic_cm_C = (data_RX[1 * 2 + 1] << 8) | data_RX[1 * 2];
- 976              	 .loc 5 103 0
- 977 0092 0823     	 mov r3,#8
- 978 0094 FB18     	 add r3,r7,r3
- 979 0096 DB78     	 ldrb r3,[r3,#3]
- 980 0098 1B02     	 lsl r3,r3,#8
- 981 009a 9AB2     	 uxth r2,r3
- 982 009c 0823     	 mov r3,#8
- 983 009e FB18     	 add r3,r7,r3
- 984 00a0 9B78     	 ldrb r3,[r3,#2]
- 985 00a2 9BB2     	 uxth r3,r3
- 986 00a4 1343     	 orr r3,r2
- 987 00a6 9BB2     	 uxth r3,r3
- 988 00a8 9AB2     	 uxth r2,r3
- 989 00aa 254B     	 ldr r3,.L38+8
- 990 00ac 1A80     	 strh r2,[r3]
- 104:../CAN.c      **** 	Ultrasonic_cm_L = (data_RX[2 * 2 + 1] << 8) | data_RX[2 * 2];
- 991              	 .loc 5 104 0
- 992 00ae 0823     	 mov r3,#8
- 993 00b0 FB18     	 add r3,r7,r3
- 994 00b2 5B79     	 ldrb r3,[r3,#5]
- 995 00b4 1B02     	 lsl r3,r3,#8
- 996 00b6 9AB2     	 uxth r2,r3
- 997 00b8 0823     	 mov r3,#8
- 998 00ba FB18     	 add r3,r7,r3
- 999 00bc 1B79     	 ldrb r3,[r3,#4]
- 1000 00be 9BB2     	 uxth r3,r3
- 1001 00c0 1343     	 orr r3,r2
- 1002 00c2 9BB2     	 uxth r3,r3
- 1003 00c4 9AB2     	 uxth r2,r3
- 1004 00c6 1F4B     	 ldr r3,.L38+12
- 1005 00c8 1A80     	 strh r2,[r3]
- 105:../CAN.c      **** 	Ultrasonic_cm_R = (data_RX[3 * 2 + 1] << 8) | data_RX[3 * 2];
- 1006              	 .loc 5 105 0
- 1007 00ca 0823     	 mov r3,#8
- 1008 00cc FB18     	 add r3,r7,r3
- 1009 00ce DB79     	 ldrb r3,[r3,#7]
- 1010 00d0 1B02     	 lsl r3,r3,#8
- 1011 00d2 9AB2     	 uxth r2,r3
- 1012 00d4 0823     	 mov r3,#8
- 1013 00d6 FB18     	 add r3,r7,r3
- 1014 00d8 9B79     	 ldrb r3,[r3,#6]
- 1015 00da 9BB2     	 uxth r3,r3
- 1016 00dc 1343     	 orr r3,r2
- 1017 00de 9BB2     	 uxth r3,r3
- 1018 00e0 9AB2     	 uxth r2,r3
- 1019 00e2 194B     	 ldr r3,.L38+16
- 1020 00e4 1A80     	 strh r2,[r3]
+  92:../CAN.c      **** 	uint8_t data_RX[8];
+  93:../CAN.c      **** 	uint8_t i;
+  94:../CAN.c      **** 	for(i = 0 ; i < 8 ; i ++){
+ 935              	 .loc 5 94 0
+ 936 0018 0F23     	 mov r3,#15
+ 937 001a FB18     	 add r3,r7,r3
+ 938 001c 0022     	 mov r2,#0
+ 939 001e 1A70     	 strb r2,[r3]
+ 940 0020 11E0     	 b .L36
+ 941              	.L37:
+  95:../CAN.c      **** 		 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
+ 942              	 .loc 5 95 0 discriminator 3
+ 943 0022 0F23     	 mov r3,#15
+ 944 0024 FB18     	 add r3,r7,r3
+ 945 0026 1B78     	 ldrb r3,[r3]
+ 946 0028 0F22     	 mov r2,#15
+ 947 002a BA18     	 add r2,r7,r2
+ 948 002c 1278     	 ldrb r2,[r2]
+ 949 002e B968     	 ldr r1,[r7,#8]
+ 950 0030 8A18     	 add r2,r1,r2
+ 951 0032 117C     	 ldrb r1,[r2,#16]
+ 952 0034 3A1C     	 mov r2,r7
+ 953 0036 D154     	 strb r1,[r2,r3]
+  94:../CAN.c      **** 		 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
+ 954              	 .loc 5 94 0 discriminator 3
+ 955 0038 0F23     	 mov r3,#15
+ 956 003a FB18     	 add r3,r7,r3
+ 957 003c 1A78     	 ldrb r2,[r3]
+ 958 003e 0F23     	 mov r3,#15
+ 959 0040 FB18     	 add r3,r7,r3
+ 960 0042 0132     	 add r2,r2,#1
+ 961 0044 1A70     	 strb r2,[r3]
+ 962              	.L36:
+  94:../CAN.c      **** 		 data_RX[i] = lmsgobjct_ptr_1->can_data_byte[i];
+ 963              	 .loc 5 94 0 is_stmt 0 discriminator 1
+ 964 0046 0F23     	 mov r3,#15
+ 965 0048 FB18     	 add r3,r7,r3
+ 966 004a 1B78     	 ldrb r3,[r3]
+ 967 004c 072B     	 cmp r3,#7
+ 968 004e E8D9     	 bls .L37
+  96:../CAN.c      **** 	}
+  97:../CAN.c      **** 
+  98:../CAN.c      **** 	CAN_state_Ultrasonic = (data_RX[0 * 2 + 1] << 8) | data_RX[0 * 2];
+ 969              	 .loc 5 98 0 is_stmt 1
+ 970 0050 3B1C     	 mov r3,r7
+ 971 0052 5B78     	 ldrb r3,[r3,#1]
+ 972 0054 1B02     	 lsl r3,r3,#8
+ 973 0056 DAB2     	 uxtb r2,r3
+ 974 0058 3B1C     	 mov r3,r7
+ 975 005a 1B78     	 ldrb r3,[r3]
+ 976 005c DBB2     	 uxtb r3,r3
+ 977 005e 1343     	 orr r3,r2
+ 978 0060 DBB2     	 uxtb r3,r3
+ 979 0062 DAB2     	 uxtb r2,r3
+ 980 0064 234B     	 ldr r3,.L38+4
+ 981 0066 1A70     	 strb r2,[r3]
+  99:../CAN.c      **** 	Ultrasonic_cm_C = (data_RX[1 * 2 + 1] << 8) | data_RX[1 * 2];
+ 982              	 .loc 5 99 0
+ 983 0068 3B1C     	 mov r3,r7
+ 984 006a DB78     	 ldrb r3,[r3,#3]
+ 985 006c 1B02     	 lsl r3,r3,#8
+ 986 006e 9AB2     	 uxth r2,r3
+ 987 0070 3B1C     	 mov r3,r7
+ 988 0072 9B78     	 ldrb r3,[r3,#2]
+ 989 0074 9BB2     	 uxth r3,r3
+ 990 0076 1343     	 orr r3,r2
+ 991 0078 9BB2     	 uxth r3,r3
+ 992 007a 9AB2     	 uxth r2,r3
+ 993 007c 1E4B     	 ldr r3,.L38+8
+ 994 007e 1A80     	 strh r2,[r3]
+ 100:../CAN.c      **** 	Ultrasonic_cm_L = (data_RX[2 * 2 + 1] << 8) | data_RX[2 * 2];
+ 995              	 .loc 5 100 0
+ 996 0080 3B1C     	 mov r3,r7
+ 997 0082 5B79     	 ldrb r3,[r3,#5]
+ 998 0084 1B02     	 lsl r3,r3,#8
+ 999 0086 9AB2     	 uxth r2,r3
+ 1000 0088 3B1C     	 mov r3,r7
+ 1001 008a 1B79     	 ldrb r3,[r3,#4]
+ 1002 008c 9BB2     	 uxth r3,r3
+ 1003 008e 1343     	 orr r3,r2
+ 1004 0090 9BB2     	 uxth r3,r3
+ 1005 0092 9AB2     	 uxth r2,r3
+ 1006 0094 194B     	 ldr r3,.L38+12
+ 1007 0096 1A80     	 strh r2,[r3]
+ 101:../CAN.c      **** 	Ultrasonic_cm_R = (data_RX[3 * 2 + 1] << 8) | data_RX[3 * 2];
+ 1008              	 .loc 5 101 0
+ 1009 0098 3B1C     	 mov r3,r7
+ 1010 009a DB79     	 ldrb r3,[r3,#7]
+ 1011 009c 1B02     	 lsl r3,r3,#8
+ 1012 009e 9AB2     	 uxth r2,r3
+ 1013 00a0 3B1C     	 mov r3,r7
+ 1014 00a2 9B79     	 ldrb r3,[r3,#6]
+ 1015 00a4 9BB2     	 uxth r3,r3
+ 1016 00a6 1343     	 orr r3,r2
+ 1017 00a8 9BB2     	 uxth r3,r3
+ 1018 00aa 9AB2     	 uxth r2,r3
+ 1019 00ac 144B     	 ldr r3,.L38+16
+ 1020 00ae 1A80     	 strh r2,[r3]
+ 102:../CAN.c      **** 
+ 103:../CAN.c      **** 	Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,   ALPHA_ULTARSONIC);
+ 1021              	 .loc 5 103 0
+ 1022 00b0 114B     	 ldr r3,.L38+8
+ 1023 00b2 1B88     	 ldrh r3,[r3]
+ 1024 00b4 9BB2     	 uxth r3,r3
+ 1025 00b6 98B2     	 uxth r0,r3
+ 1026 00b8 104B     	 ldr r3,.L38+12
+ 1027 00ba 1B88     	 ldrh r3,[r3]
+ 1028 00bc 9BB2     	 uxth r3,r3
+ 1029 00be 99B2     	 uxth r1,r3
+ 1030 00c0 0F4B     	 ldr r3,.L38+16
+ 1031 00c2 1B88     	 ldrh r3,[r3]
+ 1032 00c4 9BB2     	 uxth r3,r3
+ 1033 00c6 9AB2     	 uxth r2,r3
+ 1034 00c8 0E4B     	 ldr r3,.L38+20
+ 1035 00ca 1B68     	 ldr r3,[r3]
+ 1036 00cc 00B2     	 sxth r0,r0
+ 1037 00ce 09B2     	 sxth r1,r1
+ 1038 00d0 12B2     	 sxth r2,r2
+ 1039 00d2 FFF7FEFF 	 bl Ultra_sonic_filter
+ 104:../CAN.c      **** 
+ 105:../CAN.c      **** 	CAN_Ultrasonic_No_messasge_count = 0;
+ 1040              	 .loc 5 105 0
+ 1041 00d6 0C4B     	 ldr r3,.L38+24
+ 1042 00d8 0022     	 mov r2,#0
+ 1043 00da 1A70     	 strb r2,[r3]
  106:../CAN.c      **** 
- 107:../CAN.c      **** 	Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_U
- 1021              	 .loc 5 107 0
- 1022 00e6 164B     	 ldr r3,.L38+8
- 1023 00e8 1B88     	 ldrh r3,[r3]
- 1024 00ea 9BB2     	 uxth r3,r3
- 1025 00ec 7B60     	 str r3,[r7,#4]
- 1026 00ee 154B     	 ldr r3,.L38+12
- 1027 00f0 1B88     	 ldrh r3,[r3]
- 1028 00f2 9BB2     	 uxth r3,r3
- 1029 00f4 3B60     	 str r3,[r7]
- 1030 00f6 144B     	 ldr r3,.L38+16
- 1031 00f8 1B88     	 ldrh r3,[r3]
- 1032 00fa 9BB2     	 uxth r3,r3
- 1033 00fc 1E1C     	 mov r6,r3
- 1034 00fe 134B     	 ldr r3,.L38+20
- 1035 0100 1B68     	 ldr r3,[r3]
- 1036 0102 181C     	 add r0,r3,#0
- 1037 0104 FFF7FEFF 	 bl __aeabi_f2d
- 1038 0108 031C     	 mov r3,r0
- 1039 010a 0C1C     	 mov r4,r1
- 1040 010c 104D     	 ldr r5,.L38+24
- 1041 010e 0093     	 str r3,[sp]
- 1042 0110 0194     	 str r4,[sp,#4]
- 1043 0112 7868     	 ldr r0,[r7,#4]
- 1044 0114 3968     	 ldr r1,[r7]
- 1045 0116 321C     	 mov r2,r6
- 1046 0118 2B1C     	 mov r3,r5
- 1047 011a FFF7FEFF 	 bl Ultra_sonic_filter
- 108:../CAN.c      **** 
- 109:../CAN.c      **** 	CAN_Ultrasonic_No_messasge_count = 0;
- 1048              	 .loc 5 109 0
- 1049 011e 0D4B     	 ldr r3,.L38+28
- 1050 0120 0022     	 mov r2,#0
- 1051 0122 1A70     	 strb r2,[r3]
- 110:../CAN.c      **** 
- 111:../CAN.c      **** 	WATCHDOG_Service();
- 1052              	 .loc 5 111 0
- 1053 0124 FFF7FEFF 	 bl WATCHDOG_Service
- 112:../CAN.c      **** 	DIGITAL_IO_SetOutputLow(&WATCHDOG_LED_BLUE);
- 1054              	 .loc 5 112 0
- 1055 0128 0B4B     	 ldr r3,.L38+32
- 1056 012a 181C     	 mov r0,r3
- 1057 012c FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 113:../CAN.c      **** }
- 1058              	 .loc 5 113 0
- 1059 0130 BD46     	 mov sp,r7
- 1060 0132 07B0     	 add sp,sp,#28
- 1061              	 
- 1062 0134 F0BD     	 pop {r4,r5,r6,r7,pc}
- 1063              	.L39:
- 1064 0136 C046     	 .align 2
- 1065              	.L38:
- 1066 0138 00000000 	 .word CAN_NODE_0
- 1067 013c 00000000 	 .word CAN_state_Ultrasonic
- 1068 0140 00000000 	 .word Ultrasonic_cm_C
- 1069 0144 00000000 	 .word Ultrasonic_cm_L
- 1070 0148 00000000 	 .word Ultrasonic_cm_R
- 1071 014c 00000000 	 .word ALPHA_ULTARSONIC
- 1072 0150 00000000 	 .word Steering_Angles
- 1073 0154 00000000 	 .word CAN_Ultrasonic_No_messasge_count
- 1074 0158 00000000 	 .word WATCHDOG_LED_BLUE
- 1075              	 .cfi_endproc
- 1076              	.LFE228:
- 1078              	 .text
- 1079              	.Letext0:
- 1080              	 .file 6 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 1081              	 .file 7 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 1082              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
- 1083              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_can.h"
- 1084              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CAN/global_can.h"
- 1085              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
- 1086              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node.h"
- 1087              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 1088              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 1089              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node_extern.h"
- 1090              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
- 1091              	 .file 17 "../Globals.h"
+ 107:../CAN.c      **** 	WATCHDOG_Service();
+ 1044              	 .loc 5 107 0
+ 1045 00dc FFF7FEFF 	 bl WATCHDOG_Service
+ 108:../CAN.c      **** 	DIGITAL_IO_SetOutputLow(&WATCHDOG_LED_BLUE);
+ 1046              	 .loc 5 108 0
+ 1047 00e0 0A4B     	 ldr r3,.L38+28
+ 1048 00e2 181C     	 mov r0,r3
+ 1049 00e4 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 109:../CAN.c      **** }
+ 1050              	 .loc 5 109 0
+ 1051 00e8 BD46     	 mov sp,r7
+ 1052 00ea 04B0     	 add sp,sp,#16
+ 1053              	 
+ 1054 00ec 80BD     	 pop {r7,pc}
+ 1055              	.L39:
+ 1056 00ee C046     	 .align 2
+ 1057              	.L38:
+ 1058 00f0 00000000 	 .word CAN_NODE_0
+ 1059 00f4 00000000 	 .word CAN_state_Ultrasonic
+ 1060 00f8 00000000 	 .word Ultrasonic_cm_C
+ 1061 00fc 00000000 	 .word Ultrasonic_cm_L
+ 1062 0100 00000000 	 .word Ultrasonic_cm_R
+ 1063 0104 00000000 	 .word ALPHA_ULTARSONIC
+ 1064 0108 00000000 	 .word CAN_Ultrasonic_No_messasge_count
+ 1065 010c 00000000 	 .word WATCHDOG_LED_BLUE
+ 1066              	 .cfi_endproc
+ 1067              	.LFE228:
+ 1069              	 .text
+ 1070              	.Letext0:
+ 1071              	 .file 6 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1072              	 .file 7 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 1073              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 1074              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_can.h"
+ 1075              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 1076              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 1077              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node.h"
+ 1078              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 1079              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 1080              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node_extern.h"
+ 1081              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 1082              	 .file 17 "../Globals.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 CAN.c
     {standard input}:18     .text.XMC_GPIO_SetOutputHigh:00000000 $t
@@ -2597,21 +2574,30 @@ DEFINED SYMBOLS
     {standard input}:264    .bss.Inveter_CAN_OK:00000000 $d
     {standard input}:273    .bss.CAN_RX_Inverter_count:00000000 CAN_RX_Inverter_count
     {standard input}:274    .bss.CAN_RX_Inverter_count:00000000 $d
-    {standard input}:276    .text.CAN_reset_distance:00000000 $t
-    {standard input}:281    .text.CAN_reset_distance:00000000 CAN_reset_distance
-    {standard input}:360    .text.CAN_reset_distance:00000070 $d
-    {standard input}:367    .text.CAN_send_Speeds:00000000 $t
-    {standard input}:372    .text.CAN_send_Speeds:00000000 CAN_send_Speeds
-    {standard input}:465    .text.CAN_send_Speeds:000000a8 $d
-    {standard input}:471    .text.IRQ3_Handler:00000000 $t
-    {standard input}:476    .text.IRQ3_Handler:00000000 IRQ3_Handler
-    {standard input}:533    .text.CAN_RX_Inverter_Read_Data:00000000 CAN_RX_Inverter_Read_Data
-    {standard input}:520    .text.IRQ3_Handler:00000030 $d
-    {standard input}:528    .text.CAN_RX_Inverter_Read_Data:00000000 $t
-    {standard input}:864    .text.CAN_RX_Inverter_Read_Data:0000022c $d
-    {standard input}:875    .text.IRQ4_Handler:00000000 $t
-    {standard input}:880    .text.IRQ4_Handler:00000000 IRQ4_Handler
-    {standard input}:1066   .text.IRQ4_Handler:00000138 $d
+    {standard input}:279    .data.CAN_Ultrasonic_No_messasge_count:00000000 CAN_Ultrasonic_No_messasge_count
+    {standard input}:285    .bss.CAN_state_Ultrasonic:00000000 CAN_state_Ultrasonic
+    {standard input}:286    .bss.CAN_state_Ultrasonic:00000000 $d
+    {standard input}:292    .bss.Ultrasonic_cm_C:00000000 Ultrasonic_cm_C
+    {standard input}:289    .bss.Ultrasonic_cm_C:00000000 $d
+    {standard input}:299    .bss.Ultrasonic_cm_L:00000000 Ultrasonic_cm_L
+    {standard input}:296    .bss.Ultrasonic_cm_L:00000000 $d
+    {standard input}:306    .bss.Ultrasonic_cm_R:00000000 Ultrasonic_cm_R
+    {standard input}:303    .bss.Ultrasonic_cm_R:00000000 $d
+    {standard input}:309    .text.CAN_reset_distance:00000000 $t
+    {standard input}:314    .text.CAN_reset_distance:00000000 CAN_reset_distance
+    {standard input}:393    .text.CAN_reset_distance:00000070 $d
+    {standard input}:400    .text.CAN_send_Speeds:00000000 $t
+    {standard input}:405    .text.CAN_send_Speeds:00000000 CAN_send_Speeds
+    {standard input}:498    .text.CAN_send_Speeds:000000a8 $d
+    {standard input}:504    .text.IRQ3_Handler:00000000 $t
+    {standard input}:509    .text.IRQ3_Handler:00000000 IRQ3_Handler
+    {standard input}:564    .text.CAN_RX_Inverter_Read_Data:00000000 CAN_RX_Inverter_Read_Data
+    {standard input}:551    .text.IRQ3_Handler:00000030 $d
+    {standard input}:559    .text.CAN_RX_Inverter_Read_Data:00000000 $t
+    {standard input}:895    .text.CAN_RX_Inverter_Read_Data:0000022c $d
+    {standard input}:905    .text.IRQ4_Handler:00000000 $t
+    {standard input}:910    .text.IRQ4_Handler:00000000 IRQ4_Handler
+    {standard input}:1058   .text.IRQ4_Handler:000000f0 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -2627,12 +2613,5 @@ CAN_NODE_MO_Receive
 LED_CAN_ERROR
 Actual_Speeds
 Actual_Distance
-__aeabi_f2d
 Ultra_sonic_filter
-CAN_state_Ultrasonic
-Ultrasonic_cm_C
-Ultrasonic_cm_L
-Ultrasonic_cm_R
 ALPHA_ULTARSONIC
-Steering_Angles
-CAN_Ultrasonic_No_messasge_count

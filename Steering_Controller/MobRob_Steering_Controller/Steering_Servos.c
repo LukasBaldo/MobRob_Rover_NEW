@@ -15,16 +15,14 @@ void Steering_set_Angles(float Angles_data[4]){
 	float deg_PWM = 0.645; // deg to PWM singlan converstion factor
 
 	// calcuation of PWM for Angle on each wheel
-	int i;
-	for(i = 0 ; i < 4 ; i ++){
-		Servo_PWMs[i] = Angles_data[i]*deg_PWM + NP[i];
-		}
 
-	//limitinbg max servor Angle to 1.75 rot in each dirction
-	for(i = 0 ; i < 4 ; i ++){
+	for(uint8_t i = 0 ; i < 4 ; i ++){
+		Servo_PWMs[i] = -Angles_data[i]*deg_PWM + NP[i];
+
+		//limitinbg max servor Angle to 1.75 rot in each dirction
 		if(Servo_PWMs[i] > 950) { Servo_PWMs[i] = 950;}
 		if(Servo_PWMs[i] < 550) { Servo_PWMs[i] = 550;}
-	}
+		}
 
 	//seting PWM values
 	PWM_SetDutyCycle(&PWM_servo_fl,Servo_PWMs[0]);

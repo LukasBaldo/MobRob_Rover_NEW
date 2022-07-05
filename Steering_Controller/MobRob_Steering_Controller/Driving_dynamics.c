@@ -4,13 +4,8 @@
  *  Created on: 1 Jul 2022
  *      Author: lukas
  */
-
-#include <stdint.h> // need for data types
-#include "Globals.h"
-#include "DEFINE_CONST.h"
-#include <math.h>
 #include "Driving_dynamics.h"
-#include <DAVE.h>
+
 
 #define ROTATION_ANGLE 53.96
 #define ROTATION_ANGLE_OFFSET 5
@@ -20,7 +15,10 @@ float R_Turn;
 float Speed_ratio;
 
 float speed_fl = 0, speed_fr = 0, speed_rl = 0, speed_rr = 0; // in m/s
-float angle_fl = 0, angle_fr = 0, angle_rl = 0, angle_rr = 0; // in deg  0 straing ahead stering right positive left negative
+float angle_fl = 0, angle_fr = 0, angle_rl = 0, angle_rr = 0; // in deg  0 straing ahead stering left positive right negative
+
+float trajctory_x = 0, trajctory_y = 0;
+float avg_Speeds =0 ;
 
 
 void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, uint8_t Steering_mode_cal){
@@ -200,6 +198,7 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
 			 speed_fr = Driving_speed_cal;
 			 speed_rl = Driving_speed_cal;
 			 speed_rr = Driving_speed_cal;
+
 			break;
 
 		case ROTATE: // rotate #############################################################
@@ -253,6 +252,47 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
   Speeds[2] = speed_rl;
   Speeds[3] = speed_rr;
 
+}
+
+
+void Trajcetory_calc(){
+
+	avg_Speeds = average(Speeds,4);
+
+	switch(Steering_mode) // options 'Front'; 'Rear'; '4_Wheel'; 'Carb'; 'Rotate'
+		{
+			case FRONT://#############################################################
+				//trajctory_x =
+				break;
+
+			case BACK:// rear #############################################################
+
+
+			case ALL_WHEEL: // 4 wheel #############################################################
+
+				break;
+
+			case CRAB:  //carb //#############################################################
+				trajctory_x = avg_Speeds * cos(Steering_Angles[0] / RAD_TO_DEG);
+				trajctory_y = avg_Speeds * sin(Steering_Angles[0] / RAD_TO_DEG);
+
+
+				break;
+
+			case ROTATE: // rotate ############################################################
+
+				break;
+
+			default :
+
+			trajctory_x = 0;
+			trajctory_y = 0;
+		}
+
+	//trajectory_angle = angel_of_2D_vetor_deg(Trajctory); // atan(trajctory_x / trajctory_y) / RAD_TO_DEG;
+	Trajctory[0] = trajctory_x;
+	Trajctory[1] = trajctory_y;
+	trajectory_angle = atan2(trajctory_y,trajctory_x) * RAD_TO_DEG;
 }
 
 

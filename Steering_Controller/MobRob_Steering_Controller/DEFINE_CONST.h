@@ -8,13 +8,10 @@
 #ifndef DEFINE_CONST_H_
 #define DEFINE_CONST_H_
 
-#define MIN_Speed  0.05
-#define MAX_Speed  1
-
 //#define PI180 0.01745329
 #define PI 3.14
 #define HALF_PI 1.57
-#define RAD_TO_DEG 57.296
+#define RAD_TO_DEG 57.297795
 
 // steering parameter
 //const float WHEEL_BASE = 0.448;

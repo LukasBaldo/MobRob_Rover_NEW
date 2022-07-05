@@ -51,7 +51,7 @@ void RC_Recive(void){
 	else RC_Speed = 0;
 
 	if((captured_time_Steering >= 1000000) && (captured_time_Steering <= 2000000)){
-	  RC_Steering = (((double)captured_time_Steering - RC_NP_STEERING) * RC_Steering_ns_to_deg); // form +-90m/s
+	  RC_Steering = -(((double)captured_time_Steering - RC_NP_STEERING) * RC_Steering_ns_to_deg); // form +-90m/s
 	  if((RC_Steering < 2) && (RC_Steering > -2)) RC_Steering = 0; // to have accutal 0
 	  RC_no_Steering_data_counter = 0;
 	}

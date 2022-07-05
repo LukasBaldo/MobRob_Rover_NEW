@@ -1,11 +1,12 @@
 /*
  * CAN.c
+
  *
  *  Created on: 1 Jul 2022
  *      Author: lukas
  */
-#include "DAVE.h"
-#include "Globals.h"
+#include "CAN.h"
+
 
 //float speed_fl_act = 0, speed_fr_act = 0, speed_rl_act = 0, speed_rr_act = 0; // in m/s
 float distance_fl_act = 0, distance_fr_act = 0;
@@ -14,6 +15,13 @@ float distance_rr_act = 0; // in m/s
 
 volatile uint8_t Inveter_CAN_OK[4] = {0};
 volatile uint8_t CAN_RX_Inverter_count = 0;
+
+
+volatile uint8_t CAN_Ultrasonic_No_messasge_count = 100;
+volatile uint8_t CAN_state_Ultrasonic = 0;
+volatile uint16_t Ultrasonic_cm_C = 0;
+volatile uint16_t Ultrasonic_cm_L = 0;
+volatile uint16_t Ultrasonic_cm_R = 0;
 
 void CAN_reset_distance(uint8_t distance_to_reset[4]){
 	uint8_t TX[8] ={0};
@@ -74,18 +82,6 @@ void CAN_RX_Inverter_Read_Data(){
 		else DIGITAL_IO_SetOutputHigh(&LED_CAN_ERROR);
 	}
 
-	/*
-	speed_fl_act = Actual_Speeds[0];
-	speed_fr_act = Actual_Speeds[1];
-	speed_rl_act = Actual_Speeds[2];
-	speed_rr_act = Actual_Speeds[3];
-
-	distance_fl_act = Actual_Distance[0];
-	distance_fr_act = Actual_Distance[1];
-	distance_rl_act = Actual_Distance[2];
-	distance_rr_act = Actual_Distance[3];
-	*/
-
 }
 
 
@@ -104,7 +100,7 @@ void CAN_RX_ULTRASONIC_ISR(void) { // recide data
 	Ultrasonic_cm_L = (data_RX[2 * 2 + 1] << 8) | data_RX[2 * 2];
 	Ultrasonic_cm_R = (data_RX[3 * 2 + 1] << 8) | data_RX[3 * 2];
 
-	Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,  Steering_Angles,  ALPHA_ULTARSONIC);
+	Ultra_sonic_filter(Ultrasonic_cm_C,  Ultrasonic_cm_L,  Ultrasonic_cm_R,   ALPHA_ULTARSONIC);
 
 	CAN_Ultrasonic_No_messasge_count = 0;
 

@@ -69,8 +69,8 @@ main.o main.d main.o: ../main.c \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_extern.h \
  ../Globals.h ../other_functions.h ../Steering_servos.h \
- ../Driving_dynamics.h ../CAN.h ../Ultrasonic_Collision_Avoidance.h \
- ../RC_data_recive.h
+ ../Driving_dynamics.h ../DEFINE_CONST.h ../CAN.h \
+ ../Ultrasonic_Collision_Avoidance.h ../RC_data_recive.h
 
 C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DAVE.h:
 
@@ -217,6 +217,8 @@ C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/G
 ../Steering_servos.h:
 
 ../Driving_dynamics.h:
+
+../DEFINE_CONST.h:
 
 ../CAN.h:
 

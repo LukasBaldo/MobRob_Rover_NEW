@@ -1,4 +1,4 @@
-CAN.o CAN.d CAN.o: ../CAN.c \
+CAN.o CAN.d CAN.o: ../CAN.c ../CAN.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DAVE.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_common.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_device.h \
@@ -68,7 +68,9 @@ CAN.o CAN.d CAN.o: ../CAN.c \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_conf.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_extern.h \
- ../Globals.h
+ ../Globals.h ../Ultrasonic_Collision_Avoidance.h ../other_functions.h
+
+../CAN.h:
 
 C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DAVE.h:
 
@@ -209,3 +211,7 @@ C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/G
 C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_extern.h:
 
 ../Globals.h:
+
+../Ultrasonic_Collision_Avoidance.h:
+
+../other_functions.h:
