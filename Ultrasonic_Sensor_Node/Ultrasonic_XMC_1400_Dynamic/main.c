@@ -35,6 +35,11 @@ volatile uint16_t distance_L = 0; //in cm
 volatile uint16_t distance_R = 0; //in cm
 
 
+float avg_distance_C = 0; //in cm
+float avg_distance_L = 0; //in cm
+float avg_distance_R = 0; //in cm
+#define ALPHA_DISTANCE 0.8
+
 //diagnostics
 volatile uint32_t restet_count = 0;
 volatile uint32_t sample_count = 0;
@@ -55,6 +60,8 @@ volatile enum SENSORS Now_Sensor = CENTER;
 
 void reset();
 void CAN_send_values();
+void avg_distances();
+float Exp_moving_average(float new_value, float value, float ALPHA);
 bool within_MAX_MIN_check_int(int x, int MAX, int MIN);
 uint16_t saturation_to_MIN_MAX(uint16_t value, uint16_t MAX, uint16_t MIN);
 
@@ -135,12 +142,12 @@ void reset(){
 	echo_count_control = 0;
 	echo_t_10us = 0;
 	reset_at = MAX_RESET;
-	//distance = 0;
 
 	//switch to next sensor
 	Now_Sensor = Now_Sensor << 1;
 	if(Now_Sensor > NUM_SENSORS){
 		Now_Sensor = CENTER;
+		avg_distances();
 		CAN_send_values(); //send results
 	}
 	// sampelr rater counter
@@ -227,6 +234,17 @@ void CAN_send_values(){
 
 	// reset
 	distance_C = 0;
-	//distance_L = 0;
-	//distance_R = 0;
+	distance_L = 0;
+	distance_R = 0;
+}
+
+void avg_distances(){
+	if(distance_C != 0) avg_distance_C = Exp_moving_average((float)distance_C,avg_distance_C,ALPHA_DISTANCE);
+	if(distance_L != 0) avg_distance_L = Exp_moving_average((float)distance_L,avg_distance_L,ALPHA_DISTANCE);
+	if(distance_R != 0) avg_distance_R = Exp_moving_average((float)distance_R,avg_distance_R,ALPHA_DISTANCE);
+}
+
+
+float Exp_moving_average(float new_value, float value, float ALPHA){
+	return ((new_value * ALPHA) + ((1 - ALPHA) * value));
 }

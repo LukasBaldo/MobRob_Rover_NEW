@@ -7472,3 +7472,271 @@ makefile:86: recipe for target 'clean' failed
 "C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
 'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
 
+10:17:47 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  14616	    184	   1108	  15908	   3e24	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+10:40:04 **** Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'agv_distances':
+'Building file: ../main.c'
+../main.c:241:2: warning: implicit declaration of function 'Exp_moving_average' [-Wimplicit-function-declaration]
+'Invoking: ARM-GCC C Compiler'
+  if(distance_C != 0) avg_distance_C = Exp_moving_average((float)distance_C,avg_distance_C,ALPHA);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  ^
+subdir.mk:18: recipe for target 'main.o' failed
+../main.c: At top level:
+../main.c:40:15: error: expected ';', ',' or ')' before numeric constant
+ #define ALPHA 0.3
+               ^
+../main.c:247:62: note: in expansion of macro 'ALPHA'
+ float Exp_moving_average(float new_value, float value, float ALPHA){
+                                                              ^
+make: *** [main.o] Error 1
+10:40:32 **** Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'agv_distances':
+'Invoking: ARM-GCC C Compiler'
+../main.c:241:2: warning: implicit declaration of function 'Exp_moving_average' [-Wimplicit-function-declaration]
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  if(distance_C != 0) avg_distance_C = Exp_moving_average((float)distance_C,avg_distance_C,ALPHA));
+subdir.mk:18: recipe for target 'main.o' failed
+  ^
+../main.c:241:97: error: expected ';' before ')' token
+  if(distance_C != 0) avg_distance_C = Exp_moving_average((float)distance_C,avg_distance_C,ALPHA));
+                                                                                                 ^
+../main.c:241:97: error: expected statement before ')' token
+../main.c:242:97: error: expected ';' before ')' token
+  if(distance_L != 0) avg_distance_L = Exp_moving_average((float)distance_L,avg_distance_L,ALPHA));
+                                                                                                 ^
+../main.c:242:97: error: expected statement before ')' token
+../main.c:243:97: error: expected ';' before ')' token
+  if(distance_R != 0) avg_distance_R = Exp_moving_average((float)distance_R,avg_distance_R,ALPHA));
+                                                                                                 ^
+../main.c:243:97: error: expected statement before ')' token
+../main.c: At top level:
+../main.c:40:15: error: expected ';', ',' or ')' before numeric constant
+ #define ALPHA 0.3
+               ^
+../main.c:247:62: note: in expansion of macro 'ALPHA'
+ float Exp_moving_average(float new_value, float value, float ALPHA){
+                                                              ^
+make: *** [main.o] Error 1
+10:40:53 **** Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'agv_distances':
+'Invoking: ARM-GCC C Compiler'
+../main.c:241:2: warning: implicit declaration of function 'Exp_moving_average' [-Wimplicit-function-declaration]
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  if(distance_C != 0) avg_distance_C = Exp_moving_average((float)distance_C,avg_distance_C,ALPHA);
+subdir.mk:18: recipe for target 'main.o' failed
+  ^
+../main.c:242:97: error: expected ';' before ')' token
+  if(distance_L != 0) avg_distance_L = Exp_moving_average((float)distance_L,avg_distance_L,ALPHA));
+                                                                                                 ^
+../main.c:242:97: error: expected statement before ')' token
+../main.c:243:97: error: expected ';' before ')' token
+  if(distance_R != 0) avg_distance_R = Exp_moving_average((float)distance_R,avg_distance_R,ALPHA));
+                                                                                                 ^
+../main.c:243:97: error: expected statement before ')' token
+../main.c: At top level:
+../main.c:40:15: error: expected ';', ',' or ')' before numeric constant
+ #define ALPHA 0.3
+               ^
+../main.c:247:62: note: in expansion of macro 'ALPHA'
+ float Exp_moving_average(float new_value, float value, float ALPHA){
+                                                              ^
+make: *** [main.o] Error 1
+10:41:17 **** Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c:40:15: error: expected ';', ',' or ')' before numeric constant
+'Building file: ../main.c'
+ #define ALPHA 0.3
+'Invoking: ARM-GCC C Compiler'
+               ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+../main.c:63:62: note: in expansion of macro 'ALPHA'
+subdir.mk:18: recipe for target 'main.o' failed
+ float Exp_moving_average(float new_value, float value, float ALPHA);
+                                                              ^
+../main.c: In function 'agv_distances':
+../main.c:242:2: warning: implicit declaration of function 'Exp_moving_average' [-Wimplicit-function-declaration]
+  if(distance_C != 0) avg_distance_C = Exp_moving_average((float)distance_C,avg_distance_C,ALPHA);
+  ^
+../main.c:243:97: error: expected ';' before ')' token
+  if(distance_L != 0) avg_distance_L = Exp_moving_average((float)distance_L,avg_distance_L,ALPHA));
+                                                                                                 ^
+../main.c:243:97: error: expected statement before ')' token
+../main.c:244:97: error: expected ';' before ')' token
+  if(distance_R != 0) avg_distance_R = Exp_moving_average((float)distance_R,avg_distance_R,ALPHA));
+                                                                                                 ^
+../main.c:244:97: error: expected statement before ')' token
+../main.c: At top level:
+../main.c:40:15: error: expected ';', ',' or ')' before numeric constant
+ #define ALPHA 0.3
+               ^
+../main.c:248:62: note: in expansion of macro 'ALPHA'
+ float Exp_moving_average(float new_value, float value, float ALPHA){
+                                                              ^
+make: *** [main.o] Error 1
+10:41:25 **** Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c:40:15: error: expected ';', ',' or ')' before numeric constant
+'Building file: ../main.c'
+ #define ALPHA 0.3
+'Invoking: ARM-GCC C Compiler'
+               ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+../main.c:63:62: note: in expansion of macro 'ALPHA'
+subdir.mk:18: recipe for target 'main.o' failed
+ float Exp_moving_average(float new_value, float value, float ALPHA);
+                                                              ^
+../main.c: In function 'agv_distances':
+../main.c:242:2: warning: implicit declaration of function 'Exp_moving_average' [-Wimplicit-function-declaration]
+  if(distance_C != 0) avg_distance_C = Exp_moving_average((float)distance_C,avg_distance_C,ALPHA);
+  ^
+../main.c: At top level:
+../main.c:40:15: error: expected ';', ',' or ')' before numeric constant
+ #define ALPHA 0.3
+               ^
+../main.c:248:62: note: in expansion of macro 'ALPHA'
+ float Exp_moving_average(float new_value, float value, float ALPHA){
+                                                              ^
+make: *** [main.o] Error 1
+10:55:02 **** Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17196	    184	   1124	  18504	   4848	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+10:55:22 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17196	    184	   1124	  18504	   4848	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+10:58:24 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  14616	    184	   1108	  15908	   3e24	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+11:02:22 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17196	    184	   1124	  18504	   4848	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+11:05:43 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17196	    184	   1124	  18504	   4848	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
