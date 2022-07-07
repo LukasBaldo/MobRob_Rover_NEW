@@ -30,7 +30,7 @@ void Calculation(void);
 
 //control type
 uint8_t Torque_control = 1;
-uint8_t Speed_control = 1; //if 0 is torque control if 1 is speed control
+uint8_t Speed_control = 0; //if 0 is torque control if 1 is speed control
 uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
 
 float Current_U, Current_V, Current_W;
@@ -50,6 +50,7 @@ float speed_ref = 0.0; //meters per second
 float omega_ele_rads_ref = 0.0; // electrical rad per second
 float iq_ref = 0.0;
 float T_ref = 0.0;
+float T_ref_controlled;
 float omega_mech_rps_ref = 0;
 
 float Vd = 0;
@@ -81,14 +82,16 @@ float offset_neg = -20.0;			//Offset to reduce Hall Sensor Offset in CCW directi
 uint8_t Speed_detection_OK = 0;
 
 //step rec
-float setting_time_scalar = 0.6, step_start =0, step = 1;
+uint32_t setting_cyc = 15000;
+float step_start = 0.06; //0.13 ; M1 //  0.06; M2
+float step_to = 0.08;  //0.17;  // 0l09 ; M2
 
 //satrt help
 uint8_t start_help_count = 0, start_help = 0, start_help_flag = 0;
 #define START_HELP_T 0.1
 
 
-float ADC_TO_DCLINK[6] = {80.2, 80.4, 77, 77, 77, 79.5}; // 77 defalft value
+float ADC_TO_DCLINK[6] = {80.2, 80.4, 41, 77, 77, 79.5}; // 77 defalft value
 
 //########################
 // MAIN
@@ -147,14 +150,18 @@ int main(void)
 				  count=0;
 				  Calculation();
 
-				  // f_rec_data(omega_mech_rps	,T_ref,&T_ref,0.12,0.16,10,10000);  //  tref speedd spech char
+				 // f_rec_data(iq	,Vq,&Vq,1,2,1,10000);  //  iq char
 
-				  //f_rec_data(omega_mech_rps	,T_ref,&omega_mech_rps_ref,step_start,step,2,5000);
+				  //f_rec_data(iq	,Vq,&iq_ref,1,2,1,10000); // iq step test
 
-				   rec_step_from_0(omega_mech_rps, iq_ref,iq, &omega_mech_rps_ref, 1, 20); // start help test
+				   //f_rec_data(omega_mech_rps,T_ref,&T_ref,step_start,step_to,10,setting_cyc); //10000 settling  //  tref speedd spech char
+
+				   f_rec_data(omega_mech_rps,T_ref,&omega_mech_rps_ref,2,4,50,2000); // speed step test
+
+				   //rec_step_from_0(omega_mech_rps, iq_ref,iq, &omega_mech_rps_ref, 4, 20); // start help test
 				   start_help_flag = 0;
 
-				  ADC_MEASUREMENT_StartConversion(&ADC_MEASUREMENT_0);
+				 ADC_MEASUREMENT_StartConversion(&ADC_MEASUREMENT_0);
 			  }
 		    }
   }
@@ -168,7 +175,7 @@ int main(void)
 void Adc_Measurement_Handler(void){
 	uint32_t result  = ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A);
 
-	V_DC_link =  result / ADC_TO_DCLINK[INVERTER_NUM]; // conversion to DClink
+ //V_DC_link =  result / ADC_TO_DCLINK[INVERTER_NUM]; // conversion to DClink
 }
 
 
@@ -228,6 +235,9 @@ void Calculation(void){
 		}
 		else{
 			angle_in_sector = 30; // standig still
+			//angle_in_sector += 5;
+
+			//if(angle_in_sector > 60) angle_in_sector = 0;
 		}
 
 		// CW
@@ -300,46 +310,37 @@ void Calculation(void){
 				CAN_no_com_counter = CAN_NO_COM_TH;
 				speed_ref = 0;
 			}
+			omega_mech_rps_ref = (speed_ref / WHEEL_R) / (2 * PI);
 		}
-
-		omega_ele_rads_ref = ( speed_ref * PPZ ) / WHEEL_R;
-		 /*
-		if((omega_ele_rads_ref == 0 && Speed_control == 1) && (( -200 < omega_ele_rads) && (omega_ele_rads < 200))){ // no contorl is standing stil
-			T_ref = 0;
-		}
-		else{
-			if(MOTOR_NUM == 1){
-				T_ref = PID_Controller(omega_ele_rads_ref,omega_ele_rads,&T_param_1); // outer control loop q for omega
-			}
-			else{
-				T_ref = PID_Controller(omega_ele_rads_ref,omega_ele_rads,&omega_param);
-			}
-		}
-		*/
 
 		// Always run speed controll calc
-		if(Speed_control == 1 && omega_mech_rps_ref == 0  && (( -2 < omega_mech_rps) && (omega_mech_rps < 2))){ // no contorl is standing stil
-			T_ref = 0;
+		if(omega_mech_rps_ref == 0  && (( -2 < omega_mech_rps) && (omega_mech_rps < 2))){ // no contorl is standing stil
+			T_ref_controlled = 0;
 		}
 		else{
-			T_ref = PI_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param); // outer control loop q for omega
+			T_ref_controlled = PI_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param); // outer control loop q for omega
 
 			if(start_help == 1 ){
 				// start help
 				if(omega_mech_rps_ref != 0 && (copysign(1,omega_mech_rps_ref) != copysign(1,omega_mech_rps) || omega_mech_rps == 0)){
-					start_help_count = 1;
+					start_help_count = 10;
 				}
 
 				if(start_help_count > 0){
 					start_help_flag = 1;
 					start_help_count --;
-					if(omega_mech_rps_ref > 0)T_ref = T_ref + START_HELP_T;
-					else if(omega_mech_rps_ref < 0)T_ref = T_ref - START_HELP_T;
+					if(omega_mech_rps_ref > 0)T_ref_controlled += START_HELP_T;
+					else if(omega_mech_rps_ref < 0)T_ref = T_ref_controlled -= START_HELP_T;
 				}
 			}
 		}
 
 		if (Speed_control == 1){// activation of speed control
+			T_ref = T_ref_controlled;
+		}
+
+		if(Torque_control == 1){
+
 			if(MOTOR_NUM == 1 || MOTOR_NUM == 10) {
 				iq_ref =  T_ref / K_T; // dirction for motor 1
 			}
@@ -347,17 +348,11 @@ void Calculation(void){
 				iq_ref = - T_ref / K_T;// dirction for motor not 1
 			}
 
-		}
 
-		//iq_ref = - T_ref / K_T;// dirction for motor 1
+			//limit to IQ_REF_MAx limit
+			if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
+			if(iq_ref > IQ_REF_MAX) iq_ref = IQ_REF_MAX;
 
-		//limit to IQ_REF_MAx limit
-		if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
-		if(iq_ref > IQ_REF_MAX) iq_ref = IQ_REF_MAX;
-
-		if(Torque_control == 1){
-			//Vd = PID_Controller(0.0,id,&Id_param);
-			//Vq = PID_Controller(iq_ref,iq,&Iq_param); // toque controll
 
 			Vd = PI_Controller(0.0,id,&Id_param);
 			Vq = PI_Controller(iq_ref,iq,&Iq_param); // toque controll

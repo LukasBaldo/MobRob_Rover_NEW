@@ -801,9 +801,9 @@
  205              	Torque_control:
  206 0000 01       	 .byte 1
  207              	 .global Speed_control
- 208              	 .section .data.Speed_control,"aw",%progbits
+ 208              	 .section .bss.Speed_control,"aw",%nobits
  211              	Speed_control:
- 212 0000 01       	 .byte 1
+ 212 0000 00       	 .space 1
  213              	 .global CAN_control
  214              	 .section .bss.CAN_control,"aw",%nobits
  217              	CAN_control:
@@ -862,105 +862,106 @@
  286              	 .align 2
  289              	T_ref:
  290 0000 00000000 	 .space 4
- 291              	 .global omega_mech_rps_ref
- 292              	 .section .bss.omega_mech_rps_ref,"aw",%nobits
- 293              	 .align 2
- 296              	omega_mech_rps_ref:
- 297 0000 00000000 	 .space 4
- 298              	 .global Vd
- 299              	 .section .bss.Vd,"aw",%nobits
- 300              	 .align 2
- 303              	Vd:
- 304 0000 00000000 	 .space 4
- 305              	 .global Vq
- 306              	 .section .bss.Vq,"aw",%nobits
- 307              	 .align 2
- 310              	Vq:
- 311 0000 00000000 	 .space 4
- 312              	 .comm modulation_index,4,4
- 313              	 .comm modulation_index_scaled,4,4
- 314              	 .comm angle_ab,4,4
- 315              	 .comm angle_ab_rad,4,4
- 316              	 .comm amplitude_ab,4,4
- 317              	 .global Ts
- 318              	 .section .data.Ts,"aw",%progbits
- 319              	 .align 2
- 322              	Ts:
- 323 0000 17B75138 	 .word 944879383
- 324              	 .global Tcyc
- 325              	 .section .data.Tcyc,"aw",%progbits
- 326              	 .align 2
- 329              	Tcyc:
- 330 0000 17B75139 	 .word 961656599
- 331              	 .global scaling_factor
- 332              	 .section .data.scaling_factor,"aw",%progbits
- 333              	 .align 2
- 336              	scaling_factor:
- 337 0000 00000743 	 .word 1124532224
- 338              	 .comm amplitude_corrected,4,4
- 339              	 .global count
- 340              	 .section .bss.count,"aw",%nobits
- 343              	count:
- 344 0000 00       	 .space 1
- 345              	 .global offset_pos
- 346              	 .section .data.offset_pos,"aw",%progbits
- 347              	 .align 2
- 350              	offset_pos:
- 351 0000 0000D8C1 	 .word -1042808832
- 352              	 .global offset_neg
- 353              	 .section .data.offset_neg,"aw",%progbits
- 354              	 .align 2
- 357              	offset_neg:
- 358 0000 0000A0C1 	 .word -1046478848
- 359              	 .global Speed_detection_OK
- 360              	 .section .bss.Speed_detection_OK,"aw",%nobits
- 363              	Speed_detection_OK:
- 364 0000 00       	 .space 1
- 365              	 .global setting_time_scalar
- 366              	 .section .data.setting_time_scalar,"aw",%progbits
- 367              	 .align 2
- 370              	setting_time_scalar:
- 371 0000 9A99193F 	 .word 1058642330
- 372              	 .global step_start
- 373              	 .section .bss.step_start,"aw",%nobits
- 374              	 .align 2
- 377              	step_start:
- 378 0000 00000000 	 .space 4
- 379              	 .global step
- 380              	 .section .data.step,"aw",%progbits
- 381              	 .align 2
- 384              	step:
- 385 0000 0000803F 	 .word 1065353216
- 386              	 .global start_help_count
- 387              	 .section .bss.start_help_count,"aw",%nobits
- 390              	start_help_count:
- 391 0000 00       	 .space 1
- 392              	 .global start_help
- 393              	 .section .bss.start_help,"aw",%nobits
- 396              	start_help:
- 397 0000 00       	 .space 1
- 398              	 .global start_help_flag
- 399              	 .section .bss.start_help_flag,"aw",%nobits
- 402              	start_help_flag:
- 403 0000 00       	 .space 1
- 404              	 .global ADC_TO_DCLINK
- 405              	 .section .data.ADC_TO_DCLINK,"aw",%progbits
- 406              	 .align 2
- 409              	ADC_TO_DCLINK:
- 410 0000 6666A042 	 .word 1117808230
- 411 0004 CDCCA042 	 .word 1117834445
- 412 0008 00009A42 	 .word 1117388800
- 413 000c 00009A42 	 .word 1117388800
- 414 0010 00009A42 	 .word 1117388800
- 415 0014 00009F42 	 .word 1117716480
- 416              	 .section .text.main,"ax",%progbits
- 417              	 .align 2
- 418              	 .global main
- 419              	 .thumb
- 420              	 .thumb_func
- 422              	main:
- 423              	.LFB552:
- 424              	 .file 3 "../main.c"
+ 291              	 .comm T_ref_controlled,4,4
+ 292              	 .global omega_mech_rps_ref
+ 293              	 .section .bss.omega_mech_rps_ref,"aw",%nobits
+ 294              	 .align 2
+ 297              	omega_mech_rps_ref:
+ 298 0000 00000000 	 .space 4
+ 299              	 .global Vd
+ 300              	 .section .bss.Vd,"aw",%nobits
+ 301              	 .align 2
+ 304              	Vd:
+ 305 0000 00000000 	 .space 4
+ 306              	 .global Vq
+ 307              	 .section .bss.Vq,"aw",%nobits
+ 308              	 .align 2
+ 311              	Vq:
+ 312 0000 00000000 	 .space 4
+ 313              	 .comm modulation_index,4,4
+ 314              	 .comm modulation_index_scaled,4,4
+ 315              	 .comm angle_ab,4,4
+ 316              	 .comm angle_ab_rad,4,4
+ 317              	 .comm amplitude_ab,4,4
+ 318              	 .global Ts
+ 319              	 .section .data.Ts,"aw",%progbits
+ 320              	 .align 2
+ 323              	Ts:
+ 324 0000 17B75138 	 .word 944879383
+ 325              	 .global Tcyc
+ 326              	 .section .data.Tcyc,"aw",%progbits
+ 327              	 .align 2
+ 330              	Tcyc:
+ 331 0000 17B75139 	 .word 961656599
+ 332              	 .global scaling_factor
+ 333              	 .section .data.scaling_factor,"aw",%progbits
+ 334              	 .align 2
+ 337              	scaling_factor:
+ 338 0000 00000743 	 .word 1124532224
+ 339              	 .comm amplitude_corrected,4,4
+ 340              	 .global count
+ 341              	 .section .bss.count,"aw",%nobits
+ 344              	count:
+ 345 0000 00       	 .space 1
+ 346              	 .global offset_pos
+ 347              	 .section .data.offset_pos,"aw",%progbits
+ 348              	 .align 2
+ 351              	offset_pos:
+ 352 0000 0000D8C1 	 .word -1042808832
+ 353              	 .global offset_neg
+ 354              	 .section .data.offset_neg,"aw",%progbits
+ 355              	 .align 2
+ 358              	offset_neg:
+ 359 0000 0000A0C1 	 .word -1046478848
+ 360              	 .global Speed_detection_OK
+ 361              	 .section .bss.Speed_detection_OK,"aw",%nobits
+ 364              	Speed_detection_OK:
+ 365 0000 00       	 .space 1
+ 366              	 .global setting_cyc
+ 367              	 .section .data.setting_cyc,"aw",%progbits
+ 368              	 .align 2
+ 371              	setting_cyc:
+ 372 0000 983A0000 	 .word 15000
+ 373              	 .global step_start
+ 374              	 .section .data.step_start,"aw",%progbits
+ 375              	 .align 2
+ 378              	step_start:
+ 379 0000 8FC2753D 	 .word 1031127695
+ 380              	 .global step_to
+ 381              	 .section .data.step_to,"aw",%progbits
+ 382              	 .align 2
+ 385              	step_to:
+ 386 0000 0AD7A33D 	 .word 1034147594
+ 387              	 .global start_help_count
+ 388              	 .section .bss.start_help_count,"aw",%nobits
+ 391              	start_help_count:
+ 392 0000 00       	 .space 1
+ 393              	 .global start_help
+ 394              	 .section .bss.start_help,"aw",%nobits
+ 397              	start_help:
+ 398 0000 00       	 .space 1
+ 399              	 .global start_help_flag
+ 400              	 .section .bss.start_help_flag,"aw",%nobits
+ 403              	start_help_flag:
+ 404 0000 00       	 .space 1
+ 405              	 .global ADC_TO_DCLINK
+ 406              	 .section .data.ADC_TO_DCLINK,"aw",%progbits
+ 407              	 .align 2
+ 410              	ADC_TO_DCLINK:
+ 411 0000 6666A042 	 .word 1117808230
+ 412 0004 CDCCA042 	 .word 1117834445
+ 413 0008 00002442 	 .word 1109655552
+ 414 000c 00009A42 	 .word 1117388800
+ 415 0010 00009A42 	 .word 1117388800
+ 416 0014 00009F42 	 .word 1117716480
+ 417              	 .section .text.main,"ax",%progbits
+ 418              	 .align 2
+ 419              	 .global main
+ 420              	 .thumb
+ 421              	 .thumb_func
+ 423              	main:
+ 424              	.LFB552:
+ 425              	 .file 3 "../main.c"
    1:../main.c     **** /*
    2:../main.c     ****  * main.c
    3:../main.c     ****  *
@@ -993,7 +994,7 @@
   30:../main.c     **** 
   31:../main.c     **** //control type
   32:../main.c     **** uint8_t Torque_control = 1;
-  33:../main.c     **** uint8_t Speed_control = 1; //if 0 is torque control if 1 is speed control
+  33:../main.c     **** uint8_t Speed_control = 0; //if 0 is torque control if 1 is speed control
   34:../main.c     **** uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
   35:../main.c     **** 
   36:../main.c     **** float Current_U, Current_V, Current_W;
@@ -1013,1799 +1014,1798 @@
   50:../main.c     **** float omega_ele_rads_ref = 0.0; // electrical rad per second
   51:../main.c     **** float iq_ref = 0.0;
   52:../main.c     **** float T_ref = 0.0;
-  53:../main.c     **** float omega_mech_rps_ref = 0;
-  54:../main.c     **** 
-  55:../main.c     **** float Vd = 0;
-  56:../main.c     **** float Vq = 0;
-  57:../main.c     **** 
+  53:../main.c     **** float T_ref_controlled;
+  54:../main.c     **** float omega_mech_rps_ref = 0;
+  55:../main.c     **** 
+  56:../main.c     **** float Vd = 0;
+  57:../main.c     **** float Vq = 0;
   58:../main.c     **** 
-  59:../main.c     **** volatile float modulation_index; //SK		// modulation index --> calculated via m = V / K_inv
-  60:../main.c     **** volatile float modulation_index_scaled; //SK	//scaled from -1 to +1 towards -10000 to +10000 which 
-  61:../main.c     **** 
-  62:../main.c     **** float angle_ab;
-  63:../main.c     **** float angle_ab_rad;
-  64:../main.c     **** float amplitude_ab;
-  65:../main.c     **** 
-  66:../main.c     **** float Ts = 1.0 /20000.0; //T sample correspond to SPVM update rate
-  67:../main.c     **** float Tcyc = 1.0 /5000.0; //Tcyc sample correspond to control update rate to PI controler for I
-  68:../main.c     **** 
-  69:../main.c     **** // scaling factor for SVM Update -> amplitude scaling (max_amplitude = 16384U)
-  70:../main.c     **** float scaling_factor = 135;
-  71:../main.c     **** float amplitude_corrected;
-  72:../main.c     **** 
-  73:../main.c     **** // Counter for calculation function -> only use a multiple of the SVM Interrupt
-  74:../main.c     **** volatile uint8_t count = 0;
-  75:../main.c     **** 
-  76:../main.c     **** // Angle correction factor to align Current to Hall Sensor vuales form 14/04
-  77:../main.c     **** float offset_pos = -27.0;				//Offset to reduce Hall Sensor Offset in CW direction
-  78:../main.c     **** float offset_neg = -20.0;			//Offset to reduce Hall Sensor Offset in CCW direction
-  79:../main.c     **** 
+  59:../main.c     **** 
+  60:../main.c     **** volatile float modulation_index; //SK		// modulation index --> calculated via m = V / K_inv
+  61:../main.c     **** volatile float modulation_index_scaled; //SK	//scaled from -1 to +1 towards -10000 to +10000 which 
+  62:../main.c     **** 
+  63:../main.c     **** float angle_ab;
+  64:../main.c     **** float angle_ab_rad;
+  65:../main.c     **** float amplitude_ab;
+  66:../main.c     **** 
+  67:../main.c     **** float Ts = 1.0 /20000.0; //T sample correspond to SPVM update rate
+  68:../main.c     **** float Tcyc = 1.0 /5000.0; //Tcyc sample correspond to control update rate to PI controler for I
+  69:../main.c     **** 
+  70:../main.c     **** // scaling factor for SVM Update -> amplitude scaling (max_amplitude = 16384U)
+  71:../main.c     **** float scaling_factor = 135;
+  72:../main.c     **** float amplitude_corrected;
+  73:../main.c     **** 
+  74:../main.c     **** // Counter for calculation function -> only use a multiple of the SVM Interrupt
+  75:../main.c     **** volatile uint8_t count = 0;
+  76:../main.c     **** 
+  77:../main.c     **** // Angle correction factor to align Current to Hall Sensor vuales form 14/04
+  78:../main.c     **** float offset_pos = -27.0;				//Offset to reduce Hall Sensor Offset in CW direction
+  79:../main.c     **** float offset_neg = -20.0;			//Offset to reduce Hall Sensor Offset in CCW direction
   80:../main.c     **** 
-  81:../main.c     **** uint8_t Speed_detection_OK = 0;
-  82:../main.c     **** 
-  83:../main.c     **** //step rec
-  84:../main.c     **** float setting_time_scalar = 0.6, step_start =0, step = 1;
-  85:../main.c     **** 
-  86:../main.c     **** //satrt help
-  87:../main.c     **** uint8_t start_help_count = 0, start_help = 0, start_help_flag = 0;
-  88:../main.c     **** #define START_HELP_T 0.1
-  89:../main.c     **** 
-  90:../main.c     **** 
-  91:../main.c     **** float ADC_TO_DCLINK[6] = {80.2, 80.4, 77, 77, 77, 79.5}; // 77 defalft value
+  81:../main.c     **** 
+  82:../main.c     **** uint8_t Speed_detection_OK = 0;
+  83:../main.c     **** 
+  84:../main.c     **** //step rec
+  85:../main.c     **** uint32_t setting_cyc = 15000;
+  86:../main.c     **** float step_start = 0.06; //0.13 ; M1 //  0.06; M2
+  87:../main.c     **** float step_to = 0.08;  //0.17;  // 0l09 ; M2
+  88:../main.c     **** 
+  89:../main.c     **** //satrt help
+  90:../main.c     **** uint8_t start_help_count = 0, start_help = 0, start_help_flag = 0;
+  91:../main.c     **** #define START_HELP_T 0.1
   92:../main.c     **** 
-  93:../main.c     **** //########################
-  94:../main.c     **** // MAIN
-  95:../main.c     **** //########################
-  96:../main.c     **** 
-  97:../main.c     **** int main(void)
-  98:../main.c     **** {
- 425              	 .loc 3 98 0
- 426              	 .cfi_startproc
- 427              	 
+  93:../main.c     **** 
+  94:../main.c     **** float ADC_TO_DCLINK[6] = {80.2, 80.4, 41, 77, 77, 79.5}; // 77 defalft value
+  95:../main.c     **** 
+  96:../main.c     **** //########################
+  97:../main.c     **** // MAIN
+  98:../main.c     **** //########################
+  99:../main.c     **** 
+ 100:../main.c     **** int main(void)
+ 101:../main.c     **** {
+ 426              	 .loc 3 101 0
+ 427              	 .cfi_startproc
  428              	 
- 429 0000 80B5     	 push {r7,lr}
- 430              	.LCFI22:
- 431              	 .cfi_def_cfa_offset 8
- 432              	 .cfi_offset 7,-8
- 433              	 .cfi_offset 14,-4
- 434 0002 84B0     	 sub sp,sp,#16
- 435              	.LCFI23:
- 436              	 .cfi_def_cfa_offset 24
- 437 0004 02AF     	 add r7,sp,#8
- 438              	.LCFI24:
- 439              	 .cfi_def_cfa 7,16
-  99:../main.c     ****   DAVE_STATUS_t status;
- 100:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
- 440              	 .loc 3 100 0
- 441 0006 FFF7FEFF 	 bl DAVE_Init
- 442 000a 0346     	 mov r3,r0
- 443 000c FB71     	 strb r3,[r7,#7]
- 101:../main.c     **** 
- 102:../main.c     ****   Hall_init();
- 444              	 .loc 3 102 0
- 445 000e FFF7FEFF 	 bl Hall_init
- 103:../main.c     **** 
- 104:../main.c     ****   if(status != DAVE_STATUS_SUCCESS)
- 446              	 .loc 3 104 0
- 447 0012 FB79     	 ldrb r3,[r7,#7]
- 448 0014 002B     	 cmp r3,#0
- 449 0016 00D0     	 beq .L6
- 450              	.L7:
- 105:../main.c     ****   {
- 106:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
- 107:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
- 108:../main.c     **** 
- 109:../main.c     ****     while(1U)
- 110:../main.c     ****     {
+ 429              	 
+ 430 0000 80B5     	 push {r7,lr}
+ 431              	.LCFI22:
+ 432              	 .cfi_def_cfa_offset 8
+ 433              	 .cfi_offset 7,-8
+ 434              	 .cfi_offset 14,-4
+ 435 0002 86B0     	 sub sp,sp,#24
+ 436              	.LCFI23:
+ 437              	 .cfi_def_cfa_offset 32
+ 438 0004 04AF     	 add r7,sp,#16
+ 439              	.LCFI24:
+ 440              	 .cfi_def_cfa 7,16
+ 102:../main.c     ****   DAVE_STATUS_t status;
+ 103:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
+ 441              	 .loc 3 103 0
+ 442 0006 FFF7FEFF 	 bl DAVE_Init
+ 443 000a 0346     	 mov r3,r0
+ 444 000c FB71     	 strb r3,[r7,#7]
+ 104:../main.c     **** 
+ 105:../main.c     ****   Hall_init();
+ 445              	 .loc 3 105 0
+ 446 000e FFF7FEFF 	 bl Hall_init
+ 106:../main.c     **** 
+ 107:../main.c     ****   if(status != DAVE_STATUS_SUCCESS)
+ 447              	 .loc 3 107 0
+ 448 0012 FB79     	 ldrb r3,[r7,#7]
+ 449 0014 002B     	 cmp r3,#0
+ 450 0016 00D0     	 beq .L6
+ 451              	.L7:
+ 108:../main.c     ****   {
+ 109:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
+ 110:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
  111:../main.c     **** 
- 112:../main.c     ****     }
- 451              	 .loc 3 112 0 discriminator 1
- 452 0018 FEE7     	 b .L7
- 453              	.L6:
- 113:../main.c     ****   }
+ 112:../main.c     ****     while(1U)
+ 113:../main.c     ****     {
  114:../main.c     **** 
- 115:../main.c     ****   //Initialization of CAN
- 116:../main.c     ****   	CAN_NODE_STATUS_t init_status;
- 117:../main.c     ****   	init_status = CAN_NODE_Init(&CAN_NODE_0);
- 454              	 .loc 3 117 0
- 455 001a 1548     	 ldr r0,.L10
- 456 001c FFF7FEFF 	 bl CAN_NODE_Init
- 457 0020 0346     	 mov r3,r0
- 458 0022 BB71     	 strb r3,[r7,#6]
- 118:../main.c     **** 
- 119:../main.c     ****   	if (init_status != CAN_NODE_STATUS_SUCCESS) {
- 120:../main.c     ****   		XMC_DEBUG("CAN initialization failed\n");
- 121:../main.c     ****   	}
- 122:../main.c     **** 
- 123:../main.c     ****   if((MOTOR_ON_ROVER > 3) || MOTOR_ON_ROVER < 0){ // if possibel number eneterd
- 124:../main.c     **** 	  while(1U)
- 125:../main.c     **** 	      {
- 126:../main.c     **** 		//  printf("MOTOR_ON_ROVER number false");
- 127:../main.c     **** 	      }
- 128:../main.c     ****   }
- 129:../main.c     **** 
- 130:../main.c     ****   if((INVERTER_NUM > 6) || INVERTER_NUM < 0){ // if possibel number eneterd
- 131:../main.c     ****  	  while(1U)
- 132:../main.c     ****  	      {
- 133:../main.c     ****  		//  printf("INVERTER_NUM num false");
- 134:../main.c     ****  	      }
- 135:../main.c     ****    }
- 136:../main.c     **** 
- 137:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
- 138:../main.c     ****   while(1U)
- 139:../main.c     ****   {
- 140:../main.c     **** 	  omega_param_selctor(MOTOR_NUM); //set motor spefici speeed parameters
- 459              	 .loc 3 140 0
- 460 0024 0A20     	 movs r0,#10
- 461 0026 FFF7FEFF 	 bl omega_param_selctor
- 141:../main.c     **** 
- 142:../main.c     **** 	  PWM_SVM_Start(&PWM_SVM_0); // synchronous start for the CC8 slices.
- 462              	 .loc 3 142 0
- 463 002a 1248     	 ldr r0,.L10+4
- 464 002c FFF7FEFF 	 bl PWM_SVM_Start
- 465              	.L9:
- 143:../main.c     **** 		  while(1U)
- 144:../main.c     **** 		    {
- 145:../main.c     **** 			  if(count >=4)		//only calculate a multiple of 20kHz -> 4*50us=200us
- 466              	 .loc 3 145 0
- 467 0030 114B     	 ldr r3,.L10+8
- 468 0032 1B78     	 ldrb r3,[r3]
- 469 0034 DBB2     	 uxtb r3,r3
- 470 0036 032B     	 cmp r3,#3
- 471 0038 18D9     	 bls .L8
- 146:../main.c     **** 			  {
- 147:../main.c     **** 				  count=0;
- 472              	 .loc 3 147 0
- 473 003a 0F4B     	 ldr r3,.L10+8
- 474 003c 0022     	 movs r2,#0
- 475 003e 1A70     	 strb r2,[r3]
- 148:../main.c     **** 				  Calculation();
- 476              	 .loc 3 148 0
- 477 0040 FFF7FEFF 	 bl Calculation
- 149:../main.c     **** 
- 150:../main.c     **** 				  // f_rec_data(omega_mech_rps	,T_ref,&T_ref,0.12,0.16,10,10000);  //  tref speedd spech char
- 151:../main.c     **** 
- 152:../main.c     **** 				  //f_rec_data(omega_mech_rps	,T_ref,&omega_mech_rps_ref,step_start,step,2,5000);
- 153:../main.c     **** 
- 154:../main.c     **** 				   rec_step_from_0(omega_mech_rps, iq_ref,iq, &omega_mech_rps_ref, 1, 20); // start help test
- 478              	 .loc 3 154 0
- 479 0044 0D4B     	 ldr r3,.L10+12
- 480 0046 1868     	 ldr r0,[r3]
- 481 0048 0D4B     	 ldr r3,.L10+16
- 482 004a 1968     	 ldr r1,[r3]
- 483 004c 0D4B     	 ldr r3,.L10+20
- 484 004e 1A68     	 ldr r2,[r3]
- 485 0050 4FF07E53 	 mov r3,#1065353216
- 486 0054 0093     	 str r3,[sp]
- 487 0056 1423     	 movs r3,#20
- 488 0058 0193     	 str r3,[sp,#4]
- 489 005a 0B4B     	 ldr r3,.L10+24
- 490 005c FFF7FEFF 	 bl rec_step_from_0
- 155:../main.c     **** 				   start_help_flag = 0;
- 491              	 .loc 3 155 0
- 492 0060 0A4B     	 ldr r3,.L10+28
- 493 0062 0022     	 movs r2,#0
- 494 0064 1A70     	 strb r2,[r3]
+ 115:../main.c     ****     }
+ 452              	 .loc 3 115 0 discriminator 1
+ 453 0018 FEE7     	 b .L7
+ 454              	.L6:
+ 116:../main.c     ****   }
+ 117:../main.c     **** 
+ 118:../main.c     ****   //Initialization of CAN
+ 119:../main.c     ****   	CAN_NODE_STATUS_t init_status;
+ 120:../main.c     ****   	init_status = CAN_NODE_Init(&CAN_NODE_0);
+ 455              	 .loc 3 120 0
+ 456 001a 1748     	 ldr r0,.L10
+ 457 001c FFF7FEFF 	 bl CAN_NODE_Init
+ 458 0020 0346     	 mov r3,r0
+ 459 0022 BB71     	 strb r3,[r7,#6]
+ 121:../main.c     **** 
+ 122:../main.c     ****   	if (init_status != CAN_NODE_STATUS_SUCCESS) {
+ 123:../main.c     ****   		XMC_DEBUG("CAN initialization failed\n");
+ 124:../main.c     ****   	}
+ 125:../main.c     **** 
+ 126:../main.c     ****   if((MOTOR_ON_ROVER > 3) || MOTOR_ON_ROVER < 0){ // if possibel number eneterd
+ 127:../main.c     **** 	  while(1U)
+ 128:../main.c     **** 	      {
+ 129:../main.c     **** 		//  printf("MOTOR_ON_ROVER number false");
+ 130:../main.c     **** 	      }
+ 131:../main.c     ****   }
+ 132:../main.c     **** 
+ 133:../main.c     ****   if((INVERTER_NUM > 6) || INVERTER_NUM < 0){ // if possibel number eneterd
+ 134:../main.c     ****  	  while(1U)
+ 135:../main.c     ****  	      {
+ 136:../main.c     ****  		//  printf("INVERTER_NUM num false");
+ 137:../main.c     ****  	      }
+ 138:../main.c     ****    }
+ 139:../main.c     **** 
+ 140:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
+ 141:../main.c     ****   while(1U)
+ 142:../main.c     ****   {
+ 143:../main.c     **** 	  omega_param_selctor(MOTOR_NUM); //set motor spefici speeed parameters
+ 460              	 .loc 3 143 0
+ 461 0024 0220     	 movs r0,#2
+ 462 0026 FFF7FEFF 	 bl omega_param_selctor
+ 144:../main.c     **** 
+ 145:../main.c     **** 	  PWM_SVM_Start(&PWM_SVM_0); // synchronous start for the CC8 slices.
+ 463              	 .loc 3 145 0
+ 464 002a 1448     	 ldr r0,.L10+4
+ 465 002c FFF7FEFF 	 bl PWM_SVM_Start
+ 466              	.L9:
+ 146:../main.c     **** 		  while(1U)
+ 147:../main.c     **** 		    {
+ 148:../main.c     **** 			  if(count >=4)		//only calculate a multiple of 20kHz -> 4*50us=200us
+ 467              	 .loc 3 148 0
+ 468 0030 134B     	 ldr r3,.L10+8
+ 469 0032 1B78     	 ldrb r3,[r3]
+ 470 0034 DBB2     	 uxtb r3,r3
+ 471 0036 032B     	 cmp r3,#3
+ 472 0038 1DD9     	 bls .L8
+ 149:../main.c     **** 			  {
+ 150:../main.c     **** 				  count=0;
+ 473              	 .loc 3 150 0
+ 474 003a 114B     	 ldr r3,.L10+8
+ 475 003c 0022     	 movs r2,#0
+ 476 003e 1A70     	 strb r2,[r3]
+ 151:../main.c     **** 				  Calculation();
+ 477              	 .loc 3 151 0
+ 478 0040 FFF7FEFF 	 bl Calculation
+ 152:../main.c     **** 
+ 153:../main.c     **** 				 // f_rec_data(iq	,Vq,&Vq,1,2,1,10000);  //  iq char
+ 154:../main.c     **** 
+ 155:../main.c     **** 				  //f_rec_data(iq	,Vq,&iq_ref,1,2,1,10000); // iq step test
  156:../main.c     **** 
- 157:../main.c     **** 				  ADC_MEASUREMENT_StartConversion(&ADC_MEASUREMENT_0);
- 495              	 .loc 3 157 0
- 496 0066 0A48     	 ldr r0,.L10+32
- 497 0068 FFF7FEFF 	 bl ADC_MEASUREMENT_StartConversion
- 498              	.L8:
- 158:../main.c     **** 			  }
- 159:../main.c     **** 		    }
- 499              	 .loc 3 159 0
- 500 006c E0E7     	 b .L9
- 501              	.L11:
- 502 006e 00BF     	 .align 2
- 503              	.L10:
- 504 0070 00000000 	 .word CAN_NODE_0
- 505 0074 00000000 	 .word PWM_SVM_0
- 506 0078 00000000 	 .word count
- 507 007c 00000000 	 .word omega_mech_rps
- 508 0080 00000000 	 .word iq_ref
- 509 0084 00000000 	 .word iq
- 510 0088 00000000 	 .word omega_mech_rps_ref
- 511 008c 00000000 	 .word start_help_flag
- 512 0090 00000000 	 .word ADC_MEASUREMENT_0
- 513              	 .cfi_endproc
- 514              	.LFE552:
- 516              	 .section .text.VADC0_C0_2_IRQHandler,"ax",%progbits
- 517              	 .align 2
- 518              	 .global VADC0_C0_2_IRQHandler
- 519              	 .thumb
- 520              	 .thumb_func
- 522              	VADC0_C0_2_IRQHandler:
- 523              	.LFB553:
- 160:../main.c     ****   }
- 161:../main.c     **** }
- 162:../main.c     **** 
+ 157:../main.c     **** 				   //f_rec_data(omega_mech_rps,T_ref,&T_ref,step_start,step_to,10,setting_cyc); //10000 settlin
+ 158:../main.c     **** 
+ 159:../main.c     **** 				   f_rec_data(omega_mech_rps,T_ref,&omega_mech_rps_ref,2,4,50,2000); // speed step test
+ 479              	 .loc 3 159 0
+ 480 0044 0F4B     	 ldr r3,.L10+12
+ 481 0046 1968     	 ldr r1,[r3]
+ 482 0048 0F4B     	 ldr r3,.L10+16
+ 483 004a 1A68     	 ldr r2,[r3]
+ 484 004c 4FF08143 	 mov r3,#1082130432
+ 485 0050 0093     	 str r3,[sp]
+ 486 0052 3223     	 movs r3,#50
+ 487 0054 0193     	 str r3,[sp,#4]
+ 488 0056 4FF4FA63 	 mov r3,#2000
+ 489 005a 0293     	 str r3,[sp,#8]
+ 490 005c 0846     	 mov r0,r1
+ 491 005e 1146     	 mov r1,r2
+ 492 0060 0A4A     	 ldr r2,.L10+20
+ 493 0062 4FF08043 	 mov r3,#1073741824
+ 494 0066 FFF7FEFF 	 bl f_rec_data
+ 160:../main.c     **** 
+ 161:../main.c     **** 				   //rec_step_from_0(omega_mech_rps, iq_ref,iq, &omega_mech_rps_ref, 4, 20); // start help test
+ 162:../main.c     **** 				   start_help_flag = 0;
+ 495              	 .loc 3 162 0
+ 496 006a 094B     	 ldr r3,.L10+24
+ 497 006c 0022     	 movs r2,#0
+ 498 006e 1A70     	 strb r2,[r3]
  163:../main.c     **** 
- 164:../main.c     **** //########################
- 165:../main.c     **** // INTERRUPTS
- 166:../main.c     **** //########################
- 167:../main.c     **** 
- 168:../main.c     **** void Adc_Measurement_Handler(void){
- 524              	 .loc 3 168 0
- 525              	 .cfi_startproc
- 526              	 
- 527              	 
- 528 0000 80B5     	 push {r7,lr}
- 529              	.LCFI25:
- 530              	 .cfi_def_cfa_offset 8
- 531              	 .cfi_offset 7,-8
- 532              	 .cfi_offset 14,-4
- 533 0002 82B0     	 sub sp,sp,#8
- 534              	.LCFI26:
- 535              	 .cfi_def_cfa_offset 16
- 536 0004 00AF     	 add r7,sp,#0
- 537              	.LCFI27:
- 538              	 .cfi_def_cfa_register 7
- 169:../main.c     **** 	uint32_t result  = ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A);
- 539              	 .loc 3 169 0
- 540 0006 0A48     	 ldr r0,.L13
- 541 0008 FFF7FEFF 	 bl ADC_MEASUREMENT_GetResult
- 542 000c 0346     	 mov r3,r0
- 543 000e 7B60     	 str r3,[r7,#4]
+ 164:../main.c     **** 				 ADC_MEASUREMENT_StartConversion(&ADC_MEASUREMENT_0);
+ 499              	 .loc 3 164 0
+ 500 0070 0848     	 ldr r0,.L10+28
+ 501 0072 FFF7FEFF 	 bl ADC_MEASUREMENT_StartConversion
+ 502              	.L8:
+ 165:../main.c     **** 			  }
+ 166:../main.c     **** 		    }
+ 503              	 .loc 3 166 0
+ 504 0076 DBE7     	 b .L9
+ 505              	.L11:
+ 506              	 .align 2
+ 507              	.L10:
+ 508 0078 00000000 	 .word CAN_NODE_0
+ 509 007c 00000000 	 .word PWM_SVM_0
+ 510 0080 00000000 	 .word count
+ 511 0084 00000000 	 .word omega_mech_rps
+ 512 0088 00000000 	 .word T_ref
+ 513 008c 00000000 	 .word omega_mech_rps_ref
+ 514 0090 00000000 	 .word start_help_flag
+ 515 0094 00000000 	 .word ADC_MEASUREMENT_0
+ 516              	 .cfi_endproc
+ 517              	.LFE552:
+ 519              	 .section .text.VADC0_C0_2_IRQHandler,"ax",%progbits
+ 520              	 .align 2
+ 521              	 .global VADC0_C0_2_IRQHandler
+ 522              	 .thumb
+ 523              	 .thumb_func
+ 525              	VADC0_C0_2_IRQHandler:
+ 526              	.LFB553:
+ 167:../main.c     ****   }
+ 168:../main.c     **** }
+ 169:../main.c     **** 
  170:../main.c     **** 
- 171:../main.c     **** 	V_DC_link =  result / ADC_TO_DCLINK[INVERTER_NUM]; // conversion to DClink
- 544              	 .loc 3 171 0
- 545 0010 7B68     	 ldr r3,[r7,#4]
- 546 0012 07EE903A 	 fmsr s15,r3
- 547 0016 B8EE677A 	 fuitos s14,s15
- 548 001a 064B     	 ldr r3,.L13+4
- 549 001c D3ED007A 	 flds s15,[r3]
- 550 0020 C7EE277A 	 fdivs s15,s14,s15
- 551 0024 044B     	 ldr r3,.L13+8
- 552 0026 C3ED007A 	 fsts s15,[r3]
- 172:../main.c     **** }
- 553              	 .loc 3 172 0
- 554 002a 0837     	 adds r7,r7,#8
- 555              	.LCFI28:
- 556              	 .cfi_def_cfa_offset 8
- 557 002c BD46     	 mov sp,r7
- 558              	.LCFI29:
- 559              	 .cfi_def_cfa_register 13
- 560              	 
- 561 002e 80BD     	 pop {r7,pc}
- 562              	.L14:
- 563              	 .align 2
- 564              	.L13:
- 565 0030 00000000 	 .word ADC_MEASUREMENT_Channel_A_handle
- 566 0034 00000000 	 .word ADC_TO_DCLINK
- 567 0038 00000000 	 .word V_DC_link
- 568              	 .cfi_endproc
- 569              	.LFE553:
- 571              	 .section .text.CCU43_1_IRQHandler,"ax",%progbits
- 572              	 .align 2
- 573              	 .global CCU43_1_IRQHandler
- 574              	 .thumb
- 575              	 .thumb_func
- 577              	CCU43_1_IRQHandler:
- 578              	.LFB554:
- 173:../main.c     **** 
+ 171:../main.c     **** //########################
+ 172:../main.c     **** // INTERRUPTS
+ 173:../main.c     **** //########################
  174:../main.c     **** 
- 175:../main.c     **** /*
- 176:../main.c     **** // Turn off driver at Overcurrent
- 177:../main.c     **** void OverCurrent_U_ISR(void)
- 178:../main.c     **** {
- 179:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&Driver_U);	// switch off U driver
- 180:../main.c     **** }
- 181:../main.c     **** void OverCurrent_V_ISR(void)
- 182:../main.c     **** {
- 183:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&Driver_U);	// switch off U driver
- 184:../main.c     **** }
- 185:../main.c     **** void OverCurrent_W_ISR(void)
- 186:../main.c     **** {
- 187:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&Driver_U);	// switch off U driver
- 188:../main.c     **** }
- 189:../main.c     **** */
- 190:../main.c     **** 
- 191:../main.c     **** //ISR based on Timer_1 --> 100us time base
- 192:../main.c     **** void ISR_INT1(void)
+ 175:../main.c     **** void Adc_Measurement_Handler(void){
+ 527              	 .loc 3 175 0
+ 528              	 .cfi_startproc
+ 529              	 
+ 530              	 
+ 531 0000 80B5     	 push {r7,lr}
+ 532              	.LCFI25:
+ 533              	 .cfi_def_cfa_offset 8
+ 534              	 .cfi_offset 7,-8
+ 535              	 .cfi_offset 14,-4
+ 536 0002 82B0     	 sub sp,sp,#8
+ 537              	.LCFI26:
+ 538              	 .cfi_def_cfa_offset 16
+ 539 0004 00AF     	 add r7,sp,#0
+ 540              	.LCFI27:
+ 541              	 .cfi_def_cfa_register 7
+ 176:../main.c     **** 	uint32_t result  = ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A);
+ 542              	 .loc 3 176 0
+ 543 0006 0448     	 ldr r0,.L13
+ 544 0008 FFF7FEFF 	 bl ADC_MEASUREMENT_GetResult
+ 545 000c 0346     	 mov r3,r0
+ 546 000e 7B60     	 str r3,[r7,#4]
+ 177:../main.c     **** 
+ 178:../main.c     ****  //V_DC_link =  result / ADC_TO_DCLINK[INVERTER_NUM]; // conversion to DClink
+ 179:../main.c     **** }
+ 547              	 .loc 3 179 0
+ 548 0010 0837     	 adds r7,r7,#8
+ 549              	.LCFI28:
+ 550              	 .cfi_def_cfa_offset 8
+ 551 0012 BD46     	 mov sp,r7
+ 552              	.LCFI29:
+ 553              	 .cfi_def_cfa_register 13
+ 554              	 
+ 555 0014 80BD     	 pop {r7,pc}
+ 556              	.L14:
+ 557 0016 00BF     	 .align 2
+ 558              	.L13:
+ 559 0018 00000000 	 .word ADC_MEASUREMENT_Channel_A_handle
+ 560              	 .cfi_endproc
+ 561              	.LFE553:
+ 563              	 .section .text.CCU43_1_IRQHandler,"ax",%progbits
+ 564              	 .align 2
+ 565              	 .global CCU43_1_IRQHandler
+ 566              	 .thumb
+ 567              	 .thumb_func
+ 569              	CCU43_1_IRQHandler:
+ 570              	.LFB554:
+ 180:../main.c     **** 
+ 181:../main.c     **** 
+ 182:../main.c     **** /*
+ 183:../main.c     **** // Turn off driver at Overcurrent
+ 184:../main.c     **** void OverCurrent_U_ISR(void)
+ 185:../main.c     **** {
+ 186:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&Driver_U);	// switch off U driver
+ 187:../main.c     **** }
+ 188:../main.c     **** void OverCurrent_V_ISR(void)
+ 189:../main.c     **** {
+ 190:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&Driver_U);	// switch off U driver
+ 191:../main.c     **** }
+ 192:../main.c     **** void OverCurrent_W_ISR(void)
  193:../main.c     **** {
- 579              	 .loc 3 193 0
- 580              	 .cfi_startproc
- 581              	 
- 582              	 
- 583              	 
- 584 0000 80B4     	 push {r7}
- 585              	.LCFI30:
- 586              	 .cfi_def_cfa_offset 4
- 587              	 .cfi_offset 7,-4
- 588 0002 00AF     	 add r7,sp,#0
- 589              	.LCFI31:
- 590              	 .cfi_def_cfa_register 7
- 194:../main.c     **** }
- 591              	 .loc 3 194 0
- 592 0004 BD46     	 mov sp,r7
- 593              	.LCFI32:
- 594              	 .cfi_def_cfa_register 13
- 595              	 
- 596 0006 5DF8047B 	 ldr r7,[sp],#4
- 597              	.LCFI33:
- 598              	 .cfi_restore 7
- 599              	 .cfi_def_cfa_offset 0
- 600 000a 7047     	 bx lr
- 601              	 .cfi_endproc
- 602              	.LFE554:
- 604              	 .section .text.CCU80_3_IRQHandler,"ax",%progbits
- 605              	 .align 2
- 606              	 .global CCU80_3_IRQHandler
- 607              	 .thumb
- 608              	 .thumb_func
- 610              	CCU80_3_IRQHandler:
- 611              	.LFB555:
- 195:../main.c     **** 
- 196:../main.c     **** // ISR for Updating the SVM PWM -> 50us = 20kHz
- 197:../main.c     **** void PeriodMatchInterruptHandler(void)
- 198:../main.c     **** {
- 612              	 .loc 3 198 0
- 613              	 .cfi_startproc
- 614              	 
- 615              	 
- 616 0000 80B5     	 push {r7,lr}
- 617              	.LCFI34:
- 618              	 .cfi_def_cfa_offset 8
- 619              	 .cfi_offset 7,-8
- 620              	 .cfi_offset 14,-4
- 621 0002 82B0     	 sub sp,sp,#8
- 622              	.LCFI35:
- 623              	 .cfi_def_cfa_offset 16
- 624 0004 00AF     	 add r7,sp,#0
- 625              	.LCFI36:
- 626              	 .cfi_def_cfa_register 7
- 199:../main.c     **** 	count++;	// only use a multiple of the period match frequency 20*20kHz = 1ms
- 627              	 .loc 3 199 0
- 628 0006 144B     	 ldr r3,.L18
- 629 0008 1B78     	 ldrb r3,[r3]
- 630 000a DBB2     	 uxtb r3,r3
- 631 000c 0133     	 adds r3,r3,#1
- 632 000e DAB2     	 uxtb r2,r3
- 633 0010 114B     	 ldr r3,.L18
- 634 0012 1A70     	 strb r2,[r3]
- 200:../main.c     **** 	if(count == 1){ // only updating evry time there is new data safes 5-8 % duty on the calculation
- 635              	 .loc 3 200 0
- 636 0014 104B     	 ldr r3,.L18
- 637 0016 1B78     	 ldrb r3,[r3]
- 638 0018 DBB2     	 uxtb r3,r3
- 639 001a 012B     	 cmp r3,#1
- 640 001c 18D1     	 bne .L16
- 201:../main.c     **** 		PWM_SVM_SVMUpdate(&PWM_SVM_0, (uint16_t)modulation_index_scaled, (uint32_t)angle_ab * ANGLE_ONE_D
- 641              	 .loc 3 201 0
- 642 001e 0F4B     	 ldr r3,.L18+4
- 643 0020 D3ED007A 	 flds s15,[r3]
- 644 0024 FCEEE77A 	 ftouizs s15,s15
- 645 0028 C7ED017A 	 fsts s15,[r7,#4]
- 646 002c BB88     	 ldrh r3,[r7,#4]
- 647 002e 9AB2     	 uxth r2,r3
- 648 0030 0B4B     	 ldr r3,.L18+8
- 649 0032 D3ED007A 	 flds s15,[r3]
- 650 0036 FCEEE77A 	 ftouizs s15,s15
- 651 003a 17EE901A 	 fmrs r1,s15
- 652 003e 4BF20B63 	 movw r3,#46603
- 653 0042 03FB01F3 	 mul r3,r3,r1
- 654 0046 0748     	 ldr r0,.L18+12
- 655 0048 1146     	 mov r1,r2
- 656 004a 1A46     	 mov r2,r3
- 657 004c FFF7FEFF 	 bl PWM_SVM_SVMUpdate
- 658              	.L16:
- 202:../main.c     **** 	}
- 203:../main.c     **** }
- 659              	 .loc 3 203 0
- 660 0050 0837     	 adds r7,r7,#8
- 661              	.LCFI37:
- 662              	 .cfi_def_cfa_offset 8
- 663 0052 BD46     	 mov sp,r7
- 664              	.LCFI38:
- 665              	 .cfi_def_cfa_register 13
- 666              	 
- 667 0054 80BD     	 pop {r7,pc}
- 668              	.L19:
- 669 0056 00BF     	 .align 2
- 670              	.L18:
- 671 0058 00000000 	 .word count
- 672 005c 00000000 	 .word modulation_index_scaled
- 673 0060 00000000 	 .word angle_ab
- 674 0064 00000000 	 .word PWM_SVM_0
- 675              	 .cfi_endproc
- 676              	.LFE555:
- 678              	 .global __aeabi_f2d
- 679              	 .global __aeabi_ddiv
- 680              	 .global __aeabi_ui2d
- 681              	 .global __aeabi_dmul
- 682              	 .global __aeabi_d2f
- 683              	 .global __aeabi_i2d
- 684              	 .global __aeabi_dadd
- 685              	 .global __aeabi_dsub
- 686              	 .global __aeabi_dcmpeq
- 687              	 .section .text.Calculation,"ax",%progbits
- 688              	 .align 2
- 689              	 .global Calculation
- 690              	 .thumb
- 691              	 .thumb_func
- 693              	Calculation:
- 694              	.LFB556:
- 204:../main.c     **** 
- 205:../main.c     **** //########################
- 206:../main.c     **** // FUNCTIONS
- 207:../main.c     **** //########################
- 208:../main.c     **** 
- 209:../main.c     **** 
- 210:../main.c     **** // Routine for calculation (sector, clark-Park trans.,...)
- 211:../main.c     **** //5kHz loop since every 4th step of 50us --> 200us --> 5kHz
- 212:../main.c     **** void Calculation(void){
- 695              	 .loc 3 212 0
- 696              	 .cfi_startproc
- 697              	 
- 698              	 
- 699 0000 B0B5     	 push {r4,r5,r7,lr}
- 700              	.LCFI39:
- 701              	 .cfi_def_cfa_offset 16
- 702              	 .cfi_offset 4,-16
- 703              	 .cfi_offset 5,-12
- 704              	 .cfi_offset 7,-8
- 705              	 .cfi_offset 14,-4
- 706 0002 2DED028B 	 fstmfdd sp!,{d8}
- 707              	.LCFI40:
- 708              	 .cfi_def_cfa_offset 24
- 709              	 .cfi_offset 80,-24
- 710              	 .cfi_offset 81,-20
- 711 0006 84B0     	 sub sp,sp,#16
- 712              	.LCFI41:
- 713              	 .cfi_def_cfa_offset 40
- 714 0008 00AF     	 add r7,sp,#0
- 715              	.LCFI42:
- 716              	 .cfi_def_cfa_register 7
- 213:../main.c     **** 		DIGITAL_IO_SetOutputHigh(&status_LED_red_cal_time);
- 717              	 .loc 3 213 0
- 718 000a B448     	 ldr r0,.L84
- 719 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
- 214:../main.c     **** 		// Actual time since last angle update via Hall Sensor
- 215:../main.c     **** 		uint32_t t;
- 216:../main.c     **** 		if(last_Hall_trig == 'A') t = time_since_A;
- 720              	 .loc 3 216 0
- 721 0010 B34B     	 ldr r3,.L84+4
- 722 0012 1B78     	 ldrb r3,[r3]
- 723 0014 DBB2     	 uxtb r3,r3
- 724 0016 412B     	 cmp r3,#65
- 725 0018 03D1     	 bne .L21
- 726              	 .loc 3 216 0 is_stmt 0 discriminator 1
- 727 001a B24B     	 ldr r3,.L84+8
- 728 001c 1B68     	 ldr r3,[r3]
- 729 001e FB60     	 str r3,[r7,#12]
- 730 0020 10E0     	 b .L22
- 731              	.L21:
- 217:../main.c     **** 		else if(last_Hall_trig == 'B') t = time_since_B;
- 732              	 .loc 3 217 0 is_stmt 1
- 733 0022 AF4B     	 ldr r3,.L84+4
- 734 0024 1B78     	 ldrb r3,[r3]
- 735 0026 DBB2     	 uxtb r3,r3
- 736 0028 422B     	 cmp r3,#66
- 737 002a 03D1     	 bne .L23
- 738              	 .loc 3 217 0 is_stmt 0 discriminator 1
- 739 002c AE4B     	 ldr r3,.L84+12
- 740 002e 1B68     	 ldr r3,[r3]
- 741 0030 FB60     	 str r3,[r7,#12]
- 742 0032 07E0     	 b .L22
- 743              	.L23:
- 218:../main.c     **** 		else if(last_Hall_trig == 'C') t = time_since_C;
- 744              	 .loc 3 218 0 is_stmt 1
- 745 0034 AA4B     	 ldr r3,.L84+4
- 746 0036 1B78     	 ldrb r3,[r3]
- 747 0038 DBB2     	 uxtb r3,r3
- 748 003a 432B     	 cmp r3,#67
- 749 003c 02D1     	 bne .L22
- 750              	 .loc 3 218 0 is_stmt 0 discriminator 1
- 751 003e AB4B     	 ldr r3,.L84+16
- 752 0040 1B68     	 ldr r3,[r3]
- 753 0042 FB60     	 str r3,[r7,#12]
- 754              	.L22:
- 219:../main.c     **** 		time_180deg_cal = time_180deg;
- 755              	 .loc 3 219 0 is_stmt 1
- 756 0044 AA4B     	 ldr r3,.L84+20
- 757 0046 1B68     	 ldr r3,[r3]
- 758 0048 AA4A     	 ldr r2,.L84+24
- 759 004a 1360     	 str r3,[r2]
- 220:../main.c     **** 		// not fixing sector for calc because if chainges better to do so
- 221:../main.c     **** 
- 222:../main.c     **** 		if(time_180deg_cal > 2500) time_180deg_cal = 2500;
- 760              	 .loc 3 222 0
- 761 004c A94B     	 ldr r3,.L84+24
- 762 004e 1B68     	 ldr r3,[r3]
- 763 0050 40F6C412 	 movw r2,#2500
- 764 0054 9342     	 cmp r3,r2
- 765 0056 04D9     	 bls .L24
- 766              	 .loc 3 222 0 is_stmt 0 discriminator 1
- 767 0058 A64B     	 ldr r3,.L84+24
- 768 005a 40F6C412 	 movw r2,#2500
- 769 005e 1A60     	 str r2,[r3]
- 770 0060 06E0     	 b .L25
- 771              	.L24:
- 223:../main.c     **** 		else if(time_180deg_cal < 2) time_180deg_cal = 2;
- 772              	 .loc 3 223 0 is_stmt 1
- 773 0062 A44B     	 ldr r3,.L84+24
- 774 0064 1B68     	 ldr r3,[r3]
- 775 0066 012B     	 cmp r3,#1
- 776 0068 02D8     	 bhi .L25
- 777              	 .loc 3 223 0 is_stmt 0 discriminator 1
- 778 006a A24B     	 ldr r3,.L84+24
- 779 006c 0222     	 movs r2,#2
- 780 006e 1A60     	 str r2,[r3]
- 781              	.L25:
- 224:../main.c     **** 
- 225:../main.c     **** 		if(t < TIME_OMEGA_0){
- 782              	 .loc 3 225 0 is_stmt 1
- 783 0070 FB68     	 ldr r3,[r7,#12]
- 784 0072 41F28732 	 movw r2,#4999
- 785 0076 9342     	 cmp r3,r2
- 786 0078 35D8     	 bhi .L26
- 226:../main.c     **** 			angle_in_sector = (180.0 / (float)time_180deg_cal) * t;
- 787              	 .loc 3 226 0
- 788 007a 9E4B     	 ldr r3,.L84+24
- 789 007c 1B68     	 ldr r3,[r3]
- 790 007e 07EE903A 	 fmsr s15,r3
- 791 0082 F8EE677A 	 fuitos s15,s15
- 792 0086 17EE900A 	 fmrs r0,s15
- 793 008a FFF7FEFF 	 bl __aeabi_f2d
- 794 008e 0246     	 mov r2,r0
- 795 0090 0B46     	 mov r3,r1
- 796 0092 4FF00000 	 mov r0,#0
- 797 0096 9849     	 ldr r1,.L84+28
- 798 0098 FFF7FEFF 	 bl __aeabi_ddiv
- 799 009c 0246     	 mov r2,r0
- 800 009e 0B46     	 mov r3,r1
- 801 00a0 1446     	 mov r4,r2
- 802 00a2 1D46     	 mov r5,r3
- 803 00a4 F868     	 ldr r0,[r7,#12]
- 804 00a6 FFF7FEFF 	 bl __aeabi_ui2d
- 805 00aa 0246     	 mov r2,r0
- 806 00ac 0B46     	 mov r3,r1
- 807 00ae 2046     	 mov r0,r4
- 808 00b0 2946     	 mov r1,r5
- 809 00b2 FFF7FEFF 	 bl __aeabi_dmul
- 810 00b6 0246     	 mov r2,r0
- 811 00b8 0B46     	 mov r3,r1
- 812 00ba 1046     	 mov r0,r2
- 813 00bc 1946     	 mov r1,r3
- 814 00be FFF7FEFF 	 bl __aeabi_d2f
- 815 00c2 0246     	 mov r2,r0
- 816 00c4 8D4B     	 ldr r3,.L84+32
- 817 00c6 1A60     	 str r2,[r3]
- 227:../main.c     **** 			if(angle_in_sector > 60) angle_in_sector = 60;
- 818              	 .loc 3 227 0
- 819 00c8 8C4B     	 ldr r3,.L84+32
- 820 00ca D3ED007A 	 flds s15,[r3]
- 821 00ce 9FED8C7A 	 flds s14,.L84+36
- 822 00d2 F4EEC77A 	 fcmpes s15,s14
- 823 00d6 F1EE10FA 	 fmstat
- 824 00da 00DC     	 bgt .L68
- 825 00dc 06E0     	 b .L29
- 826              	.L68:
- 827              	 .loc 3 227 0 is_stmt 0 discriminator 1
- 828 00de 874B     	 ldr r3,.L84+32
- 829 00e0 884A     	 ldr r2,.L84+40
- 830 00e2 1A60     	 str r2,[r3]
- 831 00e4 02E0     	 b .L29
- 832              	.L26:
- 228:../main.c     **** 		}
- 229:../main.c     **** 		else{
- 230:../main.c     **** 			angle_in_sector = 30; // standig still
- 833              	 .loc 3 230 0 is_stmt 1
- 834 00e6 854B     	 ldr r3,.L84+32
- 835 00e8 874A     	 ldr r2,.L84+44
- 836 00ea 1A60     	 str r2,[r3]
- 837              	.L29:
- 231:../main.c     **** 		}
- 232:../main.c     **** 
- 233:../main.c     **** 		// CW
- 234:../main.c     **** 		if(direction==1)
- 838              	 .loc 3 234 0
- 839 00ec 874B     	 ldr r3,.L84+48
- 840 00ee 1B78     	 ldrb r3,[r3]
- 841 00f0 DBB2     	 uxtb r3,r3
- 842 00f2 5BB2     	 sxtb r3,r3
- 843 00f4 012B     	 cmp r3,#1
- 844 00f6 54D1     	 bne .L30
- 235:../main.c     **** 		{
- 236:../main.c     **** 			angle_phi = (sector*60.0)+angle_in_sector;
- 845              	 .loc 3 236 0
- 846 00f8 854B     	 ldr r3,.L84+52
- 847 00fa 1B78     	 ldrb r3,[r3]
- 848 00fc DBB2     	 uxtb r3,r3
- 849 00fe 5BB2     	 sxtb r3,r3
- 850 0100 1846     	 mov r0,r3
- 851 0102 FFF7FEFF 	 bl __aeabi_i2d
- 852 0106 0246     	 mov r2,r0
- 853 0108 0B46     	 mov r3,r1
- 854 010a 1046     	 mov r0,r2
- 855 010c 1946     	 mov r1,r3
- 856 010e 4FF00002 	 mov r2,#0
- 857 0112 804B     	 ldr r3,.L84+56
- 858 0114 FFF7FEFF 	 bl __aeabi_dmul
- 859 0118 0246     	 mov r2,r0
- 860 011a 0B46     	 mov r3,r1
- 861 011c 1446     	 mov r4,r2
- 862 011e 1D46     	 mov r5,r3
- 863 0120 764B     	 ldr r3,.L84+32
- 864 0122 1B68     	 ldr r3,[r3]
- 865 0124 1846     	 mov r0,r3
- 866 0126 FFF7FEFF 	 bl __aeabi_f2d
- 867 012a 0246     	 mov r2,r0
- 868 012c 0B46     	 mov r3,r1
- 869 012e 2046     	 mov r0,r4
- 870 0130 2946     	 mov r1,r5
- 871 0132 FFF7FEFF 	 bl __aeabi_dadd
- 872 0136 0246     	 mov r2,r0
- 873 0138 0B46     	 mov r3,r1
- 874 013a 1046     	 mov r0,r2
- 875 013c 1946     	 mov r1,r3
- 876 013e FFF7FEFF 	 bl __aeabi_d2f
- 877 0142 0246     	 mov r2,r0
- 878 0144 744B     	 ldr r3,.L84+60
- 879 0146 1A60     	 str r2,[r3]
- 237:../main.c     **** 			angle_phi=angle_phi+offset_pos;
- 880              	 .loc 3 237 0
- 881 0148 734B     	 ldr r3,.L84+60
- 882 014a 93ED007A 	 flds s14,[r3]
- 883 014e 734B     	 ldr r3,.L84+64
- 884 0150 D3ED007A 	 flds s15,[r3]
- 885 0154 77EE277A 	 fadds s15,s14,s15
- 886 0158 6F4B     	 ldr r3,.L84+60
- 887 015a C3ED007A 	 fsts s15,[r3]
- 238:../main.c     **** 			if(angle_phi > 360.0){angle_phi=angle_phi-360.0;}
- 888              	 .loc 3 238 0
- 889 015e 6E4B     	 ldr r3,.L84+60
- 890 0160 D3ED007A 	 flds s15,[r3]
- 891 0164 9FED6E7A 	 flds s14,.L84+68
- 892 0168 F4EEC77A 	 fcmpes s15,s14
- 893 016c F1EE10FA 	 fmstat
- 894 0170 09DD     	 ble .L31
- 895              	 .loc 3 238 0 is_stmt 0 discriminator 1
- 896 0172 694B     	 ldr r3,.L84+60
- 897 0174 D3ED007A 	 flds s15,[r3]
- 898 0178 9FED697A 	 flds s14,.L84+68
- 899 017c 77EEC77A 	 fsubs s15,s15,s14
- 900 0180 654B     	 ldr r3,.L84+60
- 901 0182 C3ED007A 	 fsts s15,[r3]
- 902              	.L31:
+ 194:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&Driver_U);	// switch off U driver
+ 195:../main.c     **** }
+ 196:../main.c     **** */
+ 197:../main.c     **** 
+ 198:../main.c     **** //ISR based on Timer_1 --> 100us time base
+ 199:../main.c     **** void ISR_INT1(void)
+ 200:../main.c     **** {
+ 571              	 .loc 3 200 0
+ 572              	 .cfi_startproc
+ 573              	 
+ 574              	 
+ 575              	 
+ 576 0000 80B4     	 push {r7}
+ 577              	.LCFI30:
+ 578              	 .cfi_def_cfa_offset 4
+ 579              	 .cfi_offset 7,-4
+ 580 0002 00AF     	 add r7,sp,#0
+ 581              	.LCFI31:
+ 582              	 .cfi_def_cfa_register 7
+ 201:../main.c     **** }
+ 583              	 .loc 3 201 0
+ 584 0004 BD46     	 mov sp,r7
+ 585              	.LCFI32:
+ 586              	 .cfi_def_cfa_register 13
+ 587              	 
+ 588 0006 5DF8047B 	 ldr r7,[sp],#4
+ 589              	.LCFI33:
+ 590              	 .cfi_restore 7
+ 591              	 .cfi_def_cfa_offset 0
+ 592 000a 7047     	 bx lr
+ 593              	 .cfi_endproc
+ 594              	.LFE554:
+ 596              	 .section .text.CCU80_3_IRQHandler,"ax",%progbits
+ 597              	 .align 2
+ 598              	 .global CCU80_3_IRQHandler
+ 599              	 .thumb
+ 600              	 .thumb_func
+ 602              	CCU80_3_IRQHandler:
+ 603              	.LFB555:
+ 202:../main.c     **** 
+ 203:../main.c     **** // ISR for Updating the SVM PWM -> 50us = 20kHz
+ 204:../main.c     **** void PeriodMatchInterruptHandler(void)
+ 205:../main.c     **** {
+ 604              	 .loc 3 205 0
+ 605              	 .cfi_startproc
+ 606              	 
+ 607              	 
+ 608 0000 80B5     	 push {r7,lr}
+ 609              	.LCFI34:
+ 610              	 .cfi_def_cfa_offset 8
+ 611              	 .cfi_offset 7,-8
+ 612              	 .cfi_offset 14,-4
+ 613 0002 82B0     	 sub sp,sp,#8
+ 614              	.LCFI35:
+ 615              	 .cfi_def_cfa_offset 16
+ 616 0004 00AF     	 add r7,sp,#0
+ 617              	.LCFI36:
+ 618              	 .cfi_def_cfa_register 7
+ 206:../main.c     **** 	count++;	// only use a multiple of the period match frequency 20*20kHz = 1ms
+ 619              	 .loc 3 206 0
+ 620 0006 144B     	 ldr r3,.L18
+ 621 0008 1B78     	 ldrb r3,[r3]
+ 622 000a DBB2     	 uxtb r3,r3
+ 623 000c 0133     	 adds r3,r3,#1
+ 624 000e DAB2     	 uxtb r2,r3
+ 625 0010 114B     	 ldr r3,.L18
+ 626 0012 1A70     	 strb r2,[r3]
+ 207:../main.c     **** 	if(count == 1){ // only updating evry time there is new data safes 5-8 % duty on the calculation
+ 627              	 .loc 3 207 0
+ 628 0014 104B     	 ldr r3,.L18
+ 629 0016 1B78     	 ldrb r3,[r3]
+ 630 0018 DBB2     	 uxtb r3,r3
+ 631 001a 012B     	 cmp r3,#1
+ 632 001c 18D1     	 bne .L16
+ 208:../main.c     **** 		PWM_SVM_SVMUpdate(&PWM_SVM_0, (uint16_t)modulation_index_scaled, (uint32_t)angle_ab * ANGLE_ONE_D
+ 633              	 .loc 3 208 0
+ 634 001e 0F4B     	 ldr r3,.L18+4
+ 635 0020 D3ED007A 	 flds s15,[r3]
+ 636 0024 FCEEE77A 	 ftouizs s15,s15
+ 637 0028 C7ED017A 	 fsts s15,[r7,#4]
+ 638 002c BB88     	 ldrh r3,[r7,#4]
+ 639 002e 9AB2     	 uxth r2,r3
+ 640 0030 0B4B     	 ldr r3,.L18+8
+ 641 0032 D3ED007A 	 flds s15,[r3]
+ 642 0036 FCEEE77A 	 ftouizs s15,s15
+ 643 003a 17EE901A 	 fmrs r1,s15
+ 644 003e 4BF20B63 	 movw r3,#46603
+ 645 0042 03FB01F3 	 mul r3,r3,r1
+ 646 0046 0748     	 ldr r0,.L18+12
+ 647 0048 1146     	 mov r1,r2
+ 648 004a 1A46     	 mov r2,r3
+ 649 004c FFF7FEFF 	 bl PWM_SVM_SVMUpdate
+ 650              	.L16:
+ 209:../main.c     **** 	}
+ 210:../main.c     **** }
+ 651              	 .loc 3 210 0
+ 652 0050 0837     	 adds r7,r7,#8
+ 653              	.LCFI37:
+ 654              	 .cfi_def_cfa_offset 8
+ 655 0052 BD46     	 mov sp,r7
+ 656              	.LCFI38:
+ 657              	 .cfi_def_cfa_register 13
+ 658              	 
+ 659 0054 80BD     	 pop {r7,pc}
+ 660              	.L19:
+ 661 0056 00BF     	 .align 2
+ 662              	.L18:
+ 663 0058 00000000 	 .word count
+ 664 005c 00000000 	 .word modulation_index_scaled
+ 665 0060 00000000 	 .word angle_ab
+ 666 0064 00000000 	 .word PWM_SVM_0
+ 667              	 .cfi_endproc
+ 668              	.LFE555:
+ 670              	 .global __aeabi_f2d
+ 671              	 .global __aeabi_ddiv
+ 672              	 .global __aeabi_ui2d
+ 673              	 .global __aeabi_dmul
+ 674              	 .global __aeabi_d2f
+ 675              	 .global __aeabi_i2d
+ 676              	 .global __aeabi_dadd
+ 677              	 .global __aeabi_dsub
+ 678              	 .global __aeabi_dcmpeq
+ 679              	 .section .text.Calculation,"ax",%progbits
+ 680              	 .align 2
+ 681              	 .global Calculation
+ 682              	 .thumb
+ 683              	 .thumb_func
+ 685              	Calculation:
+ 686              	.LFB556:
+ 211:../main.c     **** 
+ 212:../main.c     **** //########################
+ 213:../main.c     **** // FUNCTIONS
+ 214:../main.c     **** //########################
+ 215:../main.c     **** 
+ 216:../main.c     **** 
+ 217:../main.c     **** // Routine for calculation (sector, clark-Park trans.,...)
+ 218:../main.c     **** //5kHz loop since every 4th step of 50us --> 200us --> 5kHz
+ 219:../main.c     **** void Calculation(void){
+ 687              	 .loc 3 219 0
+ 688              	 .cfi_startproc
+ 689              	 
+ 690              	 
+ 691 0000 B0B5     	 push {r4,r5,r7,lr}
+ 692              	.LCFI39:
+ 693              	 .cfi_def_cfa_offset 16
+ 694              	 .cfi_offset 4,-16
+ 695              	 .cfi_offset 5,-12
+ 696              	 .cfi_offset 7,-8
+ 697              	 .cfi_offset 14,-4
+ 698 0002 2DED028B 	 fstmfdd sp!,{d8}
+ 699              	.LCFI40:
+ 700              	 .cfi_def_cfa_offset 24
+ 701              	 .cfi_offset 80,-24
+ 702              	 .cfi_offset 81,-20
+ 703 0006 84B0     	 sub sp,sp,#16
+ 704              	.LCFI41:
+ 705              	 .cfi_def_cfa_offset 40
+ 706 0008 00AF     	 add r7,sp,#0
+ 707              	.LCFI42:
+ 708              	 .cfi_def_cfa_register 7
+ 220:../main.c     **** 		DIGITAL_IO_SetOutputHigh(&status_LED_red_cal_time);
+ 709              	 .loc 3 220 0
+ 710 000a B448     	 ldr r0,.L85
+ 711 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 221:../main.c     **** 		// Actual time since last angle update via Hall Sensor
+ 222:../main.c     **** 		uint32_t t;
+ 223:../main.c     **** 		if(last_Hall_trig == 'A') t = time_since_A;
+ 712              	 .loc 3 223 0
+ 713 0010 B34B     	 ldr r3,.L85+4
+ 714 0012 1B78     	 ldrb r3,[r3]
+ 715 0014 DBB2     	 uxtb r3,r3
+ 716 0016 412B     	 cmp r3,#65
+ 717 0018 03D1     	 bne .L21
+ 718              	 .loc 3 223 0 is_stmt 0 discriminator 1
+ 719 001a B24B     	 ldr r3,.L85+8
+ 720 001c 1B68     	 ldr r3,[r3]
+ 721 001e FB60     	 str r3,[r7,#12]
+ 722 0020 10E0     	 b .L22
+ 723              	.L21:
+ 224:../main.c     **** 		else if(last_Hall_trig == 'B') t = time_since_B;
+ 724              	 .loc 3 224 0 is_stmt 1
+ 725 0022 AF4B     	 ldr r3,.L85+4
+ 726 0024 1B78     	 ldrb r3,[r3]
+ 727 0026 DBB2     	 uxtb r3,r3
+ 728 0028 422B     	 cmp r3,#66
+ 729 002a 03D1     	 bne .L23
+ 730              	 .loc 3 224 0 is_stmt 0 discriminator 1
+ 731 002c AE4B     	 ldr r3,.L85+12
+ 732 002e 1B68     	 ldr r3,[r3]
+ 733 0030 FB60     	 str r3,[r7,#12]
+ 734 0032 07E0     	 b .L22
+ 735              	.L23:
+ 225:../main.c     **** 		else if(last_Hall_trig == 'C') t = time_since_C;
+ 736              	 .loc 3 225 0 is_stmt 1
+ 737 0034 AA4B     	 ldr r3,.L85+4
+ 738 0036 1B78     	 ldrb r3,[r3]
+ 739 0038 DBB2     	 uxtb r3,r3
+ 740 003a 432B     	 cmp r3,#67
+ 741 003c 02D1     	 bne .L22
+ 742              	 .loc 3 225 0 is_stmt 0 discriminator 1
+ 743 003e AB4B     	 ldr r3,.L85+16
+ 744 0040 1B68     	 ldr r3,[r3]
+ 745 0042 FB60     	 str r3,[r7,#12]
+ 746              	.L22:
+ 226:../main.c     **** 		time_180deg_cal = time_180deg;
+ 747              	 .loc 3 226 0 is_stmt 1
+ 748 0044 AA4B     	 ldr r3,.L85+20
+ 749 0046 1B68     	 ldr r3,[r3]
+ 750 0048 AA4A     	 ldr r2,.L85+24
+ 751 004a 1360     	 str r3,[r2]
+ 227:../main.c     **** 		// not fixing sector for calc because if chainges better to do so
+ 228:../main.c     **** 
+ 229:../main.c     **** 		if(time_180deg_cal > 2500) time_180deg_cal = 2500;
+ 752              	 .loc 3 229 0
+ 753 004c A94B     	 ldr r3,.L85+24
+ 754 004e 1B68     	 ldr r3,[r3]
+ 755 0050 40F6C412 	 movw r2,#2500
+ 756 0054 9342     	 cmp r3,r2
+ 757 0056 04D9     	 bls .L24
+ 758              	 .loc 3 229 0 is_stmt 0 discriminator 1
+ 759 0058 A64B     	 ldr r3,.L85+24
+ 760 005a 40F6C412 	 movw r2,#2500
+ 761 005e 1A60     	 str r2,[r3]
+ 762 0060 06E0     	 b .L25
+ 763              	.L24:
+ 230:../main.c     **** 		else if(time_180deg_cal < 2) time_180deg_cal = 2;
+ 764              	 .loc 3 230 0 is_stmt 1
+ 765 0062 A44B     	 ldr r3,.L85+24
+ 766 0064 1B68     	 ldr r3,[r3]
+ 767 0066 012B     	 cmp r3,#1
+ 768 0068 02D8     	 bhi .L25
+ 769              	 .loc 3 230 0 is_stmt 0 discriminator 1
+ 770 006a A24B     	 ldr r3,.L85+24
+ 771 006c 0222     	 movs r2,#2
+ 772 006e 1A60     	 str r2,[r3]
+ 773              	.L25:
+ 231:../main.c     **** 
+ 232:../main.c     **** 		if(t < TIME_OMEGA_0){
+ 774              	 .loc 3 232 0 is_stmt 1
+ 775 0070 FB68     	 ldr r3,[r7,#12]
+ 776 0072 41F28732 	 movw r2,#4999
+ 777 0076 9342     	 cmp r3,r2
+ 778 0078 35D8     	 bhi .L26
+ 233:../main.c     **** 			angle_in_sector = (180.0 / (float)time_180deg_cal) * t;
+ 779              	 .loc 3 233 0
+ 780 007a 9E4B     	 ldr r3,.L85+24
+ 781 007c 1B68     	 ldr r3,[r3]
+ 782 007e 07EE903A 	 fmsr s15,r3
+ 783 0082 F8EE677A 	 fuitos s15,s15
+ 784 0086 17EE900A 	 fmrs r0,s15
+ 785 008a FFF7FEFF 	 bl __aeabi_f2d
+ 786 008e 0246     	 mov r2,r0
+ 787 0090 0B46     	 mov r3,r1
+ 788 0092 4FF00000 	 mov r0,#0
+ 789 0096 9849     	 ldr r1,.L85+28
+ 790 0098 FFF7FEFF 	 bl __aeabi_ddiv
+ 791 009c 0246     	 mov r2,r0
+ 792 009e 0B46     	 mov r3,r1
+ 793 00a0 1446     	 mov r4,r2
+ 794 00a2 1D46     	 mov r5,r3
+ 795 00a4 F868     	 ldr r0,[r7,#12]
+ 796 00a6 FFF7FEFF 	 bl __aeabi_ui2d
+ 797 00aa 0246     	 mov r2,r0
+ 798 00ac 0B46     	 mov r3,r1
+ 799 00ae 2046     	 mov r0,r4
+ 800 00b0 2946     	 mov r1,r5
+ 801 00b2 FFF7FEFF 	 bl __aeabi_dmul
+ 802 00b6 0246     	 mov r2,r0
+ 803 00b8 0B46     	 mov r3,r1
+ 804 00ba 1046     	 mov r0,r2
+ 805 00bc 1946     	 mov r1,r3
+ 806 00be FFF7FEFF 	 bl __aeabi_d2f
+ 807 00c2 0246     	 mov r2,r0
+ 808 00c4 8D4B     	 ldr r3,.L85+32
+ 809 00c6 1A60     	 str r2,[r3]
+ 234:../main.c     **** 			if(angle_in_sector > 60) angle_in_sector = 60;
+ 810              	 .loc 3 234 0
+ 811 00c8 8C4B     	 ldr r3,.L85+32
+ 812 00ca D3ED007A 	 flds s15,[r3]
+ 813 00ce 9FED8C7A 	 flds s14,.L85+36
+ 814 00d2 F4EEC77A 	 fcmpes s15,s14
+ 815 00d6 F1EE10FA 	 fmstat
+ 816 00da 00DC     	 bgt .L69
+ 817 00dc 06E0     	 b .L29
+ 818              	.L69:
+ 819              	 .loc 3 234 0 is_stmt 0 discriminator 1
+ 820 00de 874B     	 ldr r3,.L85+32
+ 821 00e0 884A     	 ldr r2,.L85+40
+ 822 00e2 1A60     	 str r2,[r3]
+ 823 00e4 02E0     	 b .L29
+ 824              	.L26:
+ 235:../main.c     **** 		}
+ 236:../main.c     **** 		else{
+ 237:../main.c     **** 			angle_in_sector = 30; // standig still
+ 825              	 .loc 3 237 0 is_stmt 1
+ 826 00e6 854B     	 ldr r3,.L85+32
+ 827 00e8 874A     	 ldr r2,.L85+44
+ 828 00ea 1A60     	 str r2,[r3]
+ 829              	.L29:
+ 238:../main.c     **** 			//angle_in_sector += 5;
  239:../main.c     **** 
- 240:../main.c     **** 			omega_mech_rps_temp = (float)450/((float)time_180deg_cal);
- 903              	 .loc 3 240 0 is_stmt 1
- 904 0186 5B4B     	 ldr r3,.L84+24
- 905 0188 1B68     	 ldr r3,[r3]
- 906 018a 07EE903A 	 fmsr s15,r3
- 907 018e F8EE677A 	 fuitos s15,s15
- 908 0192 9FED647A 	 flds s14,.L84+72
- 909 0196 C7EE277A 	 fdivs s15,s14,s15
- 910 019a 634B     	 ldr r3,.L84+76
- 911 019c C3ED007A 	 fsts s15,[r3]
- 912 01a0 6FE0     	 b .L33
- 913              	.L30:
+ 240:../main.c     **** 			//if(angle_in_sector > 60) angle_in_sector = 0;
  241:../main.c     **** 		}
- 242:../main.c     **** 		// CCW
- 243:../main.c     **** 		else{
- 244:../main.c     **** 			angle_phi = (sector*60.0)-angle_in_sector;
- 914              	 .loc 3 244 0
- 915 01a2 5B4B     	 ldr r3,.L84+52
- 916 01a4 1B78     	 ldrb r3,[r3]
- 917 01a6 DBB2     	 uxtb r3,r3
- 918 01a8 5BB2     	 sxtb r3,r3
- 919 01aa 1846     	 mov r0,r3
- 920 01ac FFF7FEFF 	 bl __aeabi_i2d
- 921 01b0 0246     	 mov r2,r0
- 922 01b2 0B46     	 mov r3,r1
- 923 01b4 1046     	 mov r0,r2
- 924 01b6 1946     	 mov r1,r3
- 925 01b8 4FF00002 	 mov r2,#0
- 926 01bc 554B     	 ldr r3,.L84+56
- 927 01be FFF7FEFF 	 bl __aeabi_dmul
- 928 01c2 0246     	 mov r2,r0
- 929 01c4 0B46     	 mov r3,r1
- 930 01c6 1446     	 mov r4,r2
- 931 01c8 1D46     	 mov r5,r3
- 932 01ca 4C4B     	 ldr r3,.L84+32
- 933 01cc 1B68     	 ldr r3,[r3]
- 934 01ce 1846     	 mov r0,r3
- 935 01d0 FFF7FEFF 	 bl __aeabi_f2d
- 936 01d4 0246     	 mov r2,r0
- 937 01d6 0B46     	 mov r3,r1
- 938 01d8 2046     	 mov r0,r4
- 939 01da 2946     	 mov r1,r5
- 940 01dc FFF7FEFF 	 bl __aeabi_dsub
- 941 01e0 0246     	 mov r2,r0
- 942 01e2 0B46     	 mov r3,r1
- 943 01e4 1046     	 mov r0,r2
- 944 01e6 1946     	 mov r1,r3
- 945 01e8 FFF7FEFF 	 bl __aeabi_d2f
- 946 01ec 0246     	 mov r2,r0
- 947 01ee 4A4B     	 ldr r3,.L84+60
- 948 01f0 1A60     	 str r2,[r3]
- 245:../main.c     **** 			angle_phi = angle_phi+60.0;
- 949              	 .loc 3 245 0
- 950 01f2 494B     	 ldr r3,.L84+60
- 951 01f4 D3ED007A 	 flds s15,[r3]
- 952 01f8 9FED417A 	 flds s14,.L84+36
- 953 01fc 77EE877A 	 fadds s15,s15,s14
- 954 0200 454B     	 ldr r3,.L84+60
- 955 0202 C3ED007A 	 fsts s15,[r3]
- 246:../main.c     **** 			if(angle_phi < 0){angle_phi=angle_phi+360.0;}
- 956              	 .loc 3 246 0
- 957 0206 444B     	 ldr r3,.L84+60
- 958 0208 D3ED007A 	 flds s15,[r3]
- 959 020c F5EEC07A 	 fcmpezs s15
- 960 0210 F1EE10FA 	 fmstat
- 961 0214 09D5     	 bpl .L34
- 962              	 .loc 3 246 0 is_stmt 0 discriminator 1
- 963 0216 404B     	 ldr r3,.L84+60
- 964 0218 D3ED007A 	 flds s15,[r3]
- 965 021c 9FED407A 	 flds s14,.L84+68
- 966 0220 77EE877A 	 fadds s15,s15,s14
- 967 0224 3C4B     	 ldr r3,.L84+60
- 968 0226 C3ED007A 	 fsts s15,[r3]
- 969              	.L34:
- 247:../main.c     **** 			angle_phi=angle_phi+offset_neg;
- 970              	 .loc 3 247 0 is_stmt 1
- 971 022a 3B4B     	 ldr r3,.L84+60
- 972 022c 93ED007A 	 flds s14,[r3]
- 973 0230 3E4B     	 ldr r3,.L84+80
- 974 0232 D3ED007A 	 flds s15,[r3]
- 975 0236 77EE277A 	 fadds s15,s14,s15
- 976 023a 374B     	 ldr r3,.L84+60
- 977 023c C3ED007A 	 fsts s15,[r3]
+ 242:../main.c     **** 
+ 243:../main.c     **** 		// CW
+ 244:../main.c     **** 		if(direction==1)
+ 830              	 .loc 3 244 0
+ 831 00ec 874B     	 ldr r3,.L85+48
+ 832 00ee 1B78     	 ldrb r3,[r3]
+ 833 00f0 DBB2     	 uxtb r3,r3
+ 834 00f2 5BB2     	 sxtb r3,r3
+ 835 00f4 012B     	 cmp r3,#1
+ 836 00f6 54D1     	 bne .L30
+ 245:../main.c     **** 		{
+ 246:../main.c     **** 			angle_phi = (sector*60.0)+angle_in_sector;
+ 837              	 .loc 3 246 0
+ 838 00f8 854B     	 ldr r3,.L85+52
+ 839 00fa 1B78     	 ldrb r3,[r3]
+ 840 00fc DBB2     	 uxtb r3,r3
+ 841 00fe 5BB2     	 sxtb r3,r3
+ 842 0100 1846     	 mov r0,r3
+ 843 0102 FFF7FEFF 	 bl __aeabi_i2d
+ 844 0106 0246     	 mov r2,r0
+ 845 0108 0B46     	 mov r3,r1
+ 846 010a 1046     	 mov r0,r2
+ 847 010c 1946     	 mov r1,r3
+ 848 010e 4FF00002 	 mov r2,#0
+ 849 0112 804B     	 ldr r3,.L85+56
+ 850 0114 FFF7FEFF 	 bl __aeabi_dmul
+ 851 0118 0246     	 mov r2,r0
+ 852 011a 0B46     	 mov r3,r1
+ 853 011c 1446     	 mov r4,r2
+ 854 011e 1D46     	 mov r5,r3
+ 855 0120 764B     	 ldr r3,.L85+32
+ 856 0122 1B68     	 ldr r3,[r3]
+ 857 0124 1846     	 mov r0,r3
+ 858 0126 FFF7FEFF 	 bl __aeabi_f2d
+ 859 012a 0246     	 mov r2,r0
+ 860 012c 0B46     	 mov r3,r1
+ 861 012e 2046     	 mov r0,r4
+ 862 0130 2946     	 mov r1,r5
+ 863 0132 FFF7FEFF 	 bl __aeabi_dadd
+ 864 0136 0246     	 mov r2,r0
+ 865 0138 0B46     	 mov r3,r1
+ 866 013a 1046     	 mov r0,r2
+ 867 013c 1946     	 mov r1,r3
+ 868 013e FFF7FEFF 	 bl __aeabi_d2f
+ 869 0142 0246     	 mov r2,r0
+ 870 0144 744B     	 ldr r3,.L85+60
+ 871 0146 1A60     	 str r2,[r3]
+ 247:../main.c     **** 			angle_phi=angle_phi+offset_pos;
+ 872              	 .loc 3 247 0
+ 873 0148 734B     	 ldr r3,.L85+60
+ 874 014a 93ED007A 	 flds s14,[r3]
+ 875 014e 734B     	 ldr r3,.L85+64
+ 876 0150 D3ED007A 	 flds s15,[r3]
+ 877 0154 77EE277A 	 fadds s15,s14,s15
+ 878 0158 6F4B     	 ldr r3,.L85+60
+ 879 015a C3ED007A 	 fsts s15,[r3]
  248:../main.c     **** 			if(angle_phi > 360.0){angle_phi=angle_phi-360.0;}
- 978              	 .loc 3 248 0
- 979 0240 354B     	 ldr r3,.L84+60
- 980 0242 D3ED007A 	 flds s15,[r3]
- 981 0246 9FED367A 	 flds s14,.L84+68
- 982 024a F4EEC77A 	 fcmpes s15,s14
- 983 024e F1EE10FA 	 fmstat
- 984 0252 09DD     	 ble .L36
- 985              	 .loc 3 248 0 is_stmt 0 discriminator 1
- 986 0254 304B     	 ldr r3,.L84+60
- 987 0256 D3ED007A 	 flds s15,[r3]
- 988 025a 9FED317A 	 flds s14,.L84+68
- 989 025e 77EEC77A 	 fsubs s15,s15,s14
- 990 0262 2D4B     	 ldr r3,.L84+60
- 991 0264 C3ED007A 	 fsts s15,[r3]
- 992              	.L36:
+ 880              	 .loc 3 248 0
+ 881 015e 6E4B     	 ldr r3,.L85+60
+ 882 0160 D3ED007A 	 flds s15,[r3]
+ 883 0164 9FED6E7A 	 flds s14,.L85+68
+ 884 0168 F4EEC77A 	 fcmpes s15,s14
+ 885 016c F1EE10FA 	 fmstat
+ 886 0170 09DD     	 ble .L31
+ 887              	 .loc 3 248 0 is_stmt 0 discriminator 1
+ 888 0172 694B     	 ldr r3,.L85+60
+ 889 0174 D3ED007A 	 flds s15,[r3]
+ 890 0178 9FED697A 	 flds s14,.L85+68
+ 891 017c 77EEC77A 	 fsubs s15,s15,s14
+ 892 0180 654B     	 ldr r3,.L85+60
+ 893 0182 C3ED007A 	 fsts s15,[r3]
+ 894              	.L31:
  249:../main.c     **** 
- 250:../main.c     **** 			omega_mech_rps_temp = -(float)450/((float)time_180deg_cal);
- 993              	 .loc 3 250 0 is_stmt 1
- 994 0268 224B     	 ldr r3,.L84+24
- 995 026a 1B68     	 ldr r3,[r3]
- 996 026c 07EE903A 	 fmsr s15,r3
- 997 0270 F8EE677A 	 fuitos s15,s15
- 998 0274 9FED2E7A 	 flds s14,.L84+84
- 999 0278 C7EE277A 	 fdivs s15,s14,s15
- 1000 027c 2A4B     	 ldr r3,.L84+76
- 1001 027e C3ED007A 	 fsts s15,[r3]
- 1002              	.L33:
+ 250:../main.c     **** 			omega_mech_rps_temp = (float)450/((float)time_180deg_cal);
+ 895              	 .loc 3 250 0 is_stmt 1
+ 896 0186 5B4B     	 ldr r3,.L85+24
+ 897 0188 1B68     	 ldr r3,[r3]
+ 898 018a 07EE903A 	 fmsr s15,r3
+ 899 018e F8EE677A 	 fuitos s15,s15
+ 900 0192 9FED647A 	 flds s14,.L85+72
+ 901 0196 C7EE277A 	 fdivs s15,s14,s15
+ 902 019a 634B     	 ldr r3,.L85+76
+ 903 019c C3ED007A 	 fsts s15,[r3]
+ 904 01a0 6FE0     	 b .L33
+ 905              	.L30:
  251:../main.c     **** 		}
- 252:../main.c     **** 
- 253:../main.c     **** 		Speed_detection_OK = 0;
- 1003              	 .loc 3 253 0
- 1004 0282 2C4B     	 ldr r3,.L84+88
- 1005 0284 0022     	 movs r2,#0
- 1006 0286 1A70     	 strb r2,[r3]
- 254:../main.c     **** 		if(omega_mech_rps_temp<200 && omega_mech_rps_temp>(-200)) //plausibility check to avoid large pea
- 1007              	 .loc 3 254 0
- 1008 0288 274B     	 ldr r3,.L84+76
- 1009 028a D3ED007A 	 flds s15,[r3]
- 1010 028e 9FED2A7A 	 flds s14,.L84+92
- 1011 0292 F4EEC77A 	 fcmpes s15,s14
- 1012 0296 F1EE10FA 	 fmstat
- 1013 029a 10D5     	 bpl .L38
- 1014              	 .loc 3 254 0 is_stmt 0 discriminator 1
- 1015 029c 224B     	 ldr r3,.L84+76
- 1016 029e D3ED007A 	 flds s15,[r3]
- 1017 02a2 9FED267A 	 flds s14,.L84+96
- 1018 02a6 F4EEC77A 	 fcmpes s15,s14
- 1019 02aa F1EE10FA 	 fmstat
- 1020 02ae 06DD     	 ble .L38
- 255:../main.c     **** 		{
- 256:../main.c     **** 			omega_mech_rps = omega_mech_rps_temp;
- 1021              	 .loc 3 256 0 is_stmt 1
- 1022 02b0 1D4B     	 ldr r3,.L84+76
- 1023 02b2 1B68     	 ldr r3,[r3]
- 1024 02b4 224A     	 ldr r2,.L84+100
- 1025 02b6 1360     	 str r3,[r2]
- 257:../main.c     **** 			Speed_detection_OK = 1;
- 1026              	 .loc 3 257 0
- 1027 02b8 1E4B     	 ldr r3,.L84+88
- 1028 02ba 0122     	 movs r2,#1
- 1029 02bc 1A70     	 strb r2,[r3]
- 1030              	.L38:
- 258:../main.c     **** 		}
+ 252:../main.c     **** 		// CCW
+ 253:../main.c     **** 		else{
+ 254:../main.c     **** 			angle_phi = (sector*60.0)-angle_in_sector;
+ 906              	 .loc 3 254 0
+ 907 01a2 5B4B     	 ldr r3,.L85+52
+ 908 01a4 1B78     	 ldrb r3,[r3]
+ 909 01a6 DBB2     	 uxtb r3,r3
+ 910 01a8 5BB2     	 sxtb r3,r3
+ 911 01aa 1846     	 mov r0,r3
+ 912 01ac FFF7FEFF 	 bl __aeabi_i2d
+ 913 01b0 0246     	 mov r2,r0
+ 914 01b2 0B46     	 mov r3,r1
+ 915 01b4 1046     	 mov r0,r2
+ 916 01b6 1946     	 mov r1,r3
+ 917 01b8 4FF00002 	 mov r2,#0
+ 918 01bc 554B     	 ldr r3,.L85+56
+ 919 01be FFF7FEFF 	 bl __aeabi_dmul
+ 920 01c2 0246     	 mov r2,r0
+ 921 01c4 0B46     	 mov r3,r1
+ 922 01c6 1446     	 mov r4,r2
+ 923 01c8 1D46     	 mov r5,r3
+ 924 01ca 4C4B     	 ldr r3,.L85+32
+ 925 01cc 1B68     	 ldr r3,[r3]
+ 926 01ce 1846     	 mov r0,r3
+ 927 01d0 FFF7FEFF 	 bl __aeabi_f2d
+ 928 01d4 0246     	 mov r2,r0
+ 929 01d6 0B46     	 mov r3,r1
+ 930 01d8 2046     	 mov r0,r4
+ 931 01da 2946     	 mov r1,r5
+ 932 01dc FFF7FEFF 	 bl __aeabi_dsub
+ 933 01e0 0246     	 mov r2,r0
+ 934 01e2 0B46     	 mov r3,r1
+ 935 01e4 1046     	 mov r0,r2
+ 936 01e6 1946     	 mov r1,r3
+ 937 01e8 FFF7FEFF 	 bl __aeabi_d2f
+ 938 01ec 0246     	 mov r2,r0
+ 939 01ee 4A4B     	 ldr r3,.L85+60
+ 940 01f0 1A60     	 str r2,[r3]
+ 255:../main.c     **** 			angle_phi = angle_phi+60.0;
+ 941              	 .loc 3 255 0
+ 942 01f2 494B     	 ldr r3,.L85+60
+ 943 01f4 D3ED007A 	 flds s15,[r3]
+ 944 01f8 9FED417A 	 flds s14,.L85+36
+ 945 01fc 77EE877A 	 fadds s15,s15,s14
+ 946 0200 454B     	 ldr r3,.L85+60
+ 947 0202 C3ED007A 	 fsts s15,[r3]
+ 256:../main.c     **** 			if(angle_phi < 0){angle_phi=angle_phi+360.0;}
+ 948              	 .loc 3 256 0
+ 949 0206 444B     	 ldr r3,.L85+60
+ 950 0208 D3ED007A 	 flds s15,[r3]
+ 951 020c F5EEC07A 	 fcmpezs s15
+ 952 0210 F1EE10FA 	 fmstat
+ 953 0214 09D5     	 bpl .L34
+ 954              	 .loc 3 256 0 is_stmt 0 discriminator 1
+ 955 0216 404B     	 ldr r3,.L85+60
+ 956 0218 D3ED007A 	 flds s15,[r3]
+ 957 021c 9FED407A 	 flds s14,.L85+68
+ 958 0220 77EE877A 	 fadds s15,s15,s14
+ 959 0224 3C4B     	 ldr r3,.L85+60
+ 960 0226 C3ED007A 	 fsts s15,[r3]
+ 961              	.L34:
+ 257:../main.c     **** 			angle_phi=angle_phi+offset_neg;
+ 962              	 .loc 3 257 0 is_stmt 1
+ 963 022a 3B4B     	 ldr r3,.L85+60
+ 964 022c 93ED007A 	 flds s14,[r3]
+ 965 0230 3E4B     	 ldr r3,.L85+80
+ 966 0232 D3ED007A 	 flds s15,[r3]
+ 967 0236 77EE277A 	 fadds s15,s14,s15
+ 968 023a 374B     	 ldr r3,.L85+60
+ 969 023c C3ED007A 	 fsts s15,[r3]
+ 258:../main.c     **** 			if(angle_phi > 360.0){angle_phi=angle_phi-360.0;}
+ 970              	 .loc 3 258 0
+ 971 0240 354B     	 ldr r3,.L85+60
+ 972 0242 D3ED007A 	 flds s15,[r3]
+ 973 0246 9FED367A 	 flds s14,.L85+68
+ 974 024a F4EEC77A 	 fcmpes s15,s14
+ 975 024e F1EE10FA 	 fmstat
+ 976 0252 09DD     	 ble .L36
+ 977              	 .loc 3 258 0 is_stmt 0 discriminator 1
+ 978 0254 304B     	 ldr r3,.L85+60
+ 979 0256 D3ED007A 	 flds s15,[r3]
+ 980 025a 9FED317A 	 flds s14,.L85+68
+ 981 025e 77EEC77A 	 fsubs s15,s15,s14
+ 982 0262 2D4B     	 ldr r3,.L85+60
+ 983 0264 C3ED007A 	 fsts s15,[r3]
+ 984              	.L36:
  259:../main.c     **** 
- 260:../main.c     **** 		if(t > TIME_OMEGA_0){
- 1031              	 .loc 3 260 0
- 1032 02be FB68     	 ldr r3,[r7,#12]
- 1033 02c0 41F28832 	 movw r2,#5000
- 1034 02c4 9342     	 cmp r3,r2
- 1035 02c6 3FD9     	 bls .L41
- 261:../main.c     **** 			omega_ele_rads = 0;
- 1036              	 .loc 3 261 0
- 1037 02c8 1E4B     	 ldr r3,.L84+104
- 1038 02ca 4FF00002 	 mov r2,#0
- 1039 02ce 1A60     	 str r2,[r3]
- 262:../main.c     **** 			omega_mech_rps = 0;
- 1040              	 .loc 3 262 0
- 1041 02d0 1B4B     	 ldr r3,.L84+100
- 1042 02d2 4FF00002 	 mov r2,#0
- 1043 02d6 1A60     	 str r2,[r3]
- 1044 02d8 5AE0     	 b .L42
- 1045              	.L85:
- 1046 02da 00BF     	 .align 2
- 1047              	.L84:
- 1048 02dc 00000000 	 .word status_LED_red_cal_time
- 1049 02e0 00000000 	 .word last_Hall_trig
- 1050 02e4 00000000 	 .word time_since_A
- 1051 02e8 00000000 	 .word time_since_B
- 1052 02ec 00000000 	 .word time_since_C
- 1053 02f0 00000000 	 .word time_180deg
- 1054 02f4 00000000 	 .word time_180deg_cal
- 1055 02f8 00806640 	 .word 1080459264
- 1056 02fc 00000000 	 .word angle_in_sector
- 1057 0300 00007042 	 .word 1114636288
- 1058 0304 00007042 	 .word 1114636288
- 1059 0308 0000F041 	 .word 1106247680
- 1060 030c 00000000 	 .word direction
- 1061 0310 00000000 	 .word sector
- 1062 0314 00004E40 	 .word 1078853632
- 1063 0318 00000000 	 .word angle_phi
- 1064 031c 00000000 	 .word offset_pos
- 1065 0320 0000B443 	 .word 1135869952
- 1066 0324 0000E143 	 .word 1138819072
- 1067 0328 00000000 	 .word omega_mech_rps_temp
- 1068 032c 00000000 	 .word offset_neg
- 1069 0330 0000E1C3 	 .word -1008664576
- 1070 0334 00000000 	 .word Speed_detection_OK
- 1071 0338 00004843 	 .word 1128792064
- 1072 033c 000048C3 	 .word -1018691584
- 1073 0340 00000000 	 .word omega_mech_rps
- 1074 0344 00000000 	 .word omega_ele_rads
- 1075              	.L41:
- 263:../main.c     **** 		} // set omega  to 0 if no more hall detected
- 264:../main.c     **** 		else omega_ele_rads = omega_mech_rps*2*PI*PPZ; //omega_ electrica in rads / s
- 1076              	 .loc 3 264 0
- 1077 0348 C34B     	 ldr r3,.L86+48
- 1078 034a D3ED007A 	 flds s15,[r3]
- 1079 034e 77EEA77A 	 fadds s15,s15,s15
- 1080 0352 17EE900A 	 fmrs r0,s15
- 1081 0356 FFF7FEFF 	 bl __aeabi_f2d
- 1082 035a 0246     	 mov r2,r0
- 1083 035c 0B46     	 mov r3,r1
- 1084 035e 1046     	 mov r0,r2
- 1085 0360 1946     	 mov r1,r3
- 1086 0362 B1A3     	 adr r3,.L86
- 1087 0364 D3E90023 	 ldrd r2,[r3]
- 1088 0368 FFF7FEFF 	 bl __aeabi_dmul
- 1089 036c 0246     	 mov r2,r0
- 1090 036e 0B46     	 mov r3,r1
- 1091 0370 1046     	 mov r0,r2
- 1092 0372 1946     	 mov r1,r3
- 1093 0374 4FF00002 	 mov r2,#0
- 1094 0378 B84B     	 ldr r3,.L86+52
- 1095 037a FFF7FEFF 	 bl __aeabi_dmul
- 1096 037e 0246     	 mov r2,r0
- 1097 0380 0B46     	 mov r3,r1
- 1098 0382 1046     	 mov r0,r2
- 1099 0384 1946     	 mov r1,r3
- 1100 0386 FFF7FEFF 	 bl __aeabi_d2f
- 1101 038a 0246     	 mov r2,r0
- 1102 038c B44B     	 ldr r3,.L86+56
- 1103 038e 1A60     	 str r2,[r3]
- 1104              	.L42:
- 265:../main.c     **** 
- 266:../main.c     **** 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 8% duyt  // change to angel_in secotr 7% 
- 267:../main.c     **** 
- 268:../main.c     **** 		// Current read out over SPI
- 269:../main.c     **** 		Current_U = readCurrent(ChipSelect_U);
- 1105              	 .loc 3 269 0
- 1106 0390 0620     	 movs r0,#6
- 1107 0392 FFF7FEFF 	 bl readCurrent
- 1108 0396 0246     	 mov r2,r0
- 1109 0398 B24B     	 ldr r3,.L86+60
- 1110 039a 1A60     	 str r2,[r3]
- 270:../main.c     **** 		Current_V = readCurrent(ChipSelect_V);
- 1111              	 .loc 3 270 0
- 1112 039c 0520     	 movs r0,#5
- 1113 039e FFF7FEFF 	 bl readCurrent
- 1114 03a2 0246     	 mov r2,r0
- 1115 03a4 B04B     	 ldr r3,.L86+64
- 1116 03a6 1A60     	 str r2,[r3]
- 271:../main.c     **** 		Current_W = readCurrent(ChipSelect_W);
- 1117              	 .loc 3 271 0
- 1118 03a8 0320     	 movs r0,#3
- 1119 03aa FFF7FEFF 	 bl readCurrent
- 1120 03ae 0246     	 mov r2,r0
- 1121 03b0 AE4B     	 ldr r3,.L86+68
- 1122 03b2 1A60     	 str r2,[r3]
- 272:../main.c     **** 
- 273:../main.c     **** 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 53% duyt   current sesing takes 45% of th
- 274:../main.c     **** 
- 275:../main.c     **** 		// conversion from rad/s to degree
- 276:../main.c     **** 		float angle_phi_rad = angle_phi*Pi180;
- 1123              	 .loc 3 276 0
- 1124 03b4 AE4B     	 ldr r3,.L86+72
- 1125 03b6 1B68     	 ldr r3,[r3]
- 1126 03b8 1846     	 mov r0,r3
- 1127 03ba FFF7FEFF 	 bl __aeabi_f2d
- 1128 03be 0246     	 mov r2,r0
- 1129 03c0 0B46     	 mov r3,r1
- 1130 03c2 1046     	 mov r0,r2
- 1131 03c4 1946     	 mov r1,r3
- 1132 03c6 9AA3     	 adr r3,.L86+8
- 1133 03c8 D3E90023 	 ldrd r2,[r3]
- 1134 03cc FFF7FEFF 	 bl __aeabi_dmul
- 1135 03d0 0246     	 mov r2,r0
- 1136 03d2 0B46     	 mov r3,r1
- 1137 03d4 1046     	 mov r0,r2
- 1138 03d6 1946     	 mov r1,r3
- 1139 03d8 FFF7FEFF 	 bl __aeabi_d2f
- 1140 03dc 0346     	 mov r3,r0
- 1141 03de BB60     	 str r3,[r7,#8]
+ 260:../main.c     **** 			omega_mech_rps_temp = -(float)450/((float)time_180deg_cal);
+ 985              	 .loc 3 260 0 is_stmt 1
+ 986 0268 224B     	 ldr r3,.L85+24
+ 987 026a 1B68     	 ldr r3,[r3]
+ 988 026c 07EE903A 	 fmsr s15,r3
+ 989 0270 F8EE677A 	 fuitos s15,s15
+ 990 0274 9FED2E7A 	 flds s14,.L85+84
+ 991 0278 C7EE277A 	 fdivs s15,s14,s15
+ 992 027c 2A4B     	 ldr r3,.L85+76
+ 993 027e C3ED007A 	 fsts s15,[r3]
+ 994              	.L33:
+ 261:../main.c     **** 		}
+ 262:../main.c     **** 
+ 263:../main.c     **** 		Speed_detection_OK = 0;
+ 995              	 .loc 3 263 0
+ 996 0282 2C4B     	 ldr r3,.L85+88
+ 997 0284 0022     	 movs r2,#0
+ 998 0286 1A70     	 strb r2,[r3]
+ 264:../main.c     **** 		if(omega_mech_rps_temp<200 && omega_mech_rps_temp>(-200)) //plausibility check to avoid large pea
+ 999              	 .loc 3 264 0
+ 1000 0288 274B     	 ldr r3,.L85+76
+ 1001 028a D3ED007A 	 flds s15,[r3]
+ 1002 028e 9FED2A7A 	 flds s14,.L85+92
+ 1003 0292 F4EEC77A 	 fcmpes s15,s14
+ 1004 0296 F1EE10FA 	 fmstat
+ 1005 029a 10D5     	 bpl .L38
+ 1006              	 .loc 3 264 0 is_stmt 0 discriminator 1
+ 1007 029c 224B     	 ldr r3,.L85+76
+ 1008 029e D3ED007A 	 flds s15,[r3]
+ 1009 02a2 9FED267A 	 flds s14,.L85+96
+ 1010 02a6 F4EEC77A 	 fcmpes s15,s14
+ 1011 02aa F1EE10FA 	 fmstat
+ 1012 02ae 06DD     	 ble .L38
+ 265:../main.c     **** 		{
+ 266:../main.c     **** 			omega_mech_rps = omega_mech_rps_temp;
+ 1013              	 .loc 3 266 0 is_stmt 1
+ 1014 02b0 1D4B     	 ldr r3,.L85+76
+ 1015 02b2 1B68     	 ldr r3,[r3]
+ 1016 02b4 224A     	 ldr r2,.L85+100
+ 1017 02b6 1360     	 str r3,[r2]
+ 267:../main.c     **** 			Speed_detection_OK = 1;
+ 1018              	 .loc 3 267 0
+ 1019 02b8 1E4B     	 ldr r3,.L85+88
+ 1020 02ba 0122     	 movs r2,#1
+ 1021 02bc 1A70     	 strb r2,[r3]
+ 1022              	.L38:
+ 268:../main.c     **** 		}
+ 269:../main.c     **** 
+ 270:../main.c     **** 		if(t > TIME_OMEGA_0){
+ 1023              	 .loc 3 270 0
+ 1024 02be FB68     	 ldr r3,[r7,#12]
+ 1025 02c0 41F28832 	 movw r2,#5000
+ 1026 02c4 9342     	 cmp r3,r2
+ 1027 02c6 3FD9     	 bls .L41
+ 271:../main.c     **** 			omega_ele_rads = 0;
+ 1028              	 .loc 3 271 0
+ 1029 02c8 1E4B     	 ldr r3,.L85+104
+ 1030 02ca 4FF00002 	 mov r2,#0
+ 1031 02ce 1A60     	 str r2,[r3]
+ 272:../main.c     **** 			omega_mech_rps = 0;
+ 1032              	 .loc 3 272 0
+ 1033 02d0 1B4B     	 ldr r3,.L85+100
+ 1034 02d2 4FF00002 	 mov r2,#0
+ 1035 02d6 1A60     	 str r2,[r3]
+ 1036 02d8 5AE0     	 b .L42
+ 1037              	.L86:
+ 1038 02da 00BF     	 .align 2
+ 1039              	.L85:
+ 1040 02dc 00000000 	 .word status_LED_red_cal_time
+ 1041 02e0 00000000 	 .word last_Hall_trig
+ 1042 02e4 00000000 	 .word time_since_A
+ 1043 02e8 00000000 	 .word time_since_B
+ 1044 02ec 00000000 	 .word time_since_C
+ 1045 02f0 00000000 	 .word time_180deg
+ 1046 02f4 00000000 	 .word time_180deg_cal
+ 1047 02f8 00806640 	 .word 1080459264
+ 1048 02fc 00000000 	 .word angle_in_sector
+ 1049 0300 00007042 	 .word 1114636288
+ 1050 0304 00007042 	 .word 1114636288
+ 1051 0308 0000F041 	 .word 1106247680
+ 1052 030c 00000000 	 .word direction
+ 1053 0310 00000000 	 .word sector
+ 1054 0314 00004E40 	 .word 1078853632
+ 1055 0318 00000000 	 .word angle_phi
+ 1056 031c 00000000 	 .word offset_pos
+ 1057 0320 0000B443 	 .word 1135869952
+ 1058 0324 0000E143 	 .word 1138819072
+ 1059 0328 00000000 	 .word omega_mech_rps_temp
+ 1060 032c 00000000 	 .word offset_neg
+ 1061 0330 0000E1C3 	 .word -1008664576
+ 1062 0334 00000000 	 .word Speed_detection_OK
+ 1063 0338 00004843 	 .word 1128792064
+ 1064 033c 000048C3 	 .word -1018691584
+ 1065 0340 00000000 	 .word omega_mech_rps
+ 1066 0344 00000000 	 .word omega_ele_rads
+ 1067              	.L41:
+ 273:../main.c     **** 		} // set omega  to 0 if no more hall detected
+ 274:../main.c     **** 		else omega_ele_rads = omega_mech_rps*2*PI*PPZ; //omega_ electrica in rads / s
+ 1068              	 .loc 3 274 0
+ 1069 0348 C54B     	 ldr r3,.L87+56
+ 1070 034a D3ED007A 	 flds s15,[r3]
+ 1071 034e 77EEA77A 	 fadds s15,s15,s15
+ 1072 0352 17EE900A 	 fmrs r0,s15
+ 1073 0356 FFF7FEFF 	 bl __aeabi_f2d
+ 1074 035a 0246     	 mov r2,r0
+ 1075 035c 0B46     	 mov r3,r1
+ 1076 035e 1046     	 mov r0,r2
+ 1077 0360 1946     	 mov r1,r3
+ 1078 0362 B1A3     	 adr r3,.L87
+ 1079 0364 D3E90023 	 ldrd r2,[r3]
+ 1080 0368 FFF7FEFF 	 bl __aeabi_dmul
+ 1081 036c 0246     	 mov r2,r0
+ 1082 036e 0B46     	 mov r3,r1
+ 1083 0370 1046     	 mov r0,r2
+ 1084 0372 1946     	 mov r1,r3
+ 1085 0374 4FF00002 	 mov r2,#0
+ 1086 0378 BA4B     	 ldr r3,.L87+60
+ 1087 037a FFF7FEFF 	 bl __aeabi_dmul
+ 1088 037e 0246     	 mov r2,r0
+ 1089 0380 0B46     	 mov r3,r1
+ 1090 0382 1046     	 mov r0,r2
+ 1091 0384 1946     	 mov r1,r3
+ 1092 0386 FFF7FEFF 	 bl __aeabi_d2f
+ 1093 038a 0246     	 mov r2,r0
+ 1094 038c B64B     	 ldr r3,.L87+64
+ 1095 038e 1A60     	 str r2,[r3]
+ 1096              	.L42:
+ 275:../main.c     **** 
+ 276:../main.c     **** 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 8% duyt  // change to angel_in secotr 7% 
  277:../main.c     **** 
- 278:../main.c     **** 		// to decrease multiple calculations and computational effort
- 279:../main.c     **** 		float cos_phi = cosf(angle_phi_rad);
- 1142              	 .loc 3 279 0
- 1143 03e0 B868     	 ldr r0,[r7,#8]
- 1144 03e2 FFF7FEFF 	 bl cosf
- 1145 03e6 7860     	 str r0,[r7,#4]
- 280:../main.c     **** 		float sin_phi = sinf(angle_phi_rad);
- 1146              	 .loc 3 280 0
- 1147 03e8 B868     	 ldr r0,[r7,#8]
- 1148 03ea FFF7FEFF 	 bl sinf
- 1149 03ee 3860     	 str r0,[r7]
- 281:../main.c     **** 
- 282:../main.c     **** 		// Clark-Park transformation (from U,V,W to dq)
- 283:../main.c     **** 		id = TwoThird*(cos_phi*Current_U	+ cosf(angle_phi_rad-TwoPiThird)*Current_V + cosf(angle_phi_rad-
- 1150              	 .loc 3 283 0
- 1151 03f0 9C4B     	 ldr r3,.L86+60
- 1152 03f2 93ED007A 	 flds s14,[r3]
- 1153 03f6 D7ED017A 	 flds s15,[r7,#4]
- 1154 03fa 27EE278A 	 fmuls s16,s14,s15
- 1155 03fe B868     	 ldr r0,[r7,#8]
- 1156 0400 FFF7FEFF 	 bl __aeabi_f2d
- 1157 0404 0246     	 mov r2,r0
- 1158 0406 0B46     	 mov r3,r1
- 1159 0408 1046     	 mov r0,r2
- 1160 040a 1946     	 mov r1,r3
- 1161 040c 8AA3     	 adr r3,.L86+16
- 1162 040e D3E90023 	 ldrd r2,[r3]
- 1163 0412 FFF7FEFF 	 bl __aeabi_dsub
- 1164 0416 0246     	 mov r2,r0
- 1165 0418 0B46     	 mov r3,r1
- 1166 041a 1046     	 mov r0,r2
- 1167 041c 1946     	 mov r1,r3
- 1168 041e FFF7FEFF 	 bl __aeabi_d2f
- 1169 0422 0346     	 mov r3,r0
- 1170 0424 1846     	 mov r0,r3
- 1171 0426 FFF7FEFF 	 bl cosf
- 1172 042a 07EE100A 	 fmsr s14,r0
- 1173 042e 8E4B     	 ldr r3,.L86+64
- 1174 0430 D3ED007A 	 flds s15,[r3]
- 1175 0434 67EE277A 	 fmuls s15,s14,s15
- 1176 0438 38EE278A 	 fadds s16,s16,s15
- 1177 043c B868     	 ldr r0,[r7,#8]
- 1178 043e FFF7FEFF 	 bl __aeabi_f2d
- 1179 0442 0246     	 mov r2,r0
- 1180 0444 0B46     	 mov r3,r1
- 1181 0446 1046     	 mov r0,r2
- 1182 0448 1946     	 mov r1,r3
- 1183 044a 7DA3     	 adr r3,.L86+24
- 1184 044c D3E90023 	 ldrd r2,[r3]
- 1185 0450 FFF7FEFF 	 bl __aeabi_dsub
- 1186 0454 0246     	 mov r2,r0
- 1187 0456 0B46     	 mov r3,r1
- 1188 0458 1046     	 mov r0,r2
- 1189 045a 1946     	 mov r1,r3
- 1190 045c FFF7FEFF 	 bl __aeabi_d2f
- 1191 0460 0346     	 mov r3,r0
- 1192 0462 1846     	 mov r0,r3
- 1193 0464 FFF7FEFF 	 bl cosf
- 1194 0468 07EE100A 	 fmsr s14,r0
- 1195 046c 7F4B     	 ldr r3,.L86+68
- 1196 046e D3ED007A 	 flds s15,[r3]
- 1197 0472 67EE277A 	 fmuls s15,s14,s15
- 1198 0476 78EE277A 	 fadds s15,s16,s15
- 1199 047a 17EE900A 	 fmrs r0,s15
- 1200 047e FFF7FEFF 	 bl __aeabi_f2d
- 1201 0482 0246     	 mov r2,r0
- 1202 0484 0B46     	 mov r3,r1
- 1203 0486 1046     	 mov r0,r2
- 1204 0488 1946     	 mov r1,r3
- 1205 048a 6FA3     	 adr r3,.L86+32
- 1206 048c D3E90023 	 ldrd r2,[r3]
- 1207 0490 FFF7FEFF 	 bl __aeabi_dmul
- 1208 0494 0246     	 mov r2,r0
- 1209 0496 0B46     	 mov r3,r1
- 1210 0498 1046     	 mov r0,r2
- 1211 049a 1946     	 mov r1,r3
- 1212 049c FFF7FEFF 	 bl __aeabi_d2f
- 1213 04a0 0246     	 mov r2,r0
- 1214 04a2 744B     	 ldr r3,.L86+76
- 1215 04a4 1A60     	 str r2,[r3]
- 284:../main.c     **** 		iq = TwoThird*(-sin_phi*Current_U	 -sinf(angle_phi_rad-TwoPiThird)*Current_V - sinf(angle_phi_rad
- 1216              	 .loc 3 284 0
- 1217 04a6 D7ED007A 	 flds s15,[r7]
- 1218 04aa B1EE677A 	 fnegs s14,s15
- 1219 04ae 6D4B     	 ldr r3,.L86+60
- 1220 04b0 D3ED007A 	 flds s15,[r3]
- 1221 04b4 27EE278A 	 fmuls s16,s14,s15
- 1222 04b8 B868     	 ldr r0,[r7,#8]
- 1223 04ba FFF7FEFF 	 bl __aeabi_f2d
- 1224 04be 0246     	 mov r2,r0
- 1225 04c0 0B46     	 mov r3,r1
- 1226 04c2 1046     	 mov r0,r2
- 1227 04c4 1946     	 mov r1,r3
- 1228 04c6 5CA3     	 adr r3,.L86+16
- 1229 04c8 D3E90023 	 ldrd r2,[r3]
- 1230 04cc FFF7FEFF 	 bl __aeabi_dsub
- 1231 04d0 0246     	 mov r2,r0
- 1232 04d2 0B46     	 mov r3,r1
- 1233 04d4 1046     	 mov r0,r2
- 1234 04d6 1946     	 mov r1,r3
- 1235 04d8 FFF7FEFF 	 bl __aeabi_d2f
- 1236 04dc 0346     	 mov r3,r0
- 1237 04de 1846     	 mov r0,r3
- 1238 04e0 FFF7FEFF 	 bl sinf
- 1239 04e4 07EE100A 	 fmsr s14,r0
- 1240 04e8 5F4B     	 ldr r3,.L86+64
- 1241 04ea D3ED007A 	 flds s15,[r3]
- 1242 04ee 67EE277A 	 fmuls s15,s14,s15
- 1243 04f2 38EE678A 	 fsubs s16,s16,s15
- 1244 04f6 B868     	 ldr r0,[r7,#8]
- 1245 04f8 FFF7FEFF 	 bl __aeabi_f2d
- 1246 04fc 0246     	 mov r2,r0
- 1247 04fe 0B46     	 mov r3,r1
- 1248 0500 1046     	 mov r0,r2
- 1249 0502 1946     	 mov r1,r3
- 1250 0504 4EA3     	 adr r3,.L86+24
- 1251 0506 D3E90023 	 ldrd r2,[r3]
- 1252 050a FFF7FEFF 	 bl __aeabi_dsub
- 1253 050e 0246     	 mov r2,r0
- 1254 0510 0B46     	 mov r3,r1
- 1255 0512 1046     	 mov r0,r2
- 1256 0514 1946     	 mov r1,r3
- 1257 0516 FFF7FEFF 	 bl __aeabi_d2f
- 1258 051a 0346     	 mov r3,r0
- 1259 051c 1846     	 mov r0,r3
- 1260 051e FFF7FEFF 	 bl sinf
- 1261 0522 07EE100A 	 fmsr s14,r0
- 1262 0526 514B     	 ldr r3,.L86+68
- 1263 0528 D3ED007A 	 flds s15,[r3]
- 1264 052c 67EE277A 	 fmuls s15,s14,s15
- 1265 0530 78EE677A 	 fsubs s15,s16,s15
- 1266 0534 17EE900A 	 fmrs r0,s15
- 1267 0538 FFF7FEFF 	 bl __aeabi_f2d
- 1268 053c 0246     	 mov r2,r0
- 1269 053e 0B46     	 mov r3,r1
- 1270 0540 1046     	 mov r0,r2
- 1271 0542 1946     	 mov r1,r3
- 1272 0544 40A3     	 adr r3,.L86+32
- 1273 0546 D3E90023 	 ldrd r2,[r3]
- 1274 054a FFF7FEFF 	 bl __aeabi_dmul
- 1275 054e 0246     	 mov r2,r0
- 1276 0550 0B46     	 mov r3,r1
- 1277 0552 1046     	 mov r0,r2
- 1278 0554 1946     	 mov r1,r3
- 1279 0556 FFF7FEFF 	 bl __aeabi_d2f
- 1280 055a 0246     	 mov r2,r0
- 1281 055c 464B     	 ldr r3,.L86+80
- 1282 055e 1A60     	 str r2,[r3]
- 285:../main.c     **** 
- 286:../main.c     **** 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // %63 duty Clark-Park transformation 10% of
+ 278:../main.c     **** 		// Current read out over SPI
+ 279:../main.c     **** 		Current_U = readCurrent(ChipSelect_U);
+ 1097              	 .loc 3 279 0
+ 1098 0390 0620     	 movs r0,#6
+ 1099 0392 FFF7FEFF 	 bl readCurrent
+ 1100 0396 0246     	 mov r2,r0
+ 1101 0398 B44B     	 ldr r3,.L87+68
+ 1102 039a 1A60     	 str r2,[r3]
+ 280:../main.c     **** 		Current_V = readCurrent(ChipSelect_V);
+ 1103              	 .loc 3 280 0
+ 1104 039c 0520     	 movs r0,#5
+ 1105 039e FFF7FEFF 	 bl readCurrent
+ 1106 03a2 0246     	 mov r2,r0
+ 1107 03a4 B24B     	 ldr r3,.L87+72
+ 1108 03a6 1A60     	 str r2,[r3]
+ 281:../main.c     **** 		Current_W = readCurrent(ChipSelect_W);
+ 1109              	 .loc 3 281 0
+ 1110 03a8 0320     	 movs r0,#3
+ 1111 03aa FFF7FEFF 	 bl readCurrent
+ 1112 03ae 0246     	 mov r2,r0
+ 1113 03b0 B04B     	 ldr r3,.L87+76
+ 1114 03b2 1A60     	 str r2,[r3]
+ 282:../main.c     **** 
+ 283:../main.c     **** 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 53% duyt   current sesing takes 45% of th
+ 284:../main.c     **** 
+ 285:../main.c     **** 		// conversion from rad/s to degree
+ 286:../main.c     **** 		float angle_phi_rad = angle_phi*Pi180;
+ 1115              	 .loc 3 286 0
+ 1116 03b4 B04B     	 ldr r3,.L87+80
+ 1117 03b6 1B68     	 ldr r3,[r3]
+ 1118 03b8 1846     	 mov r0,r3
+ 1119 03ba FFF7FEFF 	 bl __aeabi_f2d
+ 1120 03be 0246     	 mov r2,r0
+ 1121 03c0 0B46     	 mov r3,r1
+ 1122 03c2 1046     	 mov r0,r2
+ 1123 03c4 1946     	 mov r1,r3
+ 1124 03c6 9AA3     	 adr r3,.L87+8
+ 1125 03c8 D3E90023 	 ldrd r2,[r3]
+ 1126 03cc FFF7FEFF 	 bl __aeabi_dmul
+ 1127 03d0 0246     	 mov r2,r0
+ 1128 03d2 0B46     	 mov r3,r1
+ 1129 03d4 1046     	 mov r0,r2
+ 1130 03d6 1946     	 mov r1,r3
+ 1131 03d8 FFF7FEFF 	 bl __aeabi_d2f
+ 1132 03dc 0346     	 mov r3,r0
+ 1133 03de BB60     	 str r3,[r7,#8]
  287:../main.c     **** 
- 288:../main.c     **** 		if(CAN_control == 1){// can control
- 1283              	 .loc 3 288 0
- 1284 0560 464B     	 ldr r3,.L86+84
- 1285 0562 1B78     	 ldrb r3,[r3]
- 1286 0564 012B     	 cmp r3,#1
- 1287 0566 1CD1     	 bne .L43
- 289:../main.c     **** 
- 290:../main.c     **** 			if(CAN_new_meassage == 1){
- 1288              	 .loc 3 290 0
- 1289 0568 454B     	 ldr r3,.L86+88
- 1290 056a 1B78     	 ldrb r3,[r3]
- 1291 056c 012B     	 cmp r3,#1
- 1292 056e 07D1     	 bne .L44
- 291:../main.c     **** 				speed_ref = CAN_speed_ref;
- 1293              	 .loc 3 291 0
- 1294 0570 444B     	 ldr r3,.L86+92
- 1295 0572 1B68     	 ldr r3,[r3]
- 1296 0574 444A     	 ldr r2,.L86+96
- 1297 0576 1360     	 str r3,[r2]
- 292:../main.c     **** 				CAN_new_meassage = 0;
- 1298              	 .loc 3 292 0
- 1299 0578 414B     	 ldr r3,.L86+88
- 1300 057a 0022     	 movs r2,#0
- 1301 057c 1A70     	 strb r2,[r3]
- 1302 057e 05E0     	 b .L45
- 1303              	.L44:
- 293:../main.c     **** 			}
- 294:../main.c     **** 			else{
- 295:../main.c     **** 				CAN_no_com_counter ++;
- 1304              	 .loc 3 295 0
- 1305 0580 424B     	 ldr r3,.L86+100
- 1306 0582 1B78     	 ldrb r3,[r3]
- 1307 0584 0133     	 adds r3,r3,#1
- 1308 0586 DAB2     	 uxtb r2,r3
- 1309 0588 404B     	 ldr r3,.L86+100
- 1310 058a 1A70     	 strb r2,[r3]
- 1311              	.L45:
- 296:../main.c     **** 			}
+ 288:../main.c     **** 		// to decrease multiple calculations and computational effort
+ 289:../main.c     **** 		float cos_phi = cosf(angle_phi_rad);
+ 1134              	 .loc 3 289 0
+ 1135 03e0 B868     	 ldr r0,[r7,#8]
+ 1136 03e2 FFF7FEFF 	 bl cosf
+ 1137 03e6 7860     	 str r0,[r7,#4]
+ 290:../main.c     **** 		float sin_phi = sinf(angle_phi_rad);
+ 1138              	 .loc 3 290 0
+ 1139 03e8 B868     	 ldr r0,[r7,#8]
+ 1140 03ea FFF7FEFF 	 bl sinf
+ 1141 03ee 3860     	 str r0,[r7]
+ 291:../main.c     **** 
+ 292:../main.c     **** 		// Clark-Park transformation (from U,V,W to dq)
+ 293:../main.c     **** 		id = TwoThird*(cos_phi*Current_U	+ cosf(angle_phi_rad-TwoPiThird)*Current_V + cosf(angle_phi_rad-
+ 1142              	 .loc 3 293 0
+ 1143 03f0 9E4B     	 ldr r3,.L87+68
+ 1144 03f2 93ED007A 	 flds s14,[r3]
+ 1145 03f6 D7ED017A 	 flds s15,[r7,#4]
+ 1146 03fa 27EE278A 	 fmuls s16,s14,s15
+ 1147 03fe B868     	 ldr r0,[r7,#8]
+ 1148 0400 FFF7FEFF 	 bl __aeabi_f2d
+ 1149 0404 0246     	 mov r2,r0
+ 1150 0406 0B46     	 mov r3,r1
+ 1151 0408 1046     	 mov r0,r2
+ 1152 040a 1946     	 mov r1,r3
+ 1153 040c 8AA3     	 adr r3,.L87+16
+ 1154 040e D3E90023 	 ldrd r2,[r3]
+ 1155 0412 FFF7FEFF 	 bl __aeabi_dsub
+ 1156 0416 0246     	 mov r2,r0
+ 1157 0418 0B46     	 mov r3,r1
+ 1158 041a 1046     	 mov r0,r2
+ 1159 041c 1946     	 mov r1,r3
+ 1160 041e FFF7FEFF 	 bl __aeabi_d2f
+ 1161 0422 0346     	 mov r3,r0
+ 1162 0424 1846     	 mov r0,r3
+ 1163 0426 FFF7FEFF 	 bl cosf
+ 1164 042a 07EE100A 	 fmsr s14,r0
+ 1165 042e 904B     	 ldr r3,.L87+72
+ 1166 0430 D3ED007A 	 flds s15,[r3]
+ 1167 0434 67EE277A 	 fmuls s15,s14,s15
+ 1168 0438 38EE278A 	 fadds s16,s16,s15
+ 1169 043c B868     	 ldr r0,[r7,#8]
+ 1170 043e FFF7FEFF 	 bl __aeabi_f2d
+ 1171 0442 0246     	 mov r2,r0
+ 1172 0444 0B46     	 mov r3,r1
+ 1173 0446 1046     	 mov r0,r2
+ 1174 0448 1946     	 mov r1,r3
+ 1175 044a 7DA3     	 adr r3,.L87+24
+ 1176 044c D3E90023 	 ldrd r2,[r3]
+ 1177 0450 FFF7FEFF 	 bl __aeabi_dsub
+ 1178 0454 0246     	 mov r2,r0
+ 1179 0456 0B46     	 mov r3,r1
+ 1180 0458 1046     	 mov r0,r2
+ 1181 045a 1946     	 mov r1,r3
+ 1182 045c FFF7FEFF 	 bl __aeabi_d2f
+ 1183 0460 0346     	 mov r3,r0
+ 1184 0462 1846     	 mov r0,r3
+ 1185 0464 FFF7FEFF 	 bl cosf
+ 1186 0468 07EE100A 	 fmsr s14,r0
+ 1187 046c 814B     	 ldr r3,.L87+76
+ 1188 046e D3ED007A 	 flds s15,[r3]
+ 1189 0472 67EE277A 	 fmuls s15,s14,s15
+ 1190 0476 78EE277A 	 fadds s15,s16,s15
+ 1191 047a 17EE900A 	 fmrs r0,s15
+ 1192 047e FFF7FEFF 	 bl __aeabi_f2d
+ 1193 0482 0246     	 mov r2,r0
+ 1194 0484 0B46     	 mov r3,r1
+ 1195 0486 1046     	 mov r0,r2
+ 1196 0488 1946     	 mov r1,r3
+ 1197 048a 6FA3     	 adr r3,.L87+32
+ 1198 048c D3E90023 	 ldrd r2,[r3]
+ 1199 0490 FFF7FEFF 	 bl __aeabi_dmul
+ 1200 0494 0246     	 mov r2,r0
+ 1201 0496 0B46     	 mov r3,r1
+ 1202 0498 1046     	 mov r0,r2
+ 1203 049a 1946     	 mov r1,r3
+ 1204 049c FFF7FEFF 	 bl __aeabi_d2f
+ 1205 04a0 0246     	 mov r2,r0
+ 1206 04a2 764B     	 ldr r3,.L87+84
+ 1207 04a4 1A60     	 str r2,[r3]
+ 294:../main.c     **** 		iq = TwoThird*(-sin_phi*Current_U	 -sinf(angle_phi_rad-TwoPiThird)*Current_V - sinf(angle_phi_rad
+ 1208              	 .loc 3 294 0
+ 1209 04a6 D7ED007A 	 flds s15,[r7]
+ 1210 04aa B1EE677A 	 fnegs s14,s15
+ 1211 04ae 6F4B     	 ldr r3,.L87+68
+ 1212 04b0 D3ED007A 	 flds s15,[r3]
+ 1213 04b4 27EE278A 	 fmuls s16,s14,s15
+ 1214 04b8 B868     	 ldr r0,[r7,#8]
+ 1215 04ba FFF7FEFF 	 bl __aeabi_f2d
+ 1216 04be 0246     	 mov r2,r0
+ 1217 04c0 0B46     	 mov r3,r1
+ 1218 04c2 1046     	 mov r0,r2
+ 1219 04c4 1946     	 mov r1,r3
+ 1220 04c6 5CA3     	 adr r3,.L87+16
+ 1221 04c8 D3E90023 	 ldrd r2,[r3]
+ 1222 04cc FFF7FEFF 	 bl __aeabi_dsub
+ 1223 04d0 0246     	 mov r2,r0
+ 1224 04d2 0B46     	 mov r3,r1
+ 1225 04d4 1046     	 mov r0,r2
+ 1226 04d6 1946     	 mov r1,r3
+ 1227 04d8 FFF7FEFF 	 bl __aeabi_d2f
+ 1228 04dc 0346     	 mov r3,r0
+ 1229 04de 1846     	 mov r0,r3
+ 1230 04e0 FFF7FEFF 	 bl sinf
+ 1231 04e4 07EE100A 	 fmsr s14,r0
+ 1232 04e8 614B     	 ldr r3,.L87+72
+ 1233 04ea D3ED007A 	 flds s15,[r3]
+ 1234 04ee 67EE277A 	 fmuls s15,s14,s15
+ 1235 04f2 38EE678A 	 fsubs s16,s16,s15
+ 1236 04f6 B868     	 ldr r0,[r7,#8]
+ 1237 04f8 FFF7FEFF 	 bl __aeabi_f2d
+ 1238 04fc 0246     	 mov r2,r0
+ 1239 04fe 0B46     	 mov r3,r1
+ 1240 0500 1046     	 mov r0,r2
+ 1241 0502 1946     	 mov r1,r3
+ 1242 0504 4EA3     	 adr r3,.L87+24
+ 1243 0506 D3E90023 	 ldrd r2,[r3]
+ 1244 050a FFF7FEFF 	 bl __aeabi_dsub
+ 1245 050e 0246     	 mov r2,r0
+ 1246 0510 0B46     	 mov r3,r1
+ 1247 0512 1046     	 mov r0,r2
+ 1248 0514 1946     	 mov r1,r3
+ 1249 0516 FFF7FEFF 	 bl __aeabi_d2f
+ 1250 051a 0346     	 mov r3,r0
+ 1251 051c 1846     	 mov r0,r3
+ 1252 051e FFF7FEFF 	 bl sinf
+ 1253 0522 07EE100A 	 fmsr s14,r0
+ 1254 0526 534B     	 ldr r3,.L87+76
+ 1255 0528 D3ED007A 	 flds s15,[r3]
+ 1256 052c 67EE277A 	 fmuls s15,s14,s15
+ 1257 0530 78EE677A 	 fsubs s15,s16,s15
+ 1258 0534 17EE900A 	 fmrs r0,s15
+ 1259 0538 FFF7FEFF 	 bl __aeabi_f2d
+ 1260 053c 0246     	 mov r2,r0
+ 1261 053e 0B46     	 mov r3,r1
+ 1262 0540 1046     	 mov r0,r2
+ 1263 0542 1946     	 mov r1,r3
+ 1264 0544 40A3     	 adr r3,.L87+32
+ 1265 0546 D3E90023 	 ldrd r2,[r3]
+ 1266 054a FFF7FEFF 	 bl __aeabi_dmul
+ 1267 054e 0246     	 mov r2,r0
+ 1268 0550 0B46     	 mov r3,r1
+ 1269 0552 1046     	 mov r0,r2
+ 1270 0554 1946     	 mov r1,r3
+ 1271 0556 FFF7FEFF 	 bl __aeabi_d2f
+ 1272 055a 0246     	 mov r2,r0
+ 1273 055c 484B     	 ldr r3,.L87+88
+ 1274 055e 1A60     	 str r2,[r3]
+ 295:../main.c     **** 
+ 296:../main.c     **** 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // %63 duty Clark-Park transformation 10% of
  297:../main.c     **** 
- 298:../main.c     **** 			if(CAN_no_com_counter > CAN_NO_COM_TH){
- 1312              	 .loc 3 298 0
- 1313 058c 3F4B     	 ldr r3,.L86+100
- 1314 058e 1B78     	 ldrb r3,[r3]
- 1315 0590 FA2B     	 cmp r3,#250
- 1316 0592 06D9     	 bls .L43
- 299:../main.c     **** 				//CAN_new_meassage = 0;
- 300:../main.c     **** 				CAN_no_com_counter = CAN_NO_COM_TH;
- 1317              	 .loc 3 300 0
- 1318 0594 3D4B     	 ldr r3,.L86+100
- 1319 0596 FA22     	 movs r2,#250
- 1320 0598 1A70     	 strb r2,[r3]
- 301:../main.c     **** 				speed_ref = 0;
- 1321              	 .loc 3 301 0
- 1322 059a 3B4B     	 ldr r3,.L86+96
- 1323 059c 4FF00002 	 mov r2,#0
- 1324 05a0 1A60     	 str r2,[r3]
- 1325              	.L43:
- 302:../main.c     **** 			}
- 303:../main.c     **** 		}
- 304:../main.c     **** 
- 305:../main.c     **** 		omega_ele_rads_ref = ( speed_ref * PPZ ) / WHEEL_R;
- 1326              	 .loc 3 305 0
- 1327 05a2 394B     	 ldr r3,.L86+96
- 1328 05a4 D3ED007A 	 flds s15,[r3]
- 1329 05a8 B2EE067A 	 fconsts s14,#38
- 1330 05ac 67EE877A 	 fmuls s15,s15,s14
- 1331 05b0 17EE900A 	 fmrs r0,s15
- 1332 05b4 FFF7FEFF 	 bl __aeabi_f2d
- 1333 05b8 0246     	 mov r2,r0
- 1334 05ba 0B46     	 mov r3,r1
- 1335 05bc 1046     	 mov r0,r2
- 1336 05be 1946     	 mov r1,r3
- 1337 05c0 23A3     	 adr r3,.L86+40
- 1338 05c2 D3E90023 	 ldrd r2,[r3]
- 1339 05c6 FFF7FEFF 	 bl __aeabi_ddiv
- 1340 05ca 0246     	 mov r2,r0
- 1341 05cc 0B46     	 mov r3,r1
- 1342 05ce 1046     	 mov r0,r2
- 1343 05d0 1946     	 mov r1,r3
- 1344 05d2 FFF7FEFF 	 bl __aeabi_d2f
- 1345 05d6 0246     	 mov r2,r0
- 1346 05d8 2D4B     	 ldr r3,.L86+104
- 1347 05da 1A60     	 str r2,[r3]
- 306:../main.c     **** 		 /*
- 307:../main.c     **** 		if((omega_ele_rads_ref == 0 && Speed_control == 1) && (( -200 < omega_ele_rads) && (omega_ele_rad
- 308:../main.c     **** 			T_ref = 0;
- 309:../main.c     **** 		}
- 310:../main.c     **** 		else{
- 311:../main.c     **** 			if(MOTOR_NUM == 1){
- 312:../main.c     **** 				T_ref = PID_Controller(omega_ele_rads_ref,omega_ele_rads,&T_param_1); // outer control loop q f
- 313:../main.c     **** 			}
- 314:../main.c     **** 			else{
- 315:../main.c     **** 				T_ref = PID_Controller(omega_ele_rads_ref,omega_ele_rads,&omega_param);
- 316:../main.c     **** 			}
- 317:../main.c     **** 		}
- 318:../main.c     **** 		*/
- 319:../main.c     **** 
- 320:../main.c     **** 		// Always run speed controll calc
- 321:../main.c     **** 		if(Speed_control == 1 && omega_mech_rps_ref == 0  && (( -2 < omega_mech_rps) && (omega_mech_rps <
- 1348              	 .loc 3 321 0
- 1349 05dc 2D4B     	 ldr r3,.L86+108
- 1350 05de 1B78     	 ldrb r3,[r3]
- 1351 05e0 012B     	 cmp r3,#1
- 1352 05e2 5DD1     	 bne .L46
- 1353              	 .loc 3 321 0 is_stmt 0 discriminator 1
- 1354 05e4 2C4B     	 ldr r3,.L86+112
- 1355 05e6 D3ED007A 	 flds s15,[r3]
- 1356 05ea F5EE407A 	 fcmpzs s15
- 1357 05ee F1EE10FA 	 fmstat
- 1358 05f2 55D1     	 bne .L46
- 1359              	 .loc 3 321 0 discriminator 2
- 1360 05f4 184B     	 ldr r3,.L86+48
- 1361 05f6 D3ED007A 	 flds s15,[r3]
- 1362 05fa B8EE007A 	 fconsts s14,#128
- 1363 05fe F4EEC77A 	 fcmpes s15,s14
- 1364 0602 F1EE10FA 	 fmstat
- 1365 0606 4BDD     	 ble .L46
- 1366              	 .loc 3 321 0 discriminator 3
- 1367 0608 134B     	 ldr r3,.L86+48
- 1368 060a D3ED007A 	 flds s15,[r3]
- 1369 060e B0EE007A 	 fconsts s14,#0
- 1370 0612 F4EEC77A 	 fcmpes s15,s14
- 1371 0616 F1EE10FA 	 fmstat
- 1372 061a 41D5     	 bpl .L46
- 322:../main.c     **** 			T_ref = 0;
- 1373              	 .loc 3 322 0 is_stmt 1
- 1374 061c 1F4B     	 ldr r3,.L86+116
- 1375 061e 4FF00002 	 mov r2,#0
- 1376 0622 1A60     	 str r2,[r3]
- 1377 0624 CFE0     	 b .L49
- 1378              	.L87:
- 1379 0626 00BF     	 .align 3
- 1380              	.L86:
- 1381 0628 F1D4C853 	 .word 1405670641
- 1382 062c FB210940 	 .word 1074340347
- 1383 0630 4DC90777 	 .word 1996998989
- 1384 0634 46DF913F 	 .word 1066524486
- 1385 0638 A038DB37 	 .word 937113760
- 1386 063c 52C10040 	 .word 1073791314
- 1387 0640 A038DB37 	 .word 937113760
- 1388 0644 52C11040 	 .word 1074839890
- 1389 0648 93761F57 	 .word 1461679763
- 1390 064c 5555E53F 	 .word 1071994197
- 1391 0650 48E17A14 	 .word 343597384
- 1392 0654 AE47B13F 	 .word 1068582830
- 1393 0658 00000000 	 .word omega_mech_rps
- 1394 065c 00002640 	 .word 1076232192
- 1395 0660 00000000 	 .word omega_ele_rads
- 1396 0664 00000000 	 .word Current_U
- 1397 0668 00000000 	 .word Current_V
- 1398 066c 00000000 	 .word Current_W
- 1399 0670 00000000 	 .word angle_phi
- 1400 0674 00000000 	 .word id
- 1401 0678 00000000 	 .word iq
- 1402 067c 00000000 	 .word CAN_control
- 1403 0680 00000000 	 .word CAN_new_meassage
- 1404 0684 00000000 	 .word CAN_speed_ref
- 1405 0688 00000000 	 .word speed_ref
- 1406 068c 00000000 	 .word CAN_no_com_counter
- 1407 0690 00000000 	 .word omega_ele_rads_ref
- 1408 0694 00000000 	 .word Speed_control
- 1409 0698 00000000 	 .word omega_mech_rps_ref
- 1410 069c 00000000 	 .word T_ref
- 1411              	.L46:
- 323:../main.c     **** 		}
- 324:../main.c     **** 		else{
- 325:../main.c     **** 			T_ref = PI_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param); // outer control loop q f
- 1412              	 .loc 3 325 0
- 1413 06a0 A74B     	 ldr r3,.L88+24
- 1414 06a2 1A68     	 ldr r2,[r3]
- 1415 06a4 A74B     	 ldr r3,.L88+28
- 1416 06a6 1B68     	 ldr r3,[r3]
- 1417 06a8 1046     	 mov r0,r2
- 1418 06aa 1946     	 mov r1,r3
- 1419 06ac A64A     	 ldr r2,.L88+32
- 1420 06ae FFF7FEFF 	 bl PI_Controller
- 1421 06b2 0246     	 mov r2,r0
- 1422 06b4 A54B     	 ldr r3,.L88+36
- 1423 06b6 1A60     	 str r2,[r3]
- 326:../main.c     **** 
- 327:../main.c     **** 			if(start_help == 1 ){
- 1424              	 .loc 3 327 0
- 1425 06b8 A54B     	 ldr r3,.L88+40
- 1426 06ba 1B78     	 ldrb r3,[r3]
- 1427 06bc 012B     	 cmp r3,#1
- 1428 06be 40F08280 	 bne .L49
- 328:../main.c     **** 				// start help
- 329:../main.c     **** 				if(omega_mech_rps_ref != 0 && (copysign(1,omega_mech_rps_ref) != copysign(1,omega_mech_rps) || 
- 1429              	 .loc 3 329 0
- 1430 06c2 9F4B     	 ldr r3,.L88+24
- 1431 06c4 D3ED007A 	 flds s15,[r3]
- 1432 06c8 F5EE407A 	 fcmpzs s15
- 1433 06cc F1EE10FA 	 fmstat
- 1434 06d0 2DD0     	 beq .L50
- 1435              	 .loc 3 329 0 is_stmt 0 discriminator 1
- 1436 06d2 9B4B     	 ldr r3,.L88+24
- 1437 06d4 1B68     	 ldr r3,[r3]
- 1438 06d6 1846     	 mov r0,r3
- 1439 06d8 FFF7FEFF 	 bl __aeabi_f2d
- 1440 06dc 0246     	 mov r2,r0
- 1441 06de 0B46     	 mov r3,r1
- 1442 06e0 4FF00000 	 mov r0,#0
- 1443 06e4 9B49     	 ldr r1,.L88+44
- 1444 06e6 FFF7FEFF 	 bl copysign
- 1445 06ea 0446     	 mov r4,r0
- 1446 06ec 0D46     	 mov r5,r1
- 1447 06ee 954B     	 ldr r3,.L88+28
- 1448 06f0 1B68     	 ldr r3,[r3]
- 1449 06f2 1846     	 mov r0,r3
- 1450 06f4 FFF7FEFF 	 bl __aeabi_f2d
- 1451 06f8 0246     	 mov r2,r0
- 1452 06fa 0B46     	 mov r3,r1
- 1453 06fc 4FF00000 	 mov r0,#0
- 1454 0700 9449     	 ldr r1,.L88+44
- 1455 0702 FFF7FEFF 	 bl copysign
- 1456 0706 0246     	 mov r2,r0
- 1457 0708 0B46     	 mov r3,r1
- 1458 070a 2046     	 mov r0,r4
- 1459 070c 2946     	 mov r1,r5
- 1460 070e FFF7FEFF 	 bl __aeabi_dcmpeq
- 1461 0712 0346     	 mov r3,r0
- 1462 0714 002B     	 cmp r3,#0
- 1463 0716 07D0     	 beq .L51
- 1464              	 .loc 3 329 0 discriminator 2
- 1465 0718 8A4B     	 ldr r3,.L88+28
- 1466 071a D3ED007A 	 flds s15,[r3]
- 1467 071e F5EE407A 	 fcmpzs s15
- 1468 0722 F1EE10FA 	 fmstat
- 1469 0726 02D1     	 bne .L50
- 1470              	.L51:
- 330:../main.c     **** 					start_help_count = 1;
- 1471              	 .loc 3 330 0 is_stmt 1
- 1472 0728 8B4B     	 ldr r3,.L88+48
- 1473 072a 0122     	 movs r2,#1
- 1474 072c 1A70     	 strb r2,[r3]
- 1475              	.L50:
- 331:../main.c     **** 				}
- 332:../main.c     **** 
- 333:../main.c     **** 				if(start_help_count > 0){
- 1476              	 .loc 3 333 0
- 1477 072e 8A4B     	 ldr r3,.L88+48
- 1478 0730 1B78     	 ldrb r3,[r3]
- 1479 0732 002B     	 cmp r3,#0
- 1480 0734 47D0     	 beq .L49
- 334:../main.c     **** 					start_help_flag = 1;
- 1481              	 .loc 3 334 0
- 1482 0736 894B     	 ldr r3,.L88+52
- 1483 0738 0122     	 movs r2,#1
- 1484 073a 1A70     	 strb r2,[r3]
- 335:../main.c     **** 					start_help_count --;
- 1485              	 .loc 3 335 0
- 1486 073c 864B     	 ldr r3,.L88+48
- 1487 073e 1B78     	 ldrb r3,[r3]
- 1488 0740 013B     	 subs r3,r3,#1
- 1489 0742 DAB2     	 uxtb r2,r3
- 1490 0744 844B     	 ldr r3,.L88+48
- 1491 0746 1A70     	 strb r2,[r3]
- 336:../main.c     **** 					if(omega_mech_rps_ref > 0)T_ref = T_ref + START_HELP_T;
- 1492              	 .loc 3 336 0
- 1493 0748 7D4B     	 ldr r3,.L88+24
- 1494 074a D3ED007A 	 flds s15,[r3]
- 1495 074e F5EEC07A 	 fcmpezs s15
- 1496 0752 F1EE10FA 	 fmstat
- 1497 0756 17DD     	 ble .L82
- 1498              	 .loc 3 336 0 is_stmt 0 discriminator 1
- 1499 0758 7C4B     	 ldr r3,.L88+36
- 1500 075a 1B68     	 ldr r3,[r3]
- 1501 075c 1846     	 mov r0,r3
- 1502 075e FFF7FEFF 	 bl __aeabi_f2d
- 1503 0762 0246     	 mov r2,r0
- 1504 0764 0B46     	 mov r3,r1
- 1505 0766 1046     	 mov r0,r2
- 1506 0768 1946     	 mov r1,r3
- 1507 076a 6FA3     	 adr r3,.L88
- 1508 076c D3E90023 	 ldrd r2,[r3]
- 1509 0770 FFF7FEFF 	 bl __aeabi_dadd
- 1510 0774 0246     	 mov r2,r0
- 1511 0776 0B46     	 mov r3,r1
- 1512 0778 1046     	 mov r0,r2
- 1513 077a 1946     	 mov r1,r3
- 1514 077c FFF7FEFF 	 bl __aeabi_d2f
- 1515 0780 0246     	 mov r2,r0
- 1516 0782 724B     	 ldr r3,.L88+36
- 1517 0784 1A60     	 str r2,[r3]
- 1518 0786 1EE0     	 b .L49
- 1519              	.L82:
- 337:../main.c     **** 					else if(omega_mech_rps_ref < 0)T_ref = T_ref - START_HELP_T;
- 1520              	 .loc 3 337 0 is_stmt 1
- 1521 0788 6D4B     	 ldr r3,.L88+24
- 1522 078a D3ED007A 	 flds s15,[r3]
- 1523 078e F5EEC07A 	 fcmpezs s15
- 1524 0792 F1EE10FA 	 fmstat
- 1525 0796 16D5     	 bpl .L49
- 1526              	 .loc 3 337 0 is_stmt 0 discriminator 1
- 1527 0798 6C4B     	 ldr r3,.L88+36
- 1528 079a 1B68     	 ldr r3,[r3]
- 1529 079c 1846     	 mov r0,r3
- 1530 079e FFF7FEFF 	 bl __aeabi_f2d
- 1531 07a2 0246     	 mov r2,r0
- 1532 07a4 0B46     	 mov r3,r1
- 1533 07a6 1046     	 mov r0,r2
- 1534 07a8 1946     	 mov r1,r3
- 1535 07aa 5FA3     	 adr r3,.L88
- 1536 07ac D3E90023 	 ldrd r2,[r3]
- 1537 07b0 FFF7FEFF 	 bl __aeabi_dsub
- 1538 07b4 0246     	 mov r2,r0
- 1539 07b6 0B46     	 mov r3,r1
- 1540 07b8 1046     	 mov r0,r2
- 1541 07ba 1946     	 mov r1,r3
- 1542 07bc FFF7FEFF 	 bl __aeabi_d2f
- 1543 07c0 0246     	 mov r2,r0
- 1544 07c2 624B     	 ldr r3,.L88+36
- 1545 07c4 1A60     	 str r2,[r3]
- 1546              	.L49:
- 338:../main.c     **** 				}
- 339:../main.c     **** 			}
+ 298:../main.c     **** 		if(CAN_control == 1){// can control
+ 1275              	 .loc 3 298 0
+ 1276 0560 484B     	 ldr r3,.L87+92
+ 1277 0562 1B78     	 ldrb r3,[r3]
+ 1278 0564 012B     	 cmp r3,#1
+ 1279 0566 3CD1     	 bne .L43
+ 299:../main.c     **** 
+ 300:../main.c     **** 			if(CAN_new_meassage == 1){
+ 1280              	 .loc 3 300 0
+ 1281 0568 474B     	 ldr r3,.L87+96
+ 1282 056a 1B78     	 ldrb r3,[r3]
+ 1283 056c 012B     	 cmp r3,#1
+ 1284 056e 07D1     	 bne .L44
+ 301:../main.c     **** 				speed_ref = CAN_speed_ref;
+ 1285              	 .loc 3 301 0
+ 1286 0570 464B     	 ldr r3,.L87+100
+ 1287 0572 1B68     	 ldr r3,[r3]
+ 1288 0574 464A     	 ldr r2,.L87+104
+ 1289 0576 1360     	 str r3,[r2]
+ 302:../main.c     **** 				CAN_new_meassage = 0;
+ 1290              	 .loc 3 302 0
+ 1291 0578 434B     	 ldr r3,.L87+96
+ 1292 057a 0022     	 movs r2,#0
+ 1293 057c 1A70     	 strb r2,[r3]
+ 1294 057e 05E0     	 b .L45
+ 1295              	.L44:
+ 303:../main.c     **** 			}
+ 304:../main.c     **** 			else{
+ 305:../main.c     **** 				CAN_no_com_counter ++;
+ 1296              	 .loc 3 305 0
+ 1297 0580 444B     	 ldr r3,.L87+108
+ 1298 0582 1B78     	 ldrb r3,[r3]
+ 1299 0584 0133     	 adds r3,r3,#1
+ 1300 0586 DAB2     	 uxtb r2,r3
+ 1301 0588 424B     	 ldr r3,.L87+108
+ 1302 058a 1A70     	 strb r2,[r3]
+ 1303              	.L45:
+ 306:../main.c     **** 			}
+ 307:../main.c     **** 
+ 308:../main.c     **** 			if(CAN_no_com_counter > CAN_NO_COM_TH){
+ 1304              	 .loc 3 308 0
+ 1305 058c 414B     	 ldr r3,.L87+108
+ 1306 058e 1B78     	 ldrb r3,[r3]
+ 1307 0590 FA2B     	 cmp r3,#250
+ 1308 0592 06D9     	 bls .L46
+ 309:../main.c     **** 				//CAN_new_meassage = 0;
+ 310:../main.c     **** 				CAN_no_com_counter = CAN_NO_COM_TH;
+ 1309              	 .loc 3 310 0
+ 1310 0594 3F4B     	 ldr r3,.L87+108
+ 1311 0596 FA22     	 movs r2,#250
+ 1312 0598 1A70     	 strb r2,[r3]
+ 311:../main.c     **** 				speed_ref = 0;
+ 1313              	 .loc 3 311 0
+ 1314 059a 3D4B     	 ldr r3,.L87+104
+ 1315 059c 4FF00002 	 mov r2,#0
+ 1316 05a0 1A60     	 str r2,[r3]
+ 1317              	.L46:
+ 312:../main.c     **** 			}
+ 313:../main.c     **** 			omega_mech_rps_ref = (speed_ref / WHEEL_R) / (2 * PI);
+ 1318              	 .loc 3 313 0
+ 1319 05a2 3B4B     	 ldr r3,.L87+104
+ 1320 05a4 1B68     	 ldr r3,[r3]
+ 1321 05a6 1846     	 mov r0,r3
+ 1322 05a8 FFF7FEFF 	 bl __aeabi_f2d
+ 1323 05ac 0246     	 mov r2,r0
+ 1324 05ae 0B46     	 mov r3,r1
+ 1325 05b0 1046     	 mov r0,r2
+ 1326 05b2 1946     	 mov r1,r3
+ 1327 05b4 26A3     	 adr r3,.L87+40
+ 1328 05b6 D3E90023 	 ldrd r2,[r3]
+ 1329 05ba FFF7FEFF 	 bl __aeabi_ddiv
+ 1330 05be 0246     	 mov r2,r0
+ 1331 05c0 0B46     	 mov r3,r1
+ 1332 05c2 1046     	 mov r0,r2
+ 1333 05c4 1946     	 mov r1,r3
+ 1334 05c6 24A3     	 adr r3,.L87+48
+ 1335 05c8 D3E90023 	 ldrd r2,[r3]
+ 1336 05cc FFF7FEFF 	 bl __aeabi_ddiv
+ 1337 05d0 0246     	 mov r2,r0
+ 1338 05d2 0B46     	 mov r3,r1
+ 1339 05d4 1046     	 mov r0,r2
+ 1340 05d6 1946     	 mov r1,r3
+ 1341 05d8 FFF7FEFF 	 bl __aeabi_d2f
+ 1342 05dc 0246     	 mov r2,r0
+ 1343 05de 2E4B     	 ldr r3,.L87+112
+ 1344 05e0 1A60     	 str r2,[r3]
+ 1345              	.L43:
+ 314:../main.c     **** 		}
+ 315:../main.c     **** 
+ 316:../main.c     **** 		// Always run speed controll calc
+ 317:../main.c     **** 		if(omega_mech_rps_ref == 0  && (( -2 < omega_mech_rps) && (omega_mech_rps < 2))){ // no contorl i
+ 1346              	 .loc 3 317 0
+ 1347 05e2 2D4B     	 ldr r3,.L87+112
+ 1348 05e4 D3ED007A 	 flds s15,[r3]
+ 1349 05e8 F5EE407A 	 fcmpzs s15
+ 1350 05ec F1EE10FA 	 fmstat
+ 1351 05f0 56D1     	 bne .L47
+ 1352              	 .loc 3 317 0 is_stmt 0 discriminator 1
+ 1353 05f2 1B4B     	 ldr r3,.L87+56
+ 1354 05f4 D3ED007A 	 flds s15,[r3]
+ 1355 05f8 B8EE007A 	 fconsts s14,#128
+ 1356 05fc F4EEC77A 	 fcmpes s15,s14
+ 1357 0600 F1EE10FA 	 fmstat
+ 1358 0604 4CDD     	 ble .L47
+ 1359              	 .loc 3 317 0 discriminator 2
+ 1360 0606 164B     	 ldr r3,.L87+56
+ 1361 0608 D3ED007A 	 flds s15,[r3]
+ 1362 060c B0EE007A 	 fconsts s14,#0
+ 1363 0610 F4EEC77A 	 fcmpes s15,s14
+ 1364 0614 F1EE10FA 	 fmstat
+ 1365 0618 42D5     	 bpl .L47
+ 318:../main.c     **** 			T_ref_controlled = 0;
+ 1366              	 .loc 3 318 0 is_stmt 1
+ 1367 061a 204B     	 ldr r3,.L87+116
+ 1368 061c 4FF00002 	 mov r2,#0
+ 1369 0620 1A60     	 str r2,[r3]
+ 1370 0622 D4E0     	 b .L50
+ 1371              	.L88:
+ 1372 0624 AFF30080 	 .align 3
+ 1373              	.L87:
+ 1374 0628 F1D4C853 	 .word 1405670641
+ 1375 062c FB210940 	 .word 1074340347
+ 1376 0630 4DC90777 	 .word 1996998989
+ 1377 0634 46DF913F 	 .word 1066524486
+ 1378 0638 A038DB37 	 .word 937113760
+ 1379 063c 52C10040 	 .word 1073791314
+ 1380 0640 A038DB37 	 .word 937113760
+ 1381 0644 52C11040 	 .word 1074839890
+ 1382 0648 93761F57 	 .word 1461679763
+ 1383 064c 5555E53F 	 .word 1071994197
+ 1384 0650 48E17A14 	 .word 343597384
+ 1385 0654 AE47B13F 	 .word 1068582830
+ 1386 0658 F1D4C853 	 .word 1405670641
+ 1387 065c FB211940 	 .word 1075388923
+ 1388 0660 00000000 	 .word omega_mech_rps
+ 1389 0664 00002640 	 .word 1076232192
+ 1390 0668 00000000 	 .word omega_ele_rads
+ 1391 066c 00000000 	 .word Current_U
+ 1392 0670 00000000 	 .word Current_V
+ 1393 0674 00000000 	 .word Current_W
+ 1394 0678 00000000 	 .word angle_phi
+ 1395 067c 00000000 	 .word id
+ 1396 0680 00000000 	 .word iq
+ 1397 0684 00000000 	 .word CAN_control
+ 1398 0688 00000000 	 .word CAN_new_meassage
+ 1399 068c 00000000 	 .word CAN_speed_ref
+ 1400 0690 00000000 	 .word speed_ref
+ 1401 0694 00000000 	 .word CAN_no_com_counter
+ 1402 0698 00000000 	 .word omega_mech_rps_ref
+ 1403 069c 00000000 	 .word T_ref_controlled
+ 1404              	.L47:
+ 319:../main.c     **** 		}
+ 320:../main.c     **** 		else{
+ 321:../main.c     **** 			T_ref_controlled = PI_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param); // outer contr
+ 1405              	 .loc 3 321 0
+ 1406 06a0 AD4B     	 ldr r3,.L89+24
+ 1407 06a2 1A68     	 ldr r2,[r3]
+ 1408 06a4 AD4B     	 ldr r3,.L89+28
+ 1409 06a6 1B68     	 ldr r3,[r3]
+ 1410 06a8 1046     	 mov r0,r2
+ 1411 06aa 1946     	 mov r1,r3
+ 1412 06ac AC4A     	 ldr r2,.L89+32
+ 1413 06ae FFF7FEFF 	 bl PI_Controller
+ 1414 06b2 0246     	 mov r2,r0
+ 1415 06b4 AB4B     	 ldr r3,.L89+36
+ 1416 06b6 1A60     	 str r2,[r3]
+ 322:../main.c     **** 
+ 323:../main.c     **** 			if(start_help == 1 ){
+ 1417              	 .loc 3 323 0
+ 1418 06b8 AB4B     	 ldr r3,.L89+40
+ 1419 06ba 1B78     	 ldrb r3,[r3]
+ 1420 06bc 012B     	 cmp r3,#1
+ 1421 06be 40F08680 	 bne .L50
+ 324:../main.c     **** 				// start help
+ 325:../main.c     **** 				if(omega_mech_rps_ref != 0 && (copysign(1,omega_mech_rps_ref) != copysign(1,omega_mech_rps) || 
+ 1422              	 .loc 3 325 0
+ 1423 06c2 A54B     	 ldr r3,.L89+24
+ 1424 06c4 D3ED007A 	 flds s15,[r3]
+ 1425 06c8 F5EE407A 	 fcmpzs s15
+ 1426 06cc F1EE10FA 	 fmstat
+ 1427 06d0 2DD0     	 beq .L51
+ 1428              	 .loc 3 325 0 is_stmt 0 discriminator 1
+ 1429 06d2 A14B     	 ldr r3,.L89+24
+ 1430 06d4 1B68     	 ldr r3,[r3]
+ 1431 06d6 1846     	 mov r0,r3
+ 1432 06d8 FFF7FEFF 	 bl __aeabi_f2d
+ 1433 06dc 0246     	 mov r2,r0
+ 1434 06de 0B46     	 mov r3,r1
+ 1435 06e0 4FF00000 	 mov r0,#0
+ 1436 06e4 A149     	 ldr r1,.L89+44
+ 1437 06e6 FFF7FEFF 	 bl copysign
+ 1438 06ea 0446     	 mov r4,r0
+ 1439 06ec 0D46     	 mov r5,r1
+ 1440 06ee 9B4B     	 ldr r3,.L89+28
+ 1441 06f0 1B68     	 ldr r3,[r3]
+ 1442 06f2 1846     	 mov r0,r3
+ 1443 06f4 FFF7FEFF 	 bl __aeabi_f2d
+ 1444 06f8 0246     	 mov r2,r0
+ 1445 06fa 0B46     	 mov r3,r1
+ 1446 06fc 4FF00000 	 mov r0,#0
+ 1447 0700 9A49     	 ldr r1,.L89+44
+ 1448 0702 FFF7FEFF 	 bl copysign
+ 1449 0706 0246     	 mov r2,r0
+ 1450 0708 0B46     	 mov r3,r1
+ 1451 070a 2046     	 mov r0,r4
+ 1452 070c 2946     	 mov r1,r5
+ 1453 070e FFF7FEFF 	 bl __aeabi_dcmpeq
+ 1454 0712 0346     	 mov r3,r0
+ 1455 0714 002B     	 cmp r3,#0
+ 1456 0716 07D0     	 beq .L52
+ 1457              	 .loc 3 325 0 discriminator 2
+ 1458 0718 904B     	 ldr r3,.L89+28
+ 1459 071a D3ED007A 	 flds s15,[r3]
+ 1460 071e F5EE407A 	 fcmpzs s15
+ 1461 0722 F1EE10FA 	 fmstat
+ 1462 0726 02D1     	 bne .L51
+ 1463              	.L52:
+ 326:../main.c     **** 					start_help_count = 10;
+ 1464              	 .loc 3 326 0 is_stmt 1
+ 1465 0728 914B     	 ldr r3,.L89+48
+ 1466 072a 0A22     	 movs r2,#10
+ 1467 072c 1A70     	 strb r2,[r3]
+ 1468              	.L51:
+ 327:../main.c     **** 				}
+ 328:../main.c     **** 
+ 329:../main.c     **** 				if(start_help_count > 0){
+ 1469              	 .loc 3 329 0
+ 1470 072e 904B     	 ldr r3,.L89+48
+ 1471 0730 1B78     	 ldrb r3,[r3]
+ 1472 0732 002B     	 cmp r3,#0
+ 1473 0734 4BD0     	 beq .L50
+ 330:../main.c     **** 					start_help_flag = 1;
+ 1474              	 .loc 3 330 0
+ 1475 0736 8F4B     	 ldr r3,.L89+52
+ 1476 0738 0122     	 movs r2,#1
+ 1477 073a 1A70     	 strb r2,[r3]
+ 331:../main.c     **** 					start_help_count --;
+ 1478              	 .loc 3 331 0
+ 1479 073c 8C4B     	 ldr r3,.L89+48
+ 1480 073e 1B78     	 ldrb r3,[r3]
+ 1481 0740 013B     	 subs r3,r3,#1
+ 1482 0742 DAB2     	 uxtb r2,r3
+ 1483 0744 8A4B     	 ldr r3,.L89+48
+ 1484 0746 1A70     	 strb r2,[r3]
+ 332:../main.c     **** 					if(omega_mech_rps_ref > 0)T_ref_controlled += START_HELP_T;
+ 1485              	 .loc 3 332 0
+ 1486 0748 834B     	 ldr r3,.L89+24
+ 1487 074a D3ED007A 	 flds s15,[r3]
+ 1488 074e F5EEC07A 	 fcmpezs s15
+ 1489 0752 F1EE10FA 	 fmstat
+ 1490 0756 17DD     	 ble .L83
+ 1491              	 .loc 3 332 0 is_stmt 0 discriminator 1
+ 1492 0758 824B     	 ldr r3,.L89+36
+ 1493 075a 1B68     	 ldr r3,[r3]
+ 1494 075c 1846     	 mov r0,r3
+ 1495 075e FFF7FEFF 	 bl __aeabi_f2d
+ 1496 0762 0246     	 mov r2,r0
+ 1497 0764 0B46     	 mov r3,r1
+ 1498 0766 1046     	 mov r0,r2
+ 1499 0768 1946     	 mov r1,r3
+ 1500 076a 75A3     	 adr r3,.L89
+ 1501 076c D3E90023 	 ldrd r2,[r3]
+ 1502 0770 FFF7FEFF 	 bl __aeabi_dadd
+ 1503 0774 0246     	 mov r2,r0
+ 1504 0776 0B46     	 mov r3,r1
+ 1505 0778 1046     	 mov r0,r2
+ 1506 077a 1946     	 mov r1,r3
+ 1507 077c FFF7FEFF 	 bl __aeabi_d2f
+ 1508 0780 0246     	 mov r2,r0
+ 1509 0782 784B     	 ldr r3,.L89+36
+ 1510 0784 1A60     	 str r2,[r3]
+ 1511 0786 22E0     	 b .L50
+ 1512              	.L83:
+ 333:../main.c     **** 					else if(omega_mech_rps_ref < 0)T_ref = T_ref_controlled -= START_HELP_T;
+ 1513              	 .loc 3 333 0 is_stmt 1
+ 1514 0788 734B     	 ldr r3,.L89+24
+ 1515 078a D3ED007A 	 flds s15,[r3]
+ 1516 078e F5EEC07A 	 fcmpezs s15
+ 1517 0792 F1EE10FA 	 fmstat
+ 1518 0796 1AD5     	 bpl .L50
+ 1519              	 .loc 3 333 0 is_stmt 0 discriminator 1
+ 1520 0798 724B     	 ldr r3,.L89+36
+ 1521 079a 1B68     	 ldr r3,[r3]
+ 1522 079c 1846     	 mov r0,r3
+ 1523 079e FFF7FEFF 	 bl __aeabi_f2d
+ 1524 07a2 0246     	 mov r2,r0
+ 1525 07a4 0B46     	 mov r3,r1
+ 1526 07a6 1046     	 mov r0,r2
+ 1527 07a8 1946     	 mov r1,r3
+ 1528 07aa 65A3     	 adr r3,.L89
+ 1529 07ac D3E90023 	 ldrd r2,[r3]
+ 1530 07b0 FFF7FEFF 	 bl __aeabi_dsub
+ 1531 07b4 0246     	 mov r2,r0
+ 1532 07b6 0B46     	 mov r3,r1
+ 1533 07b8 1046     	 mov r0,r2
+ 1534 07ba 1946     	 mov r1,r3
+ 1535 07bc FFF7FEFF 	 bl __aeabi_d2f
+ 1536 07c0 0246     	 mov r2,r0
+ 1537 07c2 684B     	 ldr r3,.L89+36
+ 1538 07c4 1A60     	 str r2,[r3]
+ 1539 07c6 674B     	 ldr r3,.L89+36
+ 1540 07c8 1B68     	 ldr r3,[r3]
+ 1541 07ca 6B4A     	 ldr r2,.L89+56
+ 1542 07cc 1360     	 str r3,[r2]
+ 1543              	.L50:
+ 334:../main.c     **** 				}
+ 335:../main.c     **** 			}
+ 336:../main.c     **** 		}
+ 337:../main.c     **** 
+ 338:../main.c     **** 		if (Speed_control == 1){// activation of speed control
+ 1544              	 .loc 3 338 0 is_stmt 1
+ 1545 07ce 6B4B     	 ldr r3,.L89+60
+ 1546 07d0 1B78     	 ldrb r3,[r3]
+ 1547 07d2 012B     	 cmp r3,#1
+ 1548 07d4 03D1     	 bne .L56
+ 339:../main.c     **** 			T_ref = T_ref_controlled;
+ 1549              	 .loc 3 339 0
+ 1550 07d6 634B     	 ldr r3,.L89+36
+ 1551 07d8 1B68     	 ldr r3,[r3]
+ 1552 07da 674A     	 ldr r2,.L89+56
+ 1553 07dc 1360     	 str r3,[r2]
+ 1554              	.L56:
  340:../main.c     **** 		}
  341:../main.c     **** 
- 342:../main.c     **** 		if (Speed_control == 1){// activation of speed control
- 1547              	 .loc 3 342 0 is_stmt 1
- 1548 07c6 664B     	 ldr r3,.L88+56
- 1549 07c8 1B78     	 ldrb r3,[r3]
- 1550 07ca 012B     	 cmp r3,#1
- 1551 07cc 16D1     	 bne .L55
- 343:../main.c     **** 			if(MOTOR_NUM == 1 || MOTOR_NUM == 10) {
- 344:../main.c     **** 				iq_ref =  T_ref / K_T; // dirction for motor 1
- 1552              	 .loc 3 344 0
- 1553 07ce 5F4B     	 ldr r3,.L88+36
- 1554 07d0 1B68     	 ldr r3,[r3]
- 1555 07d2 1846     	 mov r0,r3
- 1556 07d4 FFF7FEFF 	 bl __aeabi_f2d
- 1557 07d8 0246     	 mov r2,r0
- 1558 07da 0B46     	 mov r3,r1
- 1559 07dc 1046     	 mov r0,r2
- 1560 07de 1946     	 mov r1,r3
- 1561 07e0 53A3     	 adr r3,.L88+8
- 1562 07e2 D3E90023 	 ldrd r2,[r3]
- 1563 07e6 FFF7FEFF 	 bl __aeabi_ddiv
- 1564 07ea 0246     	 mov r2,r0
- 1565 07ec 0B46     	 mov r3,r1
- 1566 07ee 1046     	 mov r0,r2
- 1567 07f0 1946     	 mov r1,r3
- 1568 07f2 FFF7FEFF 	 bl __aeabi_d2f
- 1569 07f6 0246     	 mov r2,r0
- 1570 07f8 5A4B     	 ldr r3,.L88+60
- 1571 07fa 1A60     	 str r2,[r3]
- 1572              	.L55:
- 345:../main.c     **** 			}
- 346:../main.c     **** 			else{
- 347:../main.c     **** 				iq_ref = - T_ref / K_T;// dirction for motor not 1
- 348:../main.c     **** 			}
- 349:../main.c     **** 
- 350:../main.c     **** 		}
+ 342:../main.c     **** 		if(Torque_control == 1){
+ 1555              	 .loc 3 342 0
+ 1556 07de 684B     	 ldr r3,.L89+64
+ 1557 07e0 1B78     	 ldrb r3,[r3]
+ 1558 07e2 012B     	 cmp r3,#1
+ 1559 07e4 4CD1     	 bne .L57
+ 343:../main.c     **** 
+ 344:../main.c     **** 			if(MOTOR_NUM == 1 || MOTOR_NUM == 10) {
+ 345:../main.c     **** 				iq_ref =  T_ref / K_T; // dirction for motor 1
+ 346:../main.c     **** 			}
+ 347:../main.c     **** 			else{
+ 348:../main.c     **** 				iq_ref = - T_ref / K_T;// dirction for motor not 1
+ 1560              	 .loc 3 348 0
+ 1561 07e6 644B     	 ldr r3,.L89+56
+ 1562 07e8 D3ED007A 	 flds s15,[r3]
+ 1563 07ec F1EE677A 	 fnegs s15,s15
+ 1564 07f0 17EE903A 	 fmrs r3,s15
+ 1565 07f4 1846     	 mov r0,r3
+ 1566 07f6 FFF7FEFF 	 bl __aeabi_f2d
+ 1567 07fa 0246     	 mov r2,r0
+ 1568 07fc 0B46     	 mov r3,r1
+ 1569 07fe 1046     	 mov r0,r2
+ 1570 0800 1946     	 mov r1,r3
+ 1571 0802 51A3     	 adr r3,.L89+8
+ 1572 0804 D3E90023 	 ldrd r2,[r3]
+ 1573 0808 FFF7FEFF 	 bl __aeabi_ddiv
+ 1574 080c 0246     	 mov r2,r0
+ 1575 080e 0B46     	 mov r3,r1
+ 1576 0810 1046     	 mov r0,r2
+ 1577 0812 1946     	 mov r1,r3
+ 1578 0814 FFF7FEFF 	 bl __aeabi_d2f
+ 1579 0818 0246     	 mov r2,r0
+ 1580 081a 5A4B     	 ldr r3,.L89+68
+ 1581 081c 1A60     	 str r2,[r3]
+ 349:../main.c     **** 			}
+ 350:../main.c     **** 
  351:../main.c     **** 
- 352:../main.c     **** 		//iq_ref = - T_ref / K_T;// dirction for motor 1
- 353:../main.c     **** 
- 354:../main.c     **** 		//limit to IQ_REF_MAx limit
- 355:../main.c     **** 		if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
- 1573              	 .loc 3 355 0
- 1574 07fc 594B     	 ldr r3,.L88+60
- 1575 07fe D3ED007A 	 flds s15,[r3]
- 1576 0802 B9EE047A 	 fconsts s14,#148
- 1577 0806 F4EEC77A 	 fcmpes s15,s14
- 1578 080a F1EE10FA 	 fmstat
- 1579 080e 02D5     	 bpl .L56
- 1580              	 .loc 3 355 0 is_stmt 0 discriminator 1
- 1581 0810 544B     	 ldr r3,.L88+60
- 1582 0812 554A     	 ldr r2,.L88+64
- 1583 0814 1A60     	 str r2,[r3]
- 1584              	.L56:
- 356:../main.c     **** 		if(iq_ref > IQ_REF_MAX) iq_ref = IQ_REF_MAX;
- 1585              	 .loc 3 356 0 is_stmt 1
- 1586 0816 534B     	 ldr r3,.L88+60
- 1587 0818 D3ED007A 	 flds s15,[r3]
- 1588 081c B1EE047A 	 fconsts s14,#20
- 1589 0820 F4EEC77A 	 fcmpes s15,s14
- 1590 0824 F1EE10FA 	 fmstat
- 1591 0828 02DD     	 ble .L58
- 1592              	 .loc 3 356 0 is_stmt 0 discriminator 1
- 1593 082a 4E4B     	 ldr r3,.L88+60
- 1594 082c 4F4A     	 ldr r2,.L88+68
- 1595 082e 1A60     	 str r2,[r3]
- 1596              	.L58:
- 357:../main.c     **** 
- 358:../main.c     **** 		if(Torque_control == 1){
- 1597              	 .loc 3 358 0 is_stmt 1
- 1598 0830 4F4B     	 ldr r3,.L88+72
- 1599 0832 1B78     	 ldrb r3,[r3]
- 1600 0834 012B     	 cmp r3,#1
- 1601 0836 16D1     	 bne .L60
- 359:../main.c     **** 			//Vd = PID_Controller(0.0,id,&Id_param);
- 360:../main.c     **** 			//Vq = PID_Controller(iq_ref,iq,&Iq_param); // toque controll
- 361:../main.c     **** 
- 362:../main.c     **** 			Vd = PI_Controller(0.0,id,&Id_param);
- 1602              	 .loc 3 362 0
- 1603 0838 4E4B     	 ldr r3,.L88+76
- 1604 083a 1B68     	 ldr r3,[r3]
- 1605 083c 4FF00000 	 mov r0,#0
- 1606 0840 1946     	 mov r1,r3
- 1607 0842 4D4A     	 ldr r2,.L88+80
- 1608 0844 FFF7FEFF 	 bl PI_Controller
- 1609 0848 0246     	 mov r2,r0
- 1610 084a 4C4B     	 ldr r3,.L88+84
- 1611 084c 1A60     	 str r2,[r3]
- 363:../main.c     **** 			Vq = PI_Controller(iq_ref,iq,&Iq_param); // toque controll
- 1612              	 .loc 3 363 0
- 1613 084e 454B     	 ldr r3,.L88+60
- 1614 0850 1A68     	 ldr r2,[r3]
- 1615 0852 4B4B     	 ldr r3,.L88+88
- 1616 0854 1B68     	 ldr r3,[r3]
- 1617 0856 1046     	 mov r0,r2
- 1618 0858 1946     	 mov r1,r3
- 1619 085a 4A4A     	 ldr r2,.L88+92
- 1620 085c FFF7FEFF 	 bl PI_Controller
- 1621 0860 0246     	 mov r2,r0
- 1622 0862 494B     	 ldr r3,.L88+96
- 1623 0864 1A60     	 str r2,[r3]
- 1624              	.L60:
- 364:../main.c     **** 		}
- 365:../main.c     **** 
- 366:../main.c     **** 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // %67 duyt   control takes 4% of the time 9
- 367:../main.c     **** 
- 368:../main.c     **** 		// dq to alpha beta for voltage
- 369:../main.c     **** 		Valpha = Vd*cos_phi - Vq*sin_phi;
- 1625              	 .loc 3 369 0
- 1626 0866 454B     	 ldr r3,.L88+84
- 1627 0868 93ED007A 	 flds s14,[r3]
- 1628 086c D7ED017A 	 flds s15,[r7,#4]
- 1629 0870 27EE277A 	 fmuls s14,s14,s15
- 1630 0874 444B     	 ldr r3,.L88+96
- 1631 0876 D3ED006A 	 flds s13,[r3]
- 1632 087a D7ED007A 	 flds s15,[r7]
- 1633 087e 66EEA77A 	 fmuls s15,s13,s15
- 1634 0882 77EE677A 	 fsubs s15,s14,s15
- 1635 0886 414B     	 ldr r3,.L88+100
- 1636 0888 C3ED007A 	 fsts s15,[r3]
- 370:../main.c     **** 		Vbeta = Vd*sin_phi + Vq*cos_phi;
- 1637              	 .loc 3 370 0
- 1638 088c 3B4B     	 ldr r3,.L88+84
- 1639 088e 93ED007A 	 flds s14,[r3]
- 1640 0892 D7ED007A 	 flds s15,[r7]
- 1641 0896 27EE277A 	 fmuls s14,s14,s15
- 1642 089a 3B4B     	 ldr r3,.L88+96
- 1643 089c D3ED006A 	 flds s13,[r3]
- 1644 08a0 D7ED017A 	 flds s15,[r7,#4]
- 1645 08a4 66EEA77A 	 fmuls s15,s13,s15
- 1646 08a8 77EE277A 	 fadds s15,s14,s15
- 1647 08ac 384B     	 ldr r3,.L88+104
- 1648 08ae C3ED007A 	 fsts s15,[r3]
- 371:../main.c     **** 
- 372:../main.c     **** 		// calc angle for SVM app
- 373:../main.c     **** 		angle_ab_rad = atanf(Vbeta/Valpha);
- 1649              	 .loc 3 373 0
- 1650 08b2 374B     	 ldr r3,.L88+104
- 1651 08b4 93ED007A 	 flds s14,[r3]
- 1652 08b8 344B     	 ldr r3,.L88+100
- 1653 08ba D3ED007A 	 flds s15,[r3]
- 1654 08be C7EE277A 	 fdivs s15,s14,s15
- 1655 08c2 17EE900A 	 fmrs r0,s15
- 1656 08c6 FFF7FEFF 	 bl atanf
- 1657 08ca 0246     	 mov r2,r0
- 1658 08cc 314B     	 ldr r3,.L88+108
- 1659 08ce 1A60     	 str r2,[r3]
- 374:../main.c     **** 		angle_ab = angle_ab_rad/Pi180;
- 1660              	 .loc 3 374 0
- 1661 08d0 304B     	 ldr r3,.L88+108
- 1662 08d2 1B68     	 ldr r3,[r3]
- 1663 08d4 1846     	 mov r0,r3
- 1664 08d6 FFF7FEFF 	 bl __aeabi_f2d
- 1665 08da 0246     	 mov r2,r0
- 1666 08dc 0B46     	 mov r3,r1
- 1667 08de 1046     	 mov r0,r2
- 1668 08e0 1946     	 mov r1,r3
- 1669 08e2 15A3     	 adr r3,.L88+16
- 1670 08e4 D3E90023 	 ldrd r2,[r3]
- 1671 08e8 FFF7FEFF 	 bl __aeabi_ddiv
- 1672 08ec 0246     	 mov r2,r0
- 1673 08ee 0B46     	 mov r3,r1
- 1674 08f0 1046     	 mov r0,r2
- 1675 08f2 1946     	 mov r1,r3
- 1676 08f4 FFF7FEFF 	 bl __aeabi_d2f
- 1677 08f8 0246     	 mov r2,r0
- 1678 08fa 274B     	 ldr r3,.L88+112
- 1679 08fc 1A60     	 str r2,[r3]
- 375:../main.c     **** 
- 376:../main.c     **** 		if(Valpha < 0.0){angle_ab = angle_ab + 180.0;}			// failure correction of angle (tangens)
- 1680              	 .loc 3 376 0
- 1681 08fe 234B     	 ldr r3,.L88+100
- 1682 0900 D3ED007A 	 flds s15,[r3]
- 1683 0904 F5EEC07A 	 fcmpezs s15
- 1684 0908 F1EE10FA 	 fmstat
- 1685 090c 48D5     	 bpl .L83
- 1686              	 .loc 3 376 0 is_stmt 0 discriminator 1
- 1687 090e 224B     	 ldr r3,.L88+112
- 1688 0910 D3ED007A 	 flds s15,[r3]
- 1689 0914 9FED217A 	 flds s14,.L88+116
- 1690 0918 77EE877A 	 fadds s15,s15,s14
- 1691 091c 1E4B     	 ldr r3,.L88+112
- 1692 091e C3ED007A 	 fsts s15,[r3]
- 1693 0922 4FE0     	 b .L63
- 1694              	.L89:
- 1695 0924 AFF30080 	 .align 3
- 1696              	.L88:
- 1697 0928 9A999999 	 .word -1717986918
- 1698 092c 9999B93F 	 .word 1069128089
- 1699 0930 E17A14AE 	 .word -1374389535
- 1700 0934 47E1CA3F 	 .word 1070260551
- 1701 0938 4DC90777 	 .word 1996998989
- 1702 093c 46DF913F 	 .word 1066524486
- 1703 0940 00000000 	 .word omega_mech_rps_ref
- 1704 0944 00000000 	 .word omega_mech_rps
- 1705 0948 00000000 	 .word omega_param
- 1706 094c 00000000 	 .word T_ref
- 1707 0950 00000000 	 .word start_help
- 1708 0954 0000F03F 	 .word 1072693248
- 1709 0958 00000000 	 .word start_help_count
- 1710 095c 00000000 	 .word start_help_flag
- 1711 0960 00000000 	 .word Speed_control
- 1712 0964 00000000 	 .word iq_ref
- 1713 0968 0000A0C0 	 .word -1063256064
- 1714 096c 0000A040 	 .word 1084227584
- 1715 0970 00000000 	 .word Torque_control
- 1716 0974 00000000 	 .word id
- 1717 0978 00000000 	 .word Id_param
- 1718 097c 00000000 	 .word Vd
- 1719 0980 00000000 	 .word iq
- 1720 0984 00000000 	 .word Iq_param
- 1721 0988 00000000 	 .word Vq
- 1722 098c 00000000 	 .word Valpha
- 1723 0990 00000000 	 .word Vbeta
- 1724 0994 00000000 	 .word angle_ab_rad
- 1725 0998 00000000 	 .word angle_ab
- 1726 099c 00003443 	 .word 1127481344
- 1727              	.L83:
- 377:../main.c     **** 		else if(Vbeta < 0.0){angle_ab = angle_ab + 360.0;}
- 1728              	 .loc 3 377 0 is_stmt 1
- 1729 09a0 3D4B     	 ldr r3,.L90+8
- 1730 09a2 D3ED007A 	 flds s15,[r3]
- 1731 09a6 F5EEC07A 	 fcmpezs s15
- 1732 09aa F1EE10FA 	 fmstat
- 1733 09ae 09D5     	 bpl .L63
- 1734              	 .loc 3 377 0 is_stmt 0 discriminator 1
- 1735 09b0 3A4B     	 ldr r3,.L90+12
- 1736 09b2 D3ED007A 	 flds s15,[r3]
- 1737 09b6 9FED3A7A 	 flds s14,.L90+16
- 1738 09ba 77EE877A 	 fadds s15,s15,s14
- 1739 09be 374B     	 ldr r3,.L90+12
- 1740 09c0 C3ED007A 	 fsts s15,[r3]
- 1741              	.L63:
- 378:../main.c     **** 
- 379:../main.c     **** 		// shortend to one line
- 380:../main.c     **** 		// amplitude calculation
- 381:../main.c     **** 		amplitude_ab = sqrtf(Valpha*Valpha + Vbeta*Vbeta);
- 1742              	 .loc 3 381 0 is_stmt 1
- 1743 09c4 374B     	 ldr r3,.L90+20
- 1744 09c6 93ED007A 	 flds s14,[r3]
- 1745 09ca 364B     	 ldr r3,.L90+20
- 1746 09cc D3ED007A 	 flds s15,[r3]
- 1747 09d0 27EE277A 	 fmuls s14,s14,s15
- 1748 09d4 304B     	 ldr r3,.L90+8
- 1749 09d6 D3ED006A 	 flds s13,[r3]
- 1750 09da 2F4B     	 ldr r3,.L90+8
- 1751 09dc D3ED007A 	 flds s15,[r3]
- 1752 09e0 66EEA77A 	 fmuls s15,s13,s15
- 1753 09e4 77EE277A 	 fadds s15,s14,s15
- 1754 09e8 17EE900A 	 fmrs r0,s15
- 1755 09ec FFF7FEFF 	 bl sqrtf
- 1756 09f0 0246     	 mov r2,r0
- 1757 09f2 2D4B     	 ldr r3,.L90+24
- 1758 09f4 1A60     	 str r2,[r3]
- 382:../main.c     **** 
- 383:../main.c     **** 		//K_inv = V/m --> m = V / K_inv
- 384:../main.c     **** 		//modulation_index = amplitude_ab/K_inv;
- 385:../main.c     **** 
- 386:../main.c     **** 		if(V_DC_link < 0 || V_DC_link > 50) V_DC_link = 14.8;  // plauseblyt check if not set to nom bat 
- 1759              	 .loc 3 386 0
- 1760 09f6 2D4B     	 ldr r3,.L90+28
- 1761 09f8 D3ED007A 	 flds s15,[r3]
- 1762 09fc F5EEC07A 	 fcmpezs s15
- 1763 0a00 F1EE10FA 	 fmstat
- 1764 0a04 09D4     	 bmi .L65
- 1765              	 .loc 3 386 0 is_stmt 0 discriminator 2
- 1766 0a06 294B     	 ldr r3,.L90+28
- 1767 0a08 D3ED007A 	 flds s15,[r3]
- 1768 0a0c 9FED287A 	 flds s14,.L90+32
- 1769 0a10 F4EEC77A 	 fcmpes s15,s14
- 1770 0a14 F1EE10FA 	 fmstat
- 1771 0a18 02DD     	 ble .L66
- 1772              	.L65:
- 1773              	 .loc 3 386 0 discriminator 3
- 1774 0a1a 244B     	 ldr r3,.L90+28
- 1775 0a1c 254A     	 ldr r2,.L90+36
- 1776 0a1e 1A60     	 str r2,[r3]
+ 352:../main.c     **** 			//limit to IQ_REF_MAx limit
+ 353:../main.c     **** 			if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
+ 1582              	 .loc 3 353 0
+ 1583 081e 594B     	 ldr r3,.L89+68
+ 1584 0820 D3ED007A 	 flds s15,[r3]
+ 1585 0824 B9EE047A 	 fconsts s14,#148
+ 1586 0828 F4EEC77A 	 fcmpes s15,s14
+ 1587 082c F1EE10FA 	 fmstat
+ 1588 0830 02D5     	 bpl .L58
+ 1589              	 .loc 3 353 0 is_stmt 0 discriminator 1
+ 1590 0832 544B     	 ldr r3,.L89+68
+ 1591 0834 544A     	 ldr r2,.L89+72
+ 1592 0836 1A60     	 str r2,[r3]
+ 1593              	.L58:
+ 354:../main.c     **** 			if(iq_ref > IQ_REF_MAX) iq_ref = IQ_REF_MAX;
+ 1594              	 .loc 3 354 0 is_stmt 1
+ 1595 0838 524B     	 ldr r3,.L89+68
+ 1596 083a D3ED007A 	 flds s15,[r3]
+ 1597 083e B1EE047A 	 fconsts s14,#20
+ 1598 0842 F4EEC77A 	 fcmpes s15,s14
+ 1599 0846 F1EE10FA 	 fmstat
+ 1600 084a 02DD     	 ble .L60
+ 1601              	 .loc 3 354 0 is_stmt 0 discriminator 1
+ 1602 084c 4D4B     	 ldr r3,.L89+68
+ 1603 084e 4F4A     	 ldr r2,.L89+76
+ 1604 0850 1A60     	 str r2,[r3]
+ 1605              	.L60:
+ 355:../main.c     **** 
+ 356:../main.c     **** 
+ 357:../main.c     **** 			Vd = PI_Controller(0.0,id,&Id_param);
+ 1606              	 .loc 3 357 0 is_stmt 1
+ 1607 0852 4F4B     	 ldr r3,.L89+80
+ 1608 0854 1B68     	 ldr r3,[r3]
+ 1609 0856 4FF00000 	 mov r0,#0
+ 1610 085a 1946     	 mov r1,r3
+ 1611 085c 4D4A     	 ldr r2,.L89+84
+ 1612 085e FFF7FEFF 	 bl PI_Controller
+ 1613 0862 0246     	 mov r2,r0
+ 1614 0864 4C4B     	 ldr r3,.L89+88
+ 1615 0866 1A60     	 str r2,[r3]
+ 358:../main.c     **** 			Vq = PI_Controller(iq_ref,iq,&Iq_param); // toque controll
+ 1616              	 .loc 3 358 0
+ 1617 0868 464B     	 ldr r3,.L89+68
+ 1618 086a 1A68     	 ldr r2,[r3]
+ 1619 086c 4B4B     	 ldr r3,.L89+92
+ 1620 086e 1B68     	 ldr r3,[r3]
+ 1621 0870 1046     	 mov r0,r2
+ 1622 0872 1946     	 mov r1,r3
+ 1623 0874 4A4A     	 ldr r2,.L89+96
+ 1624 0876 FFF7FEFF 	 bl PI_Controller
+ 1625 087a 0246     	 mov r2,r0
+ 1626 087c 494B     	 ldr r3,.L89+100
+ 1627 087e 1A60     	 str r2,[r3]
+ 1628              	.L57:
+ 359:../main.c     **** 		}
+ 360:../main.c     **** 
+ 361:../main.c     **** 		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // %67 duyt   control takes 4% of the time 9
+ 362:../main.c     **** 
+ 363:../main.c     **** 		// dq to alpha beta for voltage
+ 364:../main.c     **** 		Valpha = Vd*cos_phi - Vq*sin_phi;
+ 1629              	 .loc 3 364 0
+ 1630 0880 454B     	 ldr r3,.L89+88
+ 1631 0882 93ED007A 	 flds s14,[r3]
+ 1632 0886 D7ED017A 	 flds s15,[r7,#4]
+ 1633 088a 27EE277A 	 fmuls s14,s14,s15
+ 1634 088e 454B     	 ldr r3,.L89+100
+ 1635 0890 D3ED006A 	 flds s13,[r3]
+ 1636 0894 D7ED007A 	 flds s15,[r7]
+ 1637 0898 66EEA77A 	 fmuls s15,s13,s15
+ 1638 089c 77EE677A 	 fsubs s15,s14,s15
+ 1639 08a0 414B     	 ldr r3,.L89+104
+ 1640 08a2 C3ED007A 	 fsts s15,[r3]
+ 365:../main.c     **** 		Vbeta = Vd*sin_phi + Vq*cos_phi;
+ 1641              	 .loc 3 365 0
+ 1642 08a6 3C4B     	 ldr r3,.L89+88
+ 1643 08a8 93ED007A 	 flds s14,[r3]
+ 1644 08ac D7ED007A 	 flds s15,[r7]
+ 1645 08b0 27EE277A 	 fmuls s14,s14,s15
+ 1646 08b4 3B4B     	 ldr r3,.L89+100
+ 1647 08b6 D3ED006A 	 flds s13,[r3]
+ 1648 08ba D7ED017A 	 flds s15,[r7,#4]
+ 1649 08be 66EEA77A 	 fmuls s15,s13,s15
+ 1650 08c2 77EE277A 	 fadds s15,s14,s15
+ 1651 08c6 394B     	 ldr r3,.L89+108
+ 1652 08c8 C3ED007A 	 fsts s15,[r3]
+ 366:../main.c     **** 
+ 367:../main.c     **** 		// calc angle for SVM app
+ 368:../main.c     **** 		angle_ab_rad = atanf(Vbeta/Valpha);
+ 1653              	 .loc 3 368 0
+ 1654 08cc 374B     	 ldr r3,.L89+108
+ 1655 08ce 93ED007A 	 flds s14,[r3]
+ 1656 08d2 354B     	 ldr r3,.L89+104
+ 1657 08d4 D3ED007A 	 flds s15,[r3]
+ 1658 08d8 C7EE277A 	 fdivs s15,s14,s15
+ 1659 08dc 17EE900A 	 fmrs r0,s15
+ 1660 08e0 FFF7FEFF 	 bl atanf
+ 1661 08e4 0246     	 mov r2,r0
+ 1662 08e6 324B     	 ldr r3,.L89+112
+ 1663 08e8 1A60     	 str r2,[r3]
+ 369:../main.c     **** 		angle_ab = angle_ab_rad/Pi180;
+ 1664              	 .loc 3 369 0
+ 1665 08ea 314B     	 ldr r3,.L89+112
+ 1666 08ec 1B68     	 ldr r3,[r3]
+ 1667 08ee 1846     	 mov r0,r3
+ 1668 08f0 FFF7FEFF 	 bl __aeabi_f2d
+ 1669 08f4 0246     	 mov r2,r0
+ 1670 08f6 0B46     	 mov r3,r1
+ 1671 08f8 1046     	 mov r0,r2
+ 1672 08fa 1946     	 mov r1,r3
+ 1673 08fc 14A3     	 adr r3,.L89+16
+ 1674 08fe D3E90023 	 ldrd r2,[r3]
+ 1675 0902 FFF7FEFF 	 bl __aeabi_ddiv
+ 1676 0906 0246     	 mov r2,r0
+ 1677 0908 0B46     	 mov r3,r1
+ 1678 090a 1046     	 mov r0,r2
+ 1679 090c 1946     	 mov r1,r3
+ 1680 090e FFF7FEFF 	 bl __aeabi_d2f
+ 1681 0912 0246     	 mov r2,r0
+ 1682 0914 274B     	 ldr r3,.L89+116
+ 1683 0916 1A60     	 str r2,[r3]
+ 370:../main.c     **** 
+ 371:../main.c     **** 		if(Valpha < 0.0){angle_ab = angle_ab + 180.0;}			// failure correction of angle (tangens)
+ 1684              	 .loc 3 371 0
+ 1685 0918 234B     	 ldr r3,.L89+104
+ 1686 091a D3ED007A 	 flds s15,[r3]
+ 1687 091e F5EEC07A 	 fcmpezs s15
+ 1688 0922 F1EE10FA 	 fmstat
+ 1689 0926 49D5     	 bpl .L84
+ 1690              	 .loc 3 371 0 is_stmt 0 discriminator 1
+ 1691 0928 224B     	 ldr r3,.L89+116
+ 1692 092a D3ED007A 	 flds s15,[r3]
+ 1693 092e 9FED227A 	 flds s14,.L89+120
+ 1694 0932 77EE877A 	 fadds s15,s15,s14
+ 1695 0936 1F4B     	 ldr r3,.L89+116
+ 1696 0938 C3ED007A 	 fsts s15,[r3]
+ 1697 093c 50E0     	 b .L64
+ 1698              	.L90:
+ 1699 093e 00BF     	 .align 3
+ 1700              	.L89:
+ 1701 0940 9A999999 	 .word -1717986918
+ 1702 0944 9999B93F 	 .word 1069128089
+ 1703 0948 E17A14AE 	 .word -1374389535
+ 1704 094c 47E1CA3F 	 .word 1070260551
+ 1705 0950 4DC90777 	 .word 1996998989
+ 1706 0954 46DF913F 	 .word 1066524486
+ 1707 0958 00000000 	 .word omega_mech_rps_ref
+ 1708 095c 00000000 	 .word omega_mech_rps
+ 1709 0960 00000000 	 .word omega_param
+ 1710 0964 00000000 	 .word T_ref_controlled
+ 1711 0968 00000000 	 .word start_help
+ 1712 096c 0000F03F 	 .word 1072693248
+ 1713 0970 00000000 	 .word start_help_count
+ 1714 0974 00000000 	 .word start_help_flag
+ 1715 0978 00000000 	 .word T_ref
+ 1716 097c 00000000 	 .word Speed_control
+ 1717 0980 00000000 	 .word Torque_control
+ 1718 0984 00000000 	 .word iq_ref
+ 1719 0988 0000A0C0 	 .word -1063256064
+ 1720 098c 0000A040 	 .word 1084227584
+ 1721 0990 00000000 	 .word id
+ 1722 0994 00000000 	 .word Id_param
+ 1723 0998 00000000 	 .word Vd
+ 1724 099c 00000000 	 .word iq
+ 1725 09a0 00000000 	 .word Iq_param
+ 1726 09a4 00000000 	 .word Vq
+ 1727 09a8 00000000 	 .word Valpha
+ 1728 09ac 00000000 	 .word Vbeta
+ 1729 09b0 00000000 	 .word angle_ab_rad
+ 1730 09b4 00000000 	 .word angle_ab
+ 1731 09b8 00003443 	 .word 1127481344
+ 1732              	.L84:
+ 372:../main.c     **** 		else if(Vbeta < 0.0){angle_ab = angle_ab + 360.0;}
+ 1733              	 .loc 3 372 0 is_stmt 1
+ 1734 09bc 3C4B     	 ldr r3,.L91+8
+ 1735 09be D3ED007A 	 flds s15,[r3]
+ 1736 09c2 F5EEC07A 	 fcmpezs s15
+ 1737 09c6 F1EE10FA 	 fmstat
+ 1738 09ca 09D5     	 bpl .L64
+ 1739              	 .loc 3 372 0 is_stmt 0 discriminator 1
+ 1740 09cc 394B     	 ldr r3,.L91+12
+ 1741 09ce D3ED007A 	 flds s15,[r3]
+ 1742 09d2 9FED397A 	 flds s14,.L91+16
+ 1743 09d6 77EE877A 	 fadds s15,s15,s14
+ 1744 09da 364B     	 ldr r3,.L91+12
+ 1745 09dc C3ED007A 	 fsts s15,[r3]
+ 1746              	.L64:
+ 373:../main.c     **** 
+ 374:../main.c     **** 		// shortend to one line
+ 375:../main.c     **** 		// amplitude calculation
+ 376:../main.c     **** 		amplitude_ab = sqrtf(Valpha*Valpha + Vbeta*Vbeta);
+ 1747              	 .loc 3 376 0 is_stmt 1
+ 1748 09e0 364B     	 ldr r3,.L91+20
+ 1749 09e2 93ED007A 	 flds s14,[r3]
+ 1750 09e6 354B     	 ldr r3,.L91+20
+ 1751 09e8 D3ED007A 	 flds s15,[r3]
+ 1752 09ec 27EE277A 	 fmuls s14,s14,s15
+ 1753 09f0 2F4B     	 ldr r3,.L91+8
+ 1754 09f2 D3ED006A 	 flds s13,[r3]
+ 1755 09f6 2E4B     	 ldr r3,.L91+8
+ 1756 09f8 D3ED007A 	 flds s15,[r3]
+ 1757 09fc 66EEA77A 	 fmuls s15,s13,s15
+ 1758 0a00 77EE277A 	 fadds s15,s14,s15
+ 1759 0a04 17EE900A 	 fmrs r0,s15
+ 1760 0a08 FFF7FEFF 	 bl sqrtf
+ 1761 0a0c 0246     	 mov r2,r0
+ 1762 0a0e 2C4B     	 ldr r3,.L91+24
+ 1763 0a10 1A60     	 str r2,[r3]
+ 377:../main.c     **** 
+ 378:../main.c     **** 		//K_inv = V/m --> m = V / K_inv
+ 379:../main.c     **** 		//modulation_index = amplitude_ab/K_inv;
+ 380:../main.c     **** 
+ 381:../main.c     **** 		if(V_DC_link < 0 || V_DC_link > 50) V_DC_link = 14.8;  // plauseblyt check if not set to nom bat 
+ 1764              	 .loc 3 381 0
+ 1765 0a12 2C4B     	 ldr r3,.L91+28
+ 1766 0a14 D3ED007A 	 flds s15,[r3]
+ 1767 0a18 F5EEC07A 	 fcmpezs s15
+ 1768 0a1c F1EE10FA 	 fmstat
+ 1769 0a20 09D4     	 bmi .L66
+ 1770              	 .loc 3 381 0 is_stmt 0 discriminator 2
+ 1771 0a22 284B     	 ldr r3,.L91+28
+ 1772 0a24 D3ED007A 	 flds s15,[r3]
+ 1773 0a28 9FED277A 	 flds s14,.L91+32
+ 1774 0a2c F4EEC77A 	 fcmpes s15,s14
+ 1775 0a30 F1EE10FA 	 fmstat
+ 1776 0a34 02DD     	 ble .L67
  1777              	.L66:
- 387:../main.c     **** 		modulation_index = amplitude_ab/(V_DC_link /1.732);
- 1778              	 .loc 3 387 0 is_stmt 1
- 1779 0a20 214B     	 ldr r3,.L90+24
- 1780 0a22 1B68     	 ldr r3,[r3]
- 1781 0a24 1846     	 mov r0,r3
- 1782 0a26 FFF7FEFF 	 bl __aeabi_f2d
- 1783 0a2a 0446     	 mov r4,r0
- 1784 0a2c 0D46     	 mov r5,r1
- 1785 0a2e 1F4B     	 ldr r3,.L90+28
- 1786 0a30 1B68     	 ldr r3,[r3]
- 1787 0a32 1846     	 mov r0,r3
- 1788 0a34 FFF7FEFF 	 bl __aeabi_f2d
- 1789 0a38 0246     	 mov r2,r0
- 1790 0a3a 0B46     	 mov r3,r1
- 1791 0a3c 1046     	 mov r0,r2
- 1792 0a3e 1946     	 mov r1,r3
- 1793 0a40 13A3     	 adr r3,.L90
- 1794 0a42 D3E90023 	 ldrd r2,[r3]
- 1795 0a46 FFF7FEFF 	 bl __aeabi_ddiv
- 1796 0a4a 0246     	 mov r2,r0
- 1797 0a4c 0B46     	 mov r3,r1
- 1798 0a4e 2046     	 mov r0,r4
- 1799 0a50 2946     	 mov r1,r5
- 1800 0a52 FFF7FEFF 	 bl __aeabi_ddiv
- 1801 0a56 0246     	 mov r2,r0
- 1802 0a58 0B46     	 mov r3,r1
- 1803 0a5a 1046     	 mov r0,r2
- 1804 0a5c 1946     	 mov r1,r3
- 1805 0a5e FFF7FEFF 	 bl __aeabi_d2f
- 1806 0a62 0246     	 mov r2,r0
- 1807 0a64 144B     	 ldr r3,.L90+40
- 1808 0a66 1A60     	 str r2,[r3]
- 388:../main.c     **** 
- 389:../main.c     **** 		//scale maximum 1 to 10000 -->
- 390:../main.c     **** 		modulation_index_scaled = 10000*modulation_index;
- 1809              	 .loc 3 390 0
- 1810 0a68 134B     	 ldr r3,.L90+40
- 1811 0a6a D3ED007A 	 flds s15,[r3]
- 1812 0a6e 9FED137A 	 flds s14,.L90+44
- 1813 0a72 67EE877A 	 fmuls s15,s15,s14
- 1814 0a76 124B     	 ldr r3,.L90+48
- 1815 0a78 C3ED007A 	 fsts s15,[r3]
- 391:../main.c     **** 
+ 1778              	 .loc 3 381 0 discriminator 3
+ 1779 0a36 234B     	 ldr r3,.L91+28
+ 1780 0a38 244A     	 ldr r2,.L91+36
+ 1781 0a3a 1A60     	 str r2,[r3]
+ 1782              	.L67:
+ 382:../main.c     **** 		modulation_index = amplitude_ab/(V_DC_link /1.732);
+ 1783              	 .loc 3 382 0 is_stmt 1
+ 1784 0a3c 204B     	 ldr r3,.L91+24
+ 1785 0a3e 1B68     	 ldr r3,[r3]
+ 1786 0a40 1846     	 mov r0,r3
+ 1787 0a42 FFF7FEFF 	 bl __aeabi_f2d
+ 1788 0a46 0446     	 mov r4,r0
+ 1789 0a48 0D46     	 mov r5,r1
+ 1790 0a4a 1E4B     	 ldr r3,.L91+28
+ 1791 0a4c 1B68     	 ldr r3,[r3]
+ 1792 0a4e 1846     	 mov r0,r3
+ 1793 0a50 FFF7FEFF 	 bl __aeabi_f2d
+ 1794 0a54 0246     	 mov r2,r0
+ 1795 0a56 0B46     	 mov r3,r1
+ 1796 0a58 1046     	 mov r0,r2
+ 1797 0a5a 1946     	 mov r1,r3
+ 1798 0a5c 12A3     	 adr r3,.L91
+ 1799 0a5e D3E90023 	 ldrd r2,[r3]
+ 1800 0a62 FFF7FEFF 	 bl __aeabi_ddiv
+ 1801 0a66 0246     	 mov r2,r0
+ 1802 0a68 0B46     	 mov r3,r1
+ 1803 0a6a 2046     	 mov r0,r4
+ 1804 0a6c 2946     	 mov r1,r5
+ 1805 0a6e FFF7FEFF 	 bl __aeabi_ddiv
+ 1806 0a72 0246     	 mov r2,r0
+ 1807 0a74 0B46     	 mov r3,r1
+ 1808 0a76 1046     	 mov r0,r2
+ 1809 0a78 1946     	 mov r1,r3
+ 1810 0a7a FFF7FEFF 	 bl __aeabi_d2f
+ 1811 0a7e 0246     	 mov r2,r0
+ 1812 0a80 134B     	 ldr r3,.L91+40
+ 1813 0a82 1A60     	 str r2,[r3]
+ 383:../main.c     **** 
+ 384:../main.c     **** 		//scale maximum 1 to 10000 -->
+ 385:../main.c     **** 		modulation_index_scaled = 10000*modulation_index;
+ 1814              	 .loc 3 385 0
+ 1815 0a84 124B     	 ldr r3,.L91+40
+ 1816 0a86 D3ED007A 	 flds s15,[r3]
+ 1817 0a8a 9FED127A 	 flds s14,.L91+44
+ 1818 0a8e 67EE877A 	 fmuls s15,s15,s14
+ 1819 0a92 114B     	 ldr r3,.L91+48
+ 1820 0a94 C3ED007A 	 fsts s15,[r3]
+ 386:../main.c     **** 
+ 387:../main.c     **** 
+ 388:../main.c     **** 		// shortened ca 4% improvemnt
+ 389:../main.c     **** 		//modulation_index_scaled = sqrtf(Valpha*Valpha + Vbeta*Vbeta) * 577.3339;
+ 390:../main.c     **** 
+ 391:../main.c     **** 		DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 83% duty amplitued calc takes 16% of the ti
+ 1821              	 .loc 3 391 0
+ 1822 0a98 1048     	 ldr r0,.L91+52
+ 1823 0a9a FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
  392:../main.c     **** 
- 393:../main.c     **** 		// shortened ca 4% improvemnt
- 394:../main.c     **** 		//modulation_index_scaled = sqrtf(Valpha*Valpha + Vbeta*Vbeta) * 577.3339;
- 395:../main.c     **** 
- 396:../main.c     **** 		DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 83% duty amplitued calc takes 16% of the ti
- 1816              	 .loc 3 396 0
- 1817 0a7c 1148     	 ldr r0,.L90+52
- 1818 0a7e FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 397:../main.c     **** 
- 398:../main.c     **** }
- 1819              	 .loc 3 398 0
- 1820 0a82 1037     	 adds r7,r7,#16
- 1821              	.LCFI43:
- 1822              	 .cfi_def_cfa_offset 24
- 1823 0a84 BD46     	 mov sp,r7
- 1824              	.LCFI44:
- 1825              	 .cfi_def_cfa_register 13
- 1826              	 
- 1827 0a86 BDEC028B 	 fldmfdd sp!,{d8}
- 1828              	.LCFI45:
- 1829              	 .cfi_restore 80
- 1830              	 .cfi_restore 81
- 1831              	 .cfi_def_cfa_offset 16
- 1832 0a8a B0BD     	 pop {r4,r5,r7,pc}
- 1833              	.L91:
- 1834 0a8c AFF30080 	 .align 3
- 1835              	.L90:
- 1836 0a90 83C0CAA1 	 .word -1580547965
- 1837 0a94 45B6FB3F 	 .word 1073460805
- 1838 0a98 00000000 	 .word Vbeta
- 1839 0a9c 00000000 	 .word angle_ab
- 1840 0aa0 0000B443 	 .word 1135869952
- 1841 0aa4 00000000 	 .word Valpha
- 1842 0aa8 00000000 	 .word amplitude_ab
- 1843 0aac 00000000 	 .word V_DC_link
- 1844 0ab0 00004842 	 .word 1112014848
- 1845 0ab4 CDCC6C41 	 .word 1097649357
- 1846 0ab8 00000000 	 .word modulation_index
- 1847 0abc 00401C46 	 .word 1176256512
- 1848 0ac0 00000000 	 .word modulation_index_scaled
- 1849 0ac4 00000000 	 .word status_LED_red_cal_time
- 1850              	 .cfi_endproc
- 1851              	.LFE556:
- 1853              	 .text
- 1854              	.Letext0:
- 1855              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 1856              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 1857              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
- 1858              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
- 1859              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_scu.h"
- 1860              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_usic.h"
- 1861              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_ccu8.h"
- 1862              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_CCU8/global_ccu8.h"
- 1863              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PWM_SVM/pwm_svm.h"
- 1864              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_can.h"
- 1865              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_CAN/global_can.h"
- 1866              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node.h"
- 1867              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc.h"
- 1868              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h"
- 1869              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement.h"
- 1870              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h"
- 1871              	 .file 20 "../PI_Controller.h"
- 1872              	 .file 21 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
- 1873              	 .file 22 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/system_XMC4500.h"
- 1874              	 .file 23 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
- 1875              	 .file 24 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PWM_SVM/pwm_svm_extern.h"
- 1876              	 .file 25 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node_extern.h"
- 1877              	 .file 26 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h"
- 1878              	 .file 27 "../Globals.h"
- 1879              	 .file 28 "../Hall_Sensors.h"
- 1880              	 .file 29 "../CAN.h"
+ 393:../main.c     **** }
+ 1824              	 .loc 3 393 0
+ 1825 0a9e 1037     	 adds r7,r7,#16
+ 1826              	.LCFI43:
+ 1827              	 .cfi_def_cfa_offset 24
+ 1828 0aa0 BD46     	 mov sp,r7
+ 1829              	.LCFI44:
+ 1830              	 .cfi_def_cfa_register 13
+ 1831              	 
+ 1832 0aa2 BDEC028B 	 fldmfdd sp!,{d8}
+ 1833              	.LCFI45:
+ 1834              	 .cfi_restore 80
+ 1835              	 .cfi_restore 81
+ 1836              	 .cfi_def_cfa_offset 16
+ 1837 0aa6 B0BD     	 pop {r4,r5,r7,pc}
+ 1838              	.L92:
+ 1839              	 .align 3
+ 1840              	.L91:
+ 1841 0aa8 83C0CAA1 	 .word -1580547965
+ 1842 0aac 45B6FB3F 	 .word 1073460805
+ 1843 0ab0 00000000 	 .word Vbeta
+ 1844 0ab4 00000000 	 .word angle_ab
+ 1845 0ab8 0000B443 	 .word 1135869952
+ 1846 0abc 00000000 	 .word Valpha
+ 1847 0ac0 00000000 	 .word amplitude_ab
+ 1848 0ac4 00000000 	 .word V_DC_link
+ 1849 0ac8 00004842 	 .word 1112014848
+ 1850 0acc CDCC6C41 	 .word 1097649357
+ 1851 0ad0 00000000 	 .word modulation_index
+ 1852 0ad4 00401C46 	 .word 1176256512
+ 1853 0ad8 00000000 	 .word modulation_index_scaled
+ 1854 0adc 00000000 	 .word status_LED_red_cal_time
+ 1855              	 .cfi_endproc
+ 1856              	.LFE556:
+ 1858              	 .text
+ 1859              	.Letext0:
+ 1860              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1861              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 1862              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 1863              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 1864              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_scu.h"
+ 1865              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_usic.h"
+ 1866              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_ccu8.h"
+ 1867              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_CCU8/global_ccu8.h"
+ 1868              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PWM_SVM/pwm_svm.h"
+ 1869              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_can.h"
+ 1870              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 1871              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node.h"
+ 1872              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_vadc.h"
+ 1873              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/GLOBAL_ADC/global_adc.h"
+ 1874              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement.h"
+ 1875              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DAVE.h"
+ 1876              	 .file 20 "../PI_Controller.h"
+ 1877              	 .file 21 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
+ 1878              	 .file 22 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/system_XMC4500.h"
+ 1879              	 .file 23 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 1880              	 .file 24 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/PWM_SVM/pwm_svm_extern.h"
+ 1881              	 .file 25 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node_extern.h"
+ 1882              	 .file 26 "C:/GitHub/MobRob_Rover_NEW/Inverter/Mobrob_Inverter/Dave/Generated/ADC_MEASUREMENT/adc_measurement_extern.h"
+ 1883              	 .file 27 "../Globals.h"
+ 1884              	 .file 28 "../Hall_Sensors.h"
+ 1885              	 .file 29 "../CAN.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
     {standard input}:20     .text.XMC_GPIO_SetOutputHigh:00000000 $t
@@ -2817,7 +2817,8 @@ DEFINED SYMBOLS
     {standard input}:159    .text.DIGITAL_IO_SetOutputLow:00000000 $t
     {standard input}:163    .text.DIGITAL_IO_SetOutputLow:00000000 DIGITAL_IO_SetOutputLow
     {standard input}:205    .data.Torque_control:00000000 Torque_control
-    {standard input}:211    .data.Speed_control:00000000 Speed_control
+    {standard input}:211    .bss.Speed_control:00000000 Speed_control
+    {standard input}:212    .bss.Speed_control:00000000 $d
     {standard input}:217    .bss.CAN_control:00000000 CAN_control
     {standard input}:218    .bss.CAN_control:00000000 $d
                             *COM*:00000004 Current_U
@@ -2847,66 +2848,67 @@ DEFINED SYMBOLS
     {standard input}:279    .bss.iq_ref:00000000 $d
     {standard input}:289    .bss.T_ref:00000000 T_ref
     {standard input}:286    .bss.T_ref:00000000 $d
-    {standard input}:296    .bss.omega_mech_rps_ref:00000000 omega_mech_rps_ref
-    {standard input}:293    .bss.omega_mech_rps_ref:00000000 $d
-    {standard input}:303    .bss.Vd:00000000 Vd
-    {standard input}:300    .bss.Vd:00000000 $d
-    {standard input}:310    .bss.Vq:00000000 Vq
-    {standard input}:307    .bss.Vq:00000000 $d
+                            *COM*:00000004 T_ref_controlled
+    {standard input}:297    .bss.omega_mech_rps_ref:00000000 omega_mech_rps_ref
+    {standard input}:294    .bss.omega_mech_rps_ref:00000000 $d
+    {standard input}:304    .bss.Vd:00000000 Vd
+    {standard input}:301    .bss.Vd:00000000 $d
+    {standard input}:311    .bss.Vq:00000000 Vq
+    {standard input}:308    .bss.Vq:00000000 $d
                             *COM*:00000004 modulation_index
                             *COM*:00000004 modulation_index_scaled
                             *COM*:00000004 angle_ab
                             *COM*:00000004 angle_ab_rad
                             *COM*:00000004 amplitude_ab
-    {standard input}:322    .data.Ts:00000000 Ts
-    {standard input}:319    .data.Ts:00000000 $d
-    {standard input}:329    .data.Tcyc:00000000 Tcyc
-    {standard input}:326    .data.Tcyc:00000000 $d
-    {standard input}:336    .data.scaling_factor:00000000 scaling_factor
-    {standard input}:333    .data.scaling_factor:00000000 $d
+    {standard input}:323    .data.Ts:00000000 Ts
+    {standard input}:320    .data.Ts:00000000 $d
+    {standard input}:330    .data.Tcyc:00000000 Tcyc
+    {standard input}:327    .data.Tcyc:00000000 $d
+    {standard input}:337    .data.scaling_factor:00000000 scaling_factor
+    {standard input}:334    .data.scaling_factor:00000000 $d
                             *COM*:00000004 amplitude_corrected
-    {standard input}:343    .bss.count:00000000 count
-    {standard input}:344    .bss.count:00000000 $d
-    {standard input}:350    .data.offset_pos:00000000 offset_pos
-    {standard input}:347    .data.offset_pos:00000000 $d
-    {standard input}:357    .data.offset_neg:00000000 offset_neg
-    {standard input}:354    .data.offset_neg:00000000 $d
-    {standard input}:363    .bss.Speed_detection_OK:00000000 Speed_detection_OK
-    {standard input}:364    .bss.Speed_detection_OK:00000000 $d
-    {standard input}:370    .data.setting_time_scalar:00000000 setting_time_scalar
-    {standard input}:367    .data.setting_time_scalar:00000000 $d
-    {standard input}:377    .bss.step_start:00000000 step_start
-    {standard input}:374    .bss.step_start:00000000 $d
-    {standard input}:384    .data.step:00000000 step
-    {standard input}:381    .data.step:00000000 $d
-    {standard input}:390    .bss.start_help_count:00000000 start_help_count
-    {standard input}:391    .bss.start_help_count:00000000 $d
-    {standard input}:396    .bss.start_help:00000000 start_help
-    {standard input}:397    .bss.start_help:00000000 $d
-    {standard input}:402    .bss.start_help_flag:00000000 start_help_flag
-    {standard input}:403    .bss.start_help_flag:00000000 $d
-    {standard input}:409    .data.ADC_TO_DCLINK:00000000 ADC_TO_DCLINK
-    {standard input}:406    .data.ADC_TO_DCLINK:00000000 $d
-    {standard input}:417    .text.main:00000000 $t
-    {standard input}:422    .text.main:00000000 main
-    {standard input}:693    .text.Calculation:00000000 Calculation
-    {standard input}:504    .text.main:00000070 $d
-    {standard input}:517    .text.VADC0_C0_2_IRQHandler:00000000 $t
-    {standard input}:522    .text.VADC0_C0_2_IRQHandler:00000000 VADC0_C0_2_IRQHandler
-    {standard input}:565    .text.VADC0_C0_2_IRQHandler:00000030 $d
-    {standard input}:572    .text.CCU43_1_IRQHandler:00000000 $t
-    {standard input}:577    .text.CCU43_1_IRQHandler:00000000 CCU43_1_IRQHandler
-    {standard input}:605    .text.CCU80_3_IRQHandler:00000000 $t
-    {standard input}:610    .text.CCU80_3_IRQHandler:00000000 CCU80_3_IRQHandler
-    {standard input}:671    .text.CCU80_3_IRQHandler:00000058 $d
-    {standard input}:688    .text.Calculation:00000000 $t
-    {standard input}:1048   .text.Calculation:000002dc $d
-    {standard input}:1077   .text.Calculation:00000348 $t
-    {standard input}:1381   .text.Calculation:00000628 $d
-    {standard input}:1413   .text.Calculation:000006a0 $t
-    {standard input}:1697   .text.Calculation:00000928 $d
-    {standard input}:1729   .text.Calculation:000009a0 $t
-    {standard input}:1836   .text.Calculation:00000a90 $d
+    {standard input}:344    .bss.count:00000000 count
+    {standard input}:345    .bss.count:00000000 $d
+    {standard input}:351    .data.offset_pos:00000000 offset_pos
+    {standard input}:348    .data.offset_pos:00000000 $d
+    {standard input}:358    .data.offset_neg:00000000 offset_neg
+    {standard input}:355    .data.offset_neg:00000000 $d
+    {standard input}:364    .bss.Speed_detection_OK:00000000 Speed_detection_OK
+    {standard input}:365    .bss.Speed_detection_OK:00000000 $d
+    {standard input}:371    .data.setting_cyc:00000000 setting_cyc
+    {standard input}:368    .data.setting_cyc:00000000 $d
+    {standard input}:378    .data.step_start:00000000 step_start
+    {standard input}:375    .data.step_start:00000000 $d
+    {standard input}:385    .data.step_to:00000000 step_to
+    {standard input}:382    .data.step_to:00000000 $d
+    {standard input}:391    .bss.start_help_count:00000000 start_help_count
+    {standard input}:392    .bss.start_help_count:00000000 $d
+    {standard input}:397    .bss.start_help:00000000 start_help
+    {standard input}:398    .bss.start_help:00000000 $d
+    {standard input}:403    .bss.start_help_flag:00000000 start_help_flag
+    {standard input}:404    .bss.start_help_flag:00000000 $d
+    {standard input}:410    .data.ADC_TO_DCLINK:00000000 ADC_TO_DCLINK
+    {standard input}:407    .data.ADC_TO_DCLINK:00000000 $d
+    {standard input}:418    .text.main:00000000 $t
+    {standard input}:423    .text.main:00000000 main
+    {standard input}:685    .text.Calculation:00000000 Calculation
+    {standard input}:508    .text.main:00000078 $d
+    {standard input}:520    .text.VADC0_C0_2_IRQHandler:00000000 $t
+    {standard input}:525    .text.VADC0_C0_2_IRQHandler:00000000 VADC0_C0_2_IRQHandler
+    {standard input}:559    .text.VADC0_C0_2_IRQHandler:00000018 $d
+    {standard input}:564    .text.CCU43_1_IRQHandler:00000000 $t
+    {standard input}:569    .text.CCU43_1_IRQHandler:00000000 CCU43_1_IRQHandler
+    {standard input}:597    .text.CCU80_3_IRQHandler:00000000 $t
+    {standard input}:602    .text.CCU80_3_IRQHandler:00000000 CCU80_3_IRQHandler
+    {standard input}:663    .text.CCU80_3_IRQHandler:00000058 $d
+    {standard input}:680    .text.Calculation:00000000 $t
+    {standard input}:1040   .text.Calculation:000002dc $d
+    {standard input}:1069   .text.Calculation:00000348 $t
+    {standard input}:1374   .text.Calculation:00000628 $d
+    {standard input}:1406   .text.Calculation:000006a0 $t
+    {standard input}:1701   .text.Calculation:00000940 $d
+    {standard input}:1734   .text.Calculation:000009bc $t
+    {standard input}:1841   .text.Calculation:00000aa8 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -2915,14 +2917,13 @@ Hall_init
 CAN_NODE_Init
 omega_param_selctor
 PWM_SVM_Start
-rec_step_from_0
+f_rec_data
 ADC_MEASUREMENT_StartConversion
 CAN_NODE_0
 PWM_SVM_0
 ADC_MEASUREMENT_0
 ADC_MEASUREMENT_GetResult
 ADC_MEASUREMENT_Channel_A_handle
-V_DC_link
 PWM_SVM_SVMUpdate
 __aeabi_f2d
 __aeabi_ddiv
@@ -2955,3 +2956,4 @@ omega_param
 Id_param
 Iq_param
 sqrtf
+V_DC_link
