@@ -12,12 +12,12 @@ CAN_NODE_STATUS_t init_status;
 
 uint16_t RESET_IN_10us_AFTER_SUCSSES = 10;
 uint16_t RESET_IN_10us_AFTER_ECHO_LOW_FAIL = 500;
-#define MAX_RESET 2500 // 40Hz
+#define MAX_RESET 2700 // 40Hz
 uint16_t MIN_RESET = 100; // 250Hz
 
 #define NUM_SENSORS  0b100
 #define ECHO_TIME_MIN 10 // limit 1.7cm
-#define ECHO_TIME_MAX 2400 // limit 408cm
+#define ECHO_TIME_MAX 2600 // limit 442cm
 #define ECHO_TIME_10us_TO_DISTANCE_cm 0.17
 
 volatile uint8_t echo_state = 0;
@@ -56,7 +56,7 @@ enum SENSORS{
 	CENTER = 0b001,
 	LEFT = 0b010,
 	RIGHT = 0b100};
-volatile enum SENSORS Now_Sensor = CENTER;
+volatile enum SENSORS Now_Sensor = RIGHT;
 
 void reset();
 void CAN_send_values();
@@ -126,8 +126,8 @@ void ISR_10us_TIMER(){
 				}
 				if(echo_state != 0) {
 					echo_not_low_count ++ ;
-					reset_at = t_10us_count + RESET_IN_10us_AFTER_ECHO_LOW_FAIL; // reset(); // check if echo low
-					reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
+					  reset_at = t_10us_count + RESET_IN_10us_AFTER_ECHO_LOW_FAIL; // reset(); // check if echo low
+				      reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
 				}
 				else wait_echo = 1;
 			}
@@ -160,47 +160,53 @@ void reset(){
 }
 
 void ISR_ECHO_C(void){
-	echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_C);
-	if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
-	else if(echo_state == 0 && echo_count_control == 1){
-		echo_time = echo_t_10us;
-		if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
-			distance_C = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
-			sample_count++; // sampelr rater counter
+	if(Now_Sensor == CENTER){
+		echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_C);
+		if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
+		else if(echo_state == 0 && echo_count_control == 1){
+			echo_time = echo_t_10us;
+			if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
+				distance_C = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
+				sample_count++; // sampelr rater counter
+			}
+			else limit_fail_count ++;
+			 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
+			 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
 		}
-		else limit_fail_count ++;
-		 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
-		 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
 	}
 }
 
 void ISR_ECHO_L(void){
-	echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_L);
-	if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
-	else if(echo_state == 0 && echo_count_control == 1){
-		echo_time = echo_t_10us;
-		if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
-			distance_L = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
-			sample_count++; // sampelr rater counter
+	if(Now_Sensor == LEFT){
+		echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_L);
+		if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
+		else if(echo_state == 0 && echo_count_control == 1){
+			echo_time = echo_t_10us;
+			if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
+				distance_L = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
+				sample_count++; // sampelr rater counter
+			}
+			else limit_fail_count ++;
+			 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
+			 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
 		}
-		else limit_fail_count ++;
-		 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
-		 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
 	}
 }
 
 void ISR_ECHO_R(void){
-	echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_R);
-	if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
-	else if(echo_state == 0 && echo_count_control == 1){
-		echo_time = echo_t_10us;
-		if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
-			distance_R = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
-			sample_count++; // sampelr rater counter
+	if(Now_Sensor == RIGHT){
+		echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_R);
+		if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
+		else if(echo_state == 0 && echo_count_control == 1){
+			echo_time = echo_t_10us;
+			if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
+				distance_R = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
+				sample_count++; // sampelr rater counter
+			}
+			else limit_fail_count ++;
+			 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
+			 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
 		}
-		else limit_fail_count ++;
-		 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
-		 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
 	}
 }
 
