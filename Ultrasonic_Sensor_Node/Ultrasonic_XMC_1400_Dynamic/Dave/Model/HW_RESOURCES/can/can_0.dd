@@ -124,7 +124,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="RXSEL" URI="http://resources/14.0.0/peripheral/can/0/node1_npcr/rxsel" value="0x00000000" toolTipHelpDescription="Receive Select" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0"/>
   <provided xsi:type="ResourceModel:ResourceGroup" name="19" URI="http://resources/14.0.0/peripheral/can/0/mo/19">
-    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/CAN_NODE/v4_1_24/CAN_NODE_0.app#//@hwResources.3"/>
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/CAN_NODE/v4_1_24/CAN_NODE_0.app#//@hwResources.4"/>
     <resourcesList name="moamr" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo19_moamr"/>
     <resourcesList name="moar" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo19_moar"/>
     <resourcesList name="mofcr" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo19_mofcr"/>
@@ -163,6 +163,51 @@
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1111" description="Interrupt output line INT_O15 is selected."/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="RXINP" URI="http://resources/14.0.0/peripheral/can/0/mo19_moipr/rxinp" value="0x00000000" toolTipHelpDescription="Receive Interrupt Node Pointer" defaultValue="0x00000000" startPos="0" stopPos="3" accessPermission="rw" maxValue="15" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0000" description="Interrupt output line INT_O0 is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0001" description="Interrupt output line INT_O1 is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1110" description="Interrupt output line INT_O14 is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1111" description="Interrupt output line INT_O15 is selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="17" URI="http://resources/14.0.0/peripheral/can/0/mo/17">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/CAN_NODE/v4_1_24/CAN_NODE_0.app#//@hwResources.3"/>
+    <resourcesList name="moamr" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_moamr"/>
+    <resourcesList name="moar" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_moar"/>
+    <resourcesList name="mofcr" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_mofcr"/>
+    <resourcesList name="moctr" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_moctr"/>
+    <resourcesList name="modatah" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_modatah"/>
+    <resourcesList name="modatal" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_modatal"/>
+    <resourcesList name="mofgpr" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_mofgpr"/>
+    <resourcesList name="moipr" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_moipr"/>
+    <resourcesList name="moipr_rxinp" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_moipr/rxinp"/>
+    <resourcesList name="moipr_txinp" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_moipr/txinp"/>
+    <resourcesList name="mostat" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_mostat"/>
+    <resourcesList name="global_signal" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_global_signal"/>
+    <resourcesList name="txinp" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_txinp"/>
+    <resourcesList name="rxinp" requiredResourceUri="http://resources/14.0.0/peripheral/can/0/mo17_rxinp"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="MO17_MOIPR" URI="http://resources/14.0.0/peripheral/can/0/mo17_moipr" value="0x00000000" toolTipHelpDescription="Message Object Interrupt Pointer Register" defaultValue="0x00000000" addressOffset="0x1228" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="RXINP" URI="http://resources/14.0.0/peripheral/can/0/mo17_moipr/rxinp" value="0x00000000" toolTipHelpDescription="Receive Interrupt Node Pointer" defaultValue="0x00000000" startPos="0" stopPos="3" accessPermission="rw" maxValue="15" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0000" description="Interrupt output line INT_O0 is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0001" description="Interrupt output line INT_O1 is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1110" description="Interrupt output line INT_O14 is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1111" description="Interrupt output line INT_O15 is selected."/>
+    </bitFields>
+    <bitFields name="TXINP" URI="http://resources/14.0.0/peripheral/can/0/mo17_moipr/txinp" value="0x00000000" toolTipHelpDescription="Transmit Interrupt Node Pointer" defaultValue="0x00000000" startPos="4" stopPos="7" accessPermission="rw" maxValue="15" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0000" description="Interrupt output line INT_O0 is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0001" description="Interrupt output line INT_O1 is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1110" description="Interrupt output line INT_O14 is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1111" description="Interrupt output line INT_O15 is selected."/>
+    </bitFields>
+    <bitFields name="MPN" URI="http://resources/14.0.0/peripheral/can/0/mo17_moipr/mpn" value="0x00000000" toolTipHelpDescription="Message Pending Number" defaultValue="0x00000000" startPos="8" stopPos="15" accessPermission="rw" maxValue="255" minValue="0"/>
+    <bitFields name="CFCVAL" URI="http://resources/14.0.0/peripheral/can/0/mo17_moipr/cfcval" value="0x00000000" toolTipHelpDescription="CAN Frame Counter Value" defaultValue="0x00000000" startPos="16" stopPos="31" accessPermission="rw" maxValue="65535" minValue="0"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RXINP" URI="http://resources/14.0.0/peripheral/can/0/mo17_moipr/rxinp" value="0x00000000" toolTipHelpDescription="Receive Interrupt Node Pointer" defaultValue="0x00000000" startPos="0" stopPos="3" accessPermission="rw" maxValue="15" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0000" description="Interrupt output line INT_O0 is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0001" description="Interrupt output line INT_O1 is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1110" description="Interrupt output line INT_O14 is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1111" description="Interrupt output line INT_O15 is selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TXINP" URI="http://resources/14.0.0/peripheral/can/0/mo17_moipr/txinp" value="0x00000000" toolTipHelpDescription="Transmit Interrupt Node Pointer" defaultValue="0x00000000" startPos="4" stopPos="7" accessPermission="rw" maxValue="15" minValue="0">
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0000" description="Interrupt output line INT_O0 is selected."/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0001" description="Interrupt output line INT_O1 is selected."/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1110" description="Interrupt output line INT_O14 is selected."/>

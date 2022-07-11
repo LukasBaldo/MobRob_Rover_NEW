@@ -69,6 +69,21 @@
   <nodes xsi:type="ApplicationModel:AppNode">
     <resource xsi:type="ResourceModel:App" href="APPS/INTERRUPT/v4_0_10/INTERRUPT_1.app#/"/>
   </nodes>
+  <nodes xsi:type="ApplicationModel:PeripheralNode">
+    <resource xsi:type="ResourceModel:Peripheral" href="HW_RESOURCES/port4/port4_4.dd#/"/>
+  </nodes>
+  <nodes xsi:type="ApplicationModel:AppNode">
+    <resource xsi:type="ResourceModel:App" href="APPS/WATCHDOG/v4_0_16/WATCHDOG_0.app#/"/>
+  </nodes>
+  <nodes xsi:type="ApplicationModel:PeripheralNode">
+    <resource xsi:type="ResourceModel:Peripheral" href="HW_RESOURCES/wdt/wdt_0.dd#/"/>
+  </nodes>
+  <nodes xsi:type="ApplicationModel:AppNode">
+    <resource xsi:type="ResourceModel:App" href="APPS/DIGITAL_IO/v4_0_18/DIGITAL_IO_0.app#/"/>
+  </nodes>
+  <nodes xsi:type="ApplicationModel:AppNode">
+    <resource xsi:type="ResourceModel:App" href="APPS/INTERRUPT/v4_0_10/INTERRUPT_2.app#/"/>
+  </nodes>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.0" target="//@nodes.1"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.2" target="//@nodes.0"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.6" target="//@nodes.5"/>
@@ -80,6 +95,8 @@
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.19" target="//@nodes.18"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.21" target="//@nodes.0"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.22" target="//@nodes.5"/>
+  <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.24" target="//@nodes.1"/>
+  <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.27" target="//@nodes.5"/>
   <hwConnections href="APPS/CLOCK_XMC1/v4_0_26/CLOCK_XMC1_0.app#//@connections.1"/>
   <hwConnections href="APPS/TIMER/v4_1_12/TIMER_0.app#//@connections.0"/>
   <hwConnections href="APPS/PIN_INTERRUPT/v4_0_4/PIN_INTERRUPT_0.app#//@connections.0"/>
@@ -143,4 +160,7 @@
   <hwConnections href="APPS/CAN_NODE/v4_1_24/CAN_NODE_0.app#//@connections.5"/>
   <hwConnections href="APPS/TIMER/v4_1_12/TIMER_1.app#//@connections.0"/>
   <hwConnections href="APPS/TIMER/v4_1_12/TIMER_1.app#//@connections.2"/>
+  <hwConnections href="APPS/DIGITAL_IO/v4_0_18/DIGITAL_IO_0.app#//@connections.0"/>
+  <hwConnections href="APPS/DIGITAL_IO/v4_0_18/DIGITAL_IO_0.app#//@connections.1"/>
+  <hwConnections href="APPS/CAN_NODE/v4_1_24/CAN_NODE_0.app#//@connections.6"/>
 </ApplicationModel:ApplicationData>

@@ -56,9 +56,11 @@
  * MACROS
  **********************************************************************************************************************/
 	
-#define ISR_10us_TIMER IRQ_Hdlr_7
+#define ISR_10us_TIMER IRQ_Hdlr_8
 		
-#define ISR_1s_TIMER IRQ_Hdlr_0
+#define ISR_1s_TIMER IRQ_Hdlr_7
+		
+#define CAN_RX_ISR IRQ_Hdlr_0
 		
 /***********************************************************************************************************************
  * EXTERN DECLARATIONS
@@ -67,6 +69,8 @@
 extern const INTERRUPT_t INTERRUPT_0; 
 	
 extern const INTERRUPT_t INTERRUPT_1s; 
+	
+extern const INTERRUPT_t INTERRUPT_CAN_RX; 
 	
 #endif  /* INTERRUPT_EXTERN_H */
 

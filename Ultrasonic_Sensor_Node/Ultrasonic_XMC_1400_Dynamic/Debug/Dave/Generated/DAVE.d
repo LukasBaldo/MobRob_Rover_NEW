@@ -50,7 +50,15 @@ Dave/Generated/DAVE.o Dave/Generated/DAVE.d Dave/Generated/DAVE.o: \
  ../Dave/Generated/CAN_NODE/can_node.h \
  C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/GLOBAL_CAN/global_can.h \
  ../Dave/Generated/CAN_NODE/can_node_conf.h \
- ../Dave/Generated/CAN_NODE/can_node_extern.h
+ ../Dave/Generated/CAN_NODE/can_node_extern.h \
+ ../Dave/Generated/WATCHDOG/watchdog.h \
+ C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc_wdt.h \
+ C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/CLOCK_XMC1/clock_xmc1.h \
+ ../Dave/Generated/WATCHDOG/watchdog_conf.h \
+ ../Dave/Generated/WATCHDOG/watchdog_extern.h \
+ ../Dave/Generated/DIGITAL_IO/digital_io.h \
+ ../Dave/Generated/DIGITAL_IO/digital_io_conf.h \
+ ../Dave/Generated/DIGITAL_IO/digital_io_extern.h
 
 ../Dave/Generated/DAVE.h:
 
@@ -159,3 +167,19 @@ C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Da
 ../Dave/Generated/CAN_NODE/can_node_conf.h:
 
 ../Dave/Generated/CAN_NODE/can_node_extern.h:
+
+../Dave/Generated/WATCHDOG/watchdog.h:
+
+C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc_wdt.h:
+
+C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/CLOCK_XMC1/clock_xmc1.h:
+
+../Dave/Generated/WATCHDOG/watchdog_conf.h:
+
+../Dave/Generated/WATCHDOG/watchdog_extern.h:
+
+../Dave/Generated/DIGITAL_IO/digital_io.h:
+
+../Dave/Generated/DIGITAL_IO/digital_io_conf.h:
+
+../Dave/Generated/DIGITAL_IO/digital_io_extern.h:

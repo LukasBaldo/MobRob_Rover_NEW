@@ -75,6 +75,12 @@
 
 #include "CAN_NODE/can_node.h"
   
+
+#include "WATCHDOG/watchdog.h"
+  
+
+#include "DIGITAL_IO/digital_io.h"
+  
 	
 
 /**********************************************************************************************************************

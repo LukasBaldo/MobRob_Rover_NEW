@@ -93,7 +93,7 @@ TIMER_t TIMER_0 =
   .ccu4_slice_config_ptr  = (XMC_CCU4_SLICE_COMPARE_CONFIG_t*)&TIMER_0_config,
   .shadow_mask            = (uint32_t)((uint32_t)XMC_CCU4_SHADOW_TRANSFER_SLICE_1 | 
                                        (uint32_t)XMC_CCU4_SHADOW_TRANSFER_PRESCALER_SLICE_1),
-  .ccu4_period_match_node = XMC_CCU4_SLICE_SR_ID_1,
+  .ccu4_period_match_node = XMC_CCU4_SLICE_SR_ID_0,
   .timer_module           = TIMER_MODULE_CCU4,
   .period_value           = 959U,
   .start_control          = true,
@@ -133,7 +133,7 @@ TIMER_t TIMER_1s =
   .ccu4_slice_config_ptr  = (XMC_CCU4_SLICE_COMPARE_CONFIG_t*)&TIMER_1s_config,
   .shadow_mask            = (uint32_t)((uint32_t)XMC_CCU4_SHADOW_TRANSFER_SLICE_0 | 
                                        (uint32_t)XMC_CCU4_SHADOW_TRANSFER_PRESCALER_SLICE_0),
-  .ccu4_period_match_node = XMC_CCU4_SLICE_SR_ID_0,
+  .ccu4_period_match_node = XMC_CCU4_SLICE_SR_ID_1,
   .timer_module           = TIMER_MODULE_CCU4,
   .period_value           = 46874U,
   .start_control          = true,

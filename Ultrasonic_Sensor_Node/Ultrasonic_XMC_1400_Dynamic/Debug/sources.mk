@@ -24,11 +24,13 @@ Dave/Generated/CAN_NODE \
 Dave/Generated/CLOCK_XMC1 \
 Dave/Generated/CPU_CTRL_XMC1 \
 Dave/Generated \
+Dave/Generated/DIGITAL_IO \
 Dave/Generated/GLOBAL_CAN \
 Dave/Generated/GLOBAL_CCU4 \
 Dave/Generated/INTERRUPT \
 Dave/Generated/PIN_INTERRUPT \
 Dave/Generated/TIMER \
+Dave/Generated/WATCHDOG \
 Libraries/Newlib \
 Libraries/XMCLib/src \
 Startup \

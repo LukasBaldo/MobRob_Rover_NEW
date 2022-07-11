@@ -92,6 +92,9 @@ int main(void)
   		CAN_OK = 1;
   	}
 
+  	WATCHDOG_Start(); // watchdog restart if CAN not working
+
+
   /* Placeholder for user application code. The while loop below can be replaced with user application code. */
   while(1U)
   {
@@ -215,6 +218,18 @@ void ISR_1s_TIMER(){ //for diagnostics
 }
 
 
+void Watchdog_Handler(void) // to do restates if can is not working a problem wenn power from the buck or plab supplie but ok like this
+{
+  WATCHDOG_ClearAlarm(); /* Clear the alarm event */
+  DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
+ // DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
+}
+
+void CAN_RX_ISR(void){
+	WATCHDOG_Service();
+	//DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
+	DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
+}
 bool within_MAX_MIN_check_int(int x, int MAX, int MIN){
 	if((x - MIN) * (x - MAX) <= 0) return 1;
 	else return 0;

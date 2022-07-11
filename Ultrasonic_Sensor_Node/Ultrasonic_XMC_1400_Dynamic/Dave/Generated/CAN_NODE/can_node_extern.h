@@ -67,5 +67,7 @@ extern const CAN_NODE_t CAN_NODE_0;
 
 extern const CAN_NODE_LMO_t CAN_NODE_0_LMO_01_Config;
      
+extern const CAN_NODE_LMO_t CAN_NODE_0_LMO_02_Config;
+     
 #endif /* End of CAN_NODE_EXTERN_H */
 

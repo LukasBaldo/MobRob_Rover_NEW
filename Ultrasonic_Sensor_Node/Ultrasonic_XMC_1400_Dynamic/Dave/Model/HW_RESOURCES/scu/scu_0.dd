@@ -61,5 +61,14 @@
     </bitFields>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="RTCCLKSEL" URI="http://resources/14.0.0/peripheral/scu/0/clk_clkcr/rtcclksel" value="0x00000000" toolTipHelpDescription="RTC Clock Select" defaultValue="0x00000000" startPos="17" stopPos="19" accessPermission="rw" maxValue="7" minValue="0"/>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="prewarn" URI="http://resources/14.0.0/peripheral/scu/0/gcu/interrupt/prewarn">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/WATCHDOG/v4_0_16/WATCHDOG_0.app#//@hwResources.1"/>
+    <resourcesList name="srclr_int" requiredResourceUri="http://resources/14.0.0/peripheral/scu/0/interrupt_srclr/prwarn"/>
+    <resourcesList name="srmsk_int" requiredResourceUri="http://resources/14.0.0/peripheral/scu/0/interrupt_srmsk/prwarn"/>
+    <resourcesList name="srraw_int" requiredResourceUri="http://resources/14.0.0/peripheral/scu/0/interrupt_srraw/prwarn"/>
+    <resourcesList name="srset_int" requiredResourceUri="http://resources/14.0.0/peripheral/scu/0/interrupt_srset/prwarn"/>
+    <resourcesList name="wdt_pre_warn" requiredResourceUri="http://resources/14.0.0/peripheral/scu/0/interrupt_prewarn_wdt_pre_warn"/>
+    <resourcesList name="int" requiredResourceUri="http://resources/14.0.0/peripheral/scu/0/interrupt_prewarn_int"/>
+  </provided>
   <addressBlock offset="0x0" size="0x200" usage="registers"/>
 </ResourceModel:Peripheral>

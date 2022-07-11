@@ -71,8 +71,8 @@
 /**< GPIO configuration for output pin */
 static const CAN_NODE_GPIO_t CAN_NODE_0_gpio_out = 
 {
-  .port = (XMC_GPIO_PORT_t *)PORT1_BASE,
-  .pin  = (uint8_t)3
+  .port = (XMC_GPIO_PORT_t *)PORT4_BASE,
+  .pin  = (uint8_t)9
 };
 
 static const XMC_GPIO_CONFIG_t  CAN_NODE_0_gpio_out_config =
@@ -85,8 +85,8 @@ static const XMC_GPIO_CONFIG_t  CAN_NODE_0_gpio_out_config =
 
 /**< GPIO configuration for input pin */
 static const CAN_NODE_GPIO_t CAN_NODE_0_gpio_in = {
-  .port = (XMC_GPIO_PORT_t *)PORT1_BASE,
-  .pin  = (uint8_t)2
+  .port = (XMC_GPIO_PORT_t *)PORT4_BASE,
+  .pin  = (uint8_t)8
 };
 
 static const XMC_GPIO_CONFIG_t  CAN_NODE_0_gpio_in_config =
@@ -122,11 +122,11 @@ static XMC_CAN_MO_t  CAN_NODE_0_LMO_01 = {
   .can_id_mode      = XMC_CAN_FRAME_TYPE_STANDARD_11BITS,
   .can_priority     = XMC_CAN_ARBITRATION_MODE_IDE_DIR_BASED_PRIO_2
       ,
-  .can_identifier   = 0x7ffU, 
+  .can_identifier   = 0x300U, 
       
   .can_id_mask      = 0x7ffU,
   .can_ide_mask     = 1U,
-  .can_mo_ptr       = (CAN_MO_TypeDef*)CAN_MO19,
+  .can_mo_ptr       = (CAN_MO_TypeDef*)CAN_MO17,
   .can_data_length  = 8U,
       
   .can_data[1]      = 0x0U,
@@ -138,12 +138,42 @@ const CAN_NODE_LMO_t CAN_NODE_0_LMO_01_Config = {
         
   .mo_ptr     = (XMC_CAN_MO_t*)&CAN_NODE_0_LMO_01,    
          
-  .number  = 19U,
+  .number  = 17U,
        
   .tx_sr   = 0U,
   .rx_sr   = 0U,
   .tx_event_enable = false,
   .rx_event_enable = false
+};
+      
+static XMC_CAN_MO_t  CAN_NODE_0_LMO_02 = {
+          
+  .can_mo_type      = XMC_CAN_MO_TYPE_RECMSGOBJ,
+  .can_id_mode      = XMC_CAN_FRAME_TYPE_STANDARD_11BITS,
+  .can_priority     = XMC_CAN_ARBITRATION_MODE_IDE_DIR_BASED_PRIO_2
+      ,
+  .can_identifier   = 0x1U, 
+      
+  .can_id_mask      = 0x7ffU,
+  .can_ide_mask     = 1U,
+  .can_mo_ptr       = (CAN_MO_TypeDef*)CAN_MO19,
+  .can_data_length  = 8U,
+      
+  .can_data[1]      = 0x0U,
+      
+  .can_data[0]      = 0x0U 
+};
+      
+const CAN_NODE_LMO_t CAN_NODE_0_LMO_02_Config = {
+        
+  .mo_ptr     = (XMC_CAN_MO_t*)&CAN_NODE_0_LMO_02,    
+         
+  .number  = 19U,
+       
+  .tx_sr   = 0U,
+  .rx_sr   = 0U,
+  .tx_event_enable = false,
+  .rx_event_enable = true
 };
       
 /* CAN_NODE init Structure configuration */
@@ -158,15 +188,15 @@ const CAN_NODE_t  CAN_NODE_0 =
   .gpio_out_config   = &CAN_NODE_0_gpio_out_config,  
   .gpio_in           = &CAN_NODE_0_gpio_in,
   .gpio_in_config    = &CAN_NODE_0_gpio_in_config,
-  .rx_signal         = XMC_CAN_NODE_RECEIVE_INPUT_RXDCG,
+  .rx_signal         = XMC_CAN_NODE_RECEIVE_INPUT_RXDCC,
     
   .node_sr_ptr       = (CAN_NODE_SR_t*)&CAN_NODE_0_sr,
   .lmobj_ptr         = { 
   
     (CAN_NODE_LMO_t*)&CAN_NODE_0_LMO_01_Config
+        , 
+    (CAN_NODE_LMO_t*)&CAN_NODE_0_LMO_02_Config
         ,  
-      NULL
-      ,  
       NULL
       ,  
       NULL
@@ -228,7 +258,7 @@ const CAN_NODE_t  CAN_NODE_0 =
       NULL
        },
   .node_num          = 1U,
-  .mo_count          = 1U,
+  .mo_count          = 2U,
   .loopback_enable         = false, 
   .alert_event_enable      = false,
   .lec_event_enable        = false, 

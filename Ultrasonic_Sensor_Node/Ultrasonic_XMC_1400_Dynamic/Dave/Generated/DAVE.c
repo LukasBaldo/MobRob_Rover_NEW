@@ -121,6 +121,21 @@ __WEAK DAVE_STATUS_t DAVE_Init(void)
   {
 	 /**  Initialization of INTERRUPT APP instance INTERRUPT_1s */
 	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_1s); 
+   } 
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+	 /**  Initialization of WATCHDOG APP instance WATCHDOG_0 */
+	 init_status = (DAVE_STATUS_t)WATCHDOG_Init(&WATCHDOG_0); 
+   } 
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+	 /**  Initialization of DIGITAL_IO APP instance DIGITAL_IO_0 */
+	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0); 
+   } 
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+	 /**  Initialization of INTERRUPT APP instance INTERRUPT_CAN_RX */
+	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_CAN_RX); 
    }  
   return init_status;
 } /**  End of function DAVE_Init */

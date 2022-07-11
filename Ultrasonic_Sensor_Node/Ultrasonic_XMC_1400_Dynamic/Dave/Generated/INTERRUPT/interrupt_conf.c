@@ -67,9 +67,9 @@
 const INTERRUPT_t INTERRUPT_0 =
 {
 #if(UC_SERIES == XMC14)
- .irqctrl = (XMC_SCU_IRQCTRL_t)2U,
+ .irqctrl = (XMC_SCU_IRQCTRL_t)1U,
 #endif
-  .node = (IRQn_Type)7,
+  .node = (IRQn_Type)8,
   .priority = 1,  
 #if(UC_FAMILY == XMC4)  
   .subpriority = 0,
@@ -82,6 +82,20 @@ const INTERRUPT_t INTERRUPT_1s =
 {
 #if(UC_SERIES == XMC14)
  .irqctrl = (XMC_SCU_IRQCTRL_t)2U,
+#endif
+  .node = (IRQn_Type)7,
+  .priority = 3,  
+#if(UC_FAMILY == XMC4)  
+  .subpriority = 0,
+#endif  
+
+  .enable_at_init = true
+
+};
+const INTERRUPT_t INTERRUPT_CAN_RX =
+{
+#if(UC_SERIES == XMC14)
+ .irqctrl = (XMC_SCU_IRQCTRL_t)1U,
 #endif
   .node = (IRQn_Type)0,
   .priority = 3,  

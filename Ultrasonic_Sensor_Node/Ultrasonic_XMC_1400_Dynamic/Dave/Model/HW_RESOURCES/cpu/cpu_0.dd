@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" URI="http://resources/14.0.1/peripheral/cpu/0" description="Cortex-M0 Private Peripheral Block" baseAddress="0xE000E000">
   <provided xsi:type="ResourceModel:ResourceGroup" name="IRQ0_Handler" URI="http://resources/14.0.1/peripheral/cpu/0/nvic/interrupt/0">
-    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/INTERRUPT/v4_0_10/INTERRUPT_1.app#//@hwResources.0"/>
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/INTERRUPT/v4_0_10/INTERRUPT_2.app#//@hwResources.0"/>
     <resourcesList name="iser_setena" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_iser/setena0"/>
     <resourcesList name="icer_clrena" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_icer/clrena0"/>
     <resourcesList name="ispr_setpend" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_ispr/setpend0"/>
@@ -237,7 +237,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="setena1" URI="http://resources/14.0.1/peripheral/cpu/0/nvic_iser/setena1" value="0" toolTipHelpDescription="Writing 0 to a SETENA bit has no effect, writing 1 to a bit enables the corresponding interrupt." defaultValue="0" startPos="1" stopPos="1" accessPermission="rw" maxValue="1" minValue="0"/>
   <provided xsi:type="ResourceModel:ResourceGroup" name="IRQ7_Handler" URI="http://resources/14.0.1/peripheral/cpu/0/nvic/interrupt/7">
-    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/INTERRUPT/v4_0_10/INTERRUPT_0.app#//@hwResources.0"/>
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/INTERRUPT/v4_0_10/INTERRUPT_1.app#//@hwResources.0"/>
     <resourcesList name="iser_setena" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_iser/setena7"/>
     <resourcesList name="icer_clrena" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_icer/clrena7"/>
     <resourcesList name="ispr_setpend" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_ispr/setpend7"/>
@@ -248,6 +248,23 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="setena7" URI="http://resources/14.0.1/peripheral/cpu/0/nvic_iser/setena7" value="0" toolTipHelpDescription="Writing 0 to a SETENA bit has no effect, writing 1 to a bit enables the corresponding interrupt." defaultValue="0" startPos="7" stopPos="7" accessPermission="rw" maxValue="1" minValue="0"/>
   <provided xsi:type="ResourceModel:BitField" name="INTSEL7" URI="http://resources/14.0.1/peripheral/cpu/0/intcr0/intsel7" value="0x00000000" toolTipHelpDescription="Interrupt Source Select for Node 7" defaultValue="0x00000000" startPos="14" stopPos="15" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Select source A"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Select source B"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Select source C"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Select source A or B"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="IRQ8_Handler" URI="http://resources/14.0.1/peripheral/cpu/0/nvic/interrupt/8">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/INTERRUPT/v4_0_10/INTERRUPT_0.app#//@hwResources.0"/>
+    <resourcesList name="iser_setena" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_iser/setena8"/>
+    <resourcesList name="icer_clrena" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_icer/clrena8"/>
+    <resourcesList name="ispr_setpend" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_ispr/setpend8"/>
+    <resourcesList name="icpr_clrpend" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_icpr/clrpend8"/>
+    <resourcesList name="ipr_pri" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/nvic_ipr2/pri_8"/>
+    <resourcesList name="intcr_insel" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/intcr0/intsel8"/>
+    <resourcesList name="signal_in" requiredResourceUri="http://resources/14.0.1/peripheral/cpu/0/irq8_handler"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="setena8" URI="http://resources/14.0.1/peripheral/cpu/0/nvic_iser/setena8" value="0" toolTipHelpDescription="Writing 0 to a SETENA bit has no effect, writing 1 to a bit enables the corresponding interrupt." defaultValue="0" startPos="8" stopPos="8" accessPermission="rw" maxValue="1" minValue="0"/>
+  <provided xsi:type="ResourceModel:BitField" name="INTSEL8" URI="http://resources/14.0.1/peripheral/cpu/0/intcr0/intsel8" value="0x00000000" toolTipHelpDescription="Interrupt Source Select for Node 8" defaultValue="0x00000000" startPos="16" stopPos="17" accessPermission="rw" maxValue="3" minValue="0">
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Select source A"/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Select source B"/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Select source C"/>

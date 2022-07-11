@@ -33,7 +33,7 @@
   36 0018 01       	 .byte 1
   37 0019 000000   	 .space 3
   38 001c 00000000 	 .word TIMER_0_config
-  39 0020 01       	 .byte 1
+  39 0020 00       	 .byte 0
   40 0021 00       	 .byte 0
   41 0022 BF03     	 .short 959
   42 0024 01       	 .byte 1
@@ -64,7 +64,7 @@
   71 0018 00       	 .byte 0
   72 0019 000000   	 .space 3
   73 001c 00000000 	 .word TIMER_1s_config
-  74 0020 00       	 .byte 0
+  74 0020 01       	 .byte 1
   75 0021 00       	 .byte 0
   76 0022 1AB7     	 .short -18662
   77 0024 01       	 .byte 1
