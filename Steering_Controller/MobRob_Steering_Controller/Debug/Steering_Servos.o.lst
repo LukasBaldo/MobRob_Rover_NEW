@@ -18,30 +18,30 @@
   18              	 .section .data.NP,"aw",%progbits
   19              	 .align 2
   22              	NP:
-  23 0000 2503     	 .short 805
-  24 0002 DD02     	 .short 733
-  25 0004 C402     	 .short 708
-  26 0006 BC02     	 .short 700
+  23 0000 4403     	 .short 836
+  24 0002 F502     	 .short 757
+  25 0004 C302     	 .short 707
+  26 0006 EB02     	 .short 747
   27              	 .global NPfl
   28              	 .section .data.NPfl,"aw",%progbits
   29              	 .align 1
   32              	NPfl:
-  33 0000 2503     	 .short 805
+  33 0000 4403     	 .short 836
   34              	 .global NPfr
   35              	 .section .data.NPfr,"aw",%progbits
   36              	 .align 2
   39              	NPfr:
-  40 0000 EE020000 	 .word 750
+  40 0000 5C030000 	 .word 860
   41              	 .global NPrl
   42              	 .section .data.NPrl,"aw",%progbits
   43              	 .align 2
   46              	NPrl:
-  47 0000 EE020000 	 .word 750
+  47 0000 C3020000 	 .word 707
   48              	 .global NPrr
   49              	 .section .data.NPrr,"aw",%progbits
   50              	 .align 2
   53              	NPrr:
-  54 0000 EE020000 	 .word 750
+  54 0000 EB020000 	 .word 747
   55              	 .global Servo_PWMs
   56              	 .section .bss.Servo_PWMs,"aw",%nobits
   57              	 .align 2
@@ -72,8 +72,8 @@
    6:../Steering_Servos.c ****  */
    7:../Steering_Servos.c **** #include "Steering_Servos.h"
    8:../Steering_Servos.c **** 
-   9:../Steering_Servos.c **** uint16_t NP[4] = {805, 733, 708, 700}; //servo nutral points PWM duty values
-  10:../Steering_Servos.c **** uint16_t NPfl = 805; int NPfr = 750; int NPrl = 750; int NPrr = 750; // serov defalut 750
+   9:../Steering_Servos.c **** uint16_t NP[4] = {836, 757, 707, 747}; //servo nutral points PWM duty values
+  10:../Steering_Servos.c **** uint16_t NPfl = 836; int NPfr = 860; int NPrl = 707; int NPrr = 747; // serov defalut 750
   11:../Steering_Servos.c **** 
   12:../Steering_Servos.c **** float Servo_PWMs[4] = {0, 0, 0, 0};
   13:../Steering_Servos.c **** 

@@ -92,26 +92,48 @@
  105 000c 06       	 .byte 6
  106 000d 00       	 .byte 0
  107 000e 0000     	 .space 2
- 108              	 .global LED_COLLISION_AVOID
- 109              	 .section .rodata.LED_COLLISION_AVOID,"a",%progbits
+ 108              	 .global LED_CA_FRONT
+ 109              	 .section .rodata.LED_CA_FRONT,"a",%progbits
  110              	 .align 2
- 113              	LED_COLLISION_AVOID:
+ 113              	LED_CA_FRONT:
  114 0000 00000440 	 .word 1074003968
  115 0004 80       	 .byte -128
  116 0005 000000   	 .space 3
  117 0008 00000100 	 .word 65536
- 118 000c 08       	 .byte 8
+ 118 000c 07       	 .byte 7
  119 000d 00       	 .byte 0
  120 000e 0000     	 .space 2
- 121              	 .text
- 122              	.Letext0:
- 123              	 .file 1 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 124              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 125              	 .file 3 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_gpio.h"
- 126              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
- 127              	 .file 5 "../Dave/Generated/DIGITAL_IO/digital_io.h"
- 128              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 129              	 .file 7 "../Dave/Generated/DIGITAL_IO/digital_io_conf.c"
+ 121              	 .global LED_CA_LEFT
+ 122              	 .section .rodata.LED_CA_LEFT,"a",%progbits
+ 123              	 .align 2
+ 126              	LED_CA_LEFT:
+ 127 0000 00000440 	 .word 1074003968
+ 128 0004 80       	 .byte -128
+ 129 0005 000000   	 .space 3
+ 130 0008 00000100 	 .word 65536
+ 131 000c 08       	 .byte 8
+ 132 000d 00       	 .byte 0
+ 133 000e 0000     	 .space 2
+ 134              	 .global LED_CA_RIGHT
+ 135              	 .section .rodata.LED_CA_RIGHT,"a",%progbits
+ 136              	 .align 2
+ 139              	LED_CA_RIGHT:
+ 140 0000 00000440 	 .word 1074003968
+ 141 0004 80       	 .byte -128
+ 142 0005 000000   	 .space 3
+ 143 0008 00000100 	 .word 65536
+ 144 000c 05       	 .byte 5
+ 145 000d 00       	 .byte 0
+ 146 000e 0000     	 .space 2
+ 147              	 .text
+ 148              	.Letext0:
+ 149              	 .file 1 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 150              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 151              	 .file 3 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_gpio.h"
+ 152              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 153              	 .file 5 "../Dave/Generated/DIGITAL_IO/digital_io.h"
+ 154              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 155              	 .file 7 "../Dave/Generated/DIGITAL_IO/digital_io_conf.c"
 DEFINED SYMBOLS
                             *ABS*:00000000 digital_io_conf.c
     {standard input}:22     .rodata.RC_no_data_LED:00000000 RC_no_data_LED
@@ -128,7 +150,11 @@ DEFINED SYMBOLS
     {standard input}:84     .rodata.WATCHDOG_LED_BLUE:00000000 $d
     {standard input}:100    .rodata.LED_CAN_ERROR:00000000 LED_CAN_ERROR
     {standard input}:97     .rodata.LED_CAN_ERROR:00000000 $d
-    {standard input}:113    .rodata.LED_COLLISION_AVOID:00000000 LED_COLLISION_AVOID
-    {standard input}:110    .rodata.LED_COLLISION_AVOID:00000000 $d
+    {standard input}:113    .rodata.LED_CA_FRONT:00000000 LED_CA_FRONT
+    {standard input}:110    .rodata.LED_CA_FRONT:00000000 $d
+    {standard input}:126    .rodata.LED_CA_LEFT:00000000 LED_CA_LEFT
+    {standard input}:123    .rodata.LED_CA_LEFT:00000000 $d
+    {standard input}:139    .rodata.LED_CA_RIGHT:00000000 LED_CA_RIGHT
+    {standard input}:136    .rodata.LED_CA_RIGHT:00000000 $d
 
 NO UNDEFINED SYMBOLS

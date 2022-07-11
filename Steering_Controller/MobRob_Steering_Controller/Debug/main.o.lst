@@ -1739,14 +1739,18 @@
  297              	 .align 2
  300              	CAN_OK:
  301 0000 00000000 	 .space 4
- 302              	 .section .text.main,"ax",%progbits
- 303              	 .align 2
- 304              	 .global main
- 305              	 .code 16
- 306              	 .thumb_func
- 308              	main:
- 309              	.LFB224:
- 310              	 .file 5 "../main.c"
+ 302              	 .global test
+ 303              	 .section .bss.test,"aw",%nobits
+ 306              	test:
+ 307 0000 00       	 .space 1
+ 308              	 .section .text.main,"ax",%progbits
+ 309              	 .align 2
+ 310              	 .global main
+ 311              	 .code 16
+ 312              	 .thumb_func
+ 314              	main:
+ 315              	.LFB224:
+ 316              	 .file 5 "../main.c"
    1:../main.c     **** /*
    2:../main.c     ****  * main.c
    3:../main.c     ****  *
@@ -1768,403 +1772,406 @@
   19:../main.c     **** CAN_NODE_STATUS_t init_status;
   20:../main.c     **** int CAN_OK = 0;
   21:../main.c     **** 
-  22:../main.c     **** 
-  23:../main.c     **** int main(void)
-  24:../main.c     **** {
- 311              	 .loc 5 24 0
- 312              	 .cfi_startproc
- 313 0000 90B5     	 push {r4,r7,lr}
- 314              	.LCFI20:
- 315              	 .cfi_def_cfa_offset 12
- 316              	 .cfi_offset 4,-12
- 317              	 .cfi_offset 7,-8
- 318              	 .cfi_offset 14,-4
- 319 0002 83B0     	 sub sp,sp,#12
- 320              	.LCFI21:
- 321              	 .cfi_def_cfa_offset 24
- 322 0004 00AF     	 add r7,sp,#0
- 323              	.LCFI22:
- 324              	 .cfi_def_cfa_register 7
-  25:../main.c     ****   DAVE_STATUS_t status;
-  26:../main.c     **** 
-  27:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
- 325              	 .loc 5 27 0
- 326 0006 FC1D     	 add r4,r7,#7
- 327 0008 FFF7FEFF 	 bl DAVE_Init
- 328 000c 031C     	 mov r3,r0
- 329 000e 2370     	 strb r3,[r4]
+  22:../main.c     **** uint8_t test = 0;
+  23:../main.c     **** 
+  24:../main.c     **** 
+  25:../main.c     **** int main(void)
+  26:../main.c     **** {
+ 317              	 .loc 5 26 0
+ 318              	 .cfi_startproc
+ 319 0000 90B5     	 push {r4,r7,lr}
+ 320              	.LCFI20:
+ 321              	 .cfi_def_cfa_offset 12
+ 322              	 .cfi_offset 4,-12
+ 323              	 .cfi_offset 7,-8
+ 324              	 .cfi_offset 14,-4
+ 325 0002 83B0     	 sub sp,sp,#12
+ 326              	.LCFI21:
+ 327              	 .cfi_def_cfa_offset 24
+ 328 0004 00AF     	 add r7,sp,#0
+ 329              	.LCFI22:
+ 330              	 .cfi_def_cfa_register 7
+  27:../main.c     ****   DAVE_STATUS_t status;
   28:../main.c     **** 
-  29:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
- 330              	 .loc 5 29 0
- 331 0010 FB1D     	 add r3,r7,#7
- 332 0012 1B78     	 ldrb r3,[r3]
- 333 0014 002B     	 cmp r3,#0
- 334 0016 00D0     	 beq .L14
- 335              	.L15:
-  30:../main.c     ****   {
-  31:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
-  32:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
-  33:../main.c     **** 
-  34:../main.c     ****     while(1U)
-  35:../main.c     ****     {
-  36:../main.c     **** 
-  37:../main.c     ****     }
- 336              	 .loc 5 37 0 discriminator 1
- 337 0018 FEE7     	 b .L15
- 338              	.L14:
-  38:../main.c     ****   }
-  39:../main.c     **** 
-  40:../main.c     ****   //Initialization of CAN
-  41:../main.c     ****   	//CAN_NODE_STATUS_t init_status;
-  42:../main.c     ****   	init_status = CAN_NODE_Init(&CAN_NODE_0);
- 339              	 .loc 5 42 0
- 340 001a 094B     	 ldr r3,.L18
- 341 001c 181C     	 mov r0,r3
- 342 001e FFF7FEFF 	 bl CAN_NODE_Init
- 343 0022 031C     	 mov r3,r0
- 344 0024 1A1C     	 mov r2,r3
- 345 0026 074B     	 ldr r3,.L18+4
- 346 0028 1A70     	 strb r2,[r3]
-  43:../main.c     **** 
-  44:../main.c     ****   	if (init_status != CAN_NODE_STATUS_SUCCESS) {
- 347              	 .loc 5 44 0
- 348 002a 064B     	 ldr r3,.L18+4
- 349 002c 1B78     	 ldrb r3,[r3]
- 350 002e 002B     	 cmp r3,#0
- 351 0030 02D1     	 bne .L16
-  45:../main.c     ****   		XMC_DEBUG("CAN initialization failed\n");
-  46:../main.c     ****   	}
-  47:../main.c     ****   	else{
-  48:../main.c     ****   		CAN_OK = 1;
- 352              	 .loc 5 48 0
- 353 0032 054B     	 ldr r3,.L18+8
- 354 0034 0122     	 mov r2,#1
- 355 0036 1A60     	 str r2,[r3]
- 356              	.L16:
-  49:../main.c     ****   	}
-  50:../main.c     **** 
-  51:../main.c     ****   	WATCHDOG_Start(); // watchdog restart if CAN not working
- 357              	 .loc 5 51 0
- 358 0038 FFF7FEFF 	 bl WATCHDOG_Start
- 359              	.L17:
+  29:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
+ 331              	 .loc 5 29 0
+ 332 0006 FC1D     	 add r4,r7,#7
+ 333 0008 FFF7FEFF 	 bl DAVE_Init
+ 334 000c 031C     	 mov r3,r0
+ 335 000e 2370     	 strb r3,[r4]
+  30:../main.c     **** 
+  31:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
+ 336              	 .loc 5 31 0
+ 337 0010 FB1D     	 add r3,r7,#7
+ 338 0012 1B78     	 ldrb r3,[r3]
+ 339 0014 002B     	 cmp r3,#0
+ 340 0016 00D0     	 beq .L14
+ 341              	.L15:
+  32:../main.c     ****   {
+  33:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
+  34:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
+  35:../main.c     **** 
+  36:../main.c     ****     while(1U)
+  37:../main.c     ****     {
+  38:../main.c     **** 
+  39:../main.c     ****     }
+ 342              	 .loc 5 39 0 discriminator 1
+ 343 0018 FEE7     	 b .L15
+ 344              	.L14:
+  40:../main.c     ****   }
+  41:../main.c     **** 
+  42:../main.c     ****   //Initialization of CAN
+  43:../main.c     ****   	//CAN_NODE_STATUS_t init_status;
+  44:../main.c     ****   	init_status = CAN_NODE_Init(&CAN_NODE_0);
+ 345              	 .loc 5 44 0
+ 346 001a 094B     	 ldr r3,.L18
+ 347 001c 181C     	 mov r0,r3
+ 348 001e FFF7FEFF 	 bl CAN_NODE_Init
+ 349 0022 031C     	 mov r3,r0
+ 350 0024 1A1C     	 mov r2,r3
+ 351 0026 074B     	 ldr r3,.L18+4
+ 352 0028 1A70     	 strb r2,[r3]
+  45:../main.c     **** 
+  46:../main.c     ****   	if (init_status != CAN_NODE_STATUS_SUCCESS) {
+ 353              	 .loc 5 46 0
+ 354 002a 064B     	 ldr r3,.L18+4
+ 355 002c 1B78     	 ldrb r3,[r3]
+ 356 002e 002B     	 cmp r3,#0
+ 357 0030 02D1     	 bne .L16
+  47:../main.c     ****   		XMC_DEBUG("CAN initialization failed\n");
+  48:../main.c     ****   	}
+  49:../main.c     ****   	else{
+  50:../main.c     ****   		CAN_OK = 1;
+ 358              	 .loc 5 50 0
+ 359 0032 054B     	 ldr r3,.L18+8
+ 360 0034 0122     	 mov r2,#1
+ 361 0036 1A60     	 str r2,[r3]
+ 362              	.L16:
+  51:../main.c     ****   	}
   52:../main.c     **** 
-  53:../main.c     **** 
-  54:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
-  55:../main.c     ****   while(1U)
-  56:../main.c     ****   {
-  57:../main.c     **** 	 // Servo_NP_setting();	  // nutral point servo setting
-  58:../main.c     ****   }
- 360              	 .loc 5 58 0 discriminator 2
- 361 003c FEE7     	 b .L17
- 362              	.L19:
- 363 003e C046     	 .align 2
- 364              	.L18:
- 365 0040 00000000 	 .word CAN_NODE_0
- 366 0044 00000000 	 .word init_status
- 367 0048 00000000 	 .word CAN_OK
- 368              	 .cfi_endproc
- 369              	.LFE224:
- 371              	 .section .text.Watchdog_Handler,"ax",%progbits
- 372              	 .align 2
- 373              	 .global Watchdog_Handler
- 374              	 .code 16
- 375              	 .thumb_func
- 377              	Watchdog_Handler:
- 378              	.LFB225:
-  59:../main.c     **** }
+  53:../main.c     ****   	WATCHDOG_Start(); // watchdog restart if CAN not working
+ 363              	 .loc 5 53 0
+ 364 0038 FFF7FEFF 	 bl WATCHDOG_Start
+ 365              	.L17:
+  54:../main.c     **** 
+  55:../main.c     **** 
+  56:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
+  57:../main.c     ****   while(1U)
+  58:../main.c     ****   {
+  59:../main.c     **** 	//Servo_NP_setting();	  // nutral point servo setting
   60:../main.c     **** 
-  61:../main.c     **** void Watchdog_Handler(void) // to do restates if can is not working a problem wenn power from the b
-  62:../main.c     **** {
- 379              	 .loc 5 62 0
- 380              	 .cfi_startproc
- 381 0000 80B5     	 push {r7,lr}
- 382              	.LCFI23:
- 383              	 .cfi_def_cfa_offset 8
- 384              	 .cfi_offset 7,-8
- 385              	 .cfi_offset 14,-4
- 386 0002 00AF     	 add r7,sp,#0
- 387              	.LCFI24:
- 388              	 .cfi_def_cfa_register 7
-  63:../main.c     ****   WATCHDOG_ClearAlarm(); /* Clear the alarm event */
- 389              	 .loc 5 63 0
- 390 0004 FFF7FEFF 	 bl WATCHDOG_ClearAlarm
-  64:../main.c     ****   DIGITAL_IO_SetOutputHigh(&WATCHDOG_LED_BLUE);
- 391              	 .loc 5 64 0
- 392 0008 024B     	 ldr r3,.L21
- 393 000a 181C     	 mov r0,r3
- 394 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
-  65:../main.c     **** }
- 395              	 .loc 5 65 0
- 396 0010 BD46     	 mov sp,r7
- 397              	 
- 398 0012 80BD     	 pop {r7,pc}
- 399              	.L22:
- 400              	 .align 2
- 401              	.L21:
- 402 0014 00000000 	 .word WATCHDOG_LED_BLUE
- 403              	 .cfi_endproc
- 404              	.LFE225:
- 406              	 .section .rodata
- 407              	 .align 2
- 408              	.LC0:
- 409 0000 01       	 .byte 1
- 410 0001 01       	 .byte 1
- 411 0002 01       	 .byte 1
- 412 0003 01       	 .byte 1
- 413              	 .section .text.IRQ7_Handler,"ax",%progbits
- 414              	 .align 2
- 415              	 .global IRQ7_Handler
- 416              	 .code 16
- 417              	 .thumb_func
- 419              	IRQ7_Handler:
- 420              	.LFB226:
-  66:../main.c     **** 
-  67:../main.c     **** 
-  68:../main.c     **** void TIMER_CONTROL_ISR(void){
- 421              	 .loc 5 68 0
- 422              	 .cfi_startproc
- 423 0000 80B5     	 push {r7,lr}
- 424              	.LCFI25:
- 425              	 .cfi_def_cfa_offset 8
- 426              	 .cfi_offset 7,-8
- 427              	 .cfi_offset 14,-4
- 428 0002 82B0     	 sub sp,sp,#8
- 429              	.LCFI26:
- 430              	 .cfi_def_cfa_offset 16
- 431 0004 00AF     	 add r7,sp,#0
- 432              	.LCFI27:
- 433              	 .cfi_def_cfa_register 7
-  69:../main.c     **** 	DIGITAL_IO_SetOutputHigh(&CALC_TIME_INDICATOR);
- 434              	 .loc 5 69 0
- 435 0006 3C4B     	 ldr r3,.L28
- 436 0008 181C     	 mov r0,r3
- 437 000a FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
-  70:../main.c     **** 	mode_led(Steering_mode);
- 438              	 .loc 5 70 0
- 439 000e 3B4B     	 ldr r3,.L28+4
- 440 0010 1B78     	 ldrb r3,[r3]
- 441 0012 DBB2     	 uxtb r3,r3
- 442 0014 181C     	 mov r0,r3
- 443 0016 FFF7FEFF 	 bl mode_led
-  71:../main.c     **** 
-  72:../main.c     **** 	if(RC_controll == 1){
- 444              	 .loc 5 72 0
- 445 001a 394B     	 ldr r3,.L28+8
- 446 001c 1B78     	 ldrb r3,[r3]
- 447 001e DBB2     	 uxtb r3,r3
- 448 0020 012B     	 cmp r3,#1
- 449 0022 07D1     	 bne .L24
-  73:../main.c     **** 		if( NO_New_Input_counter > 9){
- 450              	 .loc 5 73 0
- 451 0024 374B     	 ldr r3,.L28+12
- 452 0026 1B68     	 ldr r3,[r3]
- 453 0028 092B     	 cmp r3,#9
- 454 002a 03D9     	 bls .L24
-  74:../main.c     **** 			DIGITAL_IO_SetOutputLow(&RC_no_data_LED);
- 455              	 .loc 5 74 0
- 456 002c 364B     	 ldr r3,.L28+16
- 457 002e 181C     	 mov r0,r3
- 458 0030 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 459              	.L24:
-  75:../main.c     **** 		}
-  76:../main.c     **** 	}
-  77:../main.c     **** 
-  78:../main.c     **** 
-  79:../main.c     **** 	if(New_Input == 1){
- 460              	 .loc 5 79 0
- 461 0034 354B     	 ldr r3,.L28+20
- 462 0036 1B78     	 ldrb r3,[r3]
- 463 0038 DBB2     	 uxtb r3,r3
- 464 003a 012B     	 cmp r3,#1
- 465 003c 0FD1     	 bne .L25
-  80:../main.c     **** 	Steering_Function(Steering_direction, Driving_speed, Steering_mode);
- 466              	 .loc 5 80 0
- 467 003e 344B     	 ldr r3,.L28+24
- 468 0040 1968     	 ldr r1,[r3]
- 469 0042 344B     	 ldr r3,.L28+28
- 470 0044 1A68     	 ldr r2,[r3]
- 471 0046 2D4B     	 ldr r3,.L28+4
- 472 0048 1B78     	 ldrb r3,[r3]
- 473 004a DBB2     	 uxtb r3,r3
- 474 004c 081C     	 add r0,r1,#0
- 475 004e 111C     	 add r1,r2,#0
- 476 0050 1A1C     	 mov r2,r3
- 477 0052 FFF7FEFF 	 bl Steering_Function
-  81:../main.c     **** 	NO_New_Input_counter = 0;
- 478              	 .loc 5 81 0
- 479 0056 2B4B     	 ldr r3,.L28+12
- 480 0058 0022     	 mov r2,#0
- 481 005a 1A60     	 str r2,[r3]
- 482 005c 23E0     	 b .L26
- 483              	.L25:
-  82:../main.c     **** 
-  83:../main.c     **** 	}
-  84:../main.c     **** 	else{
-  85:../main.c     **** 		NO_New_Input_counter ++;
- 484              	 .loc 5 85 0
- 485 005e 294B     	 ldr r3,.L28+12
- 486 0060 1B68     	 ldr r3,[r3]
- 487 0062 5A1C     	 add r2,r3,#1
- 488 0064 274B     	 ldr r3,.L28+12
- 489 0066 1A60     	 str r2,[r3]
-  86:../main.c     **** 		if( NO_New_Input_counter > 10){
- 490              	 .loc 5 86 0
- 491 0068 264B     	 ldr r3,.L28+12
- 492 006a 1B68     	 ldr r3,[r3]
- 493 006c 0A2B     	 cmp r3,#10
- 494 006e 1AD9     	 bls .L26
-  87:../main.c     **** 			NO_New_Input_counter = 10;
- 495              	 .loc 5 87 0
- 496 0070 244B     	 ldr r3,.L28+12
- 497 0072 0A22     	 mov r2,#10
- 498 0074 1A60     	 str r2,[r3]
-  88:../main.c     **** 
-  89:../main.c     **** 			  Steering_Angles[0] = 0;
- 499              	 .loc 5 89 0
- 500 0076 284B     	 ldr r3,.L28+32
- 501 0078 0022     	 mov r2,#0
- 502 007a 1A60     	 str r2,[r3]
-  90:../main.c     **** 			  Steering_Angles[1] = 0;
- 503              	 .loc 5 90 0
- 504 007c 264B     	 ldr r3,.L28+32
- 505 007e 0022     	 mov r2,#0
- 506 0080 5A60     	 str r2,[r3,#4]
-  91:../main.c     **** 			  Steering_Angles[2] = 0;
- 507              	 .loc 5 91 0
- 508 0082 254B     	 ldr r3,.L28+32
- 509 0084 0022     	 mov r2,#0
- 510 0086 9A60     	 str r2,[r3,#8]
-  92:../main.c     **** 			  Steering_Angles[3] = 0;
- 511              	 .loc 5 92 0
- 512 0088 234B     	 ldr r3,.L28+32
- 513 008a 0022     	 mov r2,#0
- 514 008c DA60     	 str r2,[r3,#12]
-  93:../main.c     **** 
-  94:../main.c     **** 			  Speeds[0] = 0;
- 515              	 .loc 5 94 0
- 516 008e 234B     	 ldr r3,.L28+36
- 517 0090 0022     	 mov r2,#0
- 518 0092 1A60     	 str r2,[r3]
-  95:../main.c     **** 			  Speeds[1] = 0;
- 519              	 .loc 5 95 0
- 520 0094 214B     	 ldr r3,.L28+36
- 521 0096 0022     	 mov r2,#0
- 522 0098 5A60     	 str r2,[r3,#4]
-  96:../main.c     **** 			  Speeds[2] = 0;
- 523              	 .loc 5 96 0
- 524 009a 204B     	 ldr r3,.L28+36
- 525 009c 0022     	 mov r2,#0
- 526 009e 9A60     	 str r2,[r3,#8]
-  97:../main.c     **** 			  Speeds[3] = 0;
- 527              	 .loc 5 97 0
- 528 00a0 1E4B     	 ldr r3,.L28+36
- 529 00a2 0022     	 mov r2,#0
- 530 00a4 DA60     	 str r2,[r3,#12]
- 531              	.L26:
-  98:../main.c     **** 		}
-  99:../main.c     **** 	}
- 100:../main.c     **** 
- 101:../main.c     **** 	//set Angles PWM
- 102:../main.c     **** 	Steering_set_Angles(Steering_Angles);
- 532              	 .loc 5 102 0
- 533 00a6 1C4B     	 ldr r3,.L28+32
- 534 00a8 181C     	 mov r0,r3
- 535 00aa FFF7FEFF 	 bl Steering_set_Angles
+  61:../main.c     ****   }
+ 366              	 .loc 5 61 0 discriminator 2
+ 367 003c FEE7     	 b .L17
+ 368              	.L19:
+ 369 003e C046     	 .align 2
+ 370              	.L18:
+ 371 0040 00000000 	 .word CAN_NODE_0
+ 372 0044 00000000 	 .word init_status
+ 373 0048 00000000 	 .word CAN_OK
+ 374              	 .cfi_endproc
+ 375              	.LFE224:
+ 377              	 .section .text.Watchdog_Handler,"ax",%progbits
+ 378              	 .align 2
+ 379              	 .global Watchdog_Handler
+ 380              	 .code 16
+ 381              	 .thumb_func
+ 383              	Watchdog_Handler:
+ 384              	.LFB225:
+  62:../main.c     **** }
+  63:../main.c     **** 
+  64:../main.c     **** void Watchdog_Handler(void) // to do restates if can is not working a problem wenn power from the b
+  65:../main.c     **** {
+ 385              	 .loc 5 65 0
+ 386              	 .cfi_startproc
+ 387 0000 80B5     	 push {r7,lr}
+ 388              	.LCFI23:
+ 389              	 .cfi_def_cfa_offset 8
+ 390              	 .cfi_offset 7,-8
+ 391              	 .cfi_offset 14,-4
+ 392 0002 00AF     	 add r7,sp,#0
+ 393              	.LCFI24:
+ 394              	 .cfi_def_cfa_register 7
+  66:../main.c     ****   WATCHDOG_ClearAlarm(); /* Clear the alarm event */
+ 395              	 .loc 5 66 0
+ 396 0004 FFF7FEFF 	 bl WATCHDOG_ClearAlarm
+  67:../main.c     ****   DIGITAL_IO_SetOutputHigh(&WATCHDOG_LED_BLUE);
+ 397              	 .loc 5 67 0
+ 398 0008 024B     	 ldr r3,.L21
+ 399 000a 181C     	 mov r0,r3
+ 400 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+  68:../main.c     **** }
+ 401              	 .loc 5 68 0
+ 402 0010 BD46     	 mov sp,r7
+ 403              	 
+ 404 0012 80BD     	 pop {r7,pc}
+ 405              	.L22:
+ 406              	 .align 2
+ 407              	.L21:
+ 408 0014 00000000 	 .word WATCHDOG_LED_BLUE
+ 409              	 .cfi_endproc
+ 410              	.LFE225:
+ 412              	 .section .rodata
+ 413              	 .align 2
+ 414              	.LC0:
+ 415 0000 01       	 .byte 1
+ 416 0001 01       	 .byte 1
+ 417 0002 01       	 .byte 1
+ 418 0003 01       	 .byte 1
+ 419              	 .section .text.IRQ7_Handler,"ax",%progbits
+ 420              	 .align 2
+ 421              	 .global IRQ7_Handler
+ 422              	 .code 16
+ 423              	 .thumb_func
+ 425              	IRQ7_Handler:
+ 426              	.LFB226:
+  69:../main.c     **** 
+  70:../main.c     **** 
+  71:../main.c     **** void TIMER_CONTROL_ISR(void){
+ 427              	 .loc 5 71 0
+ 428              	 .cfi_startproc
+ 429 0000 80B5     	 push {r7,lr}
+ 430              	.LCFI25:
+ 431              	 .cfi_def_cfa_offset 8
+ 432              	 .cfi_offset 7,-8
+ 433              	 .cfi_offset 14,-4
+ 434 0002 82B0     	 sub sp,sp,#8
+ 435              	.LCFI26:
+ 436              	 .cfi_def_cfa_offset 16
+ 437 0004 00AF     	 add r7,sp,#0
+ 438              	.LCFI27:
+ 439              	 .cfi_def_cfa_register 7
+  72:../main.c     **** 	DIGITAL_IO_SetOutputHigh(&CALC_TIME_INDICATOR);
+ 440              	 .loc 5 72 0
+ 441 0006 3C4B     	 ldr r3,.L28
+ 442 0008 181C     	 mov r0,r3
+ 443 000a FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+  73:../main.c     **** 	mode_led(Steering_mode);
+ 444              	 .loc 5 73 0
+ 445 000e 3B4B     	 ldr r3,.L28+4
+ 446 0010 1B78     	 ldrb r3,[r3]
+ 447 0012 DBB2     	 uxtb r3,r3
+ 448 0014 181C     	 mov r0,r3
+ 449 0016 FFF7FEFF 	 bl mode_led
+  74:../main.c     **** 
+  75:../main.c     **** 	if(RC_controll == 1){
+ 450              	 .loc 5 75 0
+ 451 001a 394B     	 ldr r3,.L28+8
+ 452 001c 1B78     	 ldrb r3,[r3]
+ 453 001e DBB2     	 uxtb r3,r3
+ 454 0020 012B     	 cmp r3,#1
+ 455 0022 07D1     	 bne .L24
+  76:../main.c     **** 		if( NO_New_Input_counter > 9){
+ 456              	 .loc 5 76 0
+ 457 0024 374B     	 ldr r3,.L28+12
+ 458 0026 1B68     	 ldr r3,[r3]
+ 459 0028 092B     	 cmp r3,#9
+ 460 002a 03D9     	 bls .L24
+  77:../main.c     **** 			DIGITAL_IO_SetOutputLow(&RC_no_data_LED);
+ 461              	 .loc 5 77 0
+ 462 002c 364B     	 ldr r3,.L28+16
+ 463 002e 181C     	 mov r0,r3
+ 464 0030 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 465              	.L24:
+  78:../main.c     **** 		}
+  79:../main.c     **** 	}
+  80:../main.c     **** 
+  81:../main.c     **** 
+  82:../main.c     **** 	if(New_Input == 1){
+ 466              	 .loc 5 82 0
+ 467 0034 354B     	 ldr r3,.L28+20
+ 468 0036 1B78     	 ldrb r3,[r3]
+ 469 0038 DBB2     	 uxtb r3,r3
+ 470 003a 012B     	 cmp r3,#1
+ 471 003c 0FD1     	 bne .L25
+  83:../main.c     **** 	Steering_Function(Steering_direction, Driving_speed, Steering_mode);
+ 472              	 .loc 5 83 0
+ 473 003e 344B     	 ldr r3,.L28+24
+ 474 0040 1968     	 ldr r1,[r3]
+ 475 0042 344B     	 ldr r3,.L28+28
+ 476 0044 1A68     	 ldr r2,[r3]
+ 477 0046 2D4B     	 ldr r3,.L28+4
+ 478 0048 1B78     	 ldrb r3,[r3]
+ 479 004a DBB2     	 uxtb r3,r3
+ 480 004c 081C     	 add r0,r1,#0
+ 481 004e 111C     	 add r1,r2,#0
+ 482 0050 1A1C     	 mov r2,r3
+ 483 0052 FFF7FEFF 	 bl Steering_Function
+  84:../main.c     **** 	NO_New_Input_counter = 0;
+ 484              	 .loc 5 84 0
+ 485 0056 2B4B     	 ldr r3,.L28+12
+ 486 0058 0022     	 mov r2,#0
+ 487 005a 1A60     	 str r2,[r3]
+ 488 005c 23E0     	 b .L26
+ 489              	.L25:
+  85:../main.c     **** 
+  86:../main.c     **** 	}
+  87:../main.c     **** 	else{
+  88:../main.c     **** 		NO_New_Input_counter ++;
+ 490              	 .loc 5 88 0
+ 491 005e 294B     	 ldr r3,.L28+12
+ 492 0060 1B68     	 ldr r3,[r3]
+ 493 0062 5A1C     	 add r2,r3,#1
+ 494 0064 274B     	 ldr r3,.L28+12
+ 495 0066 1A60     	 str r2,[r3]
+  89:../main.c     **** 		if( NO_New_Input_counter > 10){
+ 496              	 .loc 5 89 0
+ 497 0068 264B     	 ldr r3,.L28+12
+ 498 006a 1B68     	 ldr r3,[r3]
+ 499 006c 0A2B     	 cmp r3,#10
+ 500 006e 1AD9     	 bls .L26
+  90:../main.c     **** 			NO_New_Input_counter = 10;
+ 501              	 .loc 5 90 0
+ 502 0070 244B     	 ldr r3,.L28+12
+ 503 0072 0A22     	 mov r2,#10
+ 504 0074 1A60     	 str r2,[r3]
+  91:../main.c     **** 
+  92:../main.c     **** 			  Steering_Angles[0] = 0;
+ 505              	 .loc 5 92 0
+ 506 0076 284B     	 ldr r3,.L28+32
+ 507 0078 0022     	 mov r2,#0
+ 508 007a 1A60     	 str r2,[r3]
+  93:../main.c     **** 			  Steering_Angles[1] = 0;
+ 509              	 .loc 5 93 0
+ 510 007c 264B     	 ldr r3,.L28+32
+ 511 007e 0022     	 mov r2,#0
+ 512 0080 5A60     	 str r2,[r3,#4]
+  94:../main.c     **** 			  Steering_Angles[2] = 0;
+ 513              	 .loc 5 94 0
+ 514 0082 254B     	 ldr r3,.L28+32
+ 515 0084 0022     	 mov r2,#0
+ 516 0086 9A60     	 str r2,[r3,#8]
+  95:../main.c     **** 			  Steering_Angles[3] = 0;
+ 517              	 .loc 5 95 0
+ 518 0088 234B     	 ldr r3,.L28+32
+ 519 008a 0022     	 mov r2,#0
+ 520 008c DA60     	 str r2,[r3,#12]
+  96:../main.c     **** 
+  97:../main.c     **** 			  Speeds[0] = 0;
+ 521              	 .loc 5 97 0
+ 522 008e 234B     	 ldr r3,.L28+36
+ 523 0090 0022     	 mov r2,#0
+ 524 0092 1A60     	 str r2,[r3]
+  98:../main.c     **** 			  Speeds[1] = 0;
+ 525              	 .loc 5 98 0
+ 526 0094 214B     	 ldr r3,.L28+36
+ 527 0096 0022     	 mov r2,#0
+ 528 0098 5A60     	 str r2,[r3,#4]
+  99:../main.c     **** 			  Speeds[2] = 0;
+ 529              	 .loc 5 99 0
+ 530 009a 204B     	 ldr r3,.L28+36
+ 531 009c 0022     	 mov r2,#0
+ 532 009e 9A60     	 str r2,[r3,#8]
+ 100:../main.c     **** 			  Speeds[3] = 0;
+ 533              	 .loc 5 100 0
+ 534 00a0 1E4B     	 ldr r3,.L28+36
+ 535 00a2 0022     	 mov r2,#0
+ 536 00a4 DA60     	 str r2,[r3,#12]
+ 537              	.L26:
+ 101:../main.c     **** 		}
+ 102:../main.c     **** 	}
  103:../main.c     **** 
- 104:../main.c     **** 	Trajcetory_calc();
- 536              	 .loc 5 104 0
- 537 00ae FFF7FEFF 	 bl Trajcetory_calc
- 105:../main.c     **** 
- 106:../main.c     **** 	Collision_voidance();
- 538              	 .loc 5 106 0
- 539 00b2 FFF7FEFF 	 bl Collision_voidance
- 107:../main.c     **** 
- 108:../main.c     **** 	//send traget speeds to inverter
- 109:../main.c     **** 	CAN_send_Speeds(Speeds_CA);
- 540              	 .loc 5 109 0
- 541 00b6 1A4B     	 ldr r3,.L28+40
- 542 00b8 181C     	 mov r0,r3
- 543 00ba FFF7FEFF 	 bl CAN_send_Speeds
+ 104:../main.c     **** 	//set Angles PWM
+ 105:../main.c     **** 	Steering_set_Angles(Steering_Angles);
+ 538              	 .loc 5 105 0
+ 539 00a6 1C4B     	 ldr r3,.L28+32
+ 540 00a8 181C     	 mov r0,r3
+ 541 00aa FFF7FEFF 	 bl Steering_set_Angles
+ 106:../main.c     **** 
+ 107:../main.c     **** 	Trajcetory_calc();
+ 542              	 .loc 5 107 0
+ 543 00ae FFF7FEFF 	 bl Trajcetory_calc
+ 108:../main.c     **** 
+ 109:../main.c     **** 	Collision_voidance();
+ 544              	 .loc 5 109 0
+ 545 00b2 FFF7FEFF 	 bl Collision_voidance
  110:../main.c     **** 
- 111:../main.c     **** 	//
- 112:../main.c     **** 	if(reset_distance == 1){
- 544              	 .loc 5 112 0
- 545 00be 194B     	 ldr r3,.L28+44
- 546 00c0 1B78     	 ldrb r3,[r3]
- 547 00c2 DBB2     	 uxtb r3,r3
- 548 00c4 012B     	 cmp r3,#1
- 549 00c6 10D1     	 bne .L27
- 550              	.LBB2:
- 113:../main.c     **** 		reset_distance = 0;
- 551              	 .loc 5 113 0
- 552 00c8 164B     	 ldr r3,.L28+44
- 553 00ca 0022     	 mov r2,#0
- 554 00cc 1A70     	 strb r2,[r3]
- 114:../main.c     **** 		uint8_t all[4] = {1,1,1,1};
- 555              	 .loc 5 114 0
- 556 00ce 3A1D     	 add r2,r7,#4
- 557 00d0 154B     	 ldr r3,.L28+48
- 558 00d2 111C     	 mov r1,r2
- 559 00d4 1A1C     	 mov r2,r3
- 560 00d6 0423     	 mov r3,#4
- 561 00d8 081C     	 mov r0,r1
- 562 00da 111C     	 mov r1,r2
- 563 00dc 1A1C     	 mov r2,r3
- 564 00de FFF7FEFF 	 bl memcpy
- 115:../main.c     **** 		CAN_reset_distance(all);
- 565              	 .loc 5 115 0
- 566 00e2 3B1D     	 add r3,r7,#4
- 567 00e4 181C     	 mov r0,r3
- 568 00e6 FFF7FEFF 	 bl CAN_reset_distance
- 569              	.L27:
- 570              	.LBE2:
- 116:../main.c     **** 	}
- 117:../main.c     **** 
- 118:../main.c     **** 
- 119:../main.c     **** 	DIGITAL_IO_SetOutputLow(&CALC_TIME_INDICATOR);
- 571              	 .loc 5 119 0
- 572 00ea 034B     	 ldr r3,.L28
- 573 00ec 181C     	 mov r0,r3
- 574 00ee FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 120:../main.c     **** }
- 575              	 .loc 5 120 0
- 576 00f2 BD46     	 mov sp,r7
- 577 00f4 02B0     	 add sp,sp,#8
- 578              	 
- 579 00f6 80BD     	 pop {r7,pc}
- 580              	.L29:
- 581              	 .align 2
- 582              	.L28:
- 583 00f8 00000000 	 .word CALC_TIME_INDICATOR
- 584 00fc 00000000 	 .word Steering_mode
- 585 0100 00000000 	 .word RC_controll
- 586 0104 00000000 	 .word NO_New_Input_counter
- 587 0108 00000000 	 .word RC_no_data_LED
- 588 010c 00000000 	 .word New_Input
- 589 0110 00000000 	 .word Steering_direction
- 590 0114 00000000 	 .word Driving_speed
- 591 0118 00000000 	 .word Steering_Angles
- 592 011c 00000000 	 .word Speeds
- 593 0120 00000000 	 .word Speeds_CA
- 594 0124 00000000 	 .word reset_distance
- 595 0128 00000000 	 .word .LC0
- 596              	 .cfi_endproc
- 597              	.LFE226:
- 599              	 .text
- 600              	.Letext0:
- 601              	 .file 6 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 602              	 .file 7 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 603              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
- 604              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_can.h"
- 605              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CAN/global_can.h"
- 606              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
- 607              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node.h"
- 608              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DAVE.h"
- 609              	 .file 14 "../Globals.h"
- 610              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 611              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 612              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node_extern.h"
- 613              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 111:../main.c     **** 	//send traget speeds to inverter
+ 112:../main.c     **** 	CAN_send_Speeds(Speeds_CA);
+ 546              	 .loc 5 112 0
+ 547 00b6 1A4B     	 ldr r3,.L28+40
+ 548 00b8 181C     	 mov r0,r3
+ 549 00ba FFF7FEFF 	 bl CAN_send_Speeds
+ 113:../main.c     **** 
+ 114:../main.c     **** 	//
+ 115:../main.c     **** 	if(reset_distance == 1){
+ 550              	 .loc 5 115 0
+ 551 00be 194B     	 ldr r3,.L28+44
+ 552 00c0 1B78     	 ldrb r3,[r3]
+ 553 00c2 DBB2     	 uxtb r3,r3
+ 554 00c4 012B     	 cmp r3,#1
+ 555 00c6 10D1     	 bne .L27
+ 556              	.LBB2:
+ 116:../main.c     **** 		reset_distance = 0;
+ 557              	 .loc 5 116 0
+ 558 00c8 164B     	 ldr r3,.L28+44
+ 559 00ca 0022     	 mov r2,#0
+ 560 00cc 1A70     	 strb r2,[r3]
+ 117:../main.c     **** 		uint8_t all[4] = {1,1,1,1};
+ 561              	 .loc 5 117 0
+ 562 00ce 3A1D     	 add r2,r7,#4
+ 563 00d0 154B     	 ldr r3,.L28+48
+ 564 00d2 111C     	 mov r1,r2
+ 565 00d4 1A1C     	 mov r2,r3
+ 566 00d6 0423     	 mov r3,#4
+ 567 00d8 081C     	 mov r0,r1
+ 568 00da 111C     	 mov r1,r2
+ 569 00dc 1A1C     	 mov r2,r3
+ 570 00de FFF7FEFF 	 bl memcpy
+ 118:../main.c     **** 		CAN_reset_distance(all);
+ 571              	 .loc 5 118 0
+ 572 00e2 3B1D     	 add r3,r7,#4
+ 573 00e4 181C     	 mov r0,r3
+ 574 00e6 FFF7FEFF 	 bl CAN_reset_distance
+ 575              	.L27:
+ 576              	.LBE2:
+ 119:../main.c     **** 	}
+ 120:../main.c     **** 
+ 121:../main.c     **** 
+ 122:../main.c     **** 	DIGITAL_IO_SetOutputLow(&CALC_TIME_INDICATOR);
+ 577              	 .loc 5 122 0
+ 578 00ea 034B     	 ldr r3,.L28
+ 579 00ec 181C     	 mov r0,r3
+ 580 00ee FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 123:../main.c     **** }
+ 581              	 .loc 5 123 0
+ 582 00f2 BD46     	 mov sp,r7
+ 583 00f4 02B0     	 add sp,sp,#8
+ 584              	 
+ 585 00f6 80BD     	 pop {r7,pc}
+ 586              	.L29:
+ 587              	 .align 2
+ 588              	.L28:
+ 589 00f8 00000000 	 .word CALC_TIME_INDICATOR
+ 590 00fc 00000000 	 .word Steering_mode
+ 591 0100 00000000 	 .word RC_controll
+ 592 0104 00000000 	 .word NO_New_Input_counter
+ 593 0108 00000000 	 .word RC_no_data_LED
+ 594 010c 00000000 	 .word New_Input
+ 595 0110 00000000 	 .word Steering_direction
+ 596 0114 00000000 	 .word Driving_speed
+ 597 0118 00000000 	 .word Steering_Angles
+ 598 011c 00000000 	 .word Speeds
+ 599 0120 00000000 	 .word Speeds_CA
+ 600 0124 00000000 	 .word reset_distance
+ 601 0128 00000000 	 .word .LC0
+ 602              	 .cfi_endproc
+ 603              	.LFE226:
+ 605              	 .text
+ 606              	.Letext0:
+ 607              	 .file 6 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 608              	 .file 7 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 609              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 610              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_can.h"
+ 611              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 612              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 613              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node.h"
+ 614              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DAVE.h"
+ 615              	 .file 14 "../Globals.h"
+ 616              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 617              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 618              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node_extern.h"
+ 619              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
     {standard input}:18     .text.XMC_GPIO_SetOutputHigh:00000000 $t
@@ -2189,16 +2196,18 @@ DEFINED SYMBOLS
                             *COM*:00000001 init_status
     {standard input}:300    .bss.CAN_OK:00000000 CAN_OK
     {standard input}:297    .bss.CAN_OK:00000000 $d
-    {standard input}:303    .text.main:00000000 $t
-    {standard input}:308    .text.main:00000000 main
-    {standard input}:365    .text.main:00000040 $d
-    {standard input}:372    .text.Watchdog_Handler:00000000 $t
-    {standard input}:377    .text.Watchdog_Handler:00000000 Watchdog_Handler
-    {standard input}:402    .text.Watchdog_Handler:00000014 $d
-    {standard input}:407    .rodata:00000000 $d
-    {standard input}:414    .text.IRQ7_Handler:00000000 $t
-    {standard input}:419    .text.IRQ7_Handler:00000000 IRQ7_Handler
-    {standard input}:583    .text.IRQ7_Handler:000000f8 $d
+    {standard input}:306    .bss.test:00000000 test
+    {standard input}:307    .bss.test:00000000 $d
+    {standard input}:309    .text.main:00000000 $t
+    {standard input}:314    .text.main:00000000 main
+    {standard input}:371    .text.main:00000040 $d
+    {standard input}:378    .text.Watchdog_Handler:00000000 $t
+    {standard input}:383    .text.Watchdog_Handler:00000000 Watchdog_Handler
+    {standard input}:408    .text.Watchdog_Handler:00000014 $d
+    {standard input}:413    .rodata:00000000 $d
+    {standard input}:420    .text.IRQ7_Handler:00000000 $t
+    {standard input}:425    .text.IRQ7_Handler:00000000 IRQ7_Handler
+    {standard input}:589    .text.IRQ7_Handler:000000f8 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

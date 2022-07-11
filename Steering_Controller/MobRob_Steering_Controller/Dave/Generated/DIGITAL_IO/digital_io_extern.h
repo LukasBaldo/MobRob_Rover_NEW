@@ -79,7 +79,11 @@ extern const DIGITAL_IO_t WATCHDOG_LED_BLUE;
 	
 extern const DIGITAL_IO_t LED_CAN_ERROR; 
 	
-extern const DIGITAL_IO_t LED_COLLISION_AVOID; 
+extern const DIGITAL_IO_t LED_CA_FRONT; 
+	
+extern const DIGITAL_IO_t LED_CA_LEFT; 
+	
+extern const DIGITAL_IO_t LED_CA_RIGHT; 
 	
  
 #endif  /* DIGITAL_IO_EXTERN_H */

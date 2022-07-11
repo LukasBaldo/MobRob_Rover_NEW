@@ -6,7 +6,7 @@
 C_SRCS += \
 ../CAN.c \
 ../Driving_dynamics.c \
-../Globas.c \
+../Globals.c \
 ../RC_data_recive.c \
 ../Steering_Servos.c \
 ../Ultrasonic_Collision_Avoidance.c \
@@ -16,7 +16,7 @@ C_SRCS += \
 OBJS += \
 ./CAN.o \
 ./Driving_dynamics.o \
-./Globas.o \
+./Globals.o \
 ./RC_data_recive.o \
 ./Steering_Servos.o \
 ./Ultrasonic_Collision_Avoidance.o \
@@ -26,7 +26,7 @@ OBJS += \
 C_DEPS += \
 ./CAN.d \
 ./Driving_dynamics.d \
-./Globas.d \
+./Globals.d \
 ./RC_data_recive.d \
 ./Steering_Servos.d \
 ./Ultrasonic_Collision_Avoidance.d \

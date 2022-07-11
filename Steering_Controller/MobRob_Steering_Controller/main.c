@@ -19,6 +19,8 @@
 CAN_NODE_STATUS_t init_status;
 int CAN_OK = 0;
 
+uint8_t test = 0;
+
 
 int main(void)
 {
@@ -54,7 +56,8 @@ int main(void)
   /* Placeholder for user application code. The while loop below can be replaced with user application code. */
   while(1U)
   {
-	 // Servo_NP_setting();	  // nutral point servo setting
+	//Servo_NP_setting();	  // nutral point servo setting
+
   }
 }
 
@@ -118,52 +121,3 @@ void TIMER_CONTROL_ISR(void){
 
 	DIGITAL_IO_SetOutputLow(&CALC_TIME_INDICATOR);
 }
-
-/*
-
-void Trajcetory_calc(){
-
-	avg_Speeds = average(Speeds,4);
-
-	switch(Steering_mode) // options 'Front'; 'Rear'; '4_Wheel'; 'Carb'; 'Rotate'
-		{
-			case FRONT://#############################################################
-				//trajctory_x =
-				break;
-
-			case BACK:// rear #############################################################
-
-
-			case ALL_WHEEL: // 4 wheel #############################################################
-
-				break;
-
-			case CRAB:  //carb //#############################################################
-				trajctory_x = avg_Speeds * cos(Steering_Angles[0] / RAD_TO_DEG);
-				trajctory_y = avg_Speeds * sin(Steering_Angles[0] / RAD_TO_DEG);
-				trajctory_Angel = Steering_Angles[0];
-
-				break;
-
-			case ROTATE: // rotate ############################################################
-
-				break;
-
-			default :
-
-			trajctory_x = 0;
-			trajctory_y = 0;
-		}
-
-	//trajctory_Angel = cos(trajctory_x / trajctory_y);
-	Trajctory[0] = trajctory_x;
-	Trajctory[1] = trajctory_y;
-
-}
-
-*/
-
-
-
-
-

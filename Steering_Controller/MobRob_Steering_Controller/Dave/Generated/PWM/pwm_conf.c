@@ -302,9 +302,9 @@ PWM_t PWM_servo_rr =
   .ccu4_slice_config_ptr          = &PWM_servo_rr_compare_config,
   .gpio_out_port                  = XMC_GPIO_PORT1,
   .gpio_out_config                = &PWM_servo_rr_gpio_out_config,
-  .compare_value                  = 55110U,
+  .compare_value                  = 55800U,
   .period_value                   = 59999U,
-  .duty_cycle                     = 815U,
+  .duty_cycle                     = 700U,
   .shadow_mask                    = (uint32_t)((uint32_t)XMC_CCU4_SHADOW_TRANSFER_SLICE_3 | 
                                                (uint32_t)XMC_CCU4_SHADOW_TRANSFER_PRESCALER_SLICE_3),
   .timer_type                     = PWM_TIMER_SLICE_CCU4,

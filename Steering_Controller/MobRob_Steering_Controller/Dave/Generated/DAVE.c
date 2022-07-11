@@ -189,8 +189,18 @@ __WEAK DAVE_STATUS_t DAVE_Init(void)
    } 
   if (init_status == DAVE_STATUS_SUCCESS)
   {
-	 /**  Initialization of DIGITAL_IO APP instance LED_COLLISION_AVOID */
-	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&LED_COLLISION_AVOID); 
+	 /**  Initialization of DIGITAL_IO APP instance LED_CA_FRONT */
+	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&LED_CA_FRONT); 
+   } 
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+	 /**  Initialization of DIGITAL_IO APP instance LED_CA_LEFT */
+	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&LED_CA_LEFT); 
+   } 
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+	 /**  Initialization of DIGITAL_IO APP instance LED_CA_RIGHT */
+	 init_status = (DAVE_STATUS_t)DIGITAL_IO_Init(&LED_CA_RIGHT); 
    }  
   return init_status;
 } /**  End of function DAVE_Init */
