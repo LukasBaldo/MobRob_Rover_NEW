@@ -158,7 +158,7 @@ void Collision_voidance(){
 
 
 	Obstacel_CA_check(Obstacel_F);
-	Obstacel_CA_check(Obstacel_L);
+	//Obstacel_CA_check(Obstacel_L);
 	//Obstacel_CA_check(Obstacel_R);#
 
 	//CA aktive

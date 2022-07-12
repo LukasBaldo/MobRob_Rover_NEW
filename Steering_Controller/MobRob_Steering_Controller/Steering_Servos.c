@@ -6,7 +6,7 @@
  */
 #include "Steering_Servos.h"
 
-uint16_t NP[4] = {836, 757, 707, 747}; //servo nutral points PWM duty values
+uint16_t NP[4] = {836, 757, 707, 778}; //servo nutral points PWM duty values
 uint16_t NPfl = 836; int NPfr = 860; int NPrl = 707; int NPrr = 747; // serov defalut 750
 
 float Servo_PWMs[4] = {0, 0, 0, 0};

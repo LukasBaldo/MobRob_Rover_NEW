@@ -2087,16 +2087,16 @@
  545 00b2 FFF7FEFF 	 bl Collision_voidance
  110:../main.c     **** 
  111:../main.c     **** 	//send traget speeds to inverter
- 112:../main.c     **** 	CAN_send_Speeds(Speeds_CA);
+ 112:../main.c     **** 	CAN_send_Speeds(Speeds);
  546              	 .loc 5 112 0
- 547 00b6 1A4B     	 ldr r3,.L28+40
+ 547 00b6 194B     	 ldr r3,.L28+36
  548 00b8 181C     	 mov r0,r3
  549 00ba FFF7FEFF 	 bl CAN_send_Speeds
  113:../main.c     **** 
  114:../main.c     **** 	//
  115:../main.c     **** 	if(reset_distance == 1){
  550              	 .loc 5 115 0
- 551 00be 194B     	 ldr r3,.L28+44
+ 551 00be 184B     	 ldr r3,.L28+40
  552 00c0 1B78     	 ldrb r3,[r3]
  553 00c2 DBB2     	 uxtb r3,r3
  554 00c4 012B     	 cmp r3,#1
@@ -2104,13 +2104,13 @@
  556              	.LBB2:
  116:../main.c     **** 		reset_distance = 0;
  557              	 .loc 5 116 0
- 558 00c8 164B     	 ldr r3,.L28+44
+ 558 00c8 154B     	 ldr r3,.L28+40
  559 00ca 0022     	 mov r2,#0
  560 00cc 1A70     	 strb r2,[r3]
  117:../main.c     **** 		uint8_t all[4] = {1,1,1,1};
  561              	 .loc 5 117 0
  562 00ce 3A1D     	 add r2,r7,#4
- 563 00d0 154B     	 ldr r3,.L28+48
+ 563 00d0 144B     	 ldr r3,.L28+44
  564 00d2 111C     	 mov r1,r2
  565 00d4 1A1C     	 mov r2,r3
  566 00d6 0423     	 mov r3,#4
@@ -2152,26 +2152,25 @@
  596 0114 00000000 	 .word Driving_speed
  597 0118 00000000 	 .word Steering_Angles
  598 011c 00000000 	 .word Speeds
- 599 0120 00000000 	 .word Speeds_CA
- 600 0124 00000000 	 .word reset_distance
- 601 0128 00000000 	 .word .LC0
- 602              	 .cfi_endproc
- 603              	.LFE226:
- 605              	 .text
- 606              	.Letext0:
- 607              	 .file 6 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 608              	 .file 7 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 609              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
- 610              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_can.h"
- 611              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CAN/global_can.h"
- 612              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
- 613              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node.h"
- 614              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DAVE.h"
- 615              	 .file 14 "../Globals.h"
- 616              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 617              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 618              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node_extern.h"
- 619              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 599 0120 00000000 	 .word reset_distance
+ 600 0124 00000000 	 .word .LC0
+ 601              	 .cfi_endproc
+ 602              	.LFE226:
+ 604              	 .text
+ 605              	.Letext0:
+ 606              	 .file 6 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 607              	 .file 7 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 608              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 609              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_can.h"
+ 610              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 611              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 612              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node.h"
+ 613              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DAVE.h"
+ 614              	 .file 14 "../Globals.h"
+ 615              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 616              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 617              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAN_NODE/can_node_extern.h"
+ 618              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
     {standard input}:18     .text.XMC_GPIO_SetOutputHigh:00000000 $t
@@ -2232,5 +2231,4 @@ Steering_direction
 Driving_speed
 Steering_Angles
 Speeds
-Speeds_CA
 reset_distance
