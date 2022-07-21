@@ -1316,7 +1316,7 @@
  308              	 .section .data.RC_Speed_ns_to_mps,"aw",%progbits
  309              	 .align 2
  312              	RC_Speed_ns_to_mps:
- 313 0000 ACC5A735 	 .word 900187564
+ 313 0000 BD370636 	 .word 906377149
  314              	 .global RC_Steering_ns_to_deg
  315              	 .section .data.RC_Steering_ns_to_deg,"aw",%progbits
  316              	 .align 2
@@ -1352,10 +1352,10 @@
  360              	 .section .data.RC_AUX1_duty,"aw",%progbits
  363              	RC_AUX1_duty:
  364 0000 02       	 .byte 2
- 365              	 .global RC_Speed_Stop
- 366              	 .section .data.RC_Speed_Stop,"aw",%progbits
- 369              	RC_Speed_Stop:
- 370 0000 01       	 .byte 1
+ 365              	 .global RC_Speed_Stop_counter
+ 366              	 .section .data.RC_Speed_Stop_counter,"aw",%progbits
+ 369              	RC_Speed_Stop_counter:
+ 370 0000 0A       	 .byte 10
  371              	 .section .text.IRQ8_Handler,"ax",%progbits
  372              	 .align 2
  373              	 .global IRQ8_Handler
@@ -1378,19 +1378,20 @@
   12:../RC_data_recive.c **** uint8_t RC_no_Speed_data_counter = 0, RC_no_Steering_data_counter = 0;
   13:../RC_data_recive.c **** float RC_Speed = 0, RC_Steering = 0;
   14:../RC_data_recive.c **** #define RC_NP_SPEED  1500000
-  15:../RC_data_recive.c **** #define RC_NP_STEERING  1560000
+  15:../RC_data_recive.c **** #define RC_NP_STEERING  1500000
   16:../RC_data_recive.c **** //uint32_t RC_NP_STEERING = 1500000;
-  17:../RC_data_recive.c **** float RC_Speed_ns_to_mps = 0.00000125;
+  17:../RC_data_recive.c **** float RC_Speed_ns_to_mps = 0.000002; // increased
   18:../RC_data_recive.c **** float RC_Steering_ns_to_deg = 0.00021;
   19:../RC_data_recive.c **** 
   20:../RC_data_recive.c **** volatile uint32_t RC_gear_100us_counter = 0, RC_AUX1_100us_counter = 0;
   21:../RC_data_recive.c **** volatile uint8_t RC_Gear_state = 2, RC_AUX1_state = 2;
   22:../RC_data_recive.c **** volatile uint8_t RC_Gear_duty = 2, RC_Gear_duty_OLD =2, RC_AUX1_duty = 2;
-  23:../RC_data_recive.c **** uint8_t RC_Speed_Stop = 1;
+  23:../RC_data_recive.c **** //uint8_t RC_Speed_Stop = 1;
   24:../RC_data_recive.c **** 
-  25:../RC_data_recive.c **** 
-  26:../RC_data_recive.c **** void INTERRUPT_TIMER_10us_ISR(void){ // every 1ms so 10kHz
- 380              	 .loc 4 26 0
+  25:../RC_data_recive.c **** volatile uint8_t RC_Speed_Stop_counter = RC_SPEED_SAFTY_FT;
+  26:../RC_data_recive.c **** 
+  27:../RC_data_recive.c **** void INTERRUPT_TIMER_10us_ISR(void){ // every 1ms so 10kHz
+ 380              	 .loc 4 27 0
  381              	 .cfi_startproc
  382 0000 80B5     	 push {r7,lr}
  383              	.LCFI18:
@@ -1400,36 +1401,36 @@
  387 0002 00AF     	 add r7,sp,#0
  388              	.LCFI19:
  389              	 .cfi_def_cfa_register 7
-  27:../RC_data_recive.c **** 	if(RC_Gear_state == 1)RC_gear_100us_counter ++;
- 390              	 .loc 4 27 0
+  28:../RC_data_recive.c **** 	if(RC_Gear_state == 1)RC_gear_100us_counter ++;
+ 390              	 .loc 4 28 0
  391 0004 0A4B     	 ldr r3,.L12
  392 0006 1B78     	 ldrb r3,[r3]
  393 0008 DBB2     	 uxtb r3,r3
  394 000a 012B     	 cmp r3,#1
  395 000c 04D1     	 bne .L10
- 396              	 .loc 4 27 0 is_stmt 0 discriminator 1
+ 396              	 .loc 4 28 0 is_stmt 0 discriminator 1
  397 000e 094B     	 ldr r3,.L12+4
  398 0010 1B68     	 ldr r3,[r3]
  399 0012 5A1C     	 add r2,r3,#1
  400 0014 074B     	 ldr r3,.L12+4
  401 0016 1A60     	 str r2,[r3]
  402              	.L10:
-  28:../RC_data_recive.c **** 	if(RC_AUX1_state == 1)RC_AUX1_100us_counter ++;
- 403              	 .loc 4 28 0 is_stmt 1
+  29:../RC_data_recive.c **** 	if(RC_AUX1_state == 1)RC_AUX1_100us_counter ++;
+ 403              	 .loc 4 29 0 is_stmt 1
  404 0018 074B     	 ldr r3,.L12+8
  405 001a 1B78     	 ldrb r3,[r3]
  406 001c DBB2     	 uxtb r3,r3
  407 001e 012B     	 cmp r3,#1
  408 0020 04D1     	 bne .L9
- 409              	 .loc 4 28 0 is_stmt 0 discriminator 1
+ 409              	 .loc 4 29 0 is_stmt 0 discriminator 1
  410 0022 064B     	 ldr r3,.L12+12
  411 0024 1B68     	 ldr r3,[r3]
  412 0026 5A1C     	 add r2,r3,#1
  413 0028 044B     	 ldr r3,.L12+12
  414 002a 1A60     	 str r2,[r3]
  415              	.L9:
-  29:../RC_data_recive.c **** }
- 416              	 .loc 4 29 0 is_stmt 1
+  30:../RC_data_recive.c **** }
+ 416              	 .loc 4 30 0 is_stmt 1
  417 002c BD46     	 mov sp,r7
  418              	 
  419 002e 80BD     	 pop {r7,pc}
@@ -1447,722 +1448,692 @@
  432              	 .global __aeabi_f2d
  433              	 .global __aeabi_dmul
  434              	 .global __aeabi_d2f
- 435              	 .global __aeabi_dcmplt
- 436              	 .global __aeabi_dcmpgt
- 437              	 .global __aeabi_fcmplt
- 438              	 .global __aeabi_fcmpgt
- 439              	 .section .text.RC_Recive,"ax",%progbits
- 440              	 .align 2
- 441              	 .global RC_Recive
- 442              	 .code 16
- 443              	 .thumb_func
- 445              	RC_Recive:
- 446              	.LFB225:
-  30:../RC_data_recive.c **** 
+ 435              	 .section .text.RC_Recive,"ax",%progbits
+ 436              	 .align 2
+ 437              	 .global RC_Recive
+ 438              	 .code 16
+ 439              	 .thumb_func
+ 441              	RC_Recive:
+ 442              	.LFB225:
   31:../RC_data_recive.c **** 
   32:../RC_data_recive.c **** 
-  33:../RC_data_recive.c **** void RC_Recive(void){
- 447              	 .loc 4 33 0
- 448              	 .cfi_startproc
- 449 0000 F8B5     	 push {r3,r4,r5,r6,r7,lr}
- 450              	.LCFI20:
- 451              	 .cfi_def_cfa_offset 24
- 452              	 .cfi_offset 3,-24
- 453              	 .cfi_offset 4,-20
- 454              	 .cfi_offset 5,-16
- 455              	 .cfi_offset 6,-12
- 456              	 .cfi_offset 7,-8
- 457              	 .cfi_offset 14,-4
- 458 0002 00AF     	 add r7,sp,#0
- 459              	.LCFI21:
- 460              	 .cfi_def_cfa_register 7
-  34:../RC_data_recive.c **** 
-  35:../RC_data_recive.c **** 	CAPTURE_Start(&CAPTURE_RC_Steering);
- 461              	 .loc 4 35 0
- 462 0004 7A4B     	 ldr r3,.L34
- 463 0006 181C     	 mov r0,r3
- 464 0008 FFF7FEFF 	 bl CAPTURE_Start
-  36:../RC_data_recive.c **** 	CAPTURE_Start(&CAPTURE_RC_Speed);
- 465              	 .loc 4 36 0
- 466 000c 794B     	 ldr r3,.L34+4
- 467 000e 181C     	 mov r0,r3
- 468 0010 FFF7FEFF 	 bl CAPTURE_Start
-  37:../RC_data_recive.c **** 
-  38:../RC_data_recive.c **** 	CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_RC_Steering, &captured_time_Steering);
- 469              	 .loc 4 38 0
- 470 0014 764A     	 ldr r2,.L34
- 471 0016 784B     	 ldr r3,.L34+8
- 472 0018 101C     	 mov r0,r2
- 473 001a 191C     	 mov r1,r3
- 474 001c FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
-  39:../RC_data_recive.c **** 	CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_RC_Speed, &captured_time_Speed);
- 475              	 .loc 4 39 0
- 476 0020 744A     	 ldr r2,.L34+4
- 477 0022 764B     	 ldr r3,.L34+12
- 478 0024 101C     	 mov r0,r2
- 479 0026 191C     	 mov r1,r3
- 480 0028 FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
-  40:../RC_data_recive.c **** 
-  41:../RC_data_recive.c **** 	if(RC_Speed_Stop == 1){
- 481              	 .loc 4 41 0
- 482 002c 744B     	 ldr r3,.L34+16
- 483 002e 1B78     	 ldrb r3,[r3]
- 484 0030 012B     	 cmp r3,#1
- 485 0032 5CD1     	 bne .L15
-  42:../RC_data_recive.c **** 		if((captured_time_Speed >= 1000000) && (captured_time_Speed <= 2000000)){
- 486              	 .loc 4 42 0
- 487 0034 714B     	 ldr r3,.L34+12
- 488 0036 1B68     	 ldr r3,[r3]
- 489 0038 724A     	 ldr r2,.L34+20
- 490 003a 9342     	 cmp r3,r2
- 491 003c 50D9     	 bls .L16
- 492              	 .loc 4 42 0 is_stmt 0 discriminator 1
- 493 003e 6F4B     	 ldr r3,.L34+12
- 494 0040 1B68     	 ldr r3,[r3]
- 495 0042 714A     	 ldr r2,.L34+24
- 496 0044 9342     	 cmp r3,r2
- 497 0046 4BD8     	 bhi .L16
-  43:../RC_data_recive.c **** 		  RC_Speed = ((double)captured_time_Speed - RC_NP_SPEED) * RC_Speed_ns_to_mps; // form +-0.6m/s
- 498              	 .loc 4 43 0 is_stmt 1
- 499 0048 6C4B     	 ldr r3,.L34+12
- 500 004a 1B68     	 ldr r3,[r3]
- 501 004c 181C     	 mov r0,r3
- 502 004e FFF7FEFF 	 bl __aeabi_ui2d
- 503 0052 031C     	 mov r3,r0
- 504 0054 0C1C     	 mov r4,r1
- 505 0056 181C     	 mov r0,r3
- 506 0058 211C     	 mov r1,r4
- 507 005a 0022     	 mov r2,#0
- 508 005c 6B4B     	 ldr r3,.L34+28
- 509 005e FFF7FEFF 	 bl __aeabi_dsub
- 510 0062 031C     	 mov r3,r0
- 511 0064 0C1C     	 mov r4,r1
- 512 0066 1D1C     	 mov r5,r3
- 513 0068 261C     	 mov r6,r4
- 514 006a 694B     	 ldr r3,.L34+32
- 515 006c 1B68     	 ldr r3,[r3]
- 516 006e 181C     	 add r0,r3,#0
- 517 0070 FFF7FEFF 	 bl __aeabi_f2d
- 518 0074 031C     	 mov r3,r0
- 519 0076 0C1C     	 mov r4,r1
- 520 0078 281C     	 mov r0,r5
- 521 007a 311C     	 mov r1,r6
- 522 007c 1A1C     	 mov r2,r3
- 523 007e 231C     	 mov r3,r4
- 524 0080 FFF7FEFF 	 bl __aeabi_dmul
- 525 0084 031C     	 mov r3,r0
- 526 0086 0C1C     	 mov r4,r1
- 527 0088 181C     	 mov r0,r3
- 528 008a 211C     	 mov r1,r4
- 529 008c FFF7FEFF 	 bl __aeabi_d2f
- 530 0090 021C     	 add r2,r0,#0
- 531 0092 604B     	 ldr r3,.L34+36
- 532 0094 1A60     	 str r2,[r3]
-  44:../RC_data_recive.c **** 		  if((RC_Speed < 0.1) && (RC_Speed > -0.1)) RC_Speed = 0; // to have accutal 0
- 533              	 .loc 4 44 0
- 534 0096 5F4B     	 ldr r3,.L34+36
- 535 0098 1B68     	 ldr r3,[r3]
- 536 009a 181C     	 add r0,r3,#0
- 537 009c FFF7FEFF 	 bl __aeabi_f2d
- 538 00a0 031C     	 mov r3,r0
- 539 00a2 0C1C     	 mov r4,r1
- 540 00a4 181C     	 mov r0,r3
- 541 00a6 211C     	 mov r1,r4
- 542 00a8 5B4A     	 ldr r2,.L34+40
- 543 00aa 5C4B     	 ldr r3,.L34+44
- 544 00ac FFF7FEFF 	 bl __aeabi_dcmplt
- 545 00b0 031E     	 sub r3,r0,#0
- 546 00b2 11D0     	 beq .L17
- 547              	 .loc 4 44 0 is_stmt 0 discriminator 1
- 548 00b4 574B     	 ldr r3,.L34+36
- 549 00b6 1B68     	 ldr r3,[r3]
- 550 00b8 181C     	 add r0,r3,#0
- 551 00ba FFF7FEFF 	 bl __aeabi_f2d
- 552 00be 031C     	 mov r3,r0
- 553 00c0 0C1C     	 mov r4,r1
- 554 00c2 181C     	 mov r0,r3
- 555 00c4 211C     	 mov r1,r4
- 556 00c6 544A     	 ldr r2,.L34+40
- 557 00c8 554B     	 ldr r3,.L34+48
- 558 00ca FFF7FEFF 	 bl __aeabi_dcmpgt
- 559 00ce 031E     	 sub r3,r0,#0
- 560 00d0 02D0     	 beq .L17
- 561              	 .loc 4 44 0 discriminator 2
- 562 00d2 504B     	 ldr r3,.L34+36
- 563 00d4 0022     	 mov r2,#0
- 564 00d6 1A60     	 str r2,[r3]
- 565              	.L17:
-  45:../RC_data_recive.c **** 		  RC_no_Speed_data_counter = 0;
- 566              	 .loc 4 45 0 is_stmt 1
- 567 00d8 524B     	 ldr r3,.L34+52
- 568 00da 0022     	 mov r2,#0
- 569 00dc 1A70     	 strb r2,[r3]
- 570 00de 09E0     	 b .L21
- 571              	.L16:
-  46:../RC_data_recive.c **** 		}
-  47:../RC_data_recive.c **** 		else{
-  48:../RC_data_recive.c **** 			RC_no_Speed_data_counter ++;
- 572              	 .loc 4 48 0
- 573 00e0 504B     	 ldr r3,.L34+52
- 574 00e2 1B78     	 ldrb r3,[r3]
- 575 00e4 0133     	 add r3,r3,#1
- 576 00e6 DAB2     	 uxtb r2,r3
- 577 00e8 4E4B     	 ldr r3,.L34+52
- 578 00ea 1A70     	 strb r2,[r3]
- 579 00ec 02E0     	 b .L21
- 580              	.L15:
-  49:../RC_data_recive.c **** 		}
-  50:../RC_data_recive.c **** 	}
-  51:../RC_data_recive.c **** 	else RC_Speed = 0;
- 581              	 .loc 4 51 0
- 582 00ee 494B     	 ldr r3,.L34+36
- 583 00f0 0022     	 mov r2,#0
- 584 00f2 1A60     	 str r2,[r3]
- 585              	.L21:
-  52:../RC_data_recive.c **** 
-  53:../RC_data_recive.c **** 	if((captured_time_Steering >= 1000000) && (captured_time_Steering <= 2000000)){
- 586              	 .loc 4 53 0
- 587 00f4 404B     	 ldr r3,.L34+8
- 588 00f6 1B68     	 ldr r3,[r3]
- 589 00f8 424A     	 ldr r2,.L34+20
- 590 00fa 9342     	 cmp r3,r2
- 591 00fc 47D9     	 bls .L22
- 592              	 .loc 4 53 0 is_stmt 0 discriminator 1
- 593 00fe 3E4B     	 ldr r3,.L34+8
- 594 0100 1B68     	 ldr r3,[r3]
- 595 0102 414A     	 ldr r2,.L34+24
- 596 0104 9342     	 cmp r3,r2
- 597 0106 42D8     	 bhi .L22
-  54:../RC_data_recive.c **** 	  RC_Steering = -(((double)captured_time_Steering - RC_NP_STEERING) * RC_Steering_ns_to_deg); // f
- 598              	 .loc 4 54 0 is_stmt 1
- 599 0108 3B4B     	 ldr r3,.L34+8
- 600 010a 1B68     	 ldr r3,[r3]
- 601 010c 181C     	 mov r0,r3
- 602 010e FFF7FEFF 	 bl __aeabi_ui2d
- 603 0112 031C     	 mov r3,r0
- 604 0114 0C1C     	 mov r4,r1
- 605 0116 181C     	 mov r0,r3
- 606 0118 211C     	 mov r1,r4
- 607 011a 0022     	 mov r2,#0
- 608 011c 424B     	 ldr r3,.L34+56
- 609 011e FFF7FEFF 	 bl __aeabi_dsub
- 610 0122 031C     	 mov r3,r0
- 611 0124 0C1C     	 mov r4,r1
- 612 0126 1D1C     	 mov r5,r3
- 613 0128 261C     	 mov r6,r4
- 614 012a 404B     	 ldr r3,.L34+60
- 615 012c 1B68     	 ldr r3,[r3]
- 616 012e 181C     	 add r0,r3,#0
- 617 0130 FFF7FEFF 	 bl __aeabi_f2d
- 618 0134 031C     	 mov r3,r0
- 619 0136 0C1C     	 mov r4,r1
- 620 0138 281C     	 mov r0,r5
- 621 013a 311C     	 mov r1,r6
- 622 013c 1A1C     	 mov r2,r3
- 623 013e 231C     	 mov r3,r4
- 624 0140 FFF7FEFF 	 bl __aeabi_dmul
- 625 0144 031C     	 mov r3,r0
- 626 0146 0C1C     	 mov r4,r1
- 627 0148 181C     	 mov r0,r3
- 628 014a 211C     	 mov r1,r4
- 629 014c FFF7FEFF 	 bl __aeabi_d2f
- 630 0150 021C     	 add r2,r0,#0
- 631 0152 8023     	 mov r3,#128
- 632 0154 1B06     	 lsl r3,r3,#24
- 633 0156 5A40     	 eor r2,r3
- 634 0158 354B     	 ldr r3,.L34+64
- 635 015a 1A60     	 str r2,[r3]
-  55:../RC_data_recive.c **** 	  if((RC_Steering < 2) && (RC_Steering > -2)) RC_Steering = 0; // to have accutal 0
- 636              	 .loc 4 55 0
- 637 015c 344B     	 ldr r3,.L34+64
- 638 015e 1B68     	 ldr r3,[r3]
- 639 0160 181C     	 add r0,r3,#0
- 640 0162 8021     	 mov r1,#128
- 641 0164 C905     	 lsl r1,r1,#23
- 642 0166 FFF7FEFF 	 bl __aeabi_fcmplt
- 643 016a 031E     	 sub r3,r0,#0
- 644 016c 0BD0     	 beq .L23
- 645              	 .loc 4 55 0 is_stmt 0 discriminator 1
- 646 016e 304B     	 ldr r3,.L34+64
- 647 0170 1B68     	 ldr r3,[r3]
- 648 0172 181C     	 add r0,r3,#0
- 649 0174 C021     	 mov r1,#192
- 650 0176 0906     	 lsl r1,r1,#24
- 651 0178 FFF7FEFF 	 bl __aeabi_fcmpgt
- 652 017c 031E     	 sub r3,r0,#0
- 653 017e 02D0     	 beq .L23
- 654              	 .loc 4 55 0 discriminator 2
- 655 0180 2B4B     	 ldr r3,.L34+64
- 656 0182 0022     	 mov r2,#0
- 657 0184 1A60     	 str r2,[r3]
- 658              	.L23:
-  56:../RC_data_recive.c **** 	  RC_no_Steering_data_counter = 0;
- 659              	 .loc 4 56 0 is_stmt 1
- 660 0186 2B4B     	 ldr r3,.L34+68
- 661 0188 0022     	 mov r2,#0
- 662 018a 1A70     	 strb r2,[r3]
- 663 018c 05E0     	 b .L26
- 664              	.L22:
-  57:../RC_data_recive.c **** 	}
-  58:../RC_data_recive.c **** 	else{
-  59:../RC_data_recive.c **** 	  RC_no_Steering_data_counter ++;
- 665              	 .loc 4 59 0
- 666 018e 294B     	 ldr r3,.L34+68
- 667 0190 1B78     	 ldrb r3,[r3]
- 668 0192 0133     	 add r3,r3,#1
- 669 0194 DAB2     	 uxtb r2,r3
- 670 0196 274B     	 ldr r3,.L34+68
- 671 0198 1A70     	 strb r2,[r3]
- 672              	.L26:
-  60:../RC_data_recive.c **** 	}
-  61:../RC_data_recive.c **** 
-  62:../RC_data_recive.c **** 	if(RC_no_Speed_data_counter > 20 || RC_no_Steering_data_counter > 20 ){ // internall values not ok
- 673              	 .loc 4 62 0
- 674 019a 224B     	 ldr r3,.L34+52
- 675 019c 1B78     	 ldrb r3,[r3]
- 676 019e 142B     	 cmp r3,#20
- 677 01a0 03D8     	 bhi .L27
- 678              	 .loc 4 62 0 is_stmt 0 discriminator 1
- 679 01a2 244B     	 ldr r3,.L34+68
- 680 01a4 1B78     	 ldrb r3,[r3]
- 681 01a6 142B     	 cmp r3,#20
- 682 01a8 10D9     	 bls .L28
- 683              	.L27:
-  63:../RC_data_recive.c **** 	  DIGITAL_IO_SetOutputLow(&RC_no_data_LED);
- 684              	 .loc 4 63 0 is_stmt 1
- 685 01aa 234B     	 ldr r3,.L34+72
- 686 01ac 181C     	 mov r0,r3
- 687 01ae FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
-  64:../RC_data_recive.c **** 	  RC_no_Speed_data_counter = 20;
- 688              	 .loc 4 64 0
- 689 01b2 1C4B     	 ldr r3,.L34+52
- 690 01b4 1422     	 mov r2,#20
- 691 01b6 1A70     	 strb r2,[r3]
-  65:../RC_data_recive.c **** 	  RC_no_Steering_data_counter = 20;
- 692              	 .loc 4 65 0
- 693 01b8 1E4B     	 ldr r3,.L34+68
- 694 01ba 1422     	 mov r2,#20
- 695 01bc 1A70     	 strb r2,[r3]
-  66:../RC_data_recive.c **** 
-  67:../RC_data_recive.c **** 	  //set gobal vars 0
-  68:../RC_data_recive.c **** 	  Driving_speed = 0;
- 696              	 .loc 4 68 0
- 697 01be 1F4B     	 ldr r3,.L34+76
- 698 01c0 0022     	 mov r2,#0
- 699 01c2 1A60     	 str r2,[r3]
-  69:../RC_data_recive.c **** 	  Steering_direction = 0;
- 700              	 .loc 4 69 0
- 701 01c4 1E4B     	 ldr r3,.L34+80
- 702 01c6 0022     	 mov r2,#0
- 703 01c8 1A60     	 str r2,[r3]
- 704 01ca 0BE0     	 b .L29
- 705              	.L28:
-  70:../RC_data_recive.c **** 	}
-  71:../RC_data_recive.c **** 	else{ // values filternig
-  72:../RC_data_recive.c **** 	  DIGITAL_IO_SetOutputHigh(&RC_no_data_LED);
- 706              	 .loc 4 72 0
- 707 01cc 1A4B     	 ldr r3,.L34+72
- 708 01ce 181C     	 mov r0,r3
- 709 01d0 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
-  73:../RC_data_recive.c **** 
-  74:../RC_data_recive.c **** 	  //set gobal vars stanart
-  75:../RC_data_recive.c **** 	  Driving_speed = RC_Speed;
- 710              	 .loc 4 75 0
- 711 01d4 0F4B     	 ldr r3,.L34+36
- 712 01d6 1A68     	 ldr r2,[r3]
- 713 01d8 184B     	 ldr r3,.L34+76
- 714 01da 1A60     	 str r2,[r3]
-  76:../RC_data_recive.c **** 	  Steering_direction = RC_Steering;
- 715              	 .loc 4 76 0
- 716 01dc 144B     	 ldr r3,.L34+64
- 717 01de 1A68     	 ldr r2,[r3]
- 718 01e0 174B     	 ldr r3,.L34+80
- 719 01e2 1A60     	 str r2,[r3]
- 720              	.L29:
-  77:../RC_data_recive.c **** 	}
-  78:../RC_data_recive.c **** 
-  79:../RC_data_recive.c **** 	New_Input = 1; //goalb var to tell it that there in new data to calculate
- 721              	 .loc 4 79 0
- 722 01e4 174B     	 ldr r3,.L34+84
- 723 01e6 0122     	 mov r2,#1
- 724 01e8 1A70     	 strb r2,[r3]
-  80:../RC_data_recive.c **** }
- 725              	 .loc 4 80 0
- 726 01ea BD46     	 mov sp,r7
- 727              	 
- 728 01ec F8BD     	 pop {r3,r4,r5,r6,r7,pc}
- 729              	.L35:
- 730 01ee C046     	 .align 2
- 731              	.L34:
- 732 01f0 00000000 	 .word CAPTURE_RC_Steering
- 733 01f4 00000000 	 .word CAPTURE_RC_Speed
- 734 01f8 00000000 	 .word captured_time_Steering
- 735 01fc 00000000 	 .word captured_time_Speed
- 736 0200 00000000 	 .word RC_Speed_Stop
- 737 0204 3F420F00 	 .word 999999
- 738 0208 80841E00 	 .word 2000000
- 739 020c 60E33641 	 .word 1094116192
- 740 0210 00000000 	 .word RC_Speed_ns_to_mps
- 741 0214 00000000 	 .word RC_Speed
- 742 0218 9A999999 	 .word -1717986918
- 743 021c 9999B93F 	 .word 1069128089
- 744 0220 9999B9BF 	 .word -1078355559
- 745 0224 00000000 	 .word RC_no_Speed_data_counter
- 746 0228 C0CD3741 	 .word 1094176192
- 747 022c 00000000 	 .word RC_Steering_ns_to_deg
- 748 0230 00000000 	 .word RC_Steering
- 749 0234 00000000 	 .word RC_no_Steering_data_counter
- 750 0238 00000000 	 .word RC_no_data_LED
- 751 023c 00000000 	 .word Driving_speed
- 752 0240 00000000 	 .word Steering_direction
- 753 0244 00000000 	 .word New_Input
- 754              	 .cfi_endproc
- 755              	.LFE225:
- 757              	 .section .text.IRQ12_Handler,"ax",%progbits
- 758              	 .align 2
- 759              	 .global IRQ12_Handler
- 760              	 .code 16
- 761              	 .thumb_func
- 763              	IRQ12_Handler:
- 764              	.LFB226:
-  81:../RC_data_recive.c **** 
-  82:../RC_data_recive.c **** void RC_Connected_ISR(void){
- 765              	 .loc 4 82 0
- 766              	 .cfi_startproc
- 767 0000 80B5     	 push {r7,lr}
- 768              	.LCFI22:
- 769              	 .cfi_def_cfa_offset 8
- 770              	 .cfi_offset 7,-8
- 771              	 .cfi_offset 14,-4
- 772 0002 82B0     	 sub sp,sp,#8
- 773              	.LCFI23:
- 774              	 .cfi_def_cfa_offset 16
- 775 0004 00AF     	 add r7,sp,#0
- 776              	.LCFI24:
- 777              	 .cfi_def_cfa_register 7
-  83:../RC_data_recive.c **** 
-  84:../RC_data_recive.c **** 	if(RC_controll == 1){
- 778              	 .loc 4 84 0
- 779 0006 314B     	 ldr r3,.L45
- 780 0008 1B78     	 ldrb r3,[r3]
- 781 000a DBB2     	 uxtb r3,r3
- 782 000c 012B     	 cmp r3,#1
- 783 000e 59D1     	 bne .L36
-  85:../RC_data_recive.c **** 
-  86:../RC_data_recive.c **** 		RC_Gear_state =  PIN_INTERRUPT_GetPinValue(&RC_Connected); // pin haig or low
- 784              	 .loc 4 86 0
- 785 0010 2F4B     	 ldr r3,.L45+4
- 786 0012 181C     	 mov r0,r3
- 787 0014 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 788 0018 031C     	 mov r3,r0
- 789 001a DAB2     	 uxtb r2,r3
- 790 001c 2D4B     	 ldr r3,.L45+8
- 791 001e 1A70     	 strb r2,[r3]
-  87:../RC_data_recive.c **** 
-  88:../RC_data_recive.c **** 		if(RC_Gear_state == 0){// do nothing during high
- 792              	 .loc 4 88 0
- 793 0020 2C4B     	 ldr r3,.L45+8
- 794 0022 1B78     	 ldrb r3,[r3]
- 795 0024 DBB2     	 uxtb r3,r3
- 796 0026 002B     	 cmp r3,#0
- 797 0028 4CD1     	 bne .L36
- 798              	.LBB2:
-  89:../RC_data_recive.c **** 
-  90:../RC_data_recive.c **** 			RC_Recive(); // get speed and steering data
- 799              	 .loc 4 90 0
- 800 002a FFF7FEFF 	 bl RC_Recive
-  91:../RC_data_recive.c **** 
-  92:../RC_data_recive.c **** 			uint32_t RC_Gear_on_time_100us = RC_gear_100us_counter;
- 801              	 .loc 4 92 0
- 802 002e 2A4B     	 ldr r3,.L45+12
- 803 0030 1B68     	 ldr r3,[r3]
- 804 0032 7B60     	 str r3,[r7,#4]
-  93:../RC_data_recive.c **** 			RC_gear_100us_counter = 0;
- 805              	 .loc 4 93 0
- 806 0034 284B     	 ldr r3,.L45+12
- 807 0036 0022     	 mov r2,#0
- 808 0038 1A60     	 str r2,[r3]
-  94:../RC_data_recive.c **** 
-  95:../RC_data_recive.c **** 			if((80 < RC_Gear_on_time_100us) && (RC_Gear_on_time_100us < 150)) RC_Gear_duty= 0;
- 809              	 .loc 4 95 0
- 810 003a 7B68     	 ldr r3,[r7,#4]
- 811 003c 502B     	 cmp r3,#80
- 812 003e 06D9     	 bls .L38
- 813              	 .loc 4 95 0 is_stmt 0 discriminator 1
- 814 0040 7B68     	 ldr r3,[r7,#4]
- 815 0042 952B     	 cmp r3,#149
- 816 0044 03D8     	 bhi .L38
- 817              	 .loc 4 95 0 discriminator 2
- 818 0046 254B     	 ldr r3,.L45+16
- 819 0048 0022     	 mov r2,#0
- 820 004a 1A70     	 strb r2,[r3]
- 821 004c 0CE0     	 b .L39
- 822              	.L38:
-  96:../RC_data_recive.c **** 			else if ((150 < RC_Gear_on_time_100us) && (RC_Gear_on_time_100us < 210)) RC_Gear_duty = 1;
- 823              	 .loc 4 96 0 is_stmt 1
- 824 004e 7B68     	 ldr r3,[r7,#4]
- 825 0050 962B     	 cmp r3,#150
- 826 0052 06D9     	 bls .L40
- 827              	 .loc 4 96 0 is_stmt 0 discriminator 1
- 828 0054 7B68     	 ldr r3,[r7,#4]
- 829 0056 D12B     	 cmp r3,#209
- 830 0058 03D8     	 bhi .L40
- 831              	 .loc 4 96 0 discriminator 2
- 832 005a 204B     	 ldr r3,.L45+16
- 833 005c 0122     	 mov r2,#1
- 834 005e 1A70     	 strb r2,[r3]
- 835 0060 02E0     	 b .L39
- 836              	.L40:
-  97:../RC_data_recive.c **** 			else RC_Gear_duty = 2;
- 837              	 .loc 4 97 0 is_stmt 1
- 838 0062 1E4B     	 ldr r3,.L45+16
- 839 0064 0222     	 mov r2,#2
- 840 0066 1A70     	 strb r2,[r3]
- 841              	.L39:
-  98:../RC_data_recive.c **** 
+  33:../RC_data_recive.c **** 
+  34:../RC_data_recive.c **** void RC_Recive(void){
+ 443              	 .loc 4 34 0
+ 444              	 .cfi_startproc
+ 445 0000 F8B5     	 push {r3,r4,r5,r6,r7,lr}
+ 446              	.LCFI20:
+ 447              	 .cfi_def_cfa_offset 24
+ 448              	 .cfi_offset 3,-24
+ 449              	 .cfi_offset 4,-20
+ 450              	 .cfi_offset 5,-16
+ 451              	 .cfi_offset 6,-12
+ 452              	 .cfi_offset 7,-8
+ 453              	 .cfi_offset 14,-4
+ 454 0002 00AF     	 add r7,sp,#0
+ 455              	.LCFI21:
+ 456              	 .cfi_def_cfa_register 7
+  35:../RC_data_recive.c **** 
+  36:../RC_data_recive.c **** 	CAPTURE_Start(&CAPTURE_RC_Steering);
+ 457              	 .loc 4 36 0
+ 458 0004 664B     	 ldr r3,.L25
+ 459 0006 181C     	 mov r0,r3
+ 460 0008 FFF7FEFF 	 bl CAPTURE_Start
+  37:../RC_data_recive.c **** 	CAPTURE_Start(&CAPTURE_RC_Speed);
+ 461              	 .loc 4 37 0
+ 462 000c 654B     	 ldr r3,.L25+4
+ 463 000e 181C     	 mov r0,r3
+ 464 0010 FFF7FEFF 	 bl CAPTURE_Start
+  38:../RC_data_recive.c **** 
+  39:../RC_data_recive.c **** 	CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_RC_Steering, &captured_time_Steering);
+ 465              	 .loc 4 39 0
+ 466 0014 624A     	 ldr r2,.L25
+ 467 0016 644B     	 ldr r3,.L25+8
+ 468 0018 101C     	 mov r0,r2
+ 469 001a 191C     	 mov r1,r3
+ 470 001c FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
+  40:../RC_data_recive.c **** 	CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_RC_Speed, &captured_time_Speed);
+ 471              	 .loc 4 40 0
+ 472 0020 604A     	 ldr r2,.L25+4
+ 473 0022 624B     	 ldr r3,.L25+12
+ 474 0024 101C     	 mov r0,r2
+ 475 0026 191C     	 mov r1,r3
+ 476 0028 FFF7FEFF 	 bl CAPTURE_GetCapturedTimeInNanoSec
+  41:../RC_data_recive.c **** 
+  42:../RC_data_recive.c **** 	if(RC_Speed_Stop_counter < RC_SPEED_SAFTY_FT ){
+ 477              	 .loc 4 42 0
+ 478 002c 604B     	 ldr r3,.L25+16
+ 479 002e 1B78     	 ldrb r3,[r3]
+ 480 0030 DBB2     	 uxtb r3,r3
+ 481 0032 092B     	 cmp r3,#9
+ 482 0034 3BD8     	 bhi .L15
+  43:../RC_data_recive.c **** 		if((captured_time_Speed >= 1000000) && (captured_time_Speed <= 2000000)){
+ 483              	 .loc 4 43 0
+ 484 0036 5D4B     	 ldr r3,.L25+12
+ 485 0038 1B68     	 ldr r3,[r3]
+ 486 003a 5E4A     	 ldr r2,.L25+20
+ 487 003c 9342     	 cmp r3,r2
+ 488 003e 2FD9     	 bls .L16
+ 489              	 .loc 4 43 0 is_stmt 0 discriminator 1
+ 490 0040 5A4B     	 ldr r3,.L25+12
+ 491 0042 1B68     	 ldr r3,[r3]
+ 492 0044 5C4A     	 ldr r2,.L25+24
+ 493 0046 9342     	 cmp r3,r2
+ 494 0048 2AD8     	 bhi .L16
+  44:../RC_data_recive.c **** 		  RC_Speed = ((double)captured_time_Speed - RC_NP_SPEED) * RC_Speed_ns_to_mps; //  form +-0.6m/s
+ 495              	 .loc 4 44 0 is_stmt 1
+ 496 004a 584B     	 ldr r3,.L25+12
+ 497 004c 1B68     	 ldr r3,[r3]
+ 498 004e 181C     	 mov r0,r3
+ 499 0050 FFF7FEFF 	 bl __aeabi_ui2d
+ 500 0054 031C     	 mov r3,r0
+ 501 0056 0C1C     	 mov r4,r1
+ 502 0058 181C     	 mov r0,r3
+ 503 005a 211C     	 mov r1,r4
+ 504 005c 0022     	 mov r2,#0
+ 505 005e 574B     	 ldr r3,.L25+28
+ 506 0060 FFF7FEFF 	 bl __aeabi_dsub
+ 507 0064 031C     	 mov r3,r0
+ 508 0066 0C1C     	 mov r4,r1
+ 509 0068 1D1C     	 mov r5,r3
+ 510 006a 261C     	 mov r6,r4
+ 511 006c 544B     	 ldr r3,.L25+32
+ 512 006e 1B68     	 ldr r3,[r3]
+ 513 0070 181C     	 add r0,r3,#0
+ 514 0072 FFF7FEFF 	 bl __aeabi_f2d
+ 515 0076 031C     	 mov r3,r0
+ 516 0078 0C1C     	 mov r4,r1
+ 517 007a 281C     	 mov r0,r5
+ 518 007c 311C     	 mov r1,r6
+ 519 007e 1A1C     	 mov r2,r3
+ 520 0080 231C     	 mov r3,r4
+ 521 0082 FFF7FEFF 	 bl __aeabi_dmul
+ 522 0086 031C     	 mov r3,r0
+ 523 0088 0C1C     	 mov r4,r1
+ 524 008a 181C     	 mov r0,r3
+ 525 008c 211C     	 mov r1,r4
+ 526 008e FFF7FEFF 	 bl __aeabi_d2f
+ 527 0092 021C     	 add r2,r0,#0
+ 528 0094 4B4B     	 ldr r3,.L25+36
+ 529 0096 1A60     	 str r2,[r3]
+  45:../RC_data_recive.c **** 		 // if((RC_Speed < 0.1) && (RC_Speed > -0.1)) RC_Speed = 0; // to have accutal 0
+  46:../RC_data_recive.c **** 		  RC_no_Speed_data_counter = 0;
+ 530              	 .loc 4 46 0
+ 531 0098 4B4B     	 ldr r3,.L25+40
+ 532 009a 0022     	 mov r2,#0
+ 533 009c 1A70     	 strb r2,[r3]
+ 534 009e 09E0     	 b .L18
+ 535              	.L16:
+  47:../RC_data_recive.c **** 		}
+  48:../RC_data_recive.c **** 		else{
+  49:../RC_data_recive.c **** 			RC_no_Speed_data_counter ++;
+ 536              	 .loc 4 49 0
+ 537 00a0 494B     	 ldr r3,.L25+40
+ 538 00a2 1B78     	 ldrb r3,[r3]
+ 539 00a4 0133     	 add r3,r3,#1
+ 540 00a6 DAB2     	 uxtb r2,r3
+ 541 00a8 474B     	 ldr r3,.L25+40
+ 542 00aa 1A70     	 strb r2,[r3]
+ 543 00ac 02E0     	 b .L18
+ 544              	.L15:
+  50:../RC_data_recive.c **** 		}
+  51:../RC_data_recive.c **** 	}
+  52:../RC_data_recive.c **** 	else RC_Speed = 0;
+ 545              	 .loc 4 52 0
+ 546 00ae 454B     	 ldr r3,.L25+36
+ 547 00b0 0022     	 mov r2,#0
+ 548 00b2 1A60     	 str r2,[r3]
+ 549              	.L18:
+  53:../RC_data_recive.c **** 
+  54:../RC_data_recive.c **** 	if((captured_time_Steering >= 1000000) && (captured_time_Steering <= 2000000)){
+ 550              	 .loc 4 54 0
+ 551 00b4 3C4B     	 ldr r3,.L25+8
+ 552 00b6 1B68     	 ldr r3,[r3]
+ 553 00b8 3E4A     	 ldr r2,.L25+20
+ 554 00ba 9342     	 cmp r3,r2
+ 555 00bc 40D9     	 bls .L19
+ 556              	 .loc 4 54 0 is_stmt 0 discriminator 1
+ 557 00be 3A4B     	 ldr r3,.L25+8
+ 558 00c0 1B68     	 ldr r3,[r3]
+ 559 00c2 3D4A     	 ldr r2,.L25+24
+ 560 00c4 9342     	 cmp r3,r2
+ 561 00c6 3BD8     	 bhi .L19
+  55:../RC_data_recive.c **** 	  RC_Steering = -(((double)captured_time_Steering - RC_NP_STEERING) * RC_Steering_ns_to_deg); // f
+ 562              	 .loc 4 55 0 is_stmt 1
+ 563 00c8 374B     	 ldr r3,.L25+8
+ 564 00ca 1B68     	 ldr r3,[r3]
+ 565 00cc 181C     	 mov r0,r3
+ 566 00ce FFF7FEFF 	 bl __aeabi_ui2d
+ 567 00d2 031C     	 mov r3,r0
+ 568 00d4 0C1C     	 mov r4,r1
+ 569 00d6 181C     	 mov r0,r3
+ 570 00d8 211C     	 mov r1,r4
+ 571 00da 0022     	 mov r2,#0
+ 572 00dc 374B     	 ldr r3,.L25+28
+ 573 00de FFF7FEFF 	 bl __aeabi_dsub
+ 574 00e2 031C     	 mov r3,r0
+ 575 00e4 0C1C     	 mov r4,r1
+ 576 00e6 1D1C     	 mov r5,r3
+ 577 00e8 261C     	 mov r6,r4
+ 578 00ea 384B     	 ldr r3,.L25+44
+ 579 00ec 1B68     	 ldr r3,[r3]
+ 580 00ee 181C     	 add r0,r3,#0
+ 581 00f0 FFF7FEFF 	 bl __aeabi_f2d
+ 582 00f4 031C     	 mov r3,r0
+ 583 00f6 0C1C     	 mov r4,r1
+ 584 00f8 281C     	 mov r0,r5
+ 585 00fa 311C     	 mov r1,r6
+ 586 00fc 1A1C     	 mov r2,r3
+ 587 00fe 231C     	 mov r3,r4
+ 588 0100 FFF7FEFF 	 bl __aeabi_dmul
+ 589 0104 031C     	 mov r3,r0
+ 590 0106 0C1C     	 mov r4,r1
+ 591 0108 181C     	 mov r0,r3
+ 592 010a 211C     	 mov r1,r4
+ 593 010c FFF7FEFF 	 bl __aeabi_d2f
+ 594 0110 021C     	 add r2,r0,#0
+ 595 0112 8023     	 mov r3,#128
+ 596 0114 1B06     	 lsl r3,r3,#24
+ 597 0116 5A40     	 eor r2,r3
+ 598 0118 2D4B     	 ldr r3,.L25+48
+ 599 011a 1A60     	 str r2,[r3]
+  56:../RC_data_recive.c **** 	  if(within_MAX_MIN(RC_Steering, 2, -2)) RC_Steering = 0; // to have accutal 0
+ 600              	 .loc 4 56 0
+ 601 011c 2C4B     	 ldr r3,.L25+48
+ 602 011e 1B68     	 ldr r3,[r3]
+ 603 0120 8021     	 mov r1,#128
+ 604 0122 C905     	 lsl r1,r1,#23
+ 605 0124 C022     	 mov r2,#192
+ 606 0126 1206     	 lsl r2,r2,#24
+ 607 0128 181C     	 add r0,r3,#0
+ 608 012a FFF7FEFF 	 bl within_MAX_MIN
+ 609 012e 031E     	 sub r3,r0,#0
+ 610 0130 02D0     	 beq .L20
+ 611              	 .loc 4 56 0 is_stmt 0 discriminator 1
+ 612 0132 274B     	 ldr r3,.L25+48
+ 613 0134 0022     	 mov r2,#0
+ 614 0136 1A60     	 str r2,[r3]
+ 615              	.L20:
+  57:../RC_data_recive.c **** 	  RC_no_Steering_data_counter = 0;
+ 616              	 .loc 4 57 0 is_stmt 1
+ 617 0138 264B     	 ldr r3,.L25+52
+ 618 013a 0022     	 mov r2,#0
+ 619 013c 1A70     	 strb r2,[r3]
+ 620 013e 05E0     	 b .L21
+ 621              	.L19:
+  58:../RC_data_recive.c **** 	}
+  59:../RC_data_recive.c **** 	else{
+  60:../RC_data_recive.c **** 	  RC_no_Steering_data_counter ++;
+ 622              	 .loc 4 60 0
+ 623 0140 244B     	 ldr r3,.L25+52
+ 624 0142 1B78     	 ldrb r3,[r3]
+ 625 0144 0133     	 add r3,r3,#1
+ 626 0146 DAB2     	 uxtb r2,r3
+ 627 0148 224B     	 ldr r3,.L25+52
+ 628 014a 1A70     	 strb r2,[r3]
+ 629              	.L21:
+  61:../RC_data_recive.c **** 	}
+  62:../RC_data_recive.c **** 
+  63:../RC_data_recive.c **** 	if(RC_no_Speed_data_counter > 20 || RC_no_Steering_data_counter > 20 ){ // internall values not ok
+ 630              	 .loc 4 63 0
+ 631 014c 1E4B     	 ldr r3,.L25+40
+ 632 014e 1B78     	 ldrb r3,[r3]
+ 633 0150 142B     	 cmp r3,#20
+ 634 0152 03D8     	 bhi .L22
+ 635              	 .loc 4 63 0 is_stmt 0 discriminator 1
+ 636 0154 1F4B     	 ldr r3,.L25+52
+ 637 0156 1B78     	 ldrb r3,[r3]
+ 638 0158 142B     	 cmp r3,#20
+ 639 015a 10D9     	 bls .L23
+ 640              	.L22:
+  64:../RC_data_recive.c **** 	  DIGITAL_IO_SetOutputLow(&RC_no_data_LED);
+ 641              	 .loc 4 64 0 is_stmt 1
+ 642 015c 1E4B     	 ldr r3,.L25+56
+ 643 015e 181C     	 mov r0,r3
+ 644 0160 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+  65:../RC_data_recive.c **** 	  RC_no_Speed_data_counter = 20;
+ 645              	 .loc 4 65 0
+ 646 0164 184B     	 ldr r3,.L25+40
+ 647 0166 1422     	 mov r2,#20
+ 648 0168 1A70     	 strb r2,[r3]
+  66:../RC_data_recive.c **** 	  RC_no_Steering_data_counter = 20;
+ 649              	 .loc 4 66 0
+ 650 016a 1A4B     	 ldr r3,.L25+52
+ 651 016c 1422     	 mov r2,#20
+ 652 016e 1A70     	 strb r2,[r3]
+  67:../RC_data_recive.c **** 
+  68:../RC_data_recive.c **** 	  //set gobal vars 0
+  69:../RC_data_recive.c **** 	  Driving_speed = 0;
+ 653              	 .loc 4 69 0
+ 654 0170 1A4B     	 ldr r3,.L25+60
+ 655 0172 0022     	 mov r2,#0
+ 656 0174 1A60     	 str r2,[r3]
+  70:../RC_data_recive.c **** 	  Steering_direction = 0;
+ 657              	 .loc 4 70 0
+ 658 0176 1A4B     	 ldr r3,.L25+64
+ 659 0178 0022     	 mov r2,#0
+ 660 017a 1A60     	 str r2,[r3]
+ 661 017c 0BE0     	 b .L24
+ 662              	.L23:
+  71:../RC_data_recive.c **** 	}
+  72:../RC_data_recive.c **** 	else{ // values filternig
+  73:../RC_data_recive.c **** 	  DIGITAL_IO_SetOutputHigh(&RC_no_data_LED);
+ 663              	 .loc 4 73 0
+ 664 017e 164B     	 ldr r3,.L25+56
+ 665 0180 181C     	 mov r0,r3
+ 666 0182 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+  74:../RC_data_recive.c **** 
+  75:../RC_data_recive.c **** 	  //set gobal vars stanart
+  76:../RC_data_recive.c **** 	  Driving_speed = RC_Speed;
+ 667              	 .loc 4 76 0
+ 668 0186 0F4B     	 ldr r3,.L25+36
+ 669 0188 1A68     	 ldr r2,[r3]
+ 670 018a 144B     	 ldr r3,.L25+60
+ 671 018c 1A60     	 str r2,[r3]
+  77:../RC_data_recive.c **** 	  Steering_direction = RC_Steering;
+ 672              	 .loc 4 77 0
+ 673 018e 104B     	 ldr r3,.L25+48
+ 674 0190 1A68     	 ldr r2,[r3]
+ 675 0192 134B     	 ldr r3,.L25+64
+ 676 0194 1A60     	 str r2,[r3]
+ 677              	.L24:
+  78:../RC_data_recive.c **** 	}
+  79:../RC_data_recive.c **** 
+  80:../RC_data_recive.c **** 	New_Input = 1; //goalb var to tell it that there in new data to calculate
+ 678              	 .loc 4 80 0
+ 679 0196 134B     	 ldr r3,.L25+68
+ 680 0198 0122     	 mov r2,#1
+ 681 019a 1A70     	 strb r2,[r3]
+  81:../RC_data_recive.c **** }
+ 682              	 .loc 4 81 0
+ 683 019c BD46     	 mov sp,r7
+ 684              	 
+ 685 019e F8BD     	 pop {r3,r4,r5,r6,r7,pc}
+ 686              	.L26:
+ 687              	 .align 2
+ 688              	.L25:
+ 689 01a0 00000000 	 .word CAPTURE_RC_Steering
+ 690 01a4 00000000 	 .word CAPTURE_RC_Speed
+ 691 01a8 00000000 	 .word captured_time_Steering
+ 692 01ac 00000000 	 .word captured_time_Speed
+ 693 01b0 00000000 	 .word RC_Speed_Stop_counter
+ 694 01b4 3F420F00 	 .word 999999
+ 695 01b8 80841E00 	 .word 2000000
+ 696 01bc 60E33641 	 .word 1094116192
+ 697 01c0 00000000 	 .word RC_Speed_ns_to_mps
+ 698 01c4 00000000 	 .word RC_Speed
+ 699 01c8 00000000 	 .word RC_no_Speed_data_counter
+ 700 01cc 00000000 	 .word RC_Steering_ns_to_deg
+ 701 01d0 00000000 	 .word RC_Steering
+ 702 01d4 00000000 	 .word RC_no_Steering_data_counter
+ 703 01d8 00000000 	 .word RC_no_data_LED
+ 704 01dc 00000000 	 .word Driving_speed
+ 705 01e0 00000000 	 .word Steering_direction
+ 706 01e4 00000000 	 .word New_Input
+ 707              	 .cfi_endproc
+ 708              	.LFE225:
+ 710              	 .section .text.IRQ12_Handler,"ax",%progbits
+ 711              	 .align 2
+ 712              	 .global IRQ12_Handler
+ 713              	 .code 16
+ 714              	 .thumb_func
+ 716              	IRQ12_Handler:
+ 717              	.LFB226:
+  82:../RC_data_recive.c **** 
+  83:../RC_data_recive.c **** void RC_Connected_ISR(void){
+ 718              	 .loc 4 83 0
+ 719              	 .cfi_startproc
+ 720 0000 80B5     	 push {r7,lr}
+ 721              	.LCFI22:
+ 722              	 .cfi_def_cfa_offset 8
+ 723              	 .cfi_offset 7,-8
+ 724              	 .cfi_offset 14,-4
+ 725 0002 82B0     	 sub sp,sp,#8
+ 726              	.LCFI23:
+ 727              	 .cfi_def_cfa_offset 16
+ 728 0004 00AF     	 add r7,sp,#0
+ 729              	.LCFI24:
+ 730              	 .cfi_def_cfa_register 7
+  84:../RC_data_recive.c **** 
+  85:../RC_data_recive.c **** 	if(RC_controll == 1){
+ 731              	 .loc 4 85 0
+ 732 0006 314B     	 ldr r3,.L36
+ 733 0008 1B78     	 ldrb r3,[r3]
+ 734 000a DBB2     	 uxtb r3,r3
+ 735 000c 012B     	 cmp r3,#1
+ 736 000e 59D1     	 bne .L27
+  86:../RC_data_recive.c **** 
+  87:../RC_data_recive.c **** 		RC_Gear_state =  PIN_INTERRUPT_GetPinValue(&RC_Connected); // pin haig or low
+ 737              	 .loc 4 87 0
+ 738 0010 2F4B     	 ldr r3,.L36+4
+ 739 0012 181C     	 mov r0,r3
+ 740 0014 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 741 0018 031C     	 mov r3,r0
+ 742 001a DAB2     	 uxtb r2,r3
+ 743 001c 2D4B     	 ldr r3,.L36+8
+ 744 001e 1A70     	 strb r2,[r3]
+  88:../RC_data_recive.c **** 
+  89:../RC_data_recive.c **** 		if(RC_Gear_state == 0){// do nothing during high
+ 745              	 .loc 4 89 0
+ 746 0020 2C4B     	 ldr r3,.L36+8
+ 747 0022 1B78     	 ldrb r3,[r3]
+ 748 0024 DBB2     	 uxtb r3,r3
+ 749 0026 002B     	 cmp r3,#0
+ 750 0028 4CD1     	 bne .L27
+ 751              	.LBB2:
+  90:../RC_data_recive.c **** 
+  91:../RC_data_recive.c **** 			RC_Recive(); // get speed and steering data
+ 752              	 .loc 4 91 0
+ 753 002a FFF7FEFF 	 bl RC_Recive
+  92:../RC_data_recive.c **** 
+  93:../RC_data_recive.c **** 			uint32_t RC_Gear_on_time_100us = RC_gear_100us_counter;
+ 754              	 .loc 4 93 0
+ 755 002e 2A4B     	 ldr r3,.L36+12
+ 756 0030 1B68     	 ldr r3,[r3]
+ 757 0032 7B60     	 str r3,[r7,#4]
+  94:../RC_data_recive.c **** 			RC_gear_100us_counter = 0;
+ 758              	 .loc 4 94 0
+ 759 0034 284B     	 ldr r3,.L36+12
+ 760 0036 0022     	 mov r2,#0
+ 761 0038 1A60     	 str r2,[r3]
+  95:../RC_data_recive.c **** 
+  96:../RC_data_recive.c **** 			if((80 < RC_Gear_on_time_100us) && (RC_Gear_on_time_100us < 150)) RC_Gear_duty= 0;
+ 762              	 .loc 4 96 0
+ 763 003a 7B68     	 ldr r3,[r7,#4]
+ 764 003c 502B     	 cmp r3,#80
+ 765 003e 06D9     	 bls .L29
+ 766              	 .loc 4 96 0 is_stmt 0 discriminator 1
+ 767 0040 7B68     	 ldr r3,[r7,#4]
+ 768 0042 952B     	 cmp r3,#149
+ 769 0044 03D8     	 bhi .L29
+ 770              	 .loc 4 96 0 discriminator 2
+ 771 0046 254B     	 ldr r3,.L36+16
+ 772 0048 0022     	 mov r2,#0
+ 773 004a 1A70     	 strb r2,[r3]
+ 774 004c 0CE0     	 b .L30
+ 775              	.L29:
+  97:../RC_data_recive.c **** 			else if ((150 < RC_Gear_on_time_100us) && (RC_Gear_on_time_100us < 210)) RC_Gear_duty = 1;
+ 776              	 .loc 4 97 0 is_stmt 1
+ 777 004e 7B68     	 ldr r3,[r7,#4]
+ 778 0050 962B     	 cmp r3,#150
+ 779 0052 06D9     	 bls .L31
+ 780              	 .loc 4 97 0 is_stmt 0 discriminator 1
+ 781 0054 7B68     	 ldr r3,[r7,#4]
+ 782 0056 D12B     	 cmp r3,#209
+ 783 0058 03D8     	 bhi .L31
+ 784              	 .loc 4 97 0 discriminator 2
+ 785 005a 204B     	 ldr r3,.L36+16
+ 786 005c 0122     	 mov r2,#1
+ 787 005e 1A70     	 strb r2,[r3]
+ 788 0060 02E0     	 b .L30
+ 789              	.L31:
+  98:../RC_data_recive.c **** 			else RC_Gear_duty = 2;
+ 790              	 .loc 4 98 0 is_stmt 1
+ 791 0062 1E4B     	 ldr r3,.L36+16
+ 792 0064 0222     	 mov r2,#2
+ 793 0066 1A70     	 strb r2,[r3]
+ 794              	.L30:
   99:../RC_data_recive.c **** 
- 100:../RC_data_recive.c **** 			if(modeswitch_colldown == 0){
- 842              	 .loc 4 100 0
- 843 0068 1D4B     	 ldr r3,.L45+20
- 844 006a 1B78     	 ldrb r3,[r3]
- 845 006c DBB2     	 uxtb r3,r3
- 846 006e 002B     	 cmp r3,#0
- 847 0070 1CD1     	 bne .L41
- 101:../RC_data_recive.c **** 				if(RC_Gear_duty == 0 && RC_Gear_duty_OLD == 1){
- 848              	 .loc 4 101 0
- 849 0072 1A4B     	 ldr r3,.L45+16
- 850 0074 1B78     	 ldrb r3,[r3]
- 851 0076 DBB2     	 uxtb r3,r3
- 852 0078 002B     	 cmp r3,#0
- 853 007a 1ED1     	 bne .L44
- 854              	 .loc 4 101 0 is_stmt 0 discriminator 1
- 855 007c 194B     	 ldr r3,.L45+24
- 856 007e 1B78     	 ldrb r3,[r3]
- 857 0080 DBB2     	 uxtb r3,r3
- 858 0082 012B     	 cmp r3,#1
- 859 0084 19D1     	 bne .L44
- 102:../RC_data_recive.c **** 					Steering_mode ++;
- 860              	 .loc 4 102 0 is_stmt 1
- 861 0086 184B     	 ldr r3,.L45+28
- 862 0088 1B78     	 ldrb r3,[r3]
- 863 008a DBB2     	 uxtb r3,r3
- 864 008c 0133     	 add r3,r3,#1
- 865 008e DAB2     	 uxtb r2,r3
- 866 0090 154B     	 ldr r3,.L45+28
- 867 0092 1A70     	 strb r2,[r3]
- 103:../RC_data_recive.c **** 					if(Steering_mode > 5)Steering_mode = 0;
- 868              	 .loc 4 103 0
- 869 0094 144B     	 ldr r3,.L45+28
- 870 0096 1B78     	 ldrb r3,[r3]
- 871 0098 DBB2     	 uxtb r3,r3
- 872 009a 052B     	 cmp r3,#5
- 873 009c 02D9     	 bls .L43
- 874              	 .loc 4 103 0 is_stmt 0 discriminator 1
- 875 009e 124B     	 ldr r3,.L45+28
- 876 00a0 0022     	 mov r2,#0
- 877 00a2 1A70     	 strb r2,[r3]
- 878              	.L43:
- 104:../RC_data_recive.c **** 					modeswitch_colldown = 10;
- 879              	 .loc 4 104 0 is_stmt 1
- 880 00a4 0E4B     	 ldr r3,.L45+20
- 881 00a6 0A22     	 mov r2,#10
- 882 00a8 1A70     	 strb r2,[r3]
- 883 00aa 06E0     	 b .L44
- 884              	.L41:
- 105:../RC_data_recive.c **** 				}
- 106:../RC_data_recive.c **** 			}
- 107:../RC_data_recive.c **** 			else modeswitch_colldown--;
- 885              	 .loc 4 107 0
- 886 00ac 0C4B     	 ldr r3,.L45+20
- 887 00ae 1B78     	 ldrb r3,[r3]
- 888 00b0 DBB2     	 uxtb r3,r3
- 889 00b2 013B     	 sub r3,r3,#1
- 890 00b4 DAB2     	 uxtb r2,r3
- 891 00b6 0A4B     	 ldr r3,.L45+20
- 892 00b8 1A70     	 strb r2,[r3]
- 893              	.L44:
- 108:../RC_data_recive.c **** 			RC_Gear_duty_OLD = RC_Gear_duty;
- 894              	 .loc 4 108 0
- 895 00ba 084B     	 ldr r3,.L45+16
- 896 00bc 1B78     	 ldrb r3,[r3]
- 897 00be DAB2     	 uxtb r2,r3
- 898 00c0 084B     	 ldr r3,.L45+24
- 899 00c2 1A70     	 strb r2,[r3]
- 900              	.L36:
- 901              	.LBE2:
- 109:../RC_data_recive.c **** 		}
- 110:../RC_data_recive.c **** 	}
- 111:../RC_data_recive.c **** }
- 902              	 .loc 4 111 0
- 903 00c4 BD46     	 mov sp,r7
- 904 00c6 02B0     	 add sp,sp,#8
- 905              	 
- 906 00c8 80BD     	 pop {r7,pc}
- 907              	.L46:
- 908 00ca C046     	 .align 2
- 909              	.L45:
- 910 00cc 00000000 	 .word RC_controll
- 911 00d0 00000000 	 .word RC_Connected
- 912 00d4 00000000 	 .word RC_Gear_state
- 913 00d8 00000000 	 .word RC_gear_100us_counter
- 914 00dc 00000000 	 .word RC_Gear_duty
- 915 00e0 00000000 	 .word modeswitch_colldown
- 916 00e4 00000000 	 .word RC_Gear_duty_OLD
- 917 00e8 00000000 	 .word Steering_mode
- 918              	 .cfi_endproc
- 919              	.LFE226:
- 921              	 .section .text.IRQ6_Handler,"ax",%progbits
- 922              	 .align 2
- 923              	 .global IRQ6_Handler
- 924              	 .code 16
- 925              	 .thumb_func
- 927              	IRQ6_Handler:
- 928              	.LFB227:
- 112:../RC_data_recive.c **** 
- 113:../RC_data_recive.c **** void RC_AUX1_ISR(void){
- 929              	 .loc 4 113 0
- 930              	 .cfi_startproc
- 931 0000 80B5     	 push {r7,lr}
- 932              	.LCFI25:
- 933              	 .cfi_def_cfa_offset 8
- 934              	 .cfi_offset 7,-8
- 935              	 .cfi_offset 14,-4
- 936 0002 82B0     	 sub sp,sp,#8
- 937              	.LCFI26:
- 938              	 .cfi_def_cfa_offset 16
- 939 0004 00AF     	 add r7,sp,#0
- 940              	.LCFI27:
- 941              	 .cfi_def_cfa_register 7
- 114:../RC_data_recive.c **** 	if(RC_controll == 1){
- 942              	 .loc 4 114 0
- 943 0006 1F4B     	 ldr r3,.L53
- 944 0008 1B78     	 ldrb r3,[r3]
- 945 000a DBB2     	 uxtb r3,r3
- 946 000c 012B     	 cmp r3,#1
- 947 000e 35D1     	 bne .L47
- 115:../RC_data_recive.c **** 		RC_AUX1_state =  PIN_INTERRUPT_GetPinValue(&RC_AUX1); // pin haig or low
- 948              	 .loc 4 115 0
- 949 0010 1D4B     	 ldr r3,.L53+4
- 950 0012 181C     	 mov r0,r3
- 951 0014 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 952 0018 031C     	 mov r3,r0
- 953 001a DAB2     	 uxtb r2,r3
- 954 001c 1B4B     	 ldr r3,.L53+8
- 955 001e 1A70     	 strb r2,[r3]
- 116:../RC_data_recive.c **** 
- 117:../RC_data_recive.c **** 		if(RC_AUX1_state == 0){// do nothing during high
- 956              	 .loc 4 117 0
- 957 0020 1A4B     	 ldr r3,.L53+8
- 958 0022 1B78     	 ldrb r3,[r3]
- 959 0024 DBB2     	 uxtb r3,r3
- 960 0026 002B     	 cmp r3,#0
- 961 0028 28D1     	 bne .L47
- 962              	.LBB3:
- 118:../RC_data_recive.c **** 			uint32_t RC_AUX1_on_time_100us = RC_AUX1_100us_counter;
- 963              	 .loc 4 118 0
- 964 002a 194B     	 ldr r3,.L53+12
- 965 002c 1B68     	 ldr r3,[r3]
- 966 002e 7B60     	 str r3,[r7,#4]
- 119:../RC_data_recive.c **** 			RC_AUX1_100us_counter = 0;
- 967              	 .loc 4 119 0
- 968 0030 174B     	 ldr r3,.L53+12
- 969 0032 0022     	 mov r2,#0
- 970 0034 1A60     	 str r2,[r3]
- 120:../RC_data_recive.c **** 
- 121:../RC_data_recive.c **** 			if((80 < RC_AUX1_on_time_100us) && (RC_AUX1_on_time_100us < 150)) RC_AUX1_duty= 0;
- 971              	 .loc 4 121 0
- 972 0036 7B68     	 ldr r3,[r7,#4]
- 973 0038 502B     	 cmp r3,#80
- 974 003a 06D9     	 bls .L49
- 975              	 .loc 4 121 0 is_stmt 0 discriminator 1
- 976 003c 7B68     	 ldr r3,[r7,#4]
- 977 003e 952B     	 cmp r3,#149
- 978 0040 03D8     	 bhi .L49
- 979              	 .loc 4 121 0 discriminator 2
- 980 0042 144B     	 ldr r3,.L53+16
- 981 0044 0022     	 mov r2,#0
- 982 0046 1A70     	 strb r2,[r3]
- 983 0048 0CE0     	 b .L50
- 984              	.L49:
- 122:../RC_data_recive.c **** 			else if ((150 < RC_AUX1_on_time_100us) && (RC_AUX1_on_time_100us < 210)) RC_AUX1_duty = 1;
- 985              	 .loc 4 122 0 is_stmt 1
- 986 004a 7B68     	 ldr r3,[r7,#4]
- 987 004c 962B     	 cmp r3,#150
- 988 004e 06D9     	 bls .L51
- 989              	 .loc 4 122 0 is_stmt 0 discriminator 1
- 990 0050 7B68     	 ldr r3,[r7,#4]
- 991 0052 D12B     	 cmp r3,#209
- 992 0054 03D8     	 bhi .L51
- 993              	 .loc 4 122 0 discriminator 2
- 994 0056 0F4B     	 ldr r3,.L53+16
- 995 0058 0122     	 mov r2,#1
- 996 005a 1A70     	 strb r2,[r3]
- 997 005c 02E0     	 b .L50
- 998              	.L51:
- 123:../RC_data_recive.c **** 			else RC_AUX1_duty = 2;
- 999              	 .loc 4 123 0 is_stmt 1
- 1000 005e 0D4B     	 ldr r3,.L53+16
- 1001 0060 0222     	 mov r2,#2
- 1002 0062 1A70     	 strb r2,[r3]
- 1003              	.L50:
- 124:../RC_data_recive.c **** 
+ 100:../RC_data_recive.c **** 
+ 101:../RC_data_recive.c **** 			if(modeswitch_colldown == 0){
+ 795              	 .loc 4 101 0
+ 796 0068 1D4B     	 ldr r3,.L36+20
+ 797 006a 1B78     	 ldrb r3,[r3]
+ 798 006c DBB2     	 uxtb r3,r3
+ 799 006e 002B     	 cmp r3,#0
+ 800 0070 1CD1     	 bne .L32
+ 102:../RC_data_recive.c **** 				if(RC_Gear_duty == 0 && RC_Gear_duty_OLD == 1){
+ 801              	 .loc 4 102 0
+ 802 0072 1A4B     	 ldr r3,.L36+16
+ 803 0074 1B78     	 ldrb r3,[r3]
+ 804 0076 DBB2     	 uxtb r3,r3
+ 805 0078 002B     	 cmp r3,#0
+ 806 007a 1ED1     	 bne .L35
+ 807              	 .loc 4 102 0 is_stmt 0 discriminator 1
+ 808 007c 194B     	 ldr r3,.L36+24
+ 809 007e 1B78     	 ldrb r3,[r3]
+ 810 0080 DBB2     	 uxtb r3,r3
+ 811 0082 012B     	 cmp r3,#1
+ 812 0084 19D1     	 bne .L35
+ 103:../RC_data_recive.c **** 					Steering_mode ++;
+ 813              	 .loc 4 103 0 is_stmt 1
+ 814 0086 184B     	 ldr r3,.L36+28
+ 815 0088 1B78     	 ldrb r3,[r3]
+ 816 008a DBB2     	 uxtb r3,r3
+ 817 008c 0133     	 add r3,r3,#1
+ 818 008e DAB2     	 uxtb r2,r3
+ 819 0090 154B     	 ldr r3,.L36+28
+ 820 0092 1A70     	 strb r2,[r3]
+ 104:../RC_data_recive.c **** 					if(Steering_mode > 5)Steering_mode = 0;
+ 821              	 .loc 4 104 0
+ 822 0094 144B     	 ldr r3,.L36+28
+ 823 0096 1B78     	 ldrb r3,[r3]
+ 824 0098 DBB2     	 uxtb r3,r3
+ 825 009a 052B     	 cmp r3,#5
+ 826 009c 02D9     	 bls .L34
+ 827              	 .loc 4 104 0 is_stmt 0 discriminator 1
+ 828 009e 124B     	 ldr r3,.L36+28
+ 829 00a0 0022     	 mov r2,#0
+ 830 00a2 1A70     	 strb r2,[r3]
+ 831              	.L34:
+ 105:../RC_data_recive.c **** 					modeswitch_colldown = 10;
+ 832              	 .loc 4 105 0 is_stmt 1
+ 833 00a4 0E4B     	 ldr r3,.L36+20
+ 834 00a6 0A22     	 mov r2,#10
+ 835 00a8 1A70     	 strb r2,[r3]
+ 836 00aa 06E0     	 b .L35
+ 837              	.L32:
+ 106:../RC_data_recive.c **** 				}
+ 107:../RC_data_recive.c **** 			}
+ 108:../RC_data_recive.c **** 			else modeswitch_colldown--;
+ 838              	 .loc 4 108 0
+ 839 00ac 0C4B     	 ldr r3,.L36+20
+ 840 00ae 1B78     	 ldrb r3,[r3]
+ 841 00b0 DBB2     	 uxtb r3,r3
+ 842 00b2 013B     	 sub r3,r3,#1
+ 843 00b4 DAB2     	 uxtb r2,r3
+ 844 00b6 0A4B     	 ldr r3,.L36+20
+ 845 00b8 1A70     	 strb r2,[r3]
+ 846              	.L35:
+ 109:../RC_data_recive.c **** 			RC_Gear_duty_OLD = RC_Gear_duty;
+ 847              	 .loc 4 109 0
+ 848 00ba 084B     	 ldr r3,.L36+16
+ 849 00bc 1B78     	 ldrb r3,[r3]
+ 850 00be DAB2     	 uxtb r2,r3
+ 851 00c0 084B     	 ldr r3,.L36+24
+ 852 00c2 1A70     	 strb r2,[r3]
+ 853              	.L27:
+ 854              	.LBE2:
+ 110:../RC_data_recive.c **** 		}
+ 111:../RC_data_recive.c **** 	}
+ 112:../RC_data_recive.c **** }
+ 855              	 .loc 4 112 0
+ 856 00c4 BD46     	 mov sp,r7
+ 857 00c6 02B0     	 add sp,sp,#8
+ 858              	 
+ 859 00c8 80BD     	 pop {r7,pc}
+ 860              	.L37:
+ 861 00ca C046     	 .align 2
+ 862              	.L36:
+ 863 00cc 00000000 	 .word RC_controll
+ 864 00d0 00000000 	 .word RC_Connected
+ 865 00d4 00000000 	 .word RC_Gear_state
+ 866 00d8 00000000 	 .word RC_gear_100us_counter
+ 867 00dc 00000000 	 .word RC_Gear_duty
+ 868 00e0 00000000 	 .word modeswitch_colldown
+ 869 00e4 00000000 	 .word RC_Gear_duty_OLD
+ 870 00e8 00000000 	 .word Steering_mode
+ 871              	 .cfi_endproc
+ 872              	.LFE226:
+ 874              	 .section .text.IRQ6_Handler,"ax",%progbits
+ 875              	 .align 2
+ 876              	 .global IRQ6_Handler
+ 877              	 .code 16
+ 878              	 .thumb_func
+ 880              	IRQ6_Handler:
+ 881              	.LFB227:
+ 113:../RC_data_recive.c **** 
+ 114:../RC_data_recive.c **** void RC_AUX1_ISR(void){
+ 882              	 .loc 4 114 0
+ 883              	 .cfi_startproc
+ 884 0000 80B5     	 push {r7,lr}
+ 885              	.LCFI25:
+ 886              	 .cfi_def_cfa_offset 8
+ 887              	 .cfi_offset 7,-8
+ 888              	 .cfi_offset 14,-4
+ 889 0002 82B0     	 sub sp,sp,#8
+ 890              	.LCFI26:
+ 891              	 .cfi_def_cfa_offset 16
+ 892 0004 00AF     	 add r7,sp,#0
+ 893              	.LCFI27:
+ 894              	 .cfi_def_cfa_register 7
+ 115:../RC_data_recive.c **** 	if(RC_controll == 1){
+ 895              	 .loc 4 115 0
+ 896 0006 254B     	 ldr r3,.L45
+ 897 0008 1B78     	 ldrb r3,[r3]
+ 898 000a DBB2     	 uxtb r3,r3
+ 899 000c 012B     	 cmp r3,#1
+ 900 000e 41D1     	 bne .L38
+ 116:../RC_data_recive.c **** 		RC_AUX1_state =  PIN_INTERRUPT_GetPinValue(&RC_AUX1); // pin haig or low
+ 901              	 .loc 4 116 0
+ 902 0010 234B     	 ldr r3,.L45+4
+ 903 0012 181C     	 mov r0,r3
+ 904 0014 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 905 0018 031C     	 mov r3,r0
+ 906 001a DAB2     	 uxtb r2,r3
+ 907 001c 214B     	 ldr r3,.L45+8
+ 908 001e 1A70     	 strb r2,[r3]
+ 117:../RC_data_recive.c **** 
+ 118:../RC_data_recive.c **** 		if(RC_AUX1_state == 0){// do nothing during high
+ 909              	 .loc 4 118 0
+ 910 0020 204B     	 ldr r3,.L45+8
+ 911 0022 1B78     	 ldrb r3,[r3]
+ 912 0024 DBB2     	 uxtb r3,r3
+ 913 0026 002B     	 cmp r3,#0
+ 914 0028 34D1     	 bne .L38
+ 915              	.LBB3:
+ 119:../RC_data_recive.c **** 			uint32_t RC_AUX1_on_time_100us = RC_AUX1_100us_counter;
+ 916              	 .loc 4 119 0
+ 917 002a 1F4B     	 ldr r3,.L45+12
+ 918 002c 1B68     	 ldr r3,[r3]
+ 919 002e 7B60     	 str r3,[r7,#4]
+ 120:../RC_data_recive.c **** 			RC_AUX1_100us_counter = 0;
+ 920              	 .loc 4 120 0
+ 921 0030 1D4B     	 ldr r3,.L45+12
+ 922 0032 0022     	 mov r2,#0
+ 923 0034 1A60     	 str r2,[r3]
+ 121:../RC_data_recive.c **** 
+ 122:../RC_data_recive.c **** 			if((80 < RC_AUX1_on_time_100us) && (RC_AUX1_on_time_100us < 150)) RC_AUX1_duty= 0;
+ 924              	 .loc 4 122 0
+ 925 0036 7B68     	 ldr r3,[r7,#4]
+ 926 0038 502B     	 cmp r3,#80
+ 927 003a 06D9     	 bls .L40
+ 928              	 .loc 4 122 0 is_stmt 0 discriminator 1
+ 929 003c 7B68     	 ldr r3,[r7,#4]
+ 930 003e 952B     	 cmp r3,#149
+ 931 0040 03D8     	 bhi .L40
+ 932              	 .loc 4 122 0 discriminator 2
+ 933 0042 1A4B     	 ldr r3,.L45+16
+ 934 0044 0022     	 mov r2,#0
+ 935 0046 1A70     	 strb r2,[r3]
+ 936 0048 0CE0     	 b .L41
+ 937              	.L40:
+ 123:../RC_data_recive.c **** 			else if ((150 <= RC_AUX1_on_time_100us) && (RC_AUX1_on_time_100us < 210)) RC_AUX1_duty = 1;
+ 938              	 .loc 4 123 0 is_stmt 1
+ 939 004a 7B68     	 ldr r3,[r7,#4]
+ 940 004c 952B     	 cmp r3,#149
+ 941 004e 06D9     	 bls .L42
+ 942              	 .loc 4 123 0 is_stmt 0 discriminator 1
+ 943 0050 7B68     	 ldr r3,[r7,#4]
+ 944 0052 D12B     	 cmp r3,#209
+ 945 0054 03D8     	 bhi .L42
+ 946              	 .loc 4 123 0 discriminator 2
+ 947 0056 154B     	 ldr r3,.L45+16
+ 948 0058 0122     	 mov r2,#1
+ 949 005a 1A70     	 strb r2,[r3]
+ 950 005c 02E0     	 b .L41
+ 951              	.L42:
+ 124:../RC_data_recive.c **** 			else RC_AUX1_duty = 2;
+ 952              	 .loc 4 124 0 is_stmt 1
+ 953 005e 134B     	 ldr r3,.L45+16
+ 954 0060 0222     	 mov r2,#2
+ 955 0062 1A70     	 strb r2,[r3]
+ 956              	.L41:
  125:../RC_data_recive.c **** 
- 126:../RC_data_recive.c **** 			if(RC_AUX1_duty == 1)RC_Speed_Stop = 1;
- 1004              	 .loc 4 126 0
- 1005 0064 0B4B     	 ldr r3,.L53+16
- 1006 0066 1B78     	 ldrb r3,[r3]
- 1007 0068 DBB2     	 uxtb r3,r3
- 1008 006a 012B     	 cmp r3,#1
- 1009 006c 03D1     	 bne .L52
- 1010              	 .loc 4 126 0 is_stmt 0 discriminator 1
- 1011 006e 0A4B     	 ldr r3,.L53+20
- 1012 0070 0122     	 mov r2,#1
- 1013 0072 1A70     	 strb r2,[r3]
- 1014 0074 02E0     	 b .L47
- 1015              	.L52:
- 127:../RC_data_recive.c **** 			else RC_Speed_Stop = 0;
- 1016              	 .loc 4 127 0 is_stmt 1
- 1017 0076 084B     	 ldr r3,.L53+20
- 1018 0078 0022     	 mov r2,#0
- 1019 007a 1A70     	 strb r2,[r3]
- 1020              	.L47:
- 1021              	.LBE3:
- 128:../RC_data_recive.c **** 		}
- 129:../RC_data_recive.c **** 	}
- 130:../RC_data_recive.c **** }
- 1022              	 .loc 4 130 0
- 1023 007c BD46     	 mov sp,r7
- 1024 007e 02B0     	 add sp,sp,#8
- 1025              	 
- 1026 0080 80BD     	 pop {r7,pc}
- 1027              	.L54:
- 1028 0082 C046     	 .align 2
- 1029              	.L53:
- 1030 0084 00000000 	 .word RC_controll
- 1031 0088 00000000 	 .word RC_AUX1
- 1032 008c 00000000 	 .word RC_AUX1_state
- 1033 0090 00000000 	 .word RC_AUX1_100us_counter
- 1034 0094 00000000 	 .word RC_AUX1_duty
- 1035 0098 00000000 	 .word RC_Speed_Stop
- 1036              	 .cfi_endproc
- 1037              	.LFE227:
- 1039              	 .text
- 1040              	.Letext0:
- 1041              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 1042              	 .file 6 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 1043              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
- 1044              	 .file 8 "../Globals.h"
- 1045              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_scu.h"
- 1046              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
- 1047              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_ccu4.h"
- 1048              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
- 1049              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAPTURE/capture.h"
- 1050              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_eru.h"
- 1051              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 1052              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 1053              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAPTURE/capture_extern.h"
- 1054              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
- 1055              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
+ 126:../RC_data_recive.c **** 
+ 127:../RC_data_recive.c **** 			if(RC_AUX1_duty == 1)RC_Speed_Stop_counter = 0;
+ 957              	 .loc 4 127 0
+ 958 0064 114B     	 ldr r3,.L45+16
+ 959 0066 1B78     	 ldrb r3,[r3]
+ 960 0068 DBB2     	 uxtb r3,r3
+ 961 006a 012B     	 cmp r3,#1
+ 962 006c 03D1     	 bne .L43
+ 963              	 .loc 4 127 0 is_stmt 0 discriminator 1
+ 964 006e 104B     	 ldr r3,.L45+20
+ 965 0070 0022     	 mov r2,#0
+ 966 0072 1A70     	 strb r2,[r3]
+ 967 0074 06E0     	 b .L44
+ 968              	.L43:
+ 128:../RC_data_recive.c **** 			else RC_Speed_Stop_counter ++ ;
+ 969              	 .loc 4 128 0 is_stmt 1
+ 970 0076 0E4B     	 ldr r3,.L45+20
+ 971 0078 1B78     	 ldrb r3,[r3]
+ 972 007a DBB2     	 uxtb r3,r3
+ 973 007c 0133     	 add r3,r3,#1
+ 974 007e DAB2     	 uxtb r2,r3
+ 975 0080 0B4B     	 ldr r3,.L45+20
+ 976 0082 1A70     	 strb r2,[r3]
+ 977              	.L44:
+ 129:../RC_data_recive.c **** 
+ 130:../RC_data_recive.c **** 			if(RC_Speed_Stop_counter > RC_SPEED_SAFTY_FT) RC_Speed_Stop_counter = RC_SPEED_SAFTY_FT;
+ 978              	 .loc 4 130 0
+ 979 0084 0A4B     	 ldr r3,.L45+20
+ 980 0086 1B78     	 ldrb r3,[r3]
+ 981 0088 DBB2     	 uxtb r3,r3
+ 982 008a 0A2B     	 cmp r3,#10
+ 983 008c 02D9     	 bls .L38
+ 984              	 .loc 4 130 0 is_stmt 0 discriminator 1
+ 985 008e 084B     	 ldr r3,.L45+20
+ 986 0090 0A22     	 mov r2,#10
+ 987 0092 1A70     	 strb r2,[r3]
+ 988              	.L38:
+ 989              	.LBE3:
+ 131:../RC_data_recive.c **** 		}
+ 132:../RC_data_recive.c **** 	}
+ 133:../RC_data_recive.c **** }
+ 990              	 .loc 4 133 0 is_stmt 1
+ 991 0094 BD46     	 mov sp,r7
+ 992 0096 02B0     	 add sp,sp,#8
+ 993              	 
+ 994 0098 80BD     	 pop {r7,pc}
+ 995              	.L46:
+ 996 009a C046     	 .align 2
+ 997              	.L45:
+ 998 009c 00000000 	 .word RC_controll
+ 999 00a0 00000000 	 .word RC_AUX1
+ 1000 00a4 00000000 	 .word RC_AUX1_state
+ 1001 00a8 00000000 	 .word RC_AUX1_100us_counter
+ 1002 00ac 00000000 	 .word RC_AUX1_duty
+ 1003 00b0 00000000 	 .word RC_Speed_Stop_counter
+ 1004              	 .cfi_endproc
+ 1005              	.LFE227:
+ 1007              	 .text
+ 1008              	.Letext0:
+ 1009              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1010              	 .file 6 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 1011              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 1012              	 .file 8 "../Globals.h"
+ 1013              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_scu.h"
+ 1014              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 1015              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_ccu4.h"
+ 1016              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
+ 1017              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAPTURE/capture.h"
+ 1018              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_eru.h"
+ 1019              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 1020              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 1021              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CAPTURE/capture_extern.h"
+ 1022              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 1023              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 RC_data_recive.c
                             *COM*:00000001 RC_controll
@@ -2207,19 +2178,19 @@ DEFINED SYMBOLS
     {standard input}:351    .data.RC_Gear_duty:00000000 RC_Gear_duty
     {standard input}:357    .data.RC_Gear_duty_OLD:00000000 RC_Gear_duty_OLD
     {standard input}:363    .data.RC_AUX1_duty:00000000 RC_AUX1_duty
-    {standard input}:369    .data.RC_Speed_Stop:00000000 RC_Speed_Stop
+    {standard input}:369    .data.RC_Speed_Stop_counter:00000000 RC_Speed_Stop_counter
     {standard input}:372    .text.IRQ8_Handler:00000000 $t
     {standard input}:377    .text.IRQ8_Handler:00000000 IRQ8_Handler
     {standard input}:423    .text.IRQ8_Handler:00000030 $d
-    {standard input}:440    .text.RC_Recive:00000000 $t
-    {standard input}:445    .text.RC_Recive:00000000 RC_Recive
-    {standard input}:732    .text.RC_Recive:000001f0 $d
-    {standard input}:758    .text.IRQ12_Handler:00000000 $t
-    {standard input}:763    .text.IRQ12_Handler:00000000 IRQ12_Handler
-    {standard input}:910    .text.IRQ12_Handler:000000cc $d
-    {standard input}:922    .text.IRQ6_Handler:00000000 $t
-    {standard input}:927    .text.IRQ6_Handler:00000000 IRQ6_Handler
-    {standard input}:1030   .text.IRQ6_Handler:00000084 $d
+    {standard input}:436    .text.RC_Recive:00000000 $t
+    {standard input}:441    .text.RC_Recive:00000000 RC_Recive
+    {standard input}:689    .text.RC_Recive:000001a0 $d
+    {standard input}:711    .text.IRQ12_Handler:00000000 $t
+    {standard input}:716    .text.IRQ12_Handler:00000000 IRQ12_Handler
+    {standard input}:863    .text.IRQ12_Handler:000000cc $d
+    {standard input}:875    .text.IRQ6_Handler:00000000 $t
+    {standard input}:880    .text.IRQ6_Handler:00000000 IRQ6_Handler
+    {standard input}:998    .text.IRQ6_Handler:0000009c $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -2228,12 +2199,9 @@ __aeabi_dsub
 __aeabi_f2d
 __aeabi_dmul
 __aeabi_d2f
-__aeabi_dcmplt
-__aeabi_dcmpgt
-__aeabi_fcmplt
-__aeabi_fcmpgt
 CAPTURE_Start
 CAPTURE_GetCapturedTimeInNanoSec
+within_MAX_MIN
 CAPTURE_RC_Steering
 CAPTURE_RC_Speed
 RC_no_data_LED

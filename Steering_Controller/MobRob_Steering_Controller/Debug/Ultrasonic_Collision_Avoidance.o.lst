@@ -972,9 +972,9 @@
  297              	 .align 2
  300              	Obstacel_valid:
  301 0000 000000   	 .space 3
- 302              	 .comm Obstacel_F,12,4
- 303              	 .comm Obstacel_L,12,4
- 304              	 .comm Obstacel_R,12,4
+ 302              	 .comm Obstacel_F,20,4
+ 303              	 .comm Obstacel_L,20,4
+ 304              	 .comm Obstacel_R,20,4
  305              	 .global Speed_reduction_ratio
  306 0003 00       	 .section .data.Speed_reduction_ratio,"aw",%progbits
  307              	 .align 2
@@ -984,12 +984,12 @@
  313              	 .section .data.Speed_limit,"aw",%progbits
  314              	 .align 2
  317              	Speed_limit:
- 318 0000 0000803F 	 .word 1065353216
+ 318 0000 0000C03F 	 .word 1069547520
  319              	 .global new_Speed_limit
  320              	 .section .data.new_Speed_limit,"aw",%progbits
  321              	 .align 2
  324              	new_Speed_limit:
- 325 0000 0000803F 	 .word 1065353216
+ 325 0000 0000C03F 	 .word 1069547520
  326              	 .global aktive_addition
  327              	 .section .bss.aktive_addition,"aw",%nobits
  328              	 .align 2
@@ -1021,14 +1021,18 @@
  366 0000 00       	 .space 1
  367              	 .global __aeabi_i2f
  368              	 .global __aeabi_fdiv
- 369              	 .section .text.Ultra_sonic_filter,"ax",%progbits
- 370              	 .align 2
- 371              	 .global Ultra_sonic_filter
- 372              	 .code 16
- 373              	 .thumb_func
- 375              	Ultra_sonic_filter:
- 376              	.LFB224:
- 377              	 .file 3 "../Ultrasonic_Collision_Avoidance.c"
+ 369              	 .global __aeabi_f2d
+ 370              	 .global __aeabi_ddiv
+ 371              	 .global __aeabi_dmul
+ 372              	 .global __aeabi_d2f
+ 373              	 .section .text.Ultra_sonic_filter,"ax",%progbits
+ 374              	 .align 2
+ 375              	 .global Ultra_sonic_filter
+ 376              	 .code 16
+ 377              	 .thumb_func
+ 379              	Ultra_sonic_filter:
+ 380              	.LFB224:
+ 381              	 .file 3 "../Ultrasonic_Collision_Avoidance.c"
    1:../Ultrasonic_Collision_Avoidance.c **** /*
    2:../Ultrasonic_Collision_Avoidance.c ****  * Ultrasonic_Collision_Avoidance.c
    3:../Ultrasonic_Collision_Avoidance.c ****  *
@@ -1076,1273 +1080,1441 @@
   45:../Ultrasonic_Collision_Avoidance.c **** uint8_t init = 0;
   46:../Ultrasonic_Collision_Avoidance.c **** 
   47:../Ultrasonic_Collision_Avoidance.c **** void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc, int16_t Ultrasoni
- 378              	 .loc 3 47 0
- 379              	 .cfi_startproc
- 380 0000 90B5     	 push {r4,r7,lr}
- 381              	.LCFI18:
- 382              	 .cfi_def_cfa_offset 12
- 383              	 .cfi_offset 4,-12
- 384              	 .cfi_offset 7,-8
- 385              	 .cfi_offset 14,-4
- 386 0002 87B0     	 sub sp,sp,#28
- 387              	.LCFI19:
- 388              	 .cfi_def_cfa_offset 40
- 389 0004 00AF     	 add r7,sp,#0
- 390              	.LCFI20:
- 391              	 .cfi_def_cfa_register 7
- 392 0006 041C     	 mov r4,r0
- 393 0008 081C     	 mov r0,r1
- 394 000a 111C     	 mov r1,r2
- 395 000c 7B60     	 str r3,[r7,#4]
- 396 000e 0E23     	 mov r3,#14
- 397 0010 FB18     	 add r3,r7,r3
- 398 0012 221C     	 add r2,r4,#0
- 399 0014 1A80     	 strh r2,[r3]
- 400 0016 0C23     	 mov r3,#12
- 401 0018 FB18     	 add r3,r7,r3
- 402 001a 021C     	 add r2,r0,#0
- 403 001c 1A80     	 strh r2,[r3]
- 404 001e 0A23     	 mov r3,#10
- 405 0020 FB18     	 add r3,r7,r3
- 406 0022 0A1C     	 add r2,r1,#0
- 407 0024 1A80     	 strh r2,[r3]
+ 382              	 .loc 3 47 0
+ 383              	 .cfi_startproc
+ 384 0000 F0B5     	 push {r4,r5,r6,r7,lr}
+ 385              	.LCFI18:
+ 386              	 .cfi_def_cfa_offset 20
+ 387              	 .cfi_offset 4,-20
+ 388              	 .cfi_offset 5,-16
+ 389              	 .cfi_offset 6,-12
+ 390              	 .cfi_offset 7,-8
+ 391              	 .cfi_offset 14,-4
+ 392 0002 87B0     	 sub sp,sp,#28
+ 393              	.LCFI19:
+ 394              	 .cfi_def_cfa_offset 48
+ 395 0004 00AF     	 add r7,sp,#0
+ 396              	.LCFI20:
+ 397              	 .cfi_def_cfa_register 7
+ 398 0006 041C     	 mov r4,r0
+ 399 0008 081C     	 mov r0,r1
+ 400 000a 111C     	 mov r1,r2
+ 401 000c 7B60     	 str r3,[r7,#4]
+ 402 000e 0E23     	 mov r3,#14
+ 403 0010 FB18     	 add r3,r7,r3
+ 404 0012 221C     	 add r2,r4,#0
+ 405 0014 1A80     	 strh r2,[r3]
+ 406 0016 0C23     	 mov r3,#12
+ 407 0018 FB18     	 add r3,r7,r3
+ 408 001a 021C     	 add r2,r0,#0
+ 409 001c 1A80     	 strh r2,[r3]
+ 410 001e 0A23     	 mov r3,#10
+ 411 0020 FB18     	 add r3,r7,r3
+ 412 0022 0A1C     	 add r2,r1,#0
+ 413 0024 1A80     	 strh r2,[r3]
   48:../Ultrasonic_Collision_Avoidance.c **** 
   49:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrasonic_cm_C_clc != 0){
- 408              	 .loc 3 49 0
- 409 0026 0E23     	 mov r3,#14
- 410 0028 FB18     	 add r3,r7,r3
- 411 002a 0022     	 mov r2,#0
- 412 002c 9B5E     	 ldrsh r3,[r3,r2]
- 413 002e 002B     	 cmp r3,#0
- 414 0030 1CD0     	 beq .L10
+ 414              	 .loc 3 49 0
+ 415 0026 0E23     	 mov r3,#14
+ 416 0028 FB18     	 add r3,r7,r3
+ 417 002a 0022     	 mov r2,#0
+ 418 002c 9B5E     	 ldrsh r3,[r3,r2]
+ 419 002e 002B     	 cmp r3,#0
+ 420 0030 1CD0     	 beq .L10
   50:../Ultrasonic_Collision_Avoidance.c **** 		Ultrsonic_data_invaildcounter[0] = 0;
- 415              	 .loc 3 50 0
- 416 0032 754B     	 ldr r3,.L27
- 417 0034 0022     	 mov r2,#0
- 418 0036 1A70     	 strb r2,[r3]
+ 421              	 .loc 3 50 0
+ 422 0032 CF4B     	 ldr r3,.L27
+ 423 0034 0022     	 mov r2,#0
+ 424 0036 1A70     	 strb r2,[r3]
   51:../Ultrasonic_Collision_Avoidance.c **** 		Ultra_m_C = Exp_moving_average((float)Ultrasonic_cm_C_clc / 100 , Ultra_m_C, ALPHA_ULTARSONIC);
- 419              	 .loc 3 51 0
- 420 0038 0E23     	 mov r3,#14
- 421 003a FB18     	 add r3,r7,r3
- 422 003c 0022     	 mov r2,#0
- 423 003e 9B5E     	 ldrsh r3,[r3,r2]
- 424 0040 181C     	 mov r0,r3
- 425 0042 FFF7FEFF 	 bl __aeabi_i2f
- 426 0046 031C     	 add r3,r0,#0
- 427 0048 181C     	 add r0,r3,#0
- 428 004a 7049     	 ldr r1,.L27+4
- 429 004c FFF7FEFF 	 bl __aeabi_fdiv
- 430 0050 031C     	 add r3,r0,#0
- 431 0052 191C     	 add r1,r3,#0
- 432 0054 6E4B     	 ldr r3,.L27+8
- 433 0056 1A68     	 ldr r2,[r3]
- 434 0058 7B68     	 ldr r3,[r7,#4]
- 435 005a 081C     	 add r0,r1,#0
- 436 005c 111C     	 add r1,r2,#0
- 437 005e 1A1C     	 add r2,r3,#0
- 438 0060 FFF7FEFF 	 bl Exp_moving_average
- 439 0064 021C     	 add r2,r0,#0
- 440 0066 6A4B     	 ldr r3,.L27+8
- 441 0068 1A60     	 str r2,[r3]
- 442 006a 05E0     	 b .L11
- 443              	.L10:
+ 425              	 .loc 3 51 0
+ 426 0038 0E23     	 mov r3,#14
+ 427 003a FB18     	 add r3,r7,r3
+ 428 003c 0022     	 mov r2,#0
+ 429 003e 9B5E     	 ldrsh r3,[r3,r2]
+ 430 0040 181C     	 mov r0,r3
+ 431 0042 FFF7FEFF 	 bl __aeabi_i2f
+ 432 0046 031C     	 add r3,r0,#0
+ 433 0048 181C     	 add r0,r3,#0
+ 434 004a CA49     	 ldr r1,.L27+4
+ 435 004c FFF7FEFF 	 bl __aeabi_fdiv
+ 436 0050 031C     	 add r3,r0,#0
+ 437 0052 191C     	 add r1,r3,#0
+ 438 0054 C84B     	 ldr r3,.L27+8
+ 439 0056 1A68     	 ldr r2,[r3]
+ 440 0058 7B68     	 ldr r3,[r7,#4]
+ 441 005a 081C     	 add r0,r1,#0
+ 442 005c 111C     	 add r1,r2,#0
+ 443 005e 1A1C     	 add r2,r3,#0
+ 444 0060 FFF7FEFF 	 bl Exp_moving_average
+ 445 0064 021C     	 add r2,r0,#0
+ 446 0066 C44B     	 ldr r3,.L27+8
+ 447 0068 1A60     	 str r2,[r3]
+ 448 006a 05E0     	 b .L11
+ 449              	.L10:
   52:../Ultrasonic_Collision_Avoidance.c **** 	}
   53:../Ultrasonic_Collision_Avoidance.c **** 	else Ultrsonic_data_invaildcounter[0]++;
- 444              	 .loc 3 53 0
- 445 006c 664B     	 ldr r3,.L27
- 446 006e 1B78     	 ldrb r3,[r3]
- 447 0070 0133     	 add r3,r3,#1
- 448 0072 DAB2     	 uxtb r2,r3
- 449 0074 644B     	 ldr r3,.L27
- 450 0076 1A70     	 strb r2,[r3]
- 451              	.L11:
+ 450              	 .loc 3 53 0
+ 451 006c C04B     	 ldr r3,.L27
+ 452 006e 1B78     	 ldrb r3,[r3]
+ 453 0070 0133     	 add r3,r3,#1
+ 454 0072 DAB2     	 uxtb r2,r3
+ 455 0074 BE4B     	 ldr r3,.L27
+ 456 0076 1A70     	 strb r2,[r3]
+ 457              	.L11:
   54:../Ultrasonic_Collision_Avoidance.c **** 
   55:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrasonic_cm_L_clc != 0){
- 452              	 .loc 3 55 0
- 453 0078 0C23     	 mov r3,#12
- 454 007a FB18     	 add r3,r7,r3
- 455 007c 0022     	 mov r2,#0
- 456 007e 9B5E     	 ldrsh r3,[r3,r2]
- 457 0080 002B     	 cmp r3,#0
- 458 0082 2CD0     	 beq .L12
+ 458              	 .loc 3 55 0
+ 459 0078 0C23     	 mov r3,#12
+ 460 007a FB18     	 add r3,r7,r3
+ 461 007c 0022     	 mov r2,#0
+ 462 007e 9B5E     	 ldrsh r3,[r3,r2]
+ 463 0080 002B     	 cmp r3,#0
+ 464 0082 2CD0     	 beq .L12
   56:../Ultrasonic_Collision_Avoidance.c **** 		obstructed_L = Ultrasoinc_Obstructet_Test(-Steering_Angles[0]);
- 459              	 .loc 3 56 0
- 460 0084 634B     	 ldr r3,.L27+12
- 461 0086 1B68     	 ldr r3,[r3]
- 462 0088 8022     	 mov r2,#128
- 463 008a 1206     	 lsl r2,r2,#24
- 464 008c 5340     	 eor r3,r2
- 465 008e 181C     	 add r0,r3,#0
- 466 0090 FFF7FEFF 	 bl Ultrasoinc_Obstructet_Test
- 467 0094 031C     	 mov r3,r0
- 468 0096 1A1C     	 mov r2,r3
- 469 0098 5F4B     	 ldr r3,.L27+16
- 470 009a 1A70     	 strb r2,[r3]
+ 465              	 .loc 3 56 0
+ 466 0084 BD4B     	 ldr r3,.L27+12
+ 467 0086 1B68     	 ldr r3,[r3]
+ 468 0088 8022     	 mov r2,#128
+ 469 008a 1206     	 lsl r2,r2,#24
+ 470 008c 5340     	 eor r3,r2
+ 471 008e 181C     	 add r0,r3,#0
+ 472 0090 FFF7FEFF 	 bl Ultrasoinc_Obstructet_Test
+ 473 0094 031C     	 mov r3,r0
+ 474 0096 1A1C     	 mov r2,r3
+ 475 0098 B94B     	 ldr r3,.L27+16
+ 476 009a 1A70     	 strb r2,[r3]
   57:../Ultrasonic_Collision_Avoidance.c **** 		if(obstructed_L == 0) {
- 471              	 .loc 3 57 0
- 472 009c 5E4B     	 ldr r3,.L27+16
- 473 009e 1B78     	 ldrb r3,[r3]
- 474 00a0 002B     	 cmp r3,#0
- 475 00a2 22D1     	 bne .L14
+ 477              	 .loc 3 57 0
+ 478 009c B84B     	 ldr r3,.L27+16
+ 479 009e 1B78     	 ldrb r3,[r3]
+ 480 00a0 002B     	 cmp r3,#0
+ 481 00a2 22D1     	 bne .L14
   58:../Ultrasonic_Collision_Avoidance.c **** 			Ultrsonic_data_invaildcounter[1] = 0;
- 476              	 .loc 3 58 0
- 477 00a4 584B     	 ldr r3,.L27
- 478 00a6 0022     	 mov r2,#0
- 479 00a8 5A70     	 strb r2,[r3,#1]
+ 482              	 .loc 3 58 0
+ 483 00a4 B24B     	 ldr r3,.L27
+ 484 00a6 0022     	 mov r2,#0
+ 485 00a8 5A70     	 strb r2,[r3,#1]
   59:../Ultrasonic_Collision_Avoidance.c **** 			Ultra_m_L = Exp_moving_average((float)Ultrasonic_cm_L_clc / 100 , Ultra_m_L, ALPHA_ULTARSONIC);
- 480              	 .loc 3 59 0
- 481 00aa 0C23     	 mov r3,#12
- 482 00ac FB18     	 add r3,r7,r3
- 483 00ae 0022     	 mov r2,#0
- 484 00b0 9B5E     	 ldrsh r3,[r3,r2]
- 485 00b2 181C     	 mov r0,r3
- 486 00b4 FFF7FEFF 	 bl __aeabi_i2f
- 487 00b8 031C     	 add r3,r0,#0
- 488 00ba 181C     	 add r0,r3,#0
- 489 00bc 5349     	 ldr r1,.L27+4
- 490 00be FFF7FEFF 	 bl __aeabi_fdiv
- 491 00c2 031C     	 add r3,r0,#0
- 492 00c4 191C     	 add r1,r3,#0
- 493 00c6 554B     	 ldr r3,.L27+20
- 494 00c8 1A68     	 ldr r2,[r3]
- 495 00ca 7B68     	 ldr r3,[r7,#4]
- 496 00cc 081C     	 add r0,r1,#0
- 497 00ce 111C     	 add r1,r2,#0
- 498 00d0 1A1C     	 add r2,r3,#0
- 499 00d2 FFF7FEFF 	 bl Exp_moving_average
- 500 00d6 021C     	 add r2,r0,#0
- 501 00d8 504B     	 ldr r3,.L27+20
- 502 00da 1A60     	 str r2,[r3]
- 503 00dc 05E0     	 b .L14
- 504              	.L12:
+ 486              	 .loc 3 59 0
+ 487 00aa 0C23     	 mov r3,#12
+ 488 00ac FB18     	 add r3,r7,r3
+ 489 00ae 0022     	 mov r2,#0
+ 490 00b0 9B5E     	 ldrsh r3,[r3,r2]
+ 491 00b2 181C     	 mov r0,r3
+ 492 00b4 FFF7FEFF 	 bl __aeabi_i2f
+ 493 00b8 031C     	 add r3,r0,#0
+ 494 00ba 181C     	 add r0,r3,#0
+ 495 00bc AD49     	 ldr r1,.L27+4
+ 496 00be FFF7FEFF 	 bl __aeabi_fdiv
+ 497 00c2 031C     	 add r3,r0,#0
+ 498 00c4 191C     	 add r1,r3,#0
+ 499 00c6 AF4B     	 ldr r3,.L27+20
+ 500 00c8 1A68     	 ldr r2,[r3]
+ 501 00ca 7B68     	 ldr r3,[r7,#4]
+ 502 00cc 081C     	 add r0,r1,#0
+ 503 00ce 111C     	 add r1,r2,#0
+ 504 00d0 1A1C     	 add r2,r3,#0
+ 505 00d2 FFF7FEFF 	 bl Exp_moving_average
+ 506 00d6 021C     	 add r2,r0,#0
+ 507 00d8 AA4B     	 ldr r3,.L27+20
+ 508 00da 1A60     	 str r2,[r3]
+ 509 00dc 05E0     	 b .L14
+ 510              	.L12:
   60:../Ultrasonic_Collision_Avoidance.c **** 		}
   61:../Ultrasonic_Collision_Avoidance.c **** 	}
   62:../Ultrasonic_Collision_Avoidance.c **** 	else Ultrsonic_data_invaildcounter[1]++;
- 505              	 .loc 3 62 0
- 506 00de 4A4B     	 ldr r3,.L27
- 507 00e0 5B78     	 ldrb r3,[r3,#1]
- 508 00e2 0133     	 add r3,r3,#1
- 509 00e4 DAB2     	 uxtb r2,r3
- 510 00e6 484B     	 ldr r3,.L27
- 511 00e8 5A70     	 strb r2,[r3,#1]
- 512              	.L14:
+ 511              	 .loc 3 62 0
+ 512 00de A44B     	 ldr r3,.L27
+ 513 00e0 5B78     	 ldrb r3,[r3,#1]
+ 514 00e2 0133     	 add r3,r3,#1
+ 515 00e4 DAB2     	 uxtb r2,r3
+ 516 00e6 A24B     	 ldr r3,.L27
+ 517 00e8 5A70     	 strb r2,[r3,#1]
+ 518              	.L14:
   63:../Ultrasonic_Collision_Avoidance.c **** 
   64:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrasonic_cm_R_clc != 0){
- 513              	 .loc 3 64 0
- 514 00ea 0A23     	 mov r3,#10
- 515 00ec FB18     	 add r3,r7,r3
- 516 00ee 0022     	 mov r2,#0
- 517 00f0 9B5E     	 ldrsh r3,[r3,r2]
- 518 00f2 002B     	 cmp r3,#0
- 519 00f4 29D0     	 beq .L15
+ 519              	 .loc 3 64 0
+ 520 00ea 0A23     	 mov r3,#10
+ 521 00ec FB18     	 add r3,r7,r3
+ 522 00ee 0022     	 mov r2,#0
+ 523 00f0 9B5E     	 ldrsh r3,[r3,r2]
+ 524 00f2 002B     	 cmp r3,#0
+ 525 00f4 29D0     	 beq .L15
   65:../Ultrasonic_Collision_Avoidance.c **** 		obstructed_R = Ultrasoinc_Obstructet_Test(Steering_Angles[1]); // neagtiv becasue right wheel
- 520              	 .loc 3 65 0
- 521 00f6 474B     	 ldr r3,.L27+12
- 522 00f8 5B68     	 ldr r3,[r3,#4]
- 523 00fa 181C     	 add r0,r3,#0
- 524 00fc FFF7FEFF 	 bl Ultrasoinc_Obstructet_Test
- 525 0100 031C     	 mov r3,r0
- 526 0102 1A1C     	 mov r2,r3
- 527 0104 464B     	 ldr r3,.L27+24
- 528 0106 1A70     	 strb r2,[r3]
+ 526              	 .loc 3 65 0
+ 527 00f6 A14B     	 ldr r3,.L27+12
+ 528 00f8 5B68     	 ldr r3,[r3,#4]
+ 529 00fa 181C     	 add r0,r3,#0
+ 530 00fc FFF7FEFF 	 bl Ultrasoinc_Obstructet_Test
+ 531 0100 031C     	 mov r3,r0
+ 532 0102 1A1C     	 mov r2,r3
+ 533 0104 A04B     	 ldr r3,.L27+24
+ 534 0106 1A70     	 strb r2,[r3]
   66:../Ultrasonic_Collision_Avoidance.c **** 		if(obstructed_R == 0){
- 529              	 .loc 3 66 0
- 530 0108 454B     	 ldr r3,.L27+24
- 531 010a 1B78     	 ldrb r3,[r3]
- 532 010c 002B     	 cmp r3,#0
- 533 010e 22D1     	 bne .L17
+ 535              	 .loc 3 66 0
+ 536 0108 9F4B     	 ldr r3,.L27+24
+ 537 010a 1B78     	 ldrb r3,[r3]
+ 538 010c 002B     	 cmp r3,#0
+ 539 010e 22D1     	 bne .L17
   67:../Ultrasonic_Collision_Avoidance.c **** 			Ultrsonic_data_invaildcounter[2] = 0;
- 534              	 .loc 3 67 0
- 535 0110 3D4B     	 ldr r3,.L27
- 536 0112 0022     	 mov r2,#0
- 537 0114 9A70     	 strb r2,[r3,#2]
+ 540              	 .loc 3 67 0
+ 541 0110 974B     	 ldr r3,.L27
+ 542 0112 0022     	 mov r2,#0
+ 543 0114 9A70     	 strb r2,[r3,#2]
   68:../Ultrasonic_Collision_Avoidance.c **** 			Ultra_m_R = Exp_moving_average((float)Ultrasonic_cm_R_clc / 100 , Ultra_m_R, ALPHA_ULTARSONIC);
- 538              	 .loc 3 68 0
- 539 0116 0A23     	 mov r3,#10
- 540 0118 FB18     	 add r3,r7,r3
- 541 011a 0022     	 mov r2,#0
- 542 011c 9B5E     	 ldrsh r3,[r3,r2]
- 543 011e 181C     	 mov r0,r3
- 544 0120 FFF7FEFF 	 bl __aeabi_i2f
- 545 0124 031C     	 add r3,r0,#0
- 546 0126 181C     	 add r0,r3,#0
- 547 0128 3849     	 ldr r1,.L27+4
- 548 012a FFF7FEFF 	 bl __aeabi_fdiv
- 549 012e 031C     	 add r3,r0,#0
- 550 0130 191C     	 add r1,r3,#0
- 551 0132 3C4B     	 ldr r3,.L27+28
- 552 0134 1A68     	 ldr r2,[r3]
- 553 0136 7B68     	 ldr r3,[r7,#4]
- 554 0138 081C     	 add r0,r1,#0
- 555 013a 111C     	 add r1,r2,#0
- 556 013c 1A1C     	 add r2,r3,#0
- 557 013e FFF7FEFF 	 bl Exp_moving_average
- 558 0142 021C     	 add r2,r0,#0
- 559 0144 374B     	 ldr r3,.L27+28
- 560 0146 1A60     	 str r2,[r3]
- 561 0148 05E0     	 b .L17
- 562              	.L15:
+ 544              	 .loc 3 68 0
+ 545 0116 0A23     	 mov r3,#10
+ 546 0118 FB18     	 add r3,r7,r3
+ 547 011a 0022     	 mov r2,#0
+ 548 011c 9B5E     	 ldrsh r3,[r3,r2]
+ 549 011e 181C     	 mov r0,r3
+ 550 0120 FFF7FEFF 	 bl __aeabi_i2f
+ 551 0124 031C     	 add r3,r0,#0
+ 552 0126 181C     	 add r0,r3,#0
+ 553 0128 9249     	 ldr r1,.L27+4
+ 554 012a FFF7FEFF 	 bl __aeabi_fdiv
+ 555 012e 031C     	 add r3,r0,#0
+ 556 0130 191C     	 add r1,r3,#0
+ 557 0132 964B     	 ldr r3,.L27+28
+ 558 0134 1A68     	 ldr r2,[r3]
+ 559 0136 7B68     	 ldr r3,[r7,#4]
+ 560 0138 081C     	 add r0,r1,#0
+ 561 013a 111C     	 add r1,r2,#0
+ 562 013c 1A1C     	 add r2,r3,#0
+ 563 013e FFF7FEFF 	 bl Exp_moving_average
+ 564 0142 021C     	 add r2,r0,#0
+ 565 0144 914B     	 ldr r3,.L27+28
+ 566 0146 1A60     	 str r2,[r3]
+ 567 0148 05E0     	 b .L17
+ 568              	.L15:
   69:../Ultrasonic_Collision_Avoidance.c **** 		}
   70:../Ultrasonic_Collision_Avoidance.c **** 	}
   71:../Ultrasonic_Collision_Avoidance.c **** 	else Ultrsonic_data_invaildcounter[2]++;
- 563              	 .loc 3 71 0
- 564 014a 2F4B     	 ldr r3,.L27
- 565 014c 9B78     	 ldrb r3,[r3,#2]
- 566 014e 0133     	 add r3,r3,#1
- 567 0150 DAB2     	 uxtb r2,r3
- 568 0152 2D4B     	 ldr r3,.L27
- 569 0154 9A70     	 strb r2,[r3,#2]
- 570              	.L17:
- 571              	.LBB2:
+ 569              	 .loc 3 71 0
+ 570 014a 894B     	 ldr r3,.L27
+ 571 014c 9B78     	 ldrb r3,[r3,#2]
+ 572 014e 0133     	 add r3,r3,#1
+ 573 0150 DAB2     	 uxtb r2,r3
+ 574 0152 874B     	 ldr r3,.L27
+ 575 0154 9A70     	 strb r2,[r3,#2]
+ 576              	.L17:
+ 577              	.LBB2:
   72:../Ultrasonic_Collision_Avoidance.c **** 
   73:../Ultrasonic_Collision_Avoidance.c **** 	for(uint8_t i = 0; i < 3; i++){ // counter overflow stop
- 572              	 .loc 3 73 0
- 573 0156 1723     	 mov r3,#23
- 574 0158 FB18     	 add r3,r7,r3
- 575 015a 0022     	 mov r2,#0
- 576 015c 1A70     	 strb r2,[r3]
- 577 015e 13E0     	 b .L18
- 578              	.L20:
+ 578              	 .loc 3 73 0
+ 579 0156 1723     	 mov r3,#23
+ 580 0158 FB18     	 add r3,r7,r3
+ 581 015a 0022     	 mov r2,#0
+ 582 015c 1A70     	 strb r2,[r3]
+ 583 015e 13E0     	 b .L18
+ 584              	.L20:
   74:../Ultrasonic_Collision_Avoidance.c **** 		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i
- 579              	 .loc 3 74 0
- 580 0160 1723     	 mov r3,#23
- 581 0162 FB18     	 add r3,r7,r3
- 582 0164 1B78     	 ldrb r3,[r3]
- 583 0166 284A     	 ldr r2,.L27
- 584 0168 D35C     	 ldrb r3,[r2,r3]
- 585 016a 142B     	 cmp r3,#20
- 586 016c 05D9     	 bls .L19
- 587              	 .loc 3 74 0 is_stmt 0 discriminator 1
- 588 016e 1723     	 mov r3,#23
- 589 0170 FB18     	 add r3,r7,r3
- 590 0172 1B78     	 ldrb r3,[r3]
- 591 0174 244A     	 ldr r2,.L27
- 592 0176 1421     	 mov r1,#20
- 593 0178 D154     	 strb r1,[r2,r3]
- 594              	.L19:
+ 585              	 .loc 3 74 0
+ 586 0160 1723     	 mov r3,#23
+ 587 0162 FB18     	 add r3,r7,r3
+ 588 0164 1B78     	 ldrb r3,[r3]
+ 589 0166 824A     	 ldr r2,.L27
+ 590 0168 D35C     	 ldrb r3,[r2,r3]
+ 591 016a 142B     	 cmp r3,#20
+ 592 016c 05D9     	 bls .L19
+ 593              	 .loc 3 74 0 is_stmt 0 discriminator 1
+ 594 016e 1723     	 mov r3,#23
+ 595 0170 FB18     	 add r3,r7,r3
+ 596 0172 1B78     	 ldrb r3,[r3]
+ 597 0174 7E4A     	 ldr r2,.L27
+ 598 0176 1421     	 mov r1,#20
+ 599 0178 D154     	 strb r1,[r2,r3]
+ 600              	.L19:
   73:../Ultrasonic_Collision_Avoidance.c **** 		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i
- 595              	 .loc 3 73 0 is_stmt 1 discriminator 2
- 596 017a 1723     	 mov r3,#23
- 597 017c FB18     	 add r3,r7,r3
- 598 017e 1A78     	 ldrb r2,[r3]
- 599 0180 1723     	 mov r3,#23
- 600 0182 FB18     	 add r3,r7,r3
- 601 0184 0132     	 add r2,r2,#1
- 602 0186 1A70     	 strb r2,[r3]
- 603              	.L18:
+ 601              	 .loc 3 73 0 is_stmt 1 discriminator 2
+ 602 017a 1723     	 mov r3,#23
+ 603 017c FB18     	 add r3,r7,r3
+ 604 017e 1A78     	 ldrb r2,[r3]
+ 605 0180 1723     	 mov r3,#23
+ 606 0182 FB18     	 add r3,r7,r3
+ 607 0184 0132     	 add r2,r2,#1
+ 608 0186 1A70     	 strb r2,[r3]
+ 609              	.L18:
   73:../Ultrasonic_Collision_Avoidance.c **** 		if( Ultrsonic_data_invaildcounter[i] > ULRTA_NUM_NO_DATA_INVALID) Ultrsonic_data_invaildcounter[i
- 604              	 .loc 3 73 0 is_stmt 0 discriminator 1
- 605 0188 1723     	 mov r3,#23
- 606 018a FB18     	 add r3,r7,r3
- 607 018c 1B78     	 ldrb r3,[r3]
- 608 018e 022B     	 cmp r3,#2
- 609 0190 E6D9     	 bls .L20
- 610              	.LBE2:
+ 610              	 .loc 3 73 0 is_stmt 0 discriminator 1
+ 611 0188 1723     	 mov r3,#23
+ 612 018a FB18     	 add r3,r7,r3
+ 613 018c 1B78     	 ldrb r3,[r3]
+ 614 018e 022B     	 cmp r3,#2
+ 615 0190 E6D9     	 bls .L20
+ 616              	.LBE2:
   75:../Ultrasonic_Collision_Avoidance.c **** 	}
   76:../Ultrasonic_Collision_Avoidance.c **** 
   77:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[0] < ULRTA_NUM_NO_DATA_INVALID ){
- 611              	 .loc 3 77 0 is_stmt 1
- 612 0192 1D4B     	 ldr r3,.L27
- 613 0194 1B78     	 ldrb r3,[r3]
- 614 0196 132B     	 cmp r3,#19
- 615 0198 0AD8     	 bhi .L21
+ 617              	 .loc 3 77 0 is_stmt 1
+ 618 0192 774B     	 ldr r3,.L27
+ 619 0194 1B78     	 ldrb r3,[r3]
+ 620 0196 132B     	 cmp r3,#19
+ 621 0198 11D8     	 bhi .L21
   78:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.angle = 0;
- 616              	 .loc 3 78 0
- 617 019a 234B     	 ldr r3,.L27+32
- 618 019c 0022     	 mov r2,#0
- 619 019e 9A60     	 str r2,[r3,#8]
+ 622              	 .loc 3 78 0
+ 623 019a 7D4B     	 ldr r3,.L27+32
+ 624 019c 0022     	 mov r2,#0
+ 625 019e 9A60     	 str r2,[r3,#8]
   79:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.distance = Ultra_m_C;
- 620              	 .loc 3 79 0
- 621 01a0 1B4B     	 ldr r3,.L27+8
- 622 01a2 1A68     	 ldr r2,[r3]
- 623 01a4 204B     	 ldr r3,.L27+32
- 624 01a6 5A60     	 str r2,[r3,#4]
+ 626              	 .loc 3 79 0
+ 627 01a0 754B     	 ldr r3,.L27+8
+ 628 01a2 1A68     	 ldr r2,[r3]
+ 629 01a4 7A4B     	 ldr r3,.L27+32
+ 630 01a6 5A60     	 str r2,[r3,#4]
   80:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.isValid = 1;
- 625              	 .loc 3 80 0
- 626 01a8 1F4B     	 ldr r3,.L27+32
- 627 01aa 0122     	 mov r2,#1
- 628 01ac 1A70     	 strb r2,[r3]
- 629 01ae 02E0     	 b .L22
- 630              	.L21:
-  81:../Ultrasonic_Collision_Avoidance.c **** 	}
-  82:../Ultrasonic_Collision_Avoidance.c **** 	else Obstacel_F.isValid = 0;
- 631              	 .loc 3 82 0
- 632 01b0 1D4B     	 ldr r3,.L27+32
- 633 01b2 0022     	 mov r2,#0
- 634 01b4 1A70     	 strb r2,[r3]
- 635              	.L22:
-  83:../Ultrasonic_Collision_Avoidance.c **** 
-  84:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[1] < ULRTA_NUM_NO_DATA_INVALID ){
- 636              	 .loc 3 84 0
- 637 01b6 144B     	 ldr r3,.L27
- 638 01b8 5B78     	 ldrb r3,[r3,#1]
- 639 01ba 132B     	 cmp r3,#19
- 640 01bc 0BD8     	 bhi .L23
-  85:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.angle = Steering_Angles[0];
- 641              	 .loc 3 85 0
- 642 01be 154B     	 ldr r3,.L27+12
- 643 01c0 1A68     	 ldr r2,[r3]
- 644 01c2 1A4B     	 ldr r3,.L27+36
- 645 01c4 9A60     	 str r2,[r3,#8]
-  86:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.distance = Ultra_m_L;
- 646              	 .loc 3 86 0
- 647 01c6 154B     	 ldr r3,.L27+20
- 648 01c8 1A68     	 ldr r2,[r3]
- 649 01ca 184B     	 ldr r3,.L27+36
- 650 01cc 5A60     	 str r2,[r3,#4]
-  87:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.isValid = 1;
- 651              	 .loc 3 87 0
- 652 01ce 174B     	 ldr r3,.L27+36
- 653 01d0 0122     	 mov r2,#1
- 654 01d2 1A70     	 strb r2,[r3]
- 655 01d4 02E0     	 b .L24
- 656              	.L23:
-  88:../Ultrasonic_Collision_Avoidance.c **** 	}
-  89:../Ultrasonic_Collision_Avoidance.c **** 	else Obstacel_L.isValid = 0;
- 657              	 .loc 3 89 0
- 658 01d6 154B     	 ldr r3,.L27+36
- 659 01d8 0022     	 mov r2,#0
- 660 01da 1A70     	 strb r2,[r3]
- 661              	.L24:
-  90:../Ultrasonic_Collision_Avoidance.c **** 
-  91:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[2] < ULRTA_NUM_NO_DATA_INVALID ){
- 662              	 .loc 3 91 0
- 663 01dc 0A4B     	 ldr r3,.L27
- 664 01de 9B78     	 ldrb r3,[r3,#2]
- 665 01e0 132B     	 cmp r3,#19
- 666 01e2 0BD8     	 bhi .L25
-  92:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.angle = Steering_Angles[1];
- 667              	 .loc 3 92 0
- 668 01e4 0B4B     	 ldr r3,.L27+12
- 669 01e6 5A68     	 ldr r2,[r3,#4]
- 670 01e8 114B     	 ldr r3,.L27+40
- 671 01ea 9A60     	 str r2,[r3,#8]
-  93:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.distance = Ultra_m_R;
- 672              	 .loc 3 93 0
- 673 01ec 0D4B     	 ldr r3,.L27+28
- 674 01ee 1A68     	 ldr r2,[r3]
- 675 01f0 0F4B     	 ldr r3,.L27+40
- 676 01f2 5A60     	 str r2,[r3,#4]
-  94:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.isValid = 1;
- 677              	 .loc 3 94 0
- 678 01f4 0E4B     	 ldr r3,.L27+40
- 679 01f6 0122     	 mov r2,#1
- 680 01f8 1A70     	 strb r2,[r3]
- 681 01fa 02E0     	 b .L9
- 682              	.L25:
-  95:../Ultrasonic_Collision_Avoidance.c **** 	}
-  96:../Ultrasonic_Collision_Avoidance.c **** 	else Obstacel_R.isValid = 0;
- 683              	 .loc 3 96 0
- 684 01fc 0C4B     	 ldr r3,.L27+40
- 685 01fe 0022     	 mov r2,#0
- 686 0200 1A70     	 strb r2,[r3]
- 687              	.L9:
-  97:../Ultrasonic_Collision_Avoidance.c **** }
- 688              	 .loc 3 97 0
- 689 0202 BD46     	 mov sp,r7
- 690 0204 07B0     	 add sp,sp,#28
- 691              	 
- 692 0206 90BD     	 pop {r4,r7,pc}
- 693              	.L28:
- 694              	 .align 2
- 695              	.L27:
- 696 0208 00000000 	 .word Ultrsonic_data_invaildcounter
- 697 020c 0000C842 	 .word 1120403456
- 698 0210 00000000 	 .word Ultra_m_C
- 699 0214 00000000 	 .word Steering_Angles
- 700 0218 00000000 	 .word obstructed_L
- 701 021c 00000000 	 .word Ultra_m_L
- 702 0220 00000000 	 .word obstructed_R
- 703 0224 00000000 	 .word Ultra_m_R
- 704 0228 00000000 	 .word Obstacel_F
- 705 022c 00000000 	 .word Obstacel_L
- 706 0230 00000000 	 .word Obstacel_R
- 707              	 .cfi_endproc
- 708              	.LFE224:
- 710              	 .global __aeabi_fcmpgt
- 711              	 .global __aeabi_fcmplt
- 712              	 .section .text.Ultrasoinc_Obstructet_Test,"ax",%progbits
- 713              	 .align 2
- 714              	 .global Ultrasoinc_Obstructet_Test
- 715              	 .code 16
- 716              	 .thumb_func
- 718              	Ultrasoinc_Obstructet_Test:
- 719              	.LFB225:
-  98:../Ultrasonic_Collision_Avoidance.c **** 
-  99:../Ultrasonic_Collision_Avoidance.c **** 
- 100:../Ultrasonic_Collision_Avoidance.c **** /*
- 101:../Ultrasonic_Collision_Avoidance.c **** uint8_t Ultrasoinc_Obstructet_Test(float Angle){
- 102:../Ultrasonic_Collision_Avoidance.c **** 	uint8_t i;
- 103:../Ultrasonic_Collision_Avoidance.c **** 	for(i = 0; i < 3; i++){ // if rotate around multipel times
- 104:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
- 105:../Ultrasonic_Collision_Avoidance.c **** 			if((Angle - (POS_OBSTRUCTED_ANGLE_MIN + (i * 360))) * (Angle - (POS_OBSTRUCTED_ANGLE_MAX + (i * 
- 106:../Ultrasonic_Collision_Avoidance.c **** 				return 1;
- 107:../Ultrasonic_Collision_Avoidance.c **** 			}
- 108:../Ultrasonic_Collision_Avoidance.c **** 		}
- 109:../Ultrasonic_Collision_Avoidance.c **** 
- 110:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle < 0){
- 111:../Ultrasonic_Collision_Avoidance.c **** 			if((Angle - (NEG_OBSTRUCTED_ANGLE_MIN - (i * 360))) * (Angle - (NEG_OBSTRUCTED_ANGLE_MAX - (i * 
- 112:../Ultrasonic_Collision_Avoidance.c **** 						return 1;
- 113:../Ultrasonic_Collision_Avoidance.c **** 			}
- 114:../Ultrasonic_Collision_Avoidance.c **** 		}
- 115:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 631              	 .loc 3 80 0
+ 632 01a8 794B     	 ldr r3,.L27+32
+ 633 01aa 0122     	 mov r2,#1
+ 634 01ac 1A70     	 strb r2,[r3]
+  81:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.vector[0] = Obstacel_F.distance;
+ 635              	 .loc 3 81 0
+ 636 01ae 784B     	 ldr r3,.L27+32
+ 637 01b0 5A68     	 ldr r2,[r3,#4]
+ 638 01b2 774B     	 ldr r3,.L27+32
+ 639 01b4 DA60     	 str r2,[r3,#12]
+  82:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.vector[1] = 0;
+ 640              	 .loc 3 82 0
+ 641 01b6 764B     	 ldr r3,.L27+32
+ 642 01b8 0022     	 mov r2,#0
+ 643 01ba 1A61     	 str r2,[r3,#16]
+ 644 01bc 02E0     	 b .L22
+ 645              	.L21:
+  83:../Ultrasonic_Collision_Avoidance.c **** 	}
+  84:../Ultrasonic_Collision_Avoidance.c **** 	else Obstacel_F.isValid = 0;
+ 646              	 .loc 3 84 0
+ 647 01be 744B     	 ldr r3,.L27+32
+ 648 01c0 0022     	 mov r2,#0
+ 649 01c2 1A70     	 strb r2,[r3]
+ 650              	.L22:
+  85:../Ultrasonic_Collision_Avoidance.c **** 
+  86:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[1] < ULRTA_NUM_NO_DATA_INVALID ){
+ 651              	 .loc 3 86 0
+ 652 01c4 6A4B     	 ldr r3,.L27
+ 653 01c6 5B78     	 ldrb r3,[r3,#1]
+ 654 01c8 132B     	 cmp r3,#19
+ 655 01ca 61D8     	 bhi .L23
+  87:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.angle = Steering_Angles[0];
+ 656              	 .loc 3 87 0
+ 657 01cc 6B4B     	 ldr r3,.L27+12
+ 658 01ce 1A68     	 ldr r2,[r3]
+ 659 01d0 704B     	 ldr r3,.L27+36
+ 660 01d2 9A60     	 str r2,[r3,#8]
+  88:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.distance = Ultra_m_L;
+ 661              	 .loc 3 88 0
+ 662 01d4 6B4B     	 ldr r3,.L27+20
+ 663 01d6 1A68     	 ldr r2,[r3]
+ 664 01d8 6E4B     	 ldr r3,.L27+36
+ 665 01da 5A60     	 str r2,[r3,#4]
+  89:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.isValid = 1;
+ 666              	 .loc 3 89 0
+ 667 01dc 6D4B     	 ldr r3,.L27+36
+ 668 01de 0122     	 mov r2,#1
+ 669 01e0 1A70     	 strb r2,[r3]
+  90:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.vector[0] = Obstacel_L.distance * cos(Obstacel_L.angle / RAD_TO_DEG);
+ 670              	 .loc 3 90 0
+ 671 01e2 6C4B     	 ldr r3,.L27+36
+ 672 01e4 5B68     	 ldr r3,[r3,#4]
+ 673 01e6 181C     	 add r0,r3,#0
+ 674 01e8 FFF7FEFF 	 bl __aeabi_f2d
+ 675 01ec 051C     	 mov r5,r0
+ 676 01ee 0E1C     	 mov r6,r1
+ 677 01f0 684B     	 ldr r3,.L27+36
+ 678 01f2 9B68     	 ldr r3,[r3,#8]
+ 679 01f4 181C     	 add r0,r3,#0
+ 680 01f6 FFF7FEFF 	 bl __aeabi_f2d
+ 681 01fa 031C     	 mov r3,r0
+ 682 01fc 0C1C     	 mov r4,r1
+ 683 01fe 181C     	 mov r0,r3
+ 684 0200 211C     	 mov r1,r4
+ 685 0202 654A     	 ldr r2,.L27+40
+ 686 0204 654B     	 ldr r3,.L27+44
+ 687 0206 FFF7FEFF 	 bl __aeabi_ddiv
+ 688 020a 031C     	 mov r3,r0
+ 689 020c 0C1C     	 mov r4,r1
+ 690 020e 181C     	 mov r0,r3
+ 691 0210 211C     	 mov r1,r4
+ 692 0212 FFF7FEFF 	 bl cos
+ 693 0216 031C     	 mov r3,r0
+ 694 0218 0C1C     	 mov r4,r1
+ 695 021a 281C     	 mov r0,r5
+ 696 021c 311C     	 mov r1,r6
+ 697 021e 1A1C     	 mov r2,r3
+ 698 0220 231C     	 mov r3,r4
+ 699 0222 FFF7FEFF 	 bl __aeabi_dmul
+ 700 0226 031C     	 mov r3,r0
+ 701 0228 0C1C     	 mov r4,r1
+ 702 022a 181C     	 mov r0,r3
+ 703 022c 211C     	 mov r1,r4
+ 704 022e FFF7FEFF 	 bl __aeabi_d2f
+ 705 0232 021C     	 add r2,r0,#0
+ 706 0234 574B     	 ldr r3,.L27+36
+ 707 0236 DA60     	 str r2,[r3,#12]
+  91:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.vector[1] = Obstacel_L.distance * sin(Obstacel_L.angle / RAD_TO_DEG);
+ 708              	 .loc 3 91 0
+ 709 0238 564B     	 ldr r3,.L27+36
+ 710 023a 5B68     	 ldr r3,[r3,#4]
+ 711 023c 181C     	 add r0,r3,#0
+ 712 023e FFF7FEFF 	 bl __aeabi_f2d
+ 713 0242 051C     	 mov r5,r0
+ 714 0244 0E1C     	 mov r6,r1
+ 715 0246 534B     	 ldr r3,.L27+36
+ 716 0248 9B68     	 ldr r3,[r3,#8]
+ 717 024a 181C     	 add r0,r3,#0
+ 718 024c FFF7FEFF 	 bl __aeabi_f2d
+ 719 0250 031C     	 mov r3,r0
+ 720 0252 0C1C     	 mov r4,r1
+ 721 0254 181C     	 mov r0,r3
+ 722 0256 211C     	 mov r1,r4
+ 723 0258 4F4A     	 ldr r2,.L27+40
+ 724 025a 504B     	 ldr r3,.L27+44
+ 725 025c FFF7FEFF 	 bl __aeabi_ddiv
+ 726 0260 031C     	 mov r3,r0
+ 727 0262 0C1C     	 mov r4,r1
+ 728 0264 181C     	 mov r0,r3
+ 729 0266 211C     	 mov r1,r4
+ 730 0268 FFF7FEFF 	 bl sin
+ 731 026c 031C     	 mov r3,r0
+ 732 026e 0C1C     	 mov r4,r1
+ 733 0270 281C     	 mov r0,r5
+ 734 0272 311C     	 mov r1,r6
+ 735 0274 1A1C     	 mov r2,r3
+ 736 0276 231C     	 mov r3,r4
+ 737 0278 FFF7FEFF 	 bl __aeabi_dmul
+ 738 027c 031C     	 mov r3,r0
+ 739 027e 0C1C     	 mov r4,r1
+ 740 0280 181C     	 mov r0,r3
+ 741 0282 211C     	 mov r1,r4
+ 742 0284 FFF7FEFF 	 bl __aeabi_d2f
+ 743 0288 021C     	 add r2,r0,#0
+ 744 028a 424B     	 ldr r3,.L27+36
+ 745 028c 1A61     	 str r2,[r3,#16]
+ 746 028e 02E0     	 b .L24
+ 747              	.L23:
+  92:../Ultrasonic_Collision_Avoidance.c **** 
+  93:../Ultrasonic_Collision_Avoidance.c **** 	}
+  94:../Ultrasonic_Collision_Avoidance.c **** 	else Obstacel_L.isValid = 0;
+ 748              	 .loc 3 94 0
+ 749 0290 404B     	 ldr r3,.L27+36
+ 750 0292 0022     	 mov r2,#0
+ 751 0294 1A70     	 strb r2,[r3]
+ 752              	.L24:
+  95:../Ultrasonic_Collision_Avoidance.c **** 
+  96:../Ultrasonic_Collision_Avoidance.c **** 	if(Ultrsonic_data_invaildcounter[2] < ULRTA_NUM_NO_DATA_INVALID ){
+ 753              	 .loc 3 96 0
+ 754 0296 364B     	 ldr r3,.L27
+ 755 0298 9B78     	 ldrb r3,[r3,#2]
+ 756 029a 132B     	 cmp r3,#19
+ 757 029c 61D8     	 bhi .L25
+  97:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.angle = Steering_Angles[1];
+ 758              	 .loc 3 97 0
+ 759 029e 374B     	 ldr r3,.L27+12
+ 760 02a0 5A68     	 ldr r2,[r3,#4]
+ 761 02a2 3F4B     	 ldr r3,.L27+48
+ 762 02a4 9A60     	 str r2,[r3,#8]
+  98:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.distance = Ultra_m_R;
+ 763              	 .loc 3 98 0
+ 764 02a6 394B     	 ldr r3,.L27+28
+ 765 02a8 1A68     	 ldr r2,[r3]
+ 766 02aa 3D4B     	 ldr r3,.L27+48
+ 767 02ac 5A60     	 str r2,[r3,#4]
+  99:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.isValid = 1;
+ 768              	 .loc 3 99 0
+ 769 02ae 3C4B     	 ldr r3,.L27+48
+ 770 02b0 0122     	 mov r2,#1
+ 771 02b2 1A70     	 strb r2,[r3]
+ 100:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.vector[0] = Obstacel_R.distance * cos(Obstacel_R.angle / RAD_TO_DEG);
+ 772              	 .loc 3 100 0
+ 773 02b4 3A4B     	 ldr r3,.L27+48
+ 774 02b6 5B68     	 ldr r3,[r3,#4]
+ 775 02b8 181C     	 add r0,r3,#0
+ 776 02ba FFF7FEFF 	 bl __aeabi_f2d
+ 777 02be 051C     	 mov r5,r0
+ 778 02c0 0E1C     	 mov r6,r1
+ 779 02c2 374B     	 ldr r3,.L27+48
+ 780 02c4 9B68     	 ldr r3,[r3,#8]
+ 781 02c6 181C     	 add r0,r3,#0
+ 782 02c8 FFF7FEFF 	 bl __aeabi_f2d
+ 783 02cc 031C     	 mov r3,r0
+ 784 02ce 0C1C     	 mov r4,r1
+ 785 02d0 181C     	 mov r0,r3
+ 786 02d2 211C     	 mov r1,r4
+ 787 02d4 304A     	 ldr r2,.L27+40
+ 788 02d6 314B     	 ldr r3,.L27+44
+ 789 02d8 FFF7FEFF 	 bl __aeabi_ddiv
+ 790 02dc 031C     	 mov r3,r0
+ 791 02de 0C1C     	 mov r4,r1
+ 792 02e0 181C     	 mov r0,r3
+ 793 02e2 211C     	 mov r1,r4
+ 794 02e4 FFF7FEFF 	 bl cos
+ 795 02e8 031C     	 mov r3,r0
+ 796 02ea 0C1C     	 mov r4,r1
+ 797 02ec 281C     	 mov r0,r5
+ 798 02ee 311C     	 mov r1,r6
+ 799 02f0 1A1C     	 mov r2,r3
+ 800 02f2 231C     	 mov r3,r4
+ 801 02f4 FFF7FEFF 	 bl __aeabi_dmul
+ 802 02f8 031C     	 mov r3,r0
+ 803 02fa 0C1C     	 mov r4,r1
+ 804 02fc 181C     	 mov r0,r3
+ 805 02fe 211C     	 mov r1,r4
+ 806 0300 FFF7FEFF 	 bl __aeabi_d2f
+ 807 0304 021C     	 add r2,r0,#0
+ 808 0306 264B     	 ldr r3,.L27+48
+ 809 0308 DA60     	 str r2,[r3,#12]
+ 101:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.vector[1] = Obstacel_R.distance * sin(Obstacel_R.angle / RAD_TO_DEG);
+ 810              	 .loc 3 101 0
+ 811 030a 254B     	 ldr r3,.L27+48
+ 812 030c 5B68     	 ldr r3,[r3,#4]
+ 813 030e 181C     	 add r0,r3,#0
+ 814 0310 FFF7FEFF 	 bl __aeabi_f2d
+ 815 0314 051C     	 mov r5,r0
+ 816 0316 0E1C     	 mov r6,r1
+ 817 0318 214B     	 ldr r3,.L27+48
+ 818 031a 9B68     	 ldr r3,[r3,#8]
+ 819 031c 181C     	 add r0,r3,#0
+ 820 031e FFF7FEFF 	 bl __aeabi_f2d
+ 821 0322 031C     	 mov r3,r0
+ 822 0324 0C1C     	 mov r4,r1
+ 823 0326 181C     	 mov r0,r3
+ 824 0328 211C     	 mov r1,r4
+ 825 032a 1B4A     	 ldr r2,.L27+40
+ 826 032c 1B4B     	 ldr r3,.L27+44
+ 827 032e FFF7FEFF 	 bl __aeabi_ddiv
+ 828 0332 031C     	 mov r3,r0
+ 829 0334 0C1C     	 mov r4,r1
+ 830 0336 181C     	 mov r0,r3
+ 831 0338 211C     	 mov r1,r4
+ 832 033a FFF7FEFF 	 bl sin
+ 833 033e 031C     	 mov r3,r0
+ 834 0340 0C1C     	 mov r4,r1
+ 835 0342 281C     	 mov r0,r5
+ 836 0344 311C     	 mov r1,r6
+ 837 0346 1A1C     	 mov r2,r3
+ 838 0348 231C     	 mov r3,r4
+ 839 034a FFF7FEFF 	 bl __aeabi_dmul
+ 840 034e 031C     	 mov r3,r0
+ 841 0350 0C1C     	 mov r4,r1
+ 842 0352 181C     	 mov r0,r3
+ 843 0354 211C     	 mov r1,r4
+ 844 0356 FFF7FEFF 	 bl __aeabi_d2f
+ 845 035a 021C     	 add r2,r0,#0
+ 846 035c 104B     	 ldr r3,.L27+48
+ 847 035e 1A61     	 str r2,[r3,#16]
+ 848 0360 02E0     	 b .L9
+ 849              	.L25:
+ 102:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 103:../Ultrasonic_Collision_Avoidance.c **** 	else Obstacel_R.isValid = 0;
+ 850              	 .loc 3 103 0
+ 851 0362 0F4B     	 ldr r3,.L27+48
+ 852 0364 0022     	 mov r2,#0
+ 853 0366 1A70     	 strb r2,[r3]
+ 854              	.L9:
+ 104:../Ultrasonic_Collision_Avoidance.c **** }
+ 855              	 .loc 3 104 0
+ 856 0368 BD46     	 mov sp,r7
+ 857 036a 07B0     	 add sp,sp,#28
+ 858              	 
+ 859 036c F0BD     	 pop {r4,r5,r6,r7,pc}
+ 860              	.L28:
+ 861 036e C046     	 .align 2
+ 862              	.L27:
+ 863 0370 00000000 	 .word Ultrsonic_data_invaildcounter
+ 864 0374 0000C842 	 .word 1120403456
+ 865 0378 00000000 	 .word Ultra_m_C
+ 866 037c 00000000 	 .word Steering_Angles
+ 867 0380 00000000 	 .word obstructed_L
+ 868 0384 00000000 	 .word Ultra_m_L
+ 869 0388 00000000 	 .word obstructed_R
+ 870 038c 00000000 	 .word Ultra_m_R
+ 871 0390 00000000 	 .word Obstacel_F
+ 872 0394 00000000 	 .word Obstacel_L
+ 873 0398 C7F48425 	 .word 629470407
+ 874 039c 1EA64C40 	 .word 1078765086
+ 875 03a0 00000000 	 .word Obstacel_R
+ 876              	 .cfi_endproc
+ 877              	.LFE224:
+ 879              	 .global __aeabi_fcmpgt
+ 880              	 .global __aeabi_fcmplt
+ 881              	 .section .text.Ultrasoinc_Obstructet_Test,"ax",%progbits
+ 882              	 .align 2
+ 883              	 .global Ultrasoinc_Obstructet_Test
+ 884              	 .code 16
+ 885              	 .thumb_func
+ 887              	Ultrasoinc_Obstructet_Test:
+ 888              	.LFB225:
+ 105:../Ultrasonic_Collision_Avoidance.c **** 
+ 106:../Ultrasonic_Collision_Avoidance.c **** 
+ 107:../Ultrasonic_Collision_Avoidance.c **** /*
+ 108:../Ultrasonic_Collision_Avoidance.c **** uint8_t Ultrasoinc_Obstructet_Test(float Angle){
+ 109:../Ultrasonic_Collision_Avoidance.c **** 	uint8_t i;
+ 110:../Ultrasonic_Collision_Avoidance.c **** 	for(i = 0; i < 3; i++){ // if rotate around multipel times
+ 111:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
+ 112:../Ultrasonic_Collision_Avoidance.c **** 			if((Angle - (POS_OBSTRUCTED_ANGLE_MIN + (i * 360))) * (Angle - (POS_OBSTRUCTED_ANGLE_MAX + (i * 
+ 113:../Ultrasonic_Collision_Avoidance.c **** 				return 1;
+ 114:../Ultrasonic_Collision_Avoidance.c **** 			}
+ 115:../Ultrasonic_Collision_Avoidance.c **** 		}
  116:../Ultrasonic_Collision_Avoidance.c **** 
- 117:../Ultrasonic_Collision_Avoidance.c **** 	return 0;
- 118:../Ultrasonic_Collision_Avoidance.c **** }
- 119:../Ultrasonic_Collision_Avoidance.c **** */
- 120:../Ultrasonic_Collision_Avoidance.c **** 
- 121:../Ultrasonic_Collision_Avoidance.c **** 
- 122:../Ultrasonic_Collision_Avoidance.c **** uint8_t Ultrasoinc_Obstructet_Test(float Angle){
- 720              	 .loc 3 122 0
- 721              	 .cfi_startproc
- 722 0000 80B5     	 push {r7,lr}
- 723              	.LCFI21:
- 724              	 .cfi_def_cfa_offset 8
- 725              	 .cfi_offset 7,-8
- 726              	 .cfi_offset 14,-4
- 727 0002 82B0     	 sub sp,sp,#8
- 728              	.LCFI22:
- 729              	 .cfi_def_cfa_offset 16
- 730 0004 00AF     	 add r7,sp,#0
- 731              	.LCFI23:
- 732              	 .cfi_def_cfa_register 7
- 733 0006 7860     	 str r0,[r7,#4]
- 123:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
- 734              	 .loc 3 123 0
- 735 0008 7868     	 ldr r0,[r7,#4]
- 736 000a 0021     	 mov r1,#0
- 737 000c FFF7FEFF 	 bl __aeabi_fcmpgt
- 738 0010 031E     	 sub r3,r0,#0
- 739 0012 09D0     	 beq .L30
- 124:../Ultrasonic_Collision_Avoidance.c **** 			if(within_MAX_MIN(Angle, POS_OBSTRUCTED_ANGLE_MAX , POS_OBSTRUCTED_ANGLE_MIN)){
- 740              	 .loc 3 124 0
- 741 0014 7B68     	 ldr r3,[r7,#4]
- 742 0016 0F49     	 ldr r1,.L37
- 743 0018 0F4A     	 ldr r2,.L37+4
- 744 001a 181C     	 add r0,r3,#0
- 745 001c FFF7FEFF 	 bl within_MAX_MIN
- 746 0020 031E     	 sub r3,r0,#0
- 747 0022 01D0     	 beq .L30
- 125:../Ultrasonic_Collision_Avoidance.c **** 				return 1;
- 748              	 .loc 3 125 0
- 749 0024 0123     	 mov r3,#1
- 750 0026 10E0     	 b .L32
- 751              	.L30:
- 126:../Ultrasonic_Collision_Avoidance.c **** 			}
- 127:../Ultrasonic_Collision_Avoidance.c **** 		}
+ 117:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle < 0){
+ 118:../Ultrasonic_Collision_Avoidance.c **** 			if((Angle - (NEG_OBSTRUCTED_ANGLE_MIN - (i * 360))) * (Angle - (NEG_OBSTRUCTED_ANGLE_MAX - (i * 
+ 119:../Ultrasonic_Collision_Avoidance.c **** 						return 1;
+ 120:../Ultrasonic_Collision_Avoidance.c **** 			}
+ 121:../Ultrasonic_Collision_Avoidance.c **** 		}
+ 122:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 123:../Ultrasonic_Collision_Avoidance.c **** 
+ 124:../Ultrasonic_Collision_Avoidance.c **** 	return 0;
+ 125:../Ultrasonic_Collision_Avoidance.c **** }
+ 126:../Ultrasonic_Collision_Avoidance.c **** */
+ 127:../Ultrasonic_Collision_Avoidance.c **** 
  128:../Ultrasonic_Collision_Avoidance.c **** 
- 129:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle < 0){
- 752              	 .loc 3 129 0
- 753 0028 7868     	 ldr r0,[r7,#4]
- 754 002a 0021     	 mov r1,#0
- 755 002c FFF7FEFF 	 bl __aeabi_fcmplt
- 756 0030 031E     	 sub r3,r0,#0
- 757 0032 09D0     	 beq .L33
- 130:../Ultrasonic_Collision_Avoidance.c **** 			if(within_MAX_MIN(Angle, NEG_OBSTRUCTED_ANGLE_MIN , NEG_OBSTRUCTED_ANGLE_MAX)){
- 758              	 .loc 3 130 0
- 759 0034 7B68     	 ldr r3,[r7,#4]
- 760 0036 0949     	 ldr r1,.L37+8
- 761 0038 094A     	 ldr r2,.L37+12
- 762 003a 181C     	 add r0,r3,#0
- 763 003c FFF7FEFF 	 bl within_MAX_MIN
- 764 0040 031E     	 sub r3,r0,#0
- 765 0042 01D0     	 beq .L33
- 131:../Ultrasonic_Collision_Avoidance.c **** 				return 1;
- 766              	 .loc 3 131 0
- 767 0044 0123     	 mov r3,#1
- 768 0046 00E0     	 b .L32
- 769              	.L33:
- 132:../Ultrasonic_Collision_Avoidance.c **** 			}
- 133:../Ultrasonic_Collision_Avoidance.c **** 		}
- 134:../Ultrasonic_Collision_Avoidance.c **** 
- 135:../Ultrasonic_Collision_Avoidance.c **** 	return 0;
- 770              	 .loc 3 135 0
- 771 0048 0023     	 mov r3,#0
- 772              	.L32:
- 136:../Ultrasonic_Collision_Avoidance.c **** }
- 773              	 .loc 3 136 0
- 774 004a 181C     	 mov r0,r3
- 775 004c BD46     	 mov sp,r7
- 776 004e 02B0     	 add sp,sp,#8
- 777              	 
- 778 0050 80BD     	 pop {r7,pc}
- 779              	.L38:
- 780 0052 C046     	 .align 2
- 781              	.L37:
- 782 0054 00005243 	 .word 1129447424
- 783 0058 00004842 	 .word 1112014848
- 784 005c 000016C3 	 .word -1021968384
- 785 0060 00009BC3 	 .word -1013252096
- 786              	 .cfi_endproc
- 787              	.LFE225:
- 789              	 .global __aeabi_fcmpeq
- 790              	 .global __aeabi_fsub
- 791              	 .global __aeabi_fmul
- 792              	 .section .text.Collision_voidance,"ax",%progbits
- 793              	 .align 2
- 794              	 .global Collision_voidance
- 795              	 .code 16
- 796              	 .thumb_func
- 798              	Collision_voidance:
- 799              	.LFB226:
- 137:../Ultrasonic_Collision_Avoidance.c **** 
- 138:../Ultrasonic_Collision_Avoidance.c **** void Collision_voidance(){
- 800              	 .loc 3 138 0
- 801              	 .cfi_startproc
- 802 0000 90B5     	 push {r4,r7,lr}
- 803              	.LCFI24:
- 804              	 .cfi_def_cfa_offset 12
- 805              	 .cfi_offset 4,-12
- 806              	 .cfi_offset 7,-8
- 807              	 .cfi_offset 14,-4
- 808 0002 83B0     	 sub sp,sp,#12
- 809              	.LCFI25:
- 810              	 .cfi_def_cfa_offset 24
- 811 0004 00AF     	 add r7,sp,#0
- 812              	.LCFI26:
- 813              	 .cfi_def_cfa_register 7
- 139:../Ultrasonic_Collision_Avoidance.c **** 	if(init == 0){
- 814              	 .loc 3 139 0
- 815 0006 4F4B     	 ldr r3,.L57
- 816 0008 1B78     	 ldrb r3,[r3]
- 817 000a 002B     	 cmp r3,#0
- 818 000c 0BD1     	 bne .L40
- 140:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.Sensor = FRONT_;
- 819              	 .loc 3 140 0
- 820 000e 4E4B     	 ldr r3,.L57+4
- 821 0010 0022     	 mov r2,#0
- 822 0012 5A70     	 strb r2,[r3,#1]
- 141:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.Sensor = LEFT;
- 823              	 .loc 3 141 0
- 824 0014 4D4B     	 ldr r3,.L57+8
- 825 0016 0122     	 mov r2,#1
- 826 0018 5A70     	 strb r2,[r3,#1]
- 142:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.Sensor = RIGHT;
- 827              	 .loc 3 142 0
- 828 001a 4D4B     	 ldr r3,.L57+12
- 829 001c 0222     	 mov r2,#2
- 830 001e 5A70     	 strb r2,[r3,#1]
- 143:../Ultrasonic_Collision_Avoidance.c **** 		init = 1;
- 831              	 .loc 3 143 0
- 832 0020 484B     	 ldr r3,.L57
- 833 0022 0122     	 mov r2,#1
- 834 0024 1A70     	 strb r2,[r3]
- 835              	.L40:
- 144:../Ultrasonic_Collision_Avoidance.c **** 	}
- 145:../Ultrasonic_Collision_Avoidance.c **** 
- 146:../Ultrasonic_Collision_Avoidance.c **** 
- 147:../Ultrasonic_Collision_Avoidance.c **** 
- 148:../Ultrasonic_Collision_Avoidance.c **** 	// check if reciveing from Ulatrasoic sesnors node
- 149:../Ultrasonic_Collision_Avoidance.c **** 	CAN_Ultrasonic_No_messasge_count ++;
- 836              	 .loc 3 149 0
- 837 0026 4B4B     	 ldr r3,.L57+16
- 838 0028 1B78     	 ldrb r3,[r3]
- 839 002a DBB2     	 uxtb r3,r3
- 840 002c 0133     	 add r3,r3,#1
- 841 002e DAB2     	 uxtb r2,r3
- 842 0030 484B     	 ldr r3,.L57+16
- 843 0032 1A70     	 strb r2,[r3]
- 150:../Ultrasonic_Collision_Avoidance.c **** 	if(CAN_Ultrasonic_No_messasge_count > 200) {
- 844              	 .loc 3 150 0
- 845 0034 474B     	 ldr r3,.L57+16
- 846 0036 1B78     	 ldrb r3,[r3]
- 847 0038 DBB2     	 uxtb r3,r3
- 848 003a C82B     	 cmp r3,#200
- 849 003c 03D9     	 bls .L41
- 151:../Ultrasonic_Collision_Avoidance.c **** 		CAN_Ultrasonic_No_messasge_count = 200;
- 850              	 .loc 3 151 0
- 851 003e 454B     	 ldr r3,.L57+16
- 852 0040 C822     	 mov r2,#200
- 853 0042 1A70     	 strb r2,[r3]
- 152:../Ultrasonic_Collision_Avoidance.c **** 		return;
- 854              	 .loc 3 152 0
- 855 0044 7BE0     	 b .L39
- 856              	.L41:
- 153:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 129:../Ultrasonic_Collision_Avoidance.c **** uint8_t Ultrasoinc_Obstructet_Test(float Angle){
+ 889              	 .loc 3 129 0
+ 890              	 .cfi_startproc
+ 891 0000 80B5     	 push {r7,lr}
+ 892              	.LCFI21:
+ 893              	 .cfi_def_cfa_offset 8
+ 894              	 .cfi_offset 7,-8
+ 895              	 .cfi_offset 14,-4
+ 896 0002 82B0     	 sub sp,sp,#8
+ 897              	.LCFI22:
+ 898              	 .cfi_def_cfa_offset 16
+ 899 0004 00AF     	 add r7,sp,#0
+ 900              	.LCFI23:
+ 901              	 .cfi_def_cfa_register 7
+ 902 0006 7860     	 str r0,[r7,#4]
+ 130:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle > 0){
+ 903              	 .loc 3 130 0
+ 904 0008 7868     	 ldr r0,[r7,#4]
+ 905 000a 0021     	 mov r1,#0
+ 906 000c FFF7FEFF 	 bl __aeabi_fcmpgt
+ 907 0010 031E     	 sub r3,r0,#0
+ 908 0012 09D0     	 beq .L30
+ 131:../Ultrasonic_Collision_Avoidance.c **** 			if(within_MAX_MIN(Angle, POS_OBSTRUCTED_ANGLE_MAX , POS_OBSTRUCTED_ANGLE_MIN)){
+ 909              	 .loc 3 131 0
+ 910 0014 7B68     	 ldr r3,[r7,#4]
+ 911 0016 0F49     	 ldr r1,.L37
+ 912 0018 0F4A     	 ldr r2,.L37+4
+ 913 001a 181C     	 add r0,r3,#0
+ 914 001c FFF7FEFF 	 bl within_MAX_MIN
+ 915 0020 031E     	 sub r3,r0,#0
+ 916 0022 01D0     	 beq .L30
+ 132:../Ultrasonic_Collision_Avoidance.c **** 				return 1;
+ 917              	 .loc 3 132 0
+ 918 0024 0123     	 mov r3,#1
+ 919 0026 10E0     	 b .L32
+ 920              	.L30:
+ 133:../Ultrasonic_Collision_Avoidance.c **** 			}
+ 134:../Ultrasonic_Collision_Avoidance.c **** 		}
+ 135:../Ultrasonic_Collision_Avoidance.c **** 
+ 136:../Ultrasonic_Collision_Avoidance.c **** 		if(Angle < 0){
+ 921              	 .loc 3 136 0
+ 922 0028 7868     	 ldr r0,[r7,#4]
+ 923 002a 0021     	 mov r1,#0
+ 924 002c FFF7FEFF 	 bl __aeabi_fcmplt
+ 925 0030 031E     	 sub r3,r0,#0
+ 926 0032 09D0     	 beq .L33
+ 137:../Ultrasonic_Collision_Avoidance.c **** 			if(within_MAX_MIN(Angle, NEG_OBSTRUCTED_ANGLE_MIN , NEG_OBSTRUCTED_ANGLE_MAX)){
+ 927              	 .loc 3 137 0
+ 928 0034 7B68     	 ldr r3,[r7,#4]
+ 929 0036 0949     	 ldr r1,.L37+8
+ 930 0038 094A     	 ldr r2,.L37+12
+ 931 003a 181C     	 add r0,r3,#0
+ 932 003c FFF7FEFF 	 bl within_MAX_MIN
+ 933 0040 031E     	 sub r3,r0,#0
+ 934 0042 01D0     	 beq .L33
+ 138:../Ultrasonic_Collision_Avoidance.c **** 				return 1;
+ 935              	 .loc 3 138 0
+ 936 0044 0123     	 mov r3,#1
+ 937 0046 00E0     	 b .L32
+ 938              	.L33:
+ 139:../Ultrasonic_Collision_Avoidance.c **** 			}
+ 140:../Ultrasonic_Collision_Avoidance.c **** 		}
+ 141:../Ultrasonic_Collision_Avoidance.c **** 
+ 142:../Ultrasonic_Collision_Avoidance.c **** 	return 0;
+ 939              	 .loc 3 142 0
+ 940 0048 0023     	 mov r3,#0
+ 941              	.L32:
+ 143:../Ultrasonic_Collision_Avoidance.c **** }
+ 942              	 .loc 3 143 0
+ 943 004a 181C     	 mov r0,r3
+ 944 004c BD46     	 mov sp,r7
+ 945 004e 02B0     	 add sp,sp,#8
+ 946              	 
+ 947 0050 80BD     	 pop {r7,pc}
+ 948              	.L38:
+ 949 0052 C046     	 .align 2
+ 950              	.L37:
+ 951 0054 00005243 	 .word 1129447424
+ 952 0058 00004842 	 .word 1112014848
+ 953 005c 000016C3 	 .word -1021968384
+ 954 0060 00009BC3 	 .word -1013252096
+ 955              	 .cfi_endproc
+ 956              	.LFE225:
+ 958              	 .global __aeabi_fcmpeq
+ 959              	 .global __aeabi_fsub
+ 960              	 .global __aeabi_fmul
+ 961              	 .section .text.Collision_voidance,"ax",%progbits
+ 962              	 .align 2
+ 963              	 .global Collision_voidance
+ 964              	 .code 16
+ 965              	 .thumb_func
+ 967              	Collision_voidance:
+ 968              	.LFB226:
+ 144:../Ultrasonic_Collision_Avoidance.c **** 
+ 145:../Ultrasonic_Collision_Avoidance.c **** void Collision_voidance(){
+ 969              	 .loc 3 145 0
+ 970              	 .cfi_startproc
+ 971 0000 90B5     	 push {r4,r7,lr}
+ 972              	.LCFI24:
+ 973              	 .cfi_def_cfa_offset 12
+ 974              	 .cfi_offset 4,-12
+ 975              	 .cfi_offset 7,-8
+ 976              	 .cfi_offset 14,-4
+ 977 0002 85B0     	 sub sp,sp,#20
+ 978              	.LCFI25:
+ 979              	 .cfi_def_cfa_offset 32
+ 980 0004 02AF     	 add r7,sp,#8
+ 981              	.LCFI26:
+ 982              	 .cfi_def_cfa 7,24
+ 146:../Ultrasonic_Collision_Avoidance.c **** 	if(init == 0){
+ 983              	 .loc 3 146 0
+ 984 0006 514B     	 ldr r3,.L57
+ 985 0008 1B78     	 ldrb r3,[r3]
+ 986 000a 002B     	 cmp r3,#0
+ 987 000c 0BD1     	 bne .L40
+ 147:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_F.Sensor = FRONT_;
+ 988              	 .loc 3 147 0
+ 989 000e 504B     	 ldr r3,.L57+4
+ 990 0010 0022     	 mov r2,#0
+ 991 0012 5A70     	 strb r2,[r3,#1]
+ 148:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_L.Sensor = LEFT;
+ 992              	 .loc 3 148 0
+ 993 0014 4F4B     	 ldr r3,.L57+8
+ 994 0016 0122     	 mov r2,#1
+ 995 0018 5A70     	 strb r2,[r3,#1]
+ 149:../Ultrasonic_Collision_Avoidance.c **** 		Obstacel_R.Sensor = RIGHT;
+ 996              	 .loc 3 149 0
+ 997 001a 4F4B     	 ldr r3,.L57+12
+ 998 001c 0222     	 mov r2,#2
+ 999 001e 5A70     	 strb r2,[r3,#1]
+ 150:../Ultrasonic_Collision_Avoidance.c **** 		init = 1;
+ 1000              	 .loc 3 150 0
+ 1001 0020 4A4B     	 ldr r3,.L57
+ 1002 0022 0122     	 mov r2,#1
+ 1003 0024 1A70     	 strb r2,[r3]
+ 1004              	.L40:
+ 151:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 152:../Ultrasonic_Collision_Avoidance.c **** 
+ 153:../Ultrasonic_Collision_Avoidance.c **** 
  154:../Ultrasonic_Collision_Avoidance.c **** 
- 155:../Ultrasonic_Collision_Avoidance.c **** 	Speed_reduction_ratio = 1;
- 857              	 .loc 3 155 0
- 858 0046 444B     	 ldr r3,.L57+20
- 859 0048 FE22     	 mov r2,#254
- 860 004a 9205     	 lsl r2,r2,#22
- 861 004c 1A60     	 str r2,[r3]
- 156:../Ultrasonic_Collision_Avoidance.c **** 	Speed_limit = MAX_Speed + 0.01; // + 0.01 to avoid float bs
- 862              	 .loc 3 156 0
- 863 004e 434B     	 ldr r3,.L57+24
- 864 0050 434A     	 ldr r2,.L57+28
- 865 0052 1A60     	 str r2,[r3]
- 157:../Ultrasonic_Collision_Avoidance.c **** 	new_Speed_limit = MAX_Speed;
- 866              	 .loc 3 157 0
- 867 0054 434B     	 ldr r3,.L57+32
- 868 0056 FE22     	 mov r2,#254
- 869 0058 9205     	 lsl r2,r2,#22
- 870 005a 1A60     	 str r2,[r3]
- 158:../Ultrasonic_Collision_Avoidance.c **** 
- 159:../Ultrasonic_Collision_Avoidance.c **** 
- 160:../Ultrasonic_Collision_Avoidance.c **** 	Obstacel_CA_check(Obstacel_F);
- 871              	 .loc 3 160 0
- 872 005c 3A4B     	 ldr r3,.L57+4
- 873 005e 1868     	 ldr r0,[r3]
- 874 0060 5968     	 ldr r1,[r3,#4]
- 875 0062 9A68     	 ldr r2,[r3,#8]
- 876 0064 FFF7FEFF 	 bl Obstacel_CA_check
- 161:../Ultrasonic_Collision_Avoidance.c **** 	//Obstacel_CA_check(Obstacel_L);
- 162:../Ultrasonic_Collision_Avoidance.c **** 	//Obstacel_CA_check(Obstacel_R);#
- 163:../Ultrasonic_Collision_Avoidance.c **** 
- 164:../Ultrasonic_Collision_Avoidance.c **** 	//CA aktive
- 165:../Ultrasonic_Collision_Avoidance.c **** 	if(Speed_reduction_ratio == 0) aktive_addition = 0.05 ;
- 877              	 .loc 3 165 0
- 878 0068 3B4B     	 ldr r3,.L57+20
- 879 006a 1B68     	 ldr r3,[r3]
- 880 006c 181C     	 add r0,r3,#0
- 881 006e 0021     	 mov r1,#0
- 882 0070 FFF7FEFF 	 bl __aeabi_fcmpeq
- 883 0074 031E     	 sub r3,r0,#0
- 884 0076 03D0     	 beq .L56
- 885              	 .loc 3 165 0 is_stmt 0 discriminator 1
- 886 0078 3B4B     	 ldr r3,.L57+36
- 887 007a 3C4A     	 ldr r2,.L57+40
- 888 007c 1A60     	 str r2,[r3]
- 889 007e 12E0     	 b .L45
- 890              	.L56:
- 166:../Ultrasonic_Collision_Avoidance.c **** 	else if(aktive_addition > 0) aktive_addition --;
- 891              	 .loc 3 166 0 is_stmt 1
- 892 0080 394B     	 ldr r3,.L57+36
- 893 0082 1B68     	 ldr r3,[r3]
- 894 0084 181C     	 add r0,r3,#0
- 895 0086 0021     	 mov r1,#0
- 896 0088 FFF7FEFF 	 bl __aeabi_fcmpgt
- 897 008c 031E     	 sub r3,r0,#0
- 898 008e 0AD0     	 beq .L45
- 899              	 .loc 3 166 0 is_stmt 0 discriminator 1
- 900 0090 354B     	 ldr r3,.L57+36
- 901 0092 1B68     	 ldr r3,[r3]
- 902 0094 181C     	 add r0,r3,#0
- 903 0096 FE21     	 mov r1,#254
- 904 0098 8905     	 lsl r1,r1,#22
- 905 009a FFF7FEFF 	 bl __aeabi_fsub
- 906 009e 031C     	 add r3,r0,#0
- 907 00a0 1A1C     	 add r2,r3,#0
- 908 00a2 314B     	 ldr r3,.L57+36
- 909 00a4 1A60     	 str r2,[r3]
- 910              	.L45:
- 167:../Ultrasonic_Collision_Avoidance.c **** 
- 168:../Ultrasonic_Collision_Avoidance.c **** 	if(Speed_limit < MAX_Speed){
- 911              	 .loc 3 168 0 is_stmt 1
- 912 00a6 2D4B     	 ldr r3,.L57+24
- 913 00a8 1B68     	 ldr r3,[r3]
- 914 00aa 181C     	 add r0,r3,#0
- 915 00ac FE21     	 mov r1,#254
- 916 00ae 8905     	 lsl r1,r1,#22
- 917 00b0 FFF7FEFF 	 bl __aeabi_fcmplt
- 918 00b4 031E     	 sub r3,r0,#0
- 919 00b6 13D0     	 beq .L47
- 169:../Ultrasonic_Collision_Avoidance.c **** 		if(Speeds[0] != 0) Speed_reduction_ratio = Speed_limit / Speeds[0];
- 920              	 .loc 3 169 0
- 921 00b8 2D4B     	 ldr r3,.L57+44
- 922 00ba 1B68     	 ldr r3,[r3]
- 923 00bc 181C     	 add r0,r3,#0
- 924 00be 0021     	 mov r1,#0
- 925 00c0 FFF7FEFF 	 bl __aeabi_fcmpeq
- 926 00c4 031E     	 sub r3,r0,#0
- 927 00c6 0BD1     	 bne .L47
- 928              	 .loc 3 169 0 is_stmt 0 discriminator 1
- 929 00c8 244B     	 ldr r3,.L57+24
- 930 00ca 1A68     	 ldr r2,[r3]
- 931 00cc 284B     	 ldr r3,.L57+44
- 932 00ce 1B68     	 ldr r3,[r3]
- 933 00d0 101C     	 add r0,r2,#0
- 934 00d2 191C     	 add r1,r3,#0
- 935 00d4 FFF7FEFF 	 bl __aeabi_fdiv
- 936 00d8 031C     	 add r3,r0,#0
- 937 00da 1A1C     	 add r2,r3,#0
- 938 00dc 1E4B     	 ldr r3,.L57+20
- 939 00de 1A60     	 str r2,[r3]
- 940              	.L47:
- 941              	.LBB3:
- 170:../Ultrasonic_Collision_Avoidance.c **** 	}
- 171:../Ultrasonic_Collision_Avoidance.c **** 
- 172:../Ultrasonic_Collision_Avoidance.c **** 	// speed output with reduction if CA active
- 173:../Ultrasonic_Collision_Avoidance.c **** 	for(uint8_t i = 0; i < 4; i ++){
- 942              	 .loc 3 173 0 is_stmt 1
- 943 00e0 FB1D     	 add r3,r7,#7
- 944 00e2 0022     	 mov r2,#0
- 945 00e4 1A70     	 strb r2,[r3]
- 946 00e6 16E0     	 b .L50
- 947              	.L51:
- 174:../Ultrasonic_Collision_Avoidance.c **** 		Speeds_CA[i] = Speeds[i] * Speed_reduction_ratio;
- 948              	 .loc 3 174 0 discriminator 3
- 949 00e8 FB1D     	 add r3,r7,#7
- 950 00ea 1C78     	 ldrb r4,[r3]
- 951 00ec FB1D     	 add r3,r7,#7
- 952 00ee 1A78     	 ldrb r2,[r3]
- 953 00f0 1F4B     	 ldr r3,.L57+44
- 954 00f2 9200     	 lsl r2,r2,#2
- 955 00f4 D258     	 ldr r2,[r2,r3]
- 956 00f6 184B     	 ldr r3,.L57+20
- 957 00f8 1B68     	 ldr r3,[r3]
- 958 00fa 101C     	 add r0,r2,#0
- 959 00fc 191C     	 add r1,r3,#0
- 960 00fe FFF7FEFF 	 bl __aeabi_fmul
- 961 0102 031C     	 add r3,r0,#0
- 962 0104 191C     	 add r1,r3,#0
- 963 0106 1B4B     	 ldr r3,.L57+48
- 964 0108 A200     	 lsl r2,r4,#2
- 965 010a D150     	 str r1,[r2,r3]
- 173:../Ultrasonic_Collision_Avoidance.c **** 		Speeds_CA[i] = Speeds[i] * Speed_reduction_ratio;
- 966              	 .loc 3 173 0 discriminator 3
- 967 010c FB1D     	 add r3,r7,#7
- 968 010e 1A78     	 ldrb r2,[r3]
- 969 0110 FB1D     	 add r3,r7,#7
- 970 0112 0132     	 add r2,r2,#1
- 971 0114 1A70     	 strb r2,[r3]
- 972              	.L50:
- 173:../Ultrasonic_Collision_Avoidance.c **** 		Speeds_CA[i] = Speeds[i] * Speed_reduction_ratio;
- 973              	 .loc 3 173 0 is_stmt 0 discriminator 1
- 974 0116 FB1D     	 add r3,r7,#7
- 975 0118 1B78     	 ldrb r3,[r3]
- 976 011a 032B     	 cmp r3,#3
- 977 011c E4D9     	 bls .L51
- 978              	.LBE3:
- 175:../Ultrasonic_Collision_Avoidance.c **** 	}
- 176:../Ultrasonic_Collision_Avoidance.c **** 
- 177:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_fl = Speeds_CA[0];
- 979              	 .loc 3 177 0 is_stmt 1
- 980 011e 154B     	 ldr r3,.L57+48
- 981 0120 1A68     	 ldr r2,[r3]
- 982 0122 154B     	 ldr r3,.L57+52
- 983 0124 1A60     	 str r2,[r3]
- 178:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_fr = Speeds_CA[1];
- 984              	 .loc 3 178 0
- 985 0126 134B     	 ldr r3,.L57+48
- 986 0128 5A68     	 ldr r2,[r3,#4]
- 987 012a 144B     	 ldr r3,.L57+56
- 988 012c 1A60     	 str r2,[r3]
- 179:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_rl = Speeds_CA[2];
- 989              	 .loc 3 179 0
- 990 012e 114B     	 ldr r3,.L57+48
- 991 0130 9A68     	 ldr r2,[r3,#8]
- 992 0132 134B     	 ldr r3,.L57+60
- 993 0134 1A60     	 str r2,[r3]
- 180:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_rr = Speeds_CA[3];
- 994              	 .loc 3 180 0
- 995 0136 0F4B     	 ldr r3,.L57+48
- 996 0138 DA68     	 ldr r2,[r3,#12]
- 997 013a 124B     	 ldr r3,.L57+64
- 998 013c 1A60     	 str r2,[r3]
- 999              	.L39:
- 181:../Ultrasonic_Collision_Avoidance.c **** 
- 182:../Ultrasonic_Collision_Avoidance.c **** }
- 1000              	 .loc 3 182 0
- 1001 013e BD46     	 mov sp,r7
- 1002 0140 03B0     	 add sp,sp,#12
- 1003              	 
- 1004 0142 90BD     	 pop {r4,r7,pc}
- 1005              	.L58:
- 1006              	 .align 2
- 1007              	.L57:
- 1008 0144 00000000 	 .word init
- 1009 0148 00000000 	 .word Obstacel_F
- 1010 014c 00000000 	 .word Obstacel_L
- 1011 0150 00000000 	 .word Obstacel_R
- 1012 0154 00000000 	 .word CAN_Ultrasonic_No_messasge_count
- 1013 0158 00000000 	 .word Speed_reduction_ratio
- 1014 015c 00000000 	 .word Speed_limit
- 1015 0160 AE47813F 	 .word 1065437102
- 1016 0164 00000000 	 .word new_Speed_limit
- 1017 0168 00000000 	 .word aktive_addition
- 1018 016c CDCC4C3D 	 .word 1028443341
- 1019 0170 00000000 	 .word Speeds
- 1020 0174 00000000 	 .word Speeds_CA
- 1021 0178 00000000 	 .word speed_CA_fl
- 1022 017c 00000000 	 .word speed_CA_fr
- 1023 0180 00000000 	 .word speed_CA_rl
- 1024 0184 00000000 	 .word speed_CA_rr
- 1025              	 .cfi_endproc
- 1026              	.LFE226:
- 1028              	 .global __aeabi_fadd
- 1029              	 .global __aeabi_f2d
- 1030              	 .global __aeabi_dcmpgt
- 1031              	 .global __aeabi_dadd
- 1032              	 .global __aeabi_dcmplt
- 1033              	 .global __aeabi_dsub
- 1034              	 .global __aeabi_d2f
- 1035              	 .section .text.Obstacel_CA_check,"ax",%progbits
- 1036              	 .align 2
- 1037              	 .global Obstacel_CA_check
- 1038              	 .code 16
- 1039              	 .thumb_func
- 1041              	Obstacel_CA_check:
- 1042              	.LFB227:
+ 155:../Ultrasonic_Collision_Avoidance.c **** 	// check if reciveing from Ulatrasoic sesnors node
+ 156:../Ultrasonic_Collision_Avoidance.c **** 	CAN_Ultrasonic_No_messasge_count ++;
+ 1005              	 .loc 3 156 0
+ 1006 0026 4D4B     	 ldr r3,.L57+16
+ 1007 0028 1B78     	 ldrb r3,[r3]
+ 1008 002a DBB2     	 uxtb r3,r3
+ 1009 002c 0133     	 add r3,r3,#1
+ 1010 002e DAB2     	 uxtb r2,r3
+ 1011 0030 4A4B     	 ldr r3,.L57+16
+ 1012 0032 1A70     	 strb r2,[r3]
+ 157:../Ultrasonic_Collision_Avoidance.c **** 	if(CAN_Ultrasonic_No_messasge_count > 200) {
+ 1013              	 .loc 3 157 0
+ 1014 0034 494B     	 ldr r3,.L57+16
+ 1015 0036 1B78     	 ldrb r3,[r3]
+ 1016 0038 DBB2     	 uxtb r3,r3
+ 1017 003a C82B     	 cmp r3,#200
+ 1018 003c 03D9     	 bls .L41
+ 158:../Ultrasonic_Collision_Avoidance.c **** 		CAN_Ultrasonic_No_messasge_count = 200;
+ 1019              	 .loc 3 158 0
+ 1020 003e 474B     	 ldr r3,.L57+16
+ 1021 0040 C822     	 mov r2,#200
+ 1022 0042 1A70     	 strb r2,[r3]
+ 159:../Ultrasonic_Collision_Avoidance.c **** 		return;
+ 1023              	 .loc 3 159 0
+ 1024 0044 7FE0     	 b .L39
+ 1025              	.L41:
+ 160:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 161:../Ultrasonic_Collision_Avoidance.c **** 
+ 162:../Ultrasonic_Collision_Avoidance.c **** 	Speed_reduction_ratio = 1;
+ 1026              	 .loc 3 162 0
+ 1027 0046 464B     	 ldr r3,.L57+20
+ 1028 0048 FE22     	 mov r2,#254
+ 1029 004a 9205     	 lsl r2,r2,#22
+ 1030 004c 1A60     	 str r2,[r3]
+ 163:../Ultrasonic_Collision_Avoidance.c **** 	Speed_limit = MAX_Speed + 0.01; // + 0.01 to avoid float bs
+ 1031              	 .loc 3 163 0
+ 1032 004e 454B     	 ldr r3,.L57+24
+ 1033 0050 454A     	 ldr r2,.L57+28
+ 1034 0052 1A60     	 str r2,[r3]
+ 164:../Ultrasonic_Collision_Avoidance.c **** 	new_Speed_limit = MAX_Speed;
+ 1035              	 .loc 3 164 0
+ 1036 0054 454B     	 ldr r3,.L57+32
+ 1037 0056 FF22     	 mov r2,#255
+ 1038 0058 9205     	 lsl r2,r2,#22
+ 1039 005a 1A60     	 str r2,[r3]
+ 165:../Ultrasonic_Collision_Avoidance.c **** 
+ 166:../Ultrasonic_Collision_Avoidance.c **** 
+ 167:../Ultrasonic_Collision_Avoidance.c **** 	Obstacel_CA_check(Obstacel_F);
+ 1040              	 .loc 3 167 0
+ 1041 005c 3C4B     	 ldr r3,.L57+4
+ 1042 005e 6A46     	 mov r2,sp
+ 1043 0060 1969     	 ldr r1,[r3,#16]
+ 1044 0062 1160     	 str r1,[r2]
+ 1045 0064 1868     	 ldr r0,[r3]
+ 1046 0066 5968     	 ldr r1,[r3,#4]
+ 1047 0068 9A68     	 ldr r2,[r3,#8]
+ 1048 006a DB68     	 ldr r3,[r3,#12]
+ 1049 006c FFF7FEFF 	 bl Obstacel_CA_check
+ 168:../Ultrasonic_Collision_Avoidance.c **** 	//Obstacel_CA_check(Obstacel_L);
+ 169:../Ultrasonic_Collision_Avoidance.c **** 	//Obstacel_CA_check(Obstacel_R);#
+ 170:../Ultrasonic_Collision_Avoidance.c **** 
+ 171:../Ultrasonic_Collision_Avoidance.c **** 	//CA aktive
+ 172:../Ultrasonic_Collision_Avoidance.c **** 	if(Speed_reduction_ratio == 0) aktive_addition = 0.05 ;
+ 1050              	 .loc 3 172 0
+ 1051 0070 3B4B     	 ldr r3,.L57+20
+ 1052 0072 1B68     	 ldr r3,[r3]
+ 1053 0074 181C     	 add r0,r3,#0
+ 1054 0076 0021     	 mov r1,#0
+ 1055 0078 FFF7FEFF 	 bl __aeabi_fcmpeq
+ 1056 007c 031E     	 sub r3,r0,#0
+ 1057 007e 03D0     	 beq .L56
+ 1058              	 .loc 3 172 0 is_stmt 0 discriminator 1
+ 1059 0080 3B4B     	 ldr r3,.L57+36
+ 1060 0082 3C4A     	 ldr r2,.L57+40
+ 1061 0084 1A60     	 str r2,[r3]
+ 1062 0086 12E0     	 b .L45
+ 1063              	.L56:
+ 173:../Ultrasonic_Collision_Avoidance.c **** 	else if(aktive_addition > 0) aktive_addition --;
+ 1064              	 .loc 3 173 0 is_stmt 1
+ 1065 0088 394B     	 ldr r3,.L57+36
+ 1066 008a 1B68     	 ldr r3,[r3]
+ 1067 008c 181C     	 add r0,r3,#0
+ 1068 008e 0021     	 mov r1,#0
+ 1069 0090 FFF7FEFF 	 bl __aeabi_fcmpgt
+ 1070 0094 031E     	 sub r3,r0,#0
+ 1071 0096 0AD0     	 beq .L45
+ 1072              	 .loc 3 173 0 is_stmt 0 discriminator 1
+ 1073 0098 354B     	 ldr r3,.L57+36
+ 1074 009a 1B68     	 ldr r3,[r3]
+ 1075 009c 181C     	 add r0,r3,#0
+ 1076 009e FE21     	 mov r1,#254
+ 1077 00a0 8905     	 lsl r1,r1,#22
+ 1078 00a2 FFF7FEFF 	 bl __aeabi_fsub
+ 1079 00a6 031C     	 add r3,r0,#0
+ 1080 00a8 1A1C     	 add r2,r3,#0
+ 1081 00aa 314B     	 ldr r3,.L57+36
+ 1082 00ac 1A60     	 str r2,[r3]
+ 1083              	.L45:
+ 174:../Ultrasonic_Collision_Avoidance.c **** 
+ 175:../Ultrasonic_Collision_Avoidance.c **** 	if(Speed_limit < MAX_Speed){
+ 1084              	 .loc 3 175 0 is_stmt 1
+ 1085 00ae 2D4B     	 ldr r3,.L57+24
+ 1086 00b0 1B68     	 ldr r3,[r3]
+ 1087 00b2 181C     	 add r0,r3,#0
+ 1088 00b4 FF21     	 mov r1,#255
+ 1089 00b6 8905     	 lsl r1,r1,#22
+ 1090 00b8 FFF7FEFF 	 bl __aeabi_fcmplt
+ 1091 00bc 031E     	 sub r3,r0,#0
+ 1092 00be 13D0     	 beq .L47
+ 176:../Ultrasonic_Collision_Avoidance.c **** 		if(Speeds[0] != 0) Speed_reduction_ratio = Speed_limit / Speeds[0];
+ 1093              	 .loc 3 176 0
+ 1094 00c0 2D4B     	 ldr r3,.L57+44
+ 1095 00c2 1B68     	 ldr r3,[r3]
+ 1096 00c4 181C     	 add r0,r3,#0
+ 1097 00c6 0021     	 mov r1,#0
+ 1098 00c8 FFF7FEFF 	 bl __aeabi_fcmpeq
+ 1099 00cc 031E     	 sub r3,r0,#0
+ 1100 00ce 0BD1     	 bne .L47
+ 1101              	 .loc 3 176 0 is_stmt 0 discriminator 1
+ 1102 00d0 244B     	 ldr r3,.L57+24
+ 1103 00d2 1A68     	 ldr r2,[r3]
+ 1104 00d4 284B     	 ldr r3,.L57+44
+ 1105 00d6 1B68     	 ldr r3,[r3]
+ 1106 00d8 101C     	 add r0,r2,#0
+ 1107 00da 191C     	 add r1,r3,#0
+ 1108 00dc FFF7FEFF 	 bl __aeabi_fdiv
+ 1109 00e0 031C     	 add r3,r0,#0
+ 1110 00e2 1A1C     	 add r2,r3,#0
+ 1111 00e4 1E4B     	 ldr r3,.L57+20
+ 1112 00e6 1A60     	 str r2,[r3]
+ 1113              	.L47:
+ 1114              	.LBB3:
+ 177:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 178:../Ultrasonic_Collision_Avoidance.c **** 
+ 179:../Ultrasonic_Collision_Avoidance.c **** 	// speed output with reduction if CA active
+ 180:../Ultrasonic_Collision_Avoidance.c **** 	for(uint8_t i = 0; i < 4; i ++){
+ 1115              	 .loc 3 180 0 is_stmt 1
+ 1116 00e8 FB1D     	 add r3,r7,#7
+ 1117 00ea 0022     	 mov r2,#0
+ 1118 00ec 1A70     	 strb r2,[r3]
+ 1119 00ee 16E0     	 b .L50
+ 1120              	.L51:
+ 181:../Ultrasonic_Collision_Avoidance.c **** 		Speeds_CA[i] = Speeds[i] * Speed_reduction_ratio;
+ 1121              	 .loc 3 181 0 discriminator 3
+ 1122 00f0 FB1D     	 add r3,r7,#7
+ 1123 00f2 1C78     	 ldrb r4,[r3]
+ 1124 00f4 FB1D     	 add r3,r7,#7
+ 1125 00f6 1A78     	 ldrb r2,[r3]
+ 1126 00f8 1F4B     	 ldr r3,.L57+44
+ 1127 00fa 9200     	 lsl r2,r2,#2
+ 1128 00fc D258     	 ldr r2,[r2,r3]
+ 1129 00fe 184B     	 ldr r3,.L57+20
+ 1130 0100 1B68     	 ldr r3,[r3]
+ 1131 0102 101C     	 add r0,r2,#0
+ 1132 0104 191C     	 add r1,r3,#0
+ 1133 0106 FFF7FEFF 	 bl __aeabi_fmul
+ 1134 010a 031C     	 add r3,r0,#0
+ 1135 010c 191C     	 add r1,r3,#0
+ 1136 010e 1B4B     	 ldr r3,.L57+48
+ 1137 0110 A200     	 lsl r2,r4,#2
+ 1138 0112 D150     	 str r1,[r2,r3]
+ 180:../Ultrasonic_Collision_Avoidance.c **** 		Speeds_CA[i] = Speeds[i] * Speed_reduction_ratio;
+ 1139              	 .loc 3 180 0 discriminator 3
+ 1140 0114 FB1D     	 add r3,r7,#7
+ 1141 0116 1A78     	 ldrb r2,[r3]
+ 1142 0118 FB1D     	 add r3,r7,#7
+ 1143 011a 0132     	 add r2,r2,#1
+ 1144 011c 1A70     	 strb r2,[r3]
+ 1145              	.L50:
+ 180:../Ultrasonic_Collision_Avoidance.c **** 		Speeds_CA[i] = Speeds[i] * Speed_reduction_ratio;
+ 1146              	 .loc 3 180 0 is_stmt 0 discriminator 1
+ 1147 011e FB1D     	 add r3,r7,#7
+ 1148 0120 1B78     	 ldrb r3,[r3]
+ 1149 0122 032B     	 cmp r3,#3
+ 1150 0124 E4D9     	 bls .L51
+ 1151              	.LBE3:
+ 182:../Ultrasonic_Collision_Avoidance.c **** 	}
  183:../Ultrasonic_Collision_Avoidance.c **** 
- 184:../Ultrasonic_Collision_Avoidance.c **** void Obstacel_CA_check(Obstacel obstacel){
- 1043              	 .loc 3 184 0
- 1044              	 .cfi_startproc
- 1045 0000 F0B5     	 push {r4,r5,r6,r7,lr}
- 1046              	.LCFI27:
- 1047              	 .cfi_def_cfa_offset 20
- 1048              	 .cfi_offset 4,-20
- 1049              	 .cfi_offset 5,-16
- 1050              	 .cfi_offset 6,-12
- 1051              	 .cfi_offset 7,-8
- 1052              	 .cfi_offset 14,-4
- 1053 0002 87B0     	 sub sp,sp,#28
- 1054              	.LCFI28:
- 1055              	 .cfi_def_cfa_offset 48
- 1056 0004 00AF     	 add r7,sp,#0
- 1057              	.LCFI29:
- 1058              	 .cfi_def_cfa_register 7
- 1059 0006 3B1D     	 add r3,r7,#4
- 1060 0008 1860     	 str r0,[r3]
- 1061 000a 5960     	 str r1,[r3,#4]
- 1062 000c 9A60     	 str r2,[r3,#8]
- 185:../Ultrasonic_Collision_Avoidance.c **** 	if(obstacel.isValid){
- 1063              	 .loc 3 185 0
- 1064 000e 3B1D     	 add r3,r7,#4
- 1065 0010 1B78     	 ldrb r3,[r3]
- 1066 0012 002B     	 cmp r3,#0
- 1067 0014 00D1     	 bne .LCB849
- 1068 0016 A4E0     	 b .L60
- 1069              	.LCB849:
- 186:../Ultrasonic_Collision_Avoidance.c **** 		if(obstacel.distance < CA_START){ // not far away
- 1070              	 .loc 3 186 0
- 1071 0018 3B1D     	 add r3,r7,#4
- 1072 001a 5B68     	 ldr r3,[r3,#4]
- 1073 001c 181C     	 add r0,r3,#0
- 1074 001e FE21     	 mov r1,#254
- 1075 0020 8905     	 lsl r1,r1,#22
- 1076 0022 FFF7FEFF 	 bl __aeabi_fcmplt
- 1077 0026 031E     	 sub r3,r0,#0
- 1078 0028 00D1     	 bne .LCB858
- 1079 002a 9AE0     	 b .L60
- 1080              	.LCB858:
- 187:../Ultrasonic_Collision_Avoidance.c **** 			if(within_MAX_MIN(obstacel.angle, trajectory_angle + CA_ANGLE, trajectory_angle - CA_ANGLE)){ //
- 1081              	 .loc 3 187 0
- 1082 002c 3B1D     	 add r3,r7,#4
- 1083 002e 9C68     	 ldr r4,[r3,#8]
- 1084 0030 504B     	 ldr r3,.L74
- 1085 0032 1B68     	 ldr r3,[r3]
- 1086 0034 181C     	 add r0,r3,#0
- 1087 0036 5049     	 ldr r1,.L74+4
- 1088 0038 FFF7FEFF 	 bl __aeabi_fadd
- 1089 003c 031C     	 add r3,r0,#0
- 1090 003e 1D1C     	 add r5,r3,#0
- 1091 0040 4C4B     	 ldr r3,.L74
- 1092 0042 1B68     	 ldr r3,[r3]
- 1093 0044 181C     	 add r0,r3,#0
- 1094 0046 4C49     	 ldr r1,.L74+4
- 1095 0048 FFF7FEFF 	 bl __aeabi_fsub
- 1096 004c 031C     	 add r3,r0,#0
- 1097 004e 201C     	 add r0,r4,#0
- 1098 0050 291C     	 add r1,r5,#0
- 1099 0052 1A1C     	 add r2,r3,#0
- 1100 0054 FFF7FEFF 	 bl within_MAX_MIN
- 1101 0058 031E     	 sub r3,r0,#0
- 1102 005a 00D1     	 bne .LCB880
- 1103 005c 81E0     	 b .L60
- 1104              	.LCB880:
- 1105              	.LBB4:
- 188:../Ultrasonic_Collision_Avoidance.c **** 				float abs_trajctory = vector_abs_value(Trajctory);
- 1106              	 .loc 3 188 0
- 1107 005e 474B     	 ldr r3,.L74+8
- 1108 0060 181C     	 mov r0,r3
- 1109 0062 FFF7FEFF 	 bl vector_abs_value
- 1110 0066 031C     	 add r3,r0,#0
- 1111 0068 7B61     	 str r3,[r7,#20]
- 189:../Ultrasonic_Collision_Avoidance.c **** 				if( abs_trajctory > 0.01){
- 1112              	 .loc 3 189 0
- 1113 006a 7869     	 ldr r0,[r7,#20]
- 1114 006c FFF7FEFF 	 bl __aeabi_f2d
- 1115 0070 031C     	 mov r3,r0
- 1116 0072 0C1C     	 mov r4,r1
- 1117 0074 181C     	 mov r0,r3
- 1118 0076 211C     	 mov r1,r4
- 1119 0078 414A     	 ldr r2,.L74+12
- 1120 007a 424B     	 ldr r3,.L74+16
- 1121 007c FFF7FEFF 	 bl __aeabi_dcmpgt
- 1122 0080 031E     	 sub r3,r0,#0
- 1123 0082 6ED0     	 beq .L60
- 190:../Ultrasonic_Collision_Avoidance.c **** 					if(obstacel.distance  < CA_STOP + aktive_addition){
- 1124              	 .loc 3 190 0
- 1125 0084 3B1D     	 add r3,r7,#4
- 1126 0086 5B68     	 ldr r3,[r3,#4]
- 1127 0088 181C     	 add r0,r3,#0
- 1128 008a FFF7FEFF 	 bl __aeabi_f2d
- 1129 008e 051C     	 mov r5,r0
- 1130 0090 0E1C     	 mov r6,r1
- 1131 0092 3D4B     	 ldr r3,.L74+20
- 1132 0094 1B68     	 ldr r3,[r3]
- 1133 0096 181C     	 add r0,r3,#0
- 1134 0098 FFF7FEFF 	 bl __aeabi_f2d
- 1135 009c 031C     	 mov r3,r0
- 1136 009e 0C1C     	 mov r4,r1
- 1137 00a0 181C     	 mov r0,r3
- 1138 00a2 211C     	 mov r1,r4
- 1139 00a4 394A     	 ldr r2,.L74+24
- 1140 00a6 3A4B     	 ldr r3,.L74+28
- 1141 00a8 FFF7FEFF 	 bl __aeabi_dadd
- 1142 00ac 031C     	 mov r3,r0
- 1143 00ae 0C1C     	 mov r4,r1
- 1144 00b0 281C     	 mov r0,r5
- 1145 00b2 311C     	 mov r1,r6
- 1146 00b4 1A1C     	 mov r2,r3
- 1147 00b6 231C     	 mov r3,r4
- 1148 00b8 FFF7FEFF 	 bl __aeabi_dcmplt
- 1149 00bc 031E     	 sub r3,r0,#0
- 1150 00be 09D0     	 beq .L73
- 191:../Ultrasonic_Collision_Avoidance.c **** 						Speed_reduction_ratio = 0; // stop
- 1151              	 .loc 3 191 0
- 1152 00c0 344B     	 ldr r3,.L74+32
- 1153 00c2 0022     	 mov r2,#0
- 1154 00c4 1A60     	 str r2,[r3]
- 192:../Ultrasonic_Collision_Avoidance.c **** 						set_CA_LED(obstacel.Sensor,1);
- 1155              	 .loc 3 192 0
- 1156 00c6 3B1D     	 add r3,r7,#4
- 1157 00c8 5B78     	 ldrb r3,[r3,#1]
- 1158 00ca 181C     	 mov r0,r3
- 1159 00cc 0121     	 mov r1,#1
- 1160 00ce FFF7FEFF 	 bl set_CA_LED
- 193:../Ultrasonic_Collision_Avoidance.c **** 						return;
- 1161              	 .loc 3 193 0
- 1162 00d2 4CE0     	 b .L59
- 1163              	.L73:
- 194:../Ultrasonic_Collision_Avoidance.c **** 					}
- 195:../Ultrasonic_Collision_Avoidance.c **** 					else if(abs_trajctory > obstacel.distance  - CA_STOP){
- 1164              	 .loc 3 195 0
- 1165 00d4 7869     	 ldr r0,[r7,#20]
- 1166 00d6 FFF7FEFF 	 bl __aeabi_f2d
- 1167 00da 051C     	 mov r5,r0
- 1168 00dc 0E1C     	 mov r6,r1
- 1169 00de 3B1D     	 add r3,r7,#4
- 1170 00e0 5B68     	 ldr r3,[r3,#4]
- 1171 00e2 181C     	 add r0,r3,#0
- 1172 00e4 FFF7FEFF 	 bl __aeabi_f2d
- 1173 00e8 031C     	 mov r3,r0
- 1174 00ea 0C1C     	 mov r4,r1
- 1175 00ec 181C     	 mov r0,r3
- 1176 00ee 211C     	 mov r1,r4
- 1177 00f0 264A     	 ldr r2,.L74+24
- 1178 00f2 274B     	 ldr r3,.L74+28
- 1179 00f4 FFF7FEFF 	 bl __aeabi_dsub
- 1180 00f8 031C     	 mov r3,r0
- 1181 00fa 0C1C     	 mov r4,r1
- 1182 00fc 281C     	 mov r0,r5
- 1183 00fe 311C     	 mov r1,r6
- 1184 0100 1A1C     	 mov r2,r3
- 1185 0102 231C     	 mov r3,r4
- 1186 0104 FFF7FEFF 	 bl __aeabi_dcmpgt
- 1187 0108 031E     	 sub r3,r0,#0
- 1188 010a 2AD0     	 beq .L60
- 196:../Ultrasonic_Collision_Avoidance.c **** 						   new_Speed_limit = obstacel.distance  - CA_STOP; // speed reduction
- 1189              	 .loc 3 196 0
- 1190 010c 3B1D     	 add r3,r7,#4
- 1191 010e 5B68     	 ldr r3,[r3,#4]
- 1192 0110 181C     	 add r0,r3,#0
- 1193 0112 FFF7FEFF 	 bl __aeabi_f2d
- 1194 0116 031C     	 mov r3,r0
- 1195 0118 0C1C     	 mov r4,r1
- 1196 011a 181C     	 mov r0,r3
- 1197 011c 211C     	 mov r1,r4
- 1198 011e 1B4A     	 ldr r2,.L74+24
- 1199 0120 1B4B     	 ldr r3,.L74+28
- 1200 0122 FFF7FEFF 	 bl __aeabi_dsub
- 1201 0126 031C     	 mov r3,r0
- 1202 0128 0C1C     	 mov r4,r1
- 1203 012a 181C     	 mov r0,r3
- 1204 012c 211C     	 mov r1,r4
- 1205 012e FFF7FEFF 	 bl __aeabi_d2f
- 1206 0132 021C     	 add r2,r0,#0
- 1207 0134 184B     	 ldr r3,.L74+36
- 1208 0136 1A60     	 str r2,[r3]
- 197:../Ultrasonic_Collision_Avoidance.c **** 						if( Speed_limit > new_Speed_limit) {
- 1209              	 .loc 3 197 0
- 1210 0138 184B     	 ldr r3,.L74+40
- 1211 013a 1A68     	 ldr r2,[r3]
- 1212 013c 164B     	 ldr r3,.L74+36
- 1213 013e 1B68     	 ldr r3,[r3]
- 1214 0140 101C     	 add r0,r2,#0
- 1215 0142 191C     	 add r1,r3,#0
- 1216 0144 FFF7FEFF 	 bl __aeabi_fcmpgt
- 1217 0148 031E     	 sub r3,r0,#0
- 1218 014a 0AD0     	 beq .L60
- 198:../Ultrasonic_Collision_Avoidance.c **** 							Speed_limit = new_Speed_limit;
- 1219              	 .loc 3 198 0
- 1220 014c 124B     	 ldr r3,.L74+36
- 1221 014e 1A68     	 ldr r2,[r3]
- 1222 0150 124B     	 ldr r3,.L74+40
- 1223 0152 1A60     	 str r2,[r3]
- 199:../Ultrasonic_Collision_Avoidance.c **** 							set_CA_LED(obstacel.Sensor,2); //led on
- 1224              	 .loc 3 199 0
- 1225 0154 3B1D     	 add r3,r7,#4
- 1226 0156 5B78     	 ldrb r3,[r3,#1]
- 1227 0158 181C     	 mov r0,r3
- 1228 015a 0221     	 mov r1,#2
- 1229 015c FFF7FEFF 	 bl set_CA_LED
- 200:../Ultrasonic_Collision_Avoidance.c **** 							return;
- 1230              	 .loc 3 200 0
- 1231 0160 05E0     	 b .L59
- 1232              	.L60:
- 1233              	.LBE4:
- 201:../Ultrasonic_Collision_Avoidance.c **** 						}
- 202:../Ultrasonic_Collision_Avoidance.c **** 					}
- 203:../Ultrasonic_Collision_Avoidance.c **** 				}
- 204:../Ultrasonic_Collision_Avoidance.c **** 			}
- 205:../Ultrasonic_Collision_Avoidance.c **** 		}
- 206:../Ultrasonic_Collision_Avoidance.c **** 	}
- 207:../Ultrasonic_Collision_Avoidance.c **** 	set_CA_LED(obstacel.Sensor,0);
- 1234              	 .loc 3 207 0
- 1235 0162 3B1D     	 add r3,r7,#4
- 1236 0164 5B78     	 ldrb r3,[r3,#1]
- 1237 0166 181C     	 mov r0,r3
- 1238 0168 0021     	 mov r1,#0
- 1239 016a FFF7FEFF 	 bl set_CA_LED
- 1240              	.L59:
- 208:../Ultrasonic_Collision_Avoidance.c **** }
- 1241              	 .loc 3 208 0
- 1242 016e BD46     	 mov sp,r7
- 1243 0170 07B0     	 add sp,sp,#28
- 1244              	 
- 1245 0172 F0BD     	 pop {r4,r5,r6,r7,pc}
- 1246              	.L75:
- 1247              	 .align 2
- 1248              	.L74:
- 1249 0174 00000000 	 .word trajectory_angle
- 1250 0178 00007041 	 .word 1097859072
- 1251 017c 00000000 	 .word Trajctory
- 1252 0180 7B14AE47 	 .word 1202590843
- 1253 0184 E17A843F 	 .word 1065646817
- 1254 0188 00000000 	 .word aktive_addition
- 1255 018c 9A999999 	 .word -1717986918
- 1256 0190 9999C93F 	 .word 1070176665
- 1257 0194 00000000 	 .word Speed_reduction_ratio
- 1258 0198 00000000 	 .word new_Speed_limit
- 1259 019c 00000000 	 .word Speed_limit
- 1260              	 .cfi_endproc
- 1261              	.LFE227:
- 1263              	 .global toggel_ervy_x
- 1264              	 .section .bss.toggel_ervy_x,"aw",%nobits
- 1267              	toggel_ervy_x:
- 1268 0000 00       	 .space 1
- 1269              	 .section .text.set_CA_LED,"ax",%progbits
- 1270              	 .align 2
- 1271              	 .global set_CA_LED
- 1272              	 .code 16
- 1273              	 .thumb_func
- 1275              	set_CA_LED:
- 1276              	.LFB228:
- 209:../Ultrasonic_Collision_Avoidance.c **** 
- 210:../Ultrasonic_Collision_Avoidance.c **** uint8_t toggel_ervy_x = 0;
- 211:../Ultrasonic_Collision_Avoidance.c **** 
- 212:../Ultrasonic_Collision_Avoidance.c **** void set_CA_LED(uint8_t Sensor, uint8_t mode){
- 1277              	 .loc 3 212 0
- 1278              	 .cfi_startproc
- 1279 0000 80B5     	 push {r7,lr}
- 1280              	.LCFI30:
- 1281              	 .cfi_def_cfa_offset 8
- 1282              	 .cfi_offset 7,-8
- 1283              	 .cfi_offset 14,-4
- 1284 0002 82B0     	 sub sp,sp,#8
- 1285              	.LCFI31:
- 1286              	 .cfi_def_cfa_offset 16
- 1287 0004 00AF     	 add r7,sp,#0
- 1288              	.LCFI32:
- 1289              	 .cfi_def_cfa_register 7
- 1290 0006 021C     	 mov r2,r0
- 1291 0008 FB1D     	 add r3,r7,#7
- 1292 000a 1A70     	 strb r2,[r3]
- 1293 000c BB1D     	 add r3,r7,#6
- 1294 000e 0A1C     	 add r2,r1,#0
- 1295 0010 1A70     	 strb r2,[r3]
- 213:../Ultrasonic_Collision_Avoidance.c **** 	if(Sensor == 0)
- 1296              	 .loc 3 213 0
- 1297 0012 FB1D     	 add r3,r7,#7
- 1298 0014 1B78     	 ldrb r3,[r3]
- 1299 0016 002B     	 cmp r3,#0
- 1300 0018 1ED1     	 bne .L77
- 214:../Ultrasonic_Collision_Avoidance.c **** 		{
- 215:../Ultrasonic_Collision_Avoidance.c **** 		if(mode == 0)DIGITAL_IO_SetOutputLow(&LED_CA_FRONT);
- 1301              	 .loc 3 215 0
- 1302 001a BB1D     	 add r3,r7,#6
- 1303 001c 1B78     	 ldrb r3,[r3]
- 1304 001e 002B     	 cmp r3,#0
- 1305 0020 04D1     	 bne .L78
- 1306              	 .loc 3 215 0 is_stmt 0 discriminator 1
- 1307 0022 384B     	 ldr r3,.L89
- 1308 0024 181C     	 mov r0,r3
- 1309 0026 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 1310 002a 5AE0     	 b .L81
- 1311              	.L78:
- 216:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 1)DIGITAL_IO_SetOutputHigh(&LED_CA_FRONT);
- 1312              	 .loc 3 216 0 is_stmt 1
- 1313 002c BB1D     	 add r3,r7,#6
- 1314 002e 1B78     	 ldrb r3,[r3]
- 1315 0030 012B     	 cmp r3,#1
- 1316 0032 04D1     	 bne .L80
- 1317              	 .loc 3 216 0 is_stmt 0 discriminator 1
- 1318 0034 334B     	 ldr r3,.L89
- 1319 0036 181C     	 mov r0,r3
- 1320 0038 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
- 1321 003c 51E0     	 b .L81
- 1322              	.L80:
- 217:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 2 && toggel_ervy_x == 0) DIGITAL_IO_ToggleOutput(&LED_CA_FRONT);
- 1323              	 .loc 3 217 0 is_stmt 1
- 1324 003e BB1D     	 add r3,r7,#6
- 1325 0040 1B78     	 ldrb r3,[r3]
- 1326 0042 022B     	 cmp r3,#2
- 1327 0044 4DD1     	 bne .L81
- 1328              	 .loc 3 217 0 is_stmt 0 discriminator 1
- 1329 0046 304B     	 ldr r3,.L89+4
- 1330 0048 1B78     	 ldrb r3,[r3]
- 1331 004a 002B     	 cmp r3,#0
- 1332 004c 49D1     	 bne .L81
- 1333              	 .loc 3 217 0 discriminator 2
- 1334 004e 2D4B     	 ldr r3,.L89
- 1335 0050 181C     	 mov r0,r3
- 1336 0052 FFF7FEFF 	 bl DIGITAL_IO_ToggleOutput
- 1337 0056 44E0     	 b .L81
- 1338              	.L77:
- 218:../Ultrasonic_Collision_Avoidance.c **** 		}
- 219:../Ultrasonic_Collision_Avoidance.c **** 	else if (Sensor == 1){
- 1339              	 .loc 3 219 0 is_stmt 1
- 1340 0058 FB1D     	 add r3,r7,#7
- 1341 005a 1B78     	 ldrb r3,[r3]
- 1342 005c 012B     	 cmp r3,#1
- 1343 005e 1ED1     	 bne .L82
- 220:../Ultrasonic_Collision_Avoidance.c **** 		if(mode == 0)DIGITAL_IO_SetOutputLow(&LED_CA_LEFT);
- 1344              	 .loc 3 220 0
- 1345 0060 BB1D     	 add r3,r7,#6
- 1346 0062 1B78     	 ldrb r3,[r3]
- 1347 0064 002B     	 cmp r3,#0
- 1348 0066 04D1     	 bne .L83
- 1349              	 .loc 3 220 0 is_stmt 0 discriminator 1
- 1350 0068 284B     	 ldr r3,.L89+8
- 1351 006a 181C     	 mov r0,r3
- 1352 006c FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 1353 0070 37E0     	 b .L81
- 1354              	.L83:
- 221:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 1)DIGITAL_IO_SetOutputHigh(&LED_CA_LEFT);
- 1355              	 .loc 3 221 0 is_stmt 1
- 1356 0072 BB1D     	 add r3,r7,#6
- 1357 0074 1B78     	 ldrb r3,[r3]
- 1358 0076 012B     	 cmp r3,#1
- 1359 0078 04D1     	 bne .L85
- 1360              	 .loc 3 221 0 is_stmt 0 discriminator 1
- 1361 007a 244B     	 ldr r3,.L89+8
- 1362 007c 181C     	 mov r0,r3
- 1363 007e FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
- 1364 0082 2EE0     	 b .L81
- 1365              	.L85:
- 222:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 2 && toggel_ervy_x == 0) DIGITAL_IO_ToggleOutput(&LED_CA_LEFT);
- 1366              	 .loc 3 222 0 is_stmt 1
- 1367 0084 BB1D     	 add r3,r7,#6
- 1368 0086 1B78     	 ldrb r3,[r3]
- 1369 0088 022B     	 cmp r3,#2
- 1370 008a 2AD1     	 bne .L81
- 1371              	 .loc 3 222 0 is_stmt 0 discriminator 1
- 1372 008c 1E4B     	 ldr r3,.L89+4
- 1373 008e 1B78     	 ldrb r3,[r3]
- 1374 0090 002B     	 cmp r3,#0
- 1375 0092 26D1     	 bne .L81
- 1376              	 .loc 3 222 0 discriminator 2
- 1377 0094 1D4B     	 ldr r3,.L89+8
- 1378 0096 181C     	 mov r0,r3
- 1379 0098 FFF7FEFF 	 bl DIGITAL_IO_ToggleOutput
- 1380 009c 21E0     	 b .L81
- 1381              	.L82:
- 223:../Ultrasonic_Collision_Avoidance.c **** 	}
- 224:../Ultrasonic_Collision_Avoidance.c **** 	else if (Sensor == 2){
- 1382              	 .loc 3 224 0 is_stmt 1
- 1383 009e FB1D     	 add r3,r7,#7
- 1384 00a0 1B78     	 ldrb r3,[r3]
- 1385 00a2 022B     	 cmp r3,#2
- 1386 00a4 1DD1     	 bne .L81
- 225:../Ultrasonic_Collision_Avoidance.c **** 		if(mode == 0)DIGITAL_IO_SetOutputLow(&LED_CA_RIGHT);
- 1387              	 .loc 3 225 0
- 1388 00a6 BB1D     	 add r3,r7,#6
- 1389 00a8 1B78     	 ldrb r3,[r3]
- 1390 00aa 002B     	 cmp r3,#0
- 1391 00ac 04D1     	 bne .L86
- 1392              	 .loc 3 225 0 is_stmt 0 discriminator 1
- 1393 00ae 184B     	 ldr r3,.L89+12
- 1394 00b0 181C     	 mov r0,r3
- 1395 00b2 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 1396 00b6 14E0     	 b .L81
- 1397              	.L86:
- 226:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 1)DIGITAL_IO_SetOutputHigh(&LED_CA_RIGHT);
- 1398              	 .loc 3 226 0 is_stmt 1
- 1399 00b8 BB1D     	 add r3,r7,#6
- 1400 00ba 1B78     	 ldrb r3,[r3]
- 1401 00bc 012B     	 cmp r3,#1
- 1402 00be 04D1     	 bne .L87
- 1403              	 .loc 3 226 0 is_stmt 0 discriminator 1
- 1404 00c0 134B     	 ldr r3,.L89+12
- 1405 00c2 181C     	 mov r0,r3
- 1406 00c4 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
- 1407 00c8 0BE0     	 b .L81
- 1408              	.L87:
- 227:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 2 && toggel_ervy_x == 0) DIGITAL_IO_ToggleOutput(&LED_CA_RIGHT);
- 1409              	 .loc 3 227 0 is_stmt 1
- 1410 00ca BB1D     	 add r3,r7,#6
- 1411 00cc 1B78     	 ldrb r3,[r3]
- 1412 00ce 022B     	 cmp r3,#2
- 1413 00d0 07D1     	 bne .L81
- 1414              	 .loc 3 227 0 is_stmt 0 discriminator 1
- 1415 00d2 0D4B     	 ldr r3,.L89+4
- 1416 00d4 1B78     	 ldrb r3,[r3]
- 1417 00d6 002B     	 cmp r3,#0
- 1418 00d8 03D1     	 bne .L81
- 1419              	 .loc 3 227 0 discriminator 2
- 1420 00da 0D4B     	 ldr r3,.L89+12
- 1421 00dc 181C     	 mov r0,r3
- 1422 00de FFF7FEFF 	 bl DIGITAL_IO_ToggleOutput
- 1423              	.L81:
+ 184:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_fl = Speeds_CA[0];
+ 1152              	 .loc 3 184 0 is_stmt 1
+ 1153 0126 154B     	 ldr r3,.L57+48
+ 1154 0128 1A68     	 ldr r2,[r3]
+ 1155 012a 154B     	 ldr r3,.L57+52
+ 1156 012c 1A60     	 str r2,[r3]
+ 185:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_fr = Speeds_CA[1];
+ 1157              	 .loc 3 185 0
+ 1158 012e 134B     	 ldr r3,.L57+48
+ 1159 0130 5A68     	 ldr r2,[r3,#4]
+ 1160 0132 144B     	 ldr r3,.L57+56
+ 1161 0134 1A60     	 str r2,[r3]
+ 186:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_rl = Speeds_CA[2];
+ 1162              	 .loc 3 186 0
+ 1163 0136 114B     	 ldr r3,.L57+48
+ 1164 0138 9A68     	 ldr r2,[r3,#8]
+ 1165 013a 134B     	 ldr r3,.L57+60
+ 1166 013c 1A60     	 str r2,[r3]
+ 187:../Ultrasonic_Collision_Avoidance.c **** 	speed_CA_rr = Speeds_CA[3];
+ 1167              	 .loc 3 187 0
+ 1168 013e 0F4B     	 ldr r3,.L57+48
+ 1169 0140 DA68     	 ldr r2,[r3,#12]
+ 1170 0142 124B     	 ldr r3,.L57+64
+ 1171 0144 1A60     	 str r2,[r3]
+ 1172              	.L39:
+ 188:../Ultrasonic_Collision_Avoidance.c **** 
+ 189:../Ultrasonic_Collision_Avoidance.c **** }
+ 1173              	 .loc 3 189 0
+ 1174 0146 BD46     	 mov sp,r7
+ 1175 0148 03B0     	 add sp,sp,#12
+ 1176              	 
+ 1177 014a 90BD     	 pop {r4,r7,pc}
+ 1178              	.L58:
+ 1179              	 .align 2
+ 1180              	.L57:
+ 1181 014c 00000000 	 .word init
+ 1182 0150 00000000 	 .word Obstacel_F
+ 1183 0154 00000000 	 .word Obstacel_L
+ 1184 0158 00000000 	 .word Obstacel_R
+ 1185 015c 00000000 	 .word CAN_Ultrasonic_No_messasge_count
+ 1186 0160 00000000 	 .word Speed_reduction_ratio
+ 1187 0164 00000000 	 .word Speed_limit
+ 1188 0168 AE47C13F 	 .word 1069631406
+ 1189 016c 00000000 	 .word new_Speed_limit
+ 1190 0170 00000000 	 .word aktive_addition
+ 1191 0174 CDCC4C3D 	 .word 1028443341
+ 1192 0178 00000000 	 .word Speeds
+ 1193 017c 00000000 	 .word Speeds_CA
+ 1194 0180 00000000 	 .word speed_CA_fl
+ 1195 0184 00000000 	 .word speed_CA_fr
+ 1196 0188 00000000 	 .word speed_CA_rl
+ 1197 018c 00000000 	 .word speed_CA_rr
+ 1198              	 .cfi_endproc
+ 1199              	.LFE226:
+ 1201              	 .global __aeabi_dcmplt
+ 1202              	 .global __aeabi_dadd
+ 1203              	 .global __aeabi_dsub
+ 1204              	 .global __aeabi_dcmpgt
+ 1205              	 .section .text.Obstacel_CA_check,"ax",%progbits
+ 1206              	 .align 2
+ 1207              	 .global Obstacel_CA_check
+ 1208              	 .code 16
+ 1209              	 .thumb_func
+ 1211              	Obstacel_CA_check:
+ 1212              	.LFB227:
+ 190:../Ultrasonic_Collision_Avoidance.c **** 
+ 191:../Ultrasonic_Collision_Avoidance.c **** void Obstacel_CA_check(Obstacel obstacel){
+ 1213              	 .loc 3 191 0
+ 1214              	 .cfi_startproc
+ 1215 0000 84B0     	 sub sp,sp,#16
+ 1216              	.LCFI27:
+ 1217              	 .cfi_def_cfa_offset 16
+ 1218 0002 F0B5     	 push {r4,r5,r6,r7,lr}
+ 1219              	.LCFI28:
+ 1220              	 .cfi_def_cfa_offset 36
+ 1221              	 .cfi_offset 4,-36
+ 1222              	 .cfi_offset 5,-32
+ 1223              	 .cfi_offset 6,-28
+ 1224              	 .cfi_offset 7,-24
+ 1225              	 .cfi_offset 14,-20
+ 1226 0004 83B0     	 sub sp,sp,#12
+ 1227              	.LCFI29:
+ 1228              	 .cfi_def_cfa_offset 48
+ 1229 0006 00AF     	 add r7,sp,#0
+ 1230              	.LCFI30:
+ 1231              	 .cfi_def_cfa_register 7
+ 1232 0008 2024     	 mov r4,#32
+ 1233 000a 3C19     	 add r4,r7,r4
+ 1234 000c 2060     	 str r0,[r4]
+ 1235 000e 6160     	 str r1,[r4,#4]
+ 1236 0010 A260     	 str r2,[r4,#8]
+ 1237 0012 E360     	 str r3,[r4,#12]
+ 192:../Ultrasonic_Collision_Avoidance.c **** 	set_CA_LED(obstacel.Sensor,0);
+ 1238              	 .loc 3 192 0
+ 1239 0014 2023     	 mov r3,#32
+ 1240 0016 FB18     	 add r3,r7,r3
+ 1241 0018 5B78     	 ldrb r3,[r3,#1]
+ 1242 001a 181C     	 mov r0,r3
+ 1243 001c 0021     	 mov r1,#0
+ 1244 001e FFF7FEFF 	 bl set_CA_LED
+ 193:../Ultrasonic_Collision_Avoidance.c **** 	if(obstacel.isValid == 0) return;
+ 1245              	 .loc 3 193 0
+ 1246 0022 2023     	 mov r3,#32
+ 1247 0024 FB18     	 add r3,r7,r3
+ 1248 0026 1B78     	 ldrb r3,[r3]
+ 1249 0028 0122     	 mov r2,#1
+ 1250 002a 5340     	 eor r3,r2
+ 1251 002c DBB2     	 uxtb r3,r3
+ 1252 002e 002B     	 cmp r3,#0
+ 1253 0030 00D0     	 beq .L60
+ 1254 0032 96E0     	 b .L59
+ 1255              	.L60:
+ 194:../Ultrasonic_Collision_Avoidance.c **** 
+ 195:../Ultrasonic_Collision_Avoidance.c **** 	if(obstacel.distance > CA_START) return; // not far away no CA
+ 1256              	 .loc 3 195 0
+ 1257 0034 2023     	 mov r3,#32
+ 1258 0036 FB18     	 add r3,r7,r3
+ 1259 0038 5B68     	 ldr r3,[r3,#4]
+ 1260 003a 181C     	 add r0,r3,#0
+ 1261 003c FE21     	 mov r1,#254
+ 1262 003e 8905     	 lsl r1,r1,#22
+ 1263 0040 FFF7FEFF 	 bl __aeabi_fcmpgt
+ 1264 0044 031E     	 sub r3,r0,#0
+ 1265 0046 00D0     	 beq .L75
+ 1266              	 .loc 3 195 0 is_stmt 0 discriminator 2
+ 1267 0048 8BE0     	 b .L59
+ 1268              	.L75:
+ 196:../Ultrasonic_Collision_Avoidance.c **** 
+ 197:../Ultrasonic_Collision_Avoidance.c **** 	float Trajctory_at_obstacel_abs = vector_projection_abs(Trajctory, obstacel.vector);
+ 1269              	 .loc 3 197 0 is_stmt 1
+ 1270 004a 494A     	 ldr r2,.L78
+ 1271 004c 2023     	 mov r3,#32
+ 1272 004e FB18     	 add r3,r7,r3
+ 1273 0050 0C33     	 add r3,r3,#12
+ 1274 0052 101C     	 mov r0,r2
+ 1275 0054 191C     	 mov r1,r3
+ 1276 0056 FFF7FEFF 	 bl vector_projection_abs
+ 1277 005a 031C     	 add r3,r0,#0
+ 1278 005c 7B60     	 str r3,[r7,#4]
+ 198:../Ultrasonic_Collision_Avoidance.c **** 	if(Trajctory_at_obstacel_abs < 0.05) return; // if trajcetor in diection of obstacel is smaller th
+ 1279              	 .loc 3 198 0
+ 1280 005e 7868     	 ldr r0,[r7,#4]
+ 1281 0060 FFF7FEFF 	 bl __aeabi_f2d
+ 1282 0064 031C     	 mov r3,r0
+ 1283 0066 0C1C     	 mov r4,r1
+ 1284 0068 181C     	 mov r0,r3
+ 1285 006a 211C     	 mov r1,r4
+ 1286 006c 414A     	 ldr r2,.L78+4
+ 1287 006e 424B     	 ldr r3,.L78+8
+ 1288 0070 FFF7FEFF 	 bl __aeabi_dcmplt
+ 1289 0074 031E     	 sub r3,r0,#0
+ 1290 0076 00D0     	 beq .L76
+ 1291              	 .loc 3 198 0 is_stmt 0 discriminator 3
+ 1292 0078 73E0     	 b .L59
+ 1293              	.L76:
+ 199:../Ultrasonic_Collision_Avoidance.c **** 
+ 200:../Ultrasonic_Collision_Avoidance.c **** 	if(obstacel.distance  < CA_STOP + aktive_addition){
+ 1294              	 .loc 3 200 0 is_stmt 1
+ 1295 007a 2023     	 mov r3,#32
+ 1296 007c FB18     	 add r3,r7,r3
+ 1297 007e 5B68     	 ldr r3,[r3,#4]
+ 1298 0080 181C     	 add r0,r3,#0
+ 1299 0082 FFF7FEFF 	 bl __aeabi_f2d
+ 1300 0086 051C     	 mov r5,r0
+ 1301 0088 0E1C     	 mov r6,r1
+ 1302 008a 3C4B     	 ldr r3,.L78+12
+ 1303 008c 1B68     	 ldr r3,[r3]
+ 1304 008e 181C     	 add r0,r3,#0
+ 1305 0090 FFF7FEFF 	 bl __aeabi_f2d
+ 1306 0094 031C     	 mov r3,r0
+ 1307 0096 0C1C     	 mov r4,r1
+ 1308 0098 181C     	 mov r0,r3
+ 1309 009a 211C     	 mov r1,r4
+ 1310 009c 354A     	 ldr r2,.L78+4
+ 1311 009e 384B     	 ldr r3,.L78+16
+ 1312 00a0 FFF7FEFF 	 bl __aeabi_dadd
+ 1313 00a4 031C     	 mov r3,r0
+ 1314 00a6 0C1C     	 mov r4,r1
+ 1315 00a8 281C     	 mov r0,r5
+ 1316 00aa 311C     	 mov r1,r6
+ 1317 00ac 1A1C     	 mov r2,r3
+ 1318 00ae 231C     	 mov r3,r4
+ 1319 00b0 FFF7FEFF 	 bl __aeabi_dcmplt
+ 1320 00b4 031E     	 sub r3,r0,#0
+ 1321 00b6 0AD0     	 beq .L77
+ 201:../Ultrasonic_Collision_Avoidance.c **** 						Speed_reduction_ratio = 0; // stop
+ 1322              	 .loc 3 201 0
+ 1323 00b8 324B     	 ldr r3,.L78+20
+ 1324 00ba 0022     	 mov r2,#0
+ 1325 00bc 1A60     	 str r2,[r3]
+ 202:../Ultrasonic_Collision_Avoidance.c **** 						set_CA_LED(obstacel.Sensor,1);
+ 1326              	 .loc 3 202 0
+ 1327 00be 2023     	 mov r3,#32
+ 1328 00c0 FB18     	 add r3,r7,r3
+ 1329 00c2 5B78     	 ldrb r3,[r3,#1]
+ 1330 00c4 181C     	 mov r0,r3
+ 1331 00c6 0121     	 mov r1,#1
+ 1332 00c8 FFF7FEFF 	 bl set_CA_LED
+ 203:../Ultrasonic_Collision_Avoidance.c **** 						return;
+ 1333              	 .loc 3 203 0
+ 1334 00cc 49E0     	 b .L59
+ 1335              	.L77:
+ 204:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 205:../Ultrasonic_Collision_Avoidance.c **** 	else if(Trajctory_at_obstacel_abs > obstacel.distance  - CA_STOP){
+ 1336              	 .loc 3 205 0
+ 1337 00ce 7868     	 ldr r0,[r7,#4]
+ 1338 00d0 FFF7FEFF 	 bl __aeabi_f2d
+ 1339 00d4 051C     	 mov r5,r0
+ 1340 00d6 0E1C     	 mov r6,r1
+ 1341 00d8 2023     	 mov r3,#32
+ 1342 00da FB18     	 add r3,r7,r3
+ 1343 00dc 5B68     	 ldr r3,[r3,#4]
+ 1344 00de 181C     	 add r0,r3,#0
+ 1345 00e0 FFF7FEFF 	 bl __aeabi_f2d
+ 1346 00e4 031C     	 mov r3,r0
+ 1347 00e6 0C1C     	 mov r4,r1
+ 1348 00e8 181C     	 mov r0,r3
+ 1349 00ea 211C     	 mov r1,r4
+ 1350 00ec 214A     	 ldr r2,.L78+4
+ 1351 00ee 244B     	 ldr r3,.L78+16
+ 1352 00f0 FFF7FEFF 	 bl __aeabi_dsub
+ 1353 00f4 031C     	 mov r3,r0
+ 1354 00f6 0C1C     	 mov r4,r1
+ 1355 00f8 281C     	 mov r0,r5
+ 1356 00fa 311C     	 mov r1,r6
+ 1357 00fc 1A1C     	 mov r2,r3
+ 1358 00fe 231C     	 mov r3,r4
+ 1359 0100 FFF7FEFF 	 bl __aeabi_dcmpgt
+ 1360 0104 031E     	 sub r3,r0,#0
+ 1361 0106 2CD0     	 beq .L59
+ 206:../Ultrasonic_Collision_Avoidance.c **** 		   new_Speed_limit = obstacel.distance  - CA_STOP; // speed reduction
+ 1362              	 .loc 3 206 0
+ 1363 0108 2023     	 mov r3,#32
+ 1364 010a FB18     	 add r3,r7,r3
+ 1365 010c 5B68     	 ldr r3,[r3,#4]
+ 1366 010e 181C     	 add r0,r3,#0
+ 1367 0110 FFF7FEFF 	 bl __aeabi_f2d
+ 1368 0114 031C     	 mov r3,r0
+ 1369 0116 0C1C     	 mov r4,r1
+ 1370 0118 181C     	 mov r0,r3
+ 1371 011a 211C     	 mov r1,r4
+ 1372 011c 154A     	 ldr r2,.L78+4
+ 1373 011e 184B     	 ldr r3,.L78+16
+ 1374 0120 FFF7FEFF 	 bl __aeabi_dsub
+ 1375 0124 031C     	 mov r3,r0
+ 1376 0126 0C1C     	 mov r4,r1
+ 1377 0128 181C     	 mov r0,r3
+ 1378 012a 211C     	 mov r1,r4
+ 1379 012c FFF7FEFF 	 bl __aeabi_d2f
+ 1380 0130 021C     	 add r2,r0,#0
+ 1381 0132 154B     	 ldr r3,.L78+24
+ 1382 0134 1A60     	 str r2,[r3]
+ 207:../Ultrasonic_Collision_Avoidance.c **** 		if( Speed_limit > new_Speed_limit) {
+ 1383              	 .loc 3 207 0
+ 1384 0136 154B     	 ldr r3,.L78+28
+ 1385 0138 1A68     	 ldr r2,[r3]
+ 1386 013a 134B     	 ldr r3,.L78+24
+ 1387 013c 1B68     	 ldr r3,[r3]
+ 1388 013e 101C     	 add r0,r2,#0
+ 1389 0140 191C     	 add r1,r3,#0
+ 1390 0142 FFF7FEFF 	 bl __aeabi_fcmpgt
+ 1391 0146 031E     	 sub r3,r0,#0
+ 1392 0148 0BD0     	 beq .L59
+ 208:../Ultrasonic_Collision_Avoidance.c **** 			Speed_limit = new_Speed_limit;
+ 1393              	 .loc 3 208 0
+ 1394 014a 0F4B     	 ldr r3,.L78+24
+ 1395 014c 1A68     	 ldr r2,[r3]
+ 1396 014e 0F4B     	 ldr r3,.L78+28
+ 1397 0150 1A60     	 str r2,[r3]
+ 209:../Ultrasonic_Collision_Avoidance.c **** 			set_CA_LED(obstacel.Sensor,2); //led on
+ 1398              	 .loc 3 209 0
+ 1399 0152 2023     	 mov r3,#32
+ 1400 0154 FB18     	 add r3,r7,r3
+ 1401 0156 5B78     	 ldrb r3,[r3,#1]
+ 1402 0158 181C     	 mov r0,r3
+ 1403 015a 0221     	 mov r1,#2
+ 1404 015c FFF7FEFF 	 bl set_CA_LED
+ 210:../Ultrasonic_Collision_Avoidance.c **** 			return;
+ 1405              	 .loc 3 210 0
+ 1406 0160 C046     	 mov r8,r8
+ 1407              	.L59:
+ 211:../Ultrasonic_Collision_Avoidance.c **** 		}
+ 212:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 213:../Ultrasonic_Collision_Avoidance.c **** }
+ 1408              	 .loc 3 213 0
+ 1409 0162 BD46     	 mov sp,r7
+ 1410 0164 03B0     	 add sp,sp,#12
+ 1411              	 
+ 1412 0166 F0BC     	 pop {r4,r5,r6,r7}
+ 1413 0168 08BC     	 pop {r3}
+ 1414 016a 04B0     	 add sp,sp,#16
+ 1415 016c 1847     	 bx r3
+ 1416              	.L79:
+ 1417 016e C046     	 .align 2
+ 1418              	.L78:
+ 1419 0170 00000000 	 .word Trajctory
+ 1420 0174 9A999999 	 .word -1717986918
+ 1421 0178 9999A93F 	 .word 1068079513
+ 1422 017c 00000000 	 .word aktive_addition
+ 1423 0180 9999C93F 	 .word 1070176665
+ 1424 0184 00000000 	 .word Speed_reduction_ratio
+ 1425 0188 00000000 	 .word new_Speed_limit
+ 1426 018c 00000000 	 .word Speed_limit
+ 1427              	 .cfi_endproc
+ 1428              	.LFE227:
+ 1430              	 .global toggel_ervy_x
+ 1431              	 .section .bss.toggel_ervy_x,"aw",%nobits
+ 1434              	toggel_ervy_x:
+ 1435 0000 00       	 .space 1
+ 1436              	 .section .text.set_CA_LED,"ax",%progbits
+ 1437              	 .align 2
+ 1438              	 .global set_CA_LED
+ 1439              	 .code 16
+ 1440              	 .thumb_func
+ 1442              	set_CA_LED:
+ 1443              	.LFB228:
+ 214:../Ultrasonic_Collision_Avoidance.c **** 
+ 215:../Ultrasonic_Collision_Avoidance.c **** uint8_t toggel_ervy_x = 0;
+ 216:../Ultrasonic_Collision_Avoidance.c **** 
+ 217:../Ultrasonic_Collision_Avoidance.c **** void set_CA_LED(uint8_t Sensor, uint8_t mode){
+ 1444              	 .loc 3 217 0
+ 1445              	 .cfi_startproc
+ 1446 0000 80B5     	 push {r7,lr}
+ 1447              	.LCFI31:
+ 1448              	 .cfi_def_cfa_offset 8
+ 1449              	 .cfi_offset 7,-8
+ 1450              	 .cfi_offset 14,-4
+ 1451 0002 82B0     	 sub sp,sp,#8
+ 1452              	.LCFI32:
+ 1453              	 .cfi_def_cfa_offset 16
+ 1454 0004 00AF     	 add r7,sp,#0
+ 1455              	.LCFI33:
+ 1456              	 .cfi_def_cfa_register 7
+ 1457 0006 021C     	 mov r2,r0
+ 1458 0008 FB1D     	 add r3,r7,#7
+ 1459 000a 1A70     	 strb r2,[r3]
+ 1460 000c BB1D     	 add r3,r7,#6
+ 1461 000e 0A1C     	 add r2,r1,#0
+ 1462 0010 1A70     	 strb r2,[r3]
+ 218:../Ultrasonic_Collision_Avoidance.c **** 	if(Sensor == 0)
+ 1463              	 .loc 3 218 0
+ 1464 0012 FB1D     	 add r3,r7,#7
+ 1465 0014 1B78     	 ldrb r3,[r3]
+ 1466 0016 002B     	 cmp r3,#0
+ 1467 0018 1ED1     	 bne .L81
+ 219:../Ultrasonic_Collision_Avoidance.c **** 		{
+ 220:../Ultrasonic_Collision_Avoidance.c **** 		if(mode == 0)DIGITAL_IO_SetOutputLow(&LED_CA_FRONT);
+ 1468              	 .loc 3 220 0
+ 1469 001a BB1D     	 add r3,r7,#6
+ 1470 001c 1B78     	 ldrb r3,[r3]
+ 1471 001e 002B     	 cmp r3,#0
+ 1472 0020 04D1     	 bne .L82
+ 1473              	 .loc 3 220 0 is_stmt 0 discriminator 1
+ 1474 0022 384B     	 ldr r3,.L93
+ 1475 0024 181C     	 mov r0,r3
+ 1476 0026 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 1477 002a 5AE0     	 b .L85
+ 1478              	.L82:
+ 221:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 1)DIGITAL_IO_SetOutputHigh(&LED_CA_FRONT);
+ 1479              	 .loc 3 221 0 is_stmt 1
+ 1480 002c BB1D     	 add r3,r7,#6
+ 1481 002e 1B78     	 ldrb r3,[r3]
+ 1482 0030 012B     	 cmp r3,#1
+ 1483 0032 04D1     	 bne .L84
+ 1484              	 .loc 3 221 0 is_stmt 0 discriminator 1
+ 1485 0034 334B     	 ldr r3,.L93
+ 1486 0036 181C     	 mov r0,r3
+ 1487 0038 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 1488 003c 51E0     	 b .L85
+ 1489              	.L84:
+ 222:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 2 && toggel_ervy_x == 0) DIGITAL_IO_ToggleOutput(&LED_CA_FRONT);
+ 1490              	 .loc 3 222 0 is_stmt 1
+ 1491 003e BB1D     	 add r3,r7,#6
+ 1492 0040 1B78     	 ldrb r3,[r3]
+ 1493 0042 022B     	 cmp r3,#2
+ 1494 0044 4DD1     	 bne .L85
+ 1495              	 .loc 3 222 0 is_stmt 0 discriminator 1
+ 1496 0046 304B     	 ldr r3,.L93+4
+ 1497 0048 1B78     	 ldrb r3,[r3]
+ 1498 004a 002B     	 cmp r3,#0
+ 1499 004c 49D1     	 bne .L85
+ 1500              	 .loc 3 222 0 discriminator 2
+ 1501 004e 2D4B     	 ldr r3,.L93
+ 1502 0050 181C     	 mov r0,r3
+ 1503 0052 FFF7FEFF 	 bl DIGITAL_IO_ToggleOutput
+ 1504 0056 44E0     	 b .L85
+ 1505              	.L81:
+ 223:../Ultrasonic_Collision_Avoidance.c **** 		}
+ 224:../Ultrasonic_Collision_Avoidance.c **** 	else if (Sensor == 1){
+ 1506              	 .loc 3 224 0 is_stmt 1
+ 1507 0058 FB1D     	 add r3,r7,#7
+ 1508 005a 1B78     	 ldrb r3,[r3]
+ 1509 005c 012B     	 cmp r3,#1
+ 1510 005e 1ED1     	 bne .L86
+ 225:../Ultrasonic_Collision_Avoidance.c **** 		if(mode == 0)DIGITAL_IO_SetOutputLow(&LED_CA_LEFT);
+ 1511              	 .loc 3 225 0
+ 1512 0060 BB1D     	 add r3,r7,#6
+ 1513 0062 1B78     	 ldrb r3,[r3]
+ 1514 0064 002B     	 cmp r3,#0
+ 1515 0066 04D1     	 bne .L87
+ 1516              	 .loc 3 225 0 is_stmt 0 discriminator 1
+ 1517 0068 284B     	 ldr r3,.L93+8
+ 1518 006a 181C     	 mov r0,r3
+ 1519 006c FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 1520 0070 37E0     	 b .L85
+ 1521              	.L87:
+ 226:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 1)DIGITAL_IO_SetOutputHigh(&LED_CA_LEFT);
+ 1522              	 .loc 3 226 0 is_stmt 1
+ 1523 0072 BB1D     	 add r3,r7,#6
+ 1524 0074 1B78     	 ldrb r3,[r3]
+ 1525 0076 012B     	 cmp r3,#1
+ 1526 0078 04D1     	 bne .L89
+ 1527              	 .loc 3 226 0 is_stmt 0 discriminator 1
+ 1528 007a 244B     	 ldr r3,.L93+8
+ 1529 007c 181C     	 mov r0,r3
+ 1530 007e FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 1531 0082 2EE0     	 b .L85
+ 1532              	.L89:
+ 227:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 2 && toggel_ervy_x == 0) DIGITAL_IO_ToggleOutput(&LED_CA_LEFT);
+ 1533              	 .loc 3 227 0 is_stmt 1
+ 1534 0084 BB1D     	 add r3,r7,#6
+ 1535 0086 1B78     	 ldrb r3,[r3]
+ 1536 0088 022B     	 cmp r3,#2
+ 1537 008a 2AD1     	 bne .L85
+ 1538              	 .loc 3 227 0 is_stmt 0 discriminator 1
+ 1539 008c 1E4B     	 ldr r3,.L93+4
+ 1540 008e 1B78     	 ldrb r3,[r3]
+ 1541 0090 002B     	 cmp r3,#0
+ 1542 0092 26D1     	 bne .L85
+ 1543              	 .loc 3 227 0 discriminator 2
+ 1544 0094 1D4B     	 ldr r3,.L93+8
+ 1545 0096 181C     	 mov r0,r3
+ 1546 0098 FFF7FEFF 	 bl DIGITAL_IO_ToggleOutput
+ 1547 009c 21E0     	 b .L85
+ 1548              	.L86:
  228:../Ultrasonic_Collision_Avoidance.c **** 	}
- 229:../Ultrasonic_Collision_Avoidance.c **** 
- 230:../Ultrasonic_Collision_Avoidance.c **** 	toggel_ervy_x++;
- 1424              	 .loc 3 230 0 is_stmt 1
- 1425 00e2 094B     	 ldr r3,.L89+4
- 1426 00e4 1B78     	 ldrb r3,[r3]
- 1427 00e6 0133     	 add r3,r3,#1
- 1428 00e8 DAB2     	 uxtb r2,r3
- 1429 00ea 074B     	 ldr r3,.L89+4
- 1430 00ec 1A70     	 strb r2,[r3]
- 231:../Ultrasonic_Collision_Avoidance.c **** 	if(toggel_ervy_x > 8) toggel_ervy_x = 0;
- 1431              	 .loc 3 231 0
- 1432 00ee 064B     	 ldr r3,.L89+4
- 1433 00f0 1B78     	 ldrb r3,[r3]
- 1434 00f2 082B     	 cmp r3,#8
- 1435 00f4 02D9     	 bls .L76
- 1436              	 .loc 3 231 0 is_stmt 0 discriminator 1
- 1437 00f6 044B     	 ldr r3,.L89+4
- 1438 00f8 0022     	 mov r2,#0
- 1439 00fa 1A70     	 strb r2,[r3]
- 1440              	.L76:
- 232:../Ultrasonic_Collision_Avoidance.c **** }
- 1441              	 .loc 3 232 0 is_stmt 1
- 1442 00fc BD46     	 mov sp,r7
- 1443 00fe 02B0     	 add sp,sp,#8
- 1444              	 
- 1445 0100 80BD     	 pop {r7,pc}
- 1446              	.L90:
- 1447 0102 C046     	 .align 2
- 1448              	.L89:
- 1449 0104 00000000 	 .word LED_CA_FRONT
- 1450 0108 00000000 	 .word toggel_ervy_x
- 1451 010c 00000000 	 .word LED_CA_LEFT
- 1452 0110 00000000 	 .word LED_CA_RIGHT
- 1453              	 .cfi_endproc
- 1454              	.LFE228:
- 1456              	 .text
- 1457              	.Letext0:
- 1458              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 1459              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 1460              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
- 1461              	 .file 7 "../Ultrasonic_Collision_Avoidance.h"
- 1462              	 .file 8 "../Globals.h"
- 1463              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 1464              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 1465              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
- 1466              	 .file 12 "../CAN.h"
+ 229:../Ultrasonic_Collision_Avoidance.c **** 	else if (Sensor == 2){
+ 1549              	 .loc 3 229 0 is_stmt 1
+ 1550 009e FB1D     	 add r3,r7,#7
+ 1551 00a0 1B78     	 ldrb r3,[r3]
+ 1552 00a2 022B     	 cmp r3,#2
+ 1553 00a4 1DD1     	 bne .L85
+ 230:../Ultrasonic_Collision_Avoidance.c **** 		if(mode == 0)DIGITAL_IO_SetOutputLow(&LED_CA_RIGHT);
+ 1554              	 .loc 3 230 0
+ 1555 00a6 BB1D     	 add r3,r7,#6
+ 1556 00a8 1B78     	 ldrb r3,[r3]
+ 1557 00aa 002B     	 cmp r3,#0
+ 1558 00ac 04D1     	 bne .L90
+ 1559              	 .loc 3 230 0 is_stmt 0 discriminator 1
+ 1560 00ae 184B     	 ldr r3,.L93+12
+ 1561 00b0 181C     	 mov r0,r3
+ 1562 00b2 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 1563 00b6 14E0     	 b .L85
+ 1564              	.L90:
+ 231:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 1)DIGITAL_IO_SetOutputHigh(&LED_CA_RIGHT);
+ 1565              	 .loc 3 231 0 is_stmt 1
+ 1566 00b8 BB1D     	 add r3,r7,#6
+ 1567 00ba 1B78     	 ldrb r3,[r3]
+ 1568 00bc 012B     	 cmp r3,#1
+ 1569 00be 04D1     	 bne .L91
+ 1570              	 .loc 3 231 0 is_stmt 0 discriminator 1
+ 1571 00c0 134B     	 ldr r3,.L93+12
+ 1572 00c2 181C     	 mov r0,r3
+ 1573 00c4 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 1574 00c8 0BE0     	 b .L85
+ 1575              	.L91:
+ 232:../Ultrasonic_Collision_Avoidance.c **** 		else if(mode == 2 && toggel_ervy_x == 0) DIGITAL_IO_ToggleOutput(&LED_CA_RIGHT);
+ 1576              	 .loc 3 232 0 is_stmt 1
+ 1577 00ca BB1D     	 add r3,r7,#6
+ 1578 00cc 1B78     	 ldrb r3,[r3]
+ 1579 00ce 022B     	 cmp r3,#2
+ 1580 00d0 07D1     	 bne .L85
+ 1581              	 .loc 3 232 0 is_stmt 0 discriminator 1
+ 1582 00d2 0D4B     	 ldr r3,.L93+4
+ 1583 00d4 1B78     	 ldrb r3,[r3]
+ 1584 00d6 002B     	 cmp r3,#0
+ 1585 00d8 03D1     	 bne .L85
+ 1586              	 .loc 3 232 0 discriminator 2
+ 1587 00da 0D4B     	 ldr r3,.L93+12
+ 1588 00dc 181C     	 mov r0,r3
+ 1589 00de FFF7FEFF 	 bl DIGITAL_IO_ToggleOutput
+ 1590              	.L85:
+ 233:../Ultrasonic_Collision_Avoidance.c **** 	}
+ 234:../Ultrasonic_Collision_Avoidance.c **** 
+ 235:../Ultrasonic_Collision_Avoidance.c **** 	toggel_ervy_x++;
+ 1591              	 .loc 3 235 0 is_stmt 1
+ 1592 00e2 094B     	 ldr r3,.L93+4
+ 1593 00e4 1B78     	 ldrb r3,[r3]
+ 1594 00e6 0133     	 add r3,r3,#1
+ 1595 00e8 DAB2     	 uxtb r2,r3
+ 1596 00ea 074B     	 ldr r3,.L93+4
+ 1597 00ec 1A70     	 strb r2,[r3]
+ 236:../Ultrasonic_Collision_Avoidance.c **** 	if(toggel_ervy_x > 8) toggel_ervy_x = 0;
+ 1598              	 .loc 3 236 0
+ 1599 00ee 064B     	 ldr r3,.L93+4
+ 1600 00f0 1B78     	 ldrb r3,[r3]
+ 1601 00f2 082B     	 cmp r3,#8
+ 1602 00f4 02D9     	 bls .L80
+ 1603              	 .loc 3 236 0 is_stmt 0 discriminator 1
+ 1604 00f6 044B     	 ldr r3,.L93+4
+ 1605 00f8 0022     	 mov r2,#0
+ 1606 00fa 1A70     	 strb r2,[r3]
+ 1607              	.L80:
+ 237:../Ultrasonic_Collision_Avoidance.c **** }
+ 1608              	 .loc 3 237 0 is_stmt 1
+ 1609 00fc BD46     	 mov sp,r7
+ 1610 00fe 02B0     	 add sp,sp,#8
+ 1611              	 
+ 1612 0100 80BD     	 pop {r7,pc}
+ 1613              	.L94:
+ 1614 0102 C046     	 .align 2
+ 1615              	.L93:
+ 1616 0104 00000000 	 .word LED_CA_FRONT
+ 1617 0108 00000000 	 .word toggel_ervy_x
+ 1618 010c 00000000 	 .word LED_CA_LEFT
+ 1619 0110 00000000 	 .word LED_CA_RIGHT
+ 1620              	 .cfi_endproc
+ 1621              	.LFE228:
+ 1623              	 .text
+ 1624              	.Letext0:
+ 1625              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1626              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 1627              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 1628              	 .file 7 "../Ultrasonic_Collision_Avoidance.h"
+ 1629              	 .file 8 "../Globals.h"
+ 1630              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 1631              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 1632              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 1633              	 .file 12 "../CAN.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 Ultrasonic_Collision_Avoidance.c
                             *COM*:00000001 RC_controll
@@ -2373,9 +2545,9 @@ DEFINED SYMBOLS
     {standard input}:288    .data.Ultrsonic_data_invaildcounter:00000000 $d
     {standard input}:300    .bss.Obstacel_valid:00000000 Obstacel_valid
     {standard input}:297    .bss.Obstacel_valid:00000000 $d
-                            *COM*:0000000c Obstacel_F
-                            *COM*:0000000c Obstacel_L
-                            *COM*:0000000c Obstacel_R
+                            *COM*:00000014 Obstacel_F
+                            *COM*:00000014 Obstacel_L
+                            *COM*:00000014 Obstacel_R
     {standard input}:310    .data.Speed_reduction_ratio:00000000 Speed_reduction_ratio
     {standard input}:307    .data.Speed_reduction_ratio:00000000 $d
     {standard input}:317    .data.Speed_limit:00000000 Speed_limit
@@ -2394,29 +2566,35 @@ DEFINED SYMBOLS
     {standard input}:356    .bss.speed_CA_rr:00000000 $d
     {standard input}:365    .bss.init:00000000 init
     {standard input}:366    .bss.init:00000000 $d
-    {standard input}:370    .text.Ultra_sonic_filter:00000000 $t
-    {standard input}:375    .text.Ultra_sonic_filter:00000000 Ultra_sonic_filter
-    {standard input}:718    .text.Ultrasoinc_Obstructet_Test:00000000 Ultrasoinc_Obstructet_Test
-    {standard input}:696    .text.Ultra_sonic_filter:00000208 $d
-    {standard input}:713    .text.Ultrasoinc_Obstructet_Test:00000000 $t
-    {standard input}:782    .text.Ultrasoinc_Obstructet_Test:00000054 $d
-    {standard input}:793    .text.Collision_voidance:00000000 $t
-    {standard input}:798    .text.Collision_voidance:00000000 Collision_voidance
-    {standard input}:1041   .text.Obstacel_CA_check:00000000 Obstacel_CA_check
-    {standard input}:1008   .text.Collision_voidance:00000144 $d
-    {standard input}:1036   .text.Obstacel_CA_check:00000000 $t
-    {standard input}:1275   .text.set_CA_LED:00000000 set_CA_LED
-    {standard input}:1249   .text.Obstacel_CA_check:00000174 $d
-    {standard input}:1267   .bss.toggel_ervy_x:00000000 toggel_ervy_x
-    {standard input}:1268   .bss.toggel_ervy_x:00000000 $d
-    {standard input}:1270   .text.set_CA_LED:00000000 $t
-    {standard input}:1449   .text.set_CA_LED:00000104 $d
+    {standard input}:374    .text.Ultra_sonic_filter:00000000 $t
+    {standard input}:379    .text.Ultra_sonic_filter:00000000 Ultra_sonic_filter
+    {standard input}:887    .text.Ultrasoinc_Obstructet_Test:00000000 Ultrasoinc_Obstructet_Test
+    {standard input}:863    .text.Ultra_sonic_filter:00000370 $d
+    {standard input}:882    .text.Ultrasoinc_Obstructet_Test:00000000 $t
+    {standard input}:951    .text.Ultrasoinc_Obstructet_Test:00000054 $d
+    {standard input}:962    .text.Collision_voidance:00000000 $t
+    {standard input}:967    .text.Collision_voidance:00000000 Collision_voidance
+    {standard input}:1211   .text.Obstacel_CA_check:00000000 Obstacel_CA_check
+    {standard input}:1181   .text.Collision_voidance:0000014c $d
+    {standard input}:1206   .text.Obstacel_CA_check:00000000 $t
+    {standard input}:1442   .text.set_CA_LED:00000000 set_CA_LED
+    {standard input}:1419   .text.Obstacel_CA_check:00000170 $d
+    {standard input}:1434   .bss.toggel_ervy_x:00000000 toggel_ervy_x
+    {standard input}:1435   .bss.toggel_ervy_x:00000000 $d
+    {standard input}:1437   .text.set_CA_LED:00000000 $t
+    {standard input}:1616   .text.set_CA_LED:00000104 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
 __aeabi_i2f
 __aeabi_fdiv
+__aeabi_f2d
+__aeabi_ddiv
+__aeabi_dmul
+__aeabi_d2f
 Exp_moving_average
+cos
+sin
 Steering_Angles
 __aeabi_fcmpgt
 __aeabi_fcmplt
@@ -2427,15 +2605,11 @@ __aeabi_fmul
 CAN_Ultrasonic_No_messasge_count
 Speeds
 Speeds_CA
-__aeabi_fadd
-__aeabi_f2d
-__aeabi_dcmpgt
-__aeabi_dadd
 __aeabi_dcmplt
+__aeabi_dadd
 __aeabi_dsub
-__aeabi_d2f
-vector_abs_value
-trajectory_angle
+__aeabi_dcmpgt
+vector_projection_abs
 Trajctory
 LED_CA_FRONT
 LED_CA_LEFT

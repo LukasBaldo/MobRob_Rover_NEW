@@ -8,7 +8,7 @@
 #include "CAN.h"
 
 
-//float speed_fl_act = 0, speed_fr_act = 0, speed_rl_act = 0, speed_rr_act = 0; // in m/s
+float speed_fl_act = 0, speed_fr_act = 0, speed_rl_act = 0, speed_rr_act = 0; // in m/s
 float distance_fl_act = 0, distance_fr_act = 0;
 float distance_rl_act = 0;
 float distance_rr_act = 0; // in m/s
@@ -76,12 +76,14 @@ void CAN_RX_Inverter_Read_Data(){
 			Inveter_CAN_OK[Motor_on_rover] = values_int16[0];
 			Actual_Speeds[Motor_on_rover] = (float)values_int16[1] / 1000;
 			Actual_Distance[Motor_on_rover] = (float)values_int16[2] / 1000;
-
-
 			}
 		else DIGITAL_IO_SetOutputHigh(&LED_CAN_ERROR);
 	}
 
+	speed_fl_act = Actual_Speeds[0];
+	speed_fr_act = Actual_Speeds[1];
+	speed_rl_act = Actual_Speeds[2];
+	speed_rr_act = Actual_Speeds[3];
 }
 
 

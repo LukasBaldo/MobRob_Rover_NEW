@@ -9,7 +9,7 @@
 #define GLOBALS_H_
 
 #define MIN_Speed  0.05
-#define MAX_Speed  1
+#define MAX_Speed  1.5
 
 #include <stdint.h> // need for data types
 

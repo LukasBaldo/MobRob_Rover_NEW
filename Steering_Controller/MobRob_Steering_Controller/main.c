@@ -20,7 +20,7 @@ CAN_NODE_STATUS_t init_status;
 int CAN_OK = 0;
 
 uint8_t test = 0;
-
+uint8_t start_no_speed_counter = 20;
 
 int main(void)
 {
@@ -81,13 +81,13 @@ void TIMER_CONTROL_ISR(void){
 
 	if(New_Input == 1){
 	Steering_Function(Steering_direction, Driving_speed, Steering_mode);
-	NO_New_Input_counter = 0;
+	if(NO_New_Input_counter > 0) NO_New_Input_counter = 0;
 
 	}
 	else{
 		NO_New_Input_counter ++;
-		if( NO_New_Input_counter > 10){
-			NO_New_Input_counter = 10;
+		if( NO_New_Input_counter > 20 || RC_Speed_Stop_counter > RC_SPEED_SAFTY_FT || start_no_speed_counter > 0){
+			NO_New_Input_counter = 20;
 
 			  Steering_Angles[0] = 0;
 			  Steering_Angles[1] = 0;
@@ -109,7 +109,7 @@ void TIMER_CONTROL_ISR(void){
 	Collision_voidance();
 
 	//send traget speeds to inverter
-	CAN_send_Speeds(Speeds);
+	CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
 
 	//
 	if(reset_distance == 1){
@@ -118,6 +118,6 @@ void TIMER_CONTROL_ISR(void){
 		CAN_reset_distance(all);
 	}
 
-
+	if(start_no_speed_counter > 0) start_no_speed_counter--;
 	DIGITAL_IO_SetOutputLow(&CALC_TIME_INDICATOR);
 }

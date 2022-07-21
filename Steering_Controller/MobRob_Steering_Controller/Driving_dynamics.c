@@ -9,8 +9,8 @@
 
 
 #define ROTATION_ANGLE -53.96
-#define ROTATION_ANGLE_OFFSET -5
-#define ROTATION_SPEED  0.25
+#define ROTATION_ANGLE_OFFSET -20
+#define ROTATION_SPEED  0.55
 
 float R_Turn = 0;
 float Speed_ratio = 0;
@@ -46,8 +46,8 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
 				Speed_ratio = (2 * (copysign(R_Turn,1) + HALF_TRACK_WIDTH) * M_PI) / (2 * copysign(R_Turn,1) * M_PI);
 
 				if((R_TRUN_MIN < R_Turn) && (R_Turn < R_TRUN_MAX)){
-					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // out wheel
-					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // in wheel
+					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // out wheel
+					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // in wheel
 
 					speed_fl = Driving_speed_cal / Speed_ratio;
 					speed_fr = Driving_speed_cal * Speed_ratio;
@@ -57,8 +57,8 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
 					speed_rr = speed_fr;
 				}
 				else if((- R_TRUN_MIN > R_Turn) && (R_Turn > -R_TRUN_MAX)){
-					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // in wheel
-					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // out wheel
+					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // in wheel
+					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn  + HALF_TRACK_WIDTH)); // out wheel
 
 					speed_fl = Driving_speed_cal * Speed_ratio;
 					speed_fr = Driving_speed_cal / Speed_ratio;
@@ -94,9 +94,8 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
 				Speed_ratio = (2 * (copysign(R_Turn,1) + HALF_TRACK_WIDTH) * M_PI) / (2 * copysign(R_Turn,1) * M_PI);
 
 				if((R_TRUN_MIN < R_Turn) && (R_Turn < R_TRUN_MAX)){
-					angle_rl = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // out wheel
-					angle_rr = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // in wheel
-
+					angle_rl = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // out wheel
+					angle_rr = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // in wheel
 
 					speed_fl = Driving_speed_cal / Speed_ratio;
 					speed_fr = Driving_speed_cal * Speed_ratio;
@@ -105,8 +104,8 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
 					speed_rr = speed_fr;
 				}
 				else if((- R_TRUN_MIN > R_Turn) && (R_Turn > -R_TRUN_MAX)){
-					angle_rl = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // in wheel
-					angle_rr = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // out wheel
+					angle_rl = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // in wheel
+					angle_rr = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // out wheel
 
 					speed_fl = Driving_speed_cal * Speed_ratio;
 					speed_fr = Driving_speed_cal / Speed_ratio;
@@ -141,8 +140,8 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
 				Speed_ratio = (2 * (copysign(R_Turn,1) + HALF_TRACK_WIDTH) * M_PI) / (2 * copysign(R_Turn,1) * M_PI);
 
 				if((R_TRUN_MIN < R_Turn) && (R_Turn < R_TRUN_MAX)){ // trun right positive R
-					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // out wheel
-					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // in wheel
+					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // out wheel
+					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // in wheel
 
 					angle_rl = -angle_fl;
 					angle_rr = -angle_fr;
@@ -154,8 +153,8 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
 					speed_rr = speed_fr;
 				}
 				else if((- R_TRUN_MIN > R_Turn) && (R_Turn > -R_TRUN_MAX)){ // trun left positive R
-					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // in wheel
-					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // out wheel
+					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // in wheel
+					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // out wheel
 
 					angle_rl = -angle_fl;
 					angle_rr = -angle_fr;
@@ -200,22 +199,22 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
 		case ROTATE: // rotate #############################################################
 			// steering agel for turng in place
 			angle_fl = ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
-			angle_fr = -ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
-			angle_rl = -ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
+			angle_fr = -ROTATION_ANGLE - ROTATION_ANGLE_OFFSET;
+			angle_rl = -ROTATION_ANGLE - ROTATION_ANGLE_OFFSET;
 			angle_rr = ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
 
 			 // speed
 			if (Steering_direction_cal > 10){
-				speed_fl = ROTATION_SPEED;
-				speed_fr = -ROTATION_SPEED;
-				speed_rl = ROTATION_SPEED;
-				speed_rr = -ROTATION_SPEED;
-			}
-			else if(Steering_direction_cal < -10){
 				speed_fl = -ROTATION_SPEED;
 				speed_fr = ROTATION_SPEED;
 				speed_rl = -ROTATION_SPEED;
 				speed_rr = ROTATION_SPEED;
+			}
+			else if(Steering_direction_cal < -10){
+				speed_fl = ROTATION_SPEED;
+				speed_fr = -ROTATION_SPEED;
+				speed_rl = ROTATION_SPEED;
+				speed_rr = -ROTATION_SPEED;
 			}
 			else{
 				speed_fl = 0;

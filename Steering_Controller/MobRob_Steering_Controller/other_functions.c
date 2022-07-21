@@ -48,19 +48,16 @@ float average(float a[],int num_values) {
     return sum / num_values;
 }
 
-float angel_of_2D_vetor_deg(float vector[2]){
-	float x = vector[0];
-	float y = vector[1];
-	#define RAD_to_DEG 57.29577951
 
-	if(y == 0){
-		if(copysign(1,x) == 1) return 0;
-		if(copysign(1,x) == -1) return 180;
-	}
-	else{
-		if(copysign(1,x) == 1 && copysign(1,y) == 1) return  atan(x / y) * RAD_to_DEG;
-		else if(copysign(1,x) == -1 && copysign(1,y) == 1) return 180 + ( atan(x / y) * RAD_to_DEG);
-		else if(copysign(1,x) == 1 && copysign(1,y) == -1) return  180 + (atan(x / y) * RAD_to_DEG);
-		else if(copysign(-1,x) == -1 && copysign(1,y) == -1) return 360 + (atan(x / y) * RAD_to_DEG);
-	}
+float vector_projection_abs(float a[2], float b[2]){
+	float factor = dot_product(a,b) / dot_product(b,b);
+	float a1[2] = {factor * b[0], factor * b[0]};
+	return vector_abs_value(a1);
+}
+
+float dot_product(float v[2], float u[2]){
+	float result = 0.0;
+    for (int i = 0; i < 2; i++)
+        result += v[i]*u[i];
+    return result;
 }

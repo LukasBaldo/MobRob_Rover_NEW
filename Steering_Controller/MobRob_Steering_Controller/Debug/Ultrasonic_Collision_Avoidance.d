@@ -71,7 +71,7 @@ Ultrasonic_Collision_Avoidance.o \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_conf.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_extern.h \
- ../other_functions.h ../CAN.h
+ ../other_functions.h ../CAN.h ../DEFINE_CONST.h
 
 ../Ultrasonic_Collision_Avoidance.h:
 
@@ -218,3 +218,5 @@ C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/G
 ../other_functions.h:
 
 ../CAN.h:
+
+../DEFINE_CONST.h:

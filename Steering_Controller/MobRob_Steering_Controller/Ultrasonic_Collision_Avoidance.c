@@ -78,6 +78,8 @@ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc
 		Obstacel_F.angle = 0;
 		Obstacel_F.distance = Ultra_m_C;
 		Obstacel_F.isValid = 1;
+		Obstacel_F.vector[0] = Obstacel_F.distance;
+		Obstacel_F.vector[1] = 0;
 	}
 	else Obstacel_F.isValid = 0;
 
@@ -85,6 +87,9 @@ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc
 		Obstacel_L.angle = Steering_Angles[0];
 		Obstacel_L.distance = Ultra_m_L;
 		Obstacel_L.isValid = 1;
+		Obstacel_L.vector[0] = Obstacel_L.distance * cos(Obstacel_L.angle / RAD_TO_DEG);
+		Obstacel_L.vector[1] = Obstacel_L.distance * sin(Obstacel_L.angle / RAD_TO_DEG);
+
 	}
 	else Obstacel_L.isValid = 0;
 
@@ -92,6 +97,8 @@ void Ultra_sonic_filter(int16_t Ultrasonic_cm_C_clc, int16_t Ultrasonic_cm_L_clc
 		Obstacel_R.angle = Steering_Angles[1];
 		Obstacel_R.distance = Ultra_m_R;
 		Obstacel_R.isValid = 1;
+		Obstacel_R.vector[0] = Obstacel_R.distance * cos(Obstacel_R.angle / RAD_TO_DEG);
+		Obstacel_R.vector[1] = Obstacel_R.distance * sin(Obstacel_R.angle / RAD_TO_DEG);
 	}
 	else Obstacel_R.isValid = 0;
 }
@@ -182,29 +189,27 @@ void Collision_voidance(){
 }
 
 void Obstacel_CA_check(Obstacel obstacel){
-	if(obstacel.isValid){
-		if(obstacel.distance < CA_START){ // not far away
-			if(within_MAX_MIN(obstacel.angle, trajectory_angle + CA_ANGLE, trajectory_angle - CA_ANGLE)){ // in trajectory dirction
-				float abs_trajctory = vector_abs_value(Trajctory);
-				if( abs_trajctory > 0.01){
-					if(obstacel.distance  < CA_STOP + aktive_addition){
+	set_CA_LED(obstacel.Sensor,0);
+	if(obstacel.isValid == 0) return;
+
+	if(obstacel.distance > CA_START) return; // not far away no CA
+
+	float Trajctory_at_obstacel_abs = vector_projection_abs(Trajctory, obstacel.vector);
+	if(Trajctory_at_obstacel_abs < 0.05) return; // if trajcetor in diection of obstacel is smaller then no cA
+
+	if(obstacel.distance  < CA_STOP + aktive_addition){
 						Speed_reduction_ratio = 0; // stop
 						set_CA_LED(obstacel.Sensor,1);
 						return;
-					}
-					else if(abs_trajctory > obstacel.distance  - CA_STOP){
-						   new_Speed_limit = obstacel.distance  - CA_STOP; // speed reduction
-						if( Speed_limit > new_Speed_limit) {
-							Speed_limit = new_Speed_limit;
-							set_CA_LED(obstacel.Sensor,2); //led on
-							return;
-						}
-					}
-				}
-			}
+	}
+	else if(Trajctory_at_obstacel_abs > obstacel.distance  - CA_STOP){
+		   new_Speed_limit = obstacel.distance  - CA_STOP; // speed reduction
+		if( Speed_limit > new_Speed_limit) {
+			Speed_limit = new_Speed_limit;
+			set_CA_LED(obstacel.Sensor,2); //led on
+			return;
 		}
 	}
-	set_CA_LED(obstacel.Sensor,0);
 }
 
 uint8_t toggel_ervy_x = 0;

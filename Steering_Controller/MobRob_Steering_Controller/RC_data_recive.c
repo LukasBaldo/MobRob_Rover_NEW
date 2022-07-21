@@ -12,16 +12,17 @@ uint32_t  captured_time_Steering=0, captured_time_Speed=0;
 uint8_t RC_no_Speed_data_counter = 0, RC_no_Steering_data_counter = 0;
 float RC_Speed = 0, RC_Steering = 0;
 #define RC_NP_SPEED  1500000
-#define RC_NP_STEERING  1560000
+#define RC_NP_STEERING  1500000
 //uint32_t RC_NP_STEERING = 1500000;
-float RC_Speed_ns_to_mps = 0.00000125;
+float RC_Speed_ns_to_mps = 0.000002; // increased
 float RC_Steering_ns_to_deg = 0.00021;
 
 volatile uint32_t RC_gear_100us_counter = 0, RC_AUX1_100us_counter = 0;
 volatile uint8_t RC_Gear_state = 2, RC_AUX1_state = 2;
 volatile uint8_t RC_Gear_duty = 2, RC_Gear_duty_OLD =2, RC_AUX1_duty = 2;
-uint8_t RC_Speed_Stop = 1;
+//uint8_t RC_Speed_Stop = 1;
 
+volatile uint8_t RC_Speed_Stop_counter = RC_SPEED_SAFTY_FT;
 
 void INTERRUPT_TIMER_10us_ISR(void){ // every 1ms so 10kHz
 	if(RC_Gear_state == 1)RC_gear_100us_counter ++;
@@ -38,10 +39,10 @@ void RC_Recive(void){
 	CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_RC_Steering, &captured_time_Steering);
 	CAPTURE_GetCapturedTimeInNanoSec(&CAPTURE_RC_Speed, &captured_time_Speed);
 
-	if(RC_Speed_Stop == 1){
+	if(RC_Speed_Stop_counter < RC_SPEED_SAFTY_FT ){
 		if((captured_time_Speed >= 1000000) && (captured_time_Speed <= 2000000)){
-		  RC_Speed = ((double)captured_time_Speed - RC_NP_SPEED) * RC_Speed_ns_to_mps; // form +-0.6m/s
-		  if((RC_Speed < 0.1) && (RC_Speed > -0.1)) RC_Speed = 0; // to have accutal 0
+		  RC_Speed = ((double)captured_time_Speed - RC_NP_SPEED) * RC_Speed_ns_to_mps; //  form +-0.6m/s
+		 // if((RC_Speed < 0.1) && (RC_Speed > -0.1)) RC_Speed = 0; // to have accutal 0
 		  RC_no_Speed_data_counter = 0;
 		}
 		else{
@@ -52,7 +53,7 @@ void RC_Recive(void){
 
 	if((captured_time_Steering >= 1000000) && (captured_time_Steering <= 2000000)){
 	  RC_Steering = -(((double)captured_time_Steering - RC_NP_STEERING) * RC_Steering_ns_to_deg); // form +-90m/s
-	  if((RC_Steering < 2) && (RC_Steering > -2)) RC_Steering = 0; // to have accutal 0
+	  if(within_MAX_MIN(RC_Steering, 2, -2)) RC_Steering = 0; // to have accutal 0
 	  RC_no_Steering_data_counter = 0;
 	}
 	else{
@@ -119,12 +120,14 @@ void RC_AUX1_ISR(void){
 			RC_AUX1_100us_counter = 0;
 
 			if((80 < RC_AUX1_on_time_100us) && (RC_AUX1_on_time_100us < 150)) RC_AUX1_duty= 0;
-			else if ((150 < RC_AUX1_on_time_100us) && (RC_AUX1_on_time_100us < 210)) RC_AUX1_duty = 1;
+			else if ((150 <= RC_AUX1_on_time_100us) && (RC_AUX1_on_time_100us < 210)) RC_AUX1_duty = 1;
 			else RC_AUX1_duty = 2;
 
 
-			if(RC_AUX1_duty == 1)RC_Speed_Stop = 1;
-			else RC_Speed_Stop = 0;
+			if(RC_AUX1_duty == 1)RC_Speed_Stop_counter = 0;
+			else RC_Speed_Stop_counter ++ ;
+
+			if(RC_Speed_Stop_counter > RC_SPEED_SAFTY_FT) RC_Speed_Stop_counter = RC_SPEED_SAFTY_FT;
 		}
 	}
 }

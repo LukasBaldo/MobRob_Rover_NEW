@@ -68,7 +68,8 @@ RC_data_recive.o RC_data_recive.d RC_data_recive.o: ../RC_data_recive.c \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/CLOCK_XMC1/clock_xmc1.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_conf.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h \
- C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_extern.h
+ C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_extern.h \
+ ../other_functions.h
 
 ../RC_data_recive.h:
 
@@ -211,3 +212,5 @@ C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/G
 C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h:
 
 C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_extern.h:
+
+../other_functions.h:
