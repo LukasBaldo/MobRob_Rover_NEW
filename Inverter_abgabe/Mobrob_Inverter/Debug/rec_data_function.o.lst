@@ -1,0 +1,578 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "rec_data_function.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .global rec_data_contorl
+  20              	 .section .bss.rec_data_contorl,"aw",%nobits
+  23              	rec_data_contorl:
+  24 0000 00       	 .space 1
+  25              	 .global rec_data_index
+  26              	 .section .bss.rec_data_index,"aw",%nobits
+  27              	 .align 1
+  30              	rec_data_index:
+  31 0000 0000     	 .space 2
+  32              	 .global rec_data
+  33              	 .section .bss.rec_data,"aw",%nobits
+  34              	 .align 2
+  37              	rec_data:
+  38 0000 00000000 	 .space 4000
+  38      00000000 
+  38      00000000 
+  38      00000000 
+  38      00000000 
+  39              	 .global rec_data2
+  40              	 .section .bss.rec_data2,"aw",%nobits
+  41              	 .align 2
+  44              	rec_data2:
+  45 0000 00000000 	 .space 4000
+  45      00000000 
+  45      00000000 
+  45      00000000 
+  45      00000000 
+  46              	 .global rec_data3
+  47              	 .section .bss.rec_data3,"aw",%nobits
+  48              	 .align 2
+  51              	rec_data3:
+  52 0000 00000000 	 .space 4000
+  52      00000000 
+  52      00000000 
+  52      00000000 
+  52      00000000 
+  53              	 .global reset_rec
+  54              	 .section .bss.reset_rec,"aw",%nobits
+  57              	reset_rec:
+  58 0000 00       	 .space 1
+  59              	 .global start_rec
+  60              	 .section .bss.start_rec,"aw",%nobits
+  63              	start_rec:
+  64 0000 00       	 .space 1
+  65              	 .global start_rec_copunt
+  66              	 .section .bss.start_rec_copunt,"aw",%nobits
+  67              	 .align 2
+  70              	start_rec_copunt:
+  71 0000 00000000 	 .space 4
+  72              	 .global counter_5kHz
+  73              	 .section .bss.counter_5kHz,"aw",%nobits
+  74              	 .align 2
+  77              	counter_5kHz:
+  78 0000 00000000 	 .space 4
+  79              	 .section .text.f_rec_data,"ax",%progbits
+  80              	 .align 2
+  81              	 .global f_rec_data
+  82              	 .thumb
+  83              	 .thumb_func
+  85              	f_rec_data:
+  86              	.LFB0:
+  87              	 .file 1 "../rec_data_function.c"
+   1:../rec_data_function.c **** /*
+   2:../rec_data_function.c ****  * rec_data_function.c
+   3:../rec_data_function.c ****  *
+   4:../rec_data_function.c ****  *  Created on: 23 Jun 2022
+   5:../rec_data_function.c ****  *      Author: lukas
+   6:../rec_data_function.c ****  */
+   7:../rec_data_function.c **** 
+   8:../rec_data_function.c **** #include "rec_data_function.h"
+   9:../rec_data_function.c **** //data rec
+  10:../rec_data_function.c **** uint8_t rec_data_contorl = 0;// 0 noiting 1 record
+  11:../rec_data_function.c **** #define REC_DATA_NUM_POINTS 1000
+  12:../rec_data_function.c **** uint16_t rec_data_index = 0;
+  13:../rec_data_function.c **** float rec_data[REC_DATA_NUM_POINTS] = {0};
+  14:../rec_data_function.c **** float rec_data2[REC_DATA_NUM_POINTS] = {0};
+  15:../rec_data_function.c **** float rec_data3[REC_DATA_NUM_POINTS] = {0};
+  16:../rec_data_function.c **** 
+  17:../rec_data_function.c **** 
+  18:../rec_data_function.c **** uint8_t reset_rec = 0;
+  19:../rec_data_function.c **** uint8_t start_rec = 0;
+  20:../rec_data_function.c **** uint32_t start_rec_copunt = 0;
+  21:../rec_data_function.c **** uint32_t counter_5kHz = 0;
+  22:../rec_data_function.c **** 
+  23:../rec_data_function.c **** void f_rec_data(float data_point_var1, float data_point_var2,float* x_ref, float start_step_from, f
+  88              	 .loc 1 23 0
+  89              	 .cfi_startproc
+  90              	 
+  91              	 
+  92              	 
+  93 0000 80B4     	 push {r7}
+  94              	.LCFI0:
+  95              	 .cfi_def_cfa_offset 4
+  96              	 .cfi_offset 7,-4
+  97 0002 85B0     	 sub sp,sp,#20
+  98              	.LCFI1:
+  99              	 .cfi_def_cfa_offset 24
+ 100 0004 00AF     	 add r7,sp,#0
+ 101              	.LCFI2:
+ 102              	 .cfi_def_cfa_register 7
+ 103 0006 F860     	 str r0,[r7,#12]
+ 104 0008 B960     	 str r1,[r7,#8]
+ 105 000a 7A60     	 str r2,[r7,#4]
+ 106 000c 3B60     	 str r3,[r7]
+  24:../rec_data_function.c **** 	if(counter_5kHz % rec_every_x_5kHz == 0){
+ 107              	 .loc 1 24 0
+ 108 000e 3D4B     	 ldr r3,.L8
+ 109 0010 1B68     	 ldr r3,[r3]
+ 110 0012 3A7F     	 ldrb r2,[r7,#28]
+ 111 0014 B3FBF2F1 	 udiv r1,r3,r2
+ 112 0018 02FB01F2 	 mul r2,r2,r1
+ 113 001c 9B1A     	 subs r3,r3,r2
+ 114 001e 002B     	 cmp r3,#0
+ 115 0020 65D1     	 bne .L2
+  25:../rec_data_function.c **** 
+  26:../rec_data_function.c **** 		if(start_rec  == 1){
+ 116              	 .loc 1 26 0
+ 117 0022 394B     	 ldr r3,.L8+4
+ 118 0024 1B78     	 ldrb r3,[r3]
+ 119 0026 012B     	 cmp r3,#1
+ 120 0028 2CD1     	 bne .L3
+  27:../rec_data_function.c **** 			  start_rec_copunt ++;
+ 121              	 .loc 1 27 0
+ 122 002a 384B     	 ldr r3,.L8+8
+ 123 002c 1B68     	 ldr r3,[r3]
+ 124 002e 0133     	 adds r3,r3,#1
+ 125 0030 364A     	 ldr r2,.L8+8
+ 126 0032 1360     	 str r3,[r2]
+  28:../rec_data_function.c **** 
+  29:../rec_data_function.c **** 			  if(start_rec_copunt == 1){
+ 127              	 .loc 1 29 0
+ 128 0034 354B     	 ldr r3,.L8+8
+ 129 0036 1B68     	 ldr r3,[r3]
+ 130 0038 012B     	 cmp r3,#1
+ 131 003a 02D1     	 bne .L4
+  30:../rec_data_function.c **** 				  *x_ref = start_step_from;
+ 132              	 .loc 1 30 0
+ 133 003c 7B68     	 ldr r3,[r7,#4]
+ 134 003e 3A68     	 ldr r2,[r7]
+ 135 0040 1A60     	 str r2,[r3]
+ 136              	.L4:
+  31:../rec_data_function.c **** 			  }
+  32:../rec_data_function.c **** 
+  33:../rec_data_function.c **** 			  if(start_rec_copunt == setting_time_cylcys){
+ 137              	 .loc 1 33 0
+ 138 0042 324B     	 ldr r3,.L8+8
+ 139 0044 1A68     	 ldr r2,[r3]
+ 140 0046 3B6A     	 ldr r3,[r7,#32]
+ 141 0048 9A42     	 cmp r2,r3
+ 142 004a 02D1     	 bne .L5
+  34:../rec_data_function.c **** 				  rec_data_contorl = 1;
+ 143              	 .loc 1 34 0
+ 144 004c 304B     	 ldr r3,.L8+12
+ 145 004e 0122     	 movs r2,#1
+ 146 0050 1A70     	 strb r2,[r3]
+ 147              	.L5:
+  35:../rec_data_function.c **** 			  }
+  36:../rec_data_function.c **** 
+  37:../rec_data_function.c **** 
+  38:../rec_data_function.c **** 			  if(start_rec_copunt == setting_time_cylcys + 99){ // step
+ 148              	 .loc 1 38 0
+ 149 0052 3B6A     	 ldr r3,[r7,#32]
+ 150 0054 03F16302 	 add r2,r3,#99
+ 151 0058 2C4B     	 ldr r3,.L8+8
+ 152 005a 1B68     	 ldr r3,[r3]
+ 153 005c 9A42     	 cmp r2,r3
+ 154 005e 02D1     	 bne .L6
+  39:../rec_data_function.c **** 				  *x_ref = step_to;
+ 155              	 .loc 1 39 0
+ 156 0060 7B68     	 ldr r3,[r7,#4]
+ 157 0062 BA69     	 ldr r2,[r7,#24]
+ 158 0064 1A60     	 str r2,[r3]
+ 159              	.L6:
+  40:../rec_data_function.c **** 			  }
+  41:../rec_data_function.c **** 
+  42:../rec_data_function.c **** 			  if(start_rec_copunt == 2 * setting_time_cylcys + 1000){
+ 160              	 .loc 1 42 0
+ 161 0066 3B6A     	 ldr r3,[r7,#32]
+ 162 0068 03F5FA73 	 add r3,r3,#500
+ 163 006c 5A00     	 lsls r2,r3,#1
+ 164 006e 274B     	 ldr r3,.L8+8
+ 165 0070 1B68     	 ldr r3,[r3]
+ 166 0072 9A42     	 cmp r2,r3
+ 167 0074 06D1     	 bne .L3
+  43:../rec_data_function.c **** 				  *x_ref = 0;
+ 168              	 .loc 1 43 0
+ 169 0076 7B68     	 ldr r3,[r7,#4]
+ 170 0078 4FF00002 	 mov r2,#0
+ 171 007c 1A60     	 str r2,[r3]
+  44:../rec_data_function.c **** 				  start_rec = 0;
+ 172              	 .loc 1 44 0
+ 173 007e 224B     	 ldr r3,.L8+4
+ 174 0080 0022     	 movs r2,#0
+ 175 0082 1A70     	 strb r2,[r3]
+ 176              	.L3:
+  45:../rec_data_function.c **** 			  }
+  46:../rec_data_function.c **** 		  }
+  47:../rec_data_function.c **** 
+  48:../rec_data_function.c **** 
+  49:../rec_data_function.c **** 		if(rec_data_contorl == 1){
+ 177              	 .loc 1 49 0
+ 178 0084 224B     	 ldr r3,.L8+12
+ 179 0086 1B78     	 ldrb r3,[r3]
+ 180 0088 012B     	 cmp r3,#1
+ 181 008a 18D1     	 bne .L7
+  50:../rec_data_function.c **** 			  if(rec_data_index < REC_DATA_NUM_POINTS){
+ 182              	 .loc 1 50 0
+ 183 008c 214B     	 ldr r3,.L8+16
+ 184 008e 1B88     	 ldrh r3,[r3]
+ 185 0090 B3F57A7F 	 cmp r3,#1000
+ 186 0094 13D2     	 bcs .L7
+  51:../rec_data_function.c **** 					rec_data[rec_data_index] = data_point_var1;
+ 187              	 .loc 1 51 0
+ 188 0096 1F4B     	 ldr r3,.L8+16
+ 189 0098 1B88     	 ldrh r3,[r3]
+ 190 009a 1F4A     	 ldr r2,.L8+20
+ 191 009c 9B00     	 lsls r3,r3,#2
+ 192 009e 1344     	 add r3,r3,r2
+ 193 00a0 FA68     	 ldr r2,[r7,#12]
+ 194 00a2 1A60     	 str r2,[r3]
+  52:../rec_data_function.c **** 					rec_data2[rec_data_index] = data_point_var2;
+ 195              	 .loc 1 52 0
+ 196 00a4 1B4B     	 ldr r3,.L8+16
+ 197 00a6 1B88     	 ldrh r3,[r3]
+ 198 00a8 1C4A     	 ldr r2,.L8+24
+ 199 00aa 9B00     	 lsls r3,r3,#2
+ 200 00ac 1344     	 add r3,r3,r2
+ 201 00ae BA68     	 ldr r2,[r7,#8]
+ 202 00b0 1A60     	 str r2,[r3]
+  53:../rec_data_function.c **** 					rec_data_index ++;
+ 203              	 .loc 1 53 0
+ 204 00b2 184B     	 ldr r3,.L8+16
+ 205 00b4 1B88     	 ldrh r3,[r3]
+ 206 00b6 0133     	 adds r3,r3,#1
+ 207 00b8 9AB2     	 uxth r2,r3
+ 208 00ba 164B     	 ldr r3,.L8+16
+ 209 00bc 1A80     	 strh r2,[r3]
+ 210              	.L7:
+  54:../rec_data_function.c **** 			  }
+  55:../rec_data_function.c **** 		}
+  56:../rec_data_function.c **** 
+  57:../rec_data_function.c **** 		if(reset_rec == 1 && start_rec == 0){
+ 211              	 .loc 1 57 0
+ 212 00be 184B     	 ldr r3,.L8+28
+ 213 00c0 1B78     	 ldrb r3,[r3]
+ 214 00c2 012B     	 cmp r3,#1
+ 215 00c4 13D1     	 bne .L2
+ 216              	 .loc 1 57 0 is_stmt 0 discriminator 1
+ 217 00c6 104B     	 ldr r3,.L8+4
+ 218 00c8 1B78     	 ldrb r3,[r3]
+ 219 00ca 002B     	 cmp r3,#0
+ 220 00cc 0FD1     	 bne .L2
+  58:../rec_data_function.c **** 			rec_data_contorl = 0;
+ 221              	 .loc 1 58 0 is_stmt 1
+ 222 00ce 104B     	 ldr r3,.L8+12
+ 223 00d0 0022     	 movs r2,#0
+ 224 00d2 1A70     	 strb r2,[r3]
+  59:../rec_data_function.c **** 			reset_rec = 0;
+ 225              	 .loc 1 59 0
+ 226 00d4 124B     	 ldr r3,.L8+28
+ 227 00d6 0022     	 movs r2,#0
+ 228 00d8 1A70     	 strb r2,[r3]
+  60:../rec_data_function.c **** 			start_rec_copunt = 0;
+ 229              	 .loc 1 60 0
+ 230 00da 0C4B     	 ldr r3,.L8+8
+ 231 00dc 0022     	 movs r2,#0
+ 232 00de 1A60     	 str r2,[r3]
+  61:../rec_data_function.c **** 			rec_data_index = 0;
+ 233              	 .loc 1 61 0
+ 234 00e0 0C4B     	 ldr r3,.L8+16
+ 235 00e2 0022     	 movs r2,#0
+ 236 00e4 1A80     	 strh r2,[r3]
+  62:../rec_data_function.c **** 			*x_ref = 0;
+ 237              	 .loc 1 62 0
+ 238 00e6 7B68     	 ldr r3,[r7,#4]
+ 239 00e8 4FF00002 	 mov r2,#0
+ 240 00ec 1A60     	 str r2,[r3]
+ 241              	.L2:
+  63:../rec_data_function.c **** 		}
+  64:../rec_data_function.c **** 
+  65:../rec_data_function.c **** 	}
+  66:../rec_data_function.c **** 	counter_5kHz ++;
+ 242              	 .loc 1 66 0
+ 243 00ee 054B     	 ldr r3,.L8
+ 244 00f0 1B68     	 ldr r3,[r3]
+ 245 00f2 0133     	 adds r3,r3,#1
+ 246 00f4 034A     	 ldr r2,.L8
+ 247 00f6 1360     	 str r3,[r2]
+  67:../rec_data_function.c **** }
+ 248              	 .loc 1 67 0
+ 249 00f8 1437     	 adds r7,r7,#20
+ 250              	.LCFI3:
+ 251              	 .cfi_def_cfa_offset 4
+ 252 00fa BD46     	 mov sp,r7
+ 253              	.LCFI4:
+ 254              	 .cfi_def_cfa_register 13
+ 255              	 
+ 256 00fc 5DF8047B 	 ldr r7,[sp],#4
+ 257              	.LCFI5:
+ 258              	 .cfi_restore 7
+ 259              	 .cfi_def_cfa_offset 0
+ 260 0100 7047     	 bx lr
+ 261              	.L9:
+ 262 0102 00BF     	 .align 2
+ 263              	.L8:
+ 264 0104 00000000 	 .word counter_5kHz
+ 265 0108 00000000 	 .word start_rec
+ 266 010c 00000000 	 .word start_rec_copunt
+ 267 0110 00000000 	 .word rec_data_contorl
+ 268 0114 00000000 	 .word rec_data_index
+ 269 0118 00000000 	 .word rec_data
+ 270 011c 00000000 	 .word rec_data2
+ 271 0120 00000000 	 .word reset_rec
+ 272              	 .cfi_endproc
+ 273              	.LFE0:
+ 275              	 .section .text.rec_step_from_0,"ax",%progbits
+ 276              	 .align 2
+ 277              	 .global rec_step_from_0
+ 278              	 .thumb
+ 279              	 .thumb_func
+ 281              	rec_step_from_0:
+ 282              	.LFB1:
+  68:../rec_data_function.c **** 
+  69:../rec_data_function.c **** void rec_step_from_0(float data_point_var1, float data_point_var2, float data_point_var3, float* x_
+ 283              	 .loc 1 69 0
+ 284              	 .cfi_startproc
+ 285              	 
+ 286              	 
+ 287              	 
+ 288 0000 80B4     	 push {r7}
+ 289              	.LCFI6:
+ 290              	 .cfi_def_cfa_offset 4
+ 291              	 .cfi_offset 7,-4
+ 292 0002 85B0     	 sub sp,sp,#20
+ 293              	.LCFI7:
+ 294              	 .cfi_def_cfa_offset 24
+ 295 0004 00AF     	 add r7,sp,#0
+ 296              	.LCFI8:
+ 297              	 .cfi_def_cfa_register 7
+ 298 0006 F860     	 str r0,[r7,#12]
+ 299 0008 B960     	 str r1,[r7,#8]
+ 300 000a 7A60     	 str r2,[r7,#4]
+ 301 000c 3B60     	 str r3,[r7]
+  70:../rec_data_function.c **** 	if(counter_5kHz % rec_every_x_5kHz == 0){
+ 302              	 .loc 1 70 0
+ 303 000e 354B     	 ldr r3,.L15
+ 304 0010 1B68     	 ldr r3,[r3]
+ 305 0012 3A7F     	 ldrb r2,[r7,#28]
+ 306 0014 B3FBF2F1 	 udiv r1,r3,r2
+ 307 0018 02FB01F2 	 mul r2,r2,r1
+ 308 001c 9B1A     	 subs r3,r3,r2
+ 309 001e 002B     	 cmp r3,#0
+ 310 0020 56D1     	 bne .L11
+  71:../rec_data_function.c **** 
+  72:../rec_data_function.c **** 		if(start_rec  == 1){
+ 311              	 .loc 1 72 0
+ 312 0022 314B     	 ldr r3,.L15+4
+ 313 0024 1B78     	 ldrb r3,[r3]
+ 314 0026 012B     	 cmp r3,#1
+ 315 0028 16D1     	 bne .L12
+  73:../rec_data_function.c **** 			  rec_data_contorl  = 1;
+ 316              	 .loc 1 73 0
+ 317 002a 304B     	 ldr r3,.L15+8
+ 318 002c 0122     	 movs r2,#1
+ 319 002e 1A70     	 strb r2,[r3]
+  74:../rec_data_function.c **** 			  *x_ref = step_to;
+ 320              	 .loc 1 74 0
+ 321 0030 3B68     	 ldr r3,[r7]
+ 322 0032 BA69     	 ldr r2,[r7,#24]
+ 323 0034 1A60     	 str r2,[r3]
+  75:../rec_data_function.c **** 
+  76:../rec_data_function.c **** 			  if(start_rec_copunt == REC_DATA_NUM_POINTS){
+ 324              	 .loc 1 76 0
+ 325 0036 2E4B     	 ldr r3,.L15+12
+ 326 0038 1B68     	 ldr r3,[r3]
+ 327 003a B3F57A7F 	 cmp r3,#1000
+ 328 003e 06D1     	 bne .L13
+  77:../rec_data_function.c **** 				  *x_ref = 0;
+ 329              	 .loc 1 77 0
+ 330 0040 3B68     	 ldr r3,[r7]
+ 331 0042 4FF00002 	 mov r2,#0
+ 332 0046 1A60     	 str r2,[r3]
+  78:../rec_data_function.c **** 				  start_rec = 0;
+ 333              	 .loc 1 78 0
+ 334 0048 274B     	 ldr r3,.L15+4
+ 335 004a 0022     	 movs r2,#0
+ 336 004c 1A70     	 strb r2,[r3]
+ 337              	.L13:
+  79:../rec_data_function.c **** 			  }
+  80:../rec_data_function.c **** 
+  81:../rec_data_function.c **** 			  start_rec_copunt ++;
+ 338              	 .loc 1 81 0
+ 339 004e 284B     	 ldr r3,.L15+12
+ 340 0050 1B68     	 ldr r3,[r3]
+ 341 0052 0133     	 adds r3,r3,#1
+ 342 0054 264A     	 ldr r2,.L15+12
+ 343 0056 1360     	 str r3,[r2]
+ 344              	.L12:
+  82:../rec_data_function.c **** 		  }
+  83:../rec_data_function.c **** 
+  84:../rec_data_function.c **** 
+  85:../rec_data_function.c **** 		if(rec_data_contorl == 1){
+ 345              	 .loc 1 85 0
+ 346 0058 244B     	 ldr r3,.L15+8
+ 347 005a 1B78     	 ldrb r3,[r3]
+ 348 005c 012B     	 cmp r3,#1
+ 349 005e 1FD1     	 bne .L14
+  86:../rec_data_function.c **** 			  if(rec_data_index < REC_DATA_NUM_POINTS){
+ 350              	 .loc 1 86 0
+ 351 0060 244B     	 ldr r3,.L15+16
+ 352 0062 1B88     	 ldrh r3,[r3]
+ 353 0064 B3F57A7F 	 cmp r3,#1000
+ 354 0068 1AD2     	 bcs .L14
+  87:../rec_data_function.c **** 					rec_data[rec_data_index] = data_point_var1;
+ 355              	 .loc 1 87 0
+ 356 006a 224B     	 ldr r3,.L15+16
+ 357 006c 1B88     	 ldrh r3,[r3]
+ 358 006e 224A     	 ldr r2,.L15+20
+ 359 0070 9B00     	 lsls r3,r3,#2
+ 360 0072 1344     	 add r3,r3,r2
+ 361 0074 FA68     	 ldr r2,[r7,#12]
+ 362 0076 1A60     	 str r2,[r3]
+  88:../rec_data_function.c **** 					rec_data2[rec_data_index] = data_point_var2;
+ 363              	 .loc 1 88 0
+ 364 0078 1E4B     	 ldr r3,.L15+16
+ 365 007a 1B88     	 ldrh r3,[r3]
+ 366 007c 1F4A     	 ldr r2,.L15+24
+ 367 007e 9B00     	 lsls r3,r3,#2
+ 368 0080 1344     	 add r3,r3,r2
+ 369 0082 BA68     	 ldr r2,[r7,#8]
+ 370 0084 1A60     	 str r2,[r3]
+  89:../rec_data_function.c **** 					rec_data3[rec_data_index] = data_point_var3;
+ 371              	 .loc 1 89 0
+ 372 0086 1B4B     	 ldr r3,.L15+16
+ 373 0088 1B88     	 ldrh r3,[r3]
+ 374 008a 1D4A     	 ldr r2,.L15+28
+ 375 008c 9B00     	 lsls r3,r3,#2
+ 376 008e 1344     	 add r3,r3,r2
+ 377 0090 7A68     	 ldr r2,[r7,#4]
+ 378 0092 1A60     	 str r2,[r3]
+  90:../rec_data_function.c **** 					rec_data_index ++;
+ 379              	 .loc 1 90 0
+ 380 0094 174B     	 ldr r3,.L15+16
+ 381 0096 1B88     	 ldrh r3,[r3]
+ 382 0098 0133     	 adds r3,r3,#1
+ 383 009a 9AB2     	 uxth r2,r3
+ 384 009c 154B     	 ldr r3,.L15+16
+ 385 009e 1A80     	 strh r2,[r3]
+ 386              	.L14:
+  91:../rec_data_function.c **** 			  }
+  92:../rec_data_function.c **** 		}
+  93:../rec_data_function.c **** 
+  94:../rec_data_function.c **** 		if(reset_rec == 1 && start_rec == 0){
+ 387              	 .loc 1 94 0
+ 388 00a0 184B     	 ldr r3,.L15+32
+ 389 00a2 1B78     	 ldrb r3,[r3]
+ 390 00a4 012B     	 cmp r3,#1
+ 391 00a6 13D1     	 bne .L11
+ 392              	 .loc 1 94 0 is_stmt 0 discriminator 1
+ 393 00a8 0F4B     	 ldr r3,.L15+4
+ 394 00aa 1B78     	 ldrb r3,[r3]
+ 395 00ac 002B     	 cmp r3,#0
+ 396 00ae 0FD1     	 bne .L11
+  95:../rec_data_function.c **** 			rec_data_contorl = 0;
+ 397              	 .loc 1 95 0 is_stmt 1
+ 398 00b0 0E4B     	 ldr r3,.L15+8
+ 399 00b2 0022     	 movs r2,#0
+ 400 00b4 1A70     	 strb r2,[r3]
+  96:../rec_data_function.c **** 			reset_rec = 0;
+ 401              	 .loc 1 96 0
+ 402 00b6 134B     	 ldr r3,.L15+32
+ 403 00b8 0022     	 movs r2,#0
+ 404 00ba 1A70     	 strb r2,[r3]
+  97:../rec_data_function.c **** 			start_rec_copunt = 0;
+ 405              	 .loc 1 97 0
+ 406 00bc 0C4B     	 ldr r3,.L15+12
+ 407 00be 0022     	 movs r2,#0
+ 408 00c0 1A60     	 str r2,[r3]
+  98:../rec_data_function.c **** 			rec_data_index = 0;
+ 409              	 .loc 1 98 0
+ 410 00c2 0C4B     	 ldr r3,.L15+16
+ 411 00c4 0022     	 movs r2,#0
+ 412 00c6 1A80     	 strh r2,[r3]
+  99:../rec_data_function.c **** 			*x_ref = 0;
+ 413              	 .loc 1 99 0
+ 414 00c8 3B68     	 ldr r3,[r7]
+ 415 00ca 4FF00002 	 mov r2,#0
+ 416 00ce 1A60     	 str r2,[r3]
+ 417              	.L11:
+ 100:../rec_data_function.c **** 		}
+ 101:../rec_data_function.c **** 
+ 102:../rec_data_function.c **** 	}
+ 103:../rec_data_function.c **** 	counter_5kHz ++;
+ 418              	 .loc 1 103 0
+ 419 00d0 044B     	 ldr r3,.L15
+ 420 00d2 1B68     	 ldr r3,[r3]
+ 421 00d4 0133     	 adds r3,r3,#1
+ 422 00d6 034A     	 ldr r2,.L15
+ 423 00d8 1360     	 str r3,[r2]
+ 104:../rec_data_function.c **** }
+ 424              	 .loc 1 104 0
+ 425 00da 1437     	 adds r7,r7,#20
+ 426              	.LCFI9:
+ 427              	 .cfi_def_cfa_offset 4
+ 428 00dc BD46     	 mov sp,r7
+ 429              	.LCFI10:
+ 430              	 .cfi_def_cfa_register 13
+ 431              	 
+ 432 00de 5DF8047B 	 ldr r7,[sp],#4
+ 433              	.LCFI11:
+ 434              	 .cfi_restore 7
+ 435              	 .cfi_def_cfa_offset 0
+ 436 00e2 7047     	 bx lr
+ 437              	.L16:
+ 438              	 .align 2
+ 439              	.L15:
+ 440 00e4 00000000 	 .word counter_5kHz
+ 441 00e8 00000000 	 .word start_rec
+ 442 00ec 00000000 	 .word rec_data_contorl
+ 443 00f0 00000000 	 .word start_rec_copunt
+ 444 00f4 00000000 	 .word rec_data_index
+ 445 00f8 00000000 	 .word rec_data
+ 446 00fc 00000000 	 .word rec_data2
+ 447 0100 00000000 	 .word rec_data3
+ 448 0104 00000000 	 .word reset_rec
+ 449              	 .cfi_endproc
+ 450              	.LFE1:
+ 452              	 .text
+ 453              	.Letext0:
+ 454              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 455              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 rec_data_function.c
+    {standard input}:23     .bss.rec_data_contorl:00000000 rec_data_contorl
+    {standard input}:24     .bss.rec_data_contorl:00000000 $d
+    {standard input}:30     .bss.rec_data_index:00000000 rec_data_index
+    {standard input}:27     .bss.rec_data_index:00000000 $d
+    {standard input}:37     .bss.rec_data:00000000 rec_data
+    {standard input}:34     .bss.rec_data:00000000 $d
+    {standard input}:44     .bss.rec_data2:00000000 rec_data2
+    {standard input}:41     .bss.rec_data2:00000000 $d
+    {standard input}:51     .bss.rec_data3:00000000 rec_data3
+    {standard input}:48     .bss.rec_data3:00000000 $d
+    {standard input}:57     .bss.reset_rec:00000000 reset_rec
+    {standard input}:58     .bss.reset_rec:00000000 $d
+    {standard input}:63     .bss.start_rec:00000000 start_rec
+    {standard input}:64     .bss.start_rec:00000000 $d
+    {standard input}:70     .bss.start_rec_copunt:00000000 start_rec_copunt
+    {standard input}:67     .bss.start_rec_copunt:00000000 $d
+    {standard input}:77     .bss.counter_5kHz:00000000 counter_5kHz
+    {standard input}:74     .bss.counter_5kHz:00000000 $d
+    {standard input}:80     .text.f_rec_data:00000000 $t
+    {standard input}:85     .text.f_rec_data:00000000 f_rec_data
+    {standard input}:264    .text.f_rec_data:00000104 $d
+    {standard input}:276    .text.rec_step_from_0:00000000 $t
+    {standard input}:281    .text.rec_step_from_0:00000000 rec_step_from_0
+    {standard input}:440    .text.rec_step_from_0:000000e4 $d
+                     .debug_frame:00000010 $d
+
+NO UNDEFINED SYMBOLS

@@ -10,7 +10,7 @@
 
 #define ROTATION_ANGLE -53.96
 #define ROTATION_ANGLE_OFFSET -20
-#define ROTATION_SPEED  0.55
+#define ROTATION_SPEED  0.4
 
 float R_Turn = 0;
 float Speed_ratio = 0;

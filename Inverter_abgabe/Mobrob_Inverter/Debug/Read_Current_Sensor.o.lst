@@ -1,0 +1,172 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "Read_Current_Sensor.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .global __aeabi_f2d
+  20              	 .global __aeabi_dsub
+  21              	 .global __aeabi_ddiv
+  22              	 .global __aeabi_d2f
+  23              	 .section .text.readCurrent,"ax",%progbits
+  24              	 .align 2
+  25              	 .global readCurrent
+  26              	 .thumb
+  27              	 .thumb_func
+  29              	readCurrent:
+  30              	.LFB473:
+  31              	 .file 1 "../Read_Current_Sensor.c"
+   1:../Read_Current_Sensor.c **** //Read Current  via SPI-Interface
+   2:../Read_Current_Sensor.c **** #include "Read_Current_Sensor.h"
+   3:../Read_Current_Sensor.c **** 
+   4:../Read_Current_Sensor.c **** float readCurrent(uint8_t ChipSelect){
+  32              	 .loc 1 4 0
+  33              	 .cfi_startproc
+  34              	 
+  35              	 
+  36 0000 80B5     	 push {r7,lr}
+  37              	.LCFI0:
+  38              	 .cfi_def_cfa_offset 8
+  39              	 .cfi_offset 7,-8
+  40              	 .cfi_offset 14,-4
+  41 0002 86B0     	 sub sp,sp,#24
+  42              	.LCFI1:
+  43              	 .cfi_def_cfa_offset 32
+  44 0004 00AF     	 add r7,sp,#0
+  45              	.LCFI2:
+  46              	 .cfi_def_cfa_register 7
+  47 0006 0346     	 mov r3,r0
+  48 0008 FB71     	 strb r3,[r7,#7]
+   5:../Read_Current_Sensor.c **** 	uint8_t ReadData[2];
+   6:../Read_Current_Sensor.c **** 
+   7:../Read_Current_Sensor.c **** 	BUS_IO_Write(&SPI_ChipSelect, ChipSelect);
+  49              	 .loc 1 7 0
+  50 000a FB79     	 ldrb r3,[r7,#7]
+  51 000c 9BB2     	 uxth r3,r3
+  52 000e 2248     	 ldr r0,.L3
+  53 0010 1946     	 mov r1,r3
+  54 0012 FFF7FEFF 	 bl BUS_IO_Write
+   8:../Read_Current_Sensor.c **** 	SPI_MASTER_Receive(&SPI_MASTER_0, ReadData, 2U);
+  55              	 .loc 1 8 0
+  56 0016 07F10C03 	 add r3,r7,#12
+  57 001a 2048     	 ldr r0,.L3+4
+  58 001c 1946     	 mov r1,r3
+  59 001e 0222     	 movs r2,#2
+  60 0020 FFF7FEFF 	 bl SPI_MASTER_Receive
+   9:../Read_Current_Sensor.c **** 	BUS_IO_Write(&SPI_ChipSelect, 0b111);
+  61              	 .loc 1 9 0
+  62 0024 1C48     	 ldr r0,.L3
+  63 0026 0721     	 movs r1,#7
+  64 0028 FFF7FEFF 	 bl BUS_IO_Write
+  10:../Read_Current_Sensor.c **** 	ReadData[0] = ReadData[0] & 0X1F; 									//cutting away the 3 info bits
+  65              	 .loc 1 10 0
+  66 002c 3B7B     	 ldrb r3,[r7,#12]
+  67 002e 03F01F03 	 and r3,r3,#31
+  68 0032 DBB2     	 uxtb r3,r3
+  69 0034 3B73     	 strb r3,[r7,#12]
+  11:../Read_Current_Sensor.c **** 	uint16_t iCurrent = ReadData[0]<<8 | ReadData[1];					//combine Data
+  70              	 .loc 1 11 0
+  71 0036 3B7B     	 ldrb r3,[r7,#12]
+  72 0038 1B02     	 lsls r3,r3,#8
+  73 003a 9AB2     	 uxth r2,r3
+  74 003c 7B7B     	 ldrb r3,[r7,#13]
+  75 003e 9BB2     	 uxth r3,r3
+  76 0040 1343     	 orrs r3,r3,r2
+  77 0042 9BB2     	 uxth r3,r3
+  78 0044 FB82     	 strh r3,[r7,#22]
+  12:../Read_Current_Sensor.c **** 
+  13:../Read_Current_Sensor.c **** 	// calculation of the current
+  14:../Read_Current_Sensor.c **** 	float fCurrent = ((float)iCurrent - 4096.0)/160.0;					// ATTENTION: value has to be divided by 16
+  79              	 .loc 1 14 0
+  80 0046 FB8A     	 ldrh r3,[r7,#22]
+  81 0048 07EE903A 	 fmsr s15,r3
+  82 004c F8EE677A 	 fuitos s15,s15
+  83 0050 17EE900A 	 fmrs r0,s15
+  84 0054 FFF7FEFF 	 bl __aeabi_f2d
+  85 0058 0246     	 mov r2,r0
+  86 005a 0B46     	 mov r3,r1
+  87 005c 1046     	 mov r0,r2
+  88 005e 1946     	 mov r1,r3
+  89 0060 4FF00002 	 mov r2,#0
+  90 0064 0E4B     	 ldr r3,.L3+8
+  91 0066 FFF7FEFF 	 bl __aeabi_dsub
+  92 006a 0246     	 mov r2,r0
+  93 006c 0B46     	 mov r3,r1
+  94 006e 1046     	 mov r0,r2
+  95 0070 1946     	 mov r1,r3
+  96 0072 4FF00002 	 mov r2,#0
+  97 0076 0B4B     	 ldr r3,.L3+12
+  98 0078 FFF7FEFF 	 bl __aeabi_ddiv
+  99 007c 0246     	 mov r2,r0
+ 100 007e 0B46     	 mov r3,r1
+ 101 0080 1046     	 mov r0,r2
+ 102 0082 1946     	 mov r1,r3
+ 103 0084 FFF7FEFF 	 bl __aeabi_d2f
+ 104 0088 0346     	 mov r3,r0
+ 105 008a 3B61     	 str r3,[r7,#16]
+  15:../Read_Current_Sensor.c **** 
+  16:../Read_Current_Sensor.c **** 	return fCurrent;
+ 106              	 .loc 1 16 0
+ 107 008c 3B69     	 ldr r3,[r7,#16]
+  17:../Read_Current_Sensor.c **** }
+ 108              	 .loc 1 17 0
+ 109 008e 1846     	 mov r0,r3
+ 110 0090 1837     	 adds r7,r7,#24
+ 111              	.LCFI3:
+ 112              	 .cfi_def_cfa_offset 8
+ 113 0092 BD46     	 mov sp,r7
+ 114              	.LCFI4:
+ 115              	 .cfi_def_cfa_register 13
+ 116              	 
+ 117 0094 80BD     	 pop {r7,pc}
+ 118              	.L4:
+ 119 0096 00BF     	 .align 2
+ 120              	.L3:
+ 121 0098 00000000 	 .word SPI_ChipSelect
+ 122 009c 00000000 	 .word SPI_MASTER_0
+ 123 00a0 0000B040 	 .word 1085276160
+ 124 00a4 00006440 	 .word 1080295424
+ 125              	 .cfi_endproc
+ 126              	.LFE473:
+ 128              	 .text
+ 129              	.Letext0:
+ 130              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 131              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 132              	 .file 4 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_gpio.h"
+ 133              	 .file 5 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 134              	 .file 6 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_usic.h"
+ 135              	 .file 7 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_spi.h"
+ 136              	 .file 8 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/SPI_MASTER/spi_master.h"
+ 137              	 .file 9 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/BUS_IO/bus_io.h"
+ 138              	 .file 10 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
+ 139              	 .file 11 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/system_XMC4500.h"
+ 140              	 .file 12 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/SPI_MASTER/spi_master_extern.h"
+ 141              	 .file 13 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/BUS_IO/bus_io_extern.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 Read_Current_Sensor.c
+    {standard input}:24     .text.readCurrent:00000000 $t
+    {standard input}:29     .text.readCurrent:00000000 readCurrent
+    {standard input}:121    .text.readCurrent:00000098 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_f2d
+__aeabi_dsub
+__aeabi_ddiv
+__aeabi_d2f
+BUS_IO_Write
+SPI_MASTER_Receive
+SPI_ChipSelect
+SPI_MASTER_0

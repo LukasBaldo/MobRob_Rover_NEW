@@ -1,0 +1,2318 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "main.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .section .text.XMC_GPIO_SetOutputHigh,"ax",%progbits
+  20              	 .align 2
+  21              	 .thumb
+  22              	 .thumb_func
+  24              	XMC_GPIO_SetOutputHigh:
+  25              	.LFB137:
+  26              	 .file 1 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_gpio.h"
+   1:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+   2:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @file xmc_gpio.h
+   3:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @date 2015-06-20
+   4:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   5:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @cond
+   6:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+   7:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMClib v2.1.20 - XMC Peripheral Driver Library 
+   8:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+   9:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Copyright (c) 2015-2018, Infineon Technologies AG
+  10:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * All rights reserved.                        
+  11:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                             
+  12:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  13:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * following conditions are met:   
+  14:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                                                              
+  15:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Redistributions of source code must retain the above copyright notice, this list of conditions a
+  16:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * disclaimer.                        
+  17:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 
+  18:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Redistributions in binary form must reproduce the above copyright notice, this list of condition
+  19:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * disclaimer in the documentation and/or other materials provided with the distribution.          
+  20:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 
+  21:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Neither the name of the copyright holders nor the names of its contributors may be used to endor
+  22:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * products derived from this software without specific prior written permission.                  
+  23:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                                                              
+  24:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  25:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  26:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  27:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  28:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  29:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  30:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                            
+  31:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *                                                                              
+  32:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  33:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Infineon Technologies AG dave@infineon.com).                                                    
+  34:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  35:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  36:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Change History
+  37:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * --------------
+  38:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  39:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-02-20:
+  40:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Initial draft<br>
+  41:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Documentation improved <br>
+  42:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *      
+  43:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 2015-06-20:
+  44:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *     - Removed version macros and declaration of GetDriverVersion API
+  45:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  46:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @endcond
+  47:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  48:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  49:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  50:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #ifndef XMC_GPIO_H
+  51:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_H
+  52:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  53:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  54:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * HEADER FILES
+  55:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  56:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  57:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc_common.h"
+  58:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  59:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  60:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup XMClib XMC Peripheral Library
+  61:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @{
+  62:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  63:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  64:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+  65:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @addtogroup GPIO
+  66:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @brief General Purpose Input Output (GPIO) driver for the XMC microcontroller family.
+  67:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  68:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * GPIO driver provide a generic and very flexible software interface for all standard digital I/O 
+  69:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Each port slice has individual interfaces for the operation as General Purpose I/O and it furthe
+  70:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * connectivity to the on-chip periphery and the control for the pad characteristics. 
+  71:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  72:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * The driver is divided into Input and Output mode.
+  73:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  74:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Input mode features:
+  75:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Configuration structure XMC_GPIO_CONFIG_t and initialization function XMC_GPIO_Init()
+  76:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of weak pull-up or pull-down device. Configuration structure XMC_GPIO_MO
+  77:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+  78:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of input hysteresis. XMC_GPIO_SetInputHysteresis()
+  79:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  80:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  81:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * 
+  82:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Output mode features:
+  83:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of push pull/open drain and Alternate output. Configuration structure XM
+  84:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+  85:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of pad driver strength. Configuration structure XMC_GPIO_OUTPUT_STRENGTH
+  86:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+  87:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  88:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * -# Allows the selection of initial output level. Configuration structure XMC_GPIO_OUTPUT_LEVEL_t
+  89:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+  90:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *@{
+  91:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+  92:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  
+  93:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+  94:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * MACROS
+  95:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+  96:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+  97:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Pos PORT0_IOCR0_PC0_Pos
+  98:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Msk PORT0_IOCR0_PC0_Msk
+  99:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 100:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define PORT_IOCR_PC_Size 				(8U)
+ 101:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 											
+ 102:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 103:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_OUTPUT_LEVEL(level) ((level == XMC_GPIO_OUTPUT_LEVEL_LOW) || \
+ 104:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                             (level == XMC_GPIO_OUTPUT_LEVEL_HIGH))
+ 105:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                             
+ 106:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #define XMC_GPIO_CHECK_HWCTRL(hwctrl) ((hwctrl == XMC_GPIO_HWCTRL_DISABLED) || \
+ 107:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL1) || \
+ 108:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                        (hwctrl == XMC_GPIO_HWCTRL_PERIPHERAL2))                    
+ 109:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****                                             
+ 110:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 111:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * ENUMS
+ 112:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 113:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 114:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 115:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 116:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines output level of a pin. Use type \a XMC_GPIO_OUTPUT_LEVEL_t for this enum.
+ 117:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 118:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_OUTPUT_LEVEL
+ 119:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 120:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_LOW  = 0x10000U, /**<  Reset bit */
+ 121:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_OUTPUT_LEVEL_HIGH = 0x1U, 	/**< Set bit  */
+ 122:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_OUTPUT_LEVEL_t;
+ 123:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 124:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 125:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Defines direct hardware control characteristics of the pin . Use type \a XMC_GPIO_HWCTRL_t for t
+ 126:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 127:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** typedef enum XMC_GPIO_HWCTRL
+ 128:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 129:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_DISABLED     = 0x0U, /**<  Software control only */
+ 130:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL1  = 0x1U, /**<  HWI0/HWO0 control path can override the software confi
+ 131:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_GPIO_HWCTRL_PERIPHERAL2  = 0x2U  /**<  HWI1/HWO1 control path can override the software confi
+ 132:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** } XMC_GPIO_HWCTRL_t;
+ 133:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 134:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 135:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * DEVICE FAMILY EXTENSIONS
+ 136:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 137:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 138:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  #if UC_FAMILY == XMC1
+ 139:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc1_gpio.h"
+ 140:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #elif UC_FAMILY == XMC4
+ 141:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #include "xmc4_gpio.h"
+ 142:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #else
+ 143:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #error "xmc_gpio.h: family device not supported"
+ 144:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 145:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 146:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**************************************************************************************************
+ 147:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * API PROTOTYPES
+ 148:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  **************************************************************************************************
+ 149:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 150:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #ifdef __cplusplus
+ 151:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** extern "C" {
+ 152:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** #endif
+ 153:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 154:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 155:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 156:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	  Constant pointer pointing to GPIO port, to access port registers like Pn_OUT,Pn_O
+ 157:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	  Port pin number.
+ 158:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  config GPIO configuration data structure. Refer data structure @ref XMC_GPIO_CONFIG_t fo
+ 159:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 160:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 161:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 162:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 163:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC1
+ 164:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,hysteresis, push pull
+ 165:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for a selected \a po
+ 166:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \a config provides selected I/O settings. It configures hardware registers Pn_IOCR,Pn_OUT, Pn_OM
+ 167:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 168:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \if XMC4
+ 169:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Initializes input / output mode settings like, pull up / pull down devices,push pull /open drain
+ 170:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Also configures alternate function outputs and clears hardware port control for selected \a port
+ 171:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * It configures hardware registers Pn_IOCR,Pn_OUT,Pn_OMR,Pn_PDISC and Pn_PDR.\n
+ 172:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \endif
+ 173:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 174:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 175:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 176:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 177:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 178:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * This API is called in definition of DAVE_init by code generation and therefore should not be exp
+ 179:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * for the normal operation. Use other APIs only after DAVE_init is called successfully (returns DA
+ 180:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 181:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 182:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 183:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 184:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  
+ 185:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_Init(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_CONFIG_t *const c
+ 186:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  
+ 187:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 188:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 189:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	Constant pointer pointing to GPIO port, to access hardware register Pn_IOCR.
+ 190:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 191:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  mode input / output functionality selection. Refer @ref XMC_GPIO_MODE_t for valid values
+ 192:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 193:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 194:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 195:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 196:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets digital input and output driver functionality and characteristics of a GPIO port pin. It co
+ 197:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * registers Pn_IOCR. \a mode is initially configured during initialization in XMC_GPIO_Init(). Cal
+ 198:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * the port direction functionality as needed later in the program.
+ 199:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 200:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 201:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  None
+ 202:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 203:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 204:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 205:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** void XMC_GPIO_SetMode(XMC_GPIO_PORT_t *const port, const uint8_t pin, const XMC_GPIO_MODE_t mode);
+ 206:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 207:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 208:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 209:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 210:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	 Constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 211:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	 Port pin number.
+ 212:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  level output level selection. Refer @ref XMC_GPIO_OUTPUT_LEVEL_t for valid values.
+ 213:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 214:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 215:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 216:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 217:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Set port pin output level to high or low.It configures hardware registers Pn_OMR.\a level is ini
+ 218:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * configured during initialization in XMC_GPIO_Init(). Call this API to alter output level as need
+ 219:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 220:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>
+ 221:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputHigh(), XMC_GPIO_SetOutputLow().
+ 222:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 223:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 224:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 225:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 226:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 227:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 228:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 229:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT_t *const port, const uint8_t pin, const 
+ 230:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+ 231:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 232:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLevel: Invalid output level", XMC_GPIO_CHECK_OUTPUT_LEVEL(level));
+ 233:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   
+ 234:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)level << pin;
+ 235:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+ 236:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 237:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 238:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 239:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 240:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	Port pin number.
+ 241:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 242:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return None
+ 243:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 244:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Description:</b><br>
+ 245:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  Sets port pin output to high. It configures hardware registers Pn_OMR.
+ 246:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 247:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  \par<b>Related APIs:</b><BR>
+ 248:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *  XMC_GPIO_SetOutputLow()
+ 249:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 250:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Note:</b><br>
+ 251:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().\n
+ 252:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 253:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 254:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 255:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 256:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputHigh(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 257:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  27              	 .loc 1 257 0
+  28              	 .cfi_startproc
+  29              	 
+  30              	 
+  31              	 
+  32 0000 80B4     	 push {r7}
+  33              	.LCFI0:
+  34              	 .cfi_def_cfa_offset 4
+  35              	 .cfi_offset 7,-4
+  36 0002 83B0     	 sub sp,sp,#12
+  37              	.LCFI1:
+  38              	 .cfi_def_cfa_offset 16
+  39 0004 00AF     	 add r7,sp,#0
+  40              	.LCFI2:
+  41              	 .cfi_def_cfa_register 7
+  42 0006 7860     	 str r0,[r7,#4]
+  43 0008 0B46     	 mov r3,r1
+  44 000a FB70     	 strb r3,[r7,#3]
+ 258:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputHigh: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 259:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 260:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = (uint32_t)0x1U << pin;
+  45              	 .loc 1 260 0
+  46 000c FB78     	 ldrb r3,[r7,#3]
+  47 000e 0122     	 movs r2,#1
+  48 0010 9A40     	 lsls r2,r2,r3
+  49 0012 7B68     	 ldr r3,[r7,#4]
+  50 0014 5A60     	 str r2,[r3,#4]
+ 261:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  51              	 .loc 1 261 0
+  52 0016 0C37     	 adds r7,r7,#12
+  53              	.LCFI3:
+  54              	 .cfi_def_cfa_offset 4
+  55 0018 BD46     	 mov sp,r7
+  56              	.LCFI4:
+  57              	 .cfi_def_cfa_register 13
+  58              	 
+  59 001a 5DF8047B 	 ldr r7,[sp],#4
+  60              	.LCFI5:
+  61              	 .cfi_restore 7
+  62              	 .cfi_def_cfa_offset 0
+  63 001e 7047     	 bx lr
+  64              	 .cfi_endproc
+  65              	.LFE137:
+  67              	 .section .text.XMC_GPIO_SetOutputLow,"ax",%progbits
+  68              	 .align 2
+  69              	 .thumb
+  70              	 .thumb_func
+  72              	XMC_GPIO_SetOutputLow:
+  73              	.LFB138:
+ 262:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 263:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** /**
+ 264:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 265:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  port	constant pointer pointing to GPIO port, to access hardware register Pn_OMR.
+ 266:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @param  pin	port pin number.
+ 267:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 268:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * @return  None
+ 269:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 270:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Description:</b><br>
+ 271:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Sets port pin output to low. It configures hardware registers Pn_OMR.\n
+ 272:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 273:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * \par<b>Related APIs:</b><BR>>
+ 274:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * XMC_GPIO_SetOutputHigh()
+ 275:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 276:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *\par<b>Note:</b><br>
+ 277:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Prior to this api, user has to configure port pin to output mode using XMC_GPIO_SetMode().
+ 278:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  * Register Pn_OMR is virtual and does not contain any flip-flop. A read action delivers the value 
+ 279:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  *
+ 280:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****  */
+ 281:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 282:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** __STATIC_INLINE void XMC_GPIO_SetOutputLow(XMC_GPIO_PORT_t *const port, const uint8_t pin)
+ 283:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** {
+  74              	 .loc 1 283 0
+  75              	 .cfi_startproc
+  76              	 
+  77              	 
+  78              	 
+  79 0000 80B4     	 push {r7}
+  80              	.LCFI6:
+  81              	 .cfi_def_cfa_offset 4
+  82              	 .cfi_offset 7,-4
+  83 0002 83B0     	 sub sp,sp,#12
+  84              	.LCFI7:
+  85              	 .cfi_def_cfa_offset 16
+  86 0004 00AF     	 add r7,sp,#0
+  87              	.LCFI8:
+  88              	 .cfi_def_cfa_register 7
+  89 0006 7860     	 str r0,[r7,#4]
+  90 0008 0B46     	 mov r3,r1
+  91 000a FB70     	 strb r3,[r7,#3]
+ 284:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   XMC_ASSERT("XMC_GPIO_SetOutputLow: Invalid port", XMC_GPIO_CHECK_OUTPUT_PORT(port));
+ 285:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** 
+ 286:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h ****   port->OMR = 0x10000U << pin;
+  92              	 .loc 1 286 0
+  93 000c FB78     	 ldrb r3,[r7,#3]
+  94 000e 4FF48032 	 mov r2,#65536
+  95 0012 9A40     	 lsls r2,r2,r3
+  96 0014 7B68     	 ldr r3,[r7,#4]
+  97 0016 5A60     	 str r2,[r3,#4]
+ 287:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc\xmc_gpio.h **** }
+  98              	 .loc 1 287 0
+  99 0018 0C37     	 adds r7,r7,#12
+ 100              	.LCFI9:
+ 101              	 .cfi_def_cfa_offset 4
+ 102 001a BD46     	 mov sp,r7
+ 103              	.LCFI10:
+ 104              	 .cfi_def_cfa_register 13
+ 105              	 
+ 106 001c 5DF8047B 	 ldr r7,[sp],#4
+ 107              	.LCFI11:
+ 108              	 .cfi_restore 7
+ 109              	 .cfi_def_cfa_offset 0
+ 110 0020 7047     	 bx lr
+ 111              	 .cfi_endproc
+ 112              	.LFE138:
+ 114 0022 00BF     	 .section .text.DIGITAL_IO_SetOutputHigh,"ax",%progbits
+ 115              	 .align 2
+ 116              	 .thumb
+ 117              	 .thumb_func
+ 119              	DIGITAL_IO_SetOutputHigh:
+ 120              	.LFB145:
+ 121              	 .file 2 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO/digital_io.h"
+   1:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /*
+   2:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+   3:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @file digital_io.h
+   4:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @date 2016-07-08
+   5:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+   6:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * NOTE:
+   7:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * This file is generated by DAVE. Any manual modification done to this file will be lost when the 
+   8:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+   9:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @cond
+  10:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  11:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * DIGITAL_IO v4.0.16 - The DIGITAL_IO APP is used to configure a port pin as digital Input/Output.
+  12:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  13:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * Copyright (c) 2015-2016, Infineon Technologies AG
+  14:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * All rights reserved.
+  15:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  16:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  17:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * following conditions are met:
+  18:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  19:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  20:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   disclaimer.
+  21:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  22:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  23:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  24:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  25:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  26:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *   products derived from this software without specific prior written permission.
+  27:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  28:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  29:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  30:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  31:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  32:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  33:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  34:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  35:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  36:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  37:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * with Infineon Technologies AG (dave@infineon.com).
+  38:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  39:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  40:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * Change History
+  41:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * --------------
+  42:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  43:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-02-16
+  44:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Initial version
+  45:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  46:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-04-22
+  47:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - XMC_ASSERT is added in static inline functions.<br>
+  48:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  49:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-06-20
+  50:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Version check added for XMCLib dependency.<br>
+  51:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  52:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2015-12-22
+  53:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Added hardware controlled IO feature.
+  54:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * 2016-07-08:
+  55:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *     - Fixed incorrect case for an included header.<br>
+  56:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  57:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * @endcond
+  58:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  *
+  59:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  */
+  60:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  61:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+  62:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * HEADER FILES
+  63:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  64:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  65:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #ifndef DIGITAL_IO_H
+  66:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #define DIGITAL_IO_H
+  67:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  68:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #include <xmc_gpio.h>
+  69:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #include <DAVE_Common.h>
+  70:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #include "digital_io_conf.h"
+  71:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  72:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+  73:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * MACROS
+  74:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  75:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #if (!((XMC_LIB_MAJOR_VERSION == 2U) && \
+  76:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****        (XMC_LIB_MINOR_VERSION >= 0U) && \
+  77:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****        (XMC_LIB_PATCH_VERSION >= 0U)))
+  78:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #error "DIGITAL_IO requires XMC Peripheral Library v2.0.0 or higher"
+  79:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #endif
+  80:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  81:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  /*************************************************************************************************
+  82:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * ENUMS
+  83:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+  84:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  85:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+  86:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @ingroup DIGITAL_IO_enumerations
+  87:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @{
+  88:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+  89:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  90:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+  91:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Initialization status of DIGITAL_IO APP.
+  92:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+  93:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** typedef enum DIGITAL_IO_STATUS
+  94:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+  95:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   DIGITAL_IO_STATUS_OK = 0U,/**< 0=Status OK */
+  96:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   DIGITAL_IO_STATUS_FAILURE = 1U/**< 1=Status Failed */
+  97:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** } DIGITAL_IO_STATUS_t;
+  98:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+  99:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 100:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @}
+ 101:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 102:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 103:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+ 104:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * DATA STRUCTURES
+ 105:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+ 106:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 107:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @ingroup DIGITAL_IO_datastructures
+ 108:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @{
+ 109:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 110:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 111:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 112:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Initialization data structure of DIGITAL_IO APP
+ 113:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 114:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** typedef struct DIGITAL_IO
+ 115:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 116:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_GPIO_PORT_t *const gpio_port;             /**< port number */
+ 117:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   const XMC_GPIO_CONFIG_t gpio_config;          /**< mode, initial output level and pad driver stre
+ 118:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   const uint8_t gpio_pin;                       /**< pin number */
+ 119:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   const XMC_GPIO_HWCTRL_t hwctrl;               /**< Hardware port control */
+ 120:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** } DIGITAL_IO_t;
+ 121:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 122:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 123:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 124:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @}
+ 125:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 126:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 127:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 128:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**************************************************************************************************
+ 129:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  * API Prototypes
+ 130:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****  **************************************************************************************************
+ 131:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 132:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 133:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #ifdef __cplusplus
+ 134:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** extern "C" {
+ 135:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** #endif
+ 136:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 137:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 138:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @ingroup DIGITAL_IO_apidoc
+ 139:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @{
+ 140:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 141:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 142:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 143:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 144:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 145:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Get DIGITAL_IO APP version
+ 146:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return DAVE_APP_VERSION_t APP version information (major, minor and patch number)
+ 147:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 148:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description: </b><br>
+ 149:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * The function can be used to check application software compatibility with a
+ 150:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * specific version of the APP.
+ 151:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 152:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 153:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 154:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 155:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * #include <DAVE.h>
+ 156:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 157:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * int main(void)
+ 158:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * {
+ 159:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_STATUS_t init_status;
+ 160:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_APP_VERSION_t version;
+ 161:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 162:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   // Initialize DIGITAL_IO APP:
+ 163:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   // DIGITAL_IO_Init() is called from within DAVE_Init().
+ 164:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   init_status = DAVE_Init();
+ 165:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   if(init_status == DAVE_STATUS_SUCCESS)
+ 166:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 167:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     version = DIGITAL_IO_GetAppVersion();
+ 168:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     if (version.major != 4U) {
+ 169:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     // Probably, not the right version.
+ 170:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 171:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 172:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 173:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     // More code here
+ 174:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     while(1) {
+ 175:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 176:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 177:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     return (1);
+ 178:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *  }
+ 179:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @endcode<BR>
+ 180:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 181:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 182:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** DAVE_APP_VERSION_t DIGITAL_IO_GetAppVersion(void);
+ 183:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 184:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 185:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 186:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Function to initialize the port pin as per UI settings.
+ 187:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @param handler Pointer pointing to APP data structure. Refer @ref DIGITAL_IO_t for details.
+ 188:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return DIGITAL_IO_STATUS_t DIGITAL_IO APP status. Refer @ref DIGITAL_IO_STATUS_t structure for d
+ 189:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 190:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description:</b><br>
+ 191:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * This function initializes GPIO port registers IOCR,PDISC,OMR,PDR/PHCR to configure pin direction,
+ 192:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * and pad driver strength/hysteresis.
+ 193:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 194:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Related APIs:</b><BR>
+ 195:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * None
+ 196:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 197:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 198:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 199:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * #include <DAVE.h>//Declarations from DAVE Code Generation (includes SFR declaration)
+ 200:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * int main(void)
+ 201:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * {
+ 202:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_STATUS_t status;
+ 203:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   status = DAVE_Init();  //(DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0) is called within DAVE_In
+ 204:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   if(status == DAVE_STATUS_SUCCESS)
+ 205:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 206:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG("DAVE Apps initialization success\n");
+ 207:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 208:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   else
+ 209:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 210:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 211:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     while(1U)
+ 212:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     {
+ 213:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 214:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 215:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   //Placeholder for user application code. The while loop below can be replaced with user applica
+ 216:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   while(1U)
+ 217:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 218:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 219:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   return 1U;
+ 220:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *  }
+ 221:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *  @endcode
+ 222:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 223:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 224:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** DIGITAL_IO_STATUS_t DIGITAL_IO_Init(const DIGITAL_IO_t *const handler);
+ 225:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 226:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 227:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 228:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Function to set port pin high.
+ 229:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @param handler Pointer pointing to APP data structure. Refer @ref DIGITAL_IO_t for details.
+ 230:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return None
+ 231:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 232:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description:</b><br>
+ 233:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * This function configures port output modification register Pn_OMR, to make port pin to high level
+ 234:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 235:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Related APIs:</b><BR>
+ 236:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *  DIGITAL_IO_SetOutputLow()
+ 237:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 238:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 239:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 240:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * #include <DAVE.h>//Declarations from DAVE Code Generation (includes SFR declaration)
+ 241:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * int main(void)
+ 242:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * {
+ 243:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DAVE_STATUS_t status;
+ 244:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   status = DAVE_Init();  //(DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0) is called within DAVE_In
+ 245:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   if(status == DAVE_STATUS_SUCCESS)
+ 246:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 247:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG("DAVE Apps initialization success\n");
+ 248:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 249:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   else
+ 250:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 251:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 252:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     while(1U)
+ 253:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     {
+ 254:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     }
+ 255:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 256:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   //Placeholder for user application code. The while loop below can be replaced with user applica
+ 257:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
+ 258:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   while(1U)
+ 259:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   {
+ 260:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *     // Add application code here
+ 261:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   }
+ 262:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 263:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   return (1);
+ 264:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * }
+ 265:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *  @endcode
+ 266:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 267:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 268:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** __STATIC_INLINE void DIGITAL_IO_SetOutputHigh(const DIGITAL_IO_t *const handler)
+ 269:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 122              	 .loc 2 269 0
+ 123              	 .cfi_startproc
+ 124              	 
+ 125              	 
+ 126 0000 80B5     	 push {r7,lr}
+ 127              	.LCFI12:
+ 128              	 .cfi_def_cfa_offset 8
+ 129              	 .cfi_offset 7,-8
+ 130              	 .cfi_offset 14,-4
+ 131 0002 82B0     	 sub sp,sp,#8
+ 132              	.LCFI13:
+ 133              	 .cfi_def_cfa_offset 16
+ 134 0004 00AF     	 add r7,sp,#0
+ 135              	.LCFI14:
+ 136              	 .cfi_def_cfa_register 7
+ 137 0006 7860     	 str r0,[r7,#4]
+ 270:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_ASSERT("DIGITAL_IO_SetOutputHigh: handler null pointer", handler != NULL);
+ 271:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_GPIO_SetOutputHigh(handler->gpio_port, handler->gpio_pin);
+ 138              	 .loc 2 271 0
+ 139 0008 7B68     	 ldr r3,[r7,#4]
+ 140 000a 1A68     	 ldr r2,[r3]
+ 141 000c 7B68     	 ldr r3,[r7,#4]
+ 142 000e 1B7C     	 ldrb r3,[r3,#16]
+ 143 0010 1046     	 mov r0,r2
+ 144 0012 1946     	 mov r1,r3
+ 145 0014 FFF7FEFF 	 bl XMC_GPIO_SetOutputHigh
+ 272:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** }
+ 146              	 .loc 2 272 0
+ 147 0018 0837     	 adds r7,r7,#8
+ 148              	.LCFI15:
+ 149              	 .cfi_def_cfa_offset 8
+ 150 001a BD46     	 mov sp,r7
+ 151              	.LCFI16:
+ 152              	 .cfi_def_cfa_register 13
+ 153              	 
+ 154 001c 80BD     	 pop {r7,pc}
+ 155              	 .cfi_endproc
+ 156              	.LFE145:
+ 158 001e 00BF     	 .section .text.DIGITAL_IO_SetOutputLow,"ax",%progbits
+ 159              	 .align 2
+ 160              	 .thumb
+ 161              	 .thumb_func
+ 163              	DIGITAL_IO_SetOutputLow:
+ 164              	.LFB146:
+ 273:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 274:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** /**
+ 275:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @brief Function to reset port pin.
+ 276:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @param handler Pointer pointing to APP data structure. Refer @ref DIGITAL_IO_t for details.
+ 277:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @return None
+ 278:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 279:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Description:</b><br>
+ 280:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * This function configures port output modification register Pn_OMR, to make port pin to low level.
+ 281:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 282:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * \par<b>Related APIs:</b><BR>
+ 283:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * DIGITAL_IO_SetOutputHigh()
+ 284:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 285:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * Example Usage:
+ 286:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * @code
+ 287:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *  #include <DAVE.h>//Declarations from DAVE Code Generation (includes SFR declaration)
+ 288:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *  int main(void)
+ 289:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *  {
+ 290:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    DAVE_STATUS_t status;
+ 291:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    status = DAVE_Init();  //(DAVE_STATUS_t)DIGITAL_IO_Init(&DIGITAL_IO_0) is called within DAVE_I
+ 292:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    if(status == DAVE_STATUS_SUCCESS)
+ 293:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    {
+ 294:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *      XMC_DEBUG("DAVE Apps initialization success\n");
+ 295:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    }
+ 296:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    else
+ 297:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    {
+ 298:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *      XMC_DEBUG(("DAVE Apps initialization failed with status %d\n", status));
+ 299:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *      while(1U)
+ 300:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *      {
+ 301:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *      }
+ 302:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    }
+ 303:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    //Placeholder for user application code. The while loop below can be replaced with user applic
+ 304:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
+ 305:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    while(1U)
+ 306:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    {
+ 307:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *      // Add application code here
+ 308:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *    }
+ 309:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *
+ 310:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *   return (1);
+ 311:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** * }
+ 312:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** *  @endcode
+ 313:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** */
+ 314:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** 
+ 315:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** __STATIC_INLINE void DIGITAL_IO_SetOutputLow(const DIGITAL_IO_t *const handler)
+ 316:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** {
+ 165              	 .loc 2 316 0
+ 166              	 .cfi_startproc
+ 167              	 
+ 168              	 
+ 169 0000 80B5     	 push {r7,lr}
+ 170              	.LCFI17:
+ 171              	 .cfi_def_cfa_offset 8
+ 172              	 .cfi_offset 7,-8
+ 173              	 .cfi_offset 14,-4
+ 174 0002 82B0     	 sub sp,sp,#8
+ 175              	.LCFI18:
+ 176              	 .cfi_def_cfa_offset 16
+ 177 0004 00AF     	 add r7,sp,#0
+ 178              	.LCFI19:
+ 179              	 .cfi_def_cfa_register 7
+ 180 0006 7860     	 str r0,[r7,#4]
+ 317:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_ASSERT("DIGITAL_IO_SetOutputLow: handler null pointer", handler != NULL);
+ 318:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h ****   XMC_GPIO_SetOutputLow(handler->gpio_port,handler->gpio_pin);
+ 181              	 .loc 2 318 0
+ 182 0008 7B68     	 ldr r3,[r7,#4]
+ 183 000a 1A68     	 ldr r2,[r3]
+ 184 000c 7B68     	 ldr r3,[r7,#4]
+ 185 000e 1B7C     	 ldrb r3,[r3,#16]
+ 186 0010 1046     	 mov r0,r2
+ 187 0012 1946     	 mov r1,r3
+ 188 0014 FFF7FEFF 	 bl XMC_GPIO_SetOutputLow
+ 319:C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO\digital_io.h **** }
+ 189              	 .loc 2 319 0
+ 190 0018 0837     	 adds r7,r7,#8
+ 191              	.LCFI20:
+ 192              	 .cfi_def_cfa_offset 8
+ 193 001a BD46     	 mov sp,r7
+ 194              	.LCFI21:
+ 195              	 .cfi_def_cfa_register 13
+ 196              	 
+ 197 001c 80BD     	 pop {r7,pc}
+ 198              	 .cfi_endproc
+ 199              	.LFE146:
+ 201              	 .global Torque_control
+ 202 001e 00BF     	 .section .data.Torque_control,"aw",%progbits
+ 205              	Torque_control:
+ 206 0000 01       	 .byte 1
+ 207              	 .global Speed_control
+ 208              	 .section .data.Speed_control,"aw",%progbits
+ 211              	Speed_control:
+ 212 0000 01       	 .byte 1
+ 213              	 .global CAN_control
+ 214              	 .section .data.CAN_control,"aw",%progbits
+ 217              	CAN_control:
+ 218 0000 01       	 .byte 1
+ 219              	 .comm Current_U,4,4
+ 220              	 .comm Current_V,4,4
+ 221              	 .comm Current_W,4,4
+ 222              	 .comm ialpha,4,4
+ 223              	 .comm ibeta,4,4
+ 224              	 .comm iq,4,4
+ 225              	 .comm id,4,4
+ 226              	 .comm Valpha,4,4
+ 227              	 .comm Vbeta,4,4
+ 228              	 .global speed_ref
+ 229              	 .section .bss.speed_ref,"aw",%nobits
+ 230              	 .align 2
+ 233              	speed_ref:
+ 234 0000 00000000 	 .space 4
+ 235              	 .global omega_ele_rads_ref
+ 236              	 .section .bss.omega_ele_rads_ref,"aw",%nobits
+ 237              	 .align 2
+ 240              	omega_ele_rads_ref:
+ 241 0000 00000000 	 .space 4
+ 242              	 .global iq_ref
+ 243              	 .section .bss.iq_ref,"aw",%nobits
+ 244              	 .align 2
+ 247              	iq_ref:
+ 248 0000 00000000 	 .space 4
+ 249              	 .global T_ref
+ 250              	 .section .bss.T_ref,"aw",%nobits
+ 251              	 .align 2
+ 254              	T_ref:
+ 255 0000 00000000 	 .space 4
+ 256              	 .comm T_ref_controlled,4,4
+ 257              	 .global omega_mech_rps_ref
+ 258              	 .section .bss.omega_mech_rps_ref,"aw",%nobits
+ 259              	 .align 2
+ 262              	omega_mech_rps_ref:
+ 263 0000 00000000 	 .space 4
+ 264              	 .global Vd
+ 265              	 .section .bss.Vd,"aw",%nobits
+ 266              	 .align 2
+ 269              	Vd:
+ 270 0000 00000000 	 .space 4
+ 271              	 .global Vq
+ 272              	 .section .bss.Vq,"aw",%nobits
+ 273              	 .align 2
+ 276              	Vq:
+ 277 0000 00000000 	 .space 4
+ 278              	 .comm modulation_index,4,4
+ 279              	 .comm modulation_index_scaled,4,4
+ 280              	 .comm angle_ab,4,4
+ 281              	 .comm angle_ab_rad,4,4
+ 282              	 .comm amplitude_ab,4,4
+ 283              	 .global Ts
+ 284              	 .section .data.Ts,"aw",%progbits
+ 285              	 .align 2
+ 288              	Ts:
+ 289 0000 17B75138 	 .word 944879383
+ 290              	 .global Tcyc
+ 291              	 .section .data.Tcyc,"aw",%progbits
+ 292              	 .align 2
+ 295              	Tcyc:
+ 296 0000 17B75139 	 .word 961656599
+ 297              	 .global scaling_factor
+ 298              	 .section .data.scaling_factor,"aw",%progbits
+ 299              	 .align 2
+ 302              	scaling_factor:
+ 303 0000 00000743 	 .word 1124532224
+ 304              	 .comm amplitude_corrected,4,4
+ 305              	 .global count
+ 306              	 .section .bss.count,"aw",%nobits
+ 309              	count:
+ 310 0000 00       	 .space 1
+ 311              	 .global Speed_detection_OK
+ 312              	 .section .bss.Speed_detection_OK,"aw",%nobits
+ 315              	Speed_detection_OK:
+ 316 0000 00       	 .space 1
+ 317              	 .global setting_cyc
+ 318              	 .section .data.setting_cyc,"aw",%progbits
+ 319              	 .align 2
+ 322              	setting_cyc:
+ 323 0000 983A0000 	 .word 15000
+ 324              	 .global step_start
+ 325              	 .section .data.step_start,"aw",%progbits
+ 326              	 .align 2
+ 329              	step_start:
+ 330 0000 8FC2753D 	 .word 1031127695
+ 331              	 .global step_to
+ 332              	 .section .data.step_to,"aw",%progbits
+ 333              	 .align 2
+ 336              	step_to:
+ 337 0000 0AD7A33D 	 .word 1034147594
+ 338              	 .global start_help_count
+ 339              	 .section .bss.start_help_count,"aw",%nobits
+ 342              	start_help_count:
+ 343 0000 00       	 .space 1
+ 344              	 .global start_help
+ 345              	 .section .bss.start_help,"aw",%nobits
+ 348              	start_help:
+ 349 0000 00       	 .space 1
+ 350              	 .global start_help_flag
+ 351              	 .section .bss.start_help_flag,"aw",%nobits
+ 354              	start_help_flag:
+ 355 0000 00       	 .space 1
+ 356              	 .section .text.main,"ax",%progbits
+ 357              	 .align 2
+ 358              	 .global main
+ 359              	 .thumb
+ 360              	 .thumb_func
+ 362              	main:
+ 363              	.LFB473:
+ 364              	 .file 3 "../main.c"
+   1:../main.c     **** /*
+   2:../main.c     ****  * main.c
+   3:../main.c     ****  *
+   4:../main.c     ****  *  Created on: 2020 Jan 02 10:21:43
+   5:../main.c     ****  *  Author: Baldo
+   6:../main.c     ****  */
+   7:../main.c     **** 
+   8:../main.c     **** // status: 11.05.2022
+   9:../main.c     **** 
+  10:../main.c     **** #include <DAVE.h>                 //Declarations from DAVE Code Generation (includes SFR declaratio
+  11:../main.c     **** #include <math.h>
+  12:../main.c     **** #include <stdio.h> //for printf
+  13:../main.c     **** 
+  14:../main.c     **** #include "Globals.h"
+  15:../main.c     **** #include "DEFINE_CONST.h"
+  16:../main.c     **** #include "Hall_Sensors.h"
+  17:../main.c     **** #include "rec_data_function.h"
+  18:../main.c     **** #include "Read_Current_Sensor.h"
+  19:../main.c     **** #include "CAN.h"
+  20:../main.c     **** #include "PI_Controller.h"
+  21:../main.c     **** 
+  22:../main.c     **** //#######################
+  23:../main.c     **** //FUNCTION DECLARATION
+  24:../main.c     **** //########################
+  25:../main.c     **** void Control_calc(void);
+  26:../main.c     **** 
+  27:../main.c     **** //########################
+  28:../main.c     **** //VARIABLE DECLARATION
+  29:../main.c     **** //########################
+  30:../main.c     **** 
+  31:../main.c     **** //control type
+  32:../main.c     **** uint8_t Torque_control = 1;
+  33:../main.c     **** uint8_t Speed_control = 1; //if 0 is torque control if 1 is speed control
+  34:../main.c     **** uint8_t CAN_control = 1; // id 1 CAN speed controll aktive
+  35:../main.c     **** 
+  36:../main.c     **** float Current_U, Current_V, Current_W;
+  37:../main.c     **** 
+  38:../main.c     **** float ialpha,ibeta,iq,id,Valpha,Vbeta;
+  39:../main.c     **** 
+  40:../main.c     **** 
+  41:../main.c     **** // REF vaules given to PI controller
+  42:../main.c     **** float speed_ref = 0.0; //meters per second
+  43:../main.c     **** float omega_ele_rads_ref = 0.0; // electrical rad per second
+  44:../main.c     **** float iq_ref = 0.0;
+  45:../main.c     **** float T_ref = 0.0;
+  46:../main.c     **** float T_ref_controlled;
+  47:../main.c     **** float omega_mech_rps_ref = 0;
+  48:../main.c     **** 
+  49:../main.c     **** float Vd = 0;
+  50:../main.c     **** float Vq = 0;
+  51:../main.c     **** 
+  52:../main.c     **** volatile float modulation_index; //SK		// modulation index --> calculated via m = V / K_inv
+  53:../main.c     **** volatile float modulation_index_scaled; //SK	//scaled from -1 to +1 towards -10000 to +10000 which 
+  54:../main.c     **** 
+  55:../main.c     **** float angle_ab;
+  56:../main.c     **** float angle_ab_rad;
+  57:../main.c     **** float amplitude_ab;
+  58:../main.c     **** 
+  59:../main.c     **** float Ts = 1.0 /20000.0; //T sample correspond to SPVM update rate
+  60:../main.c     **** float Tcyc = 1.0 /5000.0; //Tcyc sample correspond to control update rate to PI controler for I
+  61:../main.c     **** 
+  62:../main.c     **** // scaling factor for SVM Update -> amplitude scaling (max_amplitude = 16384U)
+  63:../main.c     **** float scaling_factor = 135;
+  64:../main.c     **** float amplitude_corrected;
+  65:../main.c     **** 
+  66:../main.c     **** // Counter for calculation function -> only use a multiple of the SVM Interrupt
+  67:../main.c     **** volatile uint8_t count = 0;
+  68:../main.c     **** 
+  69:../main.c     **** 
+  70:../main.c     **** uint8_t Speed_detection_OK = 0;
+  71:../main.c     **** 
+  72:../main.c     **** //step rec
+  73:../main.c     **** uint32_t setting_cyc = 15000;
+  74:../main.c     **** float step_start = 0.06; //0.13 ; M1 //  0.06; M2
+  75:../main.c     **** float step_to = 0.08;  //0.17;  // 0l09 ; M2
+  76:../main.c     **** 
+  77:../main.c     **** //start help
+  78:../main.c     **** uint8_t start_help_count = 0, start_help = 0, start_help_flag = 0;
+  79:../main.c     **** #define START_HELP_T 0.1
+  80:../main.c     **** 
+  81:../main.c     **** //########################
+  82:../main.c     **** // MAIN
+  83:../main.c     **** //########################
+  84:../main.c     **** 
+  85:../main.c     **** int main(void)
+  86:../main.c     **** {
+ 365              	 .loc 3 86 0
+ 366              	 .cfi_startproc
+ 367              	 
+ 368              	 
+ 369 0000 80B5     	 push {r7,lr}
+ 370              	.LCFI22:
+ 371              	 .cfi_def_cfa_offset 8
+ 372              	 .cfi_offset 7,-8
+ 373              	 .cfi_offset 14,-4
+ 374 0002 82B0     	 sub sp,sp,#8
+ 375              	.LCFI23:
+ 376              	 .cfi_def_cfa_offset 16
+ 377 0004 00AF     	 add r7,sp,#0
+ 378              	.LCFI24:
+ 379              	 .cfi_def_cfa_register 7
+  87:../main.c     ****   DAVE_STATUS_t status;
+  88:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
+ 380              	 .loc 3 88 0
+ 381 0006 FFF7FEFF 	 bl DAVE_Init
+ 382 000a 0346     	 mov r3,r0
+ 383 000c FB71     	 strb r3,[r7,#7]
+  89:../main.c     **** 
+  90:../main.c     ****   Hall_init();
+ 384              	 .loc 3 90 0
+ 385 000e FFF7FEFF 	 bl Hall_init
+  91:../main.c     **** 
+  92:../main.c     ****   if(status != DAVE_STATUS_SUCCESS)
+ 386              	 .loc 3 92 0
+ 387 0012 FB79     	 ldrb r3,[r7,#7]
+ 388 0014 002B     	 cmp r3,#0
+ 389 0016 00D0     	 beq .L6
+ 390              	.L7:
+  93:../main.c     ****   {
+  94:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
+  95:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
+  96:../main.c     **** 
+  97:../main.c     ****     while(1U)
+  98:../main.c     ****     {
+  99:../main.c     **** 
+ 100:../main.c     ****     }
+ 391              	 .loc 3 100 0 discriminator 1
+ 392 0018 FEE7     	 b .L7
+ 393              	.L6:
+ 101:../main.c     ****   }
+ 102:../main.c     **** 
+ 103:../main.c     ****   //Initialization of CAN
+ 104:../main.c     ****   	CAN_NODE_STATUS_t init_status;
+ 105:../main.c     ****   	init_status = CAN_NODE_Init(&CAN_NODE_0);
+ 394              	 .loc 3 105 0
+ 395 001a 1048     	 ldr r0,.L10
+ 396 001c FFF7FEFF 	 bl CAN_NODE_Init
+ 397 0020 0346     	 mov r3,r0
+ 398 0022 BB71     	 strb r3,[r7,#6]
+ 106:../main.c     **** 
+ 107:../main.c     ****   	if (init_status != CAN_NODE_STATUS_SUCCESS) {
+ 108:../main.c     ****   		XMC_DEBUG("CAN initialization failed\n");
+ 109:../main.c     ****   	}
+ 110:../main.c     **** 
+ 111:../main.c     ****   if((MOTOR_ON_ROVER > 3) || MOTOR_ON_ROVER < 0){ // if possibel number eneterd
+ 112:../main.c     **** 	  while(1U)
+ 113:../main.c     **** 	      {
+ 114:../main.c     **** 		//  printf("MOTOR_ON_ROVER number false");
+ 115:../main.c     **** 	      }
+ 116:../main.c     ****   }
+ 117:../main.c     **** 
+ 118:../main.c     **** 
+ 119:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
+ 120:../main.c     ****   while(1U)
+ 121:../main.c     ****   {
+ 122:../main.c     **** 	  omega_param_selctor(MOTOR_NUM); //set motor spefici speeed parameters
+ 399              	 .loc 3 122 0
+ 400 0024 0620     	 movs r0,#6
+ 401 0026 FFF7FEFF 	 bl omega_param_selctor
+ 123:../main.c     **** 
+ 124:../main.c     **** 	  PWM_SVM_Start(&PWM_SVM_0); // synchronous start for the CC8 slices.
+ 402              	 .loc 3 124 0
+ 403 002a 0D48     	 ldr r0,.L10+4
+ 404 002c FFF7FEFF 	 bl PWM_SVM_Start
+ 405              	.L9:
+ 125:../main.c     **** 		  while(1U)
+ 126:../main.c     **** 		    {
+ 127:../main.c     **** 			  if(count >=4)		//only calculate a multiple of 20kHz -> 4*50us=200us
+ 406              	 .loc 3 127 0
+ 407 0030 0C4B     	 ldr r3,.L10+8
+ 408 0032 1B78     	 ldrb r3,[r3]
+ 409 0034 DBB2     	 uxtb r3,r3
+ 410 0036 032B     	 cmp r3,#3
+ 411 0038 0FD9     	 bls .L8
+ 128:../main.c     **** 			  {
+ 129:../main.c     **** 				  DIGITAL_IO_SetOutputHigh(&status_LED_red_cal_time);
+ 412              	 .loc 3 129 0
+ 413 003a 0B48     	 ldr r0,.L10+12
+ 414 003c FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 130:../main.c     **** 				  count=0;
+ 415              	 .loc 3 130 0
+ 416 0040 084B     	 ldr r3,.L10+8
+ 417 0042 0022     	 movs r2,#0
+ 418 0044 1A70     	 strb r2,[r3]
+ 131:../main.c     **** 				  Hall_postion_speed_estimation();
+ 419              	 .loc 3 131 0
+ 420 0046 FFF7FEFF 	 bl Hall_postion_speed_estimation
+ 132:../main.c     **** 				  Control_calc();
+ 421              	 .loc 3 132 0
+ 422 004a FFF7FEFF 	 bl Control_calc
+ 133:../main.c     **** 
+ 134:../main.c     **** 				 // f_rec_data(iq	,Vq,&Vq,1,2,1,10000);  //  iq char
+ 135:../main.c     **** 
+ 136:../main.c     **** 				  //f_rec_data(iq	,Vq,&iq_ref,1,2,1,10000); // iq step test
+ 137:../main.c     **** 
+ 138:../main.c     **** 				   //f_rec_data(omega_mech_rps,T_ref,&T_ref,step_start,step_to,10,setting_cyc); //10000 settlin
+ 139:../main.c     **** 
+ 140:../main.c     **** 				   //f_rec_data(omega_mech_rps,T_ref,&omega_mech_rps_ref,2,4,50,2000); // speed step test
+ 141:../main.c     **** 
+ 142:../main.c     **** 				   //rec_step_from_0(omega_mech_rps, iq_ref,iq, &omega_mech_rps_ref, 4, 20); // start help test
+ 143:../main.c     **** 				   start_help_flag = 0;
+ 423              	 .loc 3 143 0
+ 424 004e 074B     	 ldr r3,.L10+16
+ 425 0050 0022     	 movs r2,#0
+ 426 0052 1A70     	 strb r2,[r3]
+ 144:../main.c     **** 
+ 145:../main.c     **** 				   DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time);
+ 427              	 .loc 3 145 0
+ 428 0054 0448     	 ldr r0,.L10+12
+ 429 0056 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 430              	.L8:
+ 146:../main.c     **** 			  }
+ 147:../main.c     **** 		    }
+ 431              	 .loc 3 147 0
+ 432 005a E9E7     	 b .L9
+ 433              	.L11:
+ 434              	 .align 2
+ 435              	.L10:
+ 436 005c 00000000 	 .word CAN_NODE_0
+ 437 0060 00000000 	 .word PWM_SVM_0
+ 438 0064 00000000 	 .word count
+ 439 0068 00000000 	 .word status_LED_red_cal_time
+ 440 006c 00000000 	 .word start_help_flag
+ 441              	 .cfi_endproc
+ 442              	.LFE473:
+ 444              	 .section .text.CCU43_1_IRQHandler,"ax",%progbits
+ 445              	 .align 2
+ 446              	 .global CCU43_1_IRQHandler
+ 447              	 .thumb
+ 448              	 .thumb_func
+ 450              	CCU43_1_IRQHandler:
+ 451              	.LFB474:
+ 148:../main.c     ****   }
+ 149:../main.c     **** }
+ 150:../main.c     **** 
+ 151:../main.c     **** 
+ 152:../main.c     **** //########################
+ 153:../main.c     **** // INTERRUPTS
+ 154:../main.c     **** //########################
+ 155:../main.c     **** 
+ 156:../main.c     **** /*
+ 157:../main.c     **** // Turn off driver at Overcurrent
+ 158:../main.c     **** void OverCurrent_U_ISR(void)
+ 159:../main.c     **** {
+ 160:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&Driver_U);	// switch off U driver
+ 161:../main.c     **** }
+ 162:../main.c     **** void OverCurrent_V_ISR(void)
+ 163:../main.c     **** {
+ 164:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&Driver_U);	// switch off U driver
+ 165:../main.c     **** }
+ 166:../main.c     **** void OverCurrent_W_ISR(void)
+ 167:../main.c     **** {
+ 168:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&Driver_U);	// switch off U driver
+ 169:../main.c     **** }
+ 170:../main.c     **** */
+ 171:../main.c     **** 
+ 172:../main.c     **** //ISR based on Timer_1 --> 100us time base
+ 173:../main.c     **** void ISR_INT1(void)
+ 174:../main.c     **** {
+ 452              	 .loc 3 174 0
+ 453              	 .cfi_startproc
+ 454              	 
+ 455              	 
+ 456              	 
+ 457 0000 80B4     	 push {r7}
+ 458              	.LCFI25:
+ 459              	 .cfi_def_cfa_offset 4
+ 460              	 .cfi_offset 7,-4
+ 461 0002 00AF     	 add r7,sp,#0
+ 462              	.LCFI26:
+ 463              	 .cfi_def_cfa_register 7
+ 175:../main.c     **** }
+ 464              	 .loc 3 175 0
+ 465 0004 BD46     	 mov sp,r7
+ 466              	.LCFI27:
+ 467              	 .cfi_def_cfa_register 13
+ 468              	 
+ 469 0006 5DF8047B 	 ldr r7,[sp],#4
+ 470              	.LCFI28:
+ 471              	 .cfi_restore 7
+ 472              	 .cfi_def_cfa_offset 0
+ 473 000a 7047     	 bx lr
+ 474              	 .cfi_endproc
+ 475              	.LFE474:
+ 477              	 .section .text.CCU80_3_IRQHandler,"ax",%progbits
+ 478              	 .align 2
+ 479              	 .global CCU80_3_IRQHandler
+ 480              	 .thumb
+ 481              	 .thumb_func
+ 483              	CCU80_3_IRQHandler:
+ 484              	.LFB475:
+ 176:../main.c     **** 
+ 177:../main.c     **** // ISR for Updating the SVM PWM -> 50us = 20kHz
+ 178:../main.c     **** void PeriodMatchInterruptHandler(void)
+ 179:../main.c     **** {
+ 485              	 .loc 3 179 0
+ 486              	 .cfi_startproc
+ 487              	 
+ 488              	 
+ 489 0000 80B5     	 push {r7,lr}
+ 490              	.LCFI29:
+ 491              	 .cfi_def_cfa_offset 8
+ 492              	 .cfi_offset 7,-8
+ 493              	 .cfi_offset 14,-4
+ 494 0002 82B0     	 sub sp,sp,#8
+ 495              	.LCFI30:
+ 496              	 .cfi_def_cfa_offset 16
+ 497 0004 00AF     	 add r7,sp,#0
+ 498              	.LCFI31:
+ 499              	 .cfi_def_cfa_register 7
+ 180:../main.c     **** 	count++;	// only use a multiple of the period match frequency 20*20kHz = 1ms
+ 500              	 .loc 3 180 0
+ 501 0006 144B     	 ldr r3,.L15
+ 502 0008 1B78     	 ldrb r3,[r3]
+ 503 000a DBB2     	 uxtb r3,r3
+ 504 000c 0133     	 adds r3,r3,#1
+ 505 000e DAB2     	 uxtb r2,r3
+ 506 0010 114B     	 ldr r3,.L15
+ 507 0012 1A70     	 strb r2,[r3]
+ 181:../main.c     **** 	if(count == 1){ // only updating evry time there is new data safes 5-8 % duty on the Control_calc
+ 508              	 .loc 3 181 0
+ 509 0014 104B     	 ldr r3,.L15
+ 510 0016 1B78     	 ldrb r3,[r3]
+ 511 0018 DBB2     	 uxtb r3,r3
+ 512 001a 012B     	 cmp r3,#1
+ 513 001c 18D1     	 bne .L13
+ 182:../main.c     **** 		PWM_SVM_SVMUpdate(&PWM_SVM_0, (uint16_t)modulation_index_scaled, (uint32_t)angle_ab * ANGLE_ONE_D
+ 514              	 .loc 3 182 0
+ 515 001e 0F4B     	 ldr r3,.L15+4
+ 516 0020 D3ED007A 	 flds s15,[r3]
+ 517 0024 FCEEE77A 	 ftouizs s15,s15
+ 518 0028 C7ED017A 	 fsts s15,[r7,#4]
+ 519 002c BB88     	 ldrh r3,[r7,#4]
+ 520 002e 9AB2     	 uxth r2,r3
+ 521 0030 0B4B     	 ldr r3,.L15+8
+ 522 0032 D3ED007A 	 flds s15,[r3]
+ 523 0036 FCEEE77A 	 ftouizs s15,s15
+ 524 003a 17EE901A 	 fmrs r1,s15
+ 525 003e 4BF20B63 	 movw r3,#46603
+ 526 0042 03FB01F3 	 mul r3,r3,r1
+ 527 0046 0748     	 ldr r0,.L15+12
+ 528 0048 1146     	 mov r1,r2
+ 529 004a 1A46     	 mov r2,r3
+ 530 004c FFF7FEFF 	 bl PWM_SVM_SVMUpdate
+ 531              	.L13:
+ 183:../main.c     **** 	}
+ 184:../main.c     **** }
+ 532              	 .loc 3 184 0
+ 533 0050 0837     	 adds r7,r7,#8
+ 534              	.LCFI32:
+ 535              	 .cfi_def_cfa_offset 8
+ 536 0052 BD46     	 mov sp,r7
+ 537              	.LCFI33:
+ 538              	 .cfi_def_cfa_register 13
+ 539              	 
+ 540 0054 80BD     	 pop {r7,pc}
+ 541              	.L16:
+ 542 0056 00BF     	 .align 2
+ 543              	.L15:
+ 544 0058 00000000 	 .word count
+ 545 005c 00000000 	 .word modulation_index_scaled
+ 546 0060 00000000 	 .word angle_ab
+ 547 0064 00000000 	 .word PWM_SVM_0
+ 548              	 .cfi_endproc
+ 549              	.LFE475:
+ 551              	 .global __aeabi_f2d
+ 552              	 .global __aeabi_dmul
+ 553              	 .global __aeabi_d2f
+ 554              	 .global __aeabi_dsub
+ 555              	 .global __aeabi_ddiv
+ 556              	 .global __aeabi_dcmpeq
+ 557              	 .global __aeabi_dadd
+ 558              	 .section .text.Control_calc,"ax",%progbits
+ 559              	 .align 2
+ 560              	 .global Control_calc
+ 561              	 .thumb
+ 562              	 .thumb_func
+ 564              	Control_calc:
+ 565              	.LFB476:
+ 185:../main.c     **** 
+ 186:../main.c     **** //########################
+ 187:../main.c     **** // FUNCTIONS
+ 188:../main.c     **** //########################
+ 189:../main.c     **** 
+ 190:../main.c     **** 
+ 191:../main.c     **** // Routine for Control_calc
+ 192:../main.c     **** //5kHz loop since every 4th step of 50us --> 200us --> 5kHz
+ 193:../main.c     **** void Control_calc(void){
+ 566              	 .loc 3 193 0
+ 567              	 .cfi_startproc
+ 568              	 
+ 569              	 
+ 570 0000 B0B5     	 push {r4,r5,r7,lr}
+ 571              	.LCFI34:
+ 572              	 .cfi_def_cfa_offset 16
+ 573              	 .cfi_offset 4,-16
+ 574              	 .cfi_offset 5,-12
+ 575              	 .cfi_offset 7,-8
+ 576              	 .cfi_offset 14,-4
+ 577 0002 2DED028B 	 fstmfdd sp!,{d8}
+ 578              	.LCFI35:
+ 579              	 .cfi_def_cfa_offset 24
+ 580              	 .cfi_offset 80,-24
+ 581              	 .cfi_offset 81,-20
+ 582 0006 84B0     	 sub sp,sp,#16
+ 583              	.LCFI36:
+ 584              	 .cfi_def_cfa_offset 40
+ 585 0008 00AF     	 add r7,sp,#0
+ 586              	.LCFI37:
+ 587              	 .cfi_def_cfa_register 7
+ 194:../main.c     **** 
+ 195:../main.c     **** 		// Current read out over SPI
+ 196:../main.c     **** 		Current_U = readCurrent(ChipSelect_U);
+ 588              	 .loc 3 196 0
+ 589 000a 0620     	 movs r0,#6
+ 590 000c FFF7FEFF 	 bl readCurrent
+ 591 0010 0246     	 mov r2,r0
+ 592 0012 AF4B     	 ldr r3,.L52+48
+ 593 0014 1A60     	 str r2,[r3]
+ 197:../main.c     **** 		Current_V = readCurrent(ChipSelect_V);
+ 594              	 .loc 3 197 0
+ 595 0016 0520     	 movs r0,#5
+ 596 0018 FFF7FEFF 	 bl readCurrent
+ 597 001c 0246     	 mov r2,r0
+ 598 001e AD4B     	 ldr r3,.L52+52
+ 599 0020 1A60     	 str r2,[r3]
+ 198:../main.c     **** 		Current_W = readCurrent(ChipSelect_W);
+ 600              	 .loc 3 198 0
+ 601 0022 0320     	 movs r0,#3
+ 602 0024 FFF7FEFF 	 bl readCurrent
+ 603 0028 0246     	 mov r2,r0
+ 604 002a AB4B     	 ldr r3,.L52+56
+ 605 002c 1A60     	 str r2,[r3]
+ 199:../main.c     **** 
+ 200:../main.c     **** 		// conversion from rad/s to degree
+ 201:../main.c     **** 		float angle_phi_rad = angle_phi*Pi180;
+ 606              	 .loc 3 201 0
+ 607 002e AB4B     	 ldr r3,.L52+60
+ 608 0030 1B68     	 ldr r3,[r3]
+ 609 0032 1846     	 mov r0,r3
+ 610 0034 FFF7FEFF 	 bl __aeabi_f2d
+ 611 0038 0246     	 mov r2,r0
+ 612 003a 0B46     	 mov r3,r1
+ 613 003c 1046     	 mov r0,r2
+ 614 003e 1946     	 mov r1,r3
+ 615 0040 97A3     	 adr r3,.L52
+ 616 0042 D3E90023 	 ldrd r2,[r3]
+ 617 0046 FFF7FEFF 	 bl __aeabi_dmul
+ 618 004a 0246     	 mov r2,r0
+ 619 004c 0B46     	 mov r3,r1
+ 620 004e 1046     	 mov r0,r2
+ 621 0050 1946     	 mov r1,r3
+ 622 0052 FFF7FEFF 	 bl __aeabi_d2f
+ 623 0056 0346     	 mov r3,r0
+ 624 0058 FB60     	 str r3,[r7,#12]
+ 202:../main.c     **** 
+ 203:../main.c     **** 		// to decrease multiple calculations and computational effort
+ 204:../main.c     **** 		float cos_phi = cosf(angle_phi_rad);
+ 625              	 .loc 3 204 0
+ 626 005a F868     	 ldr r0,[r7,#12]
+ 627 005c FFF7FEFF 	 bl cosf
+ 628 0060 B860     	 str r0,[r7,#8]
+ 205:../main.c     **** 		float sin_phi = sinf(angle_phi_rad);
+ 629              	 .loc 3 205 0
+ 630 0062 F868     	 ldr r0,[r7,#12]
+ 631 0064 FFF7FEFF 	 bl sinf
+ 632 0068 7860     	 str r0,[r7,#4]
+ 206:../main.c     **** 
+ 207:../main.c     **** 		// Clark-Park transformation (from U,V,W to dq)
+ 208:../main.c     **** 		id = TwoThird*(cos_phi*Current_U	+ cosf(angle_phi_rad-TwoPiThird)*Current_V + cosf(angle_phi_rad-
+ 633              	 .loc 3 208 0
+ 634 006a 994B     	 ldr r3,.L52+48
+ 635 006c 93ED007A 	 flds s14,[r3]
+ 636 0070 D7ED027A 	 flds s15,[r7,#8]
+ 637 0074 27EE278A 	 fmuls s16,s14,s15
+ 638 0078 F868     	 ldr r0,[r7,#12]
+ 639 007a FFF7FEFF 	 bl __aeabi_f2d
+ 640 007e 0246     	 mov r2,r0
+ 641 0080 0B46     	 mov r3,r1
+ 642 0082 1046     	 mov r0,r2
+ 643 0084 1946     	 mov r1,r3
+ 644 0086 88A3     	 adr r3,.L52+8
+ 645 0088 D3E90023 	 ldrd r2,[r3]
+ 646 008c FFF7FEFF 	 bl __aeabi_dsub
+ 647 0090 0246     	 mov r2,r0
+ 648 0092 0B46     	 mov r3,r1
+ 649 0094 1046     	 mov r0,r2
+ 650 0096 1946     	 mov r1,r3
+ 651 0098 FFF7FEFF 	 bl __aeabi_d2f
+ 652 009c 0346     	 mov r3,r0
+ 653 009e 1846     	 mov r0,r3
+ 654 00a0 FFF7FEFF 	 bl cosf
+ 655 00a4 07EE100A 	 fmsr s14,r0
+ 656 00a8 8A4B     	 ldr r3,.L52+52
+ 657 00aa D3ED007A 	 flds s15,[r3]
+ 658 00ae 67EE277A 	 fmuls s15,s14,s15
+ 659 00b2 38EE278A 	 fadds s16,s16,s15
+ 660 00b6 F868     	 ldr r0,[r7,#12]
+ 661 00b8 FFF7FEFF 	 bl __aeabi_f2d
+ 662 00bc 0246     	 mov r2,r0
+ 663 00be 0B46     	 mov r3,r1
+ 664 00c0 1046     	 mov r0,r2
+ 665 00c2 1946     	 mov r1,r3
+ 666 00c4 7AA3     	 adr r3,.L52+16
+ 667 00c6 D3E90023 	 ldrd r2,[r3]
+ 668 00ca FFF7FEFF 	 bl __aeabi_dsub
+ 669 00ce 0246     	 mov r2,r0
+ 670 00d0 0B46     	 mov r3,r1
+ 671 00d2 1046     	 mov r0,r2
+ 672 00d4 1946     	 mov r1,r3
+ 673 00d6 FFF7FEFF 	 bl __aeabi_d2f
+ 674 00da 0346     	 mov r3,r0
+ 675 00dc 1846     	 mov r0,r3
+ 676 00de FFF7FEFF 	 bl cosf
+ 677 00e2 07EE100A 	 fmsr s14,r0
+ 678 00e6 7C4B     	 ldr r3,.L52+56
+ 679 00e8 D3ED007A 	 flds s15,[r3]
+ 680 00ec 67EE277A 	 fmuls s15,s14,s15
+ 681 00f0 78EE277A 	 fadds s15,s16,s15
+ 682 00f4 17EE900A 	 fmrs r0,s15
+ 683 00f8 FFF7FEFF 	 bl __aeabi_f2d
+ 684 00fc 0246     	 mov r2,r0
+ 685 00fe 0B46     	 mov r3,r1
+ 686 0100 1046     	 mov r0,r2
+ 687 0102 1946     	 mov r1,r3
+ 688 0104 6CA3     	 adr r3,.L52+24
+ 689 0106 D3E90023 	 ldrd r2,[r3]
+ 690 010a FFF7FEFF 	 bl __aeabi_dmul
+ 691 010e 0246     	 mov r2,r0
+ 692 0110 0B46     	 mov r3,r1
+ 693 0112 1046     	 mov r0,r2
+ 694 0114 1946     	 mov r1,r3
+ 695 0116 FFF7FEFF 	 bl __aeabi_d2f
+ 696 011a 0246     	 mov r2,r0
+ 697 011c 704B     	 ldr r3,.L52+64
+ 698 011e 1A60     	 str r2,[r3]
+ 209:../main.c     **** 		iq = TwoThird*(-sin_phi*Current_U	 -sinf(angle_phi_rad-TwoPiThird)*Current_V - sinf(angle_phi_rad
+ 699              	 .loc 3 209 0
+ 700 0120 D7ED017A 	 flds s15,[r7,#4]
+ 701 0124 B1EE677A 	 fnegs s14,s15
+ 702 0128 694B     	 ldr r3,.L52+48
+ 703 012a D3ED007A 	 flds s15,[r3]
+ 704 012e 27EE278A 	 fmuls s16,s14,s15
+ 705 0132 F868     	 ldr r0,[r7,#12]
+ 706 0134 FFF7FEFF 	 bl __aeabi_f2d
+ 707 0138 0246     	 mov r2,r0
+ 708 013a 0B46     	 mov r3,r1
+ 709 013c 1046     	 mov r0,r2
+ 710 013e 1946     	 mov r1,r3
+ 711 0140 59A3     	 adr r3,.L52+8
+ 712 0142 D3E90023 	 ldrd r2,[r3]
+ 713 0146 FFF7FEFF 	 bl __aeabi_dsub
+ 714 014a 0246     	 mov r2,r0
+ 715 014c 0B46     	 mov r3,r1
+ 716 014e 1046     	 mov r0,r2
+ 717 0150 1946     	 mov r1,r3
+ 718 0152 FFF7FEFF 	 bl __aeabi_d2f
+ 719 0156 0346     	 mov r3,r0
+ 720 0158 1846     	 mov r0,r3
+ 721 015a FFF7FEFF 	 bl sinf
+ 722 015e 07EE100A 	 fmsr s14,r0
+ 723 0162 5C4B     	 ldr r3,.L52+52
+ 724 0164 D3ED007A 	 flds s15,[r3]
+ 725 0168 67EE277A 	 fmuls s15,s14,s15
+ 726 016c 38EE678A 	 fsubs s16,s16,s15
+ 727 0170 F868     	 ldr r0,[r7,#12]
+ 728 0172 FFF7FEFF 	 bl __aeabi_f2d
+ 729 0176 0246     	 mov r2,r0
+ 730 0178 0B46     	 mov r3,r1
+ 731 017a 1046     	 mov r0,r2
+ 732 017c 1946     	 mov r1,r3
+ 733 017e 4CA3     	 adr r3,.L52+16
+ 734 0180 D3E90023 	 ldrd r2,[r3]
+ 735 0184 FFF7FEFF 	 bl __aeabi_dsub
+ 736 0188 0246     	 mov r2,r0
+ 737 018a 0B46     	 mov r3,r1
+ 738 018c 1046     	 mov r0,r2
+ 739 018e 1946     	 mov r1,r3
+ 740 0190 FFF7FEFF 	 bl __aeabi_d2f
+ 741 0194 0346     	 mov r3,r0
+ 742 0196 1846     	 mov r0,r3
+ 743 0198 FFF7FEFF 	 bl sinf
+ 744 019c 07EE100A 	 fmsr s14,r0
+ 745 01a0 4D4B     	 ldr r3,.L52+56
+ 746 01a2 D3ED007A 	 flds s15,[r3]
+ 747 01a6 67EE277A 	 fmuls s15,s14,s15
+ 748 01aa 78EE677A 	 fsubs s15,s16,s15
+ 749 01ae 17EE900A 	 fmrs r0,s15
+ 750 01b2 FFF7FEFF 	 bl __aeabi_f2d
+ 751 01b6 0246     	 mov r2,r0
+ 752 01b8 0B46     	 mov r3,r1
+ 753 01ba 1046     	 mov r0,r2
+ 754 01bc 1946     	 mov r1,r3
+ 755 01be 3EA3     	 adr r3,.L52+24
+ 756 01c0 D3E90023 	 ldrd r2,[r3]
+ 757 01c4 FFF7FEFF 	 bl __aeabi_dmul
+ 758 01c8 0246     	 mov r2,r0
+ 759 01ca 0B46     	 mov r3,r1
+ 760 01cc 1046     	 mov r0,r2
+ 761 01ce 1946     	 mov r1,r3
+ 762 01d0 FFF7FEFF 	 bl __aeabi_d2f
+ 763 01d4 0246     	 mov r2,r0
+ 764 01d6 434B     	 ldr r3,.L52+68
+ 765 01d8 1A60     	 str r2,[r3]
+ 210:../main.c     **** 
+ 211:../main.c     **** 		if(CAN_control == 1){// can control
+ 766              	 .loc 3 211 0
+ 767 01da 434B     	 ldr r3,.L52+72
+ 768 01dc 1B78     	 ldrb r3,[r3]
+ 769 01de 012B     	 cmp r3,#1
+ 770 01e0 3CD1     	 bne .L18
+ 212:../main.c     **** 
+ 213:../main.c     **** 			if(CAN_new_meassage == 1){
+ 771              	 .loc 3 213 0
+ 772 01e2 424B     	 ldr r3,.L52+76
+ 773 01e4 1B78     	 ldrb r3,[r3]
+ 774 01e6 012B     	 cmp r3,#1
+ 775 01e8 07D1     	 bne .L19
+ 214:../main.c     **** 				speed_ref = CAN_speed_ref;
+ 776              	 .loc 3 214 0
+ 777 01ea 414B     	 ldr r3,.L52+80
+ 778 01ec 1B68     	 ldr r3,[r3]
+ 779 01ee 414A     	 ldr r2,.L52+84
+ 780 01f0 1360     	 str r3,[r2]
+ 215:../main.c     **** 				CAN_new_meassage = 0;
+ 781              	 .loc 3 215 0
+ 782 01f2 3E4B     	 ldr r3,.L52+76
+ 783 01f4 0022     	 movs r2,#0
+ 784 01f6 1A70     	 strb r2,[r3]
+ 785 01f8 05E0     	 b .L20
+ 786              	.L19:
+ 216:../main.c     **** 			}
+ 217:../main.c     **** 			else{
+ 218:../main.c     **** 				CAN_no_com_counter ++;
+ 787              	 .loc 3 218 0
+ 788 01fa 3F4B     	 ldr r3,.L52+88
+ 789 01fc 1B78     	 ldrb r3,[r3]
+ 790 01fe 0133     	 adds r3,r3,#1
+ 791 0200 DAB2     	 uxtb r2,r3
+ 792 0202 3D4B     	 ldr r3,.L52+88
+ 793 0204 1A70     	 strb r2,[r3]
+ 794              	.L20:
+ 219:../main.c     **** 			}
+ 220:../main.c     **** 
+ 221:../main.c     **** 			if(CAN_no_com_counter > CAN_NO_COM_TH){
+ 795              	 .loc 3 221 0
+ 796 0206 3C4B     	 ldr r3,.L52+88
+ 797 0208 1B78     	 ldrb r3,[r3]
+ 798 020a FA2B     	 cmp r3,#250
+ 799 020c 06D9     	 bls .L21
+ 222:../main.c     **** 				//CAN_new_meassage = 0;
+ 223:../main.c     **** 				CAN_no_com_counter = CAN_NO_COM_TH;
+ 800              	 .loc 3 223 0
+ 801 020e 3A4B     	 ldr r3,.L52+88
+ 802 0210 FA22     	 movs r2,#250
+ 803 0212 1A70     	 strb r2,[r3]
+ 224:../main.c     **** 				speed_ref = 0;
+ 804              	 .loc 3 224 0
+ 805 0214 374B     	 ldr r3,.L52+84
+ 806 0216 4FF00002 	 mov r2,#0
+ 807 021a 1A60     	 str r2,[r3]
+ 808              	.L21:
+ 225:../main.c     **** 			}
+ 226:../main.c     **** 			omega_mech_rps_ref = (speed_ref / WHEEL_R) / (2 * PI);
+ 809              	 .loc 3 226 0
+ 810 021c 354B     	 ldr r3,.L52+84
+ 811 021e 1B68     	 ldr r3,[r3]
+ 812 0220 1846     	 mov r0,r3
+ 813 0222 FFF7FEFF 	 bl __aeabi_f2d
+ 814 0226 0246     	 mov r2,r0
+ 815 0228 0B46     	 mov r3,r1
+ 816 022a 1046     	 mov r0,r2
+ 817 022c 1946     	 mov r1,r3
+ 818 022e 24A3     	 adr r3,.L52+32
+ 819 0230 D3E90023 	 ldrd r2,[r3]
+ 820 0234 FFF7FEFF 	 bl __aeabi_ddiv
+ 821 0238 0246     	 mov r2,r0
+ 822 023a 0B46     	 mov r3,r1
+ 823 023c 1046     	 mov r0,r2
+ 824 023e 1946     	 mov r1,r3
+ 825 0240 21A3     	 adr r3,.L52+40
+ 826 0242 D3E90023 	 ldrd r2,[r3]
+ 827 0246 FFF7FEFF 	 bl __aeabi_ddiv
+ 828 024a 0246     	 mov r2,r0
+ 829 024c 0B46     	 mov r3,r1
+ 830 024e 1046     	 mov r0,r2
+ 831 0250 1946     	 mov r1,r3
+ 832 0252 FFF7FEFF 	 bl __aeabi_d2f
+ 833 0256 0246     	 mov r2,r0
+ 834 0258 284B     	 ldr r3,.L52+92
+ 835 025a 1A60     	 str r2,[r3]
+ 836              	.L18:
+ 227:../main.c     **** 		}
+ 228:../main.c     **** 
+ 229:../main.c     **** 		// Always run speed controll calc
+ 230:../main.c     **** 		if(omega_mech_rps_ref == 0  && (( -2 < omega_mech_rps) && (omega_mech_rps < 2))){ // no contorl i
+ 837              	 .loc 3 230 0
+ 838 025c 274B     	 ldr r3,.L52+92
+ 839 025e D3ED007A 	 flds s15,[r3]
+ 840 0262 F5EE407A 	 fcmpzs s15
+ 841 0266 F1EE10FA 	 fmstat
+ 842 026a 4DD1     	 bne .L22
+ 843              	 .loc 3 230 0 is_stmt 0 discriminator 1
+ 844 026c 244B     	 ldr r3,.L52+96
+ 845 026e D3ED007A 	 flds s15,[r3]
+ 846 0272 B8EE007A 	 fconsts s14,#128
+ 847 0276 F4EEC77A 	 fcmpes s15,s14
+ 848 027a F1EE10FA 	 fmstat
+ 849 027e 43DD     	 ble .L22
+ 850              	 .loc 3 230 0 discriminator 2
+ 851 0280 1F4B     	 ldr r3,.L52+96
+ 852 0282 D3ED007A 	 flds s15,[r3]
+ 853 0286 B0EE007A 	 fconsts s14,#0
+ 854 028a F4EEC77A 	 fcmpes s15,s14
+ 855 028e F1EE10FA 	 fmstat
+ 856 0292 39D5     	 bpl .L22
+ 231:../main.c     **** 			T_ref_controlled = 0;
+ 857              	 .loc 3 231 0 is_stmt 1
+ 858 0294 1B4B     	 ldr r3,.L52+100
+ 859 0296 4FF00002 	 mov r2,#0
+ 860 029a 1A60     	 str r2,[r3]
+ 861 029c CBE0     	 b .L25
+ 862              	.L53:
+ 863 029e 00BF     	 .align 3
+ 864              	.L52:
+ 865 02a0 4DC90777 	 .word 1996998989
+ 866 02a4 46DF913F 	 .word 1066524486
+ 867 02a8 A038DB37 	 .word 937113760
+ 868 02ac 52C10040 	 .word 1073791314
+ 869 02b0 A038DB37 	 .word 937113760
+ 870 02b4 52C11040 	 .word 1074839890
+ 871 02b8 93761F57 	 .word 1461679763
+ 872 02bc 5555E53F 	 .word 1071994197
+ 873 02c0 48E17A14 	 .word 343597384
+ 874 02c4 AE47B13F 	 .word 1068582830
+ 875 02c8 F1D4C853 	 .word 1405670641
+ 876 02cc FB211940 	 .word 1075388923
+ 877 02d0 00000000 	 .word Current_U
+ 878 02d4 00000000 	 .word Current_V
+ 879 02d8 00000000 	 .word Current_W
+ 880 02dc 00000000 	 .word angle_phi
+ 881 02e0 00000000 	 .word id
+ 882 02e4 00000000 	 .word iq
+ 883 02e8 00000000 	 .word CAN_control
+ 884 02ec 00000000 	 .word CAN_new_meassage
+ 885 02f0 00000000 	 .word CAN_speed_ref
+ 886 02f4 00000000 	 .word speed_ref
+ 887 02f8 00000000 	 .word CAN_no_com_counter
+ 888 02fc 00000000 	 .word omega_mech_rps_ref
+ 889 0300 00000000 	 .word omega_mech_rps
+ 890 0304 00000000 	 .word T_ref_controlled
+ 891              	.L22:
+ 232:../main.c     **** 		}
+ 233:../main.c     **** 		else{
+ 234:../main.c     **** 			T_ref_controlled = PI_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param); // outer contr
+ 892              	 .loc 3 234 0
+ 893 0308 B34B     	 ldr r3,.L54+24
+ 894 030a 1A68     	 ldr r2,[r3]
+ 895 030c B34B     	 ldr r3,.L54+28
+ 896 030e 1B68     	 ldr r3,[r3]
+ 897 0310 1046     	 mov r0,r2
+ 898 0312 1946     	 mov r1,r3
+ 899 0314 B24A     	 ldr r2,.L54+32
+ 900 0316 FFF7FEFF 	 bl PI_Controller
+ 901 031a 0246     	 mov r2,r0
+ 902 031c B14B     	 ldr r3,.L54+36
+ 903 031e 1A60     	 str r2,[r3]
+ 235:../main.c     **** 
+ 236:../main.c     **** 			if(start_help == 1 ){// troque added at start
+ 904              	 .loc 3 236 0
+ 905 0320 B14B     	 ldr r3,.L54+40
+ 906 0322 1B78     	 ldrb r3,[r3]
+ 907 0324 012B     	 cmp r3,#1
+ 908 0326 40F08680 	 bne .L25
+ 237:../main.c     **** 				if(omega_mech_rps_ref != 0 && (copysign(1,omega_mech_rps_ref) != copysign(1,omega_mech_rps) || 
+ 909              	 .loc 3 237 0
+ 910 032a AB4B     	 ldr r3,.L54+24
+ 911 032c D3ED007A 	 flds s15,[r3]
+ 912 0330 F5EE407A 	 fcmpzs s15
+ 913 0334 F1EE10FA 	 fmstat
+ 914 0338 2DD0     	 beq .L26
+ 915              	 .loc 3 237 0 is_stmt 0 discriminator 1
+ 916 033a A74B     	 ldr r3,.L54+24
+ 917 033c 1B68     	 ldr r3,[r3]
+ 918 033e 1846     	 mov r0,r3
+ 919 0340 FFF7FEFF 	 bl __aeabi_f2d
+ 920 0344 0246     	 mov r2,r0
+ 921 0346 0B46     	 mov r3,r1
+ 922 0348 4FF00000 	 mov r0,#0
+ 923 034c A749     	 ldr r1,.L54+44
+ 924 034e FFF7FEFF 	 bl copysign
+ 925 0352 0446     	 mov r4,r0
+ 926 0354 0D46     	 mov r5,r1
+ 927 0356 A14B     	 ldr r3,.L54+28
+ 928 0358 1B68     	 ldr r3,[r3]
+ 929 035a 1846     	 mov r0,r3
+ 930 035c FFF7FEFF 	 bl __aeabi_f2d
+ 931 0360 0246     	 mov r2,r0
+ 932 0362 0B46     	 mov r3,r1
+ 933 0364 4FF00000 	 mov r0,#0
+ 934 0368 A049     	 ldr r1,.L54+44
+ 935 036a FFF7FEFF 	 bl copysign
+ 936 036e 0246     	 mov r2,r0
+ 937 0370 0B46     	 mov r3,r1
+ 938 0372 2046     	 mov r0,r4
+ 939 0374 2946     	 mov r1,r5
+ 940 0376 FFF7FEFF 	 bl __aeabi_dcmpeq
+ 941 037a 0346     	 mov r3,r0
+ 942 037c 002B     	 cmp r3,#0
+ 943 037e 07D0     	 beq .L27
+ 944              	 .loc 3 237 0 discriminator 2
+ 945 0380 964B     	 ldr r3,.L54+28
+ 946 0382 D3ED007A 	 flds s15,[r3]
+ 947 0386 F5EE407A 	 fcmpzs s15
+ 948 038a F1EE10FA 	 fmstat
+ 949 038e 02D1     	 bne .L26
+ 950              	.L27:
+ 238:../main.c     **** 					start_help_count = 10;
+ 951              	 .loc 3 238 0 is_stmt 1
+ 952 0390 974B     	 ldr r3,.L54+48
+ 953 0392 0A22     	 movs r2,#10
+ 954 0394 1A70     	 strb r2,[r3]
+ 955              	.L26:
+ 239:../main.c     **** 				}
+ 240:../main.c     **** 
+ 241:../main.c     **** 				if(start_help_count > 0){
+ 956              	 .loc 3 241 0
+ 957 0396 964B     	 ldr r3,.L54+48
+ 958 0398 1B78     	 ldrb r3,[r3]
+ 959 039a 002B     	 cmp r3,#0
+ 960 039c 4BD0     	 beq .L25
+ 242:../main.c     **** 					start_help_flag = 1;
+ 961              	 .loc 3 242 0
+ 962 039e 954B     	 ldr r3,.L54+52
+ 963 03a0 0122     	 movs r2,#1
+ 964 03a2 1A70     	 strb r2,[r3]
+ 243:../main.c     **** 					start_help_count --;
+ 965              	 .loc 3 243 0
+ 966 03a4 924B     	 ldr r3,.L54+48
+ 967 03a6 1B78     	 ldrb r3,[r3]
+ 968 03a8 013B     	 subs r3,r3,#1
+ 969 03aa DAB2     	 uxtb r2,r3
+ 970 03ac 904B     	 ldr r3,.L54+48
+ 971 03ae 1A70     	 strb r2,[r3]
+ 244:../main.c     **** 					if(omega_mech_rps_ref > 0)T_ref_controlled += START_HELP_T;
+ 972              	 .loc 3 244 0
+ 973 03b0 894B     	 ldr r3,.L54+24
+ 974 03b2 D3ED007A 	 flds s15,[r3]
+ 975 03b6 F5EEC07A 	 fcmpezs s15
+ 976 03ba F1EE10FA 	 fmstat
+ 977 03be 17DD     	 ble .L50
+ 978              	 .loc 3 244 0 is_stmt 0 discriminator 1
+ 979 03c0 884B     	 ldr r3,.L54+36
+ 980 03c2 1B68     	 ldr r3,[r3]
+ 981 03c4 1846     	 mov r0,r3
+ 982 03c6 FFF7FEFF 	 bl __aeabi_f2d
+ 983 03ca 0246     	 mov r2,r0
+ 984 03cc 0B46     	 mov r3,r1
+ 985 03ce 1046     	 mov r0,r2
+ 986 03d0 1946     	 mov r1,r3
+ 987 03d2 7BA3     	 adr r3,.L54
+ 988 03d4 D3E90023 	 ldrd r2,[r3]
+ 989 03d8 FFF7FEFF 	 bl __aeabi_dadd
+ 990 03dc 0246     	 mov r2,r0
+ 991 03de 0B46     	 mov r3,r1
+ 992 03e0 1046     	 mov r0,r2
+ 993 03e2 1946     	 mov r1,r3
+ 994 03e4 FFF7FEFF 	 bl __aeabi_d2f
+ 995 03e8 0246     	 mov r2,r0
+ 996 03ea 7E4B     	 ldr r3,.L54+36
+ 997 03ec 1A60     	 str r2,[r3]
+ 998 03ee 22E0     	 b .L25
+ 999              	.L50:
+ 245:../main.c     **** 					else if(omega_mech_rps_ref < 0)T_ref = T_ref_controlled -= START_HELP_T;
+ 1000              	 .loc 3 245 0 is_stmt 1
+ 1001 03f0 794B     	 ldr r3,.L54+24
+ 1002 03f2 D3ED007A 	 flds s15,[r3]
+ 1003 03f6 F5EEC07A 	 fcmpezs s15
+ 1004 03fa F1EE10FA 	 fmstat
+ 1005 03fe 1AD5     	 bpl .L25
+ 1006              	 .loc 3 245 0 is_stmt 0 discriminator 1
+ 1007 0400 784B     	 ldr r3,.L54+36
+ 1008 0402 1B68     	 ldr r3,[r3]
+ 1009 0404 1846     	 mov r0,r3
+ 1010 0406 FFF7FEFF 	 bl __aeabi_f2d
+ 1011 040a 0246     	 mov r2,r0
+ 1012 040c 0B46     	 mov r3,r1
+ 1013 040e 1046     	 mov r0,r2
+ 1014 0410 1946     	 mov r1,r3
+ 1015 0412 6BA3     	 adr r3,.L54
+ 1016 0414 D3E90023 	 ldrd r2,[r3]
+ 1017 0418 FFF7FEFF 	 bl __aeabi_dsub
+ 1018 041c 0246     	 mov r2,r0
+ 1019 041e 0B46     	 mov r3,r1
+ 1020 0420 1046     	 mov r0,r2
+ 1021 0422 1946     	 mov r1,r3
+ 1022 0424 FFF7FEFF 	 bl __aeabi_d2f
+ 1023 0428 0246     	 mov r2,r0
+ 1024 042a 6E4B     	 ldr r3,.L54+36
+ 1025 042c 1A60     	 str r2,[r3]
+ 1026 042e 6D4B     	 ldr r3,.L54+36
+ 1027 0430 1B68     	 ldr r3,[r3]
+ 1028 0432 714A     	 ldr r2,.L54+56
+ 1029 0434 1360     	 str r3,[r2]
+ 1030              	.L25:
+ 246:../main.c     **** 				}
+ 247:../main.c     **** 			}
+ 248:../main.c     **** 		}
+ 249:../main.c     **** 
+ 250:../main.c     **** 		if (Speed_control == 1){// activation of speed control
+ 1031              	 .loc 3 250 0 is_stmt 1
+ 1032 0436 714B     	 ldr r3,.L54+60
+ 1033 0438 1B78     	 ldrb r3,[r3]
+ 1034 043a 012B     	 cmp r3,#1
+ 1035 043c 03D1     	 bne .L31
+ 251:../main.c     **** 			T_ref = T_ref_controlled;
+ 1036              	 .loc 3 251 0
+ 1037 043e 694B     	 ldr r3,.L54+36
+ 1038 0440 1B68     	 ldr r3,[r3]
+ 1039 0442 6D4A     	 ldr r2,.L54+56
+ 1040 0444 1360     	 str r3,[r2]
+ 1041              	.L31:
+ 252:../main.c     **** 		}
+ 253:../main.c     **** 
+ 254:../main.c     **** 		if(Torque_control == 1){
+ 1042              	 .loc 3 254 0
+ 1043 0446 6E4B     	 ldr r3,.L54+64
+ 1044 0448 1B78     	 ldrb r3,[r3]
+ 1045 044a 012B     	 cmp r3,#1
+ 1046 044c 4CD1     	 bne .L32
+ 255:../main.c     **** 
+ 256:../main.c     **** 			if(MOTOR_NUM == 1 || MOTOR_NUM == 10) {
+ 257:../main.c     **** 				iq_ref =  T_ref / K_T; // dirction for motor 1 and 10
+ 258:../main.c     **** 			}
+ 259:../main.c     **** 			else{
+ 260:../main.c     **** 				iq_ref = - T_ref / K_T;// dirction for others
+ 1047              	 .loc 3 260 0
+ 1048 044e 6A4B     	 ldr r3,.L54+56
+ 1049 0450 D3ED007A 	 flds s15,[r3]
+ 1050 0454 F1EE677A 	 fnegs s15,s15
+ 1051 0458 17EE903A 	 fmrs r3,s15
+ 1052 045c 1846     	 mov r0,r3
+ 1053 045e FFF7FEFF 	 bl __aeabi_f2d
+ 1054 0462 0246     	 mov r2,r0
+ 1055 0464 0B46     	 mov r3,r1
+ 1056 0466 1046     	 mov r0,r2
+ 1057 0468 1946     	 mov r1,r3
+ 1058 046a 57A3     	 adr r3,.L54+8
+ 1059 046c D3E90023 	 ldrd r2,[r3]
+ 1060 0470 FFF7FEFF 	 bl __aeabi_ddiv
+ 1061 0474 0246     	 mov r2,r0
+ 1062 0476 0B46     	 mov r3,r1
+ 1063 0478 1046     	 mov r0,r2
+ 1064 047a 1946     	 mov r1,r3
+ 1065 047c FFF7FEFF 	 bl __aeabi_d2f
+ 1066 0480 0246     	 mov r2,r0
+ 1067 0482 604B     	 ldr r3,.L54+68
+ 1068 0484 1A60     	 str r2,[r3]
+ 261:../main.c     **** 			}
+ 262:../main.c     **** 
+ 263:../main.c     **** 			//limit to IQ_REF_MAx limit
+ 264:../main.c     **** 			if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
+ 1069              	 .loc 3 264 0
+ 1070 0486 5F4B     	 ldr r3,.L54+68
+ 1071 0488 D3ED007A 	 flds s15,[r3]
+ 1072 048c B9EE047A 	 fconsts s14,#148
+ 1073 0490 F4EEC77A 	 fcmpes s15,s14
+ 1074 0494 F1EE10FA 	 fmstat
+ 1075 0498 02D5     	 bpl .L33
+ 1076              	 .loc 3 264 0 is_stmt 0 discriminator 1
+ 1077 049a 5A4B     	 ldr r3,.L54+68
+ 1078 049c 5A4A     	 ldr r2,.L54+72
+ 1079 049e 1A60     	 str r2,[r3]
+ 1080              	.L33:
+ 265:../main.c     **** 			if(iq_ref > IQ_REF_MAX) iq_ref = IQ_REF_MAX;
+ 1081              	 .loc 3 265 0 is_stmt 1
+ 1082 04a0 584B     	 ldr r3,.L54+68
+ 1083 04a2 D3ED007A 	 flds s15,[r3]
+ 1084 04a6 B1EE047A 	 fconsts s14,#20
+ 1085 04aa F4EEC77A 	 fcmpes s15,s14
+ 1086 04ae F1EE10FA 	 fmstat
+ 1087 04b2 02DD     	 ble .L35
+ 1088              	 .loc 3 265 0 is_stmt 0 discriminator 1
+ 1089 04b4 534B     	 ldr r3,.L54+68
+ 1090 04b6 554A     	 ldr r2,.L54+76
+ 1091 04b8 1A60     	 str r2,[r3]
+ 1092              	.L35:
+ 266:../main.c     **** 
+ 267:../main.c     **** 
+ 268:../main.c     **** 			Vd = PI_Controller(0.0,id,&Id_param);
+ 1093              	 .loc 3 268 0 is_stmt 1
+ 1094 04ba 554B     	 ldr r3,.L54+80
+ 1095 04bc 1B68     	 ldr r3,[r3]
+ 1096 04be 4FF00000 	 mov r0,#0
+ 1097 04c2 1946     	 mov r1,r3
+ 1098 04c4 534A     	 ldr r2,.L54+84
+ 1099 04c6 FFF7FEFF 	 bl PI_Controller
+ 1100 04ca 0246     	 mov r2,r0
+ 1101 04cc 524B     	 ldr r3,.L54+88
+ 1102 04ce 1A60     	 str r2,[r3]
+ 269:../main.c     **** 			Vq = PI_Controller(iq_ref,iq,&Iq_param); // toque controll
+ 1103              	 .loc 3 269 0
+ 1104 04d0 4C4B     	 ldr r3,.L54+68
+ 1105 04d2 1A68     	 ldr r2,[r3]
+ 1106 04d4 514B     	 ldr r3,.L54+92
+ 1107 04d6 1B68     	 ldr r3,[r3]
+ 1108 04d8 1046     	 mov r0,r2
+ 1109 04da 1946     	 mov r1,r3
+ 1110 04dc 504A     	 ldr r2,.L54+96
+ 1111 04de FFF7FEFF 	 bl PI_Controller
+ 1112 04e2 0246     	 mov r2,r0
+ 1113 04e4 4F4B     	 ldr r3,.L54+100
+ 1114 04e6 1A60     	 str r2,[r3]
+ 1115              	.L32:
+ 270:../main.c     **** 		}
+ 271:../main.c     **** 
+ 272:../main.c     **** 		// dq to alpha beta for voltage
+ 273:../main.c     **** 		Valpha = Vd*cos_phi - Vq*sin_phi;
+ 1116              	 .loc 3 273 0
+ 1117 04e8 4B4B     	 ldr r3,.L54+88
+ 1118 04ea 93ED007A 	 flds s14,[r3]
+ 1119 04ee D7ED027A 	 flds s15,[r7,#8]
+ 1120 04f2 27EE277A 	 fmuls s14,s14,s15
+ 1121 04f6 4B4B     	 ldr r3,.L54+100
+ 1122 04f8 D3ED006A 	 flds s13,[r3]
+ 1123 04fc D7ED017A 	 flds s15,[r7,#4]
+ 1124 0500 66EEA77A 	 fmuls s15,s13,s15
+ 1125 0504 77EE677A 	 fsubs s15,s14,s15
+ 1126 0508 474B     	 ldr r3,.L54+104
+ 1127 050a C3ED007A 	 fsts s15,[r3]
+ 274:../main.c     **** 		Vbeta = Vd*sin_phi + Vq*cos_phi;
+ 1128              	 .loc 3 274 0
+ 1129 050e 424B     	 ldr r3,.L54+88
+ 1130 0510 93ED007A 	 flds s14,[r3]
+ 1131 0514 D7ED017A 	 flds s15,[r7,#4]
+ 1132 0518 27EE277A 	 fmuls s14,s14,s15
+ 1133 051c 414B     	 ldr r3,.L54+100
+ 1134 051e D3ED006A 	 flds s13,[r3]
+ 1135 0522 D7ED027A 	 flds s15,[r7,#8]
+ 1136 0526 66EEA77A 	 fmuls s15,s13,s15
+ 1137 052a 77EE277A 	 fadds s15,s14,s15
+ 1138 052e 3F4B     	 ldr r3,.L54+108
+ 1139 0530 C3ED007A 	 fsts s15,[r3]
+ 275:../main.c     **** 
+ 276:../main.c     **** 		// calc angle for SVM app
+ 277:../main.c     **** 		if(Valpha == 0) Valpha =  0.00001; // prevent exeption div by 0
+ 1140              	 .loc 3 277 0
+ 1141 0534 3C4B     	 ldr r3,.L54+104
+ 1142 0536 D3ED007A 	 flds s15,[r3]
+ 1143 053a F5EE407A 	 fcmpzs s15
+ 1144 053e F1EE10FA 	 fmstat
+ 1145 0542 02D1     	 bne .L37
+ 1146              	 .loc 3 277 0 is_stmt 0 discriminator 1
+ 1147 0544 384B     	 ldr r3,.L54+104
+ 1148 0546 3A4A     	 ldr r2,.L54+112
+ 1149 0548 1A60     	 str r2,[r3]
+ 1150              	.L37:
+ 278:../main.c     **** 		angle_ab_rad = atanf(Vbeta / Valpha);
+ 1151              	 .loc 3 278 0 is_stmt 1
+ 1152 054a 384B     	 ldr r3,.L54+108
+ 1153 054c 93ED007A 	 flds s14,[r3]
+ 1154 0550 354B     	 ldr r3,.L54+104
+ 1155 0552 D3ED007A 	 flds s15,[r3]
+ 1156 0556 C7EE277A 	 fdivs s15,s14,s15
+ 1157 055a 17EE900A 	 fmrs r0,s15
+ 1158 055e FFF7FEFF 	 bl atanf
+ 1159 0562 0246     	 mov r2,r0
+ 1160 0564 334B     	 ldr r3,.L54+116
+ 1161 0566 1A60     	 str r2,[r3]
+ 279:../main.c     **** 		angle_ab = angle_ab_rad / Pi180;
+ 1162              	 .loc 3 279 0
+ 1163 0568 324B     	 ldr r3,.L54+116
+ 1164 056a 1B68     	 ldr r3,[r3]
+ 1165 056c 1846     	 mov r0,r3
+ 1166 056e FFF7FEFF 	 bl __aeabi_f2d
+ 1167 0572 0246     	 mov r2,r0
+ 1168 0574 0B46     	 mov r3,r1
+ 1169 0576 1046     	 mov r0,r2
+ 1170 0578 1946     	 mov r1,r3
+ 1171 057a 15A3     	 adr r3,.L54+16
+ 1172 057c D3E90023 	 ldrd r2,[r3]
+ 1173 0580 FFF7FEFF 	 bl __aeabi_ddiv
+ 1174 0584 0246     	 mov r2,r0
+ 1175 0586 0B46     	 mov r3,r1
+ 1176 0588 1046     	 mov r0,r2
+ 1177 058a 1946     	 mov r1,r3
+ 1178 058c FFF7FEFF 	 bl __aeabi_d2f
+ 1179 0590 0246     	 mov r2,r0
+ 1180 0592 294B     	 ldr r3,.L54+120
+ 1181 0594 1A60     	 str r2,[r3]
+ 280:../main.c     **** 
+ 281:../main.c     **** 		if(Valpha < 0.0){angle_ab = angle_ab + 180.0;}			// failure correction of angle (tangens)
+ 1182              	 .loc 3 281 0
+ 1183 0596 244B     	 ldr r3,.L54+104
+ 1184 0598 D3ED007A 	 flds s15,[r3]
+ 1185 059c F5EEC07A 	 fcmpezs s15
+ 1186 05a0 F1EE10FA 	 fmstat
+ 1187 05a4 4CD5     	 bpl .L51
+ 1188              	 .loc 3 281 0 is_stmt 0 discriminator 1
+ 1189 05a6 244B     	 ldr r3,.L54+120
+ 1190 05a8 D3ED007A 	 flds s15,[r3]
+ 1191 05ac 9FED237A 	 flds s14,.L54+124
+ 1192 05b0 77EE877A 	 fadds s15,s15,s14
+ 1193 05b4 204B     	 ldr r3,.L54+120
+ 1194 05b6 C3ED007A 	 fsts s15,[r3]
+ 1195 05ba 53E0     	 b .L40
+ 1196              	.L55:
+ 1197 05bc AFF30080 	 .align 3
+ 1198              	.L54:
+ 1199 05c0 9A999999 	 .word -1717986918
+ 1200 05c4 9999B93F 	 .word 1069128089
+ 1201 05c8 E17A14AE 	 .word -1374389535
+ 1202 05cc 47E1CA3F 	 .word 1070260551
+ 1203 05d0 4DC90777 	 .word 1996998989
+ 1204 05d4 46DF913F 	 .word 1066524486
+ 1205 05d8 00000000 	 .word omega_mech_rps_ref
+ 1206 05dc 00000000 	 .word omega_mech_rps
+ 1207 05e0 00000000 	 .word omega_param
+ 1208 05e4 00000000 	 .word T_ref_controlled
+ 1209 05e8 00000000 	 .word start_help
+ 1210 05ec 0000F03F 	 .word 1072693248
+ 1211 05f0 00000000 	 .word start_help_count
+ 1212 05f4 00000000 	 .word start_help_flag
+ 1213 05f8 00000000 	 .word T_ref
+ 1214 05fc 00000000 	 .word Speed_control
+ 1215 0600 00000000 	 .word Torque_control
+ 1216 0604 00000000 	 .word iq_ref
+ 1217 0608 0000A0C0 	 .word -1063256064
+ 1218 060c 0000A040 	 .word 1084227584
+ 1219 0610 00000000 	 .word id
+ 1220 0614 00000000 	 .word Id_param
+ 1221 0618 00000000 	 .word Vd
+ 1222 061c 00000000 	 .word iq
+ 1223 0620 00000000 	 .word Iq_param
+ 1224 0624 00000000 	 .word Vq
+ 1225 0628 00000000 	 .word Valpha
+ 1226 062c 00000000 	 .word Vbeta
+ 1227 0630 ACC52737 	 .word 925353388
+ 1228 0634 00000000 	 .word angle_ab_rad
+ 1229 0638 00000000 	 .word angle_ab
+ 1230 063c 00003443 	 .word 1127481344
+ 1231              	.L51:
+ 282:../main.c     **** 		else if(Vbeta < 0.0){angle_ab = angle_ab + 360.0;}
+ 1232              	 .loc 3 282 0 is_stmt 1
+ 1233 0640 334B     	 ldr r3,.L56+8
+ 1234 0642 D3ED007A 	 flds s15,[r3]
+ 1235 0646 F5EEC07A 	 fcmpezs s15
+ 1236 064a F1EE10FA 	 fmstat
+ 1237 064e 09D5     	 bpl .L40
+ 1238              	 .loc 3 282 0 is_stmt 0 discriminator 1
+ 1239 0650 304B     	 ldr r3,.L56+12
+ 1240 0652 D3ED007A 	 flds s15,[r3]
+ 1241 0656 9FED307A 	 flds s14,.L56+16
+ 1242 065a 77EE877A 	 fadds s15,s15,s14
+ 1243 065e 2D4B     	 ldr r3,.L56+12
+ 1244 0660 C3ED007A 	 fsts s15,[r3]
+ 1245              	.L40:
+ 283:../main.c     **** 
+ 284:../main.c     **** 		// amplitude calculation
+ 285:../main.c     **** 		amplitude_ab = sqrtf(Valpha*Valpha + Vbeta*Vbeta);
+ 1246              	 .loc 3 285 0 is_stmt 1
+ 1247 0664 2D4B     	 ldr r3,.L56+20
+ 1248 0666 93ED007A 	 flds s14,[r3]
+ 1249 066a 2C4B     	 ldr r3,.L56+20
+ 1250 066c D3ED007A 	 flds s15,[r3]
+ 1251 0670 27EE277A 	 fmuls s14,s14,s15
+ 1252 0674 264B     	 ldr r3,.L56+8
+ 1253 0676 D3ED006A 	 flds s13,[r3]
+ 1254 067a 254B     	 ldr r3,.L56+8
+ 1255 067c D3ED007A 	 flds s15,[r3]
+ 1256 0680 66EEA77A 	 fmuls s15,s13,s15
+ 1257 0684 77EE277A 	 fadds s15,s14,s15
+ 1258 0688 17EE900A 	 fmrs r0,s15
+ 1259 068c FFF7FEFF 	 bl sqrtf
+ 1260 0690 0246     	 mov r2,r0
+ 1261 0692 234B     	 ldr r3,.L56+24
+ 1262 0694 1A60     	 str r2,[r3]
+ 286:../main.c     **** 
+ 287:../main.c     **** 		//K_inv = V/m --> m = V / K_inv
+ 288:../main.c     **** 		modulation_index = amplitude_ab / (V_DC_link / 1.732);
+ 1263              	 .loc 3 288 0
+ 1264 0696 224B     	 ldr r3,.L56+24
+ 1265 0698 1B68     	 ldr r3,[r3]
+ 1266 069a 1846     	 mov r0,r3
+ 1267 069c FFF7FEFF 	 bl __aeabi_f2d
+ 1268 06a0 0446     	 mov r4,r0
+ 1269 06a2 0D46     	 mov r5,r1
+ 1270 06a4 1F4B     	 ldr r3,.L56+28
+ 1271 06a6 1B68     	 ldr r3,[r3]
+ 1272 06a8 1846     	 mov r0,r3
+ 1273 06aa FFF7FEFF 	 bl __aeabi_f2d
+ 1274 06ae 0246     	 mov r2,r0
+ 1275 06b0 0B46     	 mov r3,r1
+ 1276 06b2 1046     	 mov r0,r2
+ 1277 06b4 1946     	 mov r1,r3
+ 1278 06b6 14A3     	 adr r3,.L56
+ 1279 06b8 D3E90023 	 ldrd r2,[r3]
+ 1280 06bc FFF7FEFF 	 bl __aeabi_ddiv
+ 1281 06c0 0246     	 mov r2,r0
+ 1282 06c2 0B46     	 mov r3,r1
+ 1283 06c4 2046     	 mov r0,r4
+ 1284 06c6 2946     	 mov r1,r5
+ 1285 06c8 FFF7FEFF 	 bl __aeabi_ddiv
+ 1286 06cc 0246     	 mov r2,r0
+ 1287 06ce 0B46     	 mov r3,r1
+ 1288 06d0 1046     	 mov r0,r2
+ 1289 06d2 1946     	 mov r1,r3
+ 1290 06d4 FFF7FEFF 	 bl __aeabi_d2f
+ 1291 06d8 0246     	 mov r2,r0
+ 1292 06da 134B     	 ldr r3,.L56+32
+ 1293 06dc 1A60     	 str r2,[r3]
+ 289:../main.c     **** 
+ 290:../main.c     **** 		//scale maximum 1 to 10000 -->
+ 291:../main.c     **** 		modulation_index_scaled = 10000*modulation_index;
+ 1294              	 .loc 3 291 0
+ 1295 06de 124B     	 ldr r3,.L56+32
+ 1296 06e0 D3ED007A 	 flds s15,[r3]
+ 1297 06e4 9FED117A 	 flds s14,.L56+36
+ 1298 06e8 67EE877A 	 fmuls s15,s15,s14
+ 1299 06ec 104B     	 ldr r3,.L56+40
+ 1300 06ee C3ED007A 	 fsts s15,[r3]
+ 292:../main.c     **** 
+ 293:../main.c     **** 		DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 83% duty amplitued calc takes 16% of the ti
+ 1301              	 .loc 3 293 0
+ 1302 06f2 1048     	 ldr r0,.L56+44
+ 1303 06f4 FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 294:../main.c     **** 
+ 295:../main.c     **** }
+ 1304              	 .loc 3 295 0
+ 1305 06f8 1037     	 adds r7,r7,#16
+ 1306              	.LCFI38:
+ 1307              	 .cfi_def_cfa_offset 24
+ 1308 06fa BD46     	 mov sp,r7
+ 1309              	.LCFI39:
+ 1310              	 .cfi_def_cfa_register 13
+ 1311              	 
+ 1312 06fc BDEC028B 	 fldmfdd sp!,{d8}
+ 1313              	.LCFI40:
+ 1314              	 .cfi_restore 80
+ 1315              	 .cfi_restore 81
+ 1316              	 .cfi_def_cfa_offset 16
+ 1317 0700 B0BD     	 pop {r4,r5,r7,pc}
+ 1318              	.L57:
+ 1319 0702 00BFAFF3 	 .align 3
+ 1319      0080
+ 1320              	.L56:
+ 1321 0708 83C0CAA1 	 .word -1580547965
+ 1322 070c 45B6FB3F 	 .word 1073460805
+ 1323 0710 00000000 	 .word Vbeta
+ 1324 0714 00000000 	 .word angle_ab
+ 1325 0718 0000B443 	 .word 1135869952
+ 1326 071c 00000000 	 .word Valpha
+ 1327 0720 00000000 	 .word amplitude_ab
+ 1328 0724 00000000 	 .word V_DC_link
+ 1329 0728 00000000 	 .word modulation_index
+ 1330 072c 00401C46 	 .word 1176256512
+ 1331 0730 00000000 	 .word modulation_index_scaled
+ 1332 0734 00000000 	 .word status_LED_red_cal_time
+ 1333              	 .cfi_endproc
+ 1334              	.LFE476:
+ 1336              	 .text
+ 1337              	.Letext0:
+ 1338              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1339              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 1340              	 .file 6 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 1341              	 .file 7 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 1342              	 .file 8 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_scu.h"
+ 1343              	 .file 9 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_usic.h"
+ 1344              	 .file 10 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_ccu8.h"
+ 1345              	 .file 11 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/GLOBAL_CCU8/global_ccu8.h"
+ 1346              	 .file 12 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/PWM_SVM/pwm_svm.h"
+ 1347              	 .file 13 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_can.h"
+ 1348              	 .file 14 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 1349              	 .file 15 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node.h"
+ 1350              	 .file 16 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DAVE.h"
+ 1351              	 .file 17 "../PI_Controller.h"
+ 1352              	 .file 18 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
+ 1353              	 .file 19 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/system_XMC4500.h"
+ 1354              	 .file 20 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 1355              	 .file 21 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/PWM_SVM/pwm_svm_extern.h"
+ 1356              	 .file 22 "C:/GitHub/Inverter_abgabe/Mobrob_Inverter/Dave/Generated/CAN_NODE/can_node_extern.h"
+ 1357              	 .file 23 "../Globals.h"
+ 1358              	 .file 24 "../CAN.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+    {standard input}:20     .text.XMC_GPIO_SetOutputHigh:00000000 $t
+    {standard input}:24     .text.XMC_GPIO_SetOutputHigh:00000000 XMC_GPIO_SetOutputHigh
+    {standard input}:68     .text.XMC_GPIO_SetOutputLow:00000000 $t
+    {standard input}:72     .text.XMC_GPIO_SetOutputLow:00000000 XMC_GPIO_SetOutputLow
+    {standard input}:115    .text.DIGITAL_IO_SetOutputHigh:00000000 $t
+    {standard input}:119    .text.DIGITAL_IO_SetOutputHigh:00000000 DIGITAL_IO_SetOutputHigh
+    {standard input}:159    .text.DIGITAL_IO_SetOutputLow:00000000 $t
+    {standard input}:163    .text.DIGITAL_IO_SetOutputLow:00000000 DIGITAL_IO_SetOutputLow
+    {standard input}:205    .data.Torque_control:00000000 Torque_control
+    {standard input}:211    .data.Speed_control:00000000 Speed_control
+    {standard input}:217    .data.CAN_control:00000000 CAN_control
+                            *COM*:00000004 Current_U
+                            *COM*:00000004 Current_V
+                            *COM*:00000004 Current_W
+                            *COM*:00000004 ialpha
+                            *COM*:00000004 ibeta
+                            *COM*:00000004 iq
+                            *COM*:00000004 id
+                            *COM*:00000004 Valpha
+                            *COM*:00000004 Vbeta
+    {standard input}:233    .bss.speed_ref:00000000 speed_ref
+    {standard input}:230    .bss.speed_ref:00000000 $d
+    {standard input}:240    .bss.omega_ele_rads_ref:00000000 omega_ele_rads_ref
+    {standard input}:237    .bss.omega_ele_rads_ref:00000000 $d
+    {standard input}:247    .bss.iq_ref:00000000 iq_ref
+    {standard input}:244    .bss.iq_ref:00000000 $d
+    {standard input}:254    .bss.T_ref:00000000 T_ref
+    {standard input}:251    .bss.T_ref:00000000 $d
+                            *COM*:00000004 T_ref_controlled
+    {standard input}:262    .bss.omega_mech_rps_ref:00000000 omega_mech_rps_ref
+    {standard input}:259    .bss.omega_mech_rps_ref:00000000 $d
+    {standard input}:269    .bss.Vd:00000000 Vd
+    {standard input}:266    .bss.Vd:00000000 $d
+    {standard input}:276    .bss.Vq:00000000 Vq
+    {standard input}:273    .bss.Vq:00000000 $d
+                            *COM*:00000004 modulation_index
+                            *COM*:00000004 modulation_index_scaled
+                            *COM*:00000004 angle_ab
+                            *COM*:00000004 angle_ab_rad
+                            *COM*:00000004 amplitude_ab
+    {standard input}:288    .data.Ts:00000000 Ts
+    {standard input}:285    .data.Ts:00000000 $d
+    {standard input}:295    .data.Tcyc:00000000 Tcyc
+    {standard input}:292    .data.Tcyc:00000000 $d
+    {standard input}:302    .data.scaling_factor:00000000 scaling_factor
+    {standard input}:299    .data.scaling_factor:00000000 $d
+                            *COM*:00000004 amplitude_corrected
+    {standard input}:309    .bss.count:00000000 count
+    {standard input}:310    .bss.count:00000000 $d
+    {standard input}:315    .bss.Speed_detection_OK:00000000 Speed_detection_OK
+    {standard input}:316    .bss.Speed_detection_OK:00000000 $d
+    {standard input}:322    .data.setting_cyc:00000000 setting_cyc
+    {standard input}:319    .data.setting_cyc:00000000 $d
+    {standard input}:329    .data.step_start:00000000 step_start
+    {standard input}:326    .data.step_start:00000000 $d
+    {standard input}:336    .data.step_to:00000000 step_to
+    {standard input}:333    .data.step_to:00000000 $d
+    {standard input}:342    .bss.start_help_count:00000000 start_help_count
+    {standard input}:343    .bss.start_help_count:00000000 $d
+    {standard input}:348    .bss.start_help:00000000 start_help
+    {standard input}:349    .bss.start_help:00000000 $d
+    {standard input}:354    .bss.start_help_flag:00000000 start_help_flag
+    {standard input}:355    .bss.start_help_flag:00000000 $d
+    {standard input}:357    .text.main:00000000 $t
+    {standard input}:362    .text.main:00000000 main
+    {standard input}:564    .text.Control_calc:00000000 Control_calc
+    {standard input}:436    .text.main:0000005c $d
+    {standard input}:445    .text.CCU43_1_IRQHandler:00000000 $t
+    {standard input}:450    .text.CCU43_1_IRQHandler:00000000 CCU43_1_IRQHandler
+    {standard input}:478    .text.CCU80_3_IRQHandler:00000000 $t
+    {standard input}:483    .text.CCU80_3_IRQHandler:00000000 CCU80_3_IRQHandler
+    {standard input}:544    .text.CCU80_3_IRQHandler:00000058 $d
+    {standard input}:559    .text.Control_calc:00000000 $t
+    {standard input}:865    .text.Control_calc:000002a0 $d
+    {standard input}:893    .text.Control_calc:00000308 $t
+    {standard input}:1199   .text.Control_calc:000005c0 $d
+    {standard input}:1233   .text.Control_calc:00000640 $t
+    {standard input}:1321   .text.Control_calc:00000708 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+DAVE_Init
+Hall_init
+CAN_NODE_Init
+omega_param_selctor
+PWM_SVM_Start
+Hall_postion_speed_estimation
+CAN_NODE_0
+PWM_SVM_0
+status_LED_red_cal_time
+PWM_SVM_SVMUpdate
+__aeabi_f2d
+__aeabi_dmul
+__aeabi_d2f
+__aeabi_dsub
+__aeabi_ddiv
+__aeabi_dcmpeq
+__aeabi_dadd
+readCurrent
+cosf
+sinf
+angle_phi
+CAN_new_meassage
+CAN_speed_ref
+CAN_no_com_counter
+omega_mech_rps
+PI_Controller
+copysign
+atanf
+omega_param
+Id_param
+Iq_param
+sqrtf
+V_DC_link
