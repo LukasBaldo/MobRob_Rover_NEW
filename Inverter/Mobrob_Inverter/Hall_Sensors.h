@@ -7,7 +7,12 @@
 
 #ifndef HALL_SENSORS_H_
 #define HALL_SENSORS_H_
+
 #include <stdint.h> // need for data types
+#include <DAVE.h>
+#include "Globals.h"
+#include "DEFINE_CONST.h"
+
 
 extern volatile int8_t sector;
 extern volatile int8_t direction;              // direction +1/-1 -> CW and CCW
@@ -20,5 +25,6 @@ extern volatile char last_Hall_trig;			//last triggered Hall Sensor A/B/C
 
 void Hall_init(void);
 void HallSensor(void);
+void Hall_postion_speed_estimation(void);
 
 #endif /* HALL_SENSORS_H_ */

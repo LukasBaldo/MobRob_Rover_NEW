@@ -1,0 +1,48 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "Globals.c"
+  16              	 .global omega_mech_rps
+  17              	 .global angle_phi
+  18              	 .global distance_180deg_ele_count
+  19              	 .global V_DC_link
+  20              	 .section .bss.distance_180deg_ele_count,"aw",%nobits
+  21              	 .align 2
+  24              	distance_180deg_ele_count:
+  25 0000 00000000 	 .space 4
+  26              	 .section .data.V_DC_link,"aw",%progbits
+  27              	 .align 2
+  30              	V_DC_link:
+  31 0000 CDCC6C41 	 .word 1097649357
+  32              	 .section .bss.angle_phi,"aw",%nobits
+  33              	 .align 2
+  36              	angle_phi:
+  37 0000 00000000 	 .space 4
+  38              	 .section .bss.omega_mech_rps,"aw",%nobits
+  39              	 .align 2
+  42              	omega_mech_rps:
+  43 0000 00000000 	 .space 4
+  44              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 Globals.c
+    {standard input}:42     .bss.omega_mech_rps:00000000 omega_mech_rps
+    {standard input}:36     .bss.angle_phi:00000000 angle_phi
+    {standard input}:24     .bss.distance_180deg_ele_count:00000000 distance_180deg_ele_count
+    {standard input}:30     .data.V_DC_link:00000000 V_DC_link
+    {standard input}:21     .bss.distance_180deg_ele_count:00000000 $d
+    {standard input}:27     .data.V_DC_link:00000000 $d
+    {standard input}:33     .bss.angle_phi:00000000 $d
+    {standard input}:39     .bss.omega_mech_rps:00000000 $d
+
+NO UNDEFINED SYMBOLS

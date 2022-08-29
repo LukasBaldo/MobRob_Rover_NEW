@@ -60,7 +60,7 @@
 
 XMC_WDT_CONFIG_t WATCHDOG_0_Config =
 {
-  .window_upper_bound   = 0xf0000U, /* Service Window UpperBound time */
+  .window_upper_bound   = 0x8000U, /* Service Window UpperBound time */
   .window_lower_bound   = 0x0U, /* Service Window LowerBound time */
   .prewarn_mode         = false, /* WatchDog Timer Mode */
   .run_in_debug_mode    = 0U, /* WatchDog Timer status during Debug Mode */

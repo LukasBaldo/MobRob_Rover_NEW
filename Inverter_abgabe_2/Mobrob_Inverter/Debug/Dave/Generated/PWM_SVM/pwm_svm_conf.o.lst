@@ -1,0 +1,359 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "pwm_svm_conf.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .global PWM_SVM_0_PhUHighPin
+  20              	 .section .rodata.PWM_SVM_0_PhUHighPin,"a",%progbits
+  21              	 .align 2
+  24              	PWM_SVM_0_PhUHighPin:
+  25 0000 00800248 	 .word 1208123392
+  26 0004 05       	 .byte 5
+  27 0005 000000   	 .space 3
+  28              	 .global PWM_SVM_0_PhULowPin
+  29              	 .section .rodata.PWM_SVM_0_PhULowPin,"a",%progbits
+  30              	 .align 2
+  33              	PWM_SVM_0_PhULowPin:
+  34 0000 00800248 	 .word 1208123392
+  35 0004 02       	 .byte 2
+  36 0005 000000   	 .space 3
+  37              	 .global PWM_SVM_0_PhVHighPin
+  38              	 .section .rodata.PWM_SVM_0_PhVHighPin,"a",%progbits
+  39              	 .align 2
+  42              	PWM_SVM_0_PhVHighPin:
+  43 0000 00800248 	 .word 1208123392
+  44 0004 04       	 .byte 4
+  45 0005 000000   	 .space 3
+  46              	 .global PWM_SVM_0_PhVLowPin
+  47              	 .section .rodata.PWM_SVM_0_PhVLowPin,"a",%progbits
+  48              	 .align 2
+  51              	PWM_SVM_0_PhVLowPin:
+  52 0000 00800248 	 .word 1208123392
+  53 0004 01       	 .byte 1
+  54 0005 000000   	 .space 3
+  55              	 .global PWM_SVM_0_PhWHighPin
+  56              	 .section .rodata.PWM_SVM_0_PhWHighPin,"a",%progbits
+  57              	 .align 2
+  60              	PWM_SVM_0_PhWHighPin:
+  61 0000 00800248 	 .word 1208123392
+  62 0004 03       	 .byte 3
+  63 0005 000000   	 .space 3
+  64              	 .global PWM_SVM_0_PhWLowPin
+  65              	 .section .rodata.PWM_SVM_0_PhWLowPin,"a",%progbits
+  66              	 .align 2
+  69              	PWM_SVM_0_PhWLowPin:
+  70 0000 00800248 	 .word 1208123392
+  71 0004 00       	 .byte 0
+  72 0005 000000   	 .space 3
+  73              	 .global PWM_SVM_0_PhUHiOutPinConf
+  74              	 .section .rodata.PWM_SVM_0_PhUHiOutPinConf,"a",%progbits
+  75              	 .align 2
+  78              	PWM_SVM_0_PhUHiOutPinConf:
+  79 0000 98       	 .byte -104
+  80 0001 000000   	 .space 3
+  81 0004 00000100 	 .word 65536
+  82 0008 00       	 .byte 0
+  83 0009 000000   	 .space 3
+  84              	 .global PWM_SVM_0_PhULoOutPinConf
+  85              	 .section .rodata.PWM_SVM_0_PhULoOutPinConf,"a",%progbits
+  86              	 .align 2
+  89              	PWM_SVM_0_PhULoOutPinConf:
+  90 0000 98       	 .byte -104
+  91 0001 000000   	 .space 3
+  92 0004 00000100 	 .word 65536
+  93 0008 00       	 .byte 0
+  94 0009 000000   	 .space 3
+  95              	 .global PWM_SVM_0_PhVHiOutPinConf
+  96              	 .section .rodata.PWM_SVM_0_PhVHiOutPinConf,"a",%progbits
+  97              	 .align 2
+ 100              	PWM_SVM_0_PhVHiOutPinConf:
+ 101 0000 98       	 .byte -104
+ 102 0001 000000   	 .space 3
+ 103 0004 00000100 	 .word 65536
+ 104 0008 00       	 .byte 0
+ 105 0009 000000   	 .space 3
+ 106              	 .global PWM_SVM_0_PhVLoOutPinConf
+ 107              	 .section .rodata.PWM_SVM_0_PhVLoOutPinConf,"a",%progbits
+ 108              	 .align 2
+ 111              	PWM_SVM_0_PhVLoOutPinConf:
+ 112 0000 98       	 .byte -104
+ 113 0001 000000   	 .space 3
+ 114 0004 00000100 	 .word 65536
+ 115 0008 00       	 .byte 0
+ 116 0009 000000   	 .space 3
+ 117              	 .global PWM_SVM_0_PhWHiOutPinConf
+ 118              	 .section .rodata.PWM_SVM_0_PhWHiOutPinConf,"a",%progbits
+ 119              	 .align 2
+ 122              	PWM_SVM_0_PhWHiOutPinConf:
+ 123 0000 98       	 .byte -104
+ 124 0001 000000   	 .space 3
+ 125 0004 00000100 	 .word 65536
+ 126 0008 00       	 .byte 0
+ 127 0009 000000   	 .space 3
+ 128              	 .global PWM_SVM_0_PhWLoOutPinConf
+ 129              	 .section .rodata.PWM_SVM_0_PhWLoOutPinConf,"a",%progbits
+ 130              	 .align 2
+ 133              	PWM_SVM_0_PhWLoOutPinConf:
+ 134 0000 98       	 .byte -104
+ 135 0001 000000   	 .space 3
+ 136 0004 00000100 	 .word 65536
+ 137 0008 00       	 .byte 0
+ 138 0009 000000   	 .space 3
+ 139              	 .global PWM_SVM_0_PhU
+ 140              	 .section .rodata.PWM_SVM_0_PhU,"a",%progbits
+ 141              	 .align 2
+ 144              	PWM_SVM_0_PhU:
+ 145 0000 00010240 	 .word 1073873152
+ 146 0004 00       	 .byte 0
+ 147 0005 000000   	 .space 3
+ 148              	 .global PWM_SVM_0_PhV
+ 149              	 .section .rodata.PWM_SVM_0_PhV,"a",%progbits
+ 150              	 .align 2
+ 153              	PWM_SVM_0_PhV:
+ 154 0000 00020240 	 .word 1073873408
+ 155 0004 01       	 .byte 1
+ 156 0005 000000   	 .space 3
+ 157              	 .global PWM_SVM_0_PhW
+ 158              	 .section .rodata.PWM_SVM_0_PhW,"a",%progbits
+ 159              	 .align 2
+ 162              	PWM_SVM_0_PhW:
+ 163 0000 00030240 	 .word 1073873664
+ 164 0004 02       	 .byte 2
+ 165 0005 000000   	 .space 3
+ 166              	 .global PWM_SVM_0_CurrentTrig
+ 167              	 .section .rodata.PWM_SVM_0_CurrentTrig,"a",%progbits
+ 168              	 .align 2
+ 171              	PWM_SVM_0_CurrentTrig:
+ 172 0000 00010240 	 .word 1073873152
+ 173 0004 00       	 .byte 0
+ 174 0005 000000   	 .space 3
+ 175              	 .global PWM_SVM_0_DeadTimeConfig
+ 176              	 .section .data.PWM_SVM_0_DeadTimeConfig,"aw",%progbits
+ 177              	 .align 2
+ 180              	PWM_SVM_0_DeadTimeConfig:
+ 181 0000 3F       	 .byte 63
+ 182 0001 000000   	 .space 3
+ 183 0004 60       	 .byte 96
+ 184 0005 60       	 .byte 96
+ 185 0006 0000     	 .space 2
+ 186 0008 60       	 .byte 96
+ 187 0009 60       	 .byte 96
+ 188 000a 0000     	 .space 2
+ 189              	 .global PWM_SVM_0_StartConfig
+ 190              	 .section .rodata.PWM_SVM_0_StartConfig,"a",%progbits
+ 191              	 .align 2
+ 194              	PWM_SVM_0_StartConfig:
+ 195 0000 07       	 .byte 7
+ 196 0001 01       	 .byte 1
+ 197 0002 00       	 .byte 0
+ 198 0003 00       	 .byte 0
+ 199              	 .global PWM_SVM_0_TimerInitHandle
+ 200              	 .section .rodata.PWM_SVM_0_TimerInitHandle,"a",%progbits
+ 201              	 .align 2
+ 204              	PWM_SVM_0_TimerInitHandle:
+ 205 0000 01       	 .byte 1
+ 206 0001 00       	 .byte 0
+ 207 0002 00       	 .byte 0
+ 208 0003 00       	 .byte 0
+ 209 0004 00       	 .byte 0
+ 210 0005 000000   	 .space 3
+ 211 0008 14       	 .byte 20
+ 212 0009 000000   	 .space 3
+ 213 000c 00       	 .byte 0
+ 214 000d 00       	 .byte 0
+ 215 000e 0000     	 .space 2
+ 216              	 .global PWM_SVM_0_TimerInit_CurrentTrig
+ 217              	 .section .rodata.PWM_SVM_0_TimerInit_CurrentTrig,"a",%progbits
+ 218              	 .align 2
+ 221              	PWM_SVM_0_TimerInit_CurrentTrig:
+ 222 0000 01       	 .byte 1
+ 223 0001 00       	 .byte 0
+ 224 0002 00       	 .byte 0
+ 225 0003 20       	 .byte 32
+ 226 0004 0F       	 .byte 15
+ 227 0005 000000   	 .space 3
+ 228 0008 00       	 .byte 0
+ 229 0009 000000   	 .space 3
+ 230 000c 00       	 .byte 0
+ 231 000d 00       	 .byte 0
+ 232 000e 0000     	 .space 2
+ 233              	 .global PWM_SVM_0_AppConfig
+ 234              	 .section .rodata.PWM_SVM_0_AppConfig,"a",%progbits
+ 235              	 .align 2
+ 238              	PWM_SVM_0_AppConfig:
+ 239 0000 3C020240 	 .word 1073873468
+ 240 0004 3C030240 	 .word 1073873724
+ 241 0008 00       	 .byte 0
+ 242 0009 00       	 .byte 0
+ 243 000a 00       	 .byte 0
+ 244 000b 01       	 .byte 1
+ 245 000c 00       	 .byte 0
+ 246 000d 00       	 .byte 0
+ 247 000e 00       	 .byte 0
+ 248 000f 01       	 .byte 1
+ 249 0010 00       	 .byte 0
+ 250 0011 00       	 .byte 0
+ 251 0012 00       	 .byte 0
+ 252 0013 00       	 .byte 0
+ 253 0014 01       	 .byte 1
+ 254 0015 01       	 .byte 1
+ 255 0016 01       	 .byte 1
+ 256 0017 00       	 .space 1
+ 257 0018 204E0000 	 .word 20000
+ 258 001c 000E2707 	 .word 120000000
+ 259 0020 00010000 	 .word 256
+ 260 0024 11010000 	 .word 273
+ 261 0028 03000000 	 .word 3
+ 262 002c 00000000 	 .word 0
+ 263 0030 00000000 	 .word 0
+ 264 0034 00000000 	 .word 0
+ 265 0038 00879303 	 .word 60000000
+ 266 003c 27070000 	 .word 1831
+ 267 0040 0000     	 .short 0
+ 268 0042 BB00     	 .short 187
+ 269 0044 01       	 .byte 1
+ 270 0045 00       	 .byte 0
+ 271 0046 00       	 .byte 0
+ 272 0047 00       	 .byte 0
+ 273 0048 00       	 .byte 0
+ 274 0049 000000   	 .space 3
+ 275              	 .global PWM_SVM_0
+ 276              	 .section .data.PWM_SVM_0,"aw",%progbits
+ 277              	 .align 2
+ 280              	PWM_SVM_0:
+ 281 0000 00000000 	 .word PWM_SVM_0_AppConfig
+ 282 0004 00000240 	 .word 1073872896
+ 283 0008 00000000 	 .word PWM_SVM_0_PhU
+ 284 000c 00000000 	 .word PWM_SVM_0_PhV
+ 285 0010 00000000 	 .word PWM_SVM_0_PhW
+ 286 0014 00000000 	 .word PWM_SVM_0_CurrentTrig
+ 287 0018 00000000 	 .word PWM_SVM_0_TimerInitHandle
+ 288 001c 00000000 	 .word PWM_SVM_0_TimerInit_CurrentTrig
+ 289 0020 00000000 	 .word PWM_SVM_0_PhUHighPin
+ 290 0024 00000000 	 .word PWM_SVM_0_PhULowPin
+ 291 0028 00000000 	 .word PWM_SVM_0_PhVHighPin
+ 292 002c 00000000 	 .word PWM_SVM_0_PhVLowPin
+ 293 0030 00000000 	 .word PWM_SVM_0_PhWHighPin
+ 294 0034 00000000 	 .word PWM_SVM_0_PhWLowPin
+ 295 0038 00000000 	 .word PWM_SVM_0_PhUHiOutPinConf
+ 296 003c 00000000 	 .word PWM_SVM_0_PhULoOutPinConf
+ 297 0040 00000000 	 .word PWM_SVM_0_PhVHiOutPinConf
+ 298 0044 00000000 	 .word PWM_SVM_0_PhVLoOutPinConf
+ 299 0048 00000000 	 .word PWM_SVM_0_PhWHiOutPinConf
+ 300 004c 00000000 	 .word PWM_SVM_0_PhWLoOutPinConf
+ 301 0050 00000000 	 .word 0
+ 302 0054 00000000 	 .word 0
+ 303 0058 00000000 	 .word 0
+ 304 005c 00000000 	 .word 0
+ 305 0060 00000000 	 .word 0
+ 306 0064 00000000 	 .word PWM_SVM_0_StartConfig
+ 307 0068 00000000 	 .word GLOBAL_CCU8_0
+ 308 006c 00000000 	 .word PWM_SVM_0_DeadTimeConfig
+ 309 0070 3C010240 	 .word 1073873212
+ 310 0074 3C020240 	 .word 1073873468
+ 311 0078 3C030240 	 .word 1073873724
+ 312 007c 00000000 	 .space 12
+ 312      00000000 
+ 312      00000000 
+ 313 0088 00000000 	 .word PWM_SVM_CalCmpValueSym7
+ 314 008c 00000000 	 .word PWM_SVM_TimecalcUsingLUT
+ 315 0090 00       	 .byte 0
+ 316 0091 00       	 .space 1
+ 317 0092 00       	 .byte 0
+ 318 0093 00000000 	 .space 9
+ 318      00000000 
+ 318      00
+ 319 009c B70B0000 	 .word 2999
+ 320 00a0 418D0000 	 .word 36161
+ 321 00a4 00000000 	 .space 8
+ 321      00000000 
+ 322 00ac B70B     	 .short 2999
+ 323 00ae 00000000 	 .space 20
+ 323      00000000 
+ 323      00000000 
+ 323      00000000 
+ 323      00000000 
+ 324 00c2 0000     	 .short 0
+ 325 00c4 0000     	 .short 0
+ 326 00c6 0040     	 .short 16384
+ 327 00c8 0000     	 .short 0
+ 328 00ca 9949     	 .short 18841
+ 329              	 .text
+ 330              	.Letext0:
+ 331              	 .file 1 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 332              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 333              	 .file 3 "C:/GitHub/MobRob_Rover_NEW/Inverter_abgabe_2/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 334              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Inverter_abgabe_2/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_ccu8.h"
+ 335              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Inverter_abgabe_2/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_scu.h"
+ 336              	 .file 6 "../Dave/Generated/PWM_SVM/../GLOBAL_CCU8/global_ccu8.h"
+ 337              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Inverter_abgabe_2/Mobrob_Inverter/Libraries/XMCLib/inc/xmc_gpio.h"
+ 338              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Inverter_abgabe_2/Mobrob_Inverter/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 339              	 .file 9 "../Dave/Generated/PWM_SVM/pwm_svm.h"
+ 340              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Inverter_abgabe_2/Mobrob_Inverter/Libraries/CMSIS/Include/core_cm4.h"
+ 341              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Inverter_abgabe_2/Mobrob_Inverter/Libraries/CMSIS/Infineon/XMC4500_series/Include/system_XMC4500.h"
+ 342              	 .file 12 "../Dave/Generated/PWM_SVM/../GLOBAL_CCU8/global_ccu8_extern.h"
+ 343              	 .file 13 "../Dave/Generated/PWM_SVM/pwm_svm_conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 pwm_svm_conf.c
+    {standard input}:24     .rodata.PWM_SVM_0_PhUHighPin:00000000 PWM_SVM_0_PhUHighPin
+    {standard input}:21     .rodata.PWM_SVM_0_PhUHighPin:00000000 $d
+    {standard input}:33     .rodata.PWM_SVM_0_PhULowPin:00000000 PWM_SVM_0_PhULowPin
+    {standard input}:30     .rodata.PWM_SVM_0_PhULowPin:00000000 $d
+    {standard input}:42     .rodata.PWM_SVM_0_PhVHighPin:00000000 PWM_SVM_0_PhVHighPin
+    {standard input}:39     .rodata.PWM_SVM_0_PhVHighPin:00000000 $d
+    {standard input}:51     .rodata.PWM_SVM_0_PhVLowPin:00000000 PWM_SVM_0_PhVLowPin
+    {standard input}:48     .rodata.PWM_SVM_0_PhVLowPin:00000000 $d
+    {standard input}:60     .rodata.PWM_SVM_0_PhWHighPin:00000000 PWM_SVM_0_PhWHighPin
+    {standard input}:57     .rodata.PWM_SVM_0_PhWHighPin:00000000 $d
+    {standard input}:69     .rodata.PWM_SVM_0_PhWLowPin:00000000 PWM_SVM_0_PhWLowPin
+    {standard input}:66     .rodata.PWM_SVM_0_PhWLowPin:00000000 $d
+    {standard input}:78     .rodata.PWM_SVM_0_PhUHiOutPinConf:00000000 PWM_SVM_0_PhUHiOutPinConf
+    {standard input}:75     .rodata.PWM_SVM_0_PhUHiOutPinConf:00000000 $d
+    {standard input}:89     .rodata.PWM_SVM_0_PhULoOutPinConf:00000000 PWM_SVM_0_PhULoOutPinConf
+    {standard input}:86     .rodata.PWM_SVM_0_PhULoOutPinConf:00000000 $d
+    {standard input}:100    .rodata.PWM_SVM_0_PhVHiOutPinConf:00000000 PWM_SVM_0_PhVHiOutPinConf
+    {standard input}:97     .rodata.PWM_SVM_0_PhVHiOutPinConf:00000000 $d
+    {standard input}:111    .rodata.PWM_SVM_0_PhVLoOutPinConf:00000000 PWM_SVM_0_PhVLoOutPinConf
+    {standard input}:108    .rodata.PWM_SVM_0_PhVLoOutPinConf:00000000 $d
+    {standard input}:122    .rodata.PWM_SVM_0_PhWHiOutPinConf:00000000 PWM_SVM_0_PhWHiOutPinConf
+    {standard input}:119    .rodata.PWM_SVM_0_PhWHiOutPinConf:00000000 $d
+    {standard input}:133    .rodata.PWM_SVM_0_PhWLoOutPinConf:00000000 PWM_SVM_0_PhWLoOutPinConf
+    {standard input}:130    .rodata.PWM_SVM_0_PhWLoOutPinConf:00000000 $d
+    {standard input}:144    .rodata.PWM_SVM_0_PhU:00000000 PWM_SVM_0_PhU
+    {standard input}:141    .rodata.PWM_SVM_0_PhU:00000000 $d
+    {standard input}:153    .rodata.PWM_SVM_0_PhV:00000000 PWM_SVM_0_PhV
+    {standard input}:150    .rodata.PWM_SVM_0_PhV:00000000 $d
+    {standard input}:162    .rodata.PWM_SVM_0_PhW:00000000 PWM_SVM_0_PhW
+    {standard input}:159    .rodata.PWM_SVM_0_PhW:00000000 $d
+    {standard input}:171    .rodata.PWM_SVM_0_CurrentTrig:00000000 PWM_SVM_0_CurrentTrig
+    {standard input}:168    .rodata.PWM_SVM_0_CurrentTrig:00000000 $d
+    {standard input}:180    .data.PWM_SVM_0_DeadTimeConfig:00000000 PWM_SVM_0_DeadTimeConfig
+    {standard input}:177    .data.PWM_SVM_0_DeadTimeConfig:00000000 $d
+    {standard input}:194    .rodata.PWM_SVM_0_StartConfig:00000000 PWM_SVM_0_StartConfig
+    {standard input}:191    .rodata.PWM_SVM_0_StartConfig:00000000 $d
+    {standard input}:204    .rodata.PWM_SVM_0_TimerInitHandle:00000000 PWM_SVM_0_TimerInitHandle
+    {standard input}:201    .rodata.PWM_SVM_0_TimerInitHandle:00000000 $d
+    {standard input}:221    .rodata.PWM_SVM_0_TimerInit_CurrentTrig:00000000 PWM_SVM_0_TimerInit_CurrentTrig
+    {standard input}:218    .rodata.PWM_SVM_0_TimerInit_CurrentTrig:00000000 $d
+    {standard input}:238    .rodata.PWM_SVM_0_AppConfig:00000000 PWM_SVM_0_AppConfig
+    {standard input}:235    .rodata.PWM_SVM_0_AppConfig:00000000 $d
+    {standard input}:280    .data.PWM_SVM_0:00000000 PWM_SVM_0
+    {standard input}:277    .data.PWM_SVM_0:00000000 $d
+
+UNDEFINED SYMBOLS
+GLOBAL_CCU8_0
+PWM_SVM_CalCmpValueSym7
+PWM_SVM_TimecalcUsingLUT

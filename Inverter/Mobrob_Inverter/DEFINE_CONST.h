@@ -4,7 +4,6 @@
 
 #define IQ_REF_MAX 5 // max current alwous by sat check
 
-#define TIME_OMEGA_0 5000 //time since last hall before omgea set to 0 in 100us
 
 // Define often used vaules to decrease computational effort
 #define PI 3.14159265

@@ -1,0 +1,263 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "CAN.c"
+  16              	 .section .text.CAN0_1_IRQHandler,"ax",%progbits
+  17              	 .align 1
+  18              	 .global CAN0_1_IRQHandler
+  19              	 .thumb
+  20              	 .thumb_func
+  22              	CAN0_1_IRQHandler:
+  23              	 
+  24              	 
+  25 0000 214B     	 ldr r3,.L12
+  26 0002 13B5     	 push {r0,r1,r4,lr}
+  27 0004 1869     	 ldr r0,[r3,#16]
+  28 0006 0468     	 ldr r4,[r0]
+  29 0008 FFF7FEFF 	 bl CAN_NODE_MO_Receive
+  30 000c 04F10F02 	 add r2,r4,#15
+  31 0010 0023     	 movs r3,#0
+  32              	.L2:
+  33 0012 12F8011F 	 ldrb r1,[r2,#1]!
+  34 0016 0DF80310 	 strb r1,[sp,r3]
+  35 001a 0133     	 adds r3,r3,#1
+  36 001c 082B     	 cmp r3,#8
+  37 001e F8D1     	 bne .L2
+  38 0020 0023     	 movs r3,#0
+  39              	.L3:
+  40 0022 0DEB0302 	 add r2,sp,r3
+  41 0026 1949     	 ldr r1,.L12+4
+  42 0028 5078     	 ldrb r0,[r2,#1]
+  43 002a 1DF80320 	 ldrb r2,[sp,r3]
+  44 002e 42EA0022 	 orr r2,r2,r0,lsl#8
+  45 0032 5A52     	 strh r2,[r3,r1]
+  46 0034 0233     	 adds r3,r3,#2
+  47 0036 082B     	 cmp r3,#8
+  48 0038 F3D1     	 bne .L3
+  49 003a B1F90630 	 ldrsh r3,[r1,#6]
+  50 003e 9FED147A 	 flds s14,.L12+8
+  51 0042 07EE903A 	 fmsr s15,r3
+  52 0046 F8EEE77A 	 fsitos s15,s15
+  53 004a 124B     	 ldr r3,.L12+12
+  54 004c C7EE877A 	 fdivs s15,s15,s14
+  55 0050 0122     	 movs r2,#1
+  56 0052 B0EE007A 	 fconsts s14,#0
+  57 0056 F4EEC77A 	 fcmpes s15,s14
+  58 005a F1EE10FA 	 fmstat
+  59 005e C8BF     	 it gt
+  60 0060 F0EE477A 	 fcpysgt s15,s14
+  61 0064 B8EE007A 	 fconsts s14,#128
+  62 0068 F4EEC77A 	 fcmpes s15,s14
+  63 006c F1EE10FA 	 fmstat
+  64 0070 C3ED007A 	 fsts s15,[r3]
+  65 0074 48BF     	 it mi
+  66 0076 83ED007A 	 fstsmi s14,[r3]
+  67 007a 074B     	 ldr r3,.L12+16
+  68 007c 1A70     	 strb r2,[r3]
+  69 007e 074B     	 ldr r3,.L12+20
+  70 0080 0022     	 movs r2,#0
+  71 0082 1A70     	 strb r2,[r3]
+  72 0084 02B0     	 add sp,sp,#8
+  73              	 
+  74 0086 10BD     	 pop {r4,pc}
+  75              	.L13:
+  76              	 .align 2
+  77              	.L12:
+  78 0088 00000000 	 .word CAN_NODE_0
+  79 008c 00000000 	 .word Speeds_int16_r
+  80 0090 00007A44 	 .word 1148846080
+  81 0094 00000000 	 .word CAN_speed_ref
+  82 0098 00000000 	 .word .LANCHOR0
+  83 009c 00000000 	 .word .LANCHOR1
+  85              	 .section .text.CAN0_0_IRQHandler,"ax",%progbits
+  86              	 .align 1
+  87              	 .global CAN0_0_IRQHandler
+  88              	 .thumb
+  89              	 .thumb_func
+  91              	CAN0_0_IRQHandler:
+  92              	 
+  93              	 
+  94 0000 064B     	 ldr r3,.L16
+  95 0002 586A     	 ldr r0,[r3,#36]
+  96 0004 10B5     	 push {r4,lr}
+  97 0006 0468     	 ldr r4,[r0]
+  98 0008 FFF7FEFF 	 bl CAN_NODE_MO_Receive
+  99 000c E37C     	 ldrb r3,[r4,#19]
+ 100 000e 012B     	 cmp r3,#1
+ 101 0010 02BF     	 ittt eq
+ 102 0012 034B     	 ldreq r3,.L16+4
+ 103 0014 0022     	 moveq r2,#0
+ 104 0016 1A60     	 streq r2,[r3]
+ 105 0018 10BD     	 pop {r4,pc}
+ 106              	.L17:
+ 107 001a 00BF     	 .align 2
+ 108              	.L16:
+ 109 001c 00000000 	 .word CAN_NODE_0
+ 110 0020 00000000 	 .word distance_180deg_ele_count
+ 112              	 .global __aeabi_f2d
+ 113              	 .global __aeabi_dmul
+ 114              	 .global __aeabi_d2f
+ 115              	 .global __aeabi_dadd
+ 116              	 .section .text.CCU43_0_IRQHandler,"ax",%progbits
+ 117              	 .align 1
+ 118              	 .global CCU43_0_IRQHandler
+ 119              	 .thumb
+ 120              	 .thumb_func
+ 122              	CCU43_0_IRQHandler:
+ 123              	 
+ 124              	 
+ 125 0000 10B5     	 push {r4,lr}
+ 126 0002 2DED028B 	 fstmfdd sp!,{d8}
+ 127 0006 82B0     	 sub sp,sp,#8
+ 128 0008 0023     	 movs r3,#0
+ 129 000a 0093     	 str r3,[sp]
+ 130 000c 0193     	 str r3,[sp,#4]
+ 131 000e 0323     	 movs r3,#3
+ 132 0010 ADF80030 	 strh r3,[sp]
+ 133 0014 364B     	 ldr r3,.L19+16
+ 134 0016 9FED377A 	 flds s14,.L19+20
+ 135 001a D3ED007A 	 flds s15,[r3]
+ 136 001e 9FED368A 	 flds s16,.L19+24
+ 137 0022 67EE877A 	 fmuls s15,s15,s14
+ 138 0026 FDEEE77A 	 ftosizs s15,s15
+ 139 002a 17EE903A 	 fmrs r3,s15
+ 140 002e ADF80230 	 strh r3,[sp,#2]
+ 141 0032 324B     	 ldr r3,.L19+28
+ 142 0034 D3ED007A 	 flds s15,[r3]
+ 143 0038 77EEA77A 	 fadds s15,s15,s15
+ 144 003c 17EE900A 	 fmrs r0,s15
+ 145 0040 FFF7FEFF 	 bl __aeabi_f2d
+ 146 0044 26A3     	 adr r3,.L19
+ 147 0046 D3E90023 	 ldrd r2,[r3]
+ 148 004a FFF7FEFF 	 bl __aeabi_dmul
+ 149 004e 26A3     	 adr r3,.L19+8
+ 150 0050 D3E90023 	 ldrd r2,[r3]
+ 151 0054 FFF7FEFF 	 bl __aeabi_dmul
+ 152 0058 FFF7FEFF 	 bl __aeabi_d2f
+ 153 005c 07EE900A 	 fmsr s15,r0
+ 154 0060 67EE887A 	 fmuls s15,s15,s16
+ 155 0064 264B     	 ldr r3,.L19+32
+ 156 0066 FDEEE77A 	 ftosizs s15,s15
+ 157 006a 1860     	 str r0,[r3]
+ 158 006c 17EE903A 	 fmrs r3,s15
+ 159 0070 ADF80430 	 strh r3,[sp,#4]
+ 160 0074 234B     	 ldr r3,.L19+36
+ 161 0076 D3ED007A 	 flds s15,[r3]
+ 162 007a FAEEEF7A 	 vcvt.f32.s32 s15,s15,#1
+ 163 007e B2EE067A 	 fconsts s14,#38
+ 164 0082 C7EE877A 	 fdivs s15,s15,s14
+ 165 0086 17EE900A 	 fmrs r0,s15
+ 166 008a FFF7FEFF 	 bl __aeabi_f2d
+ 167 008e 14A3     	 adr r3,.L19
+ 168 0090 D3E90023 	 ldrd r2,[r3]
+ 169 0094 FFF7FEFF 	 bl __aeabi_dmul
+ 170 0098 0246     	 mov r2,r0
+ 171 009a 0B46     	 mov r3,r1
+ 172 009c FFF7FEFF 	 bl __aeabi_dadd
+ 173 00a0 11A3     	 adr r3,.L19+8
+ 174 00a2 D3E90023 	 ldrd r2,[r3]
+ 175 00a6 FFF7FEFF 	 bl __aeabi_dmul
+ 176 00aa FFF7FEFF 	 bl __aeabi_d2f
+ 177 00ae 07EE900A 	 fmsr s15,r0
+ 178 00b2 67EE887A 	 fmuls s15,s15,s16
+ 179 00b6 144B     	 ldr r3,.L19+40
+ 180 00b8 FDEEE77A 	 ftosizs s15,s15
+ 181 00bc 1860     	 str r0,[r3]
+ 182 00be 17EE903A 	 fmrs r3,s15
+ 183 00c2 ADF80630 	 strh r3,[sp,#6]
+ 184 00c6 114B     	 ldr r3,.L19+44
+ 185 00c8 1C6A     	 ldr r4,[r3,#32]
+ 186 00ca 6946     	 mov r1,sp
+ 187 00cc 2046     	 mov r0,r4
+ 188 00ce FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
+ 189 00d2 2046     	 mov r0,r4
+ 190 00d4 FFF7FEFF 	 bl CAN_NODE_MO_Transmit
+ 191 00d8 02B0     	 add sp,sp,#8
+ 192              	 
+ 193 00da BDEC028B 	 fldmfdd sp!,{d8}
+ 194 00de 10BD     	 pop {r4,pc}
+ 195              	.L20:
+ 196              	 .align 3
+ 197              	.L19:
+ 198 00e0 F1D4C853 	 .word 1405670641
+ 199 00e4 FB210940 	 .word 1074340347
+ 200 00e8 48E17A14 	 .word 343597384
+ 201 00ec AE47B13F 	 .word 1068582830
+ 202 00f0 00000000 	 .word V_DC_link
+ 203 00f4 0000C842 	 .word 1120403456
+ 204 00f8 00007A44 	 .word 1148846080
+ 205 00fc 00000000 	 .word omega_mech_rps
+ 206 0100 00000000 	 .word .LANCHOR2
+ 207 0104 00000000 	 .word distance_180deg_ele_count
+ 208 0108 00000000 	 .word .LANCHOR3
+ 209 010c 00000000 	 .word CAN_NODE_0
+ 211              	 .global distance
+ 212              	 .global Speed_act
+ 213              	 .global CAN_no_com_counter
+ 214              	 .global CAN_new_meassage
+ 215              	 .comm CAN_speed_ref,4,4
+ 216              	 .comm Speeds_int16_r,8,2
+ 217              	 .section .bss.distance,"aw",%nobits
+ 218              	 .align 2
+ 219              	 .set .LANCHOR3,.+0
+ 222              	distance:
+ 223 0000 00000000 	 .space 4
+ 224              	 .section .bss.CAN_new_meassage,"aw",%nobits
+ 225              	 .set .LANCHOR0,.+0
+ 228              	CAN_new_meassage:
+ 229 0000 00       	 .space 1
+ 230              	 .section .bss.Speed_act,"aw",%nobits
+ 231              	 .align 2
+ 232              	 .set .LANCHOR2,.+0
+ 235              	Speed_act:
+ 236 0000 00000000 	 .space 4
+ 237              	 .section .bss.CAN_no_com_counter,"aw",%nobits
+ 238              	 .set .LANCHOR1,.+0
+ 241              	CAN_no_com_counter:
+ 242 0000 00       	 .space 1
+ 243              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 CAN.c
+    {standard input}:17     .text.CAN0_1_IRQHandler:00000000 $t
+    {standard input}:22     .text.CAN0_1_IRQHandler:00000000 CAN0_1_IRQHandler
+    {standard input}:78     .text.CAN0_1_IRQHandler:00000088 $d
+                            *COM*:00000008 Speeds_int16_r
+                            *COM*:00000004 CAN_speed_ref
+    {standard input}:86     .text.CAN0_0_IRQHandler:00000000 $t
+    {standard input}:91     .text.CAN0_0_IRQHandler:00000000 CAN0_0_IRQHandler
+    {standard input}:109    .text.CAN0_0_IRQHandler:0000001c $d
+    {standard input}:117    .text.CCU43_0_IRQHandler:00000000 $t
+    {standard input}:122    .text.CCU43_0_IRQHandler:00000000 CCU43_0_IRQHandler
+    {standard input}:198    .text.CCU43_0_IRQHandler:000000e0 $d
+    {standard input}:222    .bss.distance:00000000 distance
+    {standard input}:235    .bss.Speed_act:00000000 Speed_act
+    {standard input}:241    .bss.CAN_no_com_counter:00000000 CAN_no_com_counter
+    {standard input}:228    .bss.CAN_new_meassage:00000000 CAN_new_meassage
+    {standard input}:218    .bss.distance:00000000 $d
+    {standard input}:229    .bss.CAN_new_meassage:00000000 $d
+    {standard input}:231    .bss.Speed_act:00000000 $d
+    {standard input}:242    .bss.CAN_no_com_counter:00000000 $d
+
+UNDEFINED SYMBOLS
+CAN_NODE_MO_Receive
+CAN_NODE_0
+distance_180deg_ele_count
+__aeabi_f2d
+__aeabi_dmul
+__aeabi_d2f
+__aeabi_dadd
+CAN_NODE_MO_UpdateData
+CAN_NODE_MO_Transmit
+V_DC_link
+omega_mech_rps

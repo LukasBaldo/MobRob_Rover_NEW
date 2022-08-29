@@ -18,15 +18,15 @@
   18              	 .section .data.NP,"aw",%progbits
   19              	 .align 2
   22              	NP:
-  23 0000 4A03     	 .short 842
+  23 0000 4803     	 .short 840
   24 0002 F502     	 .short 757
-  25 0004 6C02     	 .short 620
-  26 0006 1E03     	 .short 798
+  25 0004 7402     	 .short 628
+  26 0006 2003     	 .short 800
   27              	 .global NPfl
   28              	 .section .data.NPfl,"aw",%progbits
   29              	 .align 1
   32              	NPfl:
-  33 0000 4A03     	 .short 842
+  33 0000 4803     	 .short 840
   34              	 .global NPfr
   35              	 .section .data.NPfr,"aw",%progbits
   36              	 .align 2
@@ -36,12 +36,12 @@
   42              	 .section .data.NPrl,"aw",%progbits
   43              	 .align 2
   46              	NPrl:
-  47 0000 6C020000 	 .word 620
+  47 0000 74020000 	 .word 628
   48              	 .global NPrr
   49              	 .section .data.NPrr,"aw",%progbits
   50              	 .align 2
   53              	NPrr:
-  54 0000 14030000 	 .word 788
+  54 0000 20030000 	 .word 800
   55              	 .global Servo_PWMs
   56              	 .section .bss.Servo_PWMs,"aw",%nobits
   57              	 .align 2
@@ -76,8 +76,8 @@
    8:../Steering_Servos.c **** 
    9:../Steering_Servos.c **** #define deg_PWM  0.645 // deg to PWM singlan converstion factor
   10:../Steering_Servos.c **** 
-  11:../Steering_Servos.c **** uint16_t NP[4] = {842, 757, 620, 798}; //servo nutral points PWM duty values
-  12:../Steering_Servos.c **** uint16_t NPfl = 842; int NPfr = 757; int NPrl = 620; int NPrr = 788; // serov defalut 750
+  11:../Steering_Servos.c **** uint16_t NP[4] = {840, 757, 628, 800}; //servo nutral points PWM duty values
+  12:../Steering_Servos.c **** uint16_t NPfl = 840; int NPfr = 757; int NPrl = 628; int NPrr = 800; // serov defalut 750
   13:../Steering_Servos.c **** 
   14:../Steering_Servos.c **** float Servo_PWMs[4] = {0, 0, 0, 0};
   15:../Steering_Servos.c **** 

@@ -50,6 +50,7 @@ volatile uint32_t echo_not_low_count_1 = 0;
 volatile uint32_t limit_fail_num = 0;
 volatile uint32_t limit_fail_count = 0;
 
+volatile uint8_t CAN_RX_OK = 1; // 1 no signal
 
 
 enum SENSORS{
@@ -228,13 +229,16 @@ void Watchdog_Handler(void) // to do restates if can is not working a problem we
 {
   WATCHDOG_ClearAlarm(); /* Clear the alarm event */
   DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
- // DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
+  //DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
+  CAN_RX_OK = 1;
 }
 
 void CAN_RX_ISR(void){
 	WATCHDOG_Service();
 	//DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
-	DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
+	DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0); // inverted logic high means LED off
+
+	CAN_RX_OK = 0;
 }
 bool within_MAX_MIN_check_int(int x, int MAX, int MIN){
 	if((x - MIN) * (x - MAX) <= 0) return 1;

@@ -1,0 +1,828 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "main.c"
+  16              	 .section .text.VADC0_C0_2_IRQHandler,"ax",%progbits
+  17              	 .align 1
+  18              	 .global VADC0_C0_2_IRQHandler
+  19              	 .thumb
+  20              	 .thumb_func
+  22              	VADC0_C0_2_IRQHandler:
+  23              	 
+  24              	 
+  25              	 
+  26 0000 0148     	 ldr r0,.L2
+  27 0002 FFF7FEBF 	 b ADC_MEASUREMENT_GetResult
+  28              	.L3:
+  29 0006 00BF     	 .align 2
+  30              	.L2:
+  31 0008 00000000 	 .word ADC_MEASUREMENT_Channel_A_handle
+  33              	 .section .text.CCU43_1_IRQHandler,"ax",%progbits
+  34              	 .align 1
+  35              	 .global CCU43_1_IRQHandler
+  36              	 .thumb
+  37              	 .thumb_func
+  39              	CCU43_1_IRQHandler:
+  40              	 
+  41              	 
+  42              	 
+  43 0000 7047     	 bx lr
+  45              	 .section .text.CCU80_3_IRQHandler,"ax",%progbits
+  46              	 .align 1
+  47              	 .global CCU80_3_IRQHandler
+  48              	 .thumb
+  49              	 .thumb_func
+  51              	CCU80_3_IRQHandler:
+  52              	 
+  53              	 
+  54              	 
+  55 0000 104A     	 ldr r2,.L8
+  56 0002 1378     	 ldrb r3,[r2]
+  57 0004 0133     	 adds r3,r3,#1
+  58 0006 DBB2     	 uxtb r3,r3
+  59 0008 1370     	 strb r3,[r2]
+  60 000a 1378     	 ldrb r3,[r2]
+  61 000c 012B     	 cmp r3,#1
+  62 000e 82B0     	 sub sp,sp,#8
+  63 0010 16D1     	 bne .L5
+  64 0012 0D4B     	 ldr r3,.L8+4
+  65 0014 0D48     	 ldr r0,.L8+8
+  66 0016 93ED007A 	 flds s14,[r3]
+  67 001a 0D4B     	 ldr r3,.L8+12
+  68 001c D3ED007A 	 flds s15,[r3]
+  69 0020 BCEEC77A 	 ftouizs s14,s14
+  70 0024 FCEEE77A 	 ftouizs s15,s15
+  71 0028 8DED017A 	 fsts s14,[sp,#4]
+  72 002c 17EE903A 	 fmrs r3,s15
+  73 0030 BDF80410 	 ldrh r1,[sp,#4]
+  74 0034 4BF20B62 	 movw r2,#46603
+  75 0038 5A43     	 muls r2,r3,r2
+  76 003a 02B0     	 add sp,sp,#8
+  77              	 
+  78 003c FFF7FEBF 	 b PWM_SVM_SVMUpdate
+  79              	.L5:
+  80 0040 02B0     	 add sp,sp,#8
+  81              	 
+  82 0042 7047     	 bx lr
+  83              	.L9:
+  84              	 .align 2
+  85              	.L8:
+  86 0044 00000000 	 .word .LANCHOR0
+  87 0048 00000000 	 .word modulation_index_scaled
+  88 004c 00000000 	 .word PWM_SVM_0
+  89 0050 00000000 	 .word angle_ab
+  91              	 .global __aeabi_f2d
+  92              	 .global __aeabi_dmul
+  93              	 .global __aeabi_d2f
+  94              	 .global __aeabi_dsub
+  95              	 .global __aeabi_ddiv
+  96              	 .global __aeabi_dcmpeq
+  97              	 .global __aeabi_dadd
+  98              	 .section .text.Control_calc,"ax",%progbits
+  99              	 .align 1
+ 100              	 .global Control_calc
+ 101              	 .thumb
+ 102              	 .thumb_func
+ 104              	Control_calc:
+ 105              	 
+ 106              	 
+ 107 0000 2DE9F84F 	 push {r3,r4,r5,r6,r7,r8,r9,r10,fp,lr}
+ 108 0004 0620     	 movs r0,#6
+ 109 0006 2DED068B 	 fstmfdd sp!,{d8,d9,d10}
+ 110 000a FFF7FEFF 	 bl readCurrent
+ 111 000e 9C4E     	 ldr r6,.L61+56
+ 112 0010 9C4C     	 ldr r4,.L61+60
+ 113 0012 3060     	 str r0,[r6]
+ 114 0014 0520     	 movs r0,#5
+ 115 0016 FFF7FEFF 	 bl readCurrent
+ 116 001a 2060     	 str r0,[r4]
+ 117 001c 0320     	 movs r0,#3
+ 118 001e FFF7FEFF 	 bl readCurrent
+ 119 0022 994B     	 ldr r3,.L61+64
+ 120 0024 994F     	 ldr r7,.L61+68
+ 121 0026 1860     	 str r0,[r3]
+ 122 0028 994B     	 ldr r3,.L61+72
+ 123 002a 0AEE100A 	 fmsr s20,r0
+ 124 002e 1868     	 ldr r0,[r3]
+ 125 0030 FFF7FEFF 	 bl __aeabi_f2d
+ 126 0034 84A3     	 adr r3,.L61
+ 127 0036 D3E90023 	 ldrd r2,[r3]
+ 128 003a FFF7FEFF 	 bl __aeabi_dmul
+ 129 003e FFF7FEFF 	 bl __aeabi_d2f
+ 130 0042 0546     	 mov r5,r0
+ 131 0044 FFF7FEFF 	 bl cosf
+ 132 0048 08EE100A 	 fmsr s16,r0
+ 133 004c 2846     	 mov r0,r5
+ 134 004e FFF7FEFF 	 bl sinf
+ 135 0052 09EE900A 	 fmsr s19,r0
+ 136 0056 2846     	 mov r0,r5
+ 137 0058 FFF7FEFF 	 bl __aeabi_f2d
+ 138 005c 7CA3     	 adr r3,.L61+8
+ 139 005e D3E90023 	 ldrd r2,[r3]
+ 140 0062 8046     	 mov r8,r0
+ 141 0064 8946     	 mov r9,r1
+ 142 0066 FFF7FEFF 	 bl __aeabi_dsub
+ 143 006a FFF7FEFF 	 bl __aeabi_d2f
+ 144 006e D6ED00AA 	 flds s21,[r6]
+ 145 0072 884D     	 ldr r5,.L61+76
+ 146 0074 0646     	 mov r6,r0
+ 147 0076 FFF7FEFF 	 bl cosf
+ 148 007a 77A3     	 adr r3,.L61+16
+ 149 007c D3E90023 	 ldrd r2,[r3]
+ 150 0080 09EE100A 	 fmsr s18,r0
+ 151 0084 4946     	 mov r1,r9
+ 152 0086 4046     	 mov r0,r8
+ 153 0088 FFF7FEFF 	 bl __aeabi_dsub
+ 154 008c FFF7FEFF 	 bl __aeabi_d2f
+ 155 0090 D4ED008A 	 flds s17,[r4]
+ 156 0094 29EE289A 	 fmuls s18,s18,s17
+ 157 0098 0446     	 mov r4,r0
+ 158 009a FFF7FEFF 	 bl cosf
+ 159 009e A8EE2A9A 	 vfma.f32 s18,s16,s21
+ 160 00a2 AA46     	 mov r10,r5
+ 161 00a4 07EE900A 	 fmsr s15,r0
+ 162 00a8 A7EE8A9A 	 vfma.f32 s18,s15,s20
+ 163 00ac 19EE100A 	 fmrs r0,s18
+ 164 00b0 FFF7FEFF 	 bl __aeabi_f2d
+ 165 00b4 6AA3     	 adr r3,.L61+24
+ 166 00b6 D3E90023 	 ldrd r2,[r3]
+ 167 00ba FFF7FEFF 	 bl __aeabi_dmul
+ 168 00be FFF7FEFF 	 bl __aeabi_d2f
+ 169 00c2 2860     	 str r0,[r5]
+ 170 00c4 3046     	 mov r0,r6
+ 171 00c6 FFF7FEFF 	 bl sinf
+ 172 00ca 09EE100A 	 fmsr s18,r0
+ 173 00ce 2046     	 mov r0,r4
+ 174 00d0 68EEC98A 	 fnmuls s17,s17,s18
+ 175 00d4 FFF7FEFF 	 bl sinf
+ 176 00d8 E9EEEA8A 	 vfms.f32 s17,s19,s21
+ 177 00dc 6E4C     	 ldr r4,.L61+80
+ 178 00de 07EE900A 	 fmsr s15,r0
+ 179 00e2 E7EECA8A 	 vfms.f32 s17,s15,s20
+ 180 00e6 A346     	 mov fp,r4
+ 181 00e8 18EE900A 	 fmrs r0,s17
+ 182 00ec FFF7FEFF 	 bl __aeabi_f2d
+ 183 00f0 5BA3     	 adr r3,.L61+24
+ 184 00f2 D3E90023 	 ldrd r2,[r3]
+ 185 00f6 FFF7FEFF 	 bl __aeabi_dmul
+ 186 00fa FFF7FEFF 	 bl __aeabi_d2f
+ 187 00fe 674B     	 ldr r3,.L61+84
+ 188 0100 2060     	 str r0,[r4]
+ 189 0102 1B78     	 ldrb r3,[r3]
+ 190 0104 012B     	 cmp r3,#1
+ 191 0106 28D1     	 bne .L11
+ 192 0108 6549     	 ldr r1,.L61+88
+ 193 010a 664A     	 ldr r2,.L61+92
+ 194 010c 0B78     	 ldrb r3,[r1]
+ 195 010e 012B     	 cmp r3,#1
+ 196 0110 14BF     	 ite ne
+ 197 0112 1178     	 ldrbne r1,[r2]
+ 198 0114 6448     	 ldreq r0,.L61+96
+ 199 0116 654B     	 ldr r3,.L61+100
+ 200 0118 07BF     	 ittee eq
+ 201 011a 0068     	 ldreq r0,[r0]
+ 202 011c 1860     	 streq r0,[r3]
+ 203 011e 0131     	 addne r1,r1,#1
+ 204 0120 1170     	 strbne r1,[r2]
+ 205 0122 1278     	 ldrb r2,[r2]
+ 206 0124 04BF     	 itt eq
+ 207 0126 0020     	 moveq r0,#0
+ 208 0128 0870     	 strbeq r0,[r1]
+ 209 012a FA2A     	 cmp r2,#250
+ 210 012c 81BF     	 itttt hi
+ 211 012e 5D4A     	 ldrhi r2,.L61+92
+ 212 0130 FA21     	 movhi r1,#250
+ 213 0132 1170     	 strbhi r1,[r2]
+ 214 0134 0022     	 movhi r2,#0
+ 215 0136 88BF     	 it hi
+ 216 0138 1A60     	 strhi r2,[r3]
+ 217 013a 1868     	 ldr r0,[r3]
+ 218 013c FFF7FEFF 	 bl __aeabi_f2d
+ 219 0140 49A3     	 adr r3,.L61+32
+ 220 0142 D3E90023 	 ldrd r2,[r3]
+ 221 0146 FFF7FEFF 	 bl __aeabi_ddiv
+ 222 014a 49A3     	 adr r3,.L61+40
+ 223 014c D3E90023 	 ldrd r2,[r3]
+ 224 0150 FFF7FEFF 	 bl __aeabi_ddiv
+ 225 0154 FFF7FEFF 	 bl __aeabi_d2f
+ 226 0158 3860     	 str r0,[r7]
+ 227              	.L11:
+ 228 015a D7ED007A 	 flds s15,[r7]
+ 229 015e 544D     	 ldr r5,.L61+104
+ 230 0160 544C     	 ldr r4,.L61+108
+ 231 0162 F5EE407A 	 fcmpzs s15
+ 232 0166 F1EE10FA 	 fmstat
+ 233 016a 14D1     	 bne .L15
+ 234 016c D5ED006A 	 flds s13,[r5]
+ 235 0170 B8EE007A 	 fconsts s14,#128
+ 236 0174 F4EEC76A 	 fcmpes s13,s14
+ 237 0178 F1EE10FA 	 fmstat
+ 238 017c 0BDD     	 ble .L15
+ 239 017e D5ED006A 	 flds s13,[r5]
+ 240 0182 B0EE007A 	 fconsts s14,#0
+ 241 0186 F4EEC76A 	 fcmpes s13,s14
+ 242 018a F1EE10FA 	 fmstat
+ 243 018e 02D5     	 bpl .L15
+ 244 0190 0023     	 movs r3,#0
+ 245 0192 2360     	 str r3,[r4]
+ 246 0194 AAE0     	 b .L18
+ 247              	.L15:
+ 248 0196 2968     	 ldr r1,[r5]
+ 249 0198 474A     	 ldr r2,.L61+112
+ 250 019a 17EE900A 	 fmrs r0,s15
+ 251 019e FFF7FEFF 	 bl PI_Controller
+ 252 01a2 464B     	 ldr r3,.L61+116
+ 253 01a4 2060     	 str r0,[r4]
+ 254 01a6 1B78     	 ldrb r3,[r3]
+ 255 01a8 012B     	 cmp r3,#1
+ 256 01aa 0646     	 mov r6,r0
+ 257 01ac 40F09E80 	 bne .L18
+ 258 01b0 D7ED008A 	 flds s17,[r7]
+ 259 01b4 424F     	 ldr r7,.L61+120
+ 260 01b6 F5EE408A 	 fcmpzs s17
+ 261 01ba F1EE10FA 	 fmstat
+ 262 01be 26D0     	 beq .L20
+ 263 01c0 18EE900A 	 fmrs r0,s17
+ 264 01c4 FFF7FEFF 	 bl __aeabi_f2d
+ 265 01c8 2868     	 ldr r0,[r5]
+ 266 01ca DFF8F890 	 ldr r9,.L61+124
+ 267 01ce 0029     	 cmp r1,#0
+ 268 01d0 B8BF     	 it lt
+ 269 01d2 DFF8F490 	 ldrlt r9,.L61+128
+ 270 01d6 4FF00008 	 mov r8,#0
+ 271 01da B8BF     	 it lt
+ 272 01dc 4FF00008 	 movlt r8,#0
+ 273 01e0 FFF7FEFF 	 bl __aeabi_f2d
+ 274 01e4 0029     	 cmp r1,#0
+ 275 01e6 4FF00002 	 mov r2,#0
+ 276 01ea 364B     	 ldr r3,.L61+124
+ 277 01ec BCBF     	 itt lt
+ 278 01ee 364B     	 ldrlt r3,.L61+128
+ 279 01f0 0022     	 movlt r2,#0
+ 280 01f2 4046     	 mov r0,r8
+ 281 01f4 4946     	 mov r1,r9
+ 282 01f6 FFF7FEFF 	 bl __aeabi_dcmpeq
+ 283 01fa 30B1     	 cbz r0,.L23
+ 284 01fc D5ED007A 	 flds s15,[r5]
+ 285 0200 F5EE407A 	 fcmpzs s15
+ 286 0204 F1EE10FA 	 fmstat
+ 287 0208 01D1     	 bne .L20
+ 288              	.L23:
+ 289 020a 0A23     	 movs r3,#10
+ 290 020c 3B70     	 strb r3,[r7]
+ 291              	.L20:
+ 292 020e 3B78     	 ldrb r3,[r7]
+ 293 0210 002B     	 cmp r3,#0
+ 294 0212 6BD0     	 beq .L18
+ 295 0214 2D4A     	 ldr r2,.L61+132
+ 296 0216 0121     	 movs r1,#1
+ 297 0218 1170     	 strb r1,[r2]
+ 298 021a F5EEC08A 	 fcmpezs s17
+ 299 021e 284A     	 ldr r2,.L61+120
+ 300 0220 013B     	 subs r3,r3,#1
+ 301 0222 F1EE10FA 	 fmstat
+ 302 0226 1370     	 strb r3,[r2]
+ 303 0228 52DD     	 ble .L57
+ 304 022a 3046     	 mov r0,r6
+ 305 022c FFF7FEFF 	 bl __aeabi_f2d
+ 306 0230 11A3     	 adr r3,.L61+48
+ 307 0232 D3E90023 	 ldrd r2,[r3]
+ 308 0236 FFF7FEFF 	 bl __aeabi_dadd
+ 309 023a FFF7FEFF 	 bl __aeabi_d2f
+ 310 023e 2060     	 str r0,[r4]
+ 311 0240 54E0     	 b .L18
+ 312              	.L62:
+ 313 0242 00BFAFF3 	 .align 3
+ 313      0080
+ 314              	.L61:
+ 315 0248 4DC90777 	 .word 1996998989
+ 316 024c 46DF913F 	 .word 1066524486
+ 317 0250 A038DB37 	 .word 937113760
+ 318 0254 52C10040 	 .word 1073791314
+ 319 0258 A038DB37 	 .word 937113760
+ 320 025c 52C11040 	 .word 1074839890
+ 321 0260 93761F57 	 .word 1461679763
+ 322 0264 5555E53F 	 .word 1071994197
+ 323 0268 48E17A14 	 .word 343597384
+ 324 026c AE47B13F 	 .word 1068582830
+ 325 0270 F1D4C853 	 .word 1405670641
+ 326 0274 FB211940 	 .word 1075388923
+ 327 0278 9A999999 	 .word -1717986918
+ 328 027c 9999B93F 	 .word 1069128089
+ 329 0280 00000000 	 .word Current_U
+ 330 0284 00000000 	 .word Current_V
+ 331 0288 00000000 	 .word Current_W
+ 332 028c 00000000 	 .word .LANCHOR3
+ 333 0290 00000000 	 .word angle_phi
+ 334 0294 00000000 	 .word id
+ 335 0298 00000000 	 .word iq
+ 336 029c 00000000 	 .word .LANCHOR1
+ 337 02a0 00000000 	 .word CAN_new_meassage
+ 338 02a4 00000000 	 .word CAN_no_com_counter
+ 339 02a8 00000000 	 .word CAN_speed_ref
+ 340 02ac 00000000 	 .word .LANCHOR2
+ 341 02b0 00000000 	 .word omega_mech_rps
+ 342 02b4 00000000 	 .word T_ref_controlled
+ 343 02b8 00000000 	 .word omega_param
+ 344 02bc 00000000 	 .word .LANCHOR4
+ 345 02c0 00000000 	 .word .LANCHOR5
+ 346 02c4 0000F03F 	 .word 1072693248
+ 347 02c8 0000F0BF 	 .word -1074790400
+ 348 02cc 00000000 	 .word .LANCHOR6
+ 349              	.L57:
+ 350 02d0 0CD5     	 bpl .L18
+ 351 02d2 3046     	 mov r0,r6
+ 352 02d4 FFF7FEFF 	 bl __aeabi_f2d
+ 353 02d8 7CA3     	 adr r3,.L63+108
+ 354 02da D3E90023 	 ldrd r2,[r3]
+ 355 02de FFF7FEFF 	 bl __aeabi_dsub
+ 356 02e2 FFF7FEFF 	 bl __aeabi_d2f
+ 357 02e6 644B     	 ldr r3,.L63+24
+ 358 02e8 2060     	 str r0,[r4]
+ 359 02ea 1860     	 str r0,[r3]
+ 360              	.L18:
+ 361 02ec 634B     	 ldr r3,.L63+28
+ 362 02ee 644E     	 ldr r6,.L63+32
+ 363 02f0 1B78     	 ldrb r3,[r3]
+ 364 02f2 644D     	 ldr r5,.L63+36
+ 365 02f4 012B     	 cmp r3,#1
+ 366 02f6 02BF     	 ittt eq
+ 367 02f8 5F4B     	 ldreq r3,.L63+24
+ 368 02fa 2268     	 ldreq r2,[r4]
+ 369 02fc 1A60     	 streq r2,[r3]
+ 370 02fe 624B     	 ldr r3,.L63+40
+ 371 0300 1B78     	 ldrb r3,[r3]
+ 372 0302 012B     	 cmp r3,#1
+ 373 0304 30D1     	 bne .L29
+ 374 0306 5C4B     	 ldr r3,.L63+24
+ 375 0308 604C     	 ldr r4,.L63+44
+ 376 030a 1868     	 ldr r0,[r3]
+ 377 030c FFF7FEFF 	 bl __aeabi_f2d
+ 378 0310 53A3     	 adr r3,.L63
+ 379 0312 D3E90023 	 ldrd r2,[r3]
+ 380 0316 FFF7FEFF 	 bl __aeabi_ddiv
+ 381 031a FFF7FEFF 	 bl __aeabi_d2f
+ 382 031e 07EE100A 	 fmsr s14,r0
+ 383 0322 F9EE047A 	 fconsts s15,#148
+ 384 0326 B4EEE77A 	 fcmpes s14,s15
+ 385 032a F1EE10FA 	 fmstat
+ 386 032e 58BF     	 it pl
+ 387 0330 F0EE477A 	 fcpyspl s15,s14
+ 388 0334 B1EE047A 	 fconsts s14,#20
+ 389 0338 F4EEC77A 	 fcmpes s15,s14
+ 390 033c F1EE10FA 	 fmstat
+ 391 0340 DAF80010 	 ldr r1,[r10]
+ 392 0344 524A     	 ldr r2,.L63+48
+ 393 0346 C4ED007A 	 fsts s15,[r4]
+ 394 034a 4FF00000 	 mov r0,#0
+ 395 034e C8BF     	 it gt
+ 396 0350 84ED007A 	 fstsgt s14,[r4]
+ 397 0354 FFF7FEFF 	 bl PI_Controller
+ 398 0358 DBF80010 	 ldr r1,[fp]
+ 399 035c 3060     	 str r0,[r6]
+ 400 035e 4D4A     	 ldr r2,.L63+52
+ 401 0360 2068     	 ldr r0,[r4]
+ 402 0362 FFF7FEFF 	 bl PI_Controller
+ 403 0366 2860     	 str r0,[r5]
+ 404              	.L29:
+ 405 0368 D5ED007A 	 flds s15,[r5]
+ 406 036c D6ED006A 	 flds s13,[r6]
+ 407 0370 494A     	 ldr r2,.L63+56
+ 408 0372 4A4B     	 ldr r3,.L63+60
+ 409 0374 29EEE77A 	 fnmuls s14,s19,s15
+ 410 0378 A6EE887A 	 vfma.f32 s14,s13,s16
+ 411 037c 27EE888A 	 fmuls s16,s15,s16
+ 412 0380 B5EE407A 	 fcmpzs s14
+ 413 0384 A6EEA98A 	 vfma.f32 s16,s13,s19
+ 414 0388 F1EE10FA 	 fmstat
+ 415 038c 82ED008A 	 fsts s16,[r2]
+ 416 0390 08BF     	 it eq
+ 417 0392 434A     	 ldreq r2,.L63+64
+ 418 0394 83ED007A 	 fsts s14,[r3]
+ 419 0398 08BF     	 it eq
+ 420 039a 1A60     	 streq r2,[r3]
+ 421 039c D3ED008A 	 flds s17,[r3]
+ 422 03a0 C8EE287A 	 fdivs s15,s16,s17
+ 423 03a4 17EE900A 	 fmrs r0,s15
+ 424 03a8 FFF7FEFF 	 bl atanf
+ 425 03ac 3D4B     	 ldr r3,.L63+68
+ 426 03ae 1860     	 str r0,[r3]
+ 427 03b0 FFF7FEFF 	 bl __aeabi_f2d
+ 428 03b4 2CA3     	 adr r3,.L63+8
+ 429 03b6 D3E90023 	 ldrd r2,[r3]
+ 430 03ba FFF7FEFF 	 bl __aeabi_ddiv
+ 431 03be FFF7FEFF 	 bl __aeabi_d2f
+ 432 03c2 F5EEC08A 	 fcmpezs s17
+ 433 03c6 F1EE10FA 	 fmstat
+ 434 03ca 07EE900A 	 fmsr s15,r0
+ 435 03ce 364B     	 ldr r3,.L63+72
+ 436 03d0 02D5     	 bpl .L58
+ 437 03d2 9FED367A 	 flds s14,.L63+76
+ 438 03d6 06E0     	 b .L59
+ 439              	.L58:
+ 440 03d8 B5EEC08A 	 fcmpezs s16
+ 441 03dc F1EE10FA 	 fmstat
+ 442 03e0 03D5     	 bpl .L60
+ 443 03e2 9FED337A 	 flds s14,.L63+80
+ 444              	.L59:
+ 445 03e6 77EE877A 	 fadds s15,s15,s14
+ 446              	.L60:
+ 447 03ea 28EE088A 	 fmuls s16,s16,s16
+ 448 03ee C3ED007A 	 fsts s15,[r3]
+ 449 03f2 A8EEA88A 	 vfma.f32 s16,s17,s17
+ 450 03f6 18EE100A 	 fmrs r0,s16
+ 451 03fa FFF7FEFF 	 bl sqrtf
+ 452 03fe 2D4B     	 ldr r3,.L63+84
+ 453 0400 1860     	 str r0,[r3]
+ 454 0402 2D4B     	 ldr r3,.L63+88
+ 455 0404 1E68     	 ldr r6,[r3]
+ 456 0406 FFF7FEFF 	 bl __aeabi_f2d
+ 457 040a 0446     	 mov r4,r0
+ 458 040c 3046     	 mov r0,r6
+ 459 040e 0D46     	 mov r5,r1
+ 460 0410 FFF7FEFF 	 bl __aeabi_f2d
+ 461 0414 16A3     	 adr r3,.L63+16
+ 462 0416 D3E90023 	 ldrd r2,[r3]
+ 463 041a FFF7FEFF 	 bl __aeabi_ddiv
+ 464 041e 0246     	 mov r2,r0
+ 465 0420 0B46     	 mov r3,r1
+ 466 0422 2046     	 mov r0,r4
+ 467 0424 2946     	 mov r1,r5
+ 468 0426 FFF7FEFF 	 bl __aeabi_ddiv
+ 469 042a FFF7FEFF 	 bl __aeabi_d2f
+ 470 042e 234B     	 ldr r3,.L63+92
+ 471 0430 9FED237A 	 flds s14,.L63+96
+ 472 0434 1860     	 str r0,[r3]
+ 473 0436 D3ED007A 	 flds s15,[r3]
+ 474 043a 224B     	 ldr r3,.L63+100
+ 475 043c 67EE877A 	 fmuls s15,s15,s14
+ 476 0440 BDEC068B 	 fldmfdd sp!,{d8-d10}
+ 477 0444 C3ED007A 	 fsts s15,[r3]
+ 478 0448 1F4B     	 ldr r3,.L63+104
+ 479 044a 197C     	 ldrb r1,[r3,#16]
+ 480 044c 1A68     	 ldr r2,[r3]
+ 481 044e 4FF48033 	 mov r3,#65536
+ 482 0452 8B40     	 lsls r3,r3,r1
+ 483 0454 5360     	 str r3,[r2,#4]
+ 484 0456 BDE8F88F 	 pop {r3,r4,r5,r6,r7,r8,r9,r10,fp,pc}
+ 485              	.L64:
+ 486 045a 00BFAFF3 	 .align 3
+ 486      0080
+ 487              	.L63:
+ 488 0460 E17A14AE 	 .word -1374389535
+ 489 0464 47E1CA3F 	 .word 1070260551
+ 490 0468 4DC90777 	 .word 1996998989
+ 491 046c 46DF913F 	 .word 1066524486
+ 492 0470 83C0CAA1 	 .word -1580547965
+ 493 0474 45B6FB3F 	 .word 1073460805
+ 494 0478 00000000 	 .word .LANCHOR7
+ 495 047c 00000000 	 .word .LANCHOR8
+ 496 0480 00000000 	 .word .LANCHOR11
+ 497 0484 00000000 	 .word .LANCHOR12
+ 498 0488 00000000 	 .word .LANCHOR9
+ 499 048c 00000000 	 .word .LANCHOR10
+ 500 0490 00000000 	 .word Id_param
+ 501 0494 00000000 	 .word Iq_param
+ 502 0498 00000000 	 .word Vbeta
+ 503 049c 00000000 	 .word Valpha
+ 504 04a0 ACC52737 	 .word 925353388
+ 505 04a4 00000000 	 .word angle_ab_rad
+ 506 04a8 00000000 	 .word angle_ab
+ 507 04ac 00003443 	 .word 1127481344
+ 508 04b0 0000B443 	 .word 1135869952
+ 509 04b4 00000000 	 .word amplitude_ab
+ 510 04b8 00000000 	 .word V_DC_link
+ 511 04bc 00000000 	 .word modulation_index
+ 512 04c0 00401C46 	 .word 1176256512
+ 513 04c4 00000000 	 .word modulation_index_scaled
+ 514 04c8 00000000 	 .word status_LED_red_cal_time
+ 515 04cc 9A999999 	 .word -1717986918
+ 516 04d0 9999B93F 	 .word 1069128089
+ 518 04d4 AFF30080 	 .section .text.startup.main,"ax",%progbits
+ 519              	 .align 1
+ 520              	 .global main
+ 521              	 .thumb
+ 522              	 .thumb_func
+ 524              	main:
+ 525              	 
+ 526              	 
+ 527 0000 7FB5     	 push {r0,r1,r2,r3,r4,r5,r6,lr}
+ 528 0002 FFF7FEFF 	 bl DAVE_Init
+ 529 0006 0446     	 mov r4,r0
+ 530 0008 FFF7FEFF 	 bl Hall_init
+ 531 000c 04B1     	 cbz r4,.L66
+ 532              	.L71:
+ 533 000e FEE7     	 b .L71
+ 534              	.L66:
+ 535 0010 1848     	 ldr r0,.L72
+ 536 0012 FFF7FEFF 	 bl CAN_NODE_Init
+ 537 0016 0120     	 movs r0,#1
+ 538 0018 FFF7FEFF 	 bl omega_param_selctor
+ 539 001c 1648     	 ldr r0,.L72+4
+ 540 001e FFF7FEFF 	 bl PWM_SVM_Start
+ 541              	.L68:
+ 542 0022 164A     	 ldr r2,.L72+8
+ 543 0024 1378     	 ldrb r3,[r2]
+ 544 0026 032B     	 cmp r3,#3
+ 545 0028 FBD9     	 bls .L68
+ 546 002a 154B     	 ldr r3,.L72+12
+ 547 002c 1D7C     	 ldrb r5,[r3,#16]
+ 548 002e 1C68     	 ldr r4,[r3]
+ 549 0030 0123     	 movs r3,#1
+ 550 0032 AB40     	 lsls r3,r3,r5
+ 551 0034 6360     	 str r3,[r4,#4]
+ 552 0036 0026     	 movs r6,#0
+ 553 0038 1670     	 strb r6,[r2]
+ 554 003a FFF7FEFF 	 bl Hall_postion_speed_estimation
+ 555 003e FFF7FEFF 	 bl Control_calc
+ 556 0042 104B     	 ldr r3,.L72+16
+ 557 0044 104A     	 ldr r2,.L72+20
+ 558 0046 1868     	 ldr r0,[r3]
+ 559 0048 4FF08143 	 mov r3,#1082130432
+ 560 004c 0093     	 str r3,[sp]
+ 561 004e 3223     	 movs r3,#50
+ 562 0050 0193     	 str r3,[sp,#4]
+ 563 0052 4FF4FA63 	 mov r3,#2000
+ 564 0056 0293     	 str r3,[sp,#8]
+ 565 0058 0C4B     	 ldr r3,.L72+24
+ 566 005a 1968     	 ldr r1,[r3]
+ 567 005c 4FF08043 	 mov r3,#1073741824
+ 568 0060 FFF7FEFF 	 bl f_rec_data
+ 569 0064 0A4B     	 ldr r3,.L72+28
+ 570 0066 1E70     	 strb r6,[r3]
+ 571 0068 4FF48033 	 mov r3,#65536
+ 572 006c AB40     	 lsls r3,r3,r5
+ 573 006e 6360     	 str r3,[r4,#4]
+ 574 0070 D7E7     	 b .L68
+ 575              	.L73:
+ 576 0072 00BF     	 .align 2
+ 577              	.L72:
+ 578 0074 00000000 	 .word CAN_NODE_0
+ 579 0078 00000000 	 .word PWM_SVM_0
+ 580 007c 00000000 	 .word .LANCHOR0
+ 581 0080 00000000 	 .word status_LED_red_cal_time
+ 582 0084 00000000 	 .word omega_mech_rps
+ 583 0088 00000000 	 .word .LANCHOR3
+ 584 008c 00000000 	 .word .LANCHOR7
+ 585 0090 00000000 	 .word .LANCHOR6
+ 587              	 .global ADC_TO_DCLINK
+ 588              	 .global start_help_flag
+ 589              	 .global start_help
+ 590              	 .global start_help_count
+ 591              	 .global step_to
+ 592              	 .global step_start
+ 593              	 .global setting_cyc
+ 594              	 .global Speed_detection_OK
+ 595              	 .global count
+ 596              	 .comm amplitude_corrected,4,4
+ 597              	 .global scaling_factor
+ 598              	 .global Tcyc
+ 599              	 .global Ts
+ 600              	 .comm amplitude_ab,4,4
+ 601              	 .comm angle_ab_rad,4,4
+ 602              	 .comm angle_ab,4,4
+ 603              	 .comm modulation_index_scaled,4,4
+ 604              	 .comm modulation_index,4,4
+ 605              	 .global Vq
+ 606              	 .global Vd
+ 607              	 .global omega_mech_rps_ref
+ 608              	 .comm T_ref_controlled,4,4
+ 609              	 .global T_ref
+ 610              	 .global iq_ref
+ 611              	 .global omega_ele_rads_ref
+ 612              	 .global speed_ref
+ 613              	 .comm Vbeta,4,4
+ 614              	 .comm Valpha,4,4
+ 615              	 .comm id,4,4
+ 616              	 .comm iq,4,4
+ 617              	 .comm ibeta,4,4
+ 618              	 .comm ialpha,4,4
+ 619              	 .comm Current_W,4,4
+ 620              	 .comm Current_V,4,4
+ 621              	 .comm Current_U,4,4
+ 622              	 .global CAN_control
+ 623              	 .global Speed_control
+ 624              	 .global Torque_control
+ 625              	 .section .bss.Vd,"aw",%nobits
+ 626              	 .align 2
+ 627              	 .set .LANCHOR11,.+0
+ 630              	Vd:
+ 631 0000 00000000 	 .space 4
+ 632              	 .section .bss.T_ref,"aw",%nobits
+ 633              	 .align 2
+ 634              	 .set .LANCHOR7,.+0
+ 637              	T_ref:
+ 638 0000 00000000 	 .space 4
+ 639              	 .section .data.ADC_TO_DCLINK,"aw",%progbits
+ 640              	 .align 2
+ 643              	ADC_TO_DCLINK:
+ 644 0000 6666A042 	 .word 1117808230
+ 645 0004 CDCCA042 	 .word 1117834445
+ 646 0008 00002442 	 .word 1109655552
+ 647 000c 00009A42 	 .word 1117388800
+ 648 0010 00009A42 	 .word 1117388800
+ 649 0014 00009F42 	 .word 1117716480
+ 650              	 .section .bss.iq_ref,"aw",%nobits
+ 651              	 .align 2
+ 652              	 .set .LANCHOR10,.+0
+ 655              	iq_ref:
+ 656 0000 00000000 	 .space 4
+ 657              	 .section .data.step_to,"aw",%progbits
+ 658              	 .align 2
+ 661              	step_to:
+ 662 0000 0AD7A33D 	 .word 1034147594
+ 663              	 .section .data.setting_cyc,"aw",%progbits
+ 664              	 .align 2
+ 667              	setting_cyc:
+ 668 0000 983A0000 	 .word 15000
+ 669              	 .section .bss.start_help_count,"aw",%nobits
+ 670              	 .set .LANCHOR5,.+0
+ 673              	start_help_count:
+ 674 0000 00       	 .space 1
+ 675              	 .section .bss.count,"aw",%nobits
+ 676              	 .set .LANCHOR0,.+0
+ 679              	count:
+ 680 0000 00       	 .space 1
+ 681              	 .section .data.CAN_control,"aw",%progbits
+ 682              	 .set .LANCHOR1,.+0
+ 685              	CAN_control:
+ 686 0000 01       	 .byte 1
+ 687              	 .section .bss.start_help_flag,"aw",%nobits
+ 688              	 .set .LANCHOR6,.+0
+ 691              	start_help_flag:
+ 692 0000 00       	 .space 1
+ 693              	 .section .bss.Vq,"aw",%nobits
+ 694              	 .align 2
+ 695              	 .set .LANCHOR12,.+0
+ 698              	Vq:
+ 699 0000 00000000 	 .space 4
+ 700              	 .section .data.Speed_control,"aw",%progbits
+ 701              	 .set .LANCHOR8,.+0
+ 704              	Speed_control:
+ 705 0000 01       	 .byte 1
+ 706              	 .section .data.Tcyc,"aw",%progbits
+ 707              	 .align 2
+ 710              	Tcyc:
+ 711 0000 17B75139 	 .word 961656599
+ 712              	 .section .data.Ts,"aw",%progbits
+ 713              	 .align 2
+ 716              	Ts:
+ 717 0000 17B75138 	 .word 944879383
+ 718              	 .section .bss.speed_ref,"aw",%nobits
+ 719              	 .align 2
+ 720              	 .set .LANCHOR2,.+0
+ 723              	speed_ref:
+ 724 0000 00000000 	 .space 4
+ 725              	 .section .data.step_start,"aw",%progbits
+ 726              	 .align 2
+ 729              	step_start:
+ 730 0000 8FC2753D 	 .word 1031127695
+ 731              	 .section .bss.start_help,"aw",%nobits
+ 732              	 .set .LANCHOR4,.+0
+ 735              	start_help:
+ 736 0000 00       	 .space 1
+ 737              	 .section .bss.omega_ele_rads_ref,"aw",%nobits
+ 738              	 .align 2
+ 741              	omega_ele_rads_ref:
+ 742 0000 00000000 	 .space 4
+ 743              	 .section .data.Torque_control,"aw",%progbits
+ 744              	 .set .LANCHOR9,.+0
+ 747              	Torque_control:
+ 748 0000 01       	 .byte 1
+ 749              	 .section .bss.Speed_detection_OK,"aw",%nobits
+ 752              	Speed_detection_OK:
+ 753 0000 00       	 .space 1
+ 754              	 .section .bss.omega_mech_rps_ref,"aw",%nobits
+ 755              	 .align 2
+ 756              	 .set .LANCHOR3,.+0
+ 759              	omega_mech_rps_ref:
+ 760 0000 00000000 	 .space 4
+ 761              	 .section .data.scaling_factor,"aw",%progbits
+ 762              	 .align 2
+ 765              	scaling_factor:
+ 766 0000 00000743 	 .word 1124532224
+ 767              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+    {standard input}:17     .text.VADC0_C0_2_IRQHandler:00000000 $t
+    {standard input}:22     .text.VADC0_C0_2_IRQHandler:00000000 VADC0_C0_2_IRQHandler
+    {standard input}:31     .text.VADC0_C0_2_IRQHandler:00000008 $d
+    {standard input}:34     .text.CCU43_1_IRQHandler:00000000 $t
+    {standard input}:39     .text.CCU43_1_IRQHandler:00000000 CCU43_1_IRQHandler
+    {standard input}:46     .text.CCU80_3_IRQHandler:00000000 $t
+    {standard input}:51     .text.CCU80_3_IRQHandler:00000000 CCU80_3_IRQHandler
+    {standard input}:86     .text.CCU80_3_IRQHandler:00000044 $d
+                            *COM*:00000004 modulation_index_scaled
+                            *COM*:00000004 angle_ab
+    {standard input}:99     .text.Control_calc:00000000 $t
+    {standard input}:104    .text.Control_calc:00000000 Control_calc
+    {standard input}:315    .text.Control_calc:00000248 $d
+                            *COM*:00000004 Current_U
+                            *COM*:00000004 Current_V
+                            *COM*:00000004 Current_W
+                            *COM*:00000004 id
+                            *COM*:00000004 iq
+                            *COM*:00000004 T_ref_controlled
+    {standard input}:350    .text.Control_calc:000002d0 $t
+    {standard input}:488    .text.Control_calc:00000460 $d
+                            *COM*:00000004 Vbeta
+                            *COM*:00000004 Valpha
+                            *COM*:00000004 angle_ab_rad
+                            *COM*:00000004 amplitude_ab
+                            *COM*:00000004 modulation_index
+    {standard input}:519    .text.startup.main:00000000 $t
+    {standard input}:524    .text.startup.main:00000000 main
+    {standard input}:578    .text.startup.main:00000074 $d
+    {standard input}:643    .data.ADC_TO_DCLINK:00000000 ADC_TO_DCLINK
+    {standard input}:691    .bss.start_help_flag:00000000 start_help_flag
+    {standard input}:735    .bss.start_help:00000000 start_help
+    {standard input}:673    .bss.start_help_count:00000000 start_help_count
+    {standard input}:661    .data.step_to:00000000 step_to
+    {standard input}:729    .data.step_start:00000000 step_start
+    {standard input}:667    .data.setting_cyc:00000000 setting_cyc
+    {standard input}:752    .bss.Speed_detection_OK:00000000 Speed_detection_OK
+    {standard input}:679    .bss.count:00000000 count
+                            *COM*:00000004 amplitude_corrected
+    {standard input}:765    .data.scaling_factor:00000000 scaling_factor
+    {standard input}:710    .data.Tcyc:00000000 Tcyc
+    {standard input}:716    .data.Ts:00000000 Ts
+    {standard input}:698    .bss.Vq:00000000 Vq
+    {standard input}:630    .bss.Vd:00000000 Vd
+    {standard input}:759    .bss.omega_mech_rps_ref:00000000 omega_mech_rps_ref
+    {standard input}:637    .bss.T_ref:00000000 T_ref
+    {standard input}:655    .bss.iq_ref:00000000 iq_ref
+    {standard input}:741    .bss.omega_ele_rads_ref:00000000 omega_ele_rads_ref
+    {standard input}:723    .bss.speed_ref:00000000 speed_ref
+                            *COM*:00000004 ibeta
+                            *COM*:00000004 ialpha
+    {standard input}:685    .data.CAN_control:00000000 CAN_control
+    {standard input}:704    .data.Speed_control:00000000 Speed_control
+    {standard input}:747    .data.Torque_control:00000000 Torque_control
+    {standard input}:626    .bss.Vd:00000000 $d
+    {standard input}:633    .bss.T_ref:00000000 $d
+    {standard input}:640    .data.ADC_TO_DCLINK:00000000 $d
+    {standard input}:651    .bss.iq_ref:00000000 $d
+    {standard input}:658    .data.step_to:00000000 $d
+    {standard input}:664    .data.setting_cyc:00000000 $d
+    {standard input}:674    .bss.start_help_count:00000000 $d
+    {standard input}:680    .bss.count:00000000 $d
+    {standard input}:692    .bss.start_help_flag:00000000 $d
+    {standard input}:694    .bss.Vq:00000000 $d
+    {standard input}:707    .data.Tcyc:00000000 $d
+    {standard input}:713    .data.Ts:00000000 $d
+    {standard input}:719    .bss.speed_ref:00000000 $d
+    {standard input}:726    .data.step_start:00000000 $d
+    {standard input}:736    .bss.start_help:00000000 $d
+    {standard input}:738    .bss.omega_ele_rads_ref:00000000 $d
+    {standard input}:753    .bss.Speed_detection_OK:00000000 $d
+    {standard input}:755    .bss.omega_mech_rps_ref:00000000 $d
+    {standard input}:762    .data.scaling_factor:00000000 $d
+    {standard input}:518    .text.Control_calc:000004d4 $t
+
+UNDEFINED SYMBOLS
+ADC_MEASUREMENT_GetResult
+ADC_MEASUREMENT_Channel_A_handle
+PWM_SVM_SVMUpdate
+PWM_SVM_0
+__aeabi_f2d
+__aeabi_dmul
+__aeabi_d2f
+__aeabi_dsub
+__aeabi_ddiv
+__aeabi_dcmpeq
+__aeabi_dadd
+readCurrent
+cosf
+sinf
+PI_Controller
+angle_phi
+CAN_new_meassage
+CAN_no_com_counter
+CAN_speed_ref
+omega_mech_rps
+omega_param
+atanf
+sqrtf
+Id_param
+Iq_param
+V_DC_link
+status_LED_red_cal_time
+DAVE_Init
+Hall_init
+CAN_NODE_Init
+omega_param_selctor
+PWM_SVM_Start
+Hall_postion_speed_estimation
+f_rec_data
+CAN_NODE_0

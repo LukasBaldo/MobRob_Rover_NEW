@@ -22,7 +22,7 @@
 //#######################
 //FUNCTION DECLARATION
 //########################
-void Calculation(void);
+void Control_calc(void);
 
 //########################
 //VARIABLE DECLARATION
@@ -30,19 +30,12 @@ void Calculation(void);
 
 //control type
 uint8_t Torque_control = 1;
-uint8_t Speed_control = 0; //if 0 is torque control if 1 is speed control
-uint8_t CAN_control = 0; // id 1 CAN speed controll aktive
+uint8_t Speed_control = 1; //if 0 is torque control if 1 is speed control
+uint8_t CAN_control = 1; // id 1 CAN speed controll aktive
 
 float Current_U, Current_V, Current_W;
 
-uint32_t time_180deg_cal = 1000;
-float angle_in_sector = 30;// in deg // 30 defalut becasue in the mideel of the 60°
-
-float angle_phi = 0;
 float ialpha,ibeta,iq,id,Valpha,Vbeta;
-
-volatile float omega_mech_rps = 0;	//SK	//mechanical rounds per second
-volatile float omega_mech_rps_temp = 0; //SK	//since dividing through the incremental (counted up) value of time_180deg can lead to ridiculously high velocities a plausability check is performed before temp is stored to the value
 
 
 // REF vaules given to PI controller
@@ -55,7 +48,6 @@ float omega_mech_rps_ref = 0;
 
 float Vd = 0;
 float Vq = 0;
-
 
 volatile float modulation_index; //SK		// modulation index --> calculated via m = V / K_inv
 volatile float modulation_index_scaled; //SK	//scaled from -1 to +1 towards -10000 to +10000 which is required from the SVM app
@@ -73,10 +65,6 @@ float amplitude_corrected;
 
 // Counter for calculation function -> only use a multiple of the SVM Interrupt
 volatile uint8_t count = 0;
-
-// Angle correction factor to align Current to Hall Sensor vuales form 14/04
-float offset_pos = -27.0;				//Offset to reduce Hall Sensor Offset in CW direction
-float offset_neg = -20.0;			//Offset to reduce Hall Sensor Offset in CCW direction
 
 
 uint8_t Speed_detection_OK = 0;
@@ -147,8 +135,10 @@ int main(void)
 		    {
 			  if(count >=4)		//only calculate a multiple of 20kHz -> 4*50us=200us
 			  {
+				  DIGITAL_IO_SetOutputHigh(&status_LED_red_cal_time);
 				  count=0;
-				  Calculation();
+				  Hall_postion_speed_estimation();
+				  Control_calc();
 
 				 // f_rec_data(iq	,Vq,&Vq,1,2,1,10000);  //  iq char
 
@@ -161,7 +151,7 @@ int main(void)
 				   //rec_step_from_0(omega_mech_rps, iq_ref,iq, &omega_mech_rps_ref, 4, 20); // start help test
 				   start_help_flag = 0;
 
-				 ADC_MEASUREMENT_StartConversion(&ADC_MEASUREMENT_0);
+				   DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time);
 			  }
 		    }
   }
@@ -204,7 +194,7 @@ void ISR_INT1(void)
 void PeriodMatchInterruptHandler(void)
 {
 	count++;	// only use a multiple of the period match frequency 20*20kHz = 1ms
-	if(count == 1){ // only updating evry time there is new data safes 5-8 % duty on the calculation
+	if(count == 1){ // only updating evry time there is new data safes 5-8 % duty on the Control_calc
 		PWM_SVM_SVMUpdate(&PWM_SVM_0, (uint16_t)modulation_index_scaled, (uint32_t)angle_ab * ANGLE_ONE_DEGREE); // SK, 11.01.2019: outcommented to enable manual testing in ISR_INT1
 	}
 }
@@ -214,73 +204,14 @@ void PeriodMatchInterruptHandler(void)
 //########################
 
 
-// Routine for calculation (sector, clark-Park trans.,...)
+// Routine for Control_calc
 //5kHz loop since every 4th step of 50us --> 200us --> 5kHz
-void Calculation(void){
-		DIGITAL_IO_SetOutputHigh(&status_LED_red_cal_time);
-		// Actual time since last angle update via Hall Sensor
-		uint32_t t;
-		if(last_Hall_trig == 'A') t = time_since_A;
-		else if(last_Hall_trig == 'B') t = time_since_B;
-		else if(last_Hall_trig == 'C') t = time_since_C;
-		time_180deg_cal = time_180deg;
-		// not fixing sector for calc because if chainges better to do so
-
-		if(time_180deg_cal > 2500) time_180deg_cal = 2500;
-		else if(time_180deg_cal < 2) time_180deg_cal = 2;
-
-		if(t < TIME_OMEGA_0){
-			angle_in_sector = (180.0 / (float)time_180deg_cal) * t;
-			if(angle_in_sector > 60) angle_in_sector = 60;
-		}
-		else{
-			angle_in_sector = 30; // standig still
-			//angle_in_sector += 5;
-
-			//if(angle_in_sector > 60) angle_in_sector = 0;
-		}
-
-		// CW
-		if(direction==1)
-		{
-			angle_phi = (sector*60.0)+angle_in_sector;
-			angle_phi=angle_phi+offset_pos;
-			if(angle_phi > 360.0){angle_phi=angle_phi-360.0;}
-
-			omega_mech_rps_temp = (float)450/((float)time_180deg_cal);
-		}
-		// CCW
-		else{
-			angle_phi = (sector*60.0)-angle_in_sector;
-			angle_phi = angle_phi+60.0;
-			if(angle_phi < 0){angle_phi=angle_phi+360.0;}
-			angle_phi=angle_phi+offset_neg;
-			if(angle_phi > 360.0){angle_phi=angle_phi-360.0;}
-
-			omega_mech_rps_temp = -(float)450/((float)time_180deg_cal);
-		}
-
-		Speed_detection_OK = 0;
-		if(omega_mech_rps_temp<200 && omega_mech_rps_temp>(-200)) //plausibility check to avoid large peaks due to small time_180deg --> caused problems
-		{
-			omega_mech_rps = omega_mech_rps_temp;
-			Speed_detection_OK = 1;
-		}
-
-		if(t > TIME_OMEGA_0){
-			omega_ele_rads = 0;
-			omega_mech_rps = 0;
-		} // set omega  to 0 if no more hall detected
-		else omega_ele_rads = omega_mech_rps*2*PI*PPZ; //omega_ electrica in rads / s
-
-		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 8% duyt  // change to angel_in secotr 7% duty
+void Control_calc(void){
 
 		// Current read out over SPI
 		Current_U = readCurrent(ChipSelect_U);
 		Current_V = readCurrent(ChipSelect_V);
 		Current_W = readCurrent(ChipSelect_W);
-
-		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 53% duyt   current sesing takes 45% of the time 0.09ms
 
 		// conversion from rad/s to degree
 		float angle_phi_rad = angle_phi*Pi180;
@@ -292,8 +223,6 @@ void Calculation(void){
 		// Clark-Park transformation (from U,V,W to dq)
 		id = TwoThird*(cos_phi*Current_U	+ cosf(angle_phi_rad-TwoPiThird)*Current_V + cosf(angle_phi_rad-FourPiThird)*Current_W);
 		iq = TwoThird*(-sin_phi*Current_U	 -sinf(angle_phi_rad-TwoPiThird)*Current_V - sinf(angle_phi_rad-FourPiThird)*Current_W);
-
-		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // %63 duty Clark-Park transformation 10% of the time
 
 		if(CAN_control == 1){// can control
 
@@ -320,8 +249,7 @@ void Calculation(void){
 		else{
 			T_ref_controlled = PI_Controller(omega_mech_rps_ref,omega_mech_rps,&omega_param); // outer control loop q for omega
 
-			if(start_help == 1 ){
-				// start help
+			if(start_help == 1 ){// troque added at start
 				if(omega_mech_rps_ref != 0 && (copysign(1,omega_mech_rps_ref) != copysign(1,omega_mech_rps) || omega_mech_rps == 0)){
 					start_help_count = 10;
 				}
@@ -342,12 +270,11 @@ void Calculation(void){
 		if(Torque_control == 1){
 
 			if(MOTOR_NUM == 1 || MOTOR_NUM == 10) {
-				iq_ref =  T_ref / K_T; // dirction for motor 1
+				iq_ref =  T_ref / K_T; // dirction for motor 1 and 10
 			}
 			else{
-				iq_ref = - T_ref / K_T;// dirction for motor not 1
+				iq_ref = - T_ref / K_T;// dirction for others
 			}
-
 
 			//limit to IQ_REF_MAx limit
 			if(iq_ref < -IQ_REF_MAX) iq_ref = -IQ_REF_MAX;
@@ -358,35 +285,26 @@ void Calculation(void){
 			Vq = PI_Controller(iq_ref,iq,&Iq_param); // toque controll
 		}
 
-		//DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // %67 duyt   control takes 4% of the time 9ms
-
 		// dq to alpha beta for voltage
 		Valpha = Vd*cos_phi - Vq*sin_phi;
 		Vbeta = Vd*sin_phi + Vq*cos_phi;
 
 		// calc angle for SVM app
+		if(Valpha == 0) Valpha =  0.00001;// prevent exeption div by 0
 		angle_ab_rad = atanf(Vbeta/Valpha);
 		angle_ab = angle_ab_rad/Pi180;
 
 		if(Valpha < 0.0){angle_ab = angle_ab + 180.0;}			// failure correction of angle (tangens)
 		else if(Vbeta < 0.0){angle_ab = angle_ab + 360.0;}
 
-		// shortend to one line
 		// amplitude calculation
 		amplitude_ab = sqrtf(Valpha*Valpha + Vbeta*Vbeta);
 
 		//K_inv = V/m --> m = V / K_inv
-		//modulation_index = amplitude_ab/K_inv;
-
-		if(V_DC_link < 0 || V_DC_link > 50) V_DC_link = 14.8;  // plauseblyt check if not set to nom bat volatge
 		modulation_index = amplitude_ab/(V_DC_link /1.732);
 
 		//scale maximum 1 to 10000 -->
 		modulation_index_scaled = 10000*modulation_index;
-
-
-		// shortened ca 4% improvemnt
-		//modulation_index_scaled = sqrtf(Valpha*Valpha + Vbeta*Vbeta) * 577.3339;
 
 		DIGITAL_IO_SetOutputLow(&status_LED_red_cal_time); // 83% duty amplitued calc takes 16% of the time
 

@@ -1,0 +1,178 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "DAVE.c"
+  16              	 .section .text.DAVE_Init,"ax",%progbits
+  17              	 .align 1
+  18              	 .global DAVE_Init
+  19              	 .thumb
+  20              	 .thumb_func
+  22              	DAVE_Init:
+  23              	 
+  24              	 
+  25 0000 08B5     	 push {r3,lr}
+  26 0002 3648     	 ldr r0,.L25
+  27 0004 FFF7FEFF 	 bl CLOCK_XMC4_Init
+  28 0008 0028     	 cmp r0,#0
+  29 000a 66D1     	 bne .L23
+  30 000c 3448     	 ldr r0,.L25+4
+  31 000e FFF7FEFF 	 bl DIGITAL_IO_Init
+  32 0012 0028     	 cmp r0,#0
+  33 0014 61D1     	 bne .L23
+  34 0016 3348     	 ldr r0,.L25+8
+  35 0018 FFF7FEFF 	 bl DIGITAL_IO_Init
+  36 001c 0028     	 cmp r0,#0
+  37 001e 5CD1     	 bne .L23
+  38 0020 3148     	 ldr r0,.L25+12
+  39 0022 FFF7FEFF 	 bl SPI_MASTER_Init
+  40 0026 0028     	 cmp r0,#0
+  41 0028 57D1     	 bne .L23
+  42 002a 3048     	 ldr r0,.L25+16
+  43 002c FFF7FEFF 	 bl BUS_IO_Init
+  44 0030 0028     	 cmp r0,#0
+  45 0032 52D1     	 bne .L23
+  46 0034 2E48     	 ldr r0,.L25+20
+  47 0036 FFF7FEFF 	 bl PIN_INTERRUPT_Init
+  48 003a 0028     	 cmp r0,#0
+  49 003c 4DD1     	 bne .L23
+  50 003e 2D48     	 ldr r0,.L25+24
+  51 0040 FFF7FEFF 	 bl PIN_INTERRUPT_Init
+  52 0044 0028     	 cmp r0,#0
+  53 0046 48D1     	 bne .L23
+  54 0048 2B48     	 ldr r0,.L25+28
+  55 004a FFF7FEFF 	 bl PIN_INTERRUPT_Init
+  56 004e 0028     	 cmp r0,#0
+  57 0050 43D1     	 bne .L23
+  58 0052 2A48     	 ldr r0,.L25+32
+  59 0054 FFF7FEFF 	 bl PWM_SVM_Init
+  60 0058 0028     	 cmp r0,#0
+  61 005a 3ED1     	 bne .L23
+  62 005c 2848     	 ldr r0,.L25+36
+  63 005e FFF7FEFF 	 bl INTERRUPT_Init
+  64 0062 0028     	 cmp r0,#0
+  65 0064 39D1     	 bne .L23
+  66 0066 2748     	 ldr r0,.L25+40
+  67 0068 FFF7FEFF 	 bl TIMER_Init
+  68 006c 0028     	 cmp r0,#0
+  69 006e 34D1     	 bne .L23
+  70 0070 2548     	 ldr r0,.L25+44
+  71 0072 FFF7FEFF 	 bl INTERRUPT_Init
+  72 0076 80BB     	 cbnz r0,.L23
+  73 0078 2448     	 ldr r0,.L25+48
+  74 007a FFF7FEFF 	 bl PIN_INTERRUPT_Init
+  75 007e 60BB     	 cbnz r0,.L23
+  76 0080 2348     	 ldr r0,.L25+52
+  77 0082 FFF7FEFF 	 bl PIN_INTERRUPT_Init
+  78 0086 40BB     	 cbnz r0,.L23
+  79 0088 2248     	 ldr r0,.L25+56
+  80 008a FFF7FEFF 	 bl PIN_INTERRUPT_Init
+  81 008e 20BB     	 cbnz r0,.L23
+  82 0090 2148     	 ldr r0,.L25+60
+  83 0092 FFF7FEFF 	 bl INTERRUPT_Init
+  84 0096 00BB     	 cbnz r0,.L23
+  85 0098 2048     	 ldr r0,.L25+64
+  86 009a FFF7FEFF 	 bl CAN_NODE_Init
+  87 009e E0B9     	 cbnz r0,.L23
+  88 00a0 1F48     	 ldr r0,.L25+68
+  89 00a2 FFF7FEFF 	 bl INTERRUPT_Init
+  90 00a6 C0B9     	 cbnz r0,.L23
+  91 00a8 1E48     	 ldr r0,.L25+72
+  92 00aa FFF7FEFF 	 bl TIMER_Init
+  93 00ae A0B9     	 cbnz r0,.L23
+  94 00b0 1D48     	 ldr r0,.L25+76
+  95 00b2 FFF7FEFF 	 bl INTERRUPT_Init
+  96 00b6 80B9     	 cbnz r0,.L23
+  97 00b8 1C48     	 ldr r0,.L25+80
+  98 00ba FFF7FEFF 	 bl TIMER_Init
+  99 00be 60B9     	 cbnz r0,.L23
+ 100 00c0 1B48     	 ldr r0,.L25+84
+ 101 00c2 FFF7FEFF 	 bl INTERRUPT_Init
+ 102 00c6 40B9     	 cbnz r0,.L23
+ 103 00c8 1A48     	 ldr r0,.L25+88
+ 104 00ca FFF7FEFF 	 bl INTERRUPT_Init
+ 105 00ce 20B9     	 cbnz r0,.L23
+ 106 00d0 1948     	 ldr r0,.L25+92
+ 107 00d2 BDE80840 	 pop {r3,lr}
+ 108 00d6 FFF7FEBF 	 b ADC_MEASUREMENT_Init
+ 109              	.L23:
+ 110 00da 08BD     	 pop {r3,pc}
+ 111              	.L26:
+ 112              	 .align 2
+ 113              	.L25:
+ 114 00dc 00000000 	 .word CLOCK_XMC4_0
+ 115 00e0 00000000 	 .word status_LED_green
+ 116 00e4 00000000 	 .word status_LED_red_cal_time
+ 117 00e8 00000000 	 .word SPI_MASTER_0
+ 118 00ec 00000000 	 .word SPI_ChipSelect
+ 119 00f0 00000000 	 .word OverCurrent_U
+ 120 00f4 00000000 	 .word OverCurrent_V
+ 121 00f8 00000000 	 .word OverCurrent_W
+ 122 00fc 00000000 	 .word PWM_SVM_0
+ 123 0100 00000000 	 .word INTERRUPT_0
+ 124 0104 00000000 	 .word TIMER_0
+ 125 0108 00000000 	 .word Time_Counter
+ 126 010c 00000000 	 .word Hall_A_ISR
+ 127 0110 00000000 	 .word Hall_B_ISR
+ 128 0114 00000000 	 .word Hall_C_ISR
+ 129 0118 00000000 	 .word calc_ISR
+ 130 011c 00000000 	 .word CAN_NODE_0
+ 131 0120 00000000 	 .word CAN_RX_MO2
+ 132 0124 00000000 	 .word TIMER_1
+ 133 0128 00000000 	 .word INTERRUPT_1
+ 134 012c 00000000 	 .word TIMER_CAN_TX
+ 135 0130 00000000 	 .word CAN_TX
+ 136 0134 00000000 	 .word CAN_RX_MO7
+ 137 0138 00000000 	 .word ADC_MEASUREMENT_0
+ 139              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 DAVE.c
+    {standard input}:17     .text.DAVE_Init:00000000 $t
+    {standard input}:22     .text.DAVE_Init:00000000 DAVE_Init
+    {standard input}:114    .text.DAVE_Init:000000dc $d
+
+UNDEFINED SYMBOLS
+CLOCK_XMC4_Init
+DIGITAL_IO_Init
+SPI_MASTER_Init
+BUS_IO_Init
+PIN_INTERRUPT_Init
+PWM_SVM_Init
+INTERRUPT_Init
+TIMER_Init
+CAN_NODE_Init
+ADC_MEASUREMENT_Init
+CLOCK_XMC4_0
+status_LED_green
+status_LED_red_cal_time
+SPI_MASTER_0
+SPI_ChipSelect
+OverCurrent_U
+OverCurrent_V
+OverCurrent_W
+PWM_SVM_0
+INTERRUPT_0
+TIMER_0
+Time_Counter
+Hall_A_ISR
+Hall_B_ISR
+Hall_C_ISR
+calc_ISR
+CAN_NODE_0
+CAN_RX_MO2
+TIMER_1
+INTERRUPT_1
+TIMER_CAN_TX
+CAN_TX
+CAN_RX_MO7
+ADC_MEASUREMENT_0

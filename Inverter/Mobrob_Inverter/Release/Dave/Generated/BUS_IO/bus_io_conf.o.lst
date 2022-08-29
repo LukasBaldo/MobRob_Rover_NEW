@@ -1,0 +1,48 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "bus_io_conf.c"
+  16              	 .global SPI_ChipSelect
+  17              	 .global SPI_ChipSelect_pin_list
+  18              	 .section .rodata.SPI_ChipSelect_pin_list,"a",%progbits
+  19              	 .align 2
+  22              	SPI_ChipSelect_pin_list:
+  23 0000 00810248 	 .word 1208123648
+  24 0004 08       	 .byte 8
+  25 0005 000000   	 .space 3
+  26 0008 00810248 	 .word 1208123648
+  27 000c 00       	 .byte 0
+  28 000d 000000   	 .space 3
+  29 0010 00810248 	 .word 1208123648
+  30 0014 0B       	 .byte 11
+  31 0015 000000   	 .space 3
+  32              	 .section .data.SPI_ChipSelect,"aw",%progbits
+  33              	 .align 2
+  36              	SPI_ChipSelect:
+  37 0000 00000000 	 .word SPI_ChipSelect_pin_list
+  38 0004 80       	 .byte -128
+  39 0005 000000   	 .space 3
+  40 0008 01000000 	 .word 1
+  41 000c 00000000 	 .space 4
+  42 0010 03       	 .byte 3
+  43 0011 000000   	 .space 3
+  44              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 bus_io_conf.c
+    {standard input}:36     .data.SPI_ChipSelect:00000000 SPI_ChipSelect
+    {standard input}:22     .rodata.SPI_ChipSelect_pin_list:00000000 SPI_ChipSelect_pin_list
+    {standard input}:19     .rodata.SPI_ChipSelect_pin_list:00000000 $d
+    {standard input}:33     .data.SPI_ChipSelect:00000000 $d
+
+NO UNDEFINED SYMBOLS

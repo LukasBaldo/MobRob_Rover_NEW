@@ -1,0 +1,268 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "spi_master_conf.c"
+  16              	 .section .text.SPI_MASTER_0_lInit,"ax",%progbits
+  17              	 .align 1
+  18              	 .thumb
+  19              	 .thumb_func
+  21              	SPI_MASTER_0_lInit:
+  22              	 
+  23              	 
+  24 0000 38B5     	 push {r3,r4,r5,lr}
+  25 0002 2C4C     	 ldr r4,.L2
+  26 0004 2C49     	 ldr r1,.L2+4
+  27 0006 2D4D     	 ldr r5,.L2+8
+  28 0008 2046     	 mov r0,r4
+  29 000a FFF7FEFF 	 bl XMC_SPI_CH_Init
+  30 000e E36B     	 ldr r3,[r4,#60]
+  31 0010 2B4A     	 ldr r2,.L2+12
+  32 0012 23F00803 	 bic r3,r3,#8
+  33 0016 E363     	 str r3,[r4,#60]
+  34 0018 636B     	 ldr r3,[r4,#52]
+  35 001a 43F00103 	 orr r3,r3,#1
+  36 001e 6363     	 str r3,[r4,#52]
+  37 0020 636B     	 ldr r3,[r4,#52]
+  38 0022 23F07063 	 bic r3,r3,#251658240
+  39 0026 43F0E063 	 orr r3,r3,#117440512
+  40 002a 6363     	 str r3,[r4,#52]
+  41 002c 636B     	 ldr r3,[r4,#52]
+  42 002e 23F47C13 	 bic r3,r3,#4128768
+  43 0032 43F47023 	 orr r3,r3,#983040
+  44 0036 6363     	 str r3,[r4,#52]
+  45 0038 6369     	 ldr r3,[r4,#20]
+  46 003a 23F05043 	 bic r3,r3,#-805306368
+  47 003e 6361     	 str r3,[r4,#20]
+  48 0040 6369     	 ldr r3,[r4,#20]
+  49 0042 23F4FE43 	 bic r3,r3,#32512
+  50 0046 43F49A43 	 orr r3,r3,#19712
+  51 004a 6361     	 str r3,[r4,#20]
+  52 004c 2846     	 mov r0,r5
+  53 004e 0421     	 movs r1,#4
+  54 0050 FFF7FEFF 	 bl XMC_GPIO_Init
+  55 0054 E369     	 ldr r3,[r4,#28]
+  56 0056 1B4A     	 ldr r2,.L2+16
+  57 0058 23F05003 	 bic r3,r3,#80
+  58 005c 43F01003 	 orr r3,r3,#16
+  59 0060 E361     	 str r3,[r4,#28]
+  60 0062 E369     	 ldr r3,[r4,#28]
+  61 0064 23F00703 	 bic r3,r3,#7
+  62 0068 43F00103 	 orr r3,r3,#1
+  63 006c E361     	 str r3,[r4,#28]
+  64 006e 236C     	 ldr r3,[r4,#64]
+  65 0070 23F00F03 	 bic r3,r3,#15
+  66 0074 43F00103 	 orr r3,r3,#1
+  67 0078 2364     	 str r3,[r4,#64]
+  68 007a 2846     	 mov r0,r5
+  69 007c 0721     	 movs r1,#7
+  70 007e FFF7FEFF 	 bl XMC_GPIO_Init
+  71 0082 2846     	 mov r0,r5
+  72 0084 0121     	 movs r1,#1
+  73 0086 104A     	 ldr r2,.L2+20
+  74 0088 FFF7FEFF 	 bl XMC_GPIO_Init
+  75 008c 2046     	 mov r0,r4
+  76 008e 1021     	 movs r1,#16
+  77 0090 0522     	 movs r2,#5
+  78 0092 FFF7FEFF 	 bl XMC_USIC_CH_SetInterruptNodePointer
+  79 0096 2046     	 mov r0,r4
+  80 0098 1021     	 movs r1,#16
+  81 009a 0422     	 movs r2,#4
+  82 009c 0123     	 movs r3,#1
+  83 009e FFF7FEFF 	 bl XMC_USIC_CH_TXFIFO_Configure
+  84 00a2 2046     	 mov r0,r4
+  85 00a4 0021     	 movs r1,#0
+  86 00a6 0422     	 movs r2,#4
+  87 00a8 0F23     	 movs r3,#15
+  88 00aa FFF7FEFF 	 bl XMC_USIC_CH_RXFIFO_Configure
+  89 00ae 0020     	 movs r0,#0
+  90 00b0 38BD     	 pop {r3,r4,r5,pc}
+  91              	.L3:
+  92 00b2 00BF     	 .align 2
+  93              	.L2:
+  94 00b4 00000340 	 .word 1073938432
+  95 00b8 00000000 	 .word .LANCHOR0
+  96 00bc 00810248 	 .word 1208123648
+  97 00c0 00000000 	 .word .LANCHOR1
+  98 00c4 00000000 	 .word .LANCHOR2
+  99 00c8 00000000 	 .word .LANCHOR3
+ 101              	 .global SPI_MASTER_0
+ 102              	 .global SPI_MASTER_0_runtime
+ 103              	 .global SPI_MASTER_0_Config
+ 104              	 .global SPI_MASTER_0_Channel_Config
+ 105              	 .global SPI_MASTER_0_SCLKOUT_Config
+ 106              	 .global SPI_MASTER_0_SCLKOUT
+ 107              	 .global SPI_MASTER_0_MISO_Config
+ 108              	 .global SPI_MASTER_0_MISO
+ 109              	 .global SPI_MASTER_0_MOSI_Config
+ 110              	 .global SPI_MASTER_0_MOSI
+ 111              	 .section .rodata.SPI_MASTER_0_MISO,"a",%progbits
+ 112              	 .align 2
+ 115              	SPI_MASTER_0_MISO:
+ 116 0000 00810248 	 .word 1208123648
+ 117 0004 04       	 .byte 4
+ 118 0005 000000   	 .space 3
+ 119              	 .section .rodata.SPI_MASTER_0_SCLKOUT,"a",%progbits
+ 120              	 .align 2
+ 123              	SPI_MASTER_0_SCLKOUT:
+ 124 0000 00810248 	 .word 1208123648
+ 125 0004 01       	 .byte 1
+ 126 0005 000000   	 .space 3
+ 127              	 .section .rodata.SPI_MASTER_0_SCLKOUT_Config,"a",%progbits
+ 128              	 .align 2
+ 129              	 .set .LANCHOR3,.+0
+ 132              	SPI_MASTER_0_SCLKOUT_Config:
+ 133 0000 90       	 .byte -112
+ 134 0001 000000   	 .space 3
+ 135 0004 01000000 	 .word 1
+ 136 0008 01       	 .byte 1
+ 137 0009 000000   	 .space 3
+ 138 000c 00000000 	 .space 8
+ 138      00000000 
+ 139              	 .section .data.SPI_MASTER_0_MOSI_Config,"aw",%progbits
+ 140              	 .align 2
+ 141              	 .set .LANCHOR2,.+0
+ 144              	SPI_MASTER_0_MOSI_Config:
+ 145 0000 90       	 .byte -112
+ 146 0001 000000   	 .space 3
+ 147 0004 01000000 	 .word 1
+ 148 0008 01       	 .byte 1
+ 149 0009 000000   	 .space 3
+ 150 000c 00       	 .byte 0
+ 151 000d 00000000 	 .space 7
+ 151      000000
+ 152              	 .section .data.SPI_MASTER_0,"aw",%progbits
+ 153              	 .align 2
+ 156              	SPI_MASTER_0:
+ 157 0000 00000340 	 .word 1073938432
+ 158 0004 00000000 	 .word SPI_MASTER_0_Config
+ 159 0008 00000000 	 .word SPI_MASTER_0_runtime
+ 160              	 .section .bss.SPI_MASTER_0_MISO_Config,"aw",%nobits
+ 161              	 .align 2
+ 162              	 .set .LANCHOR1,.+0
+ 165              	SPI_MASTER_0_MISO_Config:
+ 166 0000 00000000 	 .space 20
+ 166      00000000 
+ 166      00000000 
+ 166      00000000 
+ 166      00000000 
+ 167              	 .section .data.SPI_MASTER_0_Channel_Config,"aw",%progbits
+ 168              	 .align 2
+ 169              	 .set .LANCHOR0,.+0
+ 172              	SPI_MASTER_0_Channel_Config:
+ 173 0000 404B4C00 	 .word 5000000
+ 174 0004 00       	 .byte 0
+ 175 0005 04       	 .byte 4
+ 176 0006 0003     	 .short 768
+ 177              	 .section .rodata.SPI_MASTER_0_MOSI,"a",%progbits
+ 178              	 .align 2
+ 181              	SPI_MASTER_0_MOSI:
+ 182 0000 00810248 	 .word 1208123648
+ 183 0004 07       	 .byte 7
+ 184 0005 000000   	 .space 3
+ 185              	 .section .data.SPI_MASTER_0_runtime,"aw",%progbits
+ 186              	 .align 2
+ 189              	SPI_MASTER_0_runtime:
+ 190 0000 08000000 	 .word 8
+ 191 0004 00000000 	 .space 24
+ 191      00000000 
+ 191      00000000 
+ 191      00000000 
+ 191      00000000 
+ 192 001c 00       	 .byte 0
+ 193 001d 01       	 .byte 1
+ 194 001e 07       	 .byte 7
+ 195 001f 00       	 .byte 0
+ 196 0020 00       	 .byte 0
+ 197 0021 00       	 .byte 0
+ 198 0022 01       	 .byte 1
+ 199 0023 00       	 .space 1
+ 200              	 .section .rodata.SPI_MASTER_0_Config,"a",%progbits
+ 201              	 .align 2
+ 204              	SPI_MASTER_0_Config:
+ 205 0000 00000000 	 .word SPI_MASTER_0_Channel_Config
+ 206 0004 00000000 	 .word SPI_MASTER_0_lInit
+ 207 0008 00000000 	 .word SPI_MASTER_0_MOSI
+ 208 000c 00000000 	 .word SPI_MASTER_0_MOSI_Config
+ 209 0010 00000000 	 .word SPI_MASTER_0_MISO
+ 210 0014 00000000 	 .word SPI_MASTER_0_MISO_Config
+ 211 0018 00000000 	 .word 0
+ 212 001c 00000000 	 .word 0
+ 213 0020 00000000 	 .word 0
+ 214 0024 00000000 	 .word 0
+ 215 0028 00000000 	 .word SPI_MASTER_0_SCLKOUT
+ 216 002c 00000000 	 .word SPI_MASTER_0_SCLKOUT_Config
+ 217 0030 00000000 	 .word 0
+ 218 0034 00000000 	 .word 0
+ 219 0038 00000000 	 .word 0
+ 220 003c 00000000 	 .word 0
+ 221 0040 00000000 	 .word 0
+ 222 0044 00000000 	 .word 0
+ 223 0048 00000000 	 .word 0
+ 224 004c 00000000 	 .word 0
+ 225 0050 00000000 	 .word 0
+ 226 0054 00000000 	 .word 0
+ 227 0058 00000000 	 .word 0
+ 228 005c 00000000 	 .word 0
+ 229 0060 00000000 	 .word 0
+ 230 0064 00000000 	 .word 0
+ 231 0068 00000000 	 .word 0
+ 232 006c 00000000 	 .word 0
+ 233 0070 00000000 	 .word 0
+ 234 0074 00000000 	 .word 0
+ 235 0078 00000000 	 .word 0
+ 236 007c 04       	 .byte 4
+ 237 007d 04       	 .byte 4
+ 238 007e 0000     	 .space 2
+ 239 0080 00000000 	 .word 0
+ 240 0084 02       	 .byte 2
+ 241 0085 02       	 .byte 2
+ 242 0086 00       	 .byte 0
+ 243 0087 00       	 .byte 0
+ 244 0088 14       	 .byte 20
+ 245 0089 00       	 .byte 0
+ 246 008a 00       	 .byte 0
+ 247 008b 00       	 .space 1
+ 248              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 spi_master_conf.c
+    {standard input}:17     .text.SPI_MASTER_0_lInit:00000000 $t
+    {standard input}:21     .text.SPI_MASTER_0_lInit:00000000 SPI_MASTER_0_lInit
+    {standard input}:94     .text.SPI_MASTER_0_lInit:000000b4 $d
+    {standard input}:156    .data.SPI_MASTER_0:00000000 SPI_MASTER_0
+    {standard input}:189    .data.SPI_MASTER_0_runtime:00000000 SPI_MASTER_0_runtime
+    {standard input}:204    .rodata.SPI_MASTER_0_Config:00000000 SPI_MASTER_0_Config
+    {standard input}:172    .data.SPI_MASTER_0_Channel_Config:00000000 SPI_MASTER_0_Channel_Config
+    {standard input}:132    .rodata.SPI_MASTER_0_SCLKOUT_Config:00000000 SPI_MASTER_0_SCLKOUT_Config
+    {standard input}:123    .rodata.SPI_MASTER_0_SCLKOUT:00000000 SPI_MASTER_0_SCLKOUT
+    {standard input}:165    .bss.SPI_MASTER_0_MISO_Config:00000000 SPI_MASTER_0_MISO_Config
+    {standard input}:115    .rodata.SPI_MASTER_0_MISO:00000000 SPI_MASTER_0_MISO
+    {standard input}:144    .data.SPI_MASTER_0_MOSI_Config:00000000 SPI_MASTER_0_MOSI_Config
+    {standard input}:181    .rodata.SPI_MASTER_0_MOSI:00000000 SPI_MASTER_0_MOSI
+    {standard input}:112    .rodata.SPI_MASTER_0_MISO:00000000 $d
+    {standard input}:120    .rodata.SPI_MASTER_0_SCLKOUT:00000000 $d
+    {standard input}:128    .rodata.SPI_MASTER_0_SCLKOUT_Config:00000000 $d
+    {standard input}:140    .data.SPI_MASTER_0_MOSI_Config:00000000 $d
+    {standard input}:153    .data.SPI_MASTER_0:00000000 $d
+    {standard input}:161    .bss.SPI_MASTER_0_MISO_Config:00000000 $d
+    {standard input}:168    .data.SPI_MASTER_0_Channel_Config:00000000 $d
+    {standard input}:178    .rodata.SPI_MASTER_0_MOSI:00000000 $d
+    {standard input}:186    .data.SPI_MASTER_0_runtime:00000000 $d
+    {standard input}:201    .rodata.SPI_MASTER_0_Config:00000000 $d
+
+UNDEFINED SYMBOLS
+XMC_SPI_CH_Init
+XMC_GPIO_Init
+XMC_USIC_CH_SetInterruptNodePointer
+XMC_USIC_CH_TXFIFO_Configure
+XMC_USIC_CH_RXFIFO_Configure

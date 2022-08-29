@@ -13741,8 +13741,8 @@ void RC_AUX1_ISR(void){
 10005d88:	2000083d 	.word	0x2000083d
 
 10005d8c <Steering_set_Angles>:
-uint16_t NP[4] = {842, 757, 620, 798}; //servo nutral points PWM duty values
-uint16_t NPfl = 842; int NPfr = 757; int NPrl = 620; int NPrr = 788; // serov defalut 750
+uint16_t NP[4] = {840, 757, 628, 800}; //servo nutral points PWM duty values
+uint16_t NPfl = 840; int NPfr = 757; int NPrl = 628; int NPrr = 800; // serov defalut 750
 
 float Servo_PWMs[4] = {0, 0, 0, 0};
 
@@ -13847,7 +13847,7 @@ void Steering_set_Angles(float Angles_data[4]){
 10005e50:	0092      	lsls	r2, r2, #2
 10005e52:	4923      	ldr	r1, [pc, #140]	; (10005ee0 <Steering_set_Angles+0x154>)
 10005e54:	50d1      	str	r1, [r2, r3]
-uint16_t NPfl = 842; int NPfr = 757; int NPrl = 620; int NPrr = 788; // serov defalut 750
+uint16_t NPfl = 840; int NPfr = 757; int NPrl = 628; int NPrr = 800; // serov defalut 750
 
 float Servo_PWMs[4] = {0, 0, 0, 0};
 
@@ -15467,7 +15467,7 @@ int main(void)
   /* Placeholder for user application code. The while loop below can be replaced with user application code. */
   while(1U)
   {
-	//Servo_NP_setting();	  // nutral point servo setting
+	  //Servo_NP_setting();	  // nutral point servo setting
 
   }
 100068fc:	e7fe      	b.n	100068fc <main+0x3c>

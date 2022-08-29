@@ -66,7 +66,7 @@ void CAN_TX_ISR(void){
 
 	Inverter_state[1] = V_DC_link * 100;  // *100 send  2 deciaml places
 
-	Speed_act = omega_ele_rads * WHEEL_R / PPZ;
+	Speed_act = omega_mech_rps * 2 * PI * WHEEL_R;
 	if(MOTOR_NUM == 6) Speed_act = -Speed_act;
 	Inverter_state[2] = Speed_act * 1000; // to mm/sconverstoion
 

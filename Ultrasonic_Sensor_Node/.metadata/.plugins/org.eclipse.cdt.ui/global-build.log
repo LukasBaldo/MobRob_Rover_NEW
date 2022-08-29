@@ -8812,3 +8812,177 @@ make: *** [main.o] Error 1
   17788	    232	   1124	  19144	   4ac8	Ultrasonic_XMC_1400_Dynamic.elf
 'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
 
+10:56:19 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17792	    232	   1124	  19148	   4acc	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+10:59:09 **** Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Dave/Generated/WATCHDOG/watchdog_conf.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Dave/Generated/WATCHDOG/watchdog_conf.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Dave/Generated/WATCHDOG/watchdog_conf.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Dave/Generated/WATCHDOG/watchdog_conf.d" -MT"Dave/Generated/WATCHDOG/watchdog_conf.d Dave/Generated/WATCHDOG/watchdog_conf.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Dave/Generated/WATCHDOG/watchdog_conf.o" "../Dave/Generated/WATCHDOG/watchdog_conf.c" 
+'Finished building: ../Dave/Generated/WATCHDOG/watchdog_conf.c'
+
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17804	    232	   1124	  19160	   4ad8	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+11:02:42 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Dave/Generated/DIGITAL_IO/digital_io_conf.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Dave/Generated/DIGITAL_IO/digital_io_conf.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Dave/Generated/DIGITAL_IO/digital_io_conf.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Dave/Generated/DIGITAL_IO/digital_io_conf.d" -MT"Dave/Generated/DIGITAL_IO/digital_io_conf.d Dave/Generated/DIGITAL_IO/digital_io_conf.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Dave/Generated/DIGITAL_IO/digital_io_conf.o" "../Dave/Generated/DIGITAL_IO/digital_io_conf.c" 
+'Finished building: ../Dave/Generated/DIGITAL_IO/digital_io_conf.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17804	    232	   1124	  19160	   4ad8	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+11:03:19 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17804	    232	   1124	  19160	   4ad8	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+11:06:32 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17800	    232	   1124	  19156	   4ad4	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+11:09:08 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Dave/Generated/WATCHDOG/watchdog_conf.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Dave/Generated/WATCHDOG/watchdog_conf.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Dave/Generated/WATCHDOG/watchdog_conf.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Dave/Generated/WATCHDOG/watchdog_conf.d" -MT"Dave/Generated/WATCHDOG/watchdog_conf.d Dave/Generated/WATCHDOG/watchdog_conf.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Dave/Generated/WATCHDOG/watchdog_conf.o" "../Dave/Generated/WATCHDOG/watchdog_conf.c" 
+'Finished building: ../Dave/Generated/WATCHDOG/watchdog_conf.c'
+
+'Building file: ../Dave/Generated/DIGITAL_IO/digital_io_conf.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Dave/Generated/DIGITAL_IO/digital_io_conf.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Dave/Generated/DIGITAL_IO/digital_io_conf.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Dave/Generated/DIGITAL_IO/digital_io_conf.d" -MT"Dave/Generated/DIGITAL_IO/digital_io_conf.d Dave/Generated/DIGITAL_IO/digital_io_conf.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Dave/Generated/DIGITAL_IO/digital_io_conf.o" "../Dave/Generated/DIGITAL_IO/digital_io_conf.c" 
+'Finished building: ../Dave/Generated/DIGITAL_IO/digital_io_conf.c'
+
+'Building target: Ultrasonic_XMC_1400_Dynamic.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"Ultrasonic_XMC_1400_Dynamic.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Ultrasonic_XMC_1400_Dynamic.elf" "@objects.rsp"  -lm
+'Finished building target: Ultrasonic_XMC_1400_Dynamic.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "Ultrasonic_XMC_1400_Dynamic.elf" "Ultrasonic_XMC_1400_Dynamic.hex"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17800	    232	   1124	  19156	   4ad4	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "Ultrasonic_XMC_1400_Dynamic.elf" > "Ultrasonic_XMC_1400_Dynamic.lst"
+'Finished building: Ultrasonic_XMC_1400_Dynamic.lst'
+
+13:22:00 **** Incremental Build of configuration Debug for project Ultrasonic_XMC_1400_Dynamic ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "Ultrasonic_XMC_1400_Dynamic.elf"
+   text	   data	    bss	    dec	    hex	filename
+  17800	    232	   1124	  19156	   4ad4	Ultrasonic_XMC_1400_Dynamic.elf
+'Finished building: Ultrasonic_XMC_1400_Dynamic.siz'
+

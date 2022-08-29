@@ -1,0 +1,170 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "pin_interrupt_conf.c"
+  16              	 .global Hall_C_ISR
+  17              	 .global Hall_B_ISR
+  18              	 .global Hall_A_ISR
+  19              	 .global OverCurrent_W
+  20              	 .global OverCurrent_V
+  21              	 .global OverCurrent_U
+  22              	 .section .rodata.Hall_A_ISR,"a",%progbits
+  23              	 .align 2
+  26              	Hall_A_ISR:
+  27 0000 00400440 	 .word 1074020352
+  28 0004 00810248 	 .word 1208123648
+  29 0008 10       	 .byte 16
+  30 0009 00000000 	 .space 11
+  30      00000000 
+  30      000000
+  31 0014 00       	 .byte 0
+  32 0015 000000   	 .space 3
+  33 0018 2D       	 .byte 45
+  34 0019 00       	 .byte 0
+  35 001a 0000     	 .space 2
+  36 001c 07       	 .byte 7
+  37 001d 0B       	 .byte 11
+  38 001e 00       	 .byte 0
+  39 001f 01       	 .byte 1
+  40 0020 02       	 .byte 2
+  41 0021 0F       	 .byte 15
+  42 0022 01       	 .byte 1
+  43 0023 00       	 .space 1
+  44              	 .section .rodata.Hall_B_ISR,"a",%progbits
+  45              	 .align 2
+  48              	Hall_B_ISR:
+  49 0000 00400440 	 .word 1074020352
+  50 0004 00810248 	 .word 1208123648
+  51 0008 10       	 .byte 16
+  52 0009 00000000 	 .space 11
+  52      00000000 
+  52      000000
+  53 0014 00       	 .byte 0
+  54 0015 000000   	 .space 3
+  55 0018 0D       	 .byte 13
+  56 0019 00       	 .byte 0
+  57 001a 0000     	 .space 2
+  58 001c 05       	 .byte 5
+  59 001d 0B       	 .byte 11
+  60 001e 00       	 .byte 0
+  61 001f 00       	 .byte 0
+  62 0020 00       	 .byte 0
+  63 0021 05       	 .byte 5
+  64 0022 01       	 .byte 1
+  65 0023 00       	 .space 1
+  66              	 .section .rodata.Hall_C_ISR,"a",%progbits
+  67              	 .align 2
+  70              	Hall_C_ISR:
+  71 0000 00400440 	 .word 1074020352
+  72 0004 00810248 	 .word 1208123648
+  73 0008 10       	 .byte 16
+  74 0009 00000000 	 .space 11
+  74      00000000 
+  74      000000
+  75 0014 00       	 .byte 0
+  76 0015 000000   	 .space 3
+  77 0018 3D       	 .byte 61
+  78 0019 00       	 .byte 0
+  79 001a 0000     	 .space 2
+  80 001c 08       	 .byte 8
+  81 001d 0B       	 .byte 11
+  82 001e 00       	 .byte 0
+  83 001f 02       	 .byte 2
+  84 0020 03       	 .byte 3
+  85 0021 03       	 .byte 3
+  86 0022 01       	 .byte 1
+  87 0023 00       	 .space 1
+  88              	 .section .rodata.OverCurrent_U,"a",%progbits
+  89              	 .align 2
+  92              	OverCurrent_U:
+  93 0000 00480050 	 .word 1342195712
+  94 0004 00820248 	 .word 1208123904
+  95 0008 00       	 .byte 0
+  96 0009 00000000 	 .space 11
+  96      00000000 
+  96      000000
+  97 0014 08       	 .byte 8
+  98 0015 000000   	 .space 3
+  99 0018 05       	 .byte 5
+ 100 0019 01       	 .byte 1
+ 101 001a 0000     	 .space 2
+ 102 001c 01       	 .byte 1
+ 103 001d 3F       	 .byte 63
+ 104 001e 00       	 .byte 0
+ 105 001f 01       	 .byte 1
+ 106 0020 00       	 .byte 0
+ 107 0021 02       	 .byte 2
+ 108 0022 01       	 .byte 1
+ 109 0023 00       	 .space 1
+ 110              	 .section .rodata.OverCurrent_V,"a",%progbits
+ 111              	 .align 2
+ 114              	OverCurrent_V:
+ 115 0000 00480050 	 .word 1342195712
+ 116 0004 00830248 	 .word 1208124160
+ 117 0008 00       	 .byte 0
+ 118 0009 00000000 	 .space 11
+ 118      00000000 
+ 118      000000
+ 119 0014 04       	 .byte 4
+ 120 0015 000000   	 .space 3
+ 121 0018 25       	 .byte 37
+ 122 0019 01       	 .byte 1
+ 123 001a 0000     	 .space 2
+ 124 001c 03       	 .byte 3
+ 125 001d 3F       	 .byte 63
+ 126 001e 00       	 .byte 0
+ 127 001f 00       	 .byte 0
+ 128 0020 02       	 .byte 2
+ 129 0021 01       	 .byte 1
+ 130 0022 01       	 .byte 1
+ 131 0023 00       	 .space 1
+ 132              	 .section .rodata.OverCurrent_W,"a",%progbits
+ 133              	 .align 2
+ 136              	OverCurrent_W:
+ 137 0000 00480050 	 .word 1342195712
+ 138 0004 00830248 	 .word 1208124160
+ 139 0008 00       	 .byte 0
+ 140 0009 00000000 	 .space 11
+ 140      00000000 
+ 140      000000
+ 141 0014 04       	 .byte 4
+ 142 0015 000000   	 .space 3
+ 143 0018 35       	 .byte 53
+ 144 0019 01       	 .byte 1
+ 145 001a 0000     	 .space 2
+ 146 001c 04       	 .byte 4
+ 147 001d 3F       	 .byte 63
+ 148 001e 00       	 .byte 0
+ 149 001f 03       	 .byte 3
+ 150 0020 03       	 .byte 3
+ 151 0021 05       	 .byte 5
+ 152 0022 01       	 .byte 1
+ 153 0023 00       	 .space 1
+ 154              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 pin_interrupt_conf.c
+    {standard input}:70     .rodata.Hall_C_ISR:00000000 Hall_C_ISR
+    {standard input}:48     .rodata.Hall_B_ISR:00000000 Hall_B_ISR
+    {standard input}:26     .rodata.Hall_A_ISR:00000000 Hall_A_ISR
+    {standard input}:136    .rodata.OverCurrent_W:00000000 OverCurrent_W
+    {standard input}:114    .rodata.OverCurrent_V:00000000 OverCurrent_V
+    {standard input}:92     .rodata.OverCurrent_U:00000000 OverCurrent_U
+    {standard input}:23     .rodata.Hall_A_ISR:00000000 $d
+    {standard input}:45     .rodata.Hall_B_ISR:00000000 $d
+    {standard input}:67     .rodata.Hall_C_ISR:00000000 $d
+    {standard input}:89     .rodata.OverCurrent_U:00000000 $d
+    {standard input}:111    .rodata.OverCurrent_V:00000000 $d
+    {standard input}:133    .rodata.OverCurrent_W:00000000 $d
+
+NO UNDEFINED SYMBOLS

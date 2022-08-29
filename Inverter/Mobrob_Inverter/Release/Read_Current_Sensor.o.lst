@@ -1,0 +1,80 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "Read_Current_Sensor.c"
+  16              	 .global __aeabi_f2d
+  17              	 .global __aeabi_dsub
+  18              	 .global __aeabi_ddiv
+  19              	 .global __aeabi_d2f
+  20              	 .section .text.readCurrent,"ax",%progbits
+  21              	 .align 1
+  22              	 .global readCurrent
+  23              	 .thumb
+  24              	 .thumb_func
+  26              	readCurrent:
+  27              	 
+  28              	 
+  29 0000 13B5     	 push {r0,r1,r4,lr}
+  30 0002 154C     	 ldr r4,.L2
+  31 0004 0146     	 mov r1,r0
+  32 0006 2046     	 mov r0,r4
+  33 0008 FFF7FEFF 	 bl BUS_IO_Write
+  34 000c 0222     	 movs r2,#2
+  35 000e 01A9     	 add r1,sp,#4
+  36 0010 1248     	 ldr r0,.L2+4
+  37 0012 FFF7FEFF 	 bl SPI_MASTER_Receive
+  38 0016 2046     	 mov r0,r4
+  39 0018 0721     	 movs r1,#7
+  40 001a FFF7FEFF 	 bl BUS_IO_Write
+  41 001e 9DF80400 	 ldrb r0,[sp,#4]
+  42 0022 9DF80530 	 ldrb r3,[sp,#5]
+  43 0026 00F01F00 	 and r0,r0,#31
+  44 002a 43EA0020 	 orr r0,r3,r0,lsl#8
+  45 002e 07EE900A 	 fmsr s15,r0
+  46 0032 F8EE677A 	 fuitos s15,s15
+  47 0036 17EE900A 	 fmrs r0,s15
+  48 003a FFF7FEFF 	 bl __aeabi_f2d
+  49 003e 0022     	 movs r2,#0
+  50 0040 074B     	 ldr r3,.L2+8
+  51 0042 FFF7FEFF 	 bl __aeabi_dsub
+  52 0046 0022     	 movs r2,#0
+  53 0048 064B     	 ldr r3,.L2+12
+  54 004a FFF7FEFF 	 bl __aeabi_ddiv
+  55 004e FFF7FEFF 	 bl __aeabi_d2f
+  56 0052 02B0     	 add sp,sp,#8
+  57              	 
+  58 0054 10BD     	 pop {r4,pc}
+  59              	.L3:
+  60 0056 00BF     	 .align 2
+  61              	.L2:
+  62 0058 00000000 	 .word SPI_ChipSelect
+  63 005c 00000000 	 .word SPI_MASTER_0
+  64 0060 0000B040 	 .word 1085276160
+  65 0064 00006440 	 .word 1080295424
+  67              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 Read_Current_Sensor.c
+    {standard input}:21     .text.readCurrent:00000000 $t
+    {standard input}:26     .text.readCurrent:00000000 readCurrent
+    {standard input}:62     .text.readCurrent:00000058 $d
+
+UNDEFINED SYMBOLS
+__aeabi_f2d
+__aeabi_dsub
+__aeabi_ddiv
+__aeabi_d2f
+BUS_IO_Write
+SPI_MASTER_Receive
+SPI_ChipSelect
+SPI_MASTER_0

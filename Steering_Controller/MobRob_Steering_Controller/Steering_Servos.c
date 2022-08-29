@@ -8,8 +8,8 @@
 
 #define deg_PWM  0.645 // deg to PWM singlan converstion factor
 
-uint16_t NP[4] = {842, 757, 620, 798}; //servo nutral points PWM duty values
-uint16_t NPfl = 842; int NPfr = 757; int NPrl = 620; int NPrr = 788; // serov defalut 750
+uint16_t NP[4] = {840, 757, 628, 800}; //servo nutral points PWM duty values
+uint16_t NPfl = 840; int NPfr = 757; int NPrl = 628; int NPrr = 800; // serov defalut 750
 
 float Servo_PWMs[4] = {0, 0, 0, 0};
 

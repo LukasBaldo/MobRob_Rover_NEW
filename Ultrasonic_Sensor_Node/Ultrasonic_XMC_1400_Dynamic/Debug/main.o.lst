@@ -2407,18 +2407,22 @@
  607              	 .align 2
  610              	limit_fail_count:
  611 0000 00000000 	 .space 4
- 612              	 .global Now_Sensor
- 613              	 .section .data.Now_Sensor,"aw",%progbits
- 616              	Now_Sensor:
- 617 0000 04       	 .byte 4
- 618              	 .section .text.main,"ax",%progbits
- 619              	 .align 2
- 620              	 .global main
- 621              	 .code 16
- 622              	 .thumb_func
- 624              	main:
- 625              	.LFB220:
- 626              	 .file 6 "../main.c"
+ 612              	 .global CAN_RX_OK
+ 613              	 .section .data.CAN_RX_OK,"aw",%progbits
+ 616              	CAN_RX_OK:
+ 617 0000 01       	 .byte 1
+ 618              	 .global Now_Sensor
+ 619              	 .section .data.Now_Sensor,"aw",%progbits
+ 622              	Now_Sensor:
+ 623 0000 04       	 .byte 4
+ 624              	 .section .text.main,"ax",%progbits
+ 625              	 .align 2
+ 626              	 .global main
+ 627              	 .code 16
+ 628              	 .thumb_func
+ 630              	main:
+ 631              	.LFB220:
+ 632              	 .file 6 "../main.c"
    1:../main.c     **** /*
    2:../main.c     ****  * main.c
    3:../main.c     ****  *
@@ -2471,1601 +2475,1615 @@
   50:../main.c     **** volatile uint32_t limit_fail_num = 0;
   51:../main.c     **** volatile uint32_t limit_fail_count = 0;
   52:../main.c     **** 
-  53:../main.c     **** 
+  53:../main.c     **** volatile uint8_t CAN_RX_OK = 1; // 1 no signal
   54:../main.c     **** 
-  55:../main.c     **** enum SENSORS{
-  56:../main.c     **** 	CENTER = 0b001,
-  57:../main.c     **** 	LEFT = 0b010,
-  58:../main.c     **** 	RIGHT = 0b100};
-  59:../main.c     **** volatile enum SENSORS Now_Sensor = RIGHT;
-  60:../main.c     **** 
-  61:../main.c     **** void reset();
-  62:../main.c     **** void CAN_send_values();
-  63:../main.c     **** void avg_distances();
-  64:../main.c     **** float Exp_moving_average(float new_value, float value, float ALPHA);
-  65:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN);
-  66:../main.c     **** uint16_t saturation_to_MIN_MAX(uint16_t value, uint16_t MAX, uint16_t MIN);
-  67:../main.c     **** 
-  68:../main.c     **** int main(void)
-  69:../main.c     **** {
- 627              	 .loc 6 69 0
- 628              	 .cfi_startproc
- 629 0000 90B5     	 push {r4,r7,lr}
- 630              	.LCFI30:
- 631              	 .cfi_def_cfa_offset 12
- 632              	 .cfi_offset 4,-12
- 633              	 .cfi_offset 7,-8
- 634              	 .cfi_offset 14,-4
- 635 0002 83B0     	 sub sp,sp,#12
- 636              	.LCFI31:
- 637              	 .cfi_def_cfa_offset 24
- 638 0004 00AF     	 add r7,sp,#0
- 639              	.LCFI32:
- 640              	 .cfi_def_cfa_register 7
-  70:../main.c     ****   DAVE_STATUS_t status;
-  71:../main.c     **** 
-  72:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
- 641              	 .loc 6 72 0
- 642 0006 FC1D     	 add r4,r7,#7
- 643 0008 FFF7FEFF 	 bl DAVE_Init
- 644 000c 031C     	 mov r3,r0
- 645 000e 2370     	 strb r3,[r4]
-  73:../main.c     **** 
-  74:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
- 646              	 .loc 6 74 0
- 647 0010 FB1D     	 add r3,r7,#7
- 648 0012 1B78     	 ldrb r3,[r3]
- 649 0014 002B     	 cmp r3,#0
- 650 0016 00D0     	 beq .L22
- 651              	.L23:
-  75:../main.c     ****   {
-  76:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
-  77:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
-  78:../main.c     **** 
-  79:../main.c     ****     while(1U)
-  80:../main.c     ****     {
-  81:../main.c     **** 
-  82:../main.c     ****     }
- 652              	 .loc 6 82 0 discriminator 1
- 653 0018 FEE7     	 b .L23
- 654              	.L22:
-  83:../main.c     ****   }
-  84:../main.c     ****   //Initialization of CAN
-  85:../main.c     ****   	//CAN_NODE_STATUS_t init_status;
-  86:../main.c     ****   	init_status = CAN_NODE_Init(&CAN_NODE_0);
- 655              	 .loc 6 86 0
- 656 001a 094B     	 ldr r3,.L26
- 657 001c 181C     	 mov r0,r3
- 658 001e FFF7FEFF 	 bl CAN_NODE_Init
- 659 0022 031C     	 mov r3,r0
- 660 0024 1A1C     	 mov r2,r3
- 661 0026 074B     	 ldr r3,.L26+4
- 662 0028 1A70     	 strb r2,[r3]
-  87:../main.c     **** 
-  88:../main.c     ****   	if (init_status != CAN_NODE_STATUS_SUCCESS) {
- 663              	 .loc 6 88 0
- 664 002a 064B     	 ldr r3,.L26+4
- 665 002c 1B78     	 ldrb r3,[r3]
- 666 002e 002B     	 cmp r3,#0
- 667 0030 02D1     	 bne .L24
-  89:../main.c     ****   		XMC_DEBUG("CAN initialization failed\n");
-  90:../main.c     ****   	}
-  91:../main.c     ****   	else{
-  92:../main.c     ****   		CAN_OK = 1;
- 668              	 .loc 6 92 0
- 669 0032 054B     	 ldr r3,.L26+8
- 670 0034 0122     	 mov r2,#1
- 671 0036 1A70     	 strb r2,[r3]
- 672              	.L24:
-  93:../main.c     ****   	}
-  94:../main.c     **** 
-  95:../main.c     ****   	WATCHDOG_Start(); // watchdog restart if CAN not working
- 673              	 .loc 6 95 0
- 674 0038 FFF7FEFF 	 bl WATCHDOG_Start
- 675              	.L25:
-  96:../main.c     **** 
+  55:../main.c     **** 
+  56:../main.c     **** enum SENSORS{
+  57:../main.c     **** 	CENTER = 0b001,
+  58:../main.c     **** 	LEFT = 0b010,
+  59:../main.c     **** 	RIGHT = 0b100};
+  60:../main.c     **** volatile enum SENSORS Now_Sensor = RIGHT;
+  61:../main.c     **** 
+  62:../main.c     **** void reset();
+  63:../main.c     **** void CAN_send_values();
+  64:../main.c     **** void avg_distances();
+  65:../main.c     **** float Exp_moving_average(float new_value, float value, float ALPHA);
+  66:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN);
+  67:../main.c     **** uint16_t saturation_to_MIN_MAX(uint16_t value, uint16_t MAX, uint16_t MIN);
+  68:../main.c     **** 
+  69:../main.c     **** int main(void)
+  70:../main.c     **** {
+ 633              	 .loc 6 70 0
+ 634              	 .cfi_startproc
+ 635 0000 90B5     	 push {r4,r7,lr}
+ 636              	.LCFI30:
+ 637              	 .cfi_def_cfa_offset 12
+ 638              	 .cfi_offset 4,-12
+ 639              	 .cfi_offset 7,-8
+ 640              	 .cfi_offset 14,-4
+ 641 0002 83B0     	 sub sp,sp,#12
+ 642              	.LCFI31:
+ 643              	 .cfi_def_cfa_offset 24
+ 644 0004 00AF     	 add r7,sp,#0
+ 645              	.LCFI32:
+ 646              	 .cfi_def_cfa_register 7
+  71:../main.c     ****   DAVE_STATUS_t status;
+  72:../main.c     **** 
+  73:../main.c     ****   status = DAVE_Init();           /* Initialization of DAVE APPs  */
+ 647              	 .loc 6 73 0
+ 648 0006 FC1D     	 add r4,r7,#7
+ 649 0008 FFF7FEFF 	 bl DAVE_Init
+ 650 000c 031C     	 mov r3,r0
+ 651 000e 2370     	 strb r3,[r4]
+  74:../main.c     **** 
+  75:../main.c     ****   if (status != DAVE_STATUS_SUCCESS)
+ 652              	 .loc 6 75 0
+ 653 0010 FB1D     	 add r3,r7,#7
+ 654 0012 1B78     	 ldrb r3,[r3]
+ 655 0014 002B     	 cmp r3,#0
+ 656 0016 00D0     	 beq .L22
+ 657              	.L23:
+  76:../main.c     ****   {
+  77:../main.c     ****     /* Placeholder for error handler code. The while loop below can be replaced with an user error 
+  78:../main.c     ****     XMC_DEBUG("DAVE APPs initialization failed\n");
+  79:../main.c     **** 
+  80:../main.c     ****     while(1U)
+  81:../main.c     ****     {
+  82:../main.c     **** 
+  83:../main.c     ****     }
+ 658              	 .loc 6 83 0 discriminator 1
+ 659 0018 FEE7     	 b .L23
+ 660              	.L22:
+  84:../main.c     ****   }
+  85:../main.c     ****   //Initialization of CAN
+  86:../main.c     ****   	//CAN_NODE_STATUS_t init_status;
+  87:../main.c     ****   	init_status = CAN_NODE_Init(&CAN_NODE_0);
+ 661              	 .loc 6 87 0
+ 662 001a 094B     	 ldr r3,.L26
+ 663 001c 181C     	 mov r0,r3
+ 664 001e FFF7FEFF 	 bl CAN_NODE_Init
+ 665 0022 031C     	 mov r3,r0
+ 666 0024 1A1C     	 mov r2,r3
+ 667 0026 074B     	 ldr r3,.L26+4
+ 668 0028 1A70     	 strb r2,[r3]
+  88:../main.c     **** 
+  89:../main.c     ****   	if (init_status != CAN_NODE_STATUS_SUCCESS) {
+ 669              	 .loc 6 89 0
+ 670 002a 064B     	 ldr r3,.L26+4
+ 671 002c 1B78     	 ldrb r3,[r3]
+ 672 002e 002B     	 cmp r3,#0
+ 673 0030 02D1     	 bne .L24
+  90:../main.c     ****   		XMC_DEBUG("CAN initialization failed\n");
+  91:../main.c     ****   	}
+  92:../main.c     ****   	else{
+  93:../main.c     ****   		CAN_OK = 1;
+ 674              	 .loc 6 93 0
+ 675 0032 054B     	 ldr r3,.L26+8
+ 676 0034 0122     	 mov r2,#1
+ 677 0036 1A70     	 strb r2,[r3]
+ 678              	.L24:
+  94:../main.c     ****   	}
+  95:../main.c     **** 
+  96:../main.c     ****   	WATCHDOG_Start(); // watchdog restart if CAN not working
+ 679              	 .loc 6 96 0
+ 680 0038 FFF7FEFF 	 bl WATCHDOG_Start
+ 681              	.L25:
   97:../main.c     **** 
-  98:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
-  99:../main.c     ****   while(1U)
- 100:../main.c     ****   {
- 101:../main.c     **** 
+  98:../main.c     **** 
+  99:../main.c     ****   /* Placeholder for user application code. The while loop below can be replaced with user applicat
+ 100:../main.c     ****   while(1U)
+ 101:../main.c     ****   {
  102:../main.c     **** 
- 103:../main.c     ****   }
- 676              	 .loc 6 103 0 discriminator 2
- 677 003c FEE7     	 b .L25
- 678              	.L27:
- 679 003e C046     	 .align 2
- 680              	.L26:
- 681 0040 00000000 	 .word CAN_NODE_0
- 682 0044 00000000 	 .word init_status
- 683 0048 00000000 	 .word CAN_OK
- 684              	 .cfi_endproc
- 685              	.LFE220:
- 687              	 .section .text.IRQ8_Handler,"ax",%progbits
- 688              	 .align 2
- 689              	 .global IRQ8_Handler
- 690              	 .code 16
- 691              	 .thumb_func
- 693              	IRQ8_Handler:
- 694              	.LFB221:
- 104:../main.c     **** }
- 105:../main.c     **** 
+ 103:../main.c     **** 
+ 104:../main.c     ****   }
+ 682              	 .loc 6 104 0 discriminator 2
+ 683 003c FEE7     	 b .L25
+ 684              	.L27:
+ 685 003e C046     	 .align 2
+ 686              	.L26:
+ 687 0040 00000000 	 .word CAN_NODE_0
+ 688 0044 00000000 	 .word init_status
+ 689 0048 00000000 	 .word CAN_OK
+ 690              	 .cfi_endproc
+ 691              	.LFE220:
+ 693              	 .section .text.IRQ8_Handler,"ax",%progbits
+ 694              	 .align 2
+ 695              	 .global IRQ8_Handler
+ 696              	 .code 16
+ 697              	 .thumb_func
+ 699              	IRQ8_Handler:
+ 700              	.LFB221:
+ 105:../main.c     **** }
  106:../main.c     **** 
- 107:../main.c     **** void ISR_10us_TIMER(){
- 695              	 .loc 6 107 0
- 696              	 .cfi_startproc
- 697 0000 80B5     	 push {r7,lr}
- 698              	.LCFI33:
- 699              	 .cfi_def_cfa_offset 8
- 700              	 .cfi_offset 7,-8
- 701              	 .cfi_offset 14,-4
- 702 0002 00AF     	 add r7,sp,#0
- 703              	.LCFI34:
- 704              	 .cfi_def_cfa_register 7
- 108:../main.c     **** 	if(reset_done == 1){ // make sure its finished
- 705              	 .loc 6 108 0
- 706 0004 414B     	 ldr r3,.L40
- 707 0006 1B78     	 ldrb r3,[r3]
- 708 0008 DBB2     	 uxtb r3,r3
- 709 000a 012B     	 cmp r3,#1
- 710 000c 00D0     	 beq .LCB435
- 711 000e 7BE0     	 b .L28
- 712              	.LCB435:
- 109:../main.c     **** 		t_10us_count ++;
- 713              	 .loc 6 109 0
- 714 0010 3F4B     	 ldr r3,.L40+4
- 715 0012 1B68     	 ldr r3,[r3]
- 716 0014 5A1C     	 add r2,r3,#1
- 717 0016 3E4B     	 ldr r3,.L40+4
- 718 0018 1A60     	 str r2,[r3]
- 110:../main.c     **** 		if (echo_count_control == 1) echo_t_10us ++;
+ 107:../main.c     **** 
+ 108:../main.c     **** void ISR_10us_TIMER(){
+ 701              	 .loc 6 108 0
+ 702              	 .cfi_startproc
+ 703 0000 80B5     	 push {r7,lr}
+ 704              	.LCFI33:
+ 705              	 .cfi_def_cfa_offset 8
+ 706              	 .cfi_offset 7,-8
+ 707              	 .cfi_offset 14,-4
+ 708 0002 00AF     	 add r7,sp,#0
+ 709              	.LCFI34:
+ 710              	 .cfi_def_cfa_register 7
+ 109:../main.c     **** 	if(reset_done == 1){ // make sure its finished
+ 711              	 .loc 6 109 0
+ 712 0004 414B     	 ldr r3,.L40
+ 713 0006 1B78     	 ldrb r3,[r3]
+ 714 0008 DBB2     	 uxtb r3,r3
+ 715 000a 012B     	 cmp r3,#1
+ 716 000c 00D0     	 beq .LCB435
+ 717 000e 7BE0     	 b .L28
+ 718              	.LCB435:
+ 110:../main.c     **** 		t_10us_count ++;
  719              	 .loc 6 110 0
- 720 001a 3E4B     	 ldr r3,.L40+8
- 721 001c 1B78     	 ldrb r3,[r3]
- 722 001e DBB2     	 uxtb r3,r3
- 723 0020 012B     	 cmp r3,#1
- 724 0022 04D1     	 bne .L30
- 725              	 .loc 6 110 0 is_stmt 0 discriminator 1
- 726 0024 3C4B     	 ldr r3,.L40+12
- 727 0026 1B68     	 ldr r3,[r3]
- 728 0028 5A1C     	 add r2,r3,#1
- 729 002a 3B4B     	 ldr r3,.L40+12
- 730 002c 1A60     	 str r2,[r3]
- 731              	.L30:
- 111:../main.c     **** 
- 112:../main.c     **** 		if(t_10us_count == 1)BUS_IO_Write(&BUS_IO_0,Now_Sensor);  // set trigger high
- 732              	 .loc 6 112 0 is_stmt 1
- 733 002e 384B     	 ldr r3,.L40+4
- 734 0030 1B68     	 ldr r3,[r3]
- 735 0032 012B     	 cmp r3,#1
- 736 0034 09D1     	 bne .L31
- 737              	 .loc 6 112 0 is_stmt 0 discriminator 1
- 738 0036 394B     	 ldr r3,.L40+16
- 739 0038 1B78     	 ldrb r3,[r3]
- 740 003a DBB2     	 uxtb r3,r3
- 741 003c 9BB2     	 uxth r3,r3
- 742 003e 384A     	 ldr r2,.L40+20
- 743 0040 101C     	 mov r0,r2
- 744 0042 191C     	 mov r1,r3
- 745 0044 FFF7FEFF 	 bl BUS_IO_Write
- 746 0048 5EE0     	 b .L28
- 747              	.L31:
- 113:../main.c     **** 		else if (t_10us_count == 11) BUS_IO_Write(&BUS_IO_0,0b000); // set tigger low
- 748              	 .loc 6 113 0 is_stmt 1
- 749 004a 314B     	 ldr r3,.L40+4
- 750 004c 1B68     	 ldr r3,[r3]
- 751 004e 0B2B     	 cmp r3,#11
- 752 0050 05D1     	 bne .L32
- 753              	 .loc 6 113 0 is_stmt 0 discriminator 1
- 754 0052 334B     	 ldr r3,.L40+20
- 755 0054 181C     	 mov r0,r3
- 756 0056 0021     	 mov r1,#0
- 757 0058 FFF7FEFF 	 bl BUS_IO_Write
- 758 005c 54E0     	 b .L28
- 759              	.L32:
- 114:../main.c     **** 
- 115:../main.c     **** 		else if (t_10us_count == 20) {
- 760              	 .loc 6 115 0 is_stmt 1
- 761 005e 2C4B     	 ldr r3,.L40+4
- 762 0060 1B68     	 ldr r3,[r3]
- 763 0062 142B     	 cmp r3,#20
- 764 0064 48D1     	 bne .L33
- 116:../main.c     **** 				switch(Now_Sensor){
- 765              	 .loc 6 116 0
- 766 0066 2D4B     	 ldr r3,.L40+16
- 767 0068 1B78     	 ldrb r3,[r3]
- 768 006a DBB2     	 uxtb r3,r3
- 769 006c 022B     	 cmp r3,#2
- 770 006e 0CD0     	 beq .L35
- 771 0070 042B     	 cmp r3,#4
- 772 0072 13D0     	 beq .L36
- 773 0074 012B     	 cmp r3,#1
- 774 0076 1AD1     	 bne .L34
- 117:../main.c     **** 					case CENTER:
- 118:../main.c     **** 						echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_C);
- 775              	 .loc 6 118 0
- 776 0078 2A4B     	 ldr r3,.L40+24
- 777 007a 181C     	 mov r0,r3
- 778 007c FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 779 0080 031C     	 mov r3,r0
- 780 0082 DAB2     	 uxtb r2,r3
- 781 0084 284B     	 ldr r3,.L40+28
- 782 0086 1A70     	 strb r2,[r3]
- 119:../main.c     **** 						break;
- 783              	 .loc 6 119 0
- 784 0088 11E0     	 b .L34
- 785              	.L35:
- 120:../main.c     **** 					case LEFT:
- 121:../main.c     **** 						echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_L);
- 786              	 .loc 6 121 0
- 787 008a 284B     	 ldr r3,.L40+32
- 788 008c 181C     	 mov r0,r3
- 789 008e FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 790 0092 031C     	 mov r3,r0
- 791 0094 DAB2     	 uxtb r2,r3
- 792 0096 244B     	 ldr r3,.L40+28
- 793 0098 1A70     	 strb r2,[r3]
- 122:../main.c     **** 						break;
- 794              	 .loc 6 122 0
- 795 009a 08E0     	 b .L34
- 796              	.L36:
- 123:../main.c     **** 					case RIGHT:
- 124:../main.c     **** 						echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_R);
- 797              	 .loc 6 124 0
- 798 009c 244B     	 ldr r3,.L40+36
- 799 009e 181C     	 mov r0,r3
- 800 00a0 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 801 00a4 031C     	 mov r3,r0
- 802 00a6 DAB2     	 uxtb r2,r3
- 803 00a8 1F4B     	 ldr r3,.L40+28
- 804 00aa 1A70     	 strb r2,[r3]
- 125:../main.c     **** 						break;
- 805              	 .loc 6 125 0
- 806 00ac C046     	 mov r8,r8
- 807              	.L34:
- 126:../main.c     **** 				}
- 127:../main.c     **** 				if(echo_state != 0) {
- 808              	 .loc 6 127 0
- 809 00ae 1E4B     	 ldr r3,.L40+28
- 810 00b0 1B78     	 ldrb r3,[r3]
- 811 00b2 DBB2     	 uxtb r3,r3
- 812 00b4 002B     	 cmp r3,#0
- 813 00b6 1BD0     	 beq .L38
- 128:../main.c     **** 					echo_not_low_count ++ ;
+ 720 0010 3F4B     	 ldr r3,.L40+4
+ 721 0012 1B68     	 ldr r3,[r3]
+ 722 0014 5A1C     	 add r2,r3,#1
+ 723 0016 3E4B     	 ldr r3,.L40+4
+ 724 0018 1A60     	 str r2,[r3]
+ 111:../main.c     **** 		if (echo_count_control == 1) echo_t_10us ++;
+ 725              	 .loc 6 111 0
+ 726 001a 3E4B     	 ldr r3,.L40+8
+ 727 001c 1B78     	 ldrb r3,[r3]
+ 728 001e DBB2     	 uxtb r3,r3
+ 729 0020 012B     	 cmp r3,#1
+ 730 0022 04D1     	 bne .L30
+ 731              	 .loc 6 111 0 is_stmt 0 discriminator 1
+ 732 0024 3C4B     	 ldr r3,.L40+12
+ 733 0026 1B68     	 ldr r3,[r3]
+ 734 0028 5A1C     	 add r2,r3,#1
+ 735 002a 3B4B     	 ldr r3,.L40+12
+ 736 002c 1A60     	 str r2,[r3]
+ 737              	.L30:
+ 112:../main.c     **** 
+ 113:../main.c     **** 		if(t_10us_count == 1)BUS_IO_Write(&BUS_IO_0,Now_Sensor);  // set trigger high
+ 738              	 .loc 6 113 0 is_stmt 1
+ 739 002e 384B     	 ldr r3,.L40+4
+ 740 0030 1B68     	 ldr r3,[r3]
+ 741 0032 012B     	 cmp r3,#1
+ 742 0034 09D1     	 bne .L31
+ 743              	 .loc 6 113 0 is_stmt 0 discriminator 1
+ 744 0036 394B     	 ldr r3,.L40+16
+ 745 0038 1B78     	 ldrb r3,[r3]
+ 746 003a DBB2     	 uxtb r3,r3
+ 747 003c 9BB2     	 uxth r3,r3
+ 748 003e 384A     	 ldr r2,.L40+20
+ 749 0040 101C     	 mov r0,r2
+ 750 0042 191C     	 mov r1,r3
+ 751 0044 FFF7FEFF 	 bl BUS_IO_Write
+ 752 0048 5EE0     	 b .L28
+ 753              	.L31:
+ 114:../main.c     **** 		else if (t_10us_count == 11) BUS_IO_Write(&BUS_IO_0,0b000); // set tigger low
+ 754              	 .loc 6 114 0 is_stmt 1
+ 755 004a 314B     	 ldr r3,.L40+4
+ 756 004c 1B68     	 ldr r3,[r3]
+ 757 004e 0B2B     	 cmp r3,#11
+ 758 0050 05D1     	 bne .L32
+ 759              	 .loc 6 114 0 is_stmt 0 discriminator 1
+ 760 0052 334B     	 ldr r3,.L40+20
+ 761 0054 181C     	 mov r0,r3
+ 762 0056 0021     	 mov r1,#0
+ 763 0058 FFF7FEFF 	 bl BUS_IO_Write
+ 764 005c 54E0     	 b .L28
+ 765              	.L32:
+ 115:../main.c     **** 
+ 116:../main.c     **** 		else if (t_10us_count == 20) {
+ 766              	 .loc 6 116 0 is_stmt 1
+ 767 005e 2C4B     	 ldr r3,.L40+4
+ 768 0060 1B68     	 ldr r3,[r3]
+ 769 0062 142B     	 cmp r3,#20
+ 770 0064 48D1     	 bne .L33
+ 117:../main.c     **** 				switch(Now_Sensor){
+ 771              	 .loc 6 117 0
+ 772 0066 2D4B     	 ldr r3,.L40+16
+ 773 0068 1B78     	 ldrb r3,[r3]
+ 774 006a DBB2     	 uxtb r3,r3
+ 775 006c 022B     	 cmp r3,#2
+ 776 006e 0CD0     	 beq .L35
+ 777 0070 042B     	 cmp r3,#4
+ 778 0072 13D0     	 beq .L36
+ 779 0074 012B     	 cmp r3,#1
+ 780 0076 1AD1     	 bne .L34
+ 118:../main.c     **** 					case CENTER:
+ 119:../main.c     **** 						echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_C);
+ 781              	 .loc 6 119 0
+ 782 0078 2A4B     	 ldr r3,.L40+24
+ 783 007a 181C     	 mov r0,r3
+ 784 007c FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 785 0080 031C     	 mov r3,r0
+ 786 0082 DAB2     	 uxtb r2,r3
+ 787 0084 284B     	 ldr r3,.L40+28
+ 788 0086 1A70     	 strb r2,[r3]
+ 120:../main.c     **** 						break;
+ 789              	 .loc 6 120 0
+ 790 0088 11E0     	 b .L34
+ 791              	.L35:
+ 121:../main.c     **** 					case LEFT:
+ 122:../main.c     **** 						echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_L);
+ 792              	 .loc 6 122 0
+ 793 008a 284B     	 ldr r3,.L40+32
+ 794 008c 181C     	 mov r0,r3
+ 795 008e FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 796 0092 031C     	 mov r3,r0
+ 797 0094 DAB2     	 uxtb r2,r3
+ 798 0096 244B     	 ldr r3,.L40+28
+ 799 0098 1A70     	 strb r2,[r3]
+ 123:../main.c     **** 						break;
+ 800              	 .loc 6 123 0
+ 801 009a 08E0     	 b .L34
+ 802              	.L36:
+ 124:../main.c     **** 					case RIGHT:
+ 125:../main.c     **** 						echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_R);
+ 803              	 .loc 6 125 0
+ 804 009c 244B     	 ldr r3,.L40+36
+ 805 009e 181C     	 mov r0,r3
+ 806 00a0 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 807 00a4 031C     	 mov r3,r0
+ 808 00a6 DAB2     	 uxtb r2,r3
+ 809 00a8 1F4B     	 ldr r3,.L40+28
+ 810 00aa 1A70     	 strb r2,[r3]
+ 126:../main.c     **** 						break;
+ 811              	 .loc 6 126 0
+ 812 00ac C046     	 mov r8,r8
+ 813              	.L34:
+ 127:../main.c     **** 				}
+ 128:../main.c     **** 				if(echo_state != 0) {
  814              	 .loc 6 128 0
- 815 00b8 1E4B     	 ldr r3,.L40+40
- 816 00ba 1B68     	 ldr r3,[r3]
- 817 00bc 5A1C     	 add r2,r3,#1
- 818 00be 1D4B     	 ldr r3,.L40+40
- 819 00c0 1A60     	 str r2,[r3]
- 129:../main.c     **** 					  reset_at = t_10us_count + RESET_IN_10us_AFTER_ECHO_LOW_FAIL; // reset(); // check if echo lo
+ 815 00ae 1E4B     	 ldr r3,.L40+28
+ 816 00b0 1B78     	 ldrb r3,[r3]
+ 817 00b2 DBB2     	 uxtb r3,r3
+ 818 00b4 002B     	 cmp r3,#0
+ 819 00b6 1BD0     	 beq .L38
+ 129:../main.c     **** 					echo_not_low_count ++ ;
  820              	 .loc 6 129 0
- 821 00c2 1D4B     	 ldr r3,.L40+44
- 822 00c4 1B88     	 ldrh r3,[r3]
- 823 00c6 1A1C     	 mov r2,r3
- 824 00c8 114B     	 ldr r3,.L40+4
- 825 00ca 1B68     	 ldr r3,[r3]
- 826 00cc D218     	 add r2,r2,r3
- 827 00ce 1B4B     	 ldr r3,.L40+48
- 828 00d0 1A60     	 str r2,[r3]
- 130:../main.c     **** 				      reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
- 829              	 .loc 6 130 0
- 830 00d2 1A4B     	 ldr r3,.L40+48
- 831 00d4 1B68     	 ldr r3,[r3]
- 832 00d6 9AB2     	 uxth r2,r3
- 833 00d8 194B     	 ldr r3,.L40+52
- 834 00da 1B88     	 ldrh r3,[r3]
- 835 00dc 1949     	 ldr r1,.L40+56
- 836 00de 101C     	 mov r0,r2
- 837 00e0 1A1C     	 mov r2,r3
- 838 00e2 FFF7FEFF 	 bl saturation_to_MIN_MAX
- 839 00e6 031C     	 mov r3,r0
- 840 00e8 1A1C     	 mov r2,r3
- 841 00ea 144B     	 ldr r3,.L40+48
- 842 00ec 1A60     	 str r2,[r3]
- 843 00ee 0BE0     	 b .L28
- 844              	.L38:
- 131:../main.c     **** 				}
- 132:../main.c     **** 				else wait_echo = 1;
- 845              	 .loc 6 132 0
- 846 00f0 154B     	 ldr r3,.L40+60
- 847 00f2 0122     	 mov r2,#1
- 848 00f4 1A70     	 strb r2,[r3]
- 849 00f6 07E0     	 b .L28
- 850              	.L33:
- 133:../main.c     **** 			}
- 134:../main.c     **** 
- 135:../main.c     **** 		else if (t_10us_count > reset_at) reset();//no ech in expüecte time error start again // 25000us
- 851              	 .loc 6 135 0
- 852 00f8 054B     	 ldr r3,.L40+4
- 853 00fa 1A68     	 ldr r2,[r3]
- 854 00fc 0F4B     	 ldr r3,.L40+48
- 855 00fe 1B68     	 ldr r3,[r3]
- 856 0100 9A42     	 cmp r2,r3
- 857 0102 01D9     	 bls .L28
- 858              	 .loc 6 135 0 is_stmt 0 discriminator 1
- 859 0104 FFF7FEFF 	 bl reset
- 860              	.L28:
- 136:../main.c     **** 	}
- 137:../main.c     **** }
- 861              	 .loc 6 137 0 is_stmt 1
- 862 0108 BD46     	 mov sp,r7
- 863              	 
- 864 010a 80BD     	 pop {r7,pc}
- 865              	.L41:
- 866              	 .align 2
- 867              	.L40:
- 868 010c 00000000 	 .word reset_done
- 869 0110 00000000 	 .word t_10us_count
- 870 0114 00000000 	 .word echo_count_control
- 871 0118 00000000 	 .word echo_t_10us
- 872 011c 00000000 	 .word Now_Sensor
- 873 0120 00000000 	 .word BUS_IO_0
- 874 0124 00000000 	 .word ECHO_C
- 875 0128 00000000 	 .word echo_state
- 876 012c 00000000 	 .word ECHO_L
- 877 0130 00000000 	 .word ECHO_R
- 878 0134 00000000 	 .word echo_not_low_count
- 879 0138 00000000 	 .word RESET_IN_10us_AFTER_ECHO_LOW_FAIL
- 880 013c 00000000 	 .word reset_at
- 881 0140 00000000 	 .word MIN_RESET
- 882 0144 8C0A0000 	 .word 2700
- 883 0148 00000000 	 .word wait_echo
- 884              	 .cfi_endproc
- 885              	.LFE221:
- 887              	 .section .text.reset,"ax",%progbits
- 888              	 .align 2
- 889              	 .global reset
- 890              	 .code 16
- 891              	 .thumb_func
- 893              	reset:
- 894              	.LFB222:
- 138:../main.c     **** 
- 139:../main.c     **** void reset(){
- 895              	 .loc 6 139 0
- 896              	 .cfi_startproc
- 897 0000 80B5     	 push {r7,lr}
- 898              	.LCFI35:
- 899              	 .cfi_def_cfa_offset 8
- 900              	 .cfi_offset 7,-8
- 901              	 .cfi_offset 14,-4
- 902 0002 00AF     	 add r7,sp,#0
- 903              	.LCFI36:
- 904              	 .cfi_def_cfa_register 7
- 140:../main.c     **** 	reset_done = 0;
- 905              	 .loc 6 140 0
- 906 0004 174B     	 ldr r3,.L44
- 907 0006 0022     	 mov r2,#0
- 908 0008 1A70     	 strb r2,[r3]
- 141:../main.c     **** 
- 142:../main.c     **** 	// set values values back
- 143:../main.c     **** 	t_10us_count = 0;
- 909              	 .loc 6 143 0
- 910 000a 174B     	 ldr r3,.L44+4
- 911 000c 0022     	 mov r2,#0
- 912 000e 1A60     	 str r2,[r3]
- 144:../main.c     **** 	wait_echo = 0;
- 913              	 .loc 6 144 0
- 914 0010 164B     	 ldr r3,.L44+8
- 915 0012 0022     	 mov r2,#0
- 916 0014 1A70     	 strb r2,[r3]
- 145:../main.c     **** 	echo_count_control = 0;
- 917              	 .loc 6 145 0
- 918 0016 164B     	 ldr r3,.L44+12
- 919 0018 0022     	 mov r2,#0
- 920 001a 1A70     	 strb r2,[r3]
- 146:../main.c     **** 	echo_t_10us = 0;
- 921              	 .loc 6 146 0
- 922 001c 154B     	 ldr r3,.L44+16
- 923 001e 0022     	 mov r2,#0
- 924 0020 1A60     	 str r2,[r3]
- 147:../main.c     **** 	reset_at = MAX_RESET;
- 925              	 .loc 6 147 0
- 926 0022 154B     	 ldr r3,.L44+20
- 927 0024 154A     	 ldr r2,.L44+24
- 928 0026 1A60     	 str r2,[r3]
- 148:../main.c     **** 
- 149:../main.c     **** 	//switch to next sensor
- 150:../main.c     **** 	Now_Sensor = Now_Sensor << 1;
- 929              	 .loc 6 150 0
- 930 0028 154B     	 ldr r3,.L44+28
- 931 002a 1B78     	 ldrb r3,[r3]
- 932 002c DBB2     	 uxtb r3,r3
- 933 002e DB18     	 add r3,r3,r3
- 934 0030 DAB2     	 uxtb r2,r3
- 935 0032 134B     	 ldr r3,.L44+28
- 936 0034 1A70     	 strb r2,[r3]
- 151:../main.c     **** 	if(Now_Sensor > NUM_SENSORS){
- 937              	 .loc 6 151 0
- 938 0036 124B     	 ldr r3,.L44+28
- 939 0038 1B78     	 ldrb r3,[r3]
- 940 003a DBB2     	 uxtb r3,r3
- 941 003c 042B     	 cmp r3,#4
- 942 003e 06D9     	 bls .L43
- 152:../main.c     **** 		Now_Sensor = CENTER;
+ 821 00b8 1E4B     	 ldr r3,.L40+40
+ 822 00ba 1B68     	 ldr r3,[r3]
+ 823 00bc 5A1C     	 add r2,r3,#1
+ 824 00be 1D4B     	 ldr r3,.L40+40
+ 825 00c0 1A60     	 str r2,[r3]
+ 130:../main.c     **** 					  reset_at = t_10us_count + RESET_IN_10us_AFTER_ECHO_LOW_FAIL; // reset(); // check if echo lo
+ 826              	 .loc 6 130 0
+ 827 00c2 1D4B     	 ldr r3,.L40+44
+ 828 00c4 1B88     	 ldrh r3,[r3]
+ 829 00c6 1A1C     	 mov r2,r3
+ 830 00c8 114B     	 ldr r3,.L40+4
+ 831 00ca 1B68     	 ldr r3,[r3]
+ 832 00cc D218     	 add r2,r2,r3
+ 833 00ce 1B4B     	 ldr r3,.L40+48
+ 834 00d0 1A60     	 str r2,[r3]
+ 131:../main.c     **** 				      reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
+ 835              	 .loc 6 131 0
+ 836 00d2 1A4B     	 ldr r3,.L40+48
+ 837 00d4 1B68     	 ldr r3,[r3]
+ 838 00d6 9AB2     	 uxth r2,r3
+ 839 00d8 194B     	 ldr r3,.L40+52
+ 840 00da 1B88     	 ldrh r3,[r3]
+ 841 00dc 1949     	 ldr r1,.L40+56
+ 842 00de 101C     	 mov r0,r2
+ 843 00e0 1A1C     	 mov r2,r3
+ 844 00e2 FFF7FEFF 	 bl saturation_to_MIN_MAX
+ 845 00e6 031C     	 mov r3,r0
+ 846 00e8 1A1C     	 mov r2,r3
+ 847 00ea 144B     	 ldr r3,.L40+48
+ 848 00ec 1A60     	 str r2,[r3]
+ 849 00ee 0BE0     	 b .L28
+ 850              	.L38:
+ 132:../main.c     **** 				}
+ 133:../main.c     **** 				else wait_echo = 1;
+ 851              	 .loc 6 133 0
+ 852 00f0 154B     	 ldr r3,.L40+60
+ 853 00f2 0122     	 mov r2,#1
+ 854 00f4 1A70     	 strb r2,[r3]
+ 855 00f6 07E0     	 b .L28
+ 856              	.L33:
+ 134:../main.c     **** 			}
+ 135:../main.c     **** 
+ 136:../main.c     **** 		else if (t_10us_count > reset_at) reset();//no ech in expüecte time error start again // 25000us
+ 857              	 .loc 6 136 0
+ 858 00f8 054B     	 ldr r3,.L40+4
+ 859 00fa 1A68     	 ldr r2,[r3]
+ 860 00fc 0F4B     	 ldr r3,.L40+48
+ 861 00fe 1B68     	 ldr r3,[r3]
+ 862 0100 9A42     	 cmp r2,r3
+ 863 0102 01D9     	 bls .L28
+ 864              	 .loc 6 136 0 is_stmt 0 discriminator 1
+ 865 0104 FFF7FEFF 	 bl reset
+ 866              	.L28:
+ 137:../main.c     **** 	}
+ 138:../main.c     **** }
+ 867              	 .loc 6 138 0 is_stmt 1
+ 868 0108 BD46     	 mov sp,r7
+ 869              	 
+ 870 010a 80BD     	 pop {r7,pc}
+ 871              	.L41:
+ 872              	 .align 2
+ 873              	.L40:
+ 874 010c 00000000 	 .word reset_done
+ 875 0110 00000000 	 .word t_10us_count
+ 876 0114 00000000 	 .word echo_count_control
+ 877 0118 00000000 	 .word echo_t_10us
+ 878 011c 00000000 	 .word Now_Sensor
+ 879 0120 00000000 	 .word BUS_IO_0
+ 880 0124 00000000 	 .word ECHO_C
+ 881 0128 00000000 	 .word echo_state
+ 882 012c 00000000 	 .word ECHO_L
+ 883 0130 00000000 	 .word ECHO_R
+ 884 0134 00000000 	 .word echo_not_low_count
+ 885 0138 00000000 	 .word RESET_IN_10us_AFTER_ECHO_LOW_FAIL
+ 886 013c 00000000 	 .word reset_at
+ 887 0140 00000000 	 .word MIN_RESET
+ 888 0144 8C0A0000 	 .word 2700
+ 889 0148 00000000 	 .word wait_echo
+ 890              	 .cfi_endproc
+ 891              	.LFE221:
+ 893              	 .section .text.reset,"ax",%progbits
+ 894              	 .align 2
+ 895              	 .global reset
+ 896              	 .code 16
+ 897              	 .thumb_func
+ 899              	reset:
+ 900              	.LFB222:
+ 139:../main.c     **** 
+ 140:../main.c     **** void reset(){
+ 901              	 .loc 6 140 0
+ 902              	 .cfi_startproc
+ 903 0000 80B5     	 push {r7,lr}
+ 904              	.LCFI35:
+ 905              	 .cfi_def_cfa_offset 8
+ 906              	 .cfi_offset 7,-8
+ 907              	 .cfi_offset 14,-4
+ 908 0002 00AF     	 add r7,sp,#0
+ 909              	.LCFI36:
+ 910              	 .cfi_def_cfa_register 7
+ 141:../main.c     **** 	reset_done = 0;
+ 911              	 .loc 6 141 0
+ 912 0004 174B     	 ldr r3,.L44
+ 913 0006 0022     	 mov r2,#0
+ 914 0008 1A70     	 strb r2,[r3]
+ 142:../main.c     **** 
+ 143:../main.c     **** 	// set values values back
+ 144:../main.c     **** 	t_10us_count = 0;
+ 915              	 .loc 6 144 0
+ 916 000a 174B     	 ldr r3,.L44+4
+ 917 000c 0022     	 mov r2,#0
+ 918 000e 1A60     	 str r2,[r3]
+ 145:../main.c     **** 	wait_echo = 0;
+ 919              	 .loc 6 145 0
+ 920 0010 164B     	 ldr r3,.L44+8
+ 921 0012 0022     	 mov r2,#0
+ 922 0014 1A70     	 strb r2,[r3]
+ 146:../main.c     **** 	echo_count_control = 0;
+ 923              	 .loc 6 146 0
+ 924 0016 164B     	 ldr r3,.L44+12
+ 925 0018 0022     	 mov r2,#0
+ 926 001a 1A70     	 strb r2,[r3]
+ 147:../main.c     **** 	echo_t_10us = 0;
+ 927              	 .loc 6 147 0
+ 928 001c 154B     	 ldr r3,.L44+16
+ 929 001e 0022     	 mov r2,#0
+ 930 0020 1A60     	 str r2,[r3]
+ 148:../main.c     **** 	reset_at = MAX_RESET;
+ 931              	 .loc 6 148 0
+ 932 0022 154B     	 ldr r3,.L44+20
+ 933 0024 154A     	 ldr r2,.L44+24
+ 934 0026 1A60     	 str r2,[r3]
+ 149:../main.c     **** 
+ 150:../main.c     **** 	//switch to next sensor
+ 151:../main.c     **** 	Now_Sensor = Now_Sensor << 1;
+ 935              	 .loc 6 151 0
+ 936 0028 154B     	 ldr r3,.L44+28
+ 937 002a 1B78     	 ldrb r3,[r3]
+ 938 002c DBB2     	 uxtb r3,r3
+ 939 002e DB18     	 add r3,r3,r3
+ 940 0030 DAB2     	 uxtb r2,r3
+ 941 0032 134B     	 ldr r3,.L44+28
+ 942 0034 1A70     	 strb r2,[r3]
+ 152:../main.c     **** 	if(Now_Sensor > NUM_SENSORS){
  943              	 .loc 6 152 0
- 944 0040 0F4B     	 ldr r3,.L44+28
- 945 0042 0122     	 mov r2,#1
- 946 0044 1A70     	 strb r2,[r3]
- 153:../main.c     **** 		avg_distances();
- 947              	 .loc 6 153 0
- 948 0046 FFF7FEFF 	 bl avg_distances
- 154:../main.c     **** 		CAN_send_values(); //send results
- 949              	 .loc 6 154 0
- 950 004a FFF7FEFF 	 bl CAN_send_values
- 951              	.L43:
- 155:../main.c     **** 	}
- 156:../main.c     **** 	// sampelr rater counter
- 157:../main.c     **** 	restet_count++;
- 952              	 .loc 6 157 0
- 953 004e 0D4B     	 ldr r3,.L44+32
- 954 0050 1B68     	 ldr r3,[r3]
- 955 0052 5A1C     	 add r2,r3,#1
- 956 0054 0B4B     	 ldr r3,.L44+32
- 957 0056 1A60     	 str r2,[r3]
- 158:../main.c     **** 
- 159:../main.c     **** 	reset_done = 1;
- 958              	 .loc 6 159 0
- 959 0058 024B     	 ldr r3,.L44
- 960 005a 0122     	 mov r2,#1
- 961 005c 1A70     	 strb r2,[r3]
- 160:../main.c     **** }
- 962              	 .loc 6 160 0
- 963 005e BD46     	 mov sp,r7
- 964              	 
- 965 0060 80BD     	 pop {r7,pc}
- 966              	.L45:
- 967 0062 C046     	 .align 2
- 968              	.L44:
- 969 0064 00000000 	 .word reset_done
- 970 0068 00000000 	 .word t_10us_count
- 971 006c 00000000 	 .word wait_echo
- 972 0070 00000000 	 .word echo_count_control
- 973 0074 00000000 	 .word echo_t_10us
- 974 0078 00000000 	 .word reset_at
- 975 007c 8C0A0000 	 .word 2700
- 976 0080 00000000 	 .word Now_Sensor
- 977 0084 00000000 	 .word restet_count
- 978              	 .cfi_endproc
- 979              	.LFE222:
- 981              	 .global __aeabi_ui2d
- 982              	 .global __aeabi_dmul
- 983              	 .global __aeabi_d2uiz
- 984              	 .section .text.IRQ5_Handler,"ax",%progbits
- 985              	 .align 2
- 986              	 .global IRQ5_Handler
- 987              	 .code 16
- 988              	 .thumb_func
- 990              	IRQ5_Handler:
- 991              	.LFB223:
- 161:../main.c     **** 
- 162:../main.c     **** void ISR_ECHO_C(void){
- 992              	 .loc 6 162 0
- 993              	 .cfi_startproc
- 994 0000 98B5     	 push {r3,r4,r7,lr}
- 995              	.LCFI37:
- 996              	 .cfi_def_cfa_offset 16
- 997              	 .cfi_offset 3,-16
- 998              	 .cfi_offset 4,-12
- 999              	 .cfi_offset 7,-8
- 1000              	 .cfi_offset 14,-4
- 1001 0002 00AF     	 add r7,sp,#0
- 1002              	.LCFI38:
- 1003              	 .cfi_def_cfa_register 7
- 163:../main.c     **** 	if(Now_Sensor == CENTER){
- 1004              	 .loc 6 163 0
- 1005 0004 364B     	 ldr r3,.L51
- 1006 0006 1B78     	 ldrb r3,[r3]
- 1007 0008 DBB2     	 uxtb r3,r3
- 1008 000a 012B     	 cmp r3,#1
- 1009 000c 66D1     	 bne .L46
- 164:../main.c     **** 		echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_C);
+ 944 0036 124B     	 ldr r3,.L44+28
+ 945 0038 1B78     	 ldrb r3,[r3]
+ 946 003a DBB2     	 uxtb r3,r3
+ 947 003c 042B     	 cmp r3,#4
+ 948 003e 06D9     	 bls .L43
+ 153:../main.c     **** 		Now_Sensor = CENTER;
+ 949              	 .loc 6 153 0
+ 950 0040 0F4B     	 ldr r3,.L44+28
+ 951 0042 0122     	 mov r2,#1
+ 952 0044 1A70     	 strb r2,[r3]
+ 154:../main.c     **** 		avg_distances();
+ 953              	 .loc 6 154 0
+ 954 0046 FFF7FEFF 	 bl avg_distances
+ 155:../main.c     **** 		CAN_send_values(); //send results
+ 955              	 .loc 6 155 0
+ 956 004a FFF7FEFF 	 bl CAN_send_values
+ 957              	.L43:
+ 156:../main.c     **** 	}
+ 157:../main.c     **** 	// sampelr rater counter
+ 158:../main.c     **** 	restet_count++;
+ 958              	 .loc 6 158 0
+ 959 004e 0D4B     	 ldr r3,.L44+32
+ 960 0050 1B68     	 ldr r3,[r3]
+ 961 0052 5A1C     	 add r2,r3,#1
+ 962 0054 0B4B     	 ldr r3,.L44+32
+ 963 0056 1A60     	 str r2,[r3]
+ 159:../main.c     **** 
+ 160:../main.c     **** 	reset_done = 1;
+ 964              	 .loc 6 160 0
+ 965 0058 024B     	 ldr r3,.L44
+ 966 005a 0122     	 mov r2,#1
+ 967 005c 1A70     	 strb r2,[r3]
+ 161:../main.c     **** }
+ 968              	 .loc 6 161 0
+ 969 005e BD46     	 mov sp,r7
+ 970              	 
+ 971 0060 80BD     	 pop {r7,pc}
+ 972              	.L45:
+ 973 0062 C046     	 .align 2
+ 974              	.L44:
+ 975 0064 00000000 	 .word reset_done
+ 976 0068 00000000 	 .word t_10us_count
+ 977 006c 00000000 	 .word wait_echo
+ 978 0070 00000000 	 .word echo_count_control
+ 979 0074 00000000 	 .word echo_t_10us
+ 980 0078 00000000 	 .word reset_at
+ 981 007c 8C0A0000 	 .word 2700
+ 982 0080 00000000 	 .word Now_Sensor
+ 983 0084 00000000 	 .word restet_count
+ 984              	 .cfi_endproc
+ 985              	.LFE222:
+ 987              	 .global __aeabi_ui2d
+ 988              	 .global __aeabi_dmul
+ 989              	 .global __aeabi_d2uiz
+ 990              	 .section .text.IRQ5_Handler,"ax",%progbits
+ 991              	 .align 2
+ 992              	 .global IRQ5_Handler
+ 993              	 .code 16
+ 994              	 .thumb_func
+ 996              	IRQ5_Handler:
+ 997              	.LFB223:
+ 162:../main.c     **** 
+ 163:../main.c     **** void ISR_ECHO_C(void){
+ 998              	 .loc 6 163 0
+ 999              	 .cfi_startproc
+ 1000 0000 98B5     	 push {r3,r4,r7,lr}
+ 1001              	.LCFI37:
+ 1002              	 .cfi_def_cfa_offset 16
+ 1003              	 .cfi_offset 3,-16
+ 1004              	 .cfi_offset 4,-12
+ 1005              	 .cfi_offset 7,-8
+ 1006              	 .cfi_offset 14,-4
+ 1007 0002 00AF     	 add r7,sp,#0
+ 1008              	.LCFI38:
+ 1009              	 .cfi_def_cfa_register 7
+ 164:../main.c     **** 	if(Now_Sensor == CENTER){
  1010              	 .loc 6 164 0
- 1011 000e 354B     	 ldr r3,.L51+4
- 1012 0010 181C     	 mov r0,r3
- 1013 0012 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 1014 0016 031C     	 mov r3,r0
- 1015 0018 DAB2     	 uxtb r2,r3
- 1016 001a 334B     	 ldr r3,.L51+8
- 1017 001c 1A70     	 strb r2,[r3]
- 165:../main.c     **** 		if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
- 1018              	 .loc 6 165 0
- 1019 001e 334B     	 ldr r3,.L51+12
- 1020 0020 1B78     	 ldrb r3,[r3]
- 1021 0022 DBB2     	 uxtb r3,r3
- 1022 0024 012B     	 cmp r3,#1
- 1023 0026 08D1     	 bne .L48
- 1024              	 .loc 6 165 0 is_stmt 0 discriminator 1
- 1025 0028 2F4B     	 ldr r3,.L51+8
- 1026 002a 1B78     	 ldrb r3,[r3]
- 1027 002c DBB2     	 uxtb r3,r3
- 1028 002e 012B     	 cmp r3,#1
- 1029 0030 03D1     	 bne .L48
- 1030              	 .loc 6 165 0 discriminator 2
- 1031 0032 2F4B     	 ldr r3,.L51+16
- 1032 0034 0122     	 mov r2,#1
- 1033 0036 1A70     	 strb r2,[r3]
- 1034 0038 50E0     	 b .L46
- 1035              	.L48:
- 166:../main.c     **** 		else if(echo_state == 0 && echo_count_control == 1){
- 1036              	 .loc 6 166 0 is_stmt 1
- 1037 003a 2B4B     	 ldr r3,.L51+8
- 1038 003c 1B78     	 ldrb r3,[r3]
- 1039 003e DBB2     	 uxtb r3,r3
- 1040 0040 002B     	 cmp r3,#0
- 1041 0042 4BD1     	 bne .L46
- 1042              	 .loc 6 166 0 is_stmt 0 discriminator 1
- 1043 0044 2A4B     	 ldr r3,.L51+16
- 1044 0046 1B78     	 ldrb r3,[r3]
- 1045 0048 DBB2     	 uxtb r3,r3
- 1046 004a 012B     	 cmp r3,#1
- 1047 004c 46D1     	 bne .L46
- 167:../main.c     **** 			echo_time = echo_t_10us;
- 1048              	 .loc 6 167 0 is_stmt 1
- 1049 004e 294B     	 ldr r3,.L51+20
- 1050 0050 1A68     	 ldr r2,[r3]
- 1051 0052 294B     	 ldr r3,.L51+24
- 1052 0054 1A60     	 str r2,[r3]
- 168:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
- 1053              	 .loc 6 168 0
- 1054 0056 284B     	 ldr r3,.L51+24
- 1055 0058 1B68     	 ldr r3,[r3]
- 1056 005a 1A1C     	 mov r2,r3
- 1057 005c 274B     	 ldr r3,.L51+28
- 1058 005e 101C     	 mov r0,r2
- 1059 0060 191C     	 mov r1,r3
- 1060 0062 0A22     	 mov r2,#10
- 1061 0064 FFF7FEFF 	 bl within_MAX_MIN_check_int
- 1062 0068 031E     	 sub r3,r0,#0
- 1063 006a 1CD0     	 beq .L49
- 169:../main.c     **** 				distance_C = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
- 1064              	 .loc 6 169 0
- 1065 006c 224B     	 ldr r3,.L51+24
- 1066 006e 1B68     	 ldr r3,[r3]
- 1067 0070 181C     	 mov r0,r3
- 1068 0072 FFF7FEFF 	 bl __aeabi_ui2d
- 1069 0076 031C     	 mov r3,r0
- 1070 0078 0C1C     	 mov r4,r1
- 1071 007a 181C     	 mov r0,r3
- 1072 007c 211C     	 mov r1,r4
- 1073 007e 204A     	 ldr r2,.L51+32
- 1074 0080 204B     	 ldr r3,.L51+36
- 1075 0082 FFF7FEFF 	 bl __aeabi_dmul
- 1076 0086 031C     	 mov r3,r0
- 1077 0088 0C1C     	 mov r4,r1
- 1078 008a 181C     	 mov r0,r3
- 1079 008c 211C     	 mov r1,r4
- 1080 008e FFF7FEFF 	 bl __aeabi_d2uiz
- 1081 0092 031C     	 mov r3,r0
- 1082 0094 9AB2     	 uxth r2,r3
- 1083 0096 1C4B     	 ldr r3,.L51+40
- 1084 0098 1A80     	 strh r2,[r3]
- 170:../main.c     **** 				sample_count++; // sampelr rater counter
- 1085              	 .loc 6 170 0
- 1086 009a 1C4B     	 ldr r3,.L51+44
- 1087 009c 1B68     	 ldr r3,[r3]
- 1088 009e 5A1C     	 add r2,r3,#1
- 1089 00a0 1A4B     	 ldr r3,.L51+44
- 1090 00a2 1A60     	 str r2,[r3]
- 1091 00a4 04E0     	 b .L50
- 1092              	.L49:
- 171:../main.c     **** 			}
- 172:../main.c     **** 			else limit_fail_count ++;
- 1093              	 .loc 6 172 0
- 1094 00a6 1A4B     	 ldr r3,.L51+48
- 1095 00a8 1B68     	 ldr r3,[r3]
- 1096 00aa 5A1C     	 add r2,r3,#1
- 1097 00ac 184B     	 ldr r3,.L51+48
- 1098 00ae 1A60     	 str r2,[r3]
- 1099              	.L50:
- 173:../main.c     **** 			 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
- 1100              	 .loc 6 173 0
- 1101 00b0 184B     	 ldr r3,.L51+52
- 1102 00b2 1B88     	 ldrh r3,[r3]
- 1103 00b4 1A1C     	 mov r2,r3
- 1104 00b6 184B     	 ldr r3,.L51+56
- 1105 00b8 1B68     	 ldr r3,[r3]
- 1106 00ba D218     	 add r2,r2,r3
- 1107 00bc 174B     	 ldr r3,.L51+60
- 1108 00be 1A60     	 str r2,[r3]
- 174:../main.c     **** 			 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
- 1109              	 .loc 6 174 0
- 1110 00c0 164B     	 ldr r3,.L51+60
- 1111 00c2 1B68     	 ldr r3,[r3]
- 1112 00c4 9AB2     	 uxth r2,r3
- 1113 00c6 164B     	 ldr r3,.L51+64
- 1114 00c8 1B88     	 ldrh r3,[r3]
- 1115 00ca 1649     	 ldr r1,.L51+68
- 1116 00cc 101C     	 mov r0,r2
- 1117 00ce 1A1C     	 mov r2,r3
- 1118 00d0 FFF7FEFF 	 bl saturation_to_MIN_MAX
- 1119 00d4 031C     	 mov r3,r0
- 1120 00d6 1A1C     	 mov r2,r3
- 1121 00d8 104B     	 ldr r3,.L51+60
- 1122 00da 1A60     	 str r2,[r3]
- 1123              	.L46:
- 175:../main.c     **** 		}
- 176:../main.c     **** 	}
- 177:../main.c     **** }
- 1124              	 .loc 6 177 0
- 1125 00dc BD46     	 mov sp,r7
- 1126              	 
- 1127 00de 98BD     	 pop {r3,r4,r7,pc}
- 1128              	.L52:
- 1129              	 .align 2
- 1130              	.L51:
- 1131 00e0 00000000 	 .word Now_Sensor
- 1132 00e4 00000000 	 .word ECHO_C
- 1133 00e8 00000000 	 .word echo_state
- 1134 00ec 00000000 	 .word wait_echo
- 1135 00f0 00000000 	 .word echo_count_control
- 1136 00f4 00000000 	 .word echo_t_10us
- 1137 00f8 00000000 	 .word echo_time
- 1138 00fc 280A0000 	 .word 2600
- 1139 0100 C3F5285C 	 .word 1546188227
- 1140 0104 8FC2C53F 	 .word 1069925007
- 1141 0108 00000000 	 .word distance_C
- 1142 010c 00000000 	 .word sample_count
- 1143 0110 00000000 	 .word limit_fail_count
- 1144 0114 00000000 	 .word RESET_IN_10us_AFTER_SUCSSES
- 1145 0118 00000000 	 .word t_10us_count
- 1146 011c 00000000 	 .word reset_at
- 1147 0120 00000000 	 .word MIN_RESET
- 1148 0124 8C0A0000 	 .word 2700
- 1149              	 .cfi_endproc
- 1150              	.LFE223:
- 1152              	 .section .text.IRQ3_Handler,"ax",%progbits
- 1153              	 .align 2
- 1154              	 .global IRQ3_Handler
- 1155              	 .code 16
- 1156              	 .thumb_func
- 1158              	IRQ3_Handler:
- 1159              	.LFB224:
- 178:../main.c     **** 
- 179:../main.c     **** void ISR_ECHO_L(void){
- 1160              	 .loc 6 179 0
- 1161              	 .cfi_startproc
- 1162 0000 98B5     	 push {r3,r4,r7,lr}
- 1163              	.LCFI39:
- 1164              	 .cfi_def_cfa_offset 16
- 1165              	 .cfi_offset 3,-16
- 1166              	 .cfi_offset 4,-12
- 1167              	 .cfi_offset 7,-8
- 1168              	 .cfi_offset 14,-4
- 1169 0002 00AF     	 add r7,sp,#0
- 1170              	.LCFI40:
- 1171              	 .cfi_def_cfa_register 7
- 180:../main.c     **** 	if(Now_Sensor == LEFT){
- 1172              	 .loc 6 180 0
- 1173 0004 364B     	 ldr r3,.L58
- 1174 0006 1B78     	 ldrb r3,[r3]
- 1175 0008 DBB2     	 uxtb r3,r3
- 1176 000a 022B     	 cmp r3,#2
- 1177 000c 66D1     	 bne .L53
- 181:../main.c     **** 		echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_L);
+ 1011 0004 364B     	 ldr r3,.L51
+ 1012 0006 1B78     	 ldrb r3,[r3]
+ 1013 0008 DBB2     	 uxtb r3,r3
+ 1014 000a 012B     	 cmp r3,#1
+ 1015 000c 66D1     	 bne .L46
+ 165:../main.c     **** 		echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_C);
+ 1016              	 .loc 6 165 0
+ 1017 000e 354B     	 ldr r3,.L51+4
+ 1018 0010 181C     	 mov r0,r3
+ 1019 0012 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 1020 0016 031C     	 mov r3,r0
+ 1021 0018 DAB2     	 uxtb r2,r3
+ 1022 001a 334B     	 ldr r3,.L51+8
+ 1023 001c 1A70     	 strb r2,[r3]
+ 166:../main.c     **** 		if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
+ 1024              	 .loc 6 166 0
+ 1025 001e 334B     	 ldr r3,.L51+12
+ 1026 0020 1B78     	 ldrb r3,[r3]
+ 1027 0022 DBB2     	 uxtb r3,r3
+ 1028 0024 012B     	 cmp r3,#1
+ 1029 0026 08D1     	 bne .L48
+ 1030              	 .loc 6 166 0 is_stmt 0 discriminator 1
+ 1031 0028 2F4B     	 ldr r3,.L51+8
+ 1032 002a 1B78     	 ldrb r3,[r3]
+ 1033 002c DBB2     	 uxtb r3,r3
+ 1034 002e 012B     	 cmp r3,#1
+ 1035 0030 03D1     	 bne .L48
+ 1036              	 .loc 6 166 0 discriminator 2
+ 1037 0032 2F4B     	 ldr r3,.L51+16
+ 1038 0034 0122     	 mov r2,#1
+ 1039 0036 1A70     	 strb r2,[r3]
+ 1040 0038 50E0     	 b .L46
+ 1041              	.L48:
+ 167:../main.c     **** 		else if(echo_state == 0 && echo_count_control == 1){
+ 1042              	 .loc 6 167 0 is_stmt 1
+ 1043 003a 2B4B     	 ldr r3,.L51+8
+ 1044 003c 1B78     	 ldrb r3,[r3]
+ 1045 003e DBB2     	 uxtb r3,r3
+ 1046 0040 002B     	 cmp r3,#0
+ 1047 0042 4BD1     	 bne .L46
+ 1048              	 .loc 6 167 0 is_stmt 0 discriminator 1
+ 1049 0044 2A4B     	 ldr r3,.L51+16
+ 1050 0046 1B78     	 ldrb r3,[r3]
+ 1051 0048 DBB2     	 uxtb r3,r3
+ 1052 004a 012B     	 cmp r3,#1
+ 1053 004c 46D1     	 bne .L46
+ 168:../main.c     **** 			echo_time = echo_t_10us;
+ 1054              	 .loc 6 168 0 is_stmt 1
+ 1055 004e 294B     	 ldr r3,.L51+20
+ 1056 0050 1A68     	 ldr r2,[r3]
+ 1057 0052 294B     	 ldr r3,.L51+24
+ 1058 0054 1A60     	 str r2,[r3]
+ 169:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
+ 1059              	 .loc 6 169 0
+ 1060 0056 284B     	 ldr r3,.L51+24
+ 1061 0058 1B68     	 ldr r3,[r3]
+ 1062 005a 1A1C     	 mov r2,r3
+ 1063 005c 274B     	 ldr r3,.L51+28
+ 1064 005e 101C     	 mov r0,r2
+ 1065 0060 191C     	 mov r1,r3
+ 1066 0062 0A22     	 mov r2,#10
+ 1067 0064 FFF7FEFF 	 bl within_MAX_MIN_check_int
+ 1068 0068 031E     	 sub r3,r0,#0
+ 1069 006a 1CD0     	 beq .L49
+ 170:../main.c     **** 				distance_C = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
+ 1070              	 .loc 6 170 0
+ 1071 006c 224B     	 ldr r3,.L51+24
+ 1072 006e 1B68     	 ldr r3,[r3]
+ 1073 0070 181C     	 mov r0,r3
+ 1074 0072 FFF7FEFF 	 bl __aeabi_ui2d
+ 1075 0076 031C     	 mov r3,r0
+ 1076 0078 0C1C     	 mov r4,r1
+ 1077 007a 181C     	 mov r0,r3
+ 1078 007c 211C     	 mov r1,r4
+ 1079 007e 204A     	 ldr r2,.L51+32
+ 1080 0080 204B     	 ldr r3,.L51+36
+ 1081 0082 FFF7FEFF 	 bl __aeabi_dmul
+ 1082 0086 031C     	 mov r3,r0
+ 1083 0088 0C1C     	 mov r4,r1
+ 1084 008a 181C     	 mov r0,r3
+ 1085 008c 211C     	 mov r1,r4
+ 1086 008e FFF7FEFF 	 bl __aeabi_d2uiz
+ 1087 0092 031C     	 mov r3,r0
+ 1088 0094 9AB2     	 uxth r2,r3
+ 1089 0096 1C4B     	 ldr r3,.L51+40
+ 1090 0098 1A80     	 strh r2,[r3]
+ 171:../main.c     **** 				sample_count++; // sampelr rater counter
+ 1091              	 .loc 6 171 0
+ 1092 009a 1C4B     	 ldr r3,.L51+44
+ 1093 009c 1B68     	 ldr r3,[r3]
+ 1094 009e 5A1C     	 add r2,r3,#1
+ 1095 00a0 1A4B     	 ldr r3,.L51+44
+ 1096 00a2 1A60     	 str r2,[r3]
+ 1097 00a4 04E0     	 b .L50
+ 1098              	.L49:
+ 172:../main.c     **** 			}
+ 173:../main.c     **** 			else limit_fail_count ++;
+ 1099              	 .loc 6 173 0
+ 1100 00a6 1A4B     	 ldr r3,.L51+48
+ 1101 00a8 1B68     	 ldr r3,[r3]
+ 1102 00aa 5A1C     	 add r2,r3,#1
+ 1103 00ac 184B     	 ldr r3,.L51+48
+ 1104 00ae 1A60     	 str r2,[r3]
+ 1105              	.L50:
+ 174:../main.c     **** 			 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
+ 1106              	 .loc 6 174 0
+ 1107 00b0 184B     	 ldr r3,.L51+52
+ 1108 00b2 1B88     	 ldrh r3,[r3]
+ 1109 00b4 1A1C     	 mov r2,r3
+ 1110 00b6 184B     	 ldr r3,.L51+56
+ 1111 00b8 1B68     	 ldr r3,[r3]
+ 1112 00ba D218     	 add r2,r2,r3
+ 1113 00bc 174B     	 ldr r3,.L51+60
+ 1114 00be 1A60     	 str r2,[r3]
+ 175:../main.c     **** 			 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
+ 1115              	 .loc 6 175 0
+ 1116 00c0 164B     	 ldr r3,.L51+60
+ 1117 00c2 1B68     	 ldr r3,[r3]
+ 1118 00c4 9AB2     	 uxth r2,r3
+ 1119 00c6 164B     	 ldr r3,.L51+64
+ 1120 00c8 1B88     	 ldrh r3,[r3]
+ 1121 00ca 1649     	 ldr r1,.L51+68
+ 1122 00cc 101C     	 mov r0,r2
+ 1123 00ce 1A1C     	 mov r2,r3
+ 1124 00d0 FFF7FEFF 	 bl saturation_to_MIN_MAX
+ 1125 00d4 031C     	 mov r3,r0
+ 1126 00d6 1A1C     	 mov r2,r3
+ 1127 00d8 104B     	 ldr r3,.L51+60
+ 1128 00da 1A60     	 str r2,[r3]
+ 1129              	.L46:
+ 176:../main.c     **** 		}
+ 177:../main.c     **** 	}
+ 178:../main.c     **** }
+ 1130              	 .loc 6 178 0
+ 1131 00dc BD46     	 mov sp,r7
+ 1132              	 
+ 1133 00de 98BD     	 pop {r3,r4,r7,pc}
+ 1134              	.L52:
+ 1135              	 .align 2
+ 1136              	.L51:
+ 1137 00e0 00000000 	 .word Now_Sensor
+ 1138 00e4 00000000 	 .word ECHO_C
+ 1139 00e8 00000000 	 .word echo_state
+ 1140 00ec 00000000 	 .word wait_echo
+ 1141 00f0 00000000 	 .word echo_count_control
+ 1142 00f4 00000000 	 .word echo_t_10us
+ 1143 00f8 00000000 	 .word echo_time
+ 1144 00fc 280A0000 	 .word 2600
+ 1145 0100 C3F5285C 	 .word 1546188227
+ 1146 0104 8FC2C53F 	 .word 1069925007
+ 1147 0108 00000000 	 .word distance_C
+ 1148 010c 00000000 	 .word sample_count
+ 1149 0110 00000000 	 .word limit_fail_count
+ 1150 0114 00000000 	 .word RESET_IN_10us_AFTER_SUCSSES
+ 1151 0118 00000000 	 .word t_10us_count
+ 1152 011c 00000000 	 .word reset_at
+ 1153 0120 00000000 	 .word MIN_RESET
+ 1154 0124 8C0A0000 	 .word 2700
+ 1155              	 .cfi_endproc
+ 1156              	.LFE223:
+ 1158              	 .section .text.IRQ3_Handler,"ax",%progbits
+ 1159              	 .align 2
+ 1160              	 .global IRQ3_Handler
+ 1161              	 .code 16
+ 1162              	 .thumb_func
+ 1164              	IRQ3_Handler:
+ 1165              	.LFB224:
+ 179:../main.c     **** 
+ 180:../main.c     **** void ISR_ECHO_L(void){
+ 1166              	 .loc 6 180 0
+ 1167              	 .cfi_startproc
+ 1168 0000 98B5     	 push {r3,r4,r7,lr}
+ 1169              	.LCFI39:
+ 1170              	 .cfi_def_cfa_offset 16
+ 1171              	 .cfi_offset 3,-16
+ 1172              	 .cfi_offset 4,-12
+ 1173              	 .cfi_offset 7,-8
+ 1174              	 .cfi_offset 14,-4
+ 1175 0002 00AF     	 add r7,sp,#0
+ 1176              	.LCFI40:
+ 1177              	 .cfi_def_cfa_register 7
+ 181:../main.c     **** 	if(Now_Sensor == LEFT){
  1178              	 .loc 6 181 0
- 1179 000e 354B     	 ldr r3,.L58+4
- 1180 0010 181C     	 mov r0,r3
- 1181 0012 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 1182 0016 031C     	 mov r3,r0
- 1183 0018 DAB2     	 uxtb r2,r3
- 1184 001a 334B     	 ldr r3,.L58+8
- 1185 001c 1A70     	 strb r2,[r3]
- 182:../main.c     **** 		if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
- 1186              	 .loc 6 182 0
- 1187 001e 334B     	 ldr r3,.L58+12
- 1188 0020 1B78     	 ldrb r3,[r3]
- 1189 0022 DBB2     	 uxtb r3,r3
- 1190 0024 012B     	 cmp r3,#1
- 1191 0026 08D1     	 bne .L55
- 1192              	 .loc 6 182 0 is_stmt 0 discriminator 1
- 1193 0028 2F4B     	 ldr r3,.L58+8
- 1194 002a 1B78     	 ldrb r3,[r3]
- 1195 002c DBB2     	 uxtb r3,r3
- 1196 002e 012B     	 cmp r3,#1
- 1197 0030 03D1     	 bne .L55
- 1198              	 .loc 6 182 0 discriminator 2
- 1199 0032 2F4B     	 ldr r3,.L58+16
- 1200 0034 0122     	 mov r2,#1
- 1201 0036 1A70     	 strb r2,[r3]
- 1202 0038 50E0     	 b .L53
- 1203              	.L55:
- 183:../main.c     **** 		else if(echo_state == 0 && echo_count_control == 1){
- 1204              	 .loc 6 183 0 is_stmt 1
- 1205 003a 2B4B     	 ldr r3,.L58+8
- 1206 003c 1B78     	 ldrb r3,[r3]
- 1207 003e DBB2     	 uxtb r3,r3
- 1208 0040 002B     	 cmp r3,#0
- 1209 0042 4BD1     	 bne .L53
- 1210              	 .loc 6 183 0 is_stmt 0 discriminator 1
- 1211 0044 2A4B     	 ldr r3,.L58+16
- 1212 0046 1B78     	 ldrb r3,[r3]
- 1213 0048 DBB2     	 uxtb r3,r3
- 1214 004a 012B     	 cmp r3,#1
- 1215 004c 46D1     	 bne .L53
- 184:../main.c     **** 			echo_time = echo_t_10us;
- 1216              	 .loc 6 184 0 is_stmt 1
- 1217 004e 294B     	 ldr r3,.L58+20
- 1218 0050 1A68     	 ldr r2,[r3]
- 1219 0052 294B     	 ldr r3,.L58+24
- 1220 0054 1A60     	 str r2,[r3]
- 185:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
- 1221              	 .loc 6 185 0
- 1222 0056 284B     	 ldr r3,.L58+24
- 1223 0058 1B68     	 ldr r3,[r3]
- 1224 005a 1A1C     	 mov r2,r3
- 1225 005c 274B     	 ldr r3,.L58+28
- 1226 005e 101C     	 mov r0,r2
- 1227 0060 191C     	 mov r1,r3
- 1228 0062 0A22     	 mov r2,#10
- 1229 0064 FFF7FEFF 	 bl within_MAX_MIN_check_int
- 1230 0068 031E     	 sub r3,r0,#0
- 1231 006a 1CD0     	 beq .L56
- 186:../main.c     **** 				distance_L = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
- 1232              	 .loc 6 186 0
- 1233 006c 224B     	 ldr r3,.L58+24
- 1234 006e 1B68     	 ldr r3,[r3]
- 1235 0070 181C     	 mov r0,r3
- 1236 0072 FFF7FEFF 	 bl __aeabi_ui2d
- 1237 0076 031C     	 mov r3,r0
- 1238 0078 0C1C     	 mov r4,r1
- 1239 007a 181C     	 mov r0,r3
- 1240 007c 211C     	 mov r1,r4
- 1241 007e 204A     	 ldr r2,.L58+32
- 1242 0080 204B     	 ldr r3,.L58+36
- 1243 0082 FFF7FEFF 	 bl __aeabi_dmul
- 1244 0086 031C     	 mov r3,r0
- 1245 0088 0C1C     	 mov r4,r1
- 1246 008a 181C     	 mov r0,r3
- 1247 008c 211C     	 mov r1,r4
- 1248 008e FFF7FEFF 	 bl __aeabi_d2uiz
- 1249 0092 031C     	 mov r3,r0
- 1250 0094 9AB2     	 uxth r2,r3
- 1251 0096 1C4B     	 ldr r3,.L58+40
- 1252 0098 1A80     	 strh r2,[r3]
- 187:../main.c     **** 				sample_count++; // sampelr rater counter
- 1253              	 .loc 6 187 0
- 1254 009a 1C4B     	 ldr r3,.L58+44
- 1255 009c 1B68     	 ldr r3,[r3]
- 1256 009e 5A1C     	 add r2,r3,#1
- 1257 00a0 1A4B     	 ldr r3,.L58+44
- 1258 00a2 1A60     	 str r2,[r3]
- 1259 00a4 04E0     	 b .L57
- 1260              	.L56:
- 188:../main.c     **** 			}
- 189:../main.c     **** 			else limit_fail_count ++;
- 1261              	 .loc 6 189 0
- 1262 00a6 1A4B     	 ldr r3,.L58+48
- 1263 00a8 1B68     	 ldr r3,[r3]
- 1264 00aa 5A1C     	 add r2,r3,#1
- 1265 00ac 184B     	 ldr r3,.L58+48
- 1266 00ae 1A60     	 str r2,[r3]
- 1267              	.L57:
- 190:../main.c     **** 			 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
- 1268              	 .loc 6 190 0
- 1269 00b0 184B     	 ldr r3,.L58+52
- 1270 00b2 1B88     	 ldrh r3,[r3]
- 1271 00b4 1A1C     	 mov r2,r3
- 1272 00b6 184B     	 ldr r3,.L58+56
- 1273 00b8 1B68     	 ldr r3,[r3]
- 1274 00ba D218     	 add r2,r2,r3
- 1275 00bc 174B     	 ldr r3,.L58+60
- 1276 00be 1A60     	 str r2,[r3]
- 191:../main.c     **** 			 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
- 1277              	 .loc 6 191 0
- 1278 00c0 164B     	 ldr r3,.L58+60
- 1279 00c2 1B68     	 ldr r3,[r3]
- 1280 00c4 9AB2     	 uxth r2,r3
- 1281 00c6 164B     	 ldr r3,.L58+64
- 1282 00c8 1B88     	 ldrh r3,[r3]
- 1283 00ca 1649     	 ldr r1,.L58+68
- 1284 00cc 101C     	 mov r0,r2
- 1285 00ce 1A1C     	 mov r2,r3
- 1286 00d0 FFF7FEFF 	 bl saturation_to_MIN_MAX
- 1287 00d4 031C     	 mov r3,r0
- 1288 00d6 1A1C     	 mov r2,r3
- 1289 00d8 104B     	 ldr r3,.L58+60
- 1290 00da 1A60     	 str r2,[r3]
- 1291              	.L53:
- 192:../main.c     **** 		}
- 193:../main.c     **** 	}
- 194:../main.c     **** }
- 1292              	 .loc 6 194 0
- 1293 00dc BD46     	 mov sp,r7
- 1294              	 
- 1295 00de 98BD     	 pop {r3,r4,r7,pc}
- 1296              	.L59:
- 1297              	 .align 2
- 1298              	.L58:
- 1299 00e0 00000000 	 .word Now_Sensor
- 1300 00e4 00000000 	 .word ECHO_L
- 1301 00e8 00000000 	 .word echo_state
- 1302 00ec 00000000 	 .word wait_echo
- 1303 00f0 00000000 	 .word echo_count_control
- 1304 00f4 00000000 	 .word echo_t_10us
- 1305 00f8 00000000 	 .word echo_time
- 1306 00fc 280A0000 	 .word 2600
- 1307 0100 C3F5285C 	 .word 1546188227
- 1308 0104 8FC2C53F 	 .word 1069925007
- 1309 0108 00000000 	 .word distance_L
- 1310 010c 00000000 	 .word sample_count
- 1311 0110 00000000 	 .word limit_fail_count
- 1312 0114 00000000 	 .word RESET_IN_10us_AFTER_SUCSSES
- 1313 0118 00000000 	 .word t_10us_count
- 1314 011c 00000000 	 .word reset_at
- 1315 0120 00000000 	 .word MIN_RESET
- 1316 0124 8C0A0000 	 .word 2700
- 1317              	 .cfi_endproc
- 1318              	.LFE224:
- 1320              	 .section .text.IRQ6_Handler,"ax",%progbits
- 1321              	 .align 2
- 1322              	 .global IRQ6_Handler
- 1323              	 .code 16
- 1324              	 .thumb_func
- 1326              	IRQ6_Handler:
- 1327              	.LFB225:
- 195:../main.c     **** 
- 196:../main.c     **** void ISR_ECHO_R(void){
- 1328              	 .loc 6 196 0
- 1329              	 .cfi_startproc
- 1330 0000 98B5     	 push {r3,r4,r7,lr}
- 1331              	.LCFI41:
- 1332              	 .cfi_def_cfa_offset 16
- 1333              	 .cfi_offset 3,-16
- 1334              	 .cfi_offset 4,-12
- 1335              	 .cfi_offset 7,-8
- 1336              	 .cfi_offset 14,-4
- 1337 0002 00AF     	 add r7,sp,#0
- 1338              	.LCFI42:
- 1339              	 .cfi_def_cfa_register 7
- 197:../main.c     **** 	if(Now_Sensor == RIGHT){
- 1340              	 .loc 6 197 0
- 1341 0004 364B     	 ldr r3,.L65
- 1342 0006 1B78     	 ldrb r3,[r3]
- 1343 0008 DBB2     	 uxtb r3,r3
- 1344 000a 042B     	 cmp r3,#4
- 1345 000c 66D1     	 bne .L60
- 198:../main.c     **** 		echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_R);
+ 1179 0004 364B     	 ldr r3,.L58
+ 1180 0006 1B78     	 ldrb r3,[r3]
+ 1181 0008 DBB2     	 uxtb r3,r3
+ 1182 000a 022B     	 cmp r3,#2
+ 1183 000c 66D1     	 bne .L53
+ 182:../main.c     **** 		echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_L);
+ 1184              	 .loc 6 182 0
+ 1185 000e 354B     	 ldr r3,.L58+4
+ 1186 0010 181C     	 mov r0,r3
+ 1187 0012 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 1188 0016 031C     	 mov r3,r0
+ 1189 0018 DAB2     	 uxtb r2,r3
+ 1190 001a 334B     	 ldr r3,.L58+8
+ 1191 001c 1A70     	 strb r2,[r3]
+ 183:../main.c     **** 		if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
+ 1192              	 .loc 6 183 0
+ 1193 001e 334B     	 ldr r3,.L58+12
+ 1194 0020 1B78     	 ldrb r3,[r3]
+ 1195 0022 DBB2     	 uxtb r3,r3
+ 1196 0024 012B     	 cmp r3,#1
+ 1197 0026 08D1     	 bne .L55
+ 1198              	 .loc 6 183 0 is_stmt 0 discriminator 1
+ 1199 0028 2F4B     	 ldr r3,.L58+8
+ 1200 002a 1B78     	 ldrb r3,[r3]
+ 1201 002c DBB2     	 uxtb r3,r3
+ 1202 002e 012B     	 cmp r3,#1
+ 1203 0030 03D1     	 bne .L55
+ 1204              	 .loc 6 183 0 discriminator 2
+ 1205 0032 2F4B     	 ldr r3,.L58+16
+ 1206 0034 0122     	 mov r2,#1
+ 1207 0036 1A70     	 strb r2,[r3]
+ 1208 0038 50E0     	 b .L53
+ 1209              	.L55:
+ 184:../main.c     **** 		else if(echo_state == 0 && echo_count_control == 1){
+ 1210              	 .loc 6 184 0 is_stmt 1
+ 1211 003a 2B4B     	 ldr r3,.L58+8
+ 1212 003c 1B78     	 ldrb r3,[r3]
+ 1213 003e DBB2     	 uxtb r3,r3
+ 1214 0040 002B     	 cmp r3,#0
+ 1215 0042 4BD1     	 bne .L53
+ 1216              	 .loc 6 184 0 is_stmt 0 discriminator 1
+ 1217 0044 2A4B     	 ldr r3,.L58+16
+ 1218 0046 1B78     	 ldrb r3,[r3]
+ 1219 0048 DBB2     	 uxtb r3,r3
+ 1220 004a 012B     	 cmp r3,#1
+ 1221 004c 46D1     	 bne .L53
+ 185:../main.c     **** 			echo_time = echo_t_10us;
+ 1222              	 .loc 6 185 0 is_stmt 1
+ 1223 004e 294B     	 ldr r3,.L58+20
+ 1224 0050 1A68     	 ldr r2,[r3]
+ 1225 0052 294B     	 ldr r3,.L58+24
+ 1226 0054 1A60     	 str r2,[r3]
+ 186:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
+ 1227              	 .loc 6 186 0
+ 1228 0056 284B     	 ldr r3,.L58+24
+ 1229 0058 1B68     	 ldr r3,[r3]
+ 1230 005a 1A1C     	 mov r2,r3
+ 1231 005c 274B     	 ldr r3,.L58+28
+ 1232 005e 101C     	 mov r0,r2
+ 1233 0060 191C     	 mov r1,r3
+ 1234 0062 0A22     	 mov r2,#10
+ 1235 0064 FFF7FEFF 	 bl within_MAX_MIN_check_int
+ 1236 0068 031E     	 sub r3,r0,#0
+ 1237 006a 1CD0     	 beq .L56
+ 187:../main.c     **** 				distance_L = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
+ 1238              	 .loc 6 187 0
+ 1239 006c 224B     	 ldr r3,.L58+24
+ 1240 006e 1B68     	 ldr r3,[r3]
+ 1241 0070 181C     	 mov r0,r3
+ 1242 0072 FFF7FEFF 	 bl __aeabi_ui2d
+ 1243 0076 031C     	 mov r3,r0
+ 1244 0078 0C1C     	 mov r4,r1
+ 1245 007a 181C     	 mov r0,r3
+ 1246 007c 211C     	 mov r1,r4
+ 1247 007e 204A     	 ldr r2,.L58+32
+ 1248 0080 204B     	 ldr r3,.L58+36
+ 1249 0082 FFF7FEFF 	 bl __aeabi_dmul
+ 1250 0086 031C     	 mov r3,r0
+ 1251 0088 0C1C     	 mov r4,r1
+ 1252 008a 181C     	 mov r0,r3
+ 1253 008c 211C     	 mov r1,r4
+ 1254 008e FFF7FEFF 	 bl __aeabi_d2uiz
+ 1255 0092 031C     	 mov r3,r0
+ 1256 0094 9AB2     	 uxth r2,r3
+ 1257 0096 1C4B     	 ldr r3,.L58+40
+ 1258 0098 1A80     	 strh r2,[r3]
+ 188:../main.c     **** 				sample_count++; // sampelr rater counter
+ 1259              	 .loc 6 188 0
+ 1260 009a 1C4B     	 ldr r3,.L58+44
+ 1261 009c 1B68     	 ldr r3,[r3]
+ 1262 009e 5A1C     	 add r2,r3,#1
+ 1263 00a0 1A4B     	 ldr r3,.L58+44
+ 1264 00a2 1A60     	 str r2,[r3]
+ 1265 00a4 04E0     	 b .L57
+ 1266              	.L56:
+ 189:../main.c     **** 			}
+ 190:../main.c     **** 			else limit_fail_count ++;
+ 1267              	 .loc 6 190 0
+ 1268 00a6 1A4B     	 ldr r3,.L58+48
+ 1269 00a8 1B68     	 ldr r3,[r3]
+ 1270 00aa 5A1C     	 add r2,r3,#1
+ 1271 00ac 184B     	 ldr r3,.L58+48
+ 1272 00ae 1A60     	 str r2,[r3]
+ 1273              	.L57:
+ 191:../main.c     **** 			 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
+ 1274              	 .loc 6 191 0
+ 1275 00b0 184B     	 ldr r3,.L58+52
+ 1276 00b2 1B88     	 ldrh r3,[r3]
+ 1277 00b4 1A1C     	 mov r2,r3
+ 1278 00b6 184B     	 ldr r3,.L58+56
+ 1279 00b8 1B68     	 ldr r3,[r3]
+ 1280 00ba D218     	 add r2,r2,r3
+ 1281 00bc 174B     	 ldr r3,.L58+60
+ 1282 00be 1A60     	 str r2,[r3]
+ 192:../main.c     **** 			 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
+ 1283              	 .loc 6 192 0
+ 1284 00c0 164B     	 ldr r3,.L58+60
+ 1285 00c2 1B68     	 ldr r3,[r3]
+ 1286 00c4 9AB2     	 uxth r2,r3
+ 1287 00c6 164B     	 ldr r3,.L58+64
+ 1288 00c8 1B88     	 ldrh r3,[r3]
+ 1289 00ca 1649     	 ldr r1,.L58+68
+ 1290 00cc 101C     	 mov r0,r2
+ 1291 00ce 1A1C     	 mov r2,r3
+ 1292 00d0 FFF7FEFF 	 bl saturation_to_MIN_MAX
+ 1293 00d4 031C     	 mov r3,r0
+ 1294 00d6 1A1C     	 mov r2,r3
+ 1295 00d8 104B     	 ldr r3,.L58+60
+ 1296 00da 1A60     	 str r2,[r3]
+ 1297              	.L53:
+ 193:../main.c     **** 		}
+ 194:../main.c     **** 	}
+ 195:../main.c     **** }
+ 1298              	 .loc 6 195 0
+ 1299 00dc BD46     	 mov sp,r7
+ 1300              	 
+ 1301 00de 98BD     	 pop {r3,r4,r7,pc}
+ 1302              	.L59:
+ 1303              	 .align 2
+ 1304              	.L58:
+ 1305 00e0 00000000 	 .word Now_Sensor
+ 1306 00e4 00000000 	 .word ECHO_L
+ 1307 00e8 00000000 	 .word echo_state
+ 1308 00ec 00000000 	 .word wait_echo
+ 1309 00f0 00000000 	 .word echo_count_control
+ 1310 00f4 00000000 	 .word echo_t_10us
+ 1311 00f8 00000000 	 .word echo_time
+ 1312 00fc 280A0000 	 .word 2600
+ 1313 0100 C3F5285C 	 .word 1546188227
+ 1314 0104 8FC2C53F 	 .word 1069925007
+ 1315 0108 00000000 	 .word distance_L
+ 1316 010c 00000000 	 .word sample_count
+ 1317 0110 00000000 	 .word limit_fail_count
+ 1318 0114 00000000 	 .word RESET_IN_10us_AFTER_SUCSSES
+ 1319 0118 00000000 	 .word t_10us_count
+ 1320 011c 00000000 	 .word reset_at
+ 1321 0120 00000000 	 .word MIN_RESET
+ 1322 0124 8C0A0000 	 .word 2700
+ 1323              	 .cfi_endproc
+ 1324              	.LFE224:
+ 1326              	 .section .text.IRQ6_Handler,"ax",%progbits
+ 1327              	 .align 2
+ 1328              	 .global IRQ6_Handler
+ 1329              	 .code 16
+ 1330              	 .thumb_func
+ 1332              	IRQ6_Handler:
+ 1333              	.LFB225:
+ 196:../main.c     **** 
+ 197:../main.c     **** void ISR_ECHO_R(void){
+ 1334              	 .loc 6 197 0
+ 1335              	 .cfi_startproc
+ 1336 0000 98B5     	 push {r3,r4,r7,lr}
+ 1337              	.LCFI41:
+ 1338              	 .cfi_def_cfa_offset 16
+ 1339              	 .cfi_offset 3,-16
+ 1340              	 .cfi_offset 4,-12
+ 1341              	 .cfi_offset 7,-8
+ 1342              	 .cfi_offset 14,-4
+ 1343 0002 00AF     	 add r7,sp,#0
+ 1344              	.LCFI42:
+ 1345              	 .cfi_def_cfa_register 7
+ 198:../main.c     **** 	if(Now_Sensor == RIGHT){
  1346              	 .loc 6 198 0
- 1347 000e 354B     	 ldr r3,.L65+4
- 1348 0010 181C     	 mov r0,r3
- 1349 0012 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
- 1350 0016 031C     	 mov r3,r0
- 1351 0018 DAB2     	 uxtb r2,r3
- 1352 001a 334B     	 ldr r3,.L65+8
- 1353 001c 1A70     	 strb r2,[r3]
- 199:../main.c     **** 		if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
- 1354              	 .loc 6 199 0
- 1355 001e 334B     	 ldr r3,.L65+12
- 1356 0020 1B78     	 ldrb r3,[r3]
- 1357 0022 DBB2     	 uxtb r3,r3
- 1358 0024 012B     	 cmp r3,#1
- 1359 0026 08D1     	 bne .L62
- 1360              	 .loc 6 199 0 is_stmt 0 discriminator 1
- 1361 0028 2F4B     	 ldr r3,.L65+8
- 1362 002a 1B78     	 ldrb r3,[r3]
- 1363 002c DBB2     	 uxtb r3,r3
- 1364 002e 012B     	 cmp r3,#1
- 1365 0030 03D1     	 bne .L62
- 1366              	 .loc 6 199 0 discriminator 2
- 1367 0032 2F4B     	 ldr r3,.L65+16
- 1368 0034 0122     	 mov r2,#1
- 1369 0036 1A70     	 strb r2,[r3]
- 1370 0038 50E0     	 b .L60
- 1371              	.L62:
- 200:../main.c     **** 		else if(echo_state == 0 && echo_count_control == 1){
- 1372              	 .loc 6 200 0 is_stmt 1
- 1373 003a 2B4B     	 ldr r3,.L65+8
- 1374 003c 1B78     	 ldrb r3,[r3]
- 1375 003e DBB2     	 uxtb r3,r3
- 1376 0040 002B     	 cmp r3,#0
- 1377 0042 4BD1     	 bne .L60
- 1378              	 .loc 6 200 0 is_stmt 0 discriminator 1
- 1379 0044 2A4B     	 ldr r3,.L65+16
- 1380 0046 1B78     	 ldrb r3,[r3]
- 1381 0048 DBB2     	 uxtb r3,r3
- 1382 004a 012B     	 cmp r3,#1
- 1383 004c 46D1     	 bne .L60
- 201:../main.c     **** 			echo_time = echo_t_10us;
- 1384              	 .loc 6 201 0 is_stmt 1
- 1385 004e 294B     	 ldr r3,.L65+20
- 1386 0050 1A68     	 ldr r2,[r3]
- 1387 0052 294B     	 ldr r3,.L65+24
- 1388 0054 1A60     	 str r2,[r3]
- 202:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
- 1389              	 .loc 6 202 0
- 1390 0056 284B     	 ldr r3,.L65+24
- 1391 0058 1B68     	 ldr r3,[r3]
- 1392 005a 1A1C     	 mov r2,r3
- 1393 005c 274B     	 ldr r3,.L65+28
- 1394 005e 101C     	 mov r0,r2
- 1395 0060 191C     	 mov r1,r3
- 1396 0062 0A22     	 mov r2,#10
- 1397 0064 FFF7FEFF 	 bl within_MAX_MIN_check_int
- 1398 0068 031E     	 sub r3,r0,#0
- 1399 006a 1CD0     	 beq .L63
- 203:../main.c     **** 				distance_R = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
- 1400              	 .loc 6 203 0
- 1401 006c 224B     	 ldr r3,.L65+24
- 1402 006e 1B68     	 ldr r3,[r3]
- 1403 0070 181C     	 mov r0,r3
- 1404 0072 FFF7FEFF 	 bl __aeabi_ui2d
- 1405 0076 031C     	 mov r3,r0
- 1406 0078 0C1C     	 mov r4,r1
- 1407 007a 181C     	 mov r0,r3
- 1408 007c 211C     	 mov r1,r4
- 1409 007e 204A     	 ldr r2,.L65+32
- 1410 0080 204B     	 ldr r3,.L65+36
- 1411 0082 FFF7FEFF 	 bl __aeabi_dmul
- 1412 0086 031C     	 mov r3,r0
- 1413 0088 0C1C     	 mov r4,r1
- 1414 008a 181C     	 mov r0,r3
- 1415 008c 211C     	 mov r1,r4
- 1416 008e FFF7FEFF 	 bl __aeabi_d2uiz
- 1417 0092 031C     	 mov r3,r0
- 1418 0094 9AB2     	 uxth r2,r3
- 1419 0096 1C4B     	 ldr r3,.L65+40
- 1420 0098 1A80     	 strh r2,[r3]
- 204:../main.c     **** 				sample_count++; // sampelr rater counter
- 1421              	 .loc 6 204 0
- 1422 009a 1C4B     	 ldr r3,.L65+44
- 1423 009c 1B68     	 ldr r3,[r3]
- 1424 009e 5A1C     	 add r2,r3,#1
- 1425 00a0 1A4B     	 ldr r3,.L65+44
- 1426 00a2 1A60     	 str r2,[r3]
- 1427 00a4 04E0     	 b .L64
- 1428              	.L63:
- 205:../main.c     **** 			}
- 206:../main.c     **** 			else limit_fail_count ++;
- 1429              	 .loc 6 206 0
- 1430 00a6 1A4B     	 ldr r3,.L65+48
- 1431 00a8 1B68     	 ldr r3,[r3]
- 1432 00aa 5A1C     	 add r2,r3,#1
- 1433 00ac 184B     	 ldr r3,.L65+48
- 1434 00ae 1A60     	 str r2,[r3]
- 1435              	.L64:
- 207:../main.c     **** 			 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
- 1436              	 .loc 6 207 0
- 1437 00b0 184B     	 ldr r3,.L65+52
- 1438 00b2 1B88     	 ldrh r3,[r3]
- 1439 00b4 1A1C     	 mov r2,r3
- 1440 00b6 184B     	 ldr r3,.L65+56
- 1441 00b8 1B68     	 ldr r3,[r3]
- 1442 00ba D218     	 add r2,r2,r3
- 1443 00bc 174B     	 ldr r3,.L65+60
- 1444 00be 1A60     	 str r2,[r3]
- 208:../main.c     **** 			 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
- 1445              	 .loc 6 208 0
- 1446 00c0 164B     	 ldr r3,.L65+60
- 1447 00c2 1B68     	 ldr r3,[r3]
- 1448 00c4 9AB2     	 uxth r2,r3
- 1449 00c6 164B     	 ldr r3,.L65+64
- 1450 00c8 1B88     	 ldrh r3,[r3]
- 1451 00ca 1649     	 ldr r1,.L65+68
- 1452 00cc 101C     	 mov r0,r2
- 1453 00ce 1A1C     	 mov r2,r3
- 1454 00d0 FFF7FEFF 	 bl saturation_to_MIN_MAX
- 1455 00d4 031C     	 mov r3,r0
- 1456 00d6 1A1C     	 mov r2,r3
- 1457 00d8 104B     	 ldr r3,.L65+60
- 1458 00da 1A60     	 str r2,[r3]
- 1459              	.L60:
- 209:../main.c     **** 		}
- 210:../main.c     **** 	}
- 211:../main.c     **** }
- 1460              	 .loc 6 211 0
- 1461 00dc BD46     	 mov sp,r7
- 1462              	 
- 1463 00de 98BD     	 pop {r3,r4,r7,pc}
- 1464              	.L66:
- 1465              	 .align 2
- 1466              	.L65:
- 1467 00e0 00000000 	 .word Now_Sensor
- 1468 00e4 00000000 	 .word ECHO_R
- 1469 00e8 00000000 	 .word echo_state
- 1470 00ec 00000000 	 .word wait_echo
- 1471 00f0 00000000 	 .word echo_count_control
- 1472 00f4 00000000 	 .word echo_t_10us
- 1473 00f8 00000000 	 .word echo_time
- 1474 00fc 280A0000 	 .word 2600
- 1475 0100 C3F5285C 	 .word 1546188227
- 1476 0104 8FC2C53F 	 .word 1069925007
- 1477 0108 00000000 	 .word distance_R
- 1478 010c 00000000 	 .word sample_count
- 1479 0110 00000000 	 .word limit_fail_count
- 1480 0114 00000000 	 .word RESET_IN_10us_AFTER_SUCSSES
- 1481 0118 00000000 	 .word t_10us_count
- 1482 011c 00000000 	 .word reset_at
- 1483 0120 00000000 	 .word MIN_RESET
- 1484 0124 8C0A0000 	 .word 2700
- 1485              	 .cfi_endproc
- 1486              	.LFE225:
- 1488              	 .section .text.IRQ7_Handler,"ax",%progbits
- 1489              	 .align 2
- 1490              	 .global IRQ7_Handler
- 1491              	 .code 16
- 1492              	 .thumb_func
- 1494              	IRQ7_Handler:
- 1495              	.LFB226:
- 212:../main.c     **** 
+ 1347 0004 364B     	 ldr r3,.L65
+ 1348 0006 1B78     	 ldrb r3,[r3]
+ 1349 0008 DBB2     	 uxtb r3,r3
+ 1350 000a 042B     	 cmp r3,#4
+ 1351 000c 66D1     	 bne .L60
+ 199:../main.c     **** 		echo_state = PIN_INTERRUPT_GetPinValue(&ECHO_R);
+ 1352              	 .loc 6 199 0
+ 1353 000e 354B     	 ldr r3,.L65+4
+ 1354 0010 181C     	 mov r0,r3
+ 1355 0012 FFF7FEFF 	 bl PIN_INTERRUPT_GetPinValue
+ 1356 0016 031C     	 mov r3,r0
+ 1357 0018 DAB2     	 uxtb r2,r3
+ 1358 001a 334B     	 ldr r3,.L65+8
+ 1359 001c 1A70     	 strb r2,[r3]
+ 200:../main.c     **** 		if(wait_echo == 1 && echo_state == 1) echo_count_control = 1;
+ 1360              	 .loc 6 200 0
+ 1361 001e 334B     	 ldr r3,.L65+12
+ 1362 0020 1B78     	 ldrb r3,[r3]
+ 1363 0022 DBB2     	 uxtb r3,r3
+ 1364 0024 012B     	 cmp r3,#1
+ 1365 0026 08D1     	 bne .L62
+ 1366              	 .loc 6 200 0 is_stmt 0 discriminator 1
+ 1367 0028 2F4B     	 ldr r3,.L65+8
+ 1368 002a 1B78     	 ldrb r3,[r3]
+ 1369 002c DBB2     	 uxtb r3,r3
+ 1370 002e 012B     	 cmp r3,#1
+ 1371 0030 03D1     	 bne .L62
+ 1372              	 .loc 6 200 0 discriminator 2
+ 1373 0032 2F4B     	 ldr r3,.L65+16
+ 1374 0034 0122     	 mov r2,#1
+ 1375 0036 1A70     	 strb r2,[r3]
+ 1376 0038 50E0     	 b .L60
+ 1377              	.L62:
+ 201:../main.c     **** 		else if(echo_state == 0 && echo_count_control == 1){
+ 1378              	 .loc 6 201 0 is_stmt 1
+ 1379 003a 2B4B     	 ldr r3,.L65+8
+ 1380 003c 1B78     	 ldrb r3,[r3]
+ 1381 003e DBB2     	 uxtb r3,r3
+ 1382 0040 002B     	 cmp r3,#0
+ 1383 0042 4BD1     	 bne .L60
+ 1384              	 .loc 6 201 0 is_stmt 0 discriminator 1
+ 1385 0044 2A4B     	 ldr r3,.L65+16
+ 1386 0046 1B78     	 ldrb r3,[r3]
+ 1387 0048 DBB2     	 uxtb r3,r3
+ 1388 004a 012B     	 cmp r3,#1
+ 1389 004c 46D1     	 bne .L60
+ 202:../main.c     **** 			echo_time = echo_t_10us;
+ 1390              	 .loc 6 202 0 is_stmt 1
+ 1391 004e 294B     	 ldr r3,.L65+20
+ 1392 0050 1A68     	 ldr r2,[r3]
+ 1393 0052 294B     	 ldr r3,.L65+24
+ 1394 0054 1A60     	 str r2,[r3]
+ 203:../main.c     **** 			if(within_MAX_MIN_check_int(echo_time, ECHO_TIME_MAX, ECHO_TIME_MIN)){
+ 1395              	 .loc 6 203 0
+ 1396 0056 284B     	 ldr r3,.L65+24
+ 1397 0058 1B68     	 ldr r3,[r3]
+ 1398 005a 1A1C     	 mov r2,r3
+ 1399 005c 274B     	 ldr r3,.L65+28
+ 1400 005e 101C     	 mov r0,r2
+ 1401 0060 191C     	 mov r1,r3
+ 1402 0062 0A22     	 mov r2,#10
+ 1403 0064 FFF7FEFF 	 bl within_MAX_MIN_check_int
+ 1404 0068 031E     	 sub r3,r0,#0
+ 1405 006a 1CD0     	 beq .L63
+ 204:../main.c     **** 				distance_R = echo_time * ECHO_TIME_10us_TO_DISTANCE_cm;
+ 1406              	 .loc 6 204 0
+ 1407 006c 224B     	 ldr r3,.L65+24
+ 1408 006e 1B68     	 ldr r3,[r3]
+ 1409 0070 181C     	 mov r0,r3
+ 1410 0072 FFF7FEFF 	 bl __aeabi_ui2d
+ 1411 0076 031C     	 mov r3,r0
+ 1412 0078 0C1C     	 mov r4,r1
+ 1413 007a 181C     	 mov r0,r3
+ 1414 007c 211C     	 mov r1,r4
+ 1415 007e 204A     	 ldr r2,.L65+32
+ 1416 0080 204B     	 ldr r3,.L65+36
+ 1417 0082 FFF7FEFF 	 bl __aeabi_dmul
+ 1418 0086 031C     	 mov r3,r0
+ 1419 0088 0C1C     	 mov r4,r1
+ 1420 008a 181C     	 mov r0,r3
+ 1421 008c 211C     	 mov r1,r4
+ 1422 008e FFF7FEFF 	 bl __aeabi_d2uiz
+ 1423 0092 031C     	 mov r3,r0
+ 1424 0094 9AB2     	 uxth r2,r3
+ 1425 0096 1C4B     	 ldr r3,.L65+40
+ 1426 0098 1A80     	 strh r2,[r3]
+ 205:../main.c     **** 				sample_count++; // sampelr rater counter
+ 1427              	 .loc 6 205 0
+ 1428 009a 1C4B     	 ldr r3,.L65+44
+ 1429 009c 1B68     	 ldr r3,[r3]
+ 1430 009e 5A1C     	 add r2,r3,#1
+ 1431 00a0 1A4B     	 ldr r3,.L65+44
+ 1432 00a2 1A60     	 str r2,[r3]
+ 1433 00a4 04E0     	 b .L64
+ 1434              	.L63:
+ 206:../main.c     **** 			}
+ 207:../main.c     **** 			else limit_fail_count ++;
+ 1435              	 .loc 6 207 0
+ 1436 00a6 1A4B     	 ldr r3,.L65+48
+ 1437 00a8 1B68     	 ldr r3,[r3]
+ 1438 00aa 5A1C     	 add r2,r3,#1
+ 1439 00ac 184B     	 ldr r3,.L65+48
+ 1440 00ae 1A60     	 str r2,[r3]
+ 1441              	.L64:
+ 208:../main.c     **** 			 reset_at = t_10us_count + RESET_IN_10us_AFTER_SUCSSES;
+ 1442              	 .loc 6 208 0
+ 1443 00b0 184B     	 ldr r3,.L65+52
+ 1444 00b2 1B88     	 ldrh r3,[r3]
+ 1445 00b4 1A1C     	 mov r2,r3
+ 1446 00b6 184B     	 ldr r3,.L65+56
+ 1447 00b8 1B68     	 ldr r3,[r3]
+ 1448 00ba D218     	 add r2,r2,r3
+ 1449 00bc 174B     	 ldr r3,.L65+60
+ 1450 00be 1A60     	 str r2,[r3]
+ 209:../main.c     **** 			 reset_at = saturation_to_MIN_MAX(reset_at,MAX_RESET,MIN_RESET);
+ 1451              	 .loc 6 209 0
+ 1452 00c0 164B     	 ldr r3,.L65+60
+ 1453 00c2 1B68     	 ldr r3,[r3]
+ 1454 00c4 9AB2     	 uxth r2,r3
+ 1455 00c6 164B     	 ldr r3,.L65+64
+ 1456 00c8 1B88     	 ldrh r3,[r3]
+ 1457 00ca 1649     	 ldr r1,.L65+68
+ 1458 00cc 101C     	 mov r0,r2
+ 1459 00ce 1A1C     	 mov r2,r3
+ 1460 00d0 FFF7FEFF 	 bl saturation_to_MIN_MAX
+ 1461 00d4 031C     	 mov r3,r0
+ 1462 00d6 1A1C     	 mov r2,r3
+ 1463 00d8 104B     	 ldr r3,.L65+60
+ 1464 00da 1A60     	 str r2,[r3]
+ 1465              	.L60:
+ 210:../main.c     **** 		}
+ 211:../main.c     **** 	}
+ 212:../main.c     **** }
+ 1466              	 .loc 6 212 0
+ 1467 00dc BD46     	 mov sp,r7
+ 1468              	 
+ 1469 00de 98BD     	 pop {r3,r4,r7,pc}
+ 1470              	.L66:
+ 1471              	 .align 2
+ 1472              	.L65:
+ 1473 00e0 00000000 	 .word Now_Sensor
+ 1474 00e4 00000000 	 .word ECHO_R
+ 1475 00e8 00000000 	 .word echo_state
+ 1476 00ec 00000000 	 .word wait_echo
+ 1477 00f0 00000000 	 .word echo_count_control
+ 1478 00f4 00000000 	 .word echo_t_10us
+ 1479 00f8 00000000 	 .word echo_time
+ 1480 00fc 280A0000 	 .word 2600
+ 1481 0100 C3F5285C 	 .word 1546188227
+ 1482 0104 8FC2C53F 	 .word 1069925007
+ 1483 0108 00000000 	 .word distance_R
+ 1484 010c 00000000 	 .word sample_count
+ 1485 0110 00000000 	 .word limit_fail_count
+ 1486 0114 00000000 	 .word RESET_IN_10us_AFTER_SUCSSES
+ 1487 0118 00000000 	 .word t_10us_count
+ 1488 011c 00000000 	 .word reset_at
+ 1489 0120 00000000 	 .word MIN_RESET
+ 1490 0124 8C0A0000 	 .word 2700
+ 1491              	 .cfi_endproc
+ 1492              	.LFE225:
+ 1494              	 .section .text.IRQ7_Handler,"ax",%progbits
+ 1495              	 .align 2
+ 1496              	 .global IRQ7_Handler
+ 1497              	 .code 16
+ 1498              	 .thumb_func
+ 1500              	IRQ7_Handler:
+ 1501              	.LFB226:
  213:../main.c     **** 
- 214:../main.c     **** void ISR_1s_TIMER(){ //for diagnostics
- 1496              	 .loc 6 214 0
- 1497              	 .cfi_startproc
- 1498 0000 80B5     	 push {r7,lr}
- 1499              	.LCFI43:
- 1500              	 .cfi_def_cfa_offset 8
- 1501              	 .cfi_offset 7,-8
- 1502              	 .cfi_offset 14,-4
- 1503 0002 00AF     	 add r7,sp,#0
- 1504              	.LCFI44:
- 1505              	 .cfi_def_cfa_register 7
- 215:../main.c     **** 	sample_rate_Hz = sample_count;
- 1506              	 .loc 6 215 0
- 1507 0004 154B     	 ldr r3,.L70
- 1508 0006 1A68     	 ldr r2,[r3]
- 1509 0008 154B     	 ldr r3,.L70+4
- 1510 000a 1A60     	 str r2,[r3]
- 216:../main.c     **** 	if(restet_count > sample_count) failed_count = restet_count - sample_count;
- 1511              	 .loc 6 216 0
- 1512 000c 154B     	 ldr r3,.L70+8
- 1513 000e 1A68     	 ldr r2,[r3]
- 1514 0010 124B     	 ldr r3,.L70
- 1515 0012 1B68     	 ldr r3,[r3]
- 1516 0014 9A42     	 cmp r2,r3
- 1517 0016 07D9     	 bls .L68
- 1518              	 .loc 6 216 0 is_stmt 0 discriminator 1
- 1519 0018 124B     	 ldr r3,.L70+8
- 1520 001a 1A68     	 ldr r2,[r3]
- 1521 001c 0F4B     	 ldr r3,.L70
- 1522 001e 1B68     	 ldr r3,[r3]
- 1523 0020 D21A     	 sub r2,r2,r3
- 1524 0022 114B     	 ldr r3,.L70+12
- 1525 0024 1A60     	 str r2,[r3]
- 1526 0026 02E0     	 b .L69
- 1527              	.L68:
- 217:../main.c     **** 	else failed_count = 0;
- 1528              	 .loc 6 217 0 is_stmt 1
- 1529 0028 0F4B     	 ldr r3,.L70+12
- 1530 002a 0022     	 mov r2,#0
- 1531 002c 1A60     	 str r2,[r3]
- 1532              	.L69:
- 218:../main.c     **** 	echo_not_low_count_1 = echo_not_low_count;
- 1533              	 .loc 6 218 0
- 1534 002e 0F4B     	 ldr r3,.L70+16
- 1535 0030 1A68     	 ldr r2,[r3]
- 1536 0032 0F4B     	 ldr r3,.L70+20
- 1537 0034 1A60     	 str r2,[r3]
- 219:../main.c     **** 	limit_fail_num = limit_fail_count;
- 1538              	 .loc 6 219 0
- 1539 0036 0F4B     	 ldr r3,.L70+24
- 1540 0038 1A68     	 ldr r2,[r3]
- 1541 003a 0F4B     	 ldr r3,.L70+28
- 1542 003c 1A60     	 str r2,[r3]
- 220:../main.c     **** 	sample_count = 0;
- 1543              	 .loc 6 220 0
- 1544 003e 074B     	 ldr r3,.L70
- 1545 0040 0022     	 mov r2,#0
- 1546 0042 1A60     	 str r2,[r3]
- 221:../main.c     **** 	restet_count = 0;
- 1547              	 .loc 6 221 0
- 1548 0044 074B     	 ldr r3,.L70+8
- 1549 0046 0022     	 mov r2,#0
- 1550 0048 1A60     	 str r2,[r3]
- 222:../main.c     **** 	limit_fail_count = 0;
- 1551              	 .loc 6 222 0
- 1552 004a 0A4B     	 ldr r3,.L70+24
- 1553 004c 0022     	 mov r2,#0
- 1554 004e 1A60     	 str r2,[r3]
- 223:../main.c     **** 	echo_not_low_count = 0;
- 1555              	 .loc 6 223 0
- 1556 0050 064B     	 ldr r3,.L70+16
- 1557 0052 0022     	 mov r2,#0
- 1558 0054 1A60     	 str r2,[r3]
- 224:../main.c     **** }
- 1559              	 .loc 6 224 0
- 1560 0056 BD46     	 mov sp,r7
- 1561              	 
- 1562 0058 80BD     	 pop {r7,pc}
- 1563              	.L71:
- 1564 005a C046     	 .align 2
- 1565              	.L70:
- 1566 005c 00000000 	 .word sample_count
- 1567 0060 00000000 	 .word sample_rate_Hz
- 1568 0064 00000000 	 .word restet_count
- 1569 0068 00000000 	 .word failed_count
- 1570 006c 00000000 	 .word echo_not_low_count
- 1571 0070 00000000 	 .word echo_not_low_count_1
- 1572 0074 00000000 	 .word limit_fail_count
- 1573 0078 00000000 	 .word limit_fail_num
- 1574              	 .cfi_endproc
- 1575              	.LFE226:
- 1577              	 .section .text.Watchdog_Handler,"ax",%progbits
- 1578              	 .align 2
- 1579              	 .global Watchdog_Handler
- 1580              	 .code 16
- 1581              	 .thumb_func
- 1583              	Watchdog_Handler:
- 1584              	.LFB227:
- 225:../main.c     **** 
+ 214:../main.c     **** 
+ 215:../main.c     **** void ISR_1s_TIMER(){ //for diagnostics
+ 1502              	 .loc 6 215 0
+ 1503              	 .cfi_startproc
+ 1504 0000 80B5     	 push {r7,lr}
+ 1505              	.LCFI43:
+ 1506              	 .cfi_def_cfa_offset 8
+ 1507              	 .cfi_offset 7,-8
+ 1508              	 .cfi_offset 14,-4
+ 1509 0002 00AF     	 add r7,sp,#0
+ 1510              	.LCFI44:
+ 1511              	 .cfi_def_cfa_register 7
+ 216:../main.c     **** 	sample_rate_Hz = sample_count;
+ 1512              	 .loc 6 216 0
+ 1513 0004 154B     	 ldr r3,.L70
+ 1514 0006 1A68     	 ldr r2,[r3]
+ 1515 0008 154B     	 ldr r3,.L70+4
+ 1516 000a 1A60     	 str r2,[r3]
+ 217:../main.c     **** 	if(restet_count > sample_count) failed_count = restet_count - sample_count;
+ 1517              	 .loc 6 217 0
+ 1518 000c 154B     	 ldr r3,.L70+8
+ 1519 000e 1A68     	 ldr r2,[r3]
+ 1520 0010 124B     	 ldr r3,.L70
+ 1521 0012 1B68     	 ldr r3,[r3]
+ 1522 0014 9A42     	 cmp r2,r3
+ 1523 0016 07D9     	 bls .L68
+ 1524              	 .loc 6 217 0 is_stmt 0 discriminator 1
+ 1525 0018 124B     	 ldr r3,.L70+8
+ 1526 001a 1A68     	 ldr r2,[r3]
+ 1527 001c 0F4B     	 ldr r3,.L70
+ 1528 001e 1B68     	 ldr r3,[r3]
+ 1529 0020 D21A     	 sub r2,r2,r3
+ 1530 0022 114B     	 ldr r3,.L70+12
+ 1531 0024 1A60     	 str r2,[r3]
+ 1532 0026 02E0     	 b .L69
+ 1533              	.L68:
+ 218:../main.c     **** 	else failed_count = 0;
+ 1534              	 .loc 6 218 0 is_stmt 1
+ 1535 0028 0F4B     	 ldr r3,.L70+12
+ 1536 002a 0022     	 mov r2,#0
+ 1537 002c 1A60     	 str r2,[r3]
+ 1538              	.L69:
+ 219:../main.c     **** 	echo_not_low_count_1 = echo_not_low_count;
+ 1539              	 .loc 6 219 0
+ 1540 002e 0F4B     	 ldr r3,.L70+16
+ 1541 0030 1A68     	 ldr r2,[r3]
+ 1542 0032 0F4B     	 ldr r3,.L70+20
+ 1543 0034 1A60     	 str r2,[r3]
+ 220:../main.c     **** 	limit_fail_num = limit_fail_count;
+ 1544              	 .loc 6 220 0
+ 1545 0036 0F4B     	 ldr r3,.L70+24
+ 1546 0038 1A68     	 ldr r2,[r3]
+ 1547 003a 0F4B     	 ldr r3,.L70+28
+ 1548 003c 1A60     	 str r2,[r3]
+ 221:../main.c     **** 	sample_count = 0;
+ 1549              	 .loc 6 221 0
+ 1550 003e 074B     	 ldr r3,.L70
+ 1551 0040 0022     	 mov r2,#0
+ 1552 0042 1A60     	 str r2,[r3]
+ 222:../main.c     **** 	restet_count = 0;
+ 1553              	 .loc 6 222 0
+ 1554 0044 074B     	 ldr r3,.L70+8
+ 1555 0046 0022     	 mov r2,#0
+ 1556 0048 1A60     	 str r2,[r3]
+ 223:../main.c     **** 	limit_fail_count = 0;
+ 1557              	 .loc 6 223 0
+ 1558 004a 0A4B     	 ldr r3,.L70+24
+ 1559 004c 0022     	 mov r2,#0
+ 1560 004e 1A60     	 str r2,[r3]
+ 224:../main.c     **** 	echo_not_low_count = 0;
+ 1561              	 .loc 6 224 0
+ 1562 0050 064B     	 ldr r3,.L70+16
+ 1563 0052 0022     	 mov r2,#0
+ 1564 0054 1A60     	 str r2,[r3]
+ 225:../main.c     **** }
+ 1565              	 .loc 6 225 0
+ 1566 0056 BD46     	 mov sp,r7
+ 1567              	 
+ 1568 0058 80BD     	 pop {r7,pc}
+ 1569              	.L71:
+ 1570 005a C046     	 .align 2
+ 1571              	.L70:
+ 1572 005c 00000000 	 .word sample_count
+ 1573 0060 00000000 	 .word sample_rate_Hz
+ 1574 0064 00000000 	 .word restet_count
+ 1575 0068 00000000 	 .word failed_count
+ 1576 006c 00000000 	 .word echo_not_low_count
+ 1577 0070 00000000 	 .word echo_not_low_count_1
+ 1578 0074 00000000 	 .word limit_fail_count
+ 1579 0078 00000000 	 .word limit_fail_num
+ 1580              	 .cfi_endproc
+ 1581              	.LFE226:
+ 1583              	 .section .text.Watchdog_Handler,"ax",%progbits
+ 1584              	 .align 2
+ 1585              	 .global Watchdog_Handler
+ 1586              	 .code 16
+ 1587              	 .thumb_func
+ 1589              	Watchdog_Handler:
+ 1590              	.LFB227:
  226:../main.c     **** 
- 227:../main.c     **** void Watchdog_Handler(void) // to do restates if can is not working a problem wenn power from the b
- 228:../main.c     **** {
- 1585              	 .loc 6 228 0
- 1586              	 .cfi_startproc
- 1587 0000 80B5     	 push {r7,lr}
- 1588              	.LCFI45:
- 1589              	 .cfi_def_cfa_offset 8
- 1590              	 .cfi_offset 7,-8
- 1591              	 .cfi_offset 14,-4
- 1592 0002 00AF     	 add r7,sp,#0
- 1593              	.LCFI46:
- 1594              	 .cfi_def_cfa_register 7
- 229:../main.c     ****   WATCHDOG_ClearAlarm(); /* Clear the alarm event */
- 1595              	 .loc 6 229 0
- 1596 0004 FFF7FEFF 	 bl WATCHDOG_ClearAlarm
- 230:../main.c     ****   DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
- 1597              	 .loc 6 230 0
- 1598 0008 024B     	 ldr r3,.L73
- 1599 000a 181C     	 mov r0,r3
- 1600 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 231:../main.c     ****  // DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
- 232:../main.c     **** }
- 1601              	 .loc 6 232 0
- 1602 0010 BD46     	 mov sp,r7
- 1603              	 
- 1604 0012 80BD     	 pop {r7,pc}
- 1605              	.L74:
- 1606              	 .align 2
- 1607              	.L73:
- 1608 0014 00000000 	 .word DIGITAL_IO_0
- 1609              	 .cfi_endproc
- 1610              	.LFE227:
- 1612              	 .section .text.IRQ0_Handler,"ax",%progbits
- 1613              	 .align 2
- 1614              	 .global IRQ0_Handler
- 1615              	 .code 16
- 1616              	 .thumb_func
- 1618              	IRQ0_Handler:
- 1619              	.LFB228:
- 233:../main.c     **** 
- 234:../main.c     **** void CAN_RX_ISR(void){
- 1620              	 .loc 6 234 0
- 1621              	 .cfi_startproc
- 1622 0000 80B5     	 push {r7,lr}
- 1623              	.LCFI47:
- 1624              	 .cfi_def_cfa_offset 8
- 1625              	 .cfi_offset 7,-8
- 1626              	 .cfi_offset 14,-4
- 1627 0002 00AF     	 add r7,sp,#0
- 1628              	.LCFI48:
- 1629              	 .cfi_def_cfa_register 7
- 235:../main.c     **** 	WATCHDOG_Service();
- 1630              	 .loc 6 235 0
- 1631 0004 FFF7FEFF 	 bl WATCHDOG_Service
- 236:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
- 237:../main.c     **** 	DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
- 1632              	 .loc 6 237 0
- 1633 0008 024B     	 ldr r3,.L76
- 1634 000a 181C     	 mov r0,r3
- 1635 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
- 238:../main.c     **** }
- 1636              	 .loc 6 238 0
- 1637 0010 BD46     	 mov sp,r7
- 1638              	 
- 1639 0012 80BD     	 pop {r7,pc}
- 1640              	.L77:
- 1641              	 .align 2
- 1642              	.L76:
- 1643 0014 00000000 	 .word DIGITAL_IO_0
- 1644              	 .cfi_endproc
- 1645              	.LFE228:
- 1647              	 .section .text.within_MAX_MIN_check_int,"ax",%progbits
- 1648              	 .align 2
- 1649              	 .global within_MAX_MIN_check_int
- 1650              	 .code 16
- 1651              	 .thumb_func
- 1653              	within_MAX_MIN_check_int:
- 1654              	.LFB229:
- 239:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN){
- 1655              	 .loc 6 239 0
- 1656              	 .cfi_startproc
- 1657 0000 80B5     	 push {r7,lr}
- 1658              	.LCFI49:
- 1659              	 .cfi_def_cfa_offset 8
- 1660              	 .cfi_offset 7,-8
- 1661              	 .cfi_offset 14,-4
- 1662 0002 84B0     	 sub sp,sp,#16
- 1663              	.LCFI50:
- 1664              	 .cfi_def_cfa_offset 24
- 1665 0004 00AF     	 add r7,sp,#0
- 1666              	.LCFI51:
- 1667              	 .cfi_def_cfa_register 7
- 1668 0006 F860     	 str r0,[r7,#12]
- 1669 0008 B960     	 str r1,[r7,#8]
- 1670 000a 7A60     	 str r2,[r7,#4]
- 240:../main.c     **** 	if((x - MIN) * (x - MAX) <= 0) return 1;
- 1671              	 .loc 6 240 0
- 1672 000c FA68     	 ldr r2,[r7,#12]
- 1673 000e 7B68     	 ldr r3,[r7,#4]
- 1674 0010 D31A     	 sub r3,r2,r3
- 1675 0012 F968     	 ldr r1,[r7,#12]
- 1676 0014 BA68     	 ldr r2,[r7,#8]
- 1677 0016 8A1A     	 sub r2,r1,r2
- 1678 0018 5343     	 mul r3,r2
- 1679 001a 002B     	 cmp r3,#0
- 1680 001c 01DC     	 bgt .L79
- 1681              	 .loc 6 240 0 is_stmt 0 discriminator 1
- 1682 001e 0123     	 mov r3,#1
- 1683 0020 00E0     	 b .L80
- 1684              	.L79:
- 241:../main.c     **** 	else return 0;
- 1685              	 .loc 6 241 0 is_stmt 1
- 1686 0022 0023     	 mov r3,#0
- 1687              	.L80:
+ 227:../main.c     **** 
+ 228:../main.c     **** void Watchdog_Handler(void) // to do restates if can is not working a problem wenn power from the b
+ 229:../main.c     **** {
+ 1591              	 .loc 6 229 0
+ 1592              	 .cfi_startproc
+ 1593 0000 80B5     	 push {r7,lr}
+ 1594              	.LCFI45:
+ 1595              	 .cfi_def_cfa_offset 8
+ 1596              	 .cfi_offset 7,-8
+ 1597              	 .cfi_offset 14,-4
+ 1598 0002 00AF     	 add r7,sp,#0
+ 1599              	.LCFI46:
+ 1600              	 .cfi_def_cfa_register 7
+ 230:../main.c     ****   WATCHDOG_ClearAlarm(); /* Clear the alarm event */
+ 1601              	 .loc 6 230 0
+ 1602 0004 FFF7FEFF 	 bl WATCHDOG_ClearAlarm
+ 231:../main.c     ****   DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
+ 1603              	 .loc 6 231 0
+ 1604 0008 044B     	 ldr r3,.L73
+ 1605 000a 181C     	 mov r0,r3
+ 1606 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 232:../main.c     ****   //DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0);
+ 233:../main.c     ****   CAN_RX_OK = 1;
+ 1607              	 .loc 6 233 0
+ 1608 0010 034B     	 ldr r3,.L73+4
+ 1609 0012 0122     	 mov r2,#1
+ 1610 0014 1A70     	 strb r2,[r3]
+ 234:../main.c     **** }
+ 1611              	 .loc 6 234 0
+ 1612 0016 BD46     	 mov sp,r7
+ 1613              	 
+ 1614 0018 80BD     	 pop {r7,pc}
+ 1615              	.L74:
+ 1616 001a C046     	 .align 2
+ 1617              	.L73:
+ 1618 001c 00000000 	 .word DIGITAL_IO_0
+ 1619 0020 00000000 	 .word CAN_RX_OK
+ 1620              	 .cfi_endproc
+ 1621              	.LFE227:
+ 1623              	 .section .text.IRQ0_Handler,"ax",%progbits
+ 1624              	 .align 2
+ 1625              	 .global IRQ0_Handler
+ 1626              	 .code 16
+ 1627              	 .thumb_func
+ 1629              	IRQ0_Handler:
+ 1630              	.LFB228:
+ 235:../main.c     **** 
+ 236:../main.c     **** void CAN_RX_ISR(void){
+ 1631              	 .loc 6 236 0
+ 1632              	 .cfi_startproc
+ 1633 0000 80B5     	 push {r7,lr}
+ 1634              	.LCFI47:
+ 1635              	 .cfi_def_cfa_offset 8
+ 1636              	 .cfi_offset 7,-8
+ 1637              	 .cfi_offset 14,-4
+ 1638 0002 00AF     	 add r7,sp,#0
+ 1639              	.LCFI48:
+ 1640              	 .cfi_def_cfa_register 7
+ 237:../main.c     **** 	WATCHDOG_Service();
+ 1641              	 .loc 6 237 0
+ 1642 0004 FFF7FEFF 	 bl WATCHDOG_Service
+ 238:../main.c     **** 	//DIGITAL_IO_SetOutputLow(&DIGITAL_IO_0);
+ 239:../main.c     **** 	DIGITAL_IO_SetOutputHigh(&DIGITAL_IO_0); // inverted logic high means LED off
+ 1643              	 .loc 6 239 0
+ 1644 0008 044B     	 ldr r3,.L76
+ 1645 000a 181C     	 mov r0,r3
+ 1646 000c FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 240:../main.c     **** 
+ 241:../main.c     **** 	CAN_RX_OK = 0;
+ 1647              	 .loc 6 241 0
+ 1648 0010 034B     	 ldr r3,.L76+4
+ 1649 0012 0022     	 mov r2,#0
+ 1650 0014 1A70     	 strb r2,[r3]
  242:../main.c     **** }
- 1688              	 .loc 6 242 0
- 1689 0024 181C     	 mov r0,r3
- 1690 0026 BD46     	 mov sp,r7
- 1691 0028 04B0     	 add sp,sp,#16
- 1692              	 
- 1693 002a 80BD     	 pop {r7,pc}
- 1694              	 .cfi_endproc
- 1695              	.LFE229:
- 1697              	 .section .text.saturation_to_MIN_MAX,"ax",%progbits
- 1698              	 .align 2
- 1699              	 .global saturation_to_MIN_MAX
- 1700              	 .code 16
- 1701              	 .thumb_func
- 1703              	saturation_to_MIN_MAX:
- 1704              	.LFB230:
- 243:../main.c     **** 
- 244:../main.c     **** uint16_t saturation_to_MIN_MAX(uint16_t value, uint16_t MAX, uint16_t MIN){
- 1705              	 .loc 6 244 0
- 1706              	 .cfi_startproc
- 1707 0000 90B5     	 push {r4,r7,lr}
- 1708              	.LCFI52:
- 1709              	 .cfi_def_cfa_offset 12
- 1710              	 .cfi_offset 4,-12
- 1711              	 .cfi_offset 7,-8
- 1712              	 .cfi_offset 14,-4
- 1713 0002 83B0     	 sub sp,sp,#12
- 1714              	.LCFI53:
- 1715              	 .cfi_def_cfa_offset 24
- 1716 0004 00AF     	 add r7,sp,#0
- 1717              	.LCFI54:
- 1718              	 .cfi_def_cfa_register 7
- 1719 0006 041C     	 mov r4,r0
- 1720 0008 081C     	 mov r0,r1
- 1721 000a 111C     	 mov r1,r2
- 1722 000c BB1D     	 add r3,r7,#6
- 1723 000e 221C     	 add r2,r4,#0
- 1724 0010 1A80     	 strh r2,[r3]
- 1725 0012 3B1D     	 add r3,r7,#4
- 1726 0014 021C     	 add r2,r0,#0
- 1727 0016 1A80     	 strh r2,[r3]
- 1728 0018 BB1C     	 add r3,r7,#2
- 1729 001a 0A1C     	 add r2,r1,#0
- 1730 001c 1A80     	 strh r2,[r3]
- 245:../main.c     **** 	if(value < MIN) return  MIN;
- 1731              	 .loc 6 245 0
- 1732 001e BA1D     	 add r2,r7,#6
- 1733 0020 BB1C     	 add r3,r7,#2
- 1734 0022 1288     	 ldrh r2,[r2]
- 1735 0024 1B88     	 ldrh r3,[r3]
- 1736 0026 9A42     	 cmp r2,r3
- 1737 0028 02D2     	 bcs .L82
- 1738              	 .loc 6 245 0 is_stmt 0 discriminator 1
- 1739 002a BB1C     	 add r3,r7,#2
- 1740 002c 1B88     	 ldrh r3,[r3]
- 1741 002e 0AE0     	 b .L83
- 1742              	.L82:
- 246:../main.c     **** 	else if(value > MAX) return MAX;
- 1743              	 .loc 6 246 0 is_stmt 1
- 1744 0030 BA1D     	 add r2,r7,#6
- 1745 0032 3B1D     	 add r3,r7,#4
- 1746 0034 1288     	 ldrh r2,[r2]
- 1747 0036 1B88     	 ldrh r3,[r3]
- 1748 0038 9A42     	 cmp r2,r3
- 1749 003a 02D9     	 bls .L84
- 1750              	 .loc 6 246 0 is_stmt 0 discriminator 1
- 1751 003c 3B1D     	 add r3,r7,#4
- 1752 003e 1B88     	 ldrh r3,[r3]
- 1753 0040 01E0     	 b .L83
- 1754              	.L84:
- 247:../main.c     **** 	else return value;
- 1755              	 .loc 6 247 0 is_stmt 1
- 1756 0042 BB1D     	 add r3,r7,#6
- 1757 0044 1B88     	 ldrh r3,[r3]
- 1758              	.L83:
- 248:../main.c     **** }
- 1759              	 .loc 6 248 0
- 1760 0046 181C     	 mov r0,r3
- 1761 0048 BD46     	 mov sp,r7
- 1762 004a 03B0     	 add sp,sp,#12
- 1763              	 
- 1764 004c 90BD     	 pop {r4,r7,pc}
- 1765              	 .cfi_endproc
- 1766              	.LFE230:
- 1768 004e C046     	 .section .text.CAN_send_values,"ax",%progbits
- 1769              	 .align 2
- 1770              	 .global CAN_send_values
- 1771              	 .code 16
- 1772              	 .thumb_func
- 1774              	CAN_send_values:
- 1775              	.LFB231:
- 249:../main.c     **** 
- 250:../main.c     **** void CAN_send_values(){
- 1776              	 .loc 6 250 0
- 1777              	 .cfi_startproc
- 1778 0000 80B5     	 push {r7,lr}
- 1779              	.LCFI55:
- 1780              	 .cfi_def_cfa_offset 8
- 1781              	 .cfi_offset 7,-8
- 1782              	 .cfi_offset 14,-4
- 1783 0002 82B0     	 sub sp,sp,#8
- 1784              	.LCFI56:
- 1785              	 .cfi_def_cfa_offset 16
- 1786 0004 00AF     	 add r7,sp,#0
- 1787              	.LCFI57:
- 1788              	 .cfi_def_cfa_register 7
- 251:../main.c     **** 	uint16_t RX_Data[4] ={CAN_OK, distance_C, distance_L, distance_R}; // in int16_t mm/s converter ba
- 1789              	 .loc 6 251 0
- 1790 0006 164B     	 ldr r3,.L86
- 1791 0008 1B78     	 ldrb r3,[r3]
- 1792 000a 9AB2     	 uxth r2,r3
- 1793 000c 3B1C     	 mov r3,r7
- 1794 000e 1A80     	 strh r2,[r3]
- 1795 0010 144B     	 ldr r3,.L86+4
- 1796 0012 1B88     	 ldrh r3,[r3]
- 1797 0014 9AB2     	 uxth r2,r3
- 1798 0016 3B1C     	 mov r3,r7
- 1799 0018 5A80     	 strh r2,[r3,#2]
- 1800 001a 134B     	 ldr r3,.L86+8
- 1801 001c 1B88     	 ldrh r3,[r3]
- 1802 001e 9AB2     	 uxth r2,r3
- 1803 0020 3B1C     	 mov r3,r7
- 1804 0022 9A80     	 strh r2,[r3,#4]
- 1805 0024 114B     	 ldr r3,.L86+12
- 1806 0026 1B88     	 ldrh r3,[r3]
- 1807 0028 9AB2     	 uxth r2,r3
- 1808 002a 3B1C     	 mov r3,r7
- 1809 002c DA80     	 strh r2,[r3,#6]
- 252:../main.c     **** 
- 253:../main.c     **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)RX_Data);
- 1810              	 .loc 6 253 0
- 1811 002e 104B     	 ldr r3,.L86+16
- 1812 0030 DA68     	 ldr r2,[r3,#12]
- 1813 0032 3B1C     	 mov r3,r7
- 1814 0034 101C     	 mov r0,r2
- 1815 0036 191C     	 mov r1,r3
- 1816 0038 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
- 254:../main.c     **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
- 1817              	 .loc 6 254 0
- 1818 003c 0C4B     	 ldr r3,.L86+16
- 1819 003e DB68     	 ldr r3,[r3,#12]
- 1820 0040 181C     	 mov r0,r3
- 1821 0042 FFF7FEFF 	 bl CAN_NODE_MO_Transmit
- 255:../main.c     **** 
- 256:../main.c     **** 	// reset
- 257:../main.c     **** 	distance_C = 0;
- 1822              	 .loc 6 257 0
- 1823 0046 074B     	 ldr r3,.L86+4
- 1824 0048 0022     	 mov r2,#0
- 1825 004a 1A80     	 strh r2,[r3]
- 258:../main.c     **** 	distance_L = 0;
- 1826              	 .loc 6 258 0
- 1827 004c 064B     	 ldr r3,.L86+8
- 1828 004e 0022     	 mov r2,#0
- 1829 0050 1A80     	 strh r2,[r3]
- 259:../main.c     **** 	distance_R = 0;
- 1830              	 .loc 6 259 0
- 1831 0052 064B     	 ldr r3,.L86+12
- 1832 0054 0022     	 mov r2,#0
- 1833 0056 1A80     	 strh r2,[r3]
- 260:../main.c     **** }
- 1834              	 .loc 6 260 0
- 1835 0058 BD46     	 mov sp,r7
- 1836 005a 02B0     	 add sp,sp,#8
- 1837              	 
- 1838 005c 80BD     	 pop {r7,pc}
- 1839              	.L87:
- 1840 005e C046     	 .align 2
- 1841              	.L86:
- 1842 0060 00000000 	 .word CAN_OK
- 1843 0064 00000000 	 .word distance_C
- 1844 0068 00000000 	 .word distance_L
- 1845 006c 00000000 	 .word distance_R
- 1846 0070 00000000 	 .word CAN_NODE_0
- 1847              	 .cfi_endproc
- 1848              	.LFE231:
- 1850              	 .global __aeabi_ui2f
- 1851              	 .section .text.avg_distances,"ax",%progbits
- 1852              	 .align 2
- 1853              	 .global avg_distances
- 1854              	 .code 16
- 1855              	 .thumb_func
- 1857              	avg_distances:
- 1858              	.LFB232:
- 261:../main.c     **** 
- 262:../main.c     **** void avg_distances(){
- 1859              	 .loc 6 262 0
- 1860              	 .cfi_startproc
- 1861 0000 80B5     	 push {r7,lr}
- 1862              	.LCFI58:
- 1863              	 .cfi_def_cfa_offset 8
- 1864              	 .cfi_offset 7,-8
- 1865              	 .cfi_offset 14,-4
- 1866 0002 00AF     	 add r7,sp,#0
- 1867              	.LCFI59:
- 1868              	 .cfi_def_cfa_register 7
- 263:../main.c     **** 	if(distance_C != 0) avg_distance_C = Exp_moving_average((float)distance_C,avg_distance_C,ALPHA_DIS
- 1869              	 .loc 6 263 0
- 1870 0004 214B     	 ldr r3,.L92
- 1871 0006 1B88     	 ldrh r3,[r3]
- 1872 0008 9BB2     	 uxth r3,r3
- 1873 000a 002B     	 cmp r3,#0
- 1874 000c 10D0     	 beq .L89
- 1875              	 .loc 6 263 0 is_stmt 0 discriminator 1
- 1876 000e 1F4B     	 ldr r3,.L92
- 1877 0010 1B88     	 ldrh r3,[r3]
- 1878 0012 9BB2     	 uxth r3,r3
- 1879 0014 181C     	 mov r0,r3
- 1880 0016 FFF7FEFF 	 bl __aeabi_ui2f
- 1881 001a 011C     	 add r1,r0,#0
- 1882 001c 1C4B     	 ldr r3,.L92+4
- 1883 001e 1B68     	 ldr r3,[r3]
- 1884 0020 1C4A     	 ldr r2,.L92+8
- 1885 0022 081C     	 add r0,r1,#0
- 1886 0024 191C     	 add r1,r3,#0
- 1887 0026 FFF7FEFF 	 bl Exp_moving_average
- 1888 002a 021C     	 add r2,r0,#0
- 1889 002c 184B     	 ldr r3,.L92+4
- 1890 002e 1A60     	 str r2,[r3]
- 1891              	.L89:
- 264:../main.c     **** 	if(distance_L != 0) avg_distance_L = Exp_moving_average((float)distance_L,avg_distance_L,ALPHA_DIS
- 1892              	 .loc 6 264 0 is_stmt 1
- 1893 0030 194B     	 ldr r3,.L92+12
- 1894 0032 1B88     	 ldrh r3,[r3]
- 1895 0034 9BB2     	 uxth r3,r3
- 1896 0036 002B     	 cmp r3,#0
- 1897 0038 10D0     	 beq .L90
- 1898              	 .loc 6 264 0 is_stmt 0 discriminator 1
- 1899 003a 174B     	 ldr r3,.L92+12
- 1900 003c 1B88     	 ldrh r3,[r3]
- 1901 003e 9BB2     	 uxth r3,r3
- 1902 0040 181C     	 mov r0,r3
- 1903 0042 FFF7FEFF 	 bl __aeabi_ui2f
- 1904 0046 011C     	 add r1,r0,#0
- 1905 0048 144B     	 ldr r3,.L92+16
- 1906 004a 1B68     	 ldr r3,[r3]
- 1907 004c 114A     	 ldr r2,.L92+8
- 1908 004e 081C     	 add r0,r1,#0
- 1909 0050 191C     	 add r1,r3,#0
- 1910 0052 FFF7FEFF 	 bl Exp_moving_average
- 1911 0056 021C     	 add r2,r0,#0
- 1912 0058 104B     	 ldr r3,.L92+16
- 1913 005a 1A60     	 str r2,[r3]
- 1914              	.L90:
- 265:../main.c     **** 	if(distance_R != 0) avg_distance_R = Exp_moving_average((float)distance_R,avg_distance_R,ALPHA_DIS
- 1915              	 .loc 6 265 0 is_stmt 1
- 1916 005c 104B     	 ldr r3,.L92+20
- 1917 005e 1B88     	 ldrh r3,[r3]
- 1918 0060 9BB2     	 uxth r3,r3
- 1919 0062 002B     	 cmp r3,#0
- 1920 0064 10D0     	 beq .L88
- 1921              	 .loc 6 265 0 is_stmt 0 discriminator 1
- 1922 0066 0E4B     	 ldr r3,.L92+20
- 1923 0068 1B88     	 ldrh r3,[r3]
- 1924 006a 9BB2     	 uxth r3,r3
- 1925 006c 181C     	 mov r0,r3
- 1926 006e FFF7FEFF 	 bl __aeabi_ui2f
- 1927 0072 011C     	 add r1,r0,#0
- 1928 0074 0B4B     	 ldr r3,.L92+24
- 1929 0076 1B68     	 ldr r3,[r3]
- 1930 0078 064A     	 ldr r2,.L92+8
- 1931 007a 081C     	 add r0,r1,#0
- 1932 007c 191C     	 add r1,r3,#0
- 1933 007e FFF7FEFF 	 bl Exp_moving_average
- 1934 0082 021C     	 add r2,r0,#0
- 1935 0084 074B     	 ldr r3,.L92+24
- 1936 0086 1A60     	 str r2,[r3]
- 1937              	.L88:
- 266:../main.c     **** }
- 1938              	 .loc 6 266 0 is_stmt 1
- 1939 0088 BD46     	 mov sp,r7
- 1940              	 
- 1941 008a 80BD     	 pop {r7,pc}
- 1942              	.L93:
- 1943              	 .align 2
- 1944              	.L92:
- 1945 008c 00000000 	 .word distance_C
- 1946 0090 00000000 	 .word avg_distance_C
- 1947 0094 CDCC4C3F 	 .word 1061997773
- 1948 0098 00000000 	 .word distance_L
- 1949 009c 00000000 	 .word avg_distance_L
- 1950 00a0 00000000 	 .word distance_R
- 1951 00a4 00000000 	 .word avg_distance_R
- 1952              	 .cfi_endproc
- 1953              	.LFE232:
- 1955              	 .global __aeabi_fmul
- 1956              	 .global __aeabi_fsub
- 1957              	 .global __aeabi_fadd
- 1958              	 .section .text.Exp_moving_average,"ax",%progbits
+ 1651              	 .loc 6 242 0
+ 1652 0016 BD46     	 mov sp,r7
+ 1653              	 
+ 1654 0018 80BD     	 pop {r7,pc}
+ 1655              	.L77:
+ 1656 001a C046     	 .align 2
+ 1657              	.L76:
+ 1658 001c 00000000 	 .word DIGITAL_IO_0
+ 1659 0020 00000000 	 .word CAN_RX_OK
+ 1660              	 .cfi_endproc
+ 1661              	.LFE228:
+ 1663              	 .section .text.within_MAX_MIN_check_int,"ax",%progbits
+ 1664              	 .align 2
+ 1665              	 .global within_MAX_MIN_check_int
+ 1666              	 .code 16
+ 1667              	 .thumb_func
+ 1669              	within_MAX_MIN_check_int:
+ 1670              	.LFB229:
+ 243:../main.c     **** bool within_MAX_MIN_check_int(int x, int MAX, int MIN){
+ 1671              	 .loc 6 243 0
+ 1672              	 .cfi_startproc
+ 1673 0000 80B5     	 push {r7,lr}
+ 1674              	.LCFI49:
+ 1675              	 .cfi_def_cfa_offset 8
+ 1676              	 .cfi_offset 7,-8
+ 1677              	 .cfi_offset 14,-4
+ 1678 0002 84B0     	 sub sp,sp,#16
+ 1679              	.LCFI50:
+ 1680              	 .cfi_def_cfa_offset 24
+ 1681 0004 00AF     	 add r7,sp,#0
+ 1682              	.LCFI51:
+ 1683              	 .cfi_def_cfa_register 7
+ 1684 0006 F860     	 str r0,[r7,#12]
+ 1685 0008 B960     	 str r1,[r7,#8]
+ 1686 000a 7A60     	 str r2,[r7,#4]
+ 244:../main.c     **** 	if((x - MIN) * (x - MAX) <= 0) return 1;
+ 1687              	 .loc 6 244 0
+ 1688 000c FA68     	 ldr r2,[r7,#12]
+ 1689 000e 7B68     	 ldr r3,[r7,#4]
+ 1690 0010 D31A     	 sub r3,r2,r3
+ 1691 0012 F968     	 ldr r1,[r7,#12]
+ 1692 0014 BA68     	 ldr r2,[r7,#8]
+ 1693 0016 8A1A     	 sub r2,r1,r2
+ 1694 0018 5343     	 mul r3,r2
+ 1695 001a 002B     	 cmp r3,#0
+ 1696 001c 01DC     	 bgt .L79
+ 1697              	 .loc 6 244 0 is_stmt 0 discriminator 1
+ 1698 001e 0123     	 mov r3,#1
+ 1699 0020 00E0     	 b .L80
+ 1700              	.L79:
+ 245:../main.c     **** 	else return 0;
+ 1701              	 .loc 6 245 0 is_stmt 1
+ 1702 0022 0023     	 mov r3,#0
+ 1703              	.L80:
+ 246:../main.c     **** }
+ 1704              	 .loc 6 246 0
+ 1705 0024 181C     	 mov r0,r3
+ 1706 0026 BD46     	 mov sp,r7
+ 1707 0028 04B0     	 add sp,sp,#16
+ 1708              	 
+ 1709 002a 80BD     	 pop {r7,pc}
+ 1710              	 .cfi_endproc
+ 1711              	.LFE229:
+ 1713              	 .section .text.saturation_to_MIN_MAX,"ax",%progbits
+ 1714              	 .align 2
+ 1715              	 .global saturation_to_MIN_MAX
+ 1716              	 .code 16
+ 1717              	 .thumb_func
+ 1719              	saturation_to_MIN_MAX:
+ 1720              	.LFB230:
+ 247:../main.c     **** 
+ 248:../main.c     **** uint16_t saturation_to_MIN_MAX(uint16_t value, uint16_t MAX, uint16_t MIN){
+ 1721              	 .loc 6 248 0
+ 1722              	 .cfi_startproc
+ 1723 0000 90B5     	 push {r4,r7,lr}
+ 1724              	.LCFI52:
+ 1725              	 .cfi_def_cfa_offset 12
+ 1726              	 .cfi_offset 4,-12
+ 1727              	 .cfi_offset 7,-8
+ 1728              	 .cfi_offset 14,-4
+ 1729 0002 83B0     	 sub sp,sp,#12
+ 1730              	.LCFI53:
+ 1731              	 .cfi_def_cfa_offset 24
+ 1732 0004 00AF     	 add r7,sp,#0
+ 1733              	.LCFI54:
+ 1734              	 .cfi_def_cfa_register 7
+ 1735 0006 041C     	 mov r4,r0
+ 1736 0008 081C     	 mov r0,r1
+ 1737 000a 111C     	 mov r1,r2
+ 1738 000c BB1D     	 add r3,r7,#6
+ 1739 000e 221C     	 add r2,r4,#0
+ 1740 0010 1A80     	 strh r2,[r3]
+ 1741 0012 3B1D     	 add r3,r7,#4
+ 1742 0014 021C     	 add r2,r0,#0
+ 1743 0016 1A80     	 strh r2,[r3]
+ 1744 0018 BB1C     	 add r3,r7,#2
+ 1745 001a 0A1C     	 add r2,r1,#0
+ 1746 001c 1A80     	 strh r2,[r3]
+ 249:../main.c     **** 	if(value < MIN) return  MIN;
+ 1747              	 .loc 6 249 0
+ 1748 001e BA1D     	 add r2,r7,#6
+ 1749 0020 BB1C     	 add r3,r7,#2
+ 1750 0022 1288     	 ldrh r2,[r2]
+ 1751 0024 1B88     	 ldrh r3,[r3]
+ 1752 0026 9A42     	 cmp r2,r3
+ 1753 0028 02D2     	 bcs .L82
+ 1754              	 .loc 6 249 0 is_stmt 0 discriminator 1
+ 1755 002a BB1C     	 add r3,r7,#2
+ 1756 002c 1B88     	 ldrh r3,[r3]
+ 1757 002e 0AE0     	 b .L83
+ 1758              	.L82:
+ 250:../main.c     **** 	else if(value > MAX) return MAX;
+ 1759              	 .loc 6 250 0 is_stmt 1
+ 1760 0030 BA1D     	 add r2,r7,#6
+ 1761 0032 3B1D     	 add r3,r7,#4
+ 1762 0034 1288     	 ldrh r2,[r2]
+ 1763 0036 1B88     	 ldrh r3,[r3]
+ 1764 0038 9A42     	 cmp r2,r3
+ 1765 003a 02D9     	 bls .L84
+ 1766              	 .loc 6 250 0 is_stmt 0 discriminator 1
+ 1767 003c 3B1D     	 add r3,r7,#4
+ 1768 003e 1B88     	 ldrh r3,[r3]
+ 1769 0040 01E0     	 b .L83
+ 1770              	.L84:
+ 251:../main.c     **** 	else return value;
+ 1771              	 .loc 6 251 0 is_stmt 1
+ 1772 0042 BB1D     	 add r3,r7,#6
+ 1773 0044 1B88     	 ldrh r3,[r3]
+ 1774              	.L83:
+ 252:../main.c     **** }
+ 1775              	 .loc 6 252 0
+ 1776 0046 181C     	 mov r0,r3
+ 1777 0048 BD46     	 mov sp,r7
+ 1778 004a 03B0     	 add sp,sp,#12
+ 1779              	 
+ 1780 004c 90BD     	 pop {r4,r7,pc}
+ 1781              	 .cfi_endproc
+ 1782              	.LFE230:
+ 1784 004e C046     	 .section .text.CAN_send_values,"ax",%progbits
+ 1785              	 .align 2
+ 1786              	 .global CAN_send_values
+ 1787              	 .code 16
+ 1788              	 .thumb_func
+ 1790              	CAN_send_values:
+ 1791              	.LFB231:
+ 253:../main.c     **** 
+ 254:../main.c     **** void CAN_send_values(){
+ 1792              	 .loc 6 254 0
+ 1793              	 .cfi_startproc
+ 1794 0000 80B5     	 push {r7,lr}
+ 1795              	.LCFI55:
+ 1796              	 .cfi_def_cfa_offset 8
+ 1797              	 .cfi_offset 7,-8
+ 1798              	 .cfi_offset 14,-4
+ 1799 0002 82B0     	 sub sp,sp,#8
+ 1800              	.LCFI56:
+ 1801              	 .cfi_def_cfa_offset 16
+ 1802 0004 00AF     	 add r7,sp,#0
+ 1803              	.LCFI57:
+ 1804              	 .cfi_def_cfa_register 7
+ 255:../main.c     **** 	uint16_t RX_Data[4] ={CAN_OK, distance_C, distance_L, distance_R}; // in int16_t mm/s converter ba
+ 1805              	 .loc 6 255 0
+ 1806 0006 164B     	 ldr r3,.L86
+ 1807 0008 1B78     	 ldrb r3,[r3]
+ 1808 000a 9AB2     	 uxth r2,r3
+ 1809 000c 3B1C     	 mov r3,r7
+ 1810 000e 1A80     	 strh r2,[r3]
+ 1811 0010 144B     	 ldr r3,.L86+4
+ 1812 0012 1B88     	 ldrh r3,[r3]
+ 1813 0014 9AB2     	 uxth r2,r3
+ 1814 0016 3B1C     	 mov r3,r7
+ 1815 0018 5A80     	 strh r2,[r3,#2]
+ 1816 001a 134B     	 ldr r3,.L86+8
+ 1817 001c 1B88     	 ldrh r3,[r3]
+ 1818 001e 9AB2     	 uxth r2,r3
+ 1819 0020 3B1C     	 mov r3,r7
+ 1820 0022 9A80     	 strh r2,[r3,#4]
+ 1821 0024 114B     	 ldr r3,.L86+12
+ 1822 0026 1B88     	 ldrh r3,[r3]
+ 1823 0028 9AB2     	 uxth r2,r3
+ 1824 002a 3B1C     	 mov r3,r7
+ 1825 002c DA80     	 strh r2,[r3,#6]
+ 256:../main.c     **** 
+ 257:../main.c     **** 	CAN_NODE_MO_UpdateData((void*) CAN_NODE_0.lmobj_ptr[0], (uint8_t*)RX_Data);
+ 1826              	 .loc 6 257 0
+ 1827 002e 104B     	 ldr r3,.L86+16
+ 1828 0030 DA68     	 ldr r2,[r3,#12]
+ 1829 0032 3B1C     	 mov r3,r7
+ 1830 0034 101C     	 mov r0,r2
+ 1831 0036 191C     	 mov r1,r3
+ 1832 0038 FFF7FEFF 	 bl CAN_NODE_MO_UpdateData
+ 258:../main.c     **** 	CAN_NODE_MO_Transmit((void*) CAN_NODE_0.lmobj_ptr[0]); //Transmit the data of message object1
+ 1833              	 .loc 6 258 0
+ 1834 003c 0C4B     	 ldr r3,.L86+16
+ 1835 003e DB68     	 ldr r3,[r3,#12]
+ 1836 0040 181C     	 mov r0,r3
+ 1837 0042 FFF7FEFF 	 bl CAN_NODE_MO_Transmit
+ 259:../main.c     **** 
+ 260:../main.c     **** 	// reset
+ 261:../main.c     **** 	distance_C = 0;
+ 1838              	 .loc 6 261 0
+ 1839 0046 074B     	 ldr r3,.L86+4
+ 1840 0048 0022     	 mov r2,#0
+ 1841 004a 1A80     	 strh r2,[r3]
+ 262:../main.c     **** 	distance_L = 0;
+ 1842              	 .loc 6 262 0
+ 1843 004c 064B     	 ldr r3,.L86+8
+ 1844 004e 0022     	 mov r2,#0
+ 1845 0050 1A80     	 strh r2,[r3]
+ 263:../main.c     **** 	distance_R = 0;
+ 1846              	 .loc 6 263 0
+ 1847 0052 064B     	 ldr r3,.L86+12
+ 1848 0054 0022     	 mov r2,#0
+ 1849 0056 1A80     	 strh r2,[r3]
+ 264:../main.c     **** }
+ 1850              	 .loc 6 264 0
+ 1851 0058 BD46     	 mov sp,r7
+ 1852 005a 02B0     	 add sp,sp,#8
+ 1853              	 
+ 1854 005c 80BD     	 pop {r7,pc}
+ 1855              	.L87:
+ 1856 005e C046     	 .align 2
+ 1857              	.L86:
+ 1858 0060 00000000 	 .word CAN_OK
+ 1859 0064 00000000 	 .word distance_C
+ 1860 0068 00000000 	 .word distance_L
+ 1861 006c 00000000 	 .word distance_R
+ 1862 0070 00000000 	 .word CAN_NODE_0
+ 1863              	 .cfi_endproc
+ 1864              	.LFE231:
+ 1866              	 .global __aeabi_ui2f
+ 1867              	 .section .text.avg_distances,"ax",%progbits
+ 1868              	 .align 2
+ 1869              	 .global avg_distances
+ 1870              	 .code 16
+ 1871              	 .thumb_func
+ 1873              	avg_distances:
+ 1874              	.LFB232:
+ 265:../main.c     **** 
+ 266:../main.c     **** void avg_distances(){
+ 1875              	 .loc 6 266 0
+ 1876              	 .cfi_startproc
+ 1877 0000 80B5     	 push {r7,lr}
+ 1878              	.LCFI58:
+ 1879              	 .cfi_def_cfa_offset 8
+ 1880              	 .cfi_offset 7,-8
+ 1881              	 .cfi_offset 14,-4
+ 1882 0002 00AF     	 add r7,sp,#0
+ 1883              	.LCFI59:
+ 1884              	 .cfi_def_cfa_register 7
+ 267:../main.c     **** 	if(distance_C != 0) avg_distance_C = Exp_moving_average((float)distance_C,avg_distance_C,ALPHA_DIS
+ 1885              	 .loc 6 267 0
+ 1886 0004 214B     	 ldr r3,.L92
+ 1887 0006 1B88     	 ldrh r3,[r3]
+ 1888 0008 9BB2     	 uxth r3,r3
+ 1889 000a 002B     	 cmp r3,#0
+ 1890 000c 10D0     	 beq .L89
+ 1891              	 .loc 6 267 0 is_stmt 0 discriminator 1
+ 1892 000e 1F4B     	 ldr r3,.L92
+ 1893 0010 1B88     	 ldrh r3,[r3]
+ 1894 0012 9BB2     	 uxth r3,r3
+ 1895 0014 181C     	 mov r0,r3
+ 1896 0016 FFF7FEFF 	 bl __aeabi_ui2f
+ 1897 001a 011C     	 add r1,r0,#0
+ 1898 001c 1C4B     	 ldr r3,.L92+4
+ 1899 001e 1B68     	 ldr r3,[r3]
+ 1900 0020 1C4A     	 ldr r2,.L92+8
+ 1901 0022 081C     	 add r0,r1,#0
+ 1902 0024 191C     	 add r1,r3,#0
+ 1903 0026 FFF7FEFF 	 bl Exp_moving_average
+ 1904 002a 021C     	 add r2,r0,#0
+ 1905 002c 184B     	 ldr r3,.L92+4
+ 1906 002e 1A60     	 str r2,[r3]
+ 1907              	.L89:
+ 268:../main.c     **** 	if(distance_L != 0) avg_distance_L = Exp_moving_average((float)distance_L,avg_distance_L,ALPHA_DIS
+ 1908              	 .loc 6 268 0 is_stmt 1
+ 1909 0030 194B     	 ldr r3,.L92+12
+ 1910 0032 1B88     	 ldrh r3,[r3]
+ 1911 0034 9BB2     	 uxth r3,r3
+ 1912 0036 002B     	 cmp r3,#0
+ 1913 0038 10D0     	 beq .L90
+ 1914              	 .loc 6 268 0 is_stmt 0 discriminator 1
+ 1915 003a 174B     	 ldr r3,.L92+12
+ 1916 003c 1B88     	 ldrh r3,[r3]
+ 1917 003e 9BB2     	 uxth r3,r3
+ 1918 0040 181C     	 mov r0,r3
+ 1919 0042 FFF7FEFF 	 bl __aeabi_ui2f
+ 1920 0046 011C     	 add r1,r0,#0
+ 1921 0048 144B     	 ldr r3,.L92+16
+ 1922 004a 1B68     	 ldr r3,[r3]
+ 1923 004c 114A     	 ldr r2,.L92+8
+ 1924 004e 081C     	 add r0,r1,#0
+ 1925 0050 191C     	 add r1,r3,#0
+ 1926 0052 FFF7FEFF 	 bl Exp_moving_average
+ 1927 0056 021C     	 add r2,r0,#0
+ 1928 0058 104B     	 ldr r3,.L92+16
+ 1929 005a 1A60     	 str r2,[r3]
+ 1930              	.L90:
+ 269:../main.c     **** 	if(distance_R != 0) avg_distance_R = Exp_moving_average((float)distance_R,avg_distance_R,ALPHA_DIS
+ 1931              	 .loc 6 269 0 is_stmt 1
+ 1932 005c 104B     	 ldr r3,.L92+20
+ 1933 005e 1B88     	 ldrh r3,[r3]
+ 1934 0060 9BB2     	 uxth r3,r3
+ 1935 0062 002B     	 cmp r3,#0
+ 1936 0064 10D0     	 beq .L88
+ 1937              	 .loc 6 269 0 is_stmt 0 discriminator 1
+ 1938 0066 0E4B     	 ldr r3,.L92+20
+ 1939 0068 1B88     	 ldrh r3,[r3]
+ 1940 006a 9BB2     	 uxth r3,r3
+ 1941 006c 181C     	 mov r0,r3
+ 1942 006e FFF7FEFF 	 bl __aeabi_ui2f
+ 1943 0072 011C     	 add r1,r0,#0
+ 1944 0074 0B4B     	 ldr r3,.L92+24
+ 1945 0076 1B68     	 ldr r3,[r3]
+ 1946 0078 064A     	 ldr r2,.L92+8
+ 1947 007a 081C     	 add r0,r1,#0
+ 1948 007c 191C     	 add r1,r3,#0
+ 1949 007e FFF7FEFF 	 bl Exp_moving_average
+ 1950 0082 021C     	 add r2,r0,#0
+ 1951 0084 074B     	 ldr r3,.L92+24
+ 1952 0086 1A60     	 str r2,[r3]
+ 1953              	.L88:
+ 270:../main.c     **** }
+ 1954              	 .loc 6 270 0 is_stmt 1
+ 1955 0088 BD46     	 mov sp,r7
+ 1956              	 
+ 1957 008a 80BD     	 pop {r7,pc}
+ 1958              	.L93:
  1959              	 .align 2
- 1960              	 .global Exp_moving_average
- 1961              	 .code 16
- 1962              	 .thumb_func
- 1964              	Exp_moving_average:
- 1965              	.LFB233:
- 267:../main.c     **** 
- 268:../main.c     **** 
- 269:../main.c     **** float Exp_moving_average(float new_value, float value, float ALPHA){
- 1966              	 .loc 6 269 0
- 1967              	 .cfi_startproc
- 1968 0000 90B5     	 push {r4,r7,lr}
- 1969              	.LCFI60:
- 1970              	 .cfi_def_cfa_offset 12
- 1971              	 .cfi_offset 4,-12
- 1972              	 .cfi_offset 7,-8
- 1973              	 .cfi_offset 14,-4
- 1974 0002 85B0     	 sub sp,sp,#20
- 1975              	.LCFI61:
- 1976              	 .cfi_def_cfa_offset 32
- 1977 0004 00AF     	 add r7,sp,#0
- 1978              	.LCFI62:
- 1979              	 .cfi_def_cfa_register 7
- 1980 0006 F860     	 str r0,[r7,#12]
- 1981 0008 B960     	 str r1,[r7,#8]
- 1982 000a 7A60     	 str r2,[r7,#4]
- 270:../main.c     **** 	return ((new_value * ALPHA) + ((1 - ALPHA) * value));
- 1983              	 .loc 6 270 0
- 1984 000c F868     	 ldr r0,[r7,#12]
- 1985 000e 7968     	 ldr r1,[r7,#4]
- 1986 0010 FFF7FEFF 	 bl __aeabi_fmul
- 1987 0014 031C     	 add r3,r0,#0
- 1988 0016 1C1C     	 add r4,r3,#0
- 1989 0018 FE20     	 mov r0,#254
- 1990 001a 8005     	 lsl r0,r0,#22
- 1991 001c 7968     	 ldr r1,[r7,#4]
- 1992 001e FFF7FEFF 	 bl __aeabi_fsub
- 1993 0022 031C     	 add r3,r0,#0
- 1994 0024 181C     	 add r0,r3,#0
- 1995 0026 B968     	 ldr r1,[r7,#8]
- 1996 0028 FFF7FEFF 	 bl __aeabi_fmul
- 1997 002c 031C     	 add r3,r0,#0
- 1998 002e 201C     	 add r0,r4,#0
- 1999 0030 191C     	 add r1,r3,#0
- 2000 0032 FFF7FEFF 	 bl __aeabi_fadd
- 2001 0036 031C     	 add r3,r0,#0
- 271:../main.c     **** }
- 2002              	 .loc 6 271 0
- 2003 0038 181C     	 add r0,r3,#0
- 2004 003a BD46     	 mov sp,r7
- 2005 003c 05B0     	 add sp,sp,#20
- 2006              	 
- 2007 003e 90BD     	 pop {r4,r7,pc}
- 2008              	 .cfi_endproc
- 2009              	.LFE233:
- 2011              	 .text
- 2012              	.Letext0:
- 2013              	 .file 7 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 2014              	 .file 8 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 2015              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
- 2016              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc1_scu.h"
- 2017              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc1_gpio.h"
- 2018              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc_eru.h"
- 2019              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/BUS_IO/bus_io.h"
- 2020              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc_can.h"
- 2021              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/GLOBAL_CAN/global_can.h"
- 2022              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/CAN_NODE/can_node.h"
- 2023              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/DAVE.h"
- 2024              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include/cmsis_gcc.h"
- 2025              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 2026              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
- 2027              	 .file 21 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/BUS_IO/bus_io_extern.h"
- 2028              	 .file 22 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/CAN_NODE/can_node_extern.h"
- 2029              	 .file 23 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 1960              	.L92:
+ 1961 008c 00000000 	 .word distance_C
+ 1962 0090 00000000 	 .word avg_distance_C
+ 1963 0094 CDCC4C3F 	 .word 1061997773
+ 1964 0098 00000000 	 .word distance_L
+ 1965 009c 00000000 	 .word avg_distance_L
+ 1966 00a0 00000000 	 .word distance_R
+ 1967 00a4 00000000 	 .word avg_distance_R
+ 1968              	 .cfi_endproc
+ 1969              	.LFE232:
+ 1971              	 .global __aeabi_fmul
+ 1972              	 .global __aeabi_fsub
+ 1973              	 .global __aeabi_fadd
+ 1974              	 .section .text.Exp_moving_average,"ax",%progbits
+ 1975              	 .align 2
+ 1976              	 .global Exp_moving_average
+ 1977              	 .code 16
+ 1978              	 .thumb_func
+ 1980              	Exp_moving_average:
+ 1981              	.LFB233:
+ 271:../main.c     **** 
+ 272:../main.c     **** 
+ 273:../main.c     **** float Exp_moving_average(float new_value, float value, float ALPHA){
+ 1982              	 .loc 6 273 0
+ 1983              	 .cfi_startproc
+ 1984 0000 90B5     	 push {r4,r7,lr}
+ 1985              	.LCFI60:
+ 1986              	 .cfi_def_cfa_offset 12
+ 1987              	 .cfi_offset 4,-12
+ 1988              	 .cfi_offset 7,-8
+ 1989              	 .cfi_offset 14,-4
+ 1990 0002 85B0     	 sub sp,sp,#20
+ 1991              	.LCFI61:
+ 1992              	 .cfi_def_cfa_offset 32
+ 1993 0004 00AF     	 add r7,sp,#0
+ 1994              	.LCFI62:
+ 1995              	 .cfi_def_cfa_register 7
+ 1996 0006 F860     	 str r0,[r7,#12]
+ 1997 0008 B960     	 str r1,[r7,#8]
+ 1998 000a 7A60     	 str r2,[r7,#4]
+ 274:../main.c     **** 	return ((new_value * ALPHA) + ((1 - ALPHA) * value));
+ 1999              	 .loc 6 274 0
+ 2000 000c F868     	 ldr r0,[r7,#12]
+ 2001 000e 7968     	 ldr r1,[r7,#4]
+ 2002 0010 FFF7FEFF 	 bl __aeabi_fmul
+ 2003 0014 031C     	 add r3,r0,#0
+ 2004 0016 1C1C     	 add r4,r3,#0
+ 2005 0018 FE20     	 mov r0,#254
+ 2006 001a 8005     	 lsl r0,r0,#22
+ 2007 001c 7968     	 ldr r1,[r7,#4]
+ 2008 001e FFF7FEFF 	 bl __aeabi_fsub
+ 2009 0022 031C     	 add r3,r0,#0
+ 2010 0024 181C     	 add r0,r3,#0
+ 2011 0026 B968     	 ldr r1,[r7,#8]
+ 2012 0028 FFF7FEFF 	 bl __aeabi_fmul
+ 2013 002c 031C     	 add r3,r0,#0
+ 2014 002e 201C     	 add r0,r4,#0
+ 2015 0030 191C     	 add r1,r3,#0
+ 2016 0032 FFF7FEFF 	 bl __aeabi_fadd
+ 2017 0036 031C     	 add r3,r0,#0
+ 275:../main.c     **** }
+ 2018              	 .loc 6 275 0
+ 2019 0038 181C     	 add r0,r3,#0
+ 2020 003a BD46     	 mov sp,r7
+ 2021 003c 05B0     	 add sp,sp,#20
+ 2022              	 
+ 2023 003e 90BD     	 pop {r4,r7,pc}
+ 2024              	 .cfi_endproc
+ 2025              	.LFE233:
+ 2027              	 .text
+ 2028              	.Letext0:
+ 2029              	 .file 7 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 2030              	 .file 8 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 2031              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 2032              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc1_scu.h"
+ 2033              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 2034              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc_eru.h"
+ 2035              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/BUS_IO/bus_io.h"
+ 2036              	 .file 14 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/XMCLib/inc/xmc_can.h"
+ 2037              	 .file 15 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/GLOBAL_CAN/global_can.h"
+ 2038              	 .file 16 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/CAN_NODE/can_node.h"
+ 2039              	 .file 17 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/DAVE.h"
+ 2040              	 .file 18 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 2041              	 .file 19 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 2042              	 .file 20 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/PIN_INTERRUPT/pin_interrupt_extern.h"
+ 2043              	 .file 21 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/BUS_IO/bus_io_extern.h"
+ 2044              	 .file 22 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/CAN_NODE/can_node_extern.h"
+ 2045              	 .file 23 "C:/GitHub/MobRob_Rover_NEW/Ultrasonic_Sensor_Node/Ultrasonic_XMC_1400_Dynamic/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
     {standard input}:18     .text.XMC_GPIO_SetOutputHigh:00000000 $t
@@ -4147,46 +4165,47 @@ DEFINED SYMBOLS
     {standard input}:600    .bss.limit_fail_num:00000000 $d
     {standard input}:610    .bss.limit_fail_count:00000000 limit_fail_count
     {standard input}:607    .bss.limit_fail_count:00000000 $d
-    {standard input}:616    .data.Now_Sensor:00000000 Now_Sensor
-    {standard input}:619    .text.main:00000000 $t
-    {standard input}:624    .text.main:00000000 main
-    {standard input}:681    .text.main:00000040 $d
-    {standard input}:688    .text.IRQ8_Handler:00000000 $t
-    {standard input}:693    .text.IRQ8_Handler:00000000 IRQ8_Handler
-    {standard input}:1703   .text.saturation_to_MIN_MAX:00000000 saturation_to_MIN_MAX
-    {standard input}:893    .text.reset:00000000 reset
-    {standard input}:868    .text.IRQ8_Handler:0000010c $d
-    {standard input}:888    .text.reset:00000000 $t
-    {standard input}:1857   .text.avg_distances:00000000 avg_distances
-    {standard input}:1774   .text.CAN_send_values:00000000 CAN_send_values
-    {standard input}:969    .text.reset:00000064 $d
-    {standard input}:985    .text.IRQ5_Handler:00000000 $t
-    {standard input}:990    .text.IRQ5_Handler:00000000 IRQ5_Handler
-    {standard input}:1653   .text.within_MAX_MIN_check_int:00000000 within_MAX_MIN_check_int
-    {standard input}:1131   .text.IRQ5_Handler:000000e0 $d
-    {standard input}:1153   .text.IRQ3_Handler:00000000 $t
-    {standard input}:1158   .text.IRQ3_Handler:00000000 IRQ3_Handler
-    {standard input}:1299   .text.IRQ3_Handler:000000e0 $d
-    {standard input}:1321   .text.IRQ6_Handler:00000000 $t
-    {standard input}:1326   .text.IRQ6_Handler:00000000 IRQ6_Handler
-    {standard input}:1467   .text.IRQ6_Handler:000000e0 $d
-    {standard input}:1489   .text.IRQ7_Handler:00000000 $t
-    {standard input}:1494   .text.IRQ7_Handler:00000000 IRQ7_Handler
-    {standard input}:1566   .text.IRQ7_Handler:0000005c $d
-    {standard input}:1578   .text.Watchdog_Handler:00000000 $t
-    {standard input}:1583   .text.Watchdog_Handler:00000000 Watchdog_Handler
-    {standard input}:1608   .text.Watchdog_Handler:00000014 $d
-    {standard input}:1613   .text.IRQ0_Handler:00000000 $t
-    {standard input}:1618   .text.IRQ0_Handler:00000000 IRQ0_Handler
-    {standard input}:1643   .text.IRQ0_Handler:00000014 $d
-    {standard input}:1648   .text.within_MAX_MIN_check_int:00000000 $t
-    {standard input}:1698   .text.saturation_to_MIN_MAX:00000000 $t
-    {standard input}:1769   .text.CAN_send_values:00000000 $t
-    {standard input}:1842   .text.CAN_send_values:00000060 $d
-    {standard input}:1852   .text.avg_distances:00000000 $t
-    {standard input}:1964   .text.Exp_moving_average:00000000 Exp_moving_average
-    {standard input}:1945   .text.avg_distances:0000008c $d
-    {standard input}:1959   .text.Exp_moving_average:00000000 $t
+    {standard input}:616    .data.CAN_RX_OK:00000000 CAN_RX_OK
+    {standard input}:622    .data.Now_Sensor:00000000 Now_Sensor
+    {standard input}:625    .text.main:00000000 $t
+    {standard input}:630    .text.main:00000000 main
+    {standard input}:687    .text.main:00000040 $d
+    {standard input}:694    .text.IRQ8_Handler:00000000 $t
+    {standard input}:699    .text.IRQ8_Handler:00000000 IRQ8_Handler
+    {standard input}:1719   .text.saturation_to_MIN_MAX:00000000 saturation_to_MIN_MAX
+    {standard input}:899    .text.reset:00000000 reset
+    {standard input}:874    .text.IRQ8_Handler:0000010c $d
+    {standard input}:894    .text.reset:00000000 $t
+    {standard input}:1873   .text.avg_distances:00000000 avg_distances
+    {standard input}:1790   .text.CAN_send_values:00000000 CAN_send_values
+    {standard input}:975    .text.reset:00000064 $d
+    {standard input}:991    .text.IRQ5_Handler:00000000 $t
+    {standard input}:996    .text.IRQ5_Handler:00000000 IRQ5_Handler
+    {standard input}:1669   .text.within_MAX_MIN_check_int:00000000 within_MAX_MIN_check_int
+    {standard input}:1137   .text.IRQ5_Handler:000000e0 $d
+    {standard input}:1159   .text.IRQ3_Handler:00000000 $t
+    {standard input}:1164   .text.IRQ3_Handler:00000000 IRQ3_Handler
+    {standard input}:1305   .text.IRQ3_Handler:000000e0 $d
+    {standard input}:1327   .text.IRQ6_Handler:00000000 $t
+    {standard input}:1332   .text.IRQ6_Handler:00000000 IRQ6_Handler
+    {standard input}:1473   .text.IRQ6_Handler:000000e0 $d
+    {standard input}:1495   .text.IRQ7_Handler:00000000 $t
+    {standard input}:1500   .text.IRQ7_Handler:00000000 IRQ7_Handler
+    {standard input}:1572   .text.IRQ7_Handler:0000005c $d
+    {standard input}:1584   .text.Watchdog_Handler:00000000 $t
+    {standard input}:1589   .text.Watchdog_Handler:00000000 Watchdog_Handler
+    {standard input}:1618   .text.Watchdog_Handler:0000001c $d
+    {standard input}:1624   .text.IRQ0_Handler:00000000 $t
+    {standard input}:1629   .text.IRQ0_Handler:00000000 IRQ0_Handler
+    {standard input}:1658   .text.IRQ0_Handler:0000001c $d
+    {standard input}:1664   .text.within_MAX_MIN_check_int:00000000 $t
+    {standard input}:1714   .text.saturation_to_MIN_MAX:00000000 $t
+    {standard input}:1785   .text.CAN_send_values:00000000 $t
+    {standard input}:1858   .text.CAN_send_values:00000060 $d
+    {standard input}:1868   .text.avg_distances:00000000 $t
+    {standard input}:1980   .text.Exp_moving_average:00000000 Exp_moving_average
+    {standard input}:1961   .text.avg_distances:0000008c $d
+    {standard input}:1975   .text.Exp_moving_average:00000000 $t
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

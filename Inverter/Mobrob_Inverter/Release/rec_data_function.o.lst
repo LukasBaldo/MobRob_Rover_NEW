@@ -1,0 +1,286 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "rec_data_function.c"
+  16              	 .section .text.f_rec_data,"ax",%progbits
+  17              	 .align 1
+  18              	 .global f_rec_data
+  19              	 .thumb
+  20              	 .thumb_func
+  22              	f_rec_data:
+  23              	 
+  24              	 
+  25 0000 2DE9F041 	 push {r4,r5,r6,r7,r8,lr}
+  26 0004 2C4E     	 ldr r6,.L13
+  27 0006 9DF81CE0 	 ldrb lr,[sp,#28]
+  28 000a 3468     	 ldr r4,[r6]
+  29 000c B4FBFEF5 	 udiv r5,r4,lr
+  30 0010 0EFB1545 	 mls r5,lr,r5,r4
+  31 0014 089F     	 ldr r7,[sp,#32]
+  32 0016 B646     	 mov lr,r6
+  33 0018 002D     	 cmp r5,#0
+  34 001a 47D1     	 bne .L3
+  35 001c 274D     	 ldr r5,.L13+4
+  36 001e DFF8B4C0 	 ldr ip,.L13+28
+  37 0022 2E78     	 ldrb r6,[r5]
+  38 0024 012E     	 cmp r6,#1
+  39 0026 1DD1     	 bne .L5
+  40 0028 DFF8A080 	 ldr r8,.L13+20
+  41 002c D8F80060 	 ldr r6,[r8]
+  42 0030 0136     	 adds r6,r6,#1
+  43 0032 012E     	 cmp r6,#1
+  44 0034 C8F80060 	 str r6,[r8]
+  45 0038 08BF     	 it eq
+  46 003a 1360     	 streq r3,[r2]
+  47 003c BE42     	 cmp r6,r7
+  48 003e 04BF     	 itt eq
+  49 0040 0123     	 moveq r3,#1
+  50 0042 8CF80030 	 strbeq r3,[ip]
+  51 0046 07F16303 	 add r3,r7,#99
+  52 004a 9E42     	 cmp r6,r3
+  53 004c 04BF     	 itt eq
+  54 004e 069B     	 ldreq r3,[sp,#24]
+  55 0050 1360     	 streq r3,[r2]
+  56 0052 07F5FA77 	 add r7,r7,#500
+  57 0056 B6EB470F 	 cmp r6,r7,lsl#1
+  58 005a 01BF     	 itttt eq
+  59 005c 0023     	 moveq r3,#0
+  60 005e 1360     	 streq r3,[r2]
+  61 0060 0023     	 moveq r3,#0
+  62 0062 2B70     	 strbeq r3,[r5]
+  63              	.L5:
+  64 0064 9CF80030 	 ldrb r3,[ip]
+  65 0068 012B     	 cmp r3,#1
+  66 006a 10D1     	 bne .L10
+  67 006c DFF86080 	 ldr r8,.L13+24
+  68 0070 B8F80030 	 ldrh r3,[r8]
+  69 0074 B3F57A7F 	 cmp r3,#1000
+  70 0078 09D2     	 bcs .L10
+  71 007a 114F     	 ldr r7,.L13+8
+  72 007c 9E00     	 lsls r6,r3,#2
+  73 007e 3744     	 add r7,r7,r6
+  74 0080 0133     	 adds r3,r3,#1
+  75 0082 3860     	 str r0,[r7]
+  76 0084 0F48     	 ldr r0,.L13+12
+  77 0086 A8F80030 	 strh r3,[r8]
+  78 008a 0644     	 add r6,r6,r0
+  79 008c 3160     	 str r1,[r6]
+  80              	.L10:
+  81 008e 0E49     	 ldr r1,.L13+16
+  82 0090 0B78     	 ldrb r3,[r1]
+  83 0092 012B     	 cmp r3,#1
+  84 0094 0AD1     	 bne .L3
+  85 0096 2B78     	 ldrb r3,[r5]
+  86 0098 43B9     	 cbnz r3,.L3
+  87 009a 0B70     	 strb r3,[r1]
+  88 009c 0B49     	 ldr r1,.L13+20
+  89 009e 8CF80030 	 strb r3,[ip]
+  90 00a2 0B60     	 str r3,[r1]
+  91 00a4 0A49     	 ldr r1,.L13+24
+  92 00a6 0B80     	 strh r3,[r1]
+  93 00a8 0023     	 movs r3,#0
+  94 00aa 1360     	 str r3,[r2]
+  95              	.L3:
+  96 00ac 0134     	 adds r4,r4,#1
+  97 00ae CEF80040 	 str r4,[lr]
+  98 00b2 BDE8F081 	 pop {r4,r5,r6,r7,r8,pc}
+  99              	.L14:
+ 100 00b6 00BF     	 .align 2
+ 101              	.L13:
+ 102 00b8 00000000 	 .word .LANCHOR0
+ 103 00bc 00000000 	 .word .LANCHOR1
+ 104 00c0 00000000 	 .word .LANCHOR5
+ 105 00c4 00000000 	 .word .LANCHOR6
+ 106 00c8 00000000 	 .word .LANCHOR7
+ 107 00cc 00000000 	 .word .LANCHOR2
+ 108 00d0 00000000 	 .word .LANCHOR4
+ 109 00d4 00000000 	 .word .LANCHOR3
+ 111              	 .section .text.rec_step_from_0,"ax",%progbits
+ 112              	 .align 1
+ 113              	 .global rec_step_from_0
+ 114              	 .thumb
+ 115              	 .thumb_func
+ 117              	rec_step_from_0:
+ 118              	 
+ 119              	 
+ 120 0000 2DE9F043 	 push {r4,r5,r6,r7,r8,r9,lr}
+ 121 0004 294D     	 ldr r5,.L22
+ 122 0006 9DF82060 	 ldrb r6,[sp,#32]
+ 123 000a 2C68     	 ldr r4,[r5]
+ 124 000c B4FBF6F8 	 udiv r8,r4,r6
+ 125 0010 06FB1848 	 mls r8,r6,r8,r4
+ 126 0014 AE46     	 mov lr,r5
+ 127 0016 B8F1000F 	 cmp r8,#0
+ 128 001a 41D1     	 bne .L17
+ 129 001c 244D     	 ldr r5,.L22+4
+ 130 001e DFF8A8C0 	 ldr ip,.L22+28
+ 131 0022 2E78     	 ldrb r6,[r5]
+ 132 0024 012E     	 cmp r6,#1
+ 133 0026 12D1     	 bne .L18
+ 134 0028 8CF80060 	 strb r6,[ip]
+ 135 002c 079E     	 ldr r6,[sp,#28]
+ 136 002e 1E60     	 str r6,[r3]
+ 137 0030 204E     	 ldr r6,.L22+8
+ 138 0032 3768     	 ldr r7,[r6]
+ 139 0034 B7F57A7F 	 cmp r7,#1000
+ 140 0038 08BF     	 it eq
+ 141 003a 4FF00009 	 moveq r9,#0
+ 142 003e 07F10107 	 add r7,r7,#1
+ 143 0042 04BF     	 itt eq
+ 144 0044 C3F80090 	 streq r9,[r3]
+ 145 0048 85F80080 	 strbeq r8,[r5]
+ 146 004c 3760     	 str r7,[r6]
+ 147              	.L18:
+ 148 004e 9CF80060 	 ldrb r6,[ip]
+ 149 0052 012E     	 cmp r6,#1
+ 150 0054 15D1     	 bne .L20
+ 151 0056 DFF86C80 	 ldr r8,.L22+24
+ 152 005a B8F80060 	 ldrh r6,[r8]
+ 153 005e B6F57A7F 	 cmp r6,#1000
+ 154 0062 0ED2     	 bcs .L20
+ 155 0064 DFF86490 	 ldr r9,.L22+32
+ 156 0068 B700     	 lsls r7,r6,#2
+ 157 006a B944     	 add r9,r9,r7
+ 158 006c 0136     	 adds r6,r6,#1
+ 159 006e C9F80000 	 str r0,[r9]
+ 160 0072 1148     	 ldr r0,.L22+12
+ 161 0074 A8F80060 	 strh r6,[r8]
+ 162 0078 3844     	 add r0,r0,r7
+ 163 007a 0160     	 str r1,[r0]
+ 164 007c 0F49     	 ldr r1,.L22+16
+ 165 007e 0F44     	 add r7,r7,r1
+ 166 0080 3A60     	 str r2,[r7]
+ 167              	.L20:
+ 168 0082 0F49     	 ldr r1,.L22+20
+ 169 0084 0A78     	 ldrb r2,[r1]
+ 170 0086 012A     	 cmp r2,#1
+ 171 0088 0AD1     	 bne .L17
+ 172 008a 2A78     	 ldrb r2,[r5]
+ 173 008c 42B9     	 cbnz r2,.L17
+ 174 008e 0A70     	 strb r2,[r1]
+ 175 0090 0849     	 ldr r1,.L22+8
+ 176 0092 8CF80020 	 strb r2,[ip]
+ 177 0096 0A60     	 str r2,[r1]
+ 178 0098 0A49     	 ldr r1,.L22+24
+ 179 009a 0A80     	 strh r2,[r1]
+ 180 009c 0022     	 movs r2,#0
+ 181 009e 1A60     	 str r2,[r3]
+ 182              	.L17:
+ 183 00a0 0134     	 adds r4,r4,#1
+ 184 00a2 CEF80040 	 str r4,[lr]
+ 185 00a6 BDE8F083 	 pop {r4,r5,r6,r7,r8,r9,pc}
+ 186              	.L23:
+ 187 00aa 00BF     	 .align 2
+ 188              	.L22:
+ 189 00ac 00000000 	 .word .LANCHOR0
+ 190 00b0 00000000 	 .word .LANCHOR1
+ 191 00b4 00000000 	 .word .LANCHOR2
+ 192 00b8 00000000 	 .word .LANCHOR6
+ 193 00bc 00000000 	 .word .LANCHOR8
+ 194 00c0 00000000 	 .word .LANCHOR7
+ 195 00c4 00000000 	 .word .LANCHOR4
+ 196 00c8 00000000 	 .word .LANCHOR3
+ 197 00cc 00000000 	 .word .LANCHOR5
+ 199              	 .global counter_5kHz
+ 200              	 .global start_rec_copunt
+ 201              	 .global start_rec
+ 202              	 .global reset_rec
+ 203              	 .global rec_data3
+ 204              	 .global rec_data2
+ 205              	 .global rec_data
+ 206              	 .global rec_data_index
+ 207              	 .global rec_data_contorl
+ 208              	 .section .bss.counter_5kHz,"aw",%nobits
+ 209              	 .align 2
+ 210              	 .set .LANCHOR0,.+0
+ 213              	counter_5kHz:
+ 214 0000 00000000 	 .space 4
+ 215              	 .section .bss.reset_rec,"aw",%nobits
+ 216              	 .set .LANCHOR7,.+0
+ 219              	reset_rec:
+ 220 0000 00       	 .space 1
+ 221              	 .section .bss.start_rec,"aw",%nobits
+ 222              	 .set .LANCHOR1,.+0
+ 225              	start_rec:
+ 226 0000 00       	 .space 1
+ 227              	 .section .bss.rec_data_contorl,"aw",%nobits
+ 228              	 .set .LANCHOR3,.+0
+ 231              	rec_data_contorl:
+ 232 0000 00       	 .space 1
+ 233              	 .section .bss.rec_data3,"aw",%nobits
+ 234              	 .align 2
+ 235              	 .set .LANCHOR8,.+0
+ 238              	rec_data3:
+ 239 0000 00000000 	 .space 4000
+ 239      00000000 
+ 239      00000000 
+ 239      00000000 
+ 239      00000000 
+ 240              	 .section .bss.rec_data2,"aw",%nobits
+ 241              	 .align 2
+ 242              	 .set .LANCHOR6,.+0
+ 245              	rec_data2:
+ 246 0000 00000000 	 .space 4000
+ 246      00000000 
+ 246      00000000 
+ 246      00000000 
+ 246      00000000 
+ 247              	 .section .bss.start_rec_copunt,"aw",%nobits
+ 248              	 .align 2
+ 249              	 .set .LANCHOR2,.+0
+ 252              	start_rec_copunt:
+ 253 0000 00000000 	 .space 4
+ 254              	 .section .bss.rec_data,"aw",%nobits
+ 255              	 .align 2
+ 256              	 .set .LANCHOR5,.+0
+ 259              	rec_data:
+ 260 0000 00000000 	 .space 4000
+ 260      00000000 
+ 260      00000000 
+ 260      00000000 
+ 260      00000000 
+ 261              	 .section .bss.rec_data_index,"aw",%nobits
+ 262              	 .align 1
+ 263              	 .set .LANCHOR4,.+0
+ 266              	rec_data_index:
+ 267 0000 0000     	 .space 2
+ 268              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 rec_data_function.c
+    {standard input}:17     .text.f_rec_data:00000000 $t
+    {standard input}:22     .text.f_rec_data:00000000 f_rec_data
+    {standard input}:102    .text.f_rec_data:000000b8 $d
+    {standard input}:112    .text.rec_step_from_0:00000000 $t
+    {standard input}:117    .text.rec_step_from_0:00000000 rec_step_from_0
+    {standard input}:189    .text.rec_step_from_0:000000ac $d
+    {standard input}:213    .bss.counter_5kHz:00000000 counter_5kHz
+    {standard input}:252    .bss.start_rec_copunt:00000000 start_rec_copunt
+    {standard input}:225    .bss.start_rec:00000000 start_rec
+    {standard input}:219    .bss.reset_rec:00000000 reset_rec
+    {standard input}:238    .bss.rec_data3:00000000 rec_data3
+    {standard input}:245    .bss.rec_data2:00000000 rec_data2
+    {standard input}:259    .bss.rec_data:00000000 rec_data
+    {standard input}:266    .bss.rec_data_index:00000000 rec_data_index
+    {standard input}:231    .bss.rec_data_contorl:00000000 rec_data_contorl
+    {standard input}:209    .bss.counter_5kHz:00000000 $d
+    {standard input}:220    .bss.reset_rec:00000000 $d
+    {standard input}:226    .bss.start_rec:00000000 $d
+    {standard input}:232    .bss.rec_data_contorl:00000000 $d
+    {standard input}:234    .bss.rec_data3:00000000 $d
+    {standard input}:241    .bss.rec_data2:00000000 $d
+    {standard input}:248    .bss.start_rec_copunt:00000000 $d
+    {standard input}:255    .bss.rec_data:00000000 $d
+    {standard input}:262    .bss.rec_data_index:00000000 $d
+
+NO UNDEFINED SYMBOLS

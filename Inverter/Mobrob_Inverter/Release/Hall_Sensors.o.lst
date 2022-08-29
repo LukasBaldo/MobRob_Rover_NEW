@@ -1,0 +1,749 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "Hall_Sensors.c"
+  16              	 .section .text.CCU43_3_IRQHandler,"ax",%progbits
+  17              	 .align 1
+  18              	 .global CCU43_3_IRQHandler
+  19              	 .thumb
+  20              	 .thumb_func
+  22              	CCU43_3_IRQHandler:
+  23              	 
+  24              	 
+  25              	 
+  26 0000 064A     	 ldr r2,.L2
+  27 0002 1368     	 ldr r3,[r2]
+  28 0004 0133     	 adds r3,r3,#1
+  29 0006 1360     	 str r3,[r2]
+  30 0008 054A     	 ldr r2,.L2+4
+  31 000a 1368     	 ldr r3,[r2]
+  32 000c 0133     	 adds r3,r3,#1
+  33 000e 1360     	 str r3,[r2]
+  34 0010 044A     	 ldr r2,.L2+8
+  35 0012 1368     	 ldr r3,[r2]
+  36 0014 0133     	 adds r3,r3,#1
+  37 0016 1360     	 str r3,[r2]
+  38 0018 7047     	 bx lr
+  39              	.L3:
+  40 001a 00BF     	 .align 2
+  41              	.L2:
+  42 001c 00000000 	 .word .LANCHOR0
+  43 0020 00000000 	 .word .LANCHOR1
+  44 0024 00000000 	 .word .LANCHOR2
+  46              	 .section .text.Hall_init,"ax",%progbits
+  47              	 .align 1
+  48              	 .global Hall_init
+  49              	 .thumb
+  50              	 .thumb_func
+  52              	Hall_init:
+  53              	 
+  54              	 
+  55 0000 30B5     	 push {r4,r5,lr}
+  56 0002 194D     	 ldr r5,.L14
+  57 0004 194C     	 ldr r4,.L14+4
+  58 0006 6B68     	 ldr r3,[r5,#4]
+  59 0008 1948     	 ldr r0,.L14+8
+  60 000a 596A     	 ldr r1,[r3,#36]
+  61 000c 6368     	 ldr r3,[r4,#4]
+  62 000e 95F82150 	 ldrb r5,[r5,#33]
+  63 0012 5A6A     	 ldr r2,[r3,#36]
+  64 0014 94F82140 	 ldrb r4,[r4,#33]
+  65 0018 4368     	 ldr r3,[r0,#4]
+  66 001a E940     	 lsrs r1,r1,r5
+  67 001c E240     	 lsrs r2,r2,r4
+  68 001e 01F00101 	 and r1,r1,#1
+  69 0022 02F00102 	 and r2,r2,#1
+  70 0026 42EA4102 	 orr r2,r2,r1,lsl#1
+  71 002a 5B6A     	 ldr r3,[r3,#36]
+  72 002c 90F82110 	 ldrb r1,[r0,#33]
+  73 0030 CB40     	 lsrs r3,r3,r1
+  74 0032 03F00103 	 and r3,r3,#1
+  75 0036 43EA4203 	 orr r3,r3,r2,lsl#1
+  76 003a 042B     	 cmp r3,#4
+  77 003c 01D1     	 bne .L5
+  78 003e 0022     	 movs r2,#0
+  79 0040 02E0     	 b .L11
+  80              	.L5:
+  81 0042 062B     	 cmp r3,#6
+  82 0044 03D1     	 bne .L7
+  83 0046 0122     	 movs r2,#1
+  84              	.L11:
+  85 0048 0A4B     	 ldr r3,.L14+12
+  86 004a 1A70     	 strb r2,[r3]
+  87 004c 30BD     	 pop {r4,r5,pc}
+  88              	.L7:
+  89 004e 022B     	 cmp r3,#2
+  90 0050 07D0     	 beq .L12
+  91 0052 032B     	 cmp r3,#3
+  92 0054 05D0     	 beq .L12
+  93 0056 012B     	 cmp r3,#1
+  94 0058 01D1     	 bne .L10
+  95 005a 0422     	 movs r2,#4
+  96 005c F4E7     	 b .L11
+  97              	.L10:
+  98 005e 052B     	 cmp r3,#5
+  99 0060 01D1     	 bne .L4
+ 100              	.L12:
+ 101 0062 044A     	 ldr r2,.L14+12
+ 102 0064 1370     	 strb r3,[r2]
+ 103              	.L4:
+ 104 0066 30BD     	 pop {r4,r5,pc}
+ 105              	.L15:
+ 106              	 .align 2
+ 107              	.L14:
+ 108 0068 00000000 	 .word Hall_A_ISR
+ 109 006c 00000000 	 .word Hall_B_ISR
+ 110 0070 00000000 	 .word Hall_C_ISR
+ 111 0074 00000000 	 .word .LANCHOR3
+ 113              	 .section .text.HallSensor,"ax",%progbits
+ 114              	 .align 1
+ 115              	 .global HallSensor
+ 116              	 .thumb
+ 117              	 .thumb_func
+ 119              	HallSensor:
+ 120              	 
+ 121              	 
+ 122 0000 2249     	 ldr r1,.L25
+ 123 0002 0B88     	 ldrh r3,[r1]
+ 124 0004 9BB2     	 uxth r3,r3
+ 125 0006 70B5     	 push {r4,r5,r6,lr}
+ 126 0008 DB00     	 lsls r3,r3,#3
+ 127 000a 214E     	 ldr r6,.L25+4
+ 128 000c 214D     	 ldr r5,.L25+8
+ 129 000e 224C     	 ldr r4,.L25+12
+ 130 0010 9BB2     	 uxth r3,r3
+ 131 0012 0B80     	 strh r3,[r1]
+ 132 0014 7368     	 ldr r3,[r6,#4]
+ 133 0016 96F82160 	 ldrb r6,[r6,#33]
+ 134 001a 586A     	 ldr r0,[r3,#36]
+ 135 001c 6B68     	 ldr r3,[r5,#4]
+ 136 001e 95F82150 	 ldrb r5,[r5,#33]
+ 137 0022 5A6A     	 ldr r2,[r3,#36]
+ 138 0024 6368     	 ldr r3,[r4,#4]
+ 139 0026 F040     	 lsrs r0,r0,r6
+ 140 0028 EA40     	 lsrs r2,r2,r5
+ 141 002a 00F00100 	 and r0,r0,#1
+ 142 002e 02F00102 	 and r2,r2,#1
+ 143 0032 5B6A     	 ldr r3,[r3,#36]
+ 144 0034 42EA4002 	 orr r2,r2,r0,lsl#1
+ 145 0038 94F82100 	 ldrb r0,[r4,#33]
+ 146 003c C340     	 lsrs r3,r3,r0
+ 147 003e 03F00103 	 and r3,r3,#1
+ 148 0042 43EA4203 	 orr r3,r3,r2,lsl#1
+ 149 0046 0A88     	 ldrh r2,[r1]
+ 150 0048 92B2     	 uxth r2,r2
+ 151 004a 1A43     	 orrs r2,r2,r3
+ 152 004c 0A80     	 strh r2,[r1]
+ 153 004e 0A88     	 ldrh r2,[r1]
+ 154 0050 1249     	 ldr r1,.L25+16
+ 155 0052 02F03F02 	 and r2,r2,#63
+ 156 0056 042B     	 cmp r3,#4
+ 157 0058 895C     	 ldrb r1,[r1,r2]
+ 158 005a 114A     	 ldr r2,.L25+20
+ 159 005c 1170     	 strb r1,[r2]
+ 160 005e 01D1     	 bne .L17
+ 161 0060 0022     	 movs r2,#0
+ 162 0062 02E0     	 b .L23
+ 163              	.L17:
+ 164 0064 062B     	 cmp r3,#6
+ 165 0066 03D1     	 bne .L19
+ 166 0068 0122     	 movs r2,#1
+ 167              	.L23:
+ 168 006a 0E4B     	 ldr r3,.L25+24
+ 169 006c 1A70     	 strb r2,[r3]
+ 170 006e 70BD     	 pop {r4,r5,r6,pc}
+ 171              	.L19:
+ 172 0070 022B     	 cmp r3,#2
+ 173 0072 07D0     	 beq .L24
+ 174 0074 032B     	 cmp r3,#3
+ 175 0076 05D0     	 beq .L24
+ 176 0078 012B     	 cmp r3,#1
+ 177 007a 01D1     	 bne .L22
+ 178 007c 0422     	 movs r2,#4
+ 179 007e F4E7     	 b .L23
+ 180              	.L22:
+ 181 0080 052B     	 cmp r3,#5
+ 182 0082 01D1     	 bne .L16
+ 183              	.L24:
+ 184 0084 074A     	 ldr r2,.L25+24
+ 185 0086 1370     	 strb r3,[r2]
+ 186              	.L16:
+ 187 0088 70BD     	 pop {r4,r5,r6,pc}
+ 188              	.L26:
+ 189 008a 00BF     	 .align 2
+ 190              	.L25:
+ 191 008c 00000000 	 .word .LANCHOR4
+ 192 0090 00000000 	 .word Hall_A_ISR
+ 193 0094 00000000 	 .word Hall_B_ISR
+ 194 0098 00000000 	 .word Hall_C_ISR
+ 195 009c 00000000 	 .word .LANCHOR5
+ 196 00a0 00000000 	 .word .LANCHOR6
+ 197 00a4 00000000 	 .word .LANCHOR3
+ 199              	 .section .text.ERU1_2_IRQHandler,"ax",%progbits
+ 200              	 .align 1
+ 201              	 .global ERU1_2_IRQHandler
+ 202              	 .thumb
+ 203              	 .thumb_func
+ 205              	ERU1_2_IRQHandler:
+ 206              	 
+ 207              	 
+ 208 0000 08B5     	 push {r3,lr}
+ 209 0002 FFF7FEFF 	 bl HallSensor
+ 210 0006 0C4B     	 ldr r3,.L31
+ 211 0008 0C4A     	 ldr r2,.L31+4
+ 212 000a 1968     	 ldr r1,[r3]
+ 213 000c 1160     	 str r1,[r2]
+ 214 000e 0022     	 movs r2,#0
+ 215 0010 1A60     	 str r2,[r3]
+ 216 0012 0B4B     	 ldr r3,.L31+8
+ 217 0014 4122     	 movs r2,#65
+ 218 0016 1A70     	 strb r2,[r3]
+ 219 0018 0A4B     	 ldr r3,.L31+12
+ 220 001a 1A78     	 ldrb r2,[r3]
+ 221 001c 012A     	 cmp r2,#1
+ 222 001e 03D1     	 bne .L28
+ 223 0020 094A     	 ldr r2,.L31+16
+ 224 0022 1368     	 ldr r3,[r2]
+ 225 0024 0133     	 adds r3,r3,#1
+ 226 0026 05E0     	 b .L30
+ 227              	.L28:
+ 228 0028 1B78     	 ldrb r3,[r3]
+ 229 002a FF2B     	 cmp r3,#255
+ 230 002c 03D1     	 bne .L27
+ 231 002e 064A     	 ldr r2,.L31+16
+ 232 0030 1368     	 ldr r3,[r2]
+ 233 0032 013B     	 subs r3,r3,#1
+ 234              	.L30:
+ 235 0034 1360     	 str r3,[r2]
+ 236              	.L27:
+ 237 0036 08BD     	 pop {r3,pc}
+ 238              	.L32:
+ 239              	 .align 2
+ 240              	.L31:
+ 241 0038 00000000 	 .word .LANCHOR0
+ 242 003c 00000000 	 .word .LANCHOR7
+ 243 0040 00000000 	 .word last_Hall_trig
+ 244 0044 00000000 	 .word .LANCHOR6
+ 245 0048 00000000 	 .word distance_180deg_ele_count
+ 247              	 .section .text.ERU1_0_IRQHandler,"ax",%progbits
+ 248              	 .align 1
+ 249              	 .global ERU1_0_IRQHandler
+ 250              	 .thumb
+ 251              	 .thumb_func
+ 253              	ERU1_0_IRQHandler:
+ 254              	 
+ 255              	 
+ 256 0000 08B5     	 push {r3,lr}
+ 257 0002 FFF7FEFF 	 bl HallSensor
+ 258 0006 054B     	 ldr r3,.L34
+ 259 0008 054A     	 ldr r2,.L34+4
+ 260 000a 1968     	 ldr r1,[r3]
+ 261 000c 1160     	 str r1,[r2]
+ 262 000e 0022     	 movs r2,#0
+ 263 0010 1A60     	 str r2,[r3]
+ 264 0012 044B     	 ldr r3,.L34+8
+ 265 0014 4222     	 movs r2,#66
+ 266 0016 1A70     	 strb r2,[r3]
+ 267 0018 08BD     	 pop {r3,pc}
+ 268              	.L35:
+ 269 001a 00BF     	 .align 2
+ 270              	.L34:
+ 271 001c 00000000 	 .word .LANCHOR1
+ 272 0020 00000000 	 .word .LANCHOR7
+ 273 0024 00000000 	 .word last_Hall_trig
+ 275              	 .section .text.ERU1_3_IRQHandler,"ax",%progbits
+ 276              	 .align 1
+ 277              	 .global ERU1_3_IRQHandler
+ 278              	 .thumb
+ 279              	 .thumb_func
+ 281              	ERU1_3_IRQHandler:
+ 282              	 
+ 283              	 
+ 284 0000 08B5     	 push {r3,lr}
+ 285 0002 FFF7FEFF 	 bl HallSensor
+ 286 0006 054B     	 ldr r3,.L37
+ 287 0008 054A     	 ldr r2,.L37+4
+ 288 000a 1968     	 ldr r1,[r3]
+ 289 000c 1160     	 str r1,[r2]
+ 290 000e 0022     	 movs r2,#0
+ 291 0010 1A60     	 str r2,[r3]
+ 292 0012 044B     	 ldr r3,.L37+8
+ 293 0014 4322     	 movs r2,#67
+ 294 0016 1A70     	 strb r2,[r3]
+ 295 0018 08BD     	 pop {r3,pc}
+ 296              	.L38:
+ 297 001a 00BF     	 .align 2
+ 298              	.L37:
+ 299 001c 00000000 	 .word .LANCHOR2
+ 300 0020 00000000 	 .word .LANCHOR7
+ 301 0024 00000000 	 .word last_Hall_trig
+ 303              	 .global __aeabi_f2d
+ 304              	 .global __aeabi_ddiv
+ 305              	 .global __aeabi_ui2d
+ 306              	 .global __aeabi_dmul
+ 307              	 .global __aeabi_d2f
+ 308              	 .global __aeabi_i2d
+ 309              	 .global __aeabi_dadd
+ 310              	 .global __aeabi_dsub
+ 311              	 .section .text.Hall_postion_speed_estimation,"ax",%progbits
+ 312              	 .align 1
+ 313              	 .global Hall_postion_speed_estimation
+ 314              	 .thumb
+ 315              	 .thumb_func
+ 317              	Hall_postion_speed_estimation:
+ 318              	 
+ 319              	 
+ 320 0000 2DE9F84F 	 push {r3,r4,r5,r6,r7,r8,r9,r10,fp,lr}
+ 321 0004 2DED028B 	 fstmfdd sp!,{d8}
+ 322 0008 8D4B     	 ldr r3,.L70+16
+ 323 000a 1A78     	 ldrb r2,[r3]
+ 324 000c 412A     	 cmp r2,#65
+ 325 000e 01D1     	 bne .L40
+ 326 0010 8C4B     	 ldr r3,.L70+20
+ 327 0012 08E0     	 b .L67
+ 328              	.L40:
+ 329 0014 1A78     	 ldrb r2,[r3]
+ 330 0016 422A     	 cmp r2,#66
+ 331 0018 01D1     	 bne .L42
+ 332 001a 8B4B     	 ldr r3,.L70+24
+ 333 001c 03E0     	 b .L67
+ 334              	.L42:
+ 335 001e 1B78     	 ldrb r3,[r3]
+ 336 0020 432B     	 cmp r3,#67
+ 337 0022 01D1     	 bne .L41
+ 338 0024 894B     	 ldr r3,.L70+28
+ 339              	.L67:
+ 340 0026 1D68     	 ldr r5,[r3]
+ 341              	.L41:
+ 342 0028 894B     	 ldr r3,.L70+32
+ 343 002a DFF864A2 	 ldr r10,.L70+96
+ 344 002e 1B68     	 ldr r3,[r3]
+ 345 0030 40F6C412 	 movw r2,#2500
+ 346 0034 9342     	 cmp r3,r2
+ 347 0036 02D9     	 bls .L43
+ 348 0038 CAF80020 	 str r2,[r10]
+ 349 003c 04E0     	 b .L44
+ 350              	.L43:
+ 351 003e 012B     	 cmp r3,#1
+ 352 0040 98BF     	 it ls
+ 353 0042 0223     	 movls r3,#2
+ 354 0044 CAF80030 	 str r3,[r10]
+ 355              	.L44:
+ 356 0048 41F28733 	 movw r3,#4999
+ 357 004c 9D42     	 cmp r5,r3
+ 358 004e 814E     	 ldr r6,.L70+36
+ 359 0050 28D8     	 bhi .L46
+ 360 0052 DAED007A 	 flds s15,[r10]
+ 361 0056 F8EE677A 	 fuitos s15,s15
+ 362 005a 17EE900A 	 fmrs r0,s15
+ 363 005e FFF7FEFF 	 bl __aeabi_f2d
+ 364 0062 0246     	 mov r2,r0
+ 365 0064 0B46     	 mov r3,r1
+ 366 0066 0020     	 movs r0,#0
+ 367 0068 7B49     	 ldr r1,.L70+40
+ 368 006a FFF7FEFF 	 bl __aeabi_ddiv
+ 369 006e 8046     	 mov r8,r0
+ 370 0070 2846     	 mov r0,r5
+ 371 0072 8946     	 mov r9,r1
+ 372 0074 FFF7FEFF 	 bl __aeabi_ui2d
+ 373 0078 0246     	 mov r2,r0
+ 374 007a 0B46     	 mov r3,r1
+ 375 007c 4046     	 mov r0,r8
+ 376 007e 4946     	 mov r1,r9
+ 377 0080 FFF7FEFF 	 bl __aeabi_dmul
+ 378 0084 FFF7FEFF 	 bl __aeabi_d2f
+ 379 0088 DFED747A 	 flds s15,.L70+44
+ 380 008c 07EE100A 	 fmsr s14,r0
+ 381 0090 B4EEE77A 	 fcmpes s14,s15
+ 382 0094 F1EE10FA 	 fmstat
+ 383 0098 D8BF     	 it le
+ 384 009a F0EE477A 	 fcpysle s15,s14
+ 385 009e C6ED007A 	 fsts s15,[r6]
+ 386 00a2 01E0     	 b .L48
+ 387              	.L46:
+ 388 00a4 6E4B     	 ldr r3,.L70+48
+ 389 00a6 3360     	 str r3,[r6]
+ 390              	.L48:
+ 391 00a8 6E4B     	 ldr r3,.L70+52
+ 392 00aa 6F4C     	 ldr r4,.L70+56
+ 393 00ac 1A78     	 ldrb r2,[r3]
+ 394 00ae 9FED6F8A 	 flds s16,.L70+60
+ 395 00b2 6F4F     	 ldr r7,.L70+64
+ 396 00b4 9B46     	 mov fp,r3
+ 397 00b6 6F4B     	 ldr r3,.L70+68
+ 398 00b8 1878     	 ldrb r0,[r3]
+ 399 00ba 012A     	 cmp r2,#1
+ 400 00bc 40B2     	 sxtb r0,r0
+ 401 00be 3AD1     	 bne .L49
+ 402 00c0 FFF7FEFF 	 bl __aeabi_i2d
+ 403 00c4 0022     	 movs r2,#0
+ 404 00c6 6C4B     	 ldr r3,.L70+72
+ 405 00c8 FFF7FEFF 	 bl __aeabi_dmul
+ 406 00cc 8046     	 mov r8,r0
+ 407 00ce 3068     	 ldr r0,[r6]
+ 408 00d0 8946     	 mov r9,r1
+ 409 00d2 FFF7FEFF 	 bl __aeabi_f2d
+ 410 00d6 0246     	 mov r2,r0
+ 411 00d8 0B46     	 mov r3,r1
+ 412 00da 4046     	 mov r0,r8
+ 413 00dc 4946     	 mov r1,r9
+ 414 00de FFF7FEFF 	 bl __aeabi_dadd
+ 415 00e2 FFF7FEFF 	 bl __aeabi_d2f
+ 416 00e6 654B     	 ldr r3,.L70+76
+ 417 00e8 2060     	 str r0,[r4]
+ 418 00ea D4ED007A 	 flds s15,[r4]
+ 419 00ee 93ED007A 	 flds s14,[r3]
+ 420 00f2 DAF80000 	 ldr r0,[r10]
+ 421 00f6 77EE877A 	 fadds s15,s15,s14
+ 422 00fa C4ED007A 	 fsts s15,[r4]
+ 423 00fe D4ED007A 	 flds s15,[r4]
+ 424 0102 F4EEC87A 	 fcmpes s15,s16
+ 425 0106 F1EE10FA 	 fmstat
+ 426 010a C4BF     	 itt gt
+ 427 010c D4ED007A 	 fldsgt s15,[r4]
+ 428 0110 37EEC88A 	 fsubsgt s16,s15,s16
+ 429 0114 07EE900A 	 fmsr s15,r0
+ 430 0118 F8EE677A 	 fuitos s15,s15
+ 431 011c C8BF     	 it gt
+ 432 011e 84ED008A 	 fstsgt s16,[r4]
+ 433 0122 17EE900A 	 fmrs r0,s15
+ 434 0126 FFF7FEFF 	 bl __aeabi_f2d
+ 435 012a 0246     	 mov r2,r0
+ 436 012c 0B46     	 mov r3,r1
+ 437 012e 40A1     	 adr r1,.L70
+ 438 0130 D1E90001 	 ldrd r0,[r1]
+ 439 0134 50E0     	 b .L69
+ 440              	.L49:
+ 441 0136 FFF7FEFF 	 bl __aeabi_i2d
+ 442 013a 0022     	 movs r2,#0
+ 443 013c 4E4B     	 ldr r3,.L70+72
+ 444 013e FFF7FEFF 	 bl __aeabi_dmul
+ 445 0142 8046     	 mov r8,r0
+ 446 0144 3068     	 ldr r0,[r6]
+ 447 0146 8946     	 mov r9,r1
+ 448 0148 FFF7FEFF 	 bl __aeabi_f2d
+ 449 014c 0246     	 mov r2,r0
+ 450 014e 0B46     	 mov r3,r1
+ 451 0150 4046     	 mov r0,r8
+ 452 0152 4946     	 mov r1,r9
+ 453 0154 FFF7FEFF 	 bl __aeabi_dsub
+ 454 0158 FFF7FEFF 	 bl __aeabi_d2f
+ 455 015c 2060     	 str r0,[r4]
+ 456 015e D4ED007A 	 flds s15,[r4]
+ 457 0162 9FED3E7A 	 flds s14,.L70+44
+ 458 0166 464A     	 ldr r2,.L70+80
+ 459 0168 3F4B     	 ldr r3,.L70+56
+ 460 016a DAF80000 	 ldr r0,[r10]
+ 461 016e 77EE877A 	 fadds s15,s15,s14
+ 462 0172 92ED007A 	 flds s14,[r2]
+ 463 0176 C4ED007A 	 fsts s15,[r4]
+ 464 017a D4ED007A 	 flds s15,[r4]
+ 465 017e F5EEC07A 	 fcmpezs s15
+ 466 0182 F1EE10FA 	 fmstat
+ 467 0186 42BF     	 ittt mi
+ 468 0188 D4ED007A 	 fldsmi s15,[r4]
+ 469 018c 77EE887A 	 faddsmi s15,s15,s16
+ 470 0190 C4ED007A 	 fstsmi s15,[r4]
+ 471 0194 D4ED007A 	 flds s15,[r4]
+ 472 0198 77EE877A 	 fadds s15,s15,s14
+ 473 019c C4ED007A 	 fsts s15,[r4]
+ 474 01a0 D4ED007A 	 flds s15,[r4]
+ 475 01a4 F4EEC87A 	 fcmpes s15,s16
+ 476 01a8 F1EE10FA 	 fmstat
+ 477 01ac C1BF     	 itttt gt
+ 478 01ae D3ED007A 	 fldsgt s15,[r3]
+ 479 01b2 9FED2E7A 	 fldsgt s14,.L70+60
+ 480 01b6 77EEC77A 	 fsubsgt s15,s15,s14
+ 481 01ba C3ED007A 	 fstsgt s15,[r3]
+ 482 01be 07EE900A 	 fmsr s15,r0
+ 483 01c2 F8EE677A 	 fuitos s15,s15
+ 484 01c6 17EE900A 	 fmrs r0,s15
+ 485 01ca FFF7FEFF 	 bl __aeabi_f2d
+ 486 01ce 0246     	 mov r2,r0
+ 487 01d0 0B46     	 mov r3,r1
+ 488 01d2 19A1     	 adr r1,.L70+8
+ 489 01d4 D1E90001 	 ldrd r0,[r1]
+ 490              	.L69:
+ 491 01d8 FFF7FEFF 	 bl __aeabi_ddiv
+ 492 01dc FFF7FEFF 	 bl __aeabi_d2f
+ 493 01e0 3860     	 str r0,[r7]
+ 494 01e2 97ED007A 	 flds s14,[r7]
+ 495 01e6 DFED277A 	 flds s15,.L70+84
+ 496 01ea 214B     	 ldr r3,.L70+64
+ 497 01ec B4EEE77A 	 fcmpes s14,s15
+ 498 01f0 F1EE10FA 	 fmstat
+ 499 01f4 0BD5     	 bpl .L57
+ 500 01f6 93ED007A 	 flds s14,[r3]
+ 501 01fa DFED237A 	 flds s15,.L70+88
+ 502 01fe B4EEE77A 	 fcmpes s14,s15
+ 503 0202 F1EE10FA 	 fmstat
+ 504 0206 C2BF     	 ittt gt
+ 505 0208 1A68     	 ldrgt r2,[r3]
+ 506 020a 204B     	 ldrgt r3,.L70+92
+ 507 020c 1A60     	 strgt r2,[r3]
+ 508              	.L57:
+ 509 020e 41F28833 	 movw r3,#5000
+ 510 0212 9D42     	 cmp r5,r3
+ 511 0214 02D8     	 bhi .L60
+ 512 0216 9BF80030 	 ldrb r3,[fp]
+ 513 021a 13B9     	 cbnz r3,.L39
+ 514              	.L60:
+ 515 021c 1B4B     	 ldr r3,.L70+92
+ 516 021e 0022     	 movs r2,#0
+ 517 0220 1A60     	 str r2,[r3]
+ 518              	.L39:
+ 519 0222 BDEC028B 	 fldmfdd sp!,{d8}
+ 520 0226 BDE8F88F 	 pop {r3,r4,r5,r6,r7,r8,r9,r10,fp,pc}
+ 521              	.L71:
+ 522 022a 00BFAFF3 	 .align 3
+ 522      0080
+ 523              	.L70:
+ 524 0230 7D3F355E 	 .word 1580547965
+ 525 0234 BA687C40 	 .word 1081895098
+ 526 0238 7D3F355E 	 .word 1580547965
+ 527 023c BA687CC0 	 .word -1065588550
+ 528 0240 00000000 	 .word last_Hall_trig
+ 529 0244 00000000 	 .word .LANCHOR0
+ 530 0248 00000000 	 .word .LANCHOR1
+ 531 024c 00000000 	 .word .LANCHOR2
+ 532 0250 00000000 	 .word .LANCHOR7
+ 533 0254 00000000 	 .word .LANCHOR9
+ 534 0258 00806640 	 .word 1080459264
+ 535 025c 00007042 	 .word 1114636288
+ 536 0260 0000F041 	 .word 1106247680
+ 537 0264 00000000 	 .word .LANCHOR6
+ 538 0268 00000000 	 .word angle_phi
+ 539 026c 0000B443 	 .word 1135869952
+ 540 0270 00000000 	 .word .LANCHOR11
+ 541 0274 00000000 	 .word .LANCHOR3
+ 542 0278 00004E40 	 .word 1078853632
+ 543 027c 00000000 	 .word .LANCHOR10
+ 544 0280 00000000 	 .word .LANCHOR12
+ 545 0284 00004843 	 .word 1128792064
+ 546 0288 000048C3 	 .word -1018691584
+ 547 028c 00000000 	 .word .LANCHOR13
+ 548 0290 00000000 	 .word .LANCHOR8
+ 550              	 .global omega_mech_rps_temp
+ 551              	 .global omega_mech_rps
+ 552              	 .global angle_in_sector
+ 553              	 .global time_180deg_cal
+ 554              	 .comm last_Hall_trig,1,1
+ 555              	 .global time_180deg
+ 556              	 .global time_since_C
+ 557              	 .global time_since_B
+ 558              	 .global time_since_A
+ 559              	 .global enc_val
+ 560              	 .global direction
+ 561              	 .global sector
+ 562              	 .global lookup_table
+ 563              	 .global offset_neg
+ 564              	 .global offset_pos
+ 565 0294 AFF30080 	 .section .data.time_180deg,"aw",%progbits
+ 566              	 .align 2
+ 567              	 .set .LANCHOR7,.+0
+ 570              	time_180deg:
+ 571 0000 E8030000 	 .word 1000
+ 572              	 .section .bss.omega_mech_rps_temp,"aw",%nobits
+ 573              	 .align 2
+ 574              	 .set .LANCHOR11,.+0
+ 577              	omega_mech_rps_temp:
+ 578 0000 00000000 	 .space 4
+ 579              	 .section .bss.time_since_B,"aw",%nobits
+ 580              	 .align 2
+ 581              	 .set .LANCHOR1,.+0
+ 584              	time_since_B:
+ 585 0000 00000000 	 .space 4
+ 586              	 .section .bss.enc_val,"aw",%nobits
+ 587              	 .align 1
+ 588              	 .set .LANCHOR4,.+0
+ 591              	enc_val:
+ 592 0000 0000     	 .space 2
+ 593              	 .section .bss.time_since_A,"aw",%nobits
+ 594              	 .align 2
+ 595              	 .set .LANCHOR0,.+0
+ 598              	time_since_A:
+ 599 0000 00000000 	 .space 4
+ 600              	 .section .data.offset_pos,"aw",%progbits
+ 601              	 .align 2
+ 602              	 .set .LANCHOR10,.+0
+ 605              	offset_pos:
+ 606 0000 0000D8C1 	 .word -1042808832
+ 607              	 .section .bss.time_since_C,"aw",%nobits
+ 608              	 .align 2
+ 609              	 .set .LANCHOR2,.+0
+ 612              	time_since_C:
+ 613 0000 00000000 	 .space 4
+ 614              	 .section .bss.direction,"aw",%nobits
+ 615              	 .set .LANCHOR6,.+0
+ 618              	direction:
+ 619 0000 00       	 .space 1
+ 620              	 .section .bss.omega_mech_rps,"aw",%nobits
+ 621              	 .align 2
+ 622              	 .set .LANCHOR13,.+0
+ 625              	omega_mech_rps:
+ 626 0000 00000000 	 .space 4
+ 627              	 .section .bss.sector,"aw",%nobits
+ 628              	 .set .LANCHOR3,.+0
+ 631              	sector:
+ 632 0000 00       	 .space 1
+ 633              	 .section .data.angle_in_sector,"aw",%progbits
+ 634              	 .align 2
+ 635              	 .set .LANCHOR9,.+0
+ 638              	angle_in_sector:
+ 639 0000 0000F041 	 .word 1106247680
+ 640              	 .section .data.offset_neg,"aw",%progbits
+ 641              	 .align 2
+ 642              	 .set .LANCHOR12,.+0
+ 645              	offset_neg:
+ 646 0000 0000A0C1 	 .word -1046478848
+ 647              	 .section .data.time_180deg_cal,"aw",%progbits
+ 648              	 .align 2
+ 649              	 .set .LANCHOR8,.+0
+ 652              	time_180deg_cal:
+ 653 0000 E8030000 	 .word 1000
+ 654              	 .section .data.lookup_table,"aw",%progbits
+ 655              	 .set .LANCHOR5,.+0
+ 658              	lookup_table:
+ 659 0000 00       	 .byte 0
+ 660 0001 00       	 .byte 0
+ 661 0002 00       	 .byte 0
+ 662 0003 00       	 .byte 0
+ 663 0004 00       	 .byte 0
+ 664 0005 00       	 .byte 0
+ 665 0006 00       	 .byte 0
+ 666 0007 00       	 .byte 0
+ 667 0008 00       	 .byte 0
+ 668 0009 00       	 .byte 0
+ 669 000a 00       	 .byte 0
+ 670 000b FF       	 .byte -1
+ 671 000c 00       	 .byte 0
+ 672 000d 01       	 .byte 1
+ 673 000e 00       	 .byte 0
+ 674 000f 00       	 .byte 0
+ 675 0010 00       	 .byte 0
+ 676 0011 00       	 .byte 0
+ 677 0012 00       	 .byte 0
+ 678 0013 01       	 .byte 1
+ 679 0014 00       	 .byte 0
+ 680 0015 00       	 .byte 0
+ 681 0016 FF       	 .byte -1
+ 682 0017 00       	 .byte 0
+ 683 0018 00       	 .byte 0
+ 684 0019 01       	 .byte 1
+ 685 001a FF       	 .byte -1
+ 686 001b 00       	 .byte 0
+ 687 001c 00       	 .byte 0
+ 688 001d 00       	 .byte 0
+ 689 001e 00       	 .byte 0
+ 690 001f 00       	 .byte 0
+ 691 0020 00       	 .byte 0
+ 692 0021 00       	 .byte 0
+ 693 0022 00       	 .byte 0
+ 694 0023 00       	 .byte 0
+ 695 0024 00       	 .byte 0
+ 696 0025 FF       	 .byte -1
+ 697 0026 01       	 .byte 1
+ 698 0027 00       	 .byte 0
+ 699 0028 00       	 .byte 0
+ 700 0029 FF       	 .byte -1
+ 701 002a 00       	 .byte 0
+ 702 002b 00       	 .byte 0
+ 703 002c 01       	 .byte 1
+ 704 002d 00       	 .byte 0
+ 705 002e 00       	 .byte 0
+ 706 002f 00       	 .byte 0
+ 707 0030 00       	 .byte 0
+ 708 0031 00       	 .byte 0
+ 709 0032 01       	 .byte 1
+ 710 0033 00       	 .byte 0
+ 711 0034 FF       	 .byte -1
+ 712 0035 00       	 .byte 0
+ 713 0036 00       	 .byte 0
+ 714 0037 00       	 .byte 0
+ 715 0038 00       	 .byte 0
+ 716 0039 00       	 .byte 0
+ 717 003a 00       	 .byte 0
+ 718 003b 00       	 .byte 0
+ 719 003c 00       	 .byte 0
+ 720 003d 00       	 .byte 0
+ 721 003e 00       	 .byte 0
+ 722 003f 00       	 .byte 0
+ 723              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 Hall_Sensors.c
+    {standard input}:17     .text.CCU43_3_IRQHandler:00000000 $t
+    {standard input}:22     .text.CCU43_3_IRQHandler:00000000 CCU43_3_IRQHandler
+    {standard input}:42     .text.CCU43_3_IRQHandler:0000001c $d
+    {standard input}:47     .text.Hall_init:00000000 $t
+    {standard input}:52     .text.Hall_init:00000000 Hall_init
+    {standard input}:108    .text.Hall_init:00000068 $d
+    {standard input}:114    .text.HallSensor:00000000 $t
+    {standard input}:119    .text.HallSensor:00000000 HallSensor
+    {standard input}:191    .text.HallSensor:0000008c $d
+    {standard input}:200    .text.ERU1_2_IRQHandler:00000000 $t
+    {standard input}:205    .text.ERU1_2_IRQHandler:00000000 ERU1_2_IRQHandler
+    {standard input}:241    .text.ERU1_2_IRQHandler:00000038 $d
+                            *COM*:00000001 last_Hall_trig
+    {standard input}:248    .text.ERU1_0_IRQHandler:00000000 $t
+    {standard input}:253    .text.ERU1_0_IRQHandler:00000000 ERU1_0_IRQHandler
+    {standard input}:271    .text.ERU1_0_IRQHandler:0000001c $d
+    {standard input}:276    .text.ERU1_3_IRQHandler:00000000 $t
+    {standard input}:281    .text.ERU1_3_IRQHandler:00000000 ERU1_3_IRQHandler
+    {standard input}:299    .text.ERU1_3_IRQHandler:0000001c $d
+    {standard input}:312    .text.Hall_postion_speed_estimation:00000000 $t
+    {standard input}:317    .text.Hall_postion_speed_estimation:00000000 Hall_postion_speed_estimation
+    {standard input}:524    .text.Hall_postion_speed_estimation:00000230 $d
+    {standard input}:577    .bss.omega_mech_rps_temp:00000000 omega_mech_rps_temp
+    {standard input}:625    .bss.omega_mech_rps:00000000 omega_mech_rps
+    {standard input}:638    .data.angle_in_sector:00000000 angle_in_sector
+    {standard input}:652    .data.time_180deg_cal:00000000 time_180deg_cal
+    {standard input}:570    .data.time_180deg:00000000 time_180deg
+    {standard input}:612    .bss.time_since_C:00000000 time_since_C
+    {standard input}:584    .bss.time_since_B:00000000 time_since_B
+    {standard input}:598    .bss.time_since_A:00000000 time_since_A
+    {standard input}:591    .bss.enc_val:00000000 enc_val
+    {standard input}:618    .bss.direction:00000000 direction
+    {standard input}:631    .bss.sector:00000000 sector
+    {standard input}:658    .data.lookup_table:00000000 lookup_table
+    {standard input}:645    .data.offset_neg:00000000 offset_neg
+    {standard input}:605    .data.offset_pos:00000000 offset_pos
+    {standard input}:566    .data.time_180deg:00000000 $d
+    {standard input}:573    .bss.omega_mech_rps_temp:00000000 $d
+    {standard input}:580    .bss.time_since_B:00000000 $d
+    {standard input}:587    .bss.enc_val:00000000 $d
+    {standard input}:594    .bss.time_since_A:00000000 $d
+    {standard input}:601    .data.offset_pos:00000000 $d
+    {standard input}:608    .bss.time_since_C:00000000 $d
+    {standard input}:619    .bss.direction:00000000 $d
+    {standard input}:621    .bss.omega_mech_rps:00000000 $d
+    {standard input}:632    .bss.sector:00000000 $d
+    {standard input}:634    .data.angle_in_sector:00000000 $d
+    {standard input}:641    .data.offset_neg:00000000 $d
+    {standard input}:648    .data.time_180deg_cal:00000000 $d
+    {standard input}:565    .text.Hall_postion_speed_estimation:00000294 $t
+
+UNDEFINED SYMBOLS
+Hall_A_ISR
+Hall_B_ISR
+Hall_C_ISR
+distance_180deg_ele_count
+__aeabi_f2d
+__aeabi_ddiv
+__aeabi_ui2d
+__aeabi_dmul
+__aeabi_d2f
+__aeabi_i2d
+__aeabi_dadd
+__aeabi_dsub
+angle_phi

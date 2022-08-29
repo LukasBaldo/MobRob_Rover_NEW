@@ -1,0 +1,244 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,4
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "PI_Controller.c"
+  16              	 .section .text.omega_param_selctor,"ax",%progbits
+  17              	 .align 1
+  18              	 .global omega_param_selctor
+  19              	 .thumb
+  20              	 .thumb_func
+  22              	omega_param_selctor:
+  23              	 
+  24              	 
+  25              	 
+  26 0000 0138     	 subs r0,r0,#1
+  27 0002 0928     	 cmp r0,#9
+  28 0004 2DD8     	 bhi .L1
+  29 0006 DFE800F0 	 tbb [pc,r0]
+  30              	.L4:
+  31 000a 05       	 .byte (.L3-.L4)/2
+  32 000b 0A       	 .byte (.L5-.L4)/2
+  33 000c 1D       	 .byte (.L6-.L4)/2
+  34 000d 2C       	 .byte (.L1-.L4)/2
+  35 000e 2C       	 .byte (.L1-.L4)/2
+  36 000f 22       	 .byte (.L7-.L4)/2
+  37 0010 2C       	 .byte (.L1-.L4)/2
+  38 0011 2C       	 .byte (.L1-.L4)/2
+  39 0012 2C       	 .byte (.L1-.L4)/2
+  40 0013 27       	 .byte (.L8-.L4)/2
+  41              	 .p2align 1
+  42              	.L3:
+  43 0014 134B     	 ldr r3,.L11
+  44 0016 144A     	 ldr r2,.L11+4
+  45 0018 1A60     	 str r2,[r3]
+  46 001a 144A     	 ldr r2,.L11+8
+  47 001c 20E0     	 b .L9
+  48              	.L5:
+  49 001e 114B     	 ldr r3,.L11
+  50 0020 1348     	 ldr r0,.L11+12
+  51 0022 1449     	 ldr r1,.L11+16
+  52 0024 4FF07C52 	 mov r2,#1056964608
+  53 0028 9A60     	 str r2,[r3,#8]
+  54 002a 4FF03F42 	 mov r2,#-1090519040
+  55 002e DA60     	 str r2,[r3,#12]
+  56 0030 114A     	 ldr r2,.L11+20
+  57 0032 1060     	 str r0,[r2]
+  58 0034 5160     	 str r1,[r2,#4]
+  59 0036 114A     	 ldr r2,.L11+24
+  60 0038 1060     	 str r0,[r2]
+  61 003a 5160     	 str r1,[r2,#4]
+  62 003c 104A     	 ldr r2,.L11+28
+  63 003e 1A60     	 str r2,[r3]
+  64 0040 104A     	 ldr r2,.L11+32
+  65 0042 0DE0     	 b .L9
+  66              	.L6:
+  67 0044 074B     	 ldr r3,.L11
+  68 0046 104A     	 ldr r2,.L11+36
+  69 0048 1A60     	 str r2,[r3]
+  70 004a 104A     	 ldr r2,.L11+40
+  71 004c 08E0     	 b .L9
+  72              	.L7:
+  73 004e 054B     	 ldr r3,.L11
+  74 0050 0F4A     	 ldr r2,.L11+44
+  75 0052 1A60     	 str r2,[r3]
+  76 0054 0F4A     	 ldr r2,.L11+48
+  77 0056 03E0     	 b .L9
+  78              	.L8:
+  79 0058 024B     	 ldr r3,.L11
+  80 005a 0F4A     	 ldr r2,.L11+52
+  81 005c 1A60     	 str r2,[r3]
+  82 005e 0F4A     	 ldr r2,.L11+56
+  83              	.L9:
+  84 0060 5A60     	 str r2,[r3,#4]
+  85              	.L1:
+  86 0062 7047     	 bx lr
+  87              	.L12:
+  88              	 .align 2
+  89              	.L11:
+  90 0064 00000000 	 .word .LANCHOR0
+  91 0068 D93D793E 	 .word 1048133081
+  92 006c A470BD3D 	 .word 1035825316
+  93 0070 44FA3D3F 	 .word 1061026372
+  94 0074 1B6FF143 	 .word 1139896091
+  95 0078 00000000 	 .word .LANCHOR1
+  96 007c 00000000 	 .word .LANCHOR2
+  97 0080 CDCCCC3C 	 .word 1020054733
+  98 0084 295C0F3D 	 .word 1024416809
+  99 0088 FB3A703E 	 .word 1047542523
+ 100 008c 6822EC3D 	 .word 1038885480
+ 101 0090 86C9943E 	 .word 1049938310
+ 102 0094 D712F23D 	 .word 1039274711
+ 103 0098 1AC0BB3E 	 .word 1052491802
+ 104 009c B6843C3E 	 .word 1044153526
+ 106              	 .global __aeabi_f2d
+ 107              	 .global __aeabi_dmul
+ 108              	 .global __aeabi_dadd
+ 109              	 .global __aeabi_d2f
+ 110              	 .section .text.PI_Controller,"ax",%progbits
+ 111              	 .align 1
+ 112              	 .global PI_Controller
+ 113              	 .thumb
+ 114              	 .thumb_func
+ 116              	PI_Controller:
+ 117              	 
+ 118              	 
+ 119 0000 2DE9D043 	 push {r4,r6,r7,r8,r9,lr}
+ 120 0004 07EE900A 	 fmsr s15,r0
+ 121 0008 07EE101A 	 fmsr s14,r1
+ 122 000c 2DED028B 	 fstmfdd sp!,{d8}
+ 123 0010 77EEC78A 	 fsubs s17,s15,s14
+ 124 0014 92ED008A 	 flds s16,[r2]
+ 125 0018 28EE888A 	 fmuls s16,s17,s16
+ 126 001c 1446     	 mov r4,r2
+ 127 001e 18EE100A 	 fmrs r0,s16
+ 128 0022 FFF7FEFF 	 bl __aeabi_f2d
+ 129 0026 0646     	 mov r6,r0
+ 130 0028 6068     	 ldr r0,[r4,#4]
+ 131 002a 0F46     	 mov r7,r1
+ 132 002c FFF7FEFF 	 bl __aeabi_f2d
+ 133 0030 23A3     	 adr r3,.L18
+ 134 0032 D3E90023 	 ldrd r2,[r3]
+ 135 0036 FFF7FEFF 	 bl __aeabi_dmul
+ 136 003a 8046     	 mov r8,r0
+ 137 003c 18EE900A 	 fmrs r0,s17
+ 138 0040 8946     	 mov r9,r1
+ 139 0042 FFF7FEFF 	 bl __aeabi_f2d
+ 140 0046 0246     	 mov r2,r0
+ 141 0048 0B46     	 mov r3,r1
+ 142 004a 4046     	 mov r0,r8
+ 143 004c 4946     	 mov r1,r9
+ 144 004e FFF7FEFF 	 bl __aeabi_dmul
+ 145 0052 0246     	 mov r2,r0
+ 146 0054 0B46     	 mov r3,r1
+ 147 0056 3046     	 mov r0,r6
+ 148 0058 3946     	 mov r1,r7
+ 149 005a FFF7FEFF 	 bl __aeabi_dadd
+ 150 005e 0646     	 mov r6,r0
+ 151 0060 E069     	 ldr r0,[r4,#28]
+ 152 0062 0F46     	 mov r7,r1
+ 153 0064 FFF7FEFF 	 bl __aeabi_f2d
+ 154 0068 0246     	 mov r2,r0
+ 155 006a 0B46     	 mov r3,r1
+ 156 006c 3046     	 mov r0,r6
+ 157 006e 3946     	 mov r1,r7
+ 158 0070 FFF7FEFF 	 bl __aeabi_dadd
+ 159 0074 FFF7FEFF 	 bl __aeabi_d2f
+ 160 0078 94ED027A 	 flds s14,[r4,#8]
+ 161 007c 07EE900A 	 fmsr s15,r0
+ 162 0080 F4EEC77A 	 fcmpes s15,s14
+ 163 0084 F1EE10FA 	 fmstat
+ 164 0088 09DA     	 bge .L16
+ 165 008a 94ED037A 	 flds s14,[r4,#12]
+ 166 008e F4EE477A 	 fcmps s15,s14
+ 167 0092 F1EE10FA 	 fmstat
+ 168 0096 48BF     	 it mi
+ 169 0098 F0EE477A 	 fcpysmi s15,s14
+ 170 009c 01E0     	 b .L14
+ 171              	.L16:
+ 172 009e F0EE477A 	 fcpys s15,s14
+ 173              	.L14:
+ 174 00a2 37EEC88A 	 fsubs s16,s15,s16
+ 175 00a6 17EE900A 	 fmrs r0,s15
+ 176 00aa 84ED078A 	 fsts s16,[r4,#28]
+ 177 00ae BDEC028B 	 fldmfdd sp!,{d8}
+ 178 00b2 C4ED047A 	 fsts s15,[r4,#16]
+ 179 00b6 BDE8D083 	 pop {r4,r6,r7,r8,r9,pc}
+ 180              	.L19:
+ 181 00ba 00BFAFF3 	 .align 3
+ 181      0080
+ 182              	.L18:
+ 183 00c0 2D431CEB 	 .word -350469331
+ 184 00c4 E2362A3F 	 .word 1059731170
+ 186              	 .global omega_param
+ 187              	 .global Id_param
+ 188              	 .global Iq_param
+ 189              	 .section .data.Id_param,"aw",%progbits
+ 190              	 .align 2
+ 191              	 .set .LANCHOR2,.+0
+ 194              	Id_param:
+ 195 0000 A1D6F43E 	 .word 1056233121
+ 196 0004 46E6A443 	 .word 1134880326
+ 197 0008 0000C842 	 .word 1120403456
+ 198 000c 0000C8C2 	 .word -1027080192
+ 199 0010 00000000 	 .word 0
+ 200 0014 00000000 	 .word 0
+ 201 0018 00000000 	 .word 0
+ 202 001c 00000000 	 .space 4
+ 203              	 .section .data.omega_param,"aw",%progbits
+ 204              	 .align 2
+ 205              	 .set .LANCHOR0,.+0
+ 208              	omega_param:
+ 209 0000 CDCC4C3E 	 .word 1045220557
+ 210 0004 0AD7A33D 	 .word 1034147594
+ 211 0008 00000040 	 .word 1073741824
+ 212 000c 000000C0 	 .word -1073741824
+ 213 0010 00000000 	 .word 0
+ 214 0014 00000000 	 .word 0
+ 215 0018 00000000 	 .word 0
+ 216 001c 00000000 	 .space 4
+ 217              	 .section .data.Iq_param,"aw",%progbits
+ 218              	 .align 2
+ 219              	 .set .LANCHOR1,.+0
+ 222              	Iq_param:
+ 223 0000 A1D6F43E 	 .word 1056233121
+ 224 0004 46E6A443 	 .word 1134880326
+ 225 0008 0000C842 	 .word 1120403456
+ 226 000c 0000C8C2 	 .word -1027080192
+ 227 0010 00000000 	 .word 0
+ 228 0014 00000000 	 .word 0
+ 229 0018 00000000 	 .word 0
+ 230 001c 00000000 	 .space 4
+ 231              	 .ident "GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
+DEFINED SYMBOLS
+                            *ABS*:00000000 PI_Controller.c
+    {standard input}:17     .text.omega_param_selctor:00000000 $t
+    {standard input}:22     .text.omega_param_selctor:00000000 omega_param_selctor
+    {standard input}:31     .text.omega_param_selctor:0000000a $d
+    {standard input}:41     .text.omega_param_selctor:00000014 $t
+    {standard input}:90     .text.omega_param_selctor:00000064 $d
+    {standard input}:111    .text.PI_Controller:00000000 $t
+    {standard input}:116    .text.PI_Controller:00000000 PI_Controller
+    {standard input}:183    .text.PI_Controller:000000c0 $d
+    {standard input}:208    .data.omega_param:00000000 omega_param
+    {standard input}:194    .data.Id_param:00000000 Id_param
+    {standard input}:222    .data.Iq_param:00000000 Iq_param
+    {standard input}:190    .data.Id_param:00000000 $d
+    {standard input}:204    .data.omega_param:00000000 $d
+    {standard input}:218    .data.Iq_param:00000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_f2d
+__aeabi_dmul
+__aeabi_dadd
+__aeabi_d2f
