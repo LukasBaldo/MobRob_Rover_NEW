@@ -70,7 +70,7 @@ Driving_dynamics.o Driving_dynamics.d Driving_dynamics.o: \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_conf.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_SCU_XMC1/global_scu_xmc1.h \
  C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_extern.h \
- ../other_functions.h
+ ../other_functions.h ../RC_data_recive.h ../Steering_Servos.h
 
 ../Driving_dynamics.h:
 
@@ -217,3 +217,7 @@ C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/G
 C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/WATCHDOG/watchdog_extern.h:
 
 ../other_functions.h:
+
+../RC_data_recive.h:
+
+../Steering_Servos.h:

@@ -24130,3 +24130,770 @@ In file included from ../main.c:14:0:
   50456	    892	   1640	  52988	   cefc	MobRob_Steering_Controller.elf
 'Finished building: MobRob_Steering_Controller.siz'
 
+14:09:09 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'IRQ7_Handler':
+'Building file: ../main.c'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  Steering_set_Angles(Steering_Angles);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                      ^
+'Finished building: ../main.c'
+In file included from ../main.c:12:0:
+
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data_int[4]);
+      ^
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+  Collision_voidance();
+  ^
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+'Building file: ../RC_data_recive.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "RC_data_recive.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="RC_data_recive.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"RC_data_recive.d" -MT"RC_data_recive.d RC_data_recive.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "RC_data_recive.o" "../RC_data_recive.c" 
+'Finished building: ../RC_data_recive.c'
+
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50528	    908	   1640	  53076	   cf54	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+14:09:41 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50528	    908	   1640	  53076	   cf54	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+14:12:00 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Steering_Servos.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Steering_Servos.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Steering_Servos.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Steering_Servos.d" -MT"Steering_Servos.d Steering_Servos.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Steering_Servos.o" "../Steering_Servos.c" 
+'Finished building: ../Steering_Servos.c'
+
+'Building file: ../main.c'
+../main.c: In function 'IRQ7_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+'Finished building: ../main.c'
+
+  Steering_set_Angles(Steering_Angles);
+                      ^
+In file included from ../main.c:12:0:
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data_int[4]);
+      ^
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+  Collision_voidance();
+  ^
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50528	    908	   1640	  53076	   cf54	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:19:35 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../RC_data_recive.c:13:7: error: conflicting type qualifiers for 'RC_Speed'
+'Building file: ../RC_data_recive.c'
+ float RC_Speed = 0, RC_Steering = 0;
+'Invoking: ARM-GCC C Compiler'
+       ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "RC_data_recive.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="RC_data_recive.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"RC_data_recive.d" -MT"RC_data_recive.d RC_data_recive.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "RC_data_recive.o" "../RC_data_recive.c" 
+In file included from ../RC_data_recive.c:7:0:
+subdir.mk:39: recipe for target 'RC_data_recive.o' failed
+../RC_data_recive.h:22:23: note: previous declaration of 'RC_Speed' was here
+ volatile extern float RC_Speed;
+                       ^
+make: *** [RC_data_recive.o] Error 1
+make: *** Waiting for unfinished jobs....
+../main.c: In function 'IRQ7_Handler':
+'Building file: ../main.c'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  Steering_set_Angles(Steering_Angles);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                      ^
+'Finished building: ../main.c'
+In file included from ../main.c:12:0:
+
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data_int[4]);
+      ^
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+  Collision_voidance();
+  ^
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c:257:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  avg_Speeds = average(Speeds,4);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+                       ^
+'Finished building: ../Driving_dynamics.c'
+In file included from ../Driving_dynamics.h:17:0,
+
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+14:19:59 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ7_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Steering_set_Angles(Steering_Angles);
+'Finished building: ../main.c'
+                      ^
+
+In file included from ../main.c:12:0:
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data_int[4]);
+      ^
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+  Collision_voidance();
+  ^
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Invoking: ARM-GCC C Compiler'
+../Driving_dynamics.c:257:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+  avg_Speeds = average(Speeds,4);
+'Finished building: ../Driving_dynamics.c'
+                       ^
+
+In file included from ../Driving_dynamics.h:17:0,
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building file: ../RC_data_recive.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "RC_data_recive.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="RC_data_recive.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"RC_data_recive.d" -MT"RC_data_recive.d RC_data_recive.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "RC_data_recive.o" "../RC_data_recive.c" 
+'Finished building: ../RC_data_recive.c'
+
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50528	    908	   1640	  53076	   cf54	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:24:11 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'IRQ7_Handler':
+'Building file: ../main.c'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  Steering_set_Angles(Steering_Angles);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                      ^
+'Finished building: ../main.c'
+In file included from ../main.c:12:0:
+
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+'Building file: ../RC_data_recive.c'
+ void Steering_set_Angles(float Angles_data_int[4]);
+'Invoking: ARM-GCC C Compiler'
+      ^
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+  Collision_voidance();
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "RC_data_recive.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="RC_data_recive.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"RC_data_recive.d" -MT"RC_data_recive.d RC_data_recive.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "RC_data_recive.o" "../RC_data_recive.c" 
+  ^
+'Finished building: ../RC_data_recive.c'
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c:267:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  avg_Speeds = average(Speeds,4);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+                       ^
+'Finished building: ../Driving_dynamics.c'
+In file included from ../Driving_dynamics.h:17:0,
+
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50752	    908	   1640	  53300	   d034	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:24:34 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50752	    908	   1640	  53300	   d034	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+14:27:57 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c:267:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  avg_Speeds = average(Speeds,4);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+                       ^
+'Finished building: ../Driving_dynamics.c'
+In file included from ../Driving_dynamics.h:17:0,
+
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50752	    908	   1640	  53300	   d034	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:29:45 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c: In function 'Steering_Function':
+'Invoking: ARM-GCC C Compiler'
+../Driving_dynamics.c:240:4: error: expected ';' before 'if'
+    if(RC_Speed > 0.3) NP[0] = NP[0] + 1;
+    ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+../Driving_dynamics.c:241:4: error: 'else' without a previous 'if'
+    else if (RC_Speed < -0.3) NP[1]++;
+subdir.mk:39: recipe for target 'Driving_dynamics.o' failed
+    ^
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+../Driving_dynamics.c:269:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+  avg_Speeds = average(Speeds,4);
+                       ^
+In file included from ../Driving_dynamics.h:17:0,
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+make: *** [Driving_dynamics.o] Error 1
+14:29:53 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Invoking: ARM-GCC C Compiler'
+../Driving_dynamics.c:269:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+  avg_Speeds = average(Speeds,4);
+'Finished building: ../Driving_dynamics.c'
+                       ^
+
+In file included from ../Driving_dynamics.h:17:0,
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50760	    908	   1640	  53308	   d03c	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:31:24 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Steering_Servos.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Steering_Servos.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Steering_Servos.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Steering_Servos.d" -MT"Steering_Servos.d Steering_Servos.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Steering_Servos.o" "../Steering_Servos.c" 
+'Finished building: ../Steering_Servos.c'
+
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Invoking: ARM-GCC C Compiler'
+../Driving_dynamics.c:269:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+  avg_Speeds = average(Speeds,4);
+'Finished building: ../Driving_dynamics.c'
+                       ^
+
+In file included from ../Driving_dynamics.h:17:0,
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building file: ../main.c'
+../main.c: In function 'IRQ7_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Steering_set_Angles(Steering_Angles);
+'Finished building: ../main.c'
+                      ^
+
+In file included from ../main.c:12:0:
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data_int[4]);
+      ^
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+  Collision_voidance();
+  ^
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50776	    908	   1640	  53324	   d04c	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:32:42 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ7_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Steering_set_Angles(Steering_Angles);
+'Finished building: ../main.c'
+                      ^
+
+In file included from ../main.c:12:0:
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void Steering_set_Angles(float Angles_data_int[4]);
+      ^
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+  Collision_voidance();
+  ^
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50704	    892	   1640	  53236	   cff4	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:33:16 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Invoking: ARM-GCC C Compiler'
+../Driving_dynamics.c:269:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+  avg_Speeds = average(Speeds,4);
+'Finished building: ../Driving_dynamics.c'
+                       ^
+
+In file included from ../Driving_dynamics.h:17:0,
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50696	    892	   1640	  53228	   cfec	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:38:44 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ7_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Steering_set_Angles(Steering_Angles);
+'Finished building: ../main.c'
+                      ^
+
+In file included from ../main.c:12:0:
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+'Building file: ../Driving_dynamics.c'
+ void Steering_set_Angles(float Angles_data_int[4]);
+'Invoking: ARM-GCC C Compiler'
+      ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+'Finished building: ../Driving_dynamics.c'
+  Collision_voidance();
+
+  ^
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+../Driving_dynamics.c:264:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+  avg_Speeds = average(Speeds,4);
+                       ^
+In file included from ../Driving_dynamics.h:17:0,
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building file: ../RC_data_recive.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "RC_data_recive.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="RC_data_recive.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"RC_data_recive.d" -MT"RC_data_recive.d RC_data_recive.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "RC_data_recive.o" "../RC_data_recive.c" 
+'Finished building: ../RC_data_recive.c'
+
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50720	    892	   1640	  53252	   d004	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:39:05 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Building file: ../Driving_dynamics.c'
+'Invoking: ARM-GCC C Compiler'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+../Driving_dynamics.c:265:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+'Finished building: ../Driving_dynamics.c'
+  avg_Speeds = average(Speeds,4);
+
+                       ^
+In file included from ../Driving_dynamics.h:17:0,
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50720	    892	   1640	  53252	   d004	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:39:10 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50720	    892	   1640	  53252	   d004	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+14:43:00 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+../main.c: In function 'IRQ7_Handler':
+'Building file: ../main.c'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  Steering_set_Angles(Steering_Angles);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+                      ^
+'Finished building: ../main.c'
+In file included from ../main.c:12:0:
+
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+'Building file: ../RC_data_recive.c'
+ void Steering_set_Angles(float Angles_data_int[4]);
+'Invoking: ARM-GCC C Compiler'
+      ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "RC_data_recive.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="RC_data_recive.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"RC_data_recive.d" -MT"RC_data_recive.d RC_data_recive.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "RC_data_recive.o" "../RC_data_recive.c" 
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+'Finished building: ../RC_data_recive.c'
+
+  Collision_voidance();
+  ^
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Invoking: ARM-GCC C Compiler'
+../Driving_dynamics.c:265:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+'Finished building: ../Driving_dynamics.c'
+
+  avg_Speeds = average(Speeds,4);
+                       ^
+In file included from ../Driving_dynamics.h:17:0,
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50720	    892	   1640	  53252	   d004	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:48:05 **** Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Building file: ../main.c'
+../main.c: In function 'IRQ7_Handler':
+'Invoking: ARM-GCC C Compiler'
+../main.c:105:22: warning: passing argument 1 of 'Steering_set_Angles' discards 'volatile' qualifier from pointer target type
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "main.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="main.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d main.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "main.o" "../main.c" 
+  Steering_set_Angles(Steering_Angles);
+'Finished building: ../main.c'
+                      ^
+
+In file included from ../main.c:12:0:
+../Steering_servos.h:13:6: note: expected 'float *' but argument is of type 'volatile float *'
+'Building file: ../RC_data_recive.c'
+ void Steering_set_Angles(float Angles_data_int[4]);
+'Invoking: ARM-GCC C Compiler'
+      ^
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "RC_data_recive.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="RC_data_recive.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"RC_data_recive.d" -MT"RC_data_recive.d RC_data_recive.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "RC_data_recive.o" "../RC_data_recive.c" 
+'Finished building: ../RC_data_recive.c'
+
+../main.c:109:2: warning: implicit declaration of function 'Collision_voidance' [-Wimplicit-function-declaration]
+  Collision_voidance();
+  ^
+../main.c:112:18: warning: passing argument 1 of 'CAN_send_Speeds' discards 'volatile' qualifier from pointer target type
+  CAN_send_Speeds(Speeds); // change to Speeds_CA to activate CA
+                  ^
+In file included from ../main.c:14:0:
+../CAN.h:17:6: note: expected 'float *' but argument is of type 'volatile float *'
+ void CAN_send_Speeds(float Speed_data[4]);
+      ^
+../Driving_dynamics.c: In function 'Trajcetory_calc':
+'Building file: ../Driving_dynamics.c'
+../Driving_dynamics.c:265:23: warning: passing argument 1 of 'average' discards 'volatile' qualifier from pointer target type
+'Invoking: ARM-GCC C Compiler'
+  avg_Speeds = average(Speeds,4);
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -MMD -MT "Driving_dynamics.o" -DXMC1404_F064x0200 -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated" -I"C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries" -O0 -ffunction-sections -fdata-sections -Wall -std=gnu99 -Wa,-adhlns="Driving_dynamics.o.lst" -pipe -c -fmessage-length=0 -MMD -MP -MF"Driving_dynamics.d" -MT"Driving_dynamics.d Driving_dynamics.o" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "Driving_dynamics.o" "../Driving_dynamics.c" 
+                       ^
+'Finished building: ../Driving_dynamics.c'
+
+In file included from ../Driving_dynamics.h:17:0,
+                 from ../Driving_dynamics.c:7:
+../other_functions.h:13:7: note: expected 'float *' but argument is of type 'volatile float *'
+ float average(float a[],int num_values);
+       ^
+'Building target: MobRob_Steering_Controller.elf'
+'Invoking: ARM-GCC C Linker'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-gcc" -T"../linker_script.ld" -nostartfiles -Xlinker --gc-sections -specs=nano.specs -specs=nosys.specs -Wl,-Map,"MobRob_Steering_Controller.map" -mcpu=cortex-m0 -mthumb -g -gdwarf-2 -o "MobRob_Steering_Controller.elf" "@objects.rsp"  -lm
+'Finished building target: MobRob_Steering_Controller.elf'
+
+'Invoking: ARM-GCC Create Flash Image'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objcopy" -O ihex "MobRob_Steering_Controller.elf" "MobRob_Steering_Controller.hex"
+'Finished building: MobRob_Steering_Controller.hex'
+
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50672	    892	   1640	  53204	   cfd4	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+
+'Invoking: ARM-GCC Create Listing'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-objdump" -h -S "MobRob_Steering_Controller.elf" > "MobRob_Steering_Controller.lst"
+'Finished building: MobRob_Steering_Controller.lst'
+
+14:48:28 **** Incremental Build of configuration Debug for project MobRob_Steering_Controller ****
+"\"C:\\dave\\DAVE-IDE-4.4.2-64Bit\\DAVE-IDE-4.4.2-64Bit\\eclipse\\ARM-GCC-49\\bin\\make\"" --output-sync -j12 all 
+'Invoking: ARM-GCC Print Size'
+"C:/dave/DAVE-IDE-4.4.2-64Bit/DAVE-IDE-4.4.2-64Bit/eclipse/ARM-GCC-49/bin/arm-none-eabi-size" --format=berkeley "MobRob_Steering_Controller.elf"
+   text	   data	    bss	    dec	    hex	filename
+  50672	    892	   1640	  53204	   cfd4	MobRob_Steering_Controller.elf
+'Finished building: MobRob_Steering_Controller.siz'
+

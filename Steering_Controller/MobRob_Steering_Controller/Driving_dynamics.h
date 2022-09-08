@@ -15,6 +15,8 @@
 #include <math.h>
 #include <DAVE.h>
 #include "other_functions.h"
+#include "RC_data_recive.h"
+#include "Steering_Servos.h"
 
 void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, uint8_t Steering_mode);
 void Trajcetory_calc();

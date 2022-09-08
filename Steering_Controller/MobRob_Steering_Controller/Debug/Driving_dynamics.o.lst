@@ -902,9 +902,9 @@
  292              	 .cfi_offset 6,-12
  293              	 .cfi_offset 7,-8
  294              	 .cfi_offset 14,-4
- 295 0002 85B0     	 sub sp,sp,#20
+ 295 0002 87B0     	 sub sp,sp,#28
  296              	.LCFI13:
- 297              	 .cfi_def_cfa_offset 40
+ 297              	 .cfi_def_cfa_offset 48
  298 0004 00AF     	 add r7,sp,#0
  299              	.LCFI14:
  300              	 .cfi_def_cfa_register 7
@@ -914,18 +914,18 @@
  304 000c 1A70     	 strb r2,[r3]
   26:../Driving_dynamics.c **** 	New_Input = 0;
  305              	 .loc 3 26 0
- 306 000e CE4B     	 ldr r3,.L95
+ 306 000e CE4B     	 ldr r3,.L104
  307 0010 0022     	 mov r2,#0
  308 0012 1A70     	 strb r2,[r3]
   27:../Driving_dynamics.c **** 
   28:../Driving_dynamics.c **** 	R_Turn = 0;
  309              	 .loc 3 28 0
- 310 0014 CD4B     	 ldr r3,.L95+4
+ 310 0014 CD4B     	 ldr r3,.L104+4
  311 0016 0022     	 mov r2,#0
  312 0018 1A60     	 str r2,[r3]
   29:../Driving_dynamics.c **** 	Speed_ratio = 0;
  313              	 .loc 3 29 0
- 314 001a CD4B     	 ldr r3,.L95+8
+ 314 001a CD4B     	 ldr r3,.L104+8
  315 001c 0022     	 mov r2,#0
  316 001e 1A60     	 str r2,[r3]
   30:../Driving_dynamics.c **** 
@@ -945,12 +945,12 @@
   32:../Driving_dynamics.c **** 	if(Driving_speed_cal < -MAX_Speed) Driving_speed_cal = -MAX_Speed;
  329              	 .loc 3 32 0 is_stmt 1
  330 0034 B868     	 ldr r0,[r7,#8]
- 331 0036 C749     	 ldr r1,.L95+12
+ 331 0036 C749     	 ldr r1,.L104+12
  332 0038 FFF7FEFF 	 bl __aeabi_fcmplt
  333 003c 031E     	 sub r3,r0,#0
  334 003e 01D0     	 beq .L8
  335              	 .loc 3 32 0 is_stmt 0 discriminator 1
- 336 0040 C44B     	 ldr r3,.L95+12
+ 336 0040 C44B     	 ldr r3,.L104+12
  337 0042 BB60     	 str r3,[r7,#8]
  338              	.L8:
   33:../Driving_dynamics.c **** 	if((0 < Driving_speed_cal) & (Driving_speed_cal < MIN_Speed)) Driving_speed_cal = 0;
@@ -974,8 +974,8 @@
  356 0066 1D1C     	 add r5,r3,#0
  357 0068 081C     	 mov r0,r1
  358 006a 111C     	 mov r1,r2
- 359 006c BA4A     	 ldr r2,.L95+16
- 360 006e BB4B     	 ldr r3,.L95+20
+ 359 006c BA4A     	 ldr r2,.L104+16
+ 360 006e BB4B     	 ldr r3,.L104+20
  361 0070 FFF7FEFF 	 bl __aeabi_dcmplt
  362 0074 031E     	 sub r3,r0,#0
  363 0076 01D1     	 bne .L11
@@ -1012,8 +1012,8 @@
  393 00ac 1D1C     	 add r5,r3,#0
  394 00ae 081C     	 mov r0,r1
  395 00b0 111C     	 mov r1,r2
- 396 00b2 A94A     	 ldr r2,.L95+16
- 397 00b4 AA4B     	 ldr r3,.L95+24
+ 396 00b2 A94A     	 ldr r2,.L104+16
+ 397 00b4 AA4B     	 ldr r3,.L104+24
  398 00b6 FFF7FEFF 	 bl __aeabi_dcmpgt
  399 00ba 031E     	 sub r3,r0,#0
  400 00bc 01D1     	 bne .L14
@@ -1039,7 +1039,7 @@
  418 00d8 00F07CFE 	 bl .L16
  419              	.LCB271:
  420 00dc 9A00     	 lsl r2,r3,#2
- 421 00de A14B     	 ldr r3,.L95+28
+ 421 00de A14B     	 ldr r3,.L104+28
  422 00e0 D318     	 add r3,r2,r3
  423 00e2 1B68     	 ldr r3,[r3]
  424 00e4 9F46     	 mov pc,r3
@@ -1054,2296 +1054,2422 @@
  433 0014 540D0000 	 .word .L22
  434              	 .section .text.Steering_Function
  435              	.L17:
+ 436              	.LBB2:
   37:../Driving_dynamics.c **** 	{
   38:../Driving_dynamics.c **** 		case FRONT://#############################################################
   39:../Driving_dynamics.c **** 			// steering limits
   40:../Driving_dynamics.c **** 			if(Steering_direction_cal > 50) Steering_direction_cal = 50;
- 436              	 .loc 3 40 0
- 437 00e6 F868     	 ldr r0,[r7,#12]
- 438 00e8 9F49     	 ldr r1,.L95+32
- 439 00ea FFF7FEFF 	 bl __aeabi_fcmpgt
- 440 00ee 031E     	 sub r3,r0,#0
- 441 00f0 01D0     	 beq .L23
- 442              	 .loc 3 40 0 is_stmt 0 discriminator 1
- 443 00f2 9D4B     	 ldr r3,.L95+32
- 444 00f4 FB60     	 str r3,[r7,#12]
- 445              	.L23:
+ 437              	 .loc 3 40 0
+ 438 00e6 F868     	 ldr r0,[r7,#12]
+ 439 00e8 9F49     	 ldr r1,.L104+32
+ 440 00ea FFF7FEFF 	 bl __aeabi_fcmpgt
+ 441 00ee 031E     	 sub r3,r0,#0
+ 442 00f0 01D0     	 beq .L23
+ 443              	 .loc 3 40 0 is_stmt 0 discriminator 1
+ 444 00f2 9D4B     	 ldr r3,.L104+32
+ 445 00f4 FB60     	 str r3,[r7,#12]
+ 446              	.L23:
   41:../Driving_dynamics.c **** 			if(Steering_direction_cal < -50) Steering_direction_cal = -50;
- 446              	 .loc 3 41 0 is_stmt 1
- 447 00f6 F868     	 ldr r0,[r7,#12]
- 448 00f8 9C49     	 ldr r1,.L95+36
- 449 00fa FFF7FEFF 	 bl __aeabi_fcmplt
- 450 00fe 031E     	 sub r3,r0,#0
- 451 0100 01D0     	 beq .L25
- 452              	 .loc 3 41 0 is_stmt 0 discriminator 1
- 453 0102 9A4B     	 ldr r3,.L95+36
- 454 0104 FB60     	 str r3,[r7,#12]
- 455              	.L25:
+ 447              	 .loc 3 41 0 is_stmt 1
+ 448 00f6 F868     	 ldr r0,[r7,#12]
+ 449 00f8 9C49     	 ldr r1,.L104+36
+ 450 00fa FFF7FEFF 	 bl __aeabi_fcmplt
+ 451 00fe 031E     	 sub r3,r0,#0
+ 452 0100 01D0     	 beq .L25
+ 453              	 .loc 3 41 0 is_stmt 0 discriminator 1
+ 454 0102 9A4B     	 ldr r3,.L104+36
+ 455 0104 FB60     	 str r3,[r7,#12]
+ 456              	.L25:
   42:../Driving_dynamics.c **** 
   43:../Driving_dynamics.c **** 			if(within_MAX_MIN(Steering_direction_cal,-5,5) == 0){// if not almost zero
- 456              	 .loc 3 43 0 is_stmt 1
- 457 0106 FB68     	 ldr r3,[r7,#12]
- 458 0108 9949     	 ldr r1,.L95+40
- 459 010a 9A4A     	 ldr r2,.L95+44
- 460 010c 181C     	 add r0,r3,#0
- 461 010e FFF7FEFF 	 bl within_MAX_MIN
- 462 0112 031C     	 mov r3,r0
- 463 0114 1A1C     	 mov r2,r3
- 464 0116 0123     	 mov r3,#1
- 465 0118 5340     	 eor r3,r2
- 466 011a DBB2     	 uxtb r3,r3
- 467 011c 002B     	 cmp r3,#0
- 468 011e 00D1     	 bne .LCB314
- 469 0120 BFE1     	 b .L27
- 470              	.LCB314:
+ 457              	 .loc 3 43 0 is_stmt 1
+ 458 0106 FB68     	 ldr r3,[r7,#12]
+ 459 0108 9949     	 ldr r1,.L104+40
+ 460 010a 9A4A     	 ldr r2,.L104+44
+ 461 010c 181C     	 add r0,r3,#0
+ 462 010e FFF7FEFF 	 bl within_MAX_MIN
+ 463 0112 031C     	 mov r3,r0
+ 464 0114 1A1C     	 mov r2,r3
+ 465 0116 0123     	 mov r3,#1
+ 466 0118 5340     	 eor r3,r2
+ 467 011a DBB2     	 uxtb r3,r3
+ 468 011c 002B     	 cmp r3,#0
+ 469 011e 00D1     	 bne .LCB315
+ 470 0120 BFE1     	 b .L27
+ 471              	.LCB315:
   44:../Driving_dynamics.c **** 				// pre calc
   45:../Driving_dynamics.c **** 				R_Turn = WHEEL_BASE / tan(Steering_direction_cal / RAD_TO_DEG); // to truni graduis converstion
- 471              	 .loc 3 45 0
- 472 0122 F868     	 ldr r0,[r7,#12]
- 473 0124 FFF7FEFF 	 bl __aeabi_f2d
- 474 0128 031C     	 mov r3,r0
- 475 012a 0C1C     	 mov r4,r1
- 476 012c 181C     	 mov r0,r3
- 477 012e 211C     	 mov r1,r4
- 478 0130 914A     	 ldr r2,.L95+48
- 479 0132 924B     	 ldr r3,.L95+52
- 480 0134 FFF7FEFF 	 bl __aeabi_ddiv
- 481 0138 031C     	 mov r3,r0
- 482 013a 0C1C     	 mov r4,r1
- 483 013c 181C     	 mov r0,r3
- 484 013e 211C     	 mov r1,r4
- 485 0140 FFF7FEFF 	 bl tan
- 486 0144 031C     	 mov r3,r0
- 487 0146 0C1C     	 mov r4,r1
- 488 0148 8D48     	 ldr r0,.L95+56
- 489 014a 8E49     	 ldr r1,.L95+60
- 490 014c 1A1C     	 mov r2,r3
- 491 014e 231C     	 mov r3,r4
- 492 0150 FFF7FEFF 	 bl __aeabi_ddiv
- 493 0154 031C     	 mov r3,r0
- 494 0156 0C1C     	 mov r4,r1
- 495 0158 181C     	 mov r0,r3
- 496 015a 211C     	 mov r1,r4
- 497 015c FFF7FEFF 	 bl __aeabi_d2f
- 498 0160 021C     	 add r2,r0,#0
- 499 0162 7A4B     	 ldr r3,.L95+4
- 500 0164 1A60     	 str r2,[r3]
+ 472              	 .loc 3 45 0
+ 473 0122 F868     	 ldr r0,[r7,#12]
+ 474 0124 FFF7FEFF 	 bl __aeabi_f2d
+ 475 0128 031C     	 mov r3,r0
+ 476 012a 0C1C     	 mov r4,r1
+ 477 012c 181C     	 mov r0,r3
+ 478 012e 211C     	 mov r1,r4
+ 479 0130 914A     	 ldr r2,.L104+48
+ 480 0132 924B     	 ldr r3,.L104+52
+ 481 0134 FFF7FEFF 	 bl __aeabi_ddiv
+ 482 0138 031C     	 mov r3,r0
+ 483 013a 0C1C     	 mov r4,r1
+ 484 013c 181C     	 mov r0,r3
+ 485 013e 211C     	 mov r1,r4
+ 486 0140 FFF7FEFF 	 bl tan
+ 487 0144 031C     	 mov r3,r0
+ 488 0146 0C1C     	 mov r4,r1
+ 489 0148 8D48     	 ldr r0,.L104+56
+ 490 014a 8E49     	 ldr r1,.L104+60
+ 491 014c 1A1C     	 mov r2,r3
+ 492 014e 231C     	 mov r3,r4
+ 493 0150 FFF7FEFF 	 bl __aeabi_ddiv
+ 494 0154 031C     	 mov r3,r0
+ 495 0156 0C1C     	 mov r4,r1
+ 496 0158 181C     	 mov r0,r3
+ 497 015a 211C     	 mov r1,r4
+ 498 015c FFF7FEFF 	 bl __aeabi_d2f
+ 499 0160 021C     	 add r2,r0,#0
+ 500 0162 7A4B     	 ldr r3,.L104+4
+ 501 0164 1A60     	 str r2,[r3]
   46:../Driving_dynamics.c **** 				Speed_ratio = (2 * (copysign(R_Turn,1) + HALF_TRACK_WIDTH) * M_PI) / (2 * copysign(R_Turn,1) * 
- 501              	 .loc 3 46 0
- 502 0166 794B     	 ldr r3,.L95+4
- 503 0168 1B68     	 ldr r3,[r3]
- 504 016a 5B00     	 lsl r3,r3,#1
- 505 016c 5B08     	 lsr r3,r3,#1
- 506 016e 181C     	 add r0,r3,#0
- 507 0170 FFF7FEFF 	 bl __aeabi_f2d
- 508 0174 031C     	 mov r3,r0
- 509 0176 0C1C     	 mov r4,r1
- 510 0178 181C     	 mov r0,r3
- 511 017a 211C     	 mov r1,r4
- 512 017c 824A     	 ldr r2,.L95+64
- 513 017e 834B     	 ldr r3,.L95+68
- 514 0180 FFF7FEFF 	 bl __aeabi_dadd
- 515 0184 031C     	 mov r3,r0
- 516 0186 0C1C     	 mov r4,r1
- 517 0188 181C     	 mov r0,r3
- 518 018a 211C     	 mov r1,r4
- 519 018c 1A1C     	 mov r2,r3
- 520 018e 231C     	 mov r3,r4
- 521 0190 FFF7FEFF 	 bl __aeabi_dadd
- 522 0194 031C     	 mov r3,r0
- 523 0196 0C1C     	 mov r4,r1
- 524 0198 181C     	 mov r0,r3
- 525 019a 211C     	 mov r1,r4
- 526 019c 7C4A     	 ldr r2,.L95+72
- 527 019e 7D4B     	 ldr r3,.L95+76
- 528 01a0 FFF7FEFF 	 bl __aeabi_dmul
- 529 01a4 031C     	 mov r3,r0
- 530 01a6 0C1C     	 mov r4,r1
- 531 01a8 1D1C     	 mov r5,r3
- 532 01aa 261C     	 mov r6,r4
- 533 01ac 674B     	 ldr r3,.L95+4
- 534 01ae 1B68     	 ldr r3,[r3]
- 535 01b0 5B00     	 lsl r3,r3,#1
- 536 01b2 5B08     	 lsr r3,r3,#1
- 537 01b4 181C     	 add r0,r3,#0
- 538 01b6 FFF7FEFF 	 bl __aeabi_f2d
- 539 01ba 031C     	 mov r3,r0
- 540 01bc 0C1C     	 mov r4,r1
- 541 01be 181C     	 mov r0,r3
- 542 01c0 211C     	 mov r1,r4
- 543 01c2 1A1C     	 mov r2,r3
- 544 01c4 231C     	 mov r3,r4
- 545 01c6 FFF7FEFF 	 bl __aeabi_dadd
- 546 01ca 031C     	 mov r3,r0
- 547 01cc 0C1C     	 mov r4,r1
- 548 01ce 181C     	 mov r0,r3
- 549 01d0 211C     	 mov r1,r4
- 550 01d2 6F4A     	 ldr r2,.L95+72
- 551 01d4 6F4B     	 ldr r3,.L95+76
- 552 01d6 FFF7FEFF 	 bl __aeabi_dmul
- 553 01da 031C     	 mov r3,r0
- 554 01dc 0C1C     	 mov r4,r1
- 555 01de 281C     	 mov r0,r5
- 556 01e0 311C     	 mov r1,r6
- 557 01e2 1A1C     	 mov r2,r3
- 558 01e4 231C     	 mov r3,r4
- 559 01e6 FFF7FEFF 	 bl __aeabi_ddiv
- 560 01ea 031C     	 mov r3,r0
- 561 01ec 0C1C     	 mov r4,r1
- 562 01ee 181C     	 mov r0,r3
- 563 01f0 211C     	 mov r1,r4
- 564 01f2 FFF7FEFF 	 bl __aeabi_d2f
- 565 01f6 021C     	 add r2,r0,#0
- 566 01f8 554B     	 ldr r3,.L95+8
- 567 01fa 1A60     	 str r2,[r3]
+ 502              	 .loc 3 46 0
+ 503 0166 794B     	 ldr r3,.L104+4
+ 504 0168 1B68     	 ldr r3,[r3]
+ 505 016a 5B00     	 lsl r3,r3,#1
+ 506 016c 5B08     	 lsr r3,r3,#1
+ 507 016e 181C     	 add r0,r3,#0
+ 508 0170 FFF7FEFF 	 bl __aeabi_f2d
+ 509 0174 031C     	 mov r3,r0
+ 510 0176 0C1C     	 mov r4,r1
+ 511 0178 181C     	 mov r0,r3
+ 512 017a 211C     	 mov r1,r4
+ 513 017c 824A     	 ldr r2,.L104+64
+ 514 017e 834B     	 ldr r3,.L104+68
+ 515 0180 FFF7FEFF 	 bl __aeabi_dadd
+ 516 0184 031C     	 mov r3,r0
+ 517 0186 0C1C     	 mov r4,r1
+ 518 0188 181C     	 mov r0,r3
+ 519 018a 211C     	 mov r1,r4
+ 520 018c 1A1C     	 mov r2,r3
+ 521 018e 231C     	 mov r3,r4
+ 522 0190 FFF7FEFF 	 bl __aeabi_dadd
+ 523 0194 031C     	 mov r3,r0
+ 524 0196 0C1C     	 mov r4,r1
+ 525 0198 181C     	 mov r0,r3
+ 526 019a 211C     	 mov r1,r4
+ 527 019c 7C4A     	 ldr r2,.L104+72
+ 528 019e 7D4B     	 ldr r3,.L104+76
+ 529 01a0 FFF7FEFF 	 bl __aeabi_dmul
+ 530 01a4 031C     	 mov r3,r0
+ 531 01a6 0C1C     	 mov r4,r1
+ 532 01a8 1D1C     	 mov r5,r3
+ 533 01aa 261C     	 mov r6,r4
+ 534 01ac 674B     	 ldr r3,.L104+4
+ 535 01ae 1B68     	 ldr r3,[r3]
+ 536 01b0 5B00     	 lsl r3,r3,#1
+ 537 01b2 5B08     	 lsr r3,r3,#1
+ 538 01b4 181C     	 add r0,r3,#0
+ 539 01b6 FFF7FEFF 	 bl __aeabi_f2d
+ 540 01ba 031C     	 mov r3,r0
+ 541 01bc 0C1C     	 mov r4,r1
+ 542 01be 181C     	 mov r0,r3
+ 543 01c0 211C     	 mov r1,r4
+ 544 01c2 1A1C     	 mov r2,r3
+ 545 01c4 231C     	 mov r3,r4
+ 546 01c6 FFF7FEFF 	 bl __aeabi_dadd
+ 547 01ca 031C     	 mov r3,r0
+ 548 01cc 0C1C     	 mov r4,r1
+ 549 01ce 181C     	 mov r0,r3
+ 550 01d0 211C     	 mov r1,r4
+ 551 01d2 6F4A     	 ldr r2,.L104+72
+ 552 01d4 6F4B     	 ldr r3,.L104+76
+ 553 01d6 FFF7FEFF 	 bl __aeabi_dmul
+ 554 01da 031C     	 mov r3,r0
+ 555 01dc 0C1C     	 mov r4,r1
+ 556 01de 281C     	 mov r0,r5
+ 557 01e0 311C     	 mov r1,r6
+ 558 01e2 1A1C     	 mov r2,r3
+ 559 01e4 231C     	 mov r3,r4
+ 560 01e6 FFF7FEFF 	 bl __aeabi_ddiv
+ 561 01ea 031C     	 mov r3,r0
+ 562 01ec 0C1C     	 mov r4,r1
+ 563 01ee 181C     	 mov r0,r3
+ 564 01f0 211C     	 mov r1,r4
+ 565 01f2 FFF7FEFF 	 bl __aeabi_d2f
+ 566 01f6 021C     	 add r2,r0,#0
+ 567 01f8 554B     	 ldr r3,.L104+8
+ 568 01fa 1A60     	 str r2,[r3]
   47:../Driving_dynamics.c **** 
   48:../Driving_dynamics.c **** 				if((R_TRUN_MIN < R_Turn) && (R_Turn < R_TRUN_MAX)){
- 568              	 .loc 3 48 0
- 569 01fc 534B     	 ldr r3,.L95+4
- 570 01fe 1B68     	 ldr r3,[r3]
- 571 0200 181C     	 add r0,r3,#0
- 572 0202 FFF7FEFF 	 bl __aeabi_f2d
- 573 0206 031C     	 mov r3,r0
- 574 0208 0C1C     	 mov r4,r1
- 575 020a 181C     	 mov r0,r3
- 576 020c 211C     	 mov r1,r4
- 577 020e 524A     	 ldr r2,.L95+16
- 578 0210 524B     	 ldr r3,.L95+20
- 579 0212 FFF7FEFF 	 bl __aeabi_dcmpgt
- 580 0216 031E     	 sub r3,r0,#0
- 581 0218 00D1     	 bne .LCB423
- 582 021a 7CE0     	 b .L28
- 583              	.LCB423:
- 584              	 .loc 3 48 0 is_stmt 0 discriminator 1
- 585 021c 4B4B     	 ldr r3,.L95+4
- 586 021e 1B68     	 ldr r3,[r3]
- 587 0220 181C     	 add r0,r3,#0
- 588 0222 5D49     	 ldr r1,.L95+80
- 589 0224 FFF7FEFF 	 bl __aeabi_fcmplt
- 590 0228 031E     	 sub r3,r0,#0
- 591 022a 74D0     	 beq .L28
+ 569              	 .loc 3 48 0
+ 570 01fc 534B     	 ldr r3,.L104+4
+ 571 01fe 1B68     	 ldr r3,[r3]
+ 572 0200 181C     	 add r0,r3,#0
+ 573 0202 FFF7FEFF 	 bl __aeabi_f2d
+ 574 0206 031C     	 mov r3,r0
+ 575 0208 0C1C     	 mov r4,r1
+ 576 020a 181C     	 mov r0,r3
+ 577 020c 211C     	 mov r1,r4
+ 578 020e 524A     	 ldr r2,.L104+16
+ 579 0210 524B     	 ldr r3,.L104+20
+ 580 0212 FFF7FEFF 	 bl __aeabi_dcmpgt
+ 581 0216 031E     	 sub r3,r0,#0
+ 582 0218 00D1     	 bne .LCB424
+ 583 021a 7CE0     	 b .L28
+ 584              	.LCB424:
+ 585              	 .loc 3 48 0 is_stmt 0 discriminator 1
+ 586 021c 4B4B     	 ldr r3,.L104+4
+ 587 021e 1B68     	 ldr r3,[r3]
+ 588 0220 181C     	 add r0,r3,#0
+ 589 0222 5D49     	 ldr r1,.L104+80
+ 590 0224 FFF7FEFF 	 bl __aeabi_fcmplt
+ 591 0228 031E     	 sub r3,r0,#0
+ 592 022a 74D0     	 beq .L28
   49:../Driving_dynamics.c **** 					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // out wheel
- 592              	 .loc 3 49 0 is_stmt 1
- 593 022c 474B     	 ldr r3,.L95+4
- 594 022e 1B68     	 ldr r3,[r3]
- 595 0230 181C     	 add r0,r3,#0
- 596 0232 FFF7FEFF 	 bl __aeabi_f2d
- 597 0236 031C     	 mov r3,r0
- 598 0238 0C1C     	 mov r4,r1
- 599 023a 181C     	 mov r0,r3
- 600 023c 211C     	 mov r1,r4
- 601 023e 524A     	 ldr r2,.L95+64
- 602 0240 524B     	 ldr r3,.L95+68
- 603 0242 FFF7FEFF 	 bl __aeabi_dsub
- 604 0246 031C     	 mov r3,r0
- 605 0248 0C1C     	 mov r4,r1
- 606 024a 4D48     	 ldr r0,.L95+56
- 607 024c 4D49     	 ldr r1,.L95+60
- 608 024e 1A1C     	 mov r2,r3
- 609 0250 231C     	 mov r3,r4
- 610 0252 FFF7FEFF 	 bl __aeabi_ddiv
- 611 0256 031C     	 mov r3,r0
- 612 0258 0C1C     	 mov r4,r1
- 613 025a 181C     	 mov r0,r3
- 614 025c 211C     	 mov r1,r4
- 615 025e FFF7FEFF 	 bl atan
- 616 0262 031C     	 mov r3,r0
- 617 0264 0C1C     	 mov r4,r1
- 618 0266 181C     	 mov r0,r3
- 619 0268 211C     	 mov r1,r4
- 620 026a 434A     	 ldr r2,.L95+48
- 621 026c 434B     	 ldr r3,.L95+52
- 622 026e FFF7FEFF 	 bl __aeabi_dmul
- 623 0272 031C     	 mov r3,r0
- 624 0274 0C1C     	 mov r4,r1
- 625 0276 181C     	 mov r0,r3
- 626 0278 211C     	 mov r1,r4
- 627 027a FFF7FEFF 	 bl __aeabi_d2f
- 628 027e 021C     	 add r2,r0,#0
- 629 0280 464B     	 ldr r3,.L95+84
- 630 0282 1A60     	 str r2,[r3]
+ 593              	 .loc 3 49 0 is_stmt 1
+ 594 022c 474B     	 ldr r3,.L104+4
+ 595 022e 1B68     	 ldr r3,[r3]
+ 596 0230 181C     	 add r0,r3,#0
+ 597 0232 FFF7FEFF 	 bl __aeabi_f2d
+ 598 0236 031C     	 mov r3,r0
+ 599 0238 0C1C     	 mov r4,r1
+ 600 023a 181C     	 mov r0,r3
+ 601 023c 211C     	 mov r1,r4
+ 602 023e 524A     	 ldr r2,.L104+64
+ 603 0240 524B     	 ldr r3,.L104+68
+ 604 0242 FFF7FEFF 	 bl __aeabi_dsub
+ 605 0246 031C     	 mov r3,r0
+ 606 0248 0C1C     	 mov r4,r1
+ 607 024a 4D48     	 ldr r0,.L104+56
+ 608 024c 4D49     	 ldr r1,.L104+60
+ 609 024e 1A1C     	 mov r2,r3
+ 610 0250 231C     	 mov r3,r4
+ 611 0252 FFF7FEFF 	 bl __aeabi_ddiv
+ 612 0256 031C     	 mov r3,r0
+ 613 0258 0C1C     	 mov r4,r1
+ 614 025a 181C     	 mov r0,r3
+ 615 025c 211C     	 mov r1,r4
+ 616 025e FFF7FEFF 	 bl atan
+ 617 0262 031C     	 mov r3,r0
+ 618 0264 0C1C     	 mov r4,r1
+ 619 0266 181C     	 mov r0,r3
+ 620 0268 211C     	 mov r1,r4
+ 621 026a 434A     	 ldr r2,.L104+48
+ 622 026c 434B     	 ldr r3,.L104+52
+ 623 026e FFF7FEFF 	 bl __aeabi_dmul
+ 624 0272 031C     	 mov r3,r0
+ 625 0274 0C1C     	 mov r4,r1
+ 626 0276 181C     	 mov r0,r3
+ 627 0278 211C     	 mov r1,r4
+ 628 027a FFF7FEFF 	 bl __aeabi_d2f
+ 629 027e 021C     	 add r2,r0,#0
+ 630 0280 464B     	 ldr r3,.L104+84
+ 631 0282 1A60     	 str r2,[r3]
   50:../Driving_dynamics.c **** 					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // in wheel
- 631              	 .loc 3 50 0
- 632 0284 314B     	 ldr r3,.L95+4
- 633 0286 1B68     	 ldr r3,[r3]
- 634 0288 181C     	 add r0,r3,#0
- 635 028a FFF7FEFF 	 bl __aeabi_f2d
- 636 028e 031C     	 mov r3,r0
- 637 0290 0C1C     	 mov r4,r1
- 638 0292 181C     	 mov r0,r3
- 639 0294 211C     	 mov r1,r4
- 640 0296 3C4A     	 ldr r2,.L95+64
- 641 0298 3C4B     	 ldr r3,.L95+68
- 642 029a FFF7FEFF 	 bl __aeabi_dadd
- 643 029e 031C     	 mov r3,r0
- 644 02a0 0C1C     	 mov r4,r1
- 645 02a2 3748     	 ldr r0,.L95+56
- 646 02a4 3749     	 ldr r1,.L95+60
- 647 02a6 1A1C     	 mov r2,r3
- 648 02a8 231C     	 mov r3,r4
- 649 02aa FFF7FEFF 	 bl __aeabi_ddiv
- 650 02ae 031C     	 mov r3,r0
- 651 02b0 0C1C     	 mov r4,r1
- 652 02b2 181C     	 mov r0,r3
- 653 02b4 211C     	 mov r1,r4
- 654 02b6 FFF7FEFF 	 bl atan
- 655 02ba 031C     	 mov r3,r0
- 656 02bc 0C1C     	 mov r4,r1
- 657 02be 181C     	 mov r0,r3
- 658 02c0 211C     	 mov r1,r4
- 659 02c2 2D4A     	 ldr r2,.L95+48
- 660 02c4 2D4B     	 ldr r3,.L95+52
- 661 02c6 FFF7FEFF 	 bl __aeabi_dmul
- 662 02ca 031C     	 mov r3,r0
- 663 02cc 0C1C     	 mov r4,r1
- 664 02ce 181C     	 mov r0,r3
- 665 02d0 211C     	 mov r1,r4
- 666 02d2 FFF7FEFF 	 bl __aeabi_d2f
- 667 02d6 021C     	 add r2,r0,#0
- 668 02d8 314B     	 ldr r3,.L95+88
- 669 02da 1A60     	 str r2,[r3]
+ 632              	 .loc 3 50 0
+ 633 0284 314B     	 ldr r3,.L104+4
+ 634 0286 1B68     	 ldr r3,[r3]
+ 635 0288 181C     	 add r0,r3,#0
+ 636 028a FFF7FEFF 	 bl __aeabi_f2d
+ 637 028e 031C     	 mov r3,r0
+ 638 0290 0C1C     	 mov r4,r1
+ 639 0292 181C     	 mov r0,r3
+ 640 0294 211C     	 mov r1,r4
+ 641 0296 3C4A     	 ldr r2,.L104+64
+ 642 0298 3C4B     	 ldr r3,.L104+68
+ 643 029a FFF7FEFF 	 bl __aeabi_dadd
+ 644 029e 031C     	 mov r3,r0
+ 645 02a0 0C1C     	 mov r4,r1
+ 646 02a2 3748     	 ldr r0,.L104+56
+ 647 02a4 3749     	 ldr r1,.L104+60
+ 648 02a6 1A1C     	 mov r2,r3
+ 649 02a8 231C     	 mov r3,r4
+ 650 02aa FFF7FEFF 	 bl __aeabi_ddiv
+ 651 02ae 031C     	 mov r3,r0
+ 652 02b0 0C1C     	 mov r4,r1
+ 653 02b2 181C     	 mov r0,r3
+ 654 02b4 211C     	 mov r1,r4
+ 655 02b6 FFF7FEFF 	 bl atan
+ 656 02ba 031C     	 mov r3,r0
+ 657 02bc 0C1C     	 mov r4,r1
+ 658 02be 181C     	 mov r0,r3
+ 659 02c0 211C     	 mov r1,r4
+ 660 02c2 2D4A     	 ldr r2,.L104+48
+ 661 02c4 2D4B     	 ldr r3,.L104+52
+ 662 02c6 FFF7FEFF 	 bl __aeabi_dmul
+ 663 02ca 031C     	 mov r3,r0
+ 664 02cc 0C1C     	 mov r4,r1
+ 665 02ce 181C     	 mov r0,r3
+ 666 02d0 211C     	 mov r1,r4
+ 667 02d2 FFF7FEFF 	 bl __aeabi_d2f
+ 668 02d6 021C     	 add r2,r0,#0
+ 669 02d8 314B     	 ldr r3,.L104+88
+ 670 02da 1A60     	 str r2,[r3]
   51:../Driving_dynamics.c **** 
   52:../Driving_dynamics.c **** 					speed_fl = Driving_speed_cal / Speed_ratio;
- 670              	 .loc 3 52 0
- 671 02dc 1C4B     	 ldr r3,.L95+8
- 672 02de 1B68     	 ldr r3,[r3]
- 673 02e0 B868     	 ldr r0,[r7,#8]
- 674 02e2 191C     	 add r1,r3,#0
- 675 02e4 FFF7FEFF 	 bl __aeabi_fdiv
- 676 02e8 031C     	 add r3,r0,#0
- 677 02ea 1A1C     	 add r2,r3,#0
- 678 02ec 2D4B     	 ldr r3,.L95+92
- 679 02ee 1A60     	 str r2,[r3]
+ 671              	 .loc 3 52 0
+ 672 02dc 1C4B     	 ldr r3,.L104+8
+ 673 02de 1B68     	 ldr r3,[r3]
+ 674 02e0 B868     	 ldr r0,[r7,#8]
+ 675 02e2 191C     	 add r1,r3,#0
+ 676 02e4 FFF7FEFF 	 bl __aeabi_fdiv
+ 677 02e8 031C     	 add r3,r0,#0
+ 678 02ea 1A1C     	 add r2,r3,#0
+ 679 02ec 2D4B     	 ldr r3,.L104+92
+ 680 02ee 1A60     	 str r2,[r3]
   53:../Driving_dynamics.c **** 					speed_fr = Driving_speed_cal * Speed_ratio;
- 680              	 .loc 3 53 0
- 681 02f0 174B     	 ldr r3,.L95+8
- 682 02f2 1B68     	 ldr r3,[r3]
- 683 02f4 181C     	 add r0,r3,#0
- 684 02f6 B968     	 ldr r1,[r7,#8]
- 685 02f8 FFF7FEFF 	 bl __aeabi_fmul
- 686 02fc 031C     	 add r3,r0,#0
- 687 02fe 1A1C     	 add r2,r3,#0
- 688 0300 294B     	 ldr r3,.L95+96
- 689 0302 1A60     	 str r2,[r3]
+ 681              	 .loc 3 53 0
+ 682 02f0 174B     	 ldr r3,.L104+8
+ 683 02f2 1B68     	 ldr r3,[r3]
+ 684 02f4 181C     	 add r0,r3,#0
+ 685 02f6 B968     	 ldr r1,[r7,#8]
+ 686 02f8 FFF7FEFF 	 bl __aeabi_fmul
+ 687 02fc 031C     	 add r3,r0,#0
+ 688 02fe 1A1C     	 add r2,r3,#0
+ 689 0300 294B     	 ldr r3,.L104+96
+ 690 0302 1A60     	 str r2,[r3]
   54:../Driving_dynamics.c **** 
   55:../Driving_dynamics.c **** 
   56:../Driving_dynamics.c **** 					speed_rl = speed_fl;
- 690              	 .loc 3 56 0
- 691 0304 274B     	 ldr r3,.L95+92
- 692 0306 1A68     	 ldr r2,[r3]
- 693 0308 284B     	 ldr r3,.L95+100
- 694 030a 1A60     	 str r2,[r3]
+ 691              	 .loc 3 56 0
+ 692 0304 274B     	 ldr r3,.L104+92
+ 693 0306 1A68     	 ldr r2,[r3]
+ 694 0308 284B     	 ldr r3,.L104+100
+ 695 030a 1A60     	 str r2,[r3]
   57:../Driving_dynamics.c **** 					speed_rr = speed_fr;
- 695              	 .loc 3 57 0
- 696 030c 264B     	 ldr r3,.L95+96
- 697 030e 1A68     	 ldr r2,[r3]
- 698 0310 274B     	 ldr r3,.L95+104
- 699 0312 1A60     	 str r2,[r3]
- 700 0314 D7E0     	 b .L34
- 701              	.L28:
+ 696              	 .loc 3 57 0
+ 697 030c 264B     	 ldr r3,.L104+96
+ 698 030e 1A68     	 ldr r2,[r3]
+ 699 0310 274B     	 ldr r3,.L104+104
+ 700 0312 1A60     	 str r2,[r3]
+ 701 0314 D7E0     	 b .L34
+ 702              	.L28:
   58:../Driving_dynamics.c **** 				}
   59:../Driving_dynamics.c **** 				else if((- R_TRUN_MIN > R_Turn) && (R_Turn > -R_TRUN_MAX)){
- 702              	 .loc 3 59 0
- 703 0316 0D4B     	 ldr r3,.L95+4
- 704 0318 1B68     	 ldr r3,[r3]
- 705 031a 181C     	 add r0,r3,#0
- 706 031c FFF7FEFF 	 bl __aeabi_f2d
- 707 0320 031C     	 mov r3,r0
- 708 0322 0C1C     	 mov r4,r1
- 709 0324 181C     	 mov r0,r3
- 710 0326 211C     	 mov r1,r4
- 711 0328 0B4A     	 ldr r2,.L95+16
- 712 032a 0D4B     	 ldr r3,.L95+24
- 713 032c FFF7FEFF 	 bl __aeabi_dcmplt
- 714 0330 031E     	 sub r3,r0,#0
- 715 0332 00D1     	 bne .L75
- 716 0334 C7E0     	 b .L34
- 717              	.L75:
- 718              	 .loc 3 59 0 is_stmt 0 discriminator 1
- 719 0336 054B     	 ldr r3,.L95+4
- 720 0338 1B68     	 ldr r3,[r3]
- 721 033a 181C     	 add r0,r3,#0
- 722 033c 1D49     	 ldr r1,.L95+108
- 723 033e FFF7FEFF 	 bl __aeabi_fcmpgt
- 724 0342 031E     	 sub r3,r0,#0
- 725 0344 38D1     	 bne .L76
- 726 0346 BEE0     	 b .L34
- 727              	.L96:
- 728              	 .align 2
- 729              	.L95:
- 730 0348 00000000 	 .word New_Input
- 731 034c 00000000 	 .word R_Turn
- 732 0350 00000000 	 .word Speed_ratio
- 733 0354 0000C0BF 	 .word -1077936128
- 734 0358 9A999999 	 .word -1717986918
- 735 035c 9999A93F 	 .word 1068079513
- 736 0360 9999A9BF 	 .word -1079404135
- 737 0364 00000000 	 .word .L18
- 738 0368 00004842 	 .word 1112014848
- 739 036c 000048C2 	 .word -1035468800
- 740 0370 0000A0C0 	 .word -1063256064
- 741 0374 0000A040 	 .word 1084227584
- 742 0378 C7F48425 	 .word 629470407
- 743 037c 1EA64C40 	 .word 1078765086
- 744 0380 79E92631 	 .word 824633721
- 745 0384 08ACDC3F 	 .word 1071426568
- 746 0388 77BE9F1A 	 .word 446676599
- 747 038c 2FDDC43F 	 .word 1069866287
- 748 0390 182D4454 	 .word 1413754136
- 749 0394 FB210940 	 .word 1074340347
- 750 0398 0000A041 	 .word 1101004800
- 751 039c 00000000 	 .word angle_fl
- 752 03a0 00000000 	 .word angle_fr
- 753 03a4 00000000 	 .word speed_fl
- 754 03a8 00000000 	 .word speed_fr
- 755 03ac 00000000 	 .word speed_rl
- 756 03b0 00000000 	 .word speed_rr
- 757 03b4 0000A0C1 	 .word -1046478848
- 758              	.L76:
+ 703              	 .loc 3 59 0
+ 704 0316 0D4B     	 ldr r3,.L104+4
+ 705 0318 1B68     	 ldr r3,[r3]
+ 706 031a 181C     	 add r0,r3,#0
+ 707 031c FFF7FEFF 	 bl __aeabi_f2d
+ 708 0320 031C     	 mov r3,r0
+ 709 0322 0C1C     	 mov r4,r1
+ 710 0324 181C     	 mov r0,r3
+ 711 0326 211C     	 mov r1,r4
+ 712 0328 0B4A     	 ldr r2,.L104+16
+ 713 032a 0D4B     	 ldr r3,.L104+24
+ 714 032c FFF7FEFF 	 bl __aeabi_dcmplt
+ 715 0330 031E     	 sub r3,r0,#0
+ 716 0332 00D1     	 bne .L81
+ 717 0334 C7E0     	 b .L34
+ 718              	.L81:
+ 719              	 .loc 3 59 0 is_stmt 0 discriminator 1
+ 720 0336 054B     	 ldr r3,.L104+4
+ 721 0338 1B68     	 ldr r3,[r3]
+ 722 033a 181C     	 add r0,r3,#0
+ 723 033c 1D49     	 ldr r1,.L104+108
+ 724 033e FFF7FEFF 	 bl __aeabi_fcmpgt
+ 725 0342 031E     	 sub r3,r0,#0
+ 726 0344 38D1     	 bne .L82
+ 727 0346 BEE0     	 b .L34
+ 728              	.L105:
+ 729              	 .align 2
+ 730              	.L104:
+ 731 0348 00000000 	 .word New_Input
+ 732 034c 00000000 	 .word R_Turn
+ 733 0350 00000000 	 .word Speed_ratio
+ 734 0354 0000C0BF 	 .word -1077936128
+ 735 0358 9A999999 	 .word -1717986918
+ 736 035c 9999A93F 	 .word 1068079513
+ 737 0360 9999A9BF 	 .word -1079404135
+ 738 0364 00000000 	 .word .L18
+ 739 0368 00004842 	 .word 1112014848
+ 740 036c 000048C2 	 .word -1035468800
+ 741 0370 0000A0C0 	 .word -1063256064
+ 742 0374 0000A040 	 .word 1084227584
+ 743 0378 C7F48425 	 .word 629470407
+ 744 037c 1EA64C40 	 .word 1078765086
+ 745 0380 79E92631 	 .word 824633721
+ 746 0384 08ACDC3F 	 .word 1071426568
+ 747 0388 77BE9F1A 	 .word 446676599
+ 748 038c 2FDDC43F 	 .word 1069866287
+ 749 0390 182D4454 	 .word 1413754136
+ 750 0394 FB210940 	 .word 1074340347
+ 751 0398 0000A041 	 .word 1101004800
+ 752 039c 00000000 	 .word angle_fl
+ 753 03a0 00000000 	 .word angle_fr
+ 754 03a4 00000000 	 .word speed_fl
+ 755 03a8 00000000 	 .word speed_fr
+ 756 03ac 00000000 	 .word speed_rl
+ 757 03b0 00000000 	 .word speed_rr
+ 758 03b4 0000A0C1 	 .word -1046478848
+ 759              	.L82:
   60:../Driving_dynamics.c **** 					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // in wheel
- 759              	 .loc 3 60 0 is_stmt 1
- 760 03b8 DF4B     	 ldr r3,.L97
- 761 03ba 1B68     	 ldr r3,[r3]
- 762 03bc 181C     	 add r0,r3,#0
- 763 03be FFF7FEFF 	 bl __aeabi_f2d
- 764 03c2 031C     	 mov r3,r0
- 765 03c4 0C1C     	 mov r4,r1
- 766 03c6 181C     	 mov r0,r3
- 767 03c8 211C     	 mov r1,r4
- 768 03ca DC4A     	 ldr r2,.L97+4
- 769 03cc DC4B     	 ldr r3,.L97+8
- 770 03ce FFF7FEFF 	 bl __aeabi_dsub
- 771 03d2 031C     	 mov r3,r0
- 772 03d4 0C1C     	 mov r4,r1
- 773 03d6 DB48     	 ldr r0,.L97+12
- 774 03d8 DB49     	 ldr r1,.L97+16
- 775 03da 1A1C     	 mov r2,r3
- 776 03dc 231C     	 mov r3,r4
- 777 03de FFF7FEFF 	 bl __aeabi_ddiv
- 778 03e2 031C     	 mov r3,r0
- 779 03e4 0C1C     	 mov r4,r1
- 780 03e6 181C     	 mov r0,r3
- 781 03e8 211C     	 mov r1,r4
- 782 03ea FFF7FEFF 	 bl atan
- 783 03ee 031C     	 mov r3,r0
- 784 03f0 0C1C     	 mov r4,r1
- 785 03f2 181C     	 mov r0,r3
- 786 03f4 211C     	 mov r1,r4
- 787 03f6 D54A     	 ldr r2,.L97+20
- 788 03f8 D54B     	 ldr r3,.L97+24
- 789 03fa FFF7FEFF 	 bl __aeabi_dmul
- 790 03fe 031C     	 mov r3,r0
- 791 0400 0C1C     	 mov r4,r1
- 792 0402 181C     	 mov r0,r3
- 793 0404 211C     	 mov r1,r4
- 794 0406 FFF7FEFF 	 bl __aeabi_d2f
- 795 040a 021C     	 add r2,r0,#0
- 796 040c D14B     	 ldr r3,.L97+28
- 797 040e 1A60     	 str r2,[r3]
+ 760              	 .loc 3 60 0 is_stmt 1
+ 761 03b8 DF4B     	 ldr r3,.L106
+ 762 03ba 1B68     	 ldr r3,[r3]
+ 763 03bc 181C     	 add r0,r3,#0
+ 764 03be FFF7FEFF 	 bl __aeabi_f2d
+ 765 03c2 031C     	 mov r3,r0
+ 766 03c4 0C1C     	 mov r4,r1
+ 767 03c6 181C     	 mov r0,r3
+ 768 03c8 211C     	 mov r1,r4
+ 769 03ca DC4A     	 ldr r2,.L106+4
+ 770 03cc DC4B     	 ldr r3,.L106+8
+ 771 03ce FFF7FEFF 	 bl __aeabi_dsub
+ 772 03d2 031C     	 mov r3,r0
+ 773 03d4 0C1C     	 mov r4,r1
+ 774 03d6 DB48     	 ldr r0,.L106+12
+ 775 03d8 DB49     	 ldr r1,.L106+16
+ 776 03da 1A1C     	 mov r2,r3
+ 777 03dc 231C     	 mov r3,r4
+ 778 03de FFF7FEFF 	 bl __aeabi_ddiv
+ 779 03e2 031C     	 mov r3,r0
+ 780 03e4 0C1C     	 mov r4,r1
+ 781 03e6 181C     	 mov r0,r3
+ 782 03e8 211C     	 mov r1,r4
+ 783 03ea FFF7FEFF 	 bl atan
+ 784 03ee 031C     	 mov r3,r0
+ 785 03f0 0C1C     	 mov r4,r1
+ 786 03f2 181C     	 mov r0,r3
+ 787 03f4 211C     	 mov r1,r4
+ 788 03f6 D54A     	 ldr r2,.L106+20
+ 789 03f8 D54B     	 ldr r3,.L106+24
+ 790 03fa FFF7FEFF 	 bl __aeabi_dmul
+ 791 03fe 031C     	 mov r3,r0
+ 792 0400 0C1C     	 mov r4,r1
+ 793 0402 181C     	 mov r0,r3
+ 794 0404 211C     	 mov r1,r4
+ 795 0406 FFF7FEFF 	 bl __aeabi_d2f
+ 796 040a 021C     	 add r2,r0,#0
+ 797 040c D14B     	 ldr r3,.L106+28
+ 798 040e 1A60     	 str r2,[r3]
   61:../Driving_dynamics.c **** 					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn  + HALF_TRACK_WIDTH)); // out wheel
- 798              	 .loc 3 61 0
- 799 0410 C94B     	 ldr r3,.L97
- 800 0412 1B68     	 ldr r3,[r3]
- 801 0414 181C     	 add r0,r3,#0
- 802 0416 FFF7FEFF 	 bl __aeabi_f2d
- 803 041a 031C     	 mov r3,r0
- 804 041c 0C1C     	 mov r4,r1
- 805 041e 181C     	 mov r0,r3
- 806 0420 211C     	 mov r1,r4
- 807 0422 C64A     	 ldr r2,.L97+4
- 808 0424 C64B     	 ldr r3,.L97+8
- 809 0426 FFF7FEFF 	 bl __aeabi_dadd
- 810 042a 031C     	 mov r3,r0
- 811 042c 0C1C     	 mov r4,r1
- 812 042e C548     	 ldr r0,.L97+12
- 813 0430 C549     	 ldr r1,.L97+16
- 814 0432 1A1C     	 mov r2,r3
- 815 0434 231C     	 mov r3,r4
- 816 0436 FFF7FEFF 	 bl __aeabi_ddiv
- 817 043a 031C     	 mov r3,r0
- 818 043c 0C1C     	 mov r4,r1
- 819 043e 181C     	 mov r0,r3
- 820 0440 211C     	 mov r1,r4
- 821 0442 FFF7FEFF 	 bl atan
- 822 0446 031C     	 mov r3,r0
- 823 0448 0C1C     	 mov r4,r1
- 824 044a 181C     	 mov r0,r3
- 825 044c 211C     	 mov r1,r4
- 826 044e BF4A     	 ldr r2,.L97+20
- 827 0450 BF4B     	 ldr r3,.L97+24
- 828 0452 FFF7FEFF 	 bl __aeabi_dmul
- 829 0456 031C     	 mov r3,r0
- 830 0458 0C1C     	 mov r4,r1
- 831 045a 181C     	 mov r0,r3
- 832 045c 211C     	 mov r1,r4
- 833 045e FFF7FEFF 	 bl __aeabi_d2f
- 834 0462 021C     	 add r2,r0,#0
- 835 0464 BC4B     	 ldr r3,.L97+32
- 836 0466 1A60     	 str r2,[r3]
+ 799              	 .loc 3 61 0
+ 800 0410 C94B     	 ldr r3,.L106
+ 801 0412 1B68     	 ldr r3,[r3]
+ 802 0414 181C     	 add r0,r3,#0
+ 803 0416 FFF7FEFF 	 bl __aeabi_f2d
+ 804 041a 031C     	 mov r3,r0
+ 805 041c 0C1C     	 mov r4,r1
+ 806 041e 181C     	 mov r0,r3
+ 807 0420 211C     	 mov r1,r4
+ 808 0422 C64A     	 ldr r2,.L106+4
+ 809 0424 C64B     	 ldr r3,.L106+8
+ 810 0426 FFF7FEFF 	 bl __aeabi_dadd
+ 811 042a 031C     	 mov r3,r0
+ 812 042c 0C1C     	 mov r4,r1
+ 813 042e C548     	 ldr r0,.L106+12
+ 814 0430 C549     	 ldr r1,.L106+16
+ 815 0432 1A1C     	 mov r2,r3
+ 816 0434 231C     	 mov r3,r4
+ 817 0436 FFF7FEFF 	 bl __aeabi_ddiv
+ 818 043a 031C     	 mov r3,r0
+ 819 043c 0C1C     	 mov r4,r1
+ 820 043e 181C     	 mov r0,r3
+ 821 0440 211C     	 mov r1,r4
+ 822 0442 FFF7FEFF 	 bl atan
+ 823 0446 031C     	 mov r3,r0
+ 824 0448 0C1C     	 mov r4,r1
+ 825 044a 181C     	 mov r0,r3
+ 826 044c 211C     	 mov r1,r4
+ 827 044e BF4A     	 ldr r2,.L106+20
+ 828 0450 BF4B     	 ldr r3,.L106+24
+ 829 0452 FFF7FEFF 	 bl __aeabi_dmul
+ 830 0456 031C     	 mov r3,r0
+ 831 0458 0C1C     	 mov r4,r1
+ 832 045a 181C     	 mov r0,r3
+ 833 045c 211C     	 mov r1,r4
+ 834 045e FFF7FEFF 	 bl __aeabi_d2f
+ 835 0462 021C     	 add r2,r0,#0
+ 836 0464 BC4B     	 ldr r3,.L106+32
+ 837 0466 1A60     	 str r2,[r3]
   62:../Driving_dynamics.c **** 
   63:../Driving_dynamics.c **** 					speed_fl = Driving_speed_cal * Speed_ratio;
- 837              	 .loc 3 63 0
- 838 0468 BC4B     	 ldr r3,.L97+36
- 839 046a 1B68     	 ldr r3,[r3]
- 840 046c 181C     	 add r0,r3,#0
- 841 046e B968     	 ldr r1,[r7,#8]
- 842 0470 FFF7FEFF 	 bl __aeabi_fmul
- 843 0474 031C     	 add r3,r0,#0
- 844 0476 1A1C     	 add r2,r3,#0
- 845 0478 B94B     	 ldr r3,.L97+40
- 846 047a 1A60     	 str r2,[r3]
+ 838              	 .loc 3 63 0
+ 839 0468 BC4B     	 ldr r3,.L106+36
+ 840 046a 1B68     	 ldr r3,[r3]
+ 841 046c 181C     	 add r0,r3,#0
+ 842 046e B968     	 ldr r1,[r7,#8]
+ 843 0470 FFF7FEFF 	 bl __aeabi_fmul
+ 844 0474 031C     	 add r3,r0,#0
+ 845 0476 1A1C     	 add r2,r3,#0
+ 846 0478 B94B     	 ldr r3,.L106+40
+ 847 047a 1A60     	 str r2,[r3]
   64:../Driving_dynamics.c **** 					speed_fr = Driving_speed_cal / Speed_ratio;
- 847              	 .loc 3 64 0
- 848 047c B74B     	 ldr r3,.L97+36
- 849 047e 1B68     	 ldr r3,[r3]
- 850 0480 B868     	 ldr r0,[r7,#8]
- 851 0482 191C     	 add r1,r3,#0
- 852 0484 FFF7FEFF 	 bl __aeabi_fdiv
- 853 0488 031C     	 add r3,r0,#0
- 854 048a 1A1C     	 add r2,r3,#0
- 855 048c B54B     	 ldr r3,.L97+44
- 856 048e 1A60     	 str r2,[r3]
+ 848              	 .loc 3 64 0
+ 849 047c B74B     	 ldr r3,.L106+36
+ 850 047e 1B68     	 ldr r3,[r3]
+ 851 0480 B868     	 ldr r0,[r7,#8]
+ 852 0482 191C     	 add r1,r3,#0
+ 853 0484 FFF7FEFF 	 bl __aeabi_fdiv
+ 854 0488 031C     	 add r3,r0,#0
+ 855 048a 1A1C     	 add r2,r3,#0
+ 856 048c B54B     	 ldr r3,.L106+44
+ 857 048e 1A60     	 str r2,[r3]
   65:../Driving_dynamics.c **** 
   66:../Driving_dynamics.c **** 
   67:../Driving_dynamics.c **** 					speed_rl = speed_fl;
- 857              	 .loc 3 67 0
- 858 0490 B34B     	 ldr r3,.L97+40
- 859 0492 1A68     	 ldr r2,[r3]
- 860 0494 B44B     	 ldr r3,.L97+48
- 861 0496 1A60     	 str r2,[r3]
+ 858              	 .loc 3 67 0
+ 859 0490 B34B     	 ldr r3,.L106+40
+ 860 0492 1A68     	 ldr r2,[r3]
+ 861 0494 B44B     	 ldr r3,.L106+48
+ 862 0496 1A60     	 str r2,[r3]
   68:../Driving_dynamics.c **** 					speed_rr = speed_fr;
- 862              	 .loc 3 68 0
- 863 0498 B24B     	 ldr r3,.L97+44
- 864 049a 1A68     	 ldr r2,[r3]
- 865 049c B34B     	 ldr r3,.L97+52
- 866 049e 1A60     	 str r2,[r3]
- 867 04a0 11E0     	 b .L34
- 868              	.L27:
+ 863              	 .loc 3 68 0
+ 864 0498 B24B     	 ldr r3,.L106+44
+ 865 049a 1A68     	 ldr r2,[r3]
+ 866 049c B34B     	 ldr r3,.L106+52
+ 867 049e 1A60     	 str r2,[r3]
+ 868 04a0 11E0     	 b .L34
+ 869              	.L27:
   69:../Driving_dynamics.c **** 				}
   70:../Driving_dynamics.c **** 			}
   71:../Driving_dynamics.c **** 			else{
   72:../Driving_dynamics.c **** 				angle_fl = 0;
- 869              	 .loc 3 72 0
- 870 04a2 AC4B     	 ldr r3,.L97+28
- 871 04a4 0022     	 mov r2,#0
- 872 04a6 1A60     	 str r2,[r3]
+ 870              	 .loc 3 72 0
+ 871 04a2 AC4B     	 ldr r3,.L106+28
+ 872 04a4 0022     	 mov r2,#0
+ 873 04a6 1A60     	 str r2,[r3]
   73:../Driving_dynamics.c **** 				angle_fr = 0;
- 873              	 .loc 3 73 0
- 874 04a8 AB4B     	 ldr r3,.L97+32
- 875 04aa 0022     	 mov r2,#0
- 876 04ac 1A60     	 str r2,[r3]
+ 874              	 .loc 3 73 0
+ 875 04a8 AB4B     	 ldr r3,.L106+32
+ 876 04aa 0022     	 mov r2,#0
+ 877 04ac 1A60     	 str r2,[r3]
   74:../Driving_dynamics.c **** 
   75:../Driving_dynamics.c **** 				speed_fl = Driving_speed_cal;
- 877              	 .loc 3 75 0
- 878 04ae AC4B     	 ldr r3,.L97+40
- 879 04b0 BA68     	 ldr r2,[r7,#8]
- 880 04b2 1A60     	 str r2,[r3]
+ 878              	 .loc 3 75 0
+ 879 04ae AC4B     	 ldr r3,.L106+40
+ 880 04b0 BA68     	 ldr r2,[r7,#8]
+ 881 04b2 1A60     	 str r2,[r3]
   76:../Driving_dynamics.c **** 				speed_fr = Driving_speed_cal;
- 881              	 .loc 3 76 0
- 882 04b4 AB4B     	 ldr r3,.L97+44
- 883 04b6 BA68     	 ldr r2,[r7,#8]
- 884 04b8 1A60     	 str r2,[r3]
+ 882              	 .loc 3 76 0
+ 883 04b4 AB4B     	 ldr r3,.L106+44
+ 884 04b6 BA68     	 ldr r2,[r7,#8]
+ 885 04b8 1A60     	 str r2,[r3]
   77:../Driving_dynamics.c **** 				speed_rl = Driving_speed_cal;
- 885              	 .loc 3 77 0
- 886 04ba AB4B     	 ldr r3,.L97+48
- 887 04bc BA68     	 ldr r2,[r7,#8]
- 888 04be 1A60     	 str r2,[r3]
+ 886              	 .loc 3 77 0
+ 887 04ba AB4B     	 ldr r3,.L106+48
+ 888 04bc BA68     	 ldr r2,[r7,#8]
+ 889 04be 1A60     	 str r2,[r3]
   78:../Driving_dynamics.c **** 				speed_rr = Driving_speed_cal;
- 889              	 .loc 3 78 0
- 890 04c0 AA4B     	 ldr r3,.L97+52
- 891 04c2 BA68     	 ldr r2,[r7,#8]
- 892 04c4 1A60     	 str r2,[r3]
- 893              	.L34:
+ 890              	 .loc 3 78 0
+ 891 04c0 AA4B     	 ldr r3,.L106+52
+ 892 04c2 BA68     	 ldr r2,[r7,#8]
+ 893 04c4 1A60     	 str r2,[r3]
+ 894              	.L34:
   79:../Driving_dynamics.c **** 			}
   80:../Driving_dynamics.c **** 
   81:../Driving_dynamics.c **** 			//rear axle
   82:../Driving_dynamics.c **** 			angle_rl = 0;
- 894              	 .loc 3 82 0
- 895 04c6 AA4B     	 ldr r3,.L97+56
- 896 04c8 0022     	 mov r2,#0
- 897 04ca 1A60     	 str r2,[r3]
+ 895              	 .loc 3 82 0
+ 896 04c6 AA4B     	 ldr r3,.L106+56
+ 897 04c8 0022     	 mov r2,#0
+ 898 04ca 1A60     	 str r2,[r3]
   83:../Driving_dynamics.c **** 			angle_rr = 0;
- 898              	 .loc 3 83 0
- 899 04cc A94B     	 ldr r3,.L97+60
- 900 04ce 0022     	 mov r2,#0
- 901 04d0 1A60     	 str r2,[r3]
+ 899              	 .loc 3 83 0
+ 900 04cc A94B     	 ldr r3,.L106+60
+ 901 04ce 0022     	 mov r2,#0
+ 902 04d0 1A60     	 str r2,[r3]
   84:../Driving_dynamics.c **** 			break;
- 902              	 .loc 3 84 0
- 903 04d2 00F097FC 	 bl .L35
- 904              	.L19:
+ 903              	 .loc 3 84 0
+ 904 04d2 00F0F2FC 	 bl .L35
+ 905              	.L19:
   85:../Driving_dynamics.c **** 
   86:../Driving_dynamics.c **** 		case BACK:// rear #############################################################
   87:../Driving_dynamics.c **** 			// steering limits
   88:../Driving_dynamics.c **** 			if(Steering_direction_cal > 50) Steering_direction_cal = 50;
- 905              	 .loc 3 88 0
- 906 04d6 F868     	 ldr r0,[r7,#12]
- 907 04d8 A749     	 ldr r1,.L97+64
- 908 04da FFF7FEFF 	 bl __aeabi_fcmpgt
- 909 04de 031E     	 sub r3,r0,#0
- 910 04e0 01D0     	 beq .L36
- 911              	 .loc 3 88 0 is_stmt 0 discriminator 1
- 912 04e2 A54B     	 ldr r3,.L97+64
- 913 04e4 FB60     	 str r3,[r7,#12]
- 914              	.L36:
+ 906              	 .loc 3 88 0
+ 907 04d6 F868     	 ldr r0,[r7,#12]
+ 908 04d8 A749     	 ldr r1,.L106+64
+ 909 04da FFF7FEFF 	 bl __aeabi_fcmpgt
+ 910 04de 031E     	 sub r3,r0,#0
+ 911 04e0 01D0     	 beq .L36
+ 912              	 .loc 3 88 0 is_stmt 0 discriminator 1
+ 913 04e2 A54B     	 ldr r3,.L106+64
+ 914 04e4 FB60     	 str r3,[r7,#12]
+ 915              	.L36:
   89:../Driving_dynamics.c **** 			if(Steering_direction_cal < -50) Steering_direction_cal = -50;
- 915              	 .loc 3 89 0 is_stmt 1
- 916 04e6 F868     	 ldr r0,[r7,#12]
- 917 04e8 A449     	 ldr r1,.L97+68
- 918 04ea FFF7FEFF 	 bl __aeabi_fcmplt
- 919 04ee 031E     	 sub r3,r0,#0
- 920 04f0 01D0     	 beq .L38
- 921              	 .loc 3 89 0 is_stmt 0 discriminator 1
- 922 04f2 A24B     	 ldr r3,.L97+68
- 923 04f4 FB60     	 str r3,[r7,#12]
- 924              	.L38:
+ 916              	 .loc 3 89 0 is_stmt 1
+ 917 04e6 F868     	 ldr r0,[r7,#12]
+ 918 04e8 A449     	 ldr r1,.L106+68
+ 919 04ea FFF7FEFF 	 bl __aeabi_fcmplt
+ 920 04ee 031E     	 sub r3,r0,#0
+ 921 04f0 01D0     	 beq .L38
+ 922              	 .loc 3 89 0 is_stmt 0 discriminator 1
+ 923 04f2 A24B     	 ldr r3,.L106+68
+ 924 04f4 FB60     	 str r3,[r7,#12]
+ 925              	.L38:
   90:../Driving_dynamics.c **** 
   91:../Driving_dynamics.c **** 			if(within_MAX_MIN(Steering_direction_cal,-5,5) == 0){// if not almost zero
- 925              	 .loc 3 91 0 is_stmt 1
- 926 04f6 FB68     	 ldr r3,[r7,#12]
- 927 04f8 A149     	 ldr r1,.L97+72
- 928 04fa A24A     	 ldr r2,.L97+76
- 929 04fc 181C     	 add r0,r3,#0
- 930 04fe FFF7FEFF 	 bl within_MAX_MIN
- 931 0502 031C     	 mov r3,r0
- 932 0504 1A1C     	 mov r2,r3
- 933 0506 0123     	 mov r3,#1
- 934 0508 5340     	 eor r3,r2
- 935 050a DBB2     	 uxtb r3,r3
- 936 050c 002B     	 cmp r3,#0
- 937 050e 00D1     	 bne .LCB768
- 938 0510 BFE1     	 b .L40
- 939              	.LCB768:
+ 926              	 .loc 3 91 0 is_stmt 1
+ 927 04f6 FB68     	 ldr r3,[r7,#12]
+ 928 04f8 A149     	 ldr r1,.L106+72
+ 929 04fa A24A     	 ldr r2,.L106+76
+ 930 04fc 181C     	 add r0,r3,#0
+ 931 04fe FFF7FEFF 	 bl within_MAX_MIN
+ 932 0502 031C     	 mov r3,r0
+ 933 0504 1A1C     	 mov r2,r3
+ 934 0506 0123     	 mov r3,#1
+ 935 0508 5340     	 eor r3,r2
+ 936 050a DBB2     	 uxtb r3,r3
+ 937 050c 002B     	 cmp r3,#0
+ 938 050e 00D1     	 bne .LCB769
+ 939 0510 BFE1     	 b .L40
+ 940              	.LCB769:
   92:../Driving_dynamics.c **** 				// pre calc
   93:../Driving_dynamics.c **** 				R_Turn = WHEEL_BASE / tan(Steering_direction_cal / RAD_TO_DEG); // to truni graduis converstion
- 940              	 .loc 3 93 0
- 941 0512 F868     	 ldr r0,[r7,#12]
- 942 0514 FFF7FEFF 	 bl __aeabi_f2d
- 943 0518 031C     	 mov r3,r0
- 944 051a 0C1C     	 mov r4,r1
- 945 051c 181C     	 mov r0,r3
- 946 051e 211C     	 mov r1,r4
- 947 0520 8A4A     	 ldr r2,.L97+20
- 948 0522 8B4B     	 ldr r3,.L97+24
- 949 0524 FFF7FEFF 	 bl __aeabi_ddiv
- 950 0528 031C     	 mov r3,r0
- 951 052a 0C1C     	 mov r4,r1
- 952 052c 181C     	 mov r0,r3
- 953 052e 211C     	 mov r1,r4
- 954 0530 FFF7FEFF 	 bl tan
- 955 0534 031C     	 mov r3,r0
- 956 0536 0C1C     	 mov r4,r1
- 957 0538 8248     	 ldr r0,.L97+12
- 958 053a 8349     	 ldr r1,.L97+16
- 959 053c 1A1C     	 mov r2,r3
- 960 053e 231C     	 mov r3,r4
- 961 0540 FFF7FEFF 	 bl __aeabi_ddiv
- 962 0544 031C     	 mov r3,r0
- 963 0546 0C1C     	 mov r4,r1
- 964 0548 181C     	 mov r0,r3
- 965 054a 211C     	 mov r1,r4
- 966 054c FFF7FEFF 	 bl __aeabi_d2f
- 967 0550 021C     	 add r2,r0,#0
- 968 0552 794B     	 ldr r3,.L97
- 969 0554 1A60     	 str r2,[r3]
+ 941              	 .loc 3 93 0
+ 942 0512 F868     	 ldr r0,[r7,#12]
+ 943 0514 FFF7FEFF 	 bl __aeabi_f2d
+ 944 0518 031C     	 mov r3,r0
+ 945 051a 0C1C     	 mov r4,r1
+ 946 051c 181C     	 mov r0,r3
+ 947 051e 211C     	 mov r1,r4
+ 948 0520 8A4A     	 ldr r2,.L106+20
+ 949 0522 8B4B     	 ldr r3,.L106+24
+ 950 0524 FFF7FEFF 	 bl __aeabi_ddiv
+ 951 0528 031C     	 mov r3,r0
+ 952 052a 0C1C     	 mov r4,r1
+ 953 052c 181C     	 mov r0,r3
+ 954 052e 211C     	 mov r1,r4
+ 955 0530 FFF7FEFF 	 bl tan
+ 956 0534 031C     	 mov r3,r0
+ 957 0536 0C1C     	 mov r4,r1
+ 958 0538 8248     	 ldr r0,.L106+12
+ 959 053a 8349     	 ldr r1,.L106+16
+ 960 053c 1A1C     	 mov r2,r3
+ 961 053e 231C     	 mov r3,r4
+ 962 0540 FFF7FEFF 	 bl __aeabi_ddiv
+ 963 0544 031C     	 mov r3,r0
+ 964 0546 0C1C     	 mov r4,r1
+ 965 0548 181C     	 mov r0,r3
+ 966 054a 211C     	 mov r1,r4
+ 967 054c FFF7FEFF 	 bl __aeabi_d2f
+ 968 0550 021C     	 add r2,r0,#0
+ 969 0552 794B     	 ldr r3,.L106
+ 970 0554 1A60     	 str r2,[r3]
   94:../Driving_dynamics.c **** 				Speed_ratio = (2 * (copysign(R_Turn,1) + HALF_TRACK_WIDTH) * M_PI) / (2 * copysign(R_Turn,1) * 
- 970              	 .loc 3 94 0
- 971 0556 784B     	 ldr r3,.L97
- 972 0558 1B68     	 ldr r3,[r3]
- 973 055a 5B00     	 lsl r3,r3,#1
- 974 055c 5B08     	 lsr r3,r3,#1
- 975 055e 181C     	 add r0,r3,#0
- 976 0560 FFF7FEFF 	 bl __aeabi_f2d
- 977 0564 031C     	 mov r3,r0
- 978 0566 0C1C     	 mov r4,r1
- 979 0568 181C     	 mov r0,r3
- 980 056a 211C     	 mov r1,r4
- 981 056c 734A     	 ldr r2,.L97+4
- 982 056e 744B     	 ldr r3,.L97+8
- 983 0570 FFF7FEFF 	 bl __aeabi_dadd
- 984 0574 031C     	 mov r3,r0
- 985 0576 0C1C     	 mov r4,r1
- 986 0578 181C     	 mov r0,r3
- 987 057a 211C     	 mov r1,r4
- 988 057c 1A1C     	 mov r2,r3
- 989 057e 231C     	 mov r3,r4
- 990 0580 FFF7FEFF 	 bl __aeabi_dadd
- 991 0584 031C     	 mov r3,r0
- 992 0586 0C1C     	 mov r4,r1
- 993 0588 181C     	 mov r0,r3
- 994 058a 211C     	 mov r1,r4
- 995 058c 7E4A     	 ldr r2,.L97+80
- 996 058e 7F4B     	 ldr r3,.L97+84
- 997 0590 FFF7FEFF 	 bl __aeabi_dmul
- 998 0594 031C     	 mov r3,r0
- 999 0596 0C1C     	 mov r4,r1
- 1000 0598 1D1C     	 mov r5,r3
- 1001 059a 261C     	 mov r6,r4
- 1002 059c 664B     	 ldr r3,.L97
- 1003 059e 1B68     	 ldr r3,[r3]
- 1004 05a0 5B00     	 lsl r3,r3,#1
- 1005 05a2 5B08     	 lsr r3,r3,#1
- 1006 05a4 181C     	 add r0,r3,#0
- 1007 05a6 FFF7FEFF 	 bl __aeabi_f2d
- 1008 05aa 031C     	 mov r3,r0
- 1009 05ac 0C1C     	 mov r4,r1
- 1010 05ae 181C     	 mov r0,r3
- 1011 05b0 211C     	 mov r1,r4
- 1012 05b2 1A1C     	 mov r2,r3
- 1013 05b4 231C     	 mov r3,r4
- 1014 05b6 FFF7FEFF 	 bl __aeabi_dadd
- 1015 05ba 031C     	 mov r3,r0
- 1016 05bc 0C1C     	 mov r4,r1
- 1017 05be 181C     	 mov r0,r3
- 1018 05c0 211C     	 mov r1,r4
- 1019 05c2 714A     	 ldr r2,.L97+80
- 1020 05c4 714B     	 ldr r3,.L97+84
- 1021 05c6 FFF7FEFF 	 bl __aeabi_dmul
- 1022 05ca 031C     	 mov r3,r0
- 1023 05cc 0C1C     	 mov r4,r1
- 1024 05ce 281C     	 mov r0,r5
- 1025 05d0 311C     	 mov r1,r6
- 1026 05d2 1A1C     	 mov r2,r3
- 1027 05d4 231C     	 mov r3,r4
- 1028 05d6 FFF7FEFF 	 bl __aeabi_ddiv
- 1029 05da 031C     	 mov r3,r0
- 1030 05dc 0C1C     	 mov r4,r1
- 1031 05de 181C     	 mov r0,r3
- 1032 05e0 211C     	 mov r1,r4
- 1033 05e2 FFF7FEFF 	 bl __aeabi_d2f
- 1034 05e6 021C     	 add r2,r0,#0
- 1035 05e8 5C4B     	 ldr r3,.L97+36
- 1036 05ea 1A60     	 str r2,[r3]
+ 971              	 .loc 3 94 0
+ 972 0556 784B     	 ldr r3,.L106
+ 973 0558 1B68     	 ldr r3,[r3]
+ 974 055a 5B00     	 lsl r3,r3,#1
+ 975 055c 5B08     	 lsr r3,r3,#1
+ 976 055e 181C     	 add r0,r3,#0
+ 977 0560 FFF7FEFF 	 bl __aeabi_f2d
+ 978 0564 031C     	 mov r3,r0
+ 979 0566 0C1C     	 mov r4,r1
+ 980 0568 181C     	 mov r0,r3
+ 981 056a 211C     	 mov r1,r4
+ 982 056c 734A     	 ldr r2,.L106+4
+ 983 056e 744B     	 ldr r3,.L106+8
+ 984 0570 FFF7FEFF 	 bl __aeabi_dadd
+ 985 0574 031C     	 mov r3,r0
+ 986 0576 0C1C     	 mov r4,r1
+ 987 0578 181C     	 mov r0,r3
+ 988 057a 211C     	 mov r1,r4
+ 989 057c 1A1C     	 mov r2,r3
+ 990 057e 231C     	 mov r3,r4
+ 991 0580 FFF7FEFF 	 bl __aeabi_dadd
+ 992 0584 031C     	 mov r3,r0
+ 993 0586 0C1C     	 mov r4,r1
+ 994 0588 181C     	 mov r0,r3
+ 995 058a 211C     	 mov r1,r4
+ 996 058c 7E4A     	 ldr r2,.L106+80
+ 997 058e 7F4B     	 ldr r3,.L106+84
+ 998 0590 FFF7FEFF 	 bl __aeabi_dmul
+ 999 0594 031C     	 mov r3,r0
+ 1000 0596 0C1C     	 mov r4,r1
+ 1001 0598 1D1C     	 mov r5,r3
+ 1002 059a 261C     	 mov r6,r4
+ 1003 059c 664B     	 ldr r3,.L106
+ 1004 059e 1B68     	 ldr r3,[r3]
+ 1005 05a0 5B00     	 lsl r3,r3,#1
+ 1006 05a2 5B08     	 lsr r3,r3,#1
+ 1007 05a4 181C     	 add r0,r3,#0
+ 1008 05a6 FFF7FEFF 	 bl __aeabi_f2d
+ 1009 05aa 031C     	 mov r3,r0
+ 1010 05ac 0C1C     	 mov r4,r1
+ 1011 05ae 181C     	 mov r0,r3
+ 1012 05b0 211C     	 mov r1,r4
+ 1013 05b2 1A1C     	 mov r2,r3
+ 1014 05b4 231C     	 mov r3,r4
+ 1015 05b6 FFF7FEFF 	 bl __aeabi_dadd
+ 1016 05ba 031C     	 mov r3,r0
+ 1017 05bc 0C1C     	 mov r4,r1
+ 1018 05be 181C     	 mov r0,r3
+ 1019 05c0 211C     	 mov r1,r4
+ 1020 05c2 714A     	 ldr r2,.L106+80
+ 1021 05c4 714B     	 ldr r3,.L106+84
+ 1022 05c6 FFF7FEFF 	 bl __aeabi_dmul
+ 1023 05ca 031C     	 mov r3,r0
+ 1024 05cc 0C1C     	 mov r4,r1
+ 1025 05ce 281C     	 mov r0,r5
+ 1026 05d0 311C     	 mov r1,r6
+ 1027 05d2 1A1C     	 mov r2,r3
+ 1028 05d4 231C     	 mov r3,r4
+ 1029 05d6 FFF7FEFF 	 bl __aeabi_ddiv
+ 1030 05da 031C     	 mov r3,r0
+ 1031 05dc 0C1C     	 mov r4,r1
+ 1032 05de 181C     	 mov r0,r3
+ 1033 05e0 211C     	 mov r1,r4
+ 1034 05e2 FFF7FEFF 	 bl __aeabi_d2f
+ 1035 05e6 021C     	 add r2,r0,#0
+ 1036 05e8 5C4B     	 ldr r3,.L106+36
+ 1037 05ea 1A60     	 str r2,[r3]
   95:../Driving_dynamics.c **** 
   96:../Driving_dynamics.c **** 				if((R_TRUN_MIN < R_Turn) && (R_Turn < R_TRUN_MAX)){
- 1037              	 .loc 3 96 0
- 1038 05ec 524B     	 ldr r3,.L97
- 1039 05ee 1B68     	 ldr r3,[r3]
- 1040 05f0 181C     	 add r0,r3,#0
- 1041 05f2 FFF7FEFF 	 bl __aeabi_f2d
- 1042 05f6 031C     	 mov r3,r0
- 1043 05f8 0C1C     	 mov r4,r1
- 1044 05fa 181C     	 mov r0,r3
- 1045 05fc 211C     	 mov r1,r4
- 1046 05fe 644A     	 ldr r2,.L97+88
- 1047 0600 644B     	 ldr r3,.L97+92
- 1048 0602 FFF7FEFF 	 bl __aeabi_dcmpgt
- 1049 0606 031E     	 sub r3,r0,#0
- 1050 0608 00D1     	 bne .LCB877
- 1051 060a 7CE0     	 b .L41
- 1052              	.LCB877:
- 1053              	 .loc 3 96 0 is_stmt 0 discriminator 1
- 1054 060c 4A4B     	 ldr r3,.L97
- 1055 060e 1B68     	 ldr r3,[r3]
- 1056 0610 181C     	 add r0,r3,#0
- 1057 0612 6149     	 ldr r1,.L97+96
- 1058 0614 FFF7FEFF 	 bl __aeabi_fcmplt
- 1059 0618 031E     	 sub r3,r0,#0
- 1060 061a 74D0     	 beq .L41
+ 1038              	 .loc 3 96 0
+ 1039 05ec 524B     	 ldr r3,.L106
+ 1040 05ee 1B68     	 ldr r3,[r3]
+ 1041 05f0 181C     	 add r0,r3,#0
+ 1042 05f2 FFF7FEFF 	 bl __aeabi_f2d
+ 1043 05f6 031C     	 mov r3,r0
+ 1044 05f8 0C1C     	 mov r4,r1
+ 1045 05fa 181C     	 mov r0,r3
+ 1046 05fc 211C     	 mov r1,r4
+ 1047 05fe 644A     	 ldr r2,.L106+88
+ 1048 0600 644B     	 ldr r3,.L106+92
+ 1049 0602 FFF7FEFF 	 bl __aeabi_dcmpgt
+ 1050 0606 031E     	 sub r3,r0,#0
+ 1051 0608 00D1     	 bne .LCB878
+ 1052 060a 7CE0     	 b .L41
+ 1053              	.LCB878:
+ 1054              	 .loc 3 96 0 is_stmt 0 discriminator 1
+ 1055 060c 4A4B     	 ldr r3,.L106
+ 1056 060e 1B68     	 ldr r3,[r3]
+ 1057 0610 181C     	 add r0,r3,#0
+ 1058 0612 6149     	 ldr r1,.L106+96
+ 1059 0614 FFF7FEFF 	 bl __aeabi_fcmplt
+ 1060 0618 031E     	 sub r3,r0,#0
+ 1061 061a 74D0     	 beq .L41
   97:../Driving_dynamics.c **** 					angle_rl = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // out wheel
- 1061              	 .loc 3 97 0 is_stmt 1
- 1062 061c 464B     	 ldr r3,.L97
- 1063 061e 1B68     	 ldr r3,[r3]
- 1064 0620 181C     	 add r0,r3,#0
- 1065 0622 FFF7FEFF 	 bl __aeabi_f2d
- 1066 0626 031C     	 mov r3,r0
- 1067 0628 0C1C     	 mov r4,r1
- 1068 062a 181C     	 mov r0,r3
- 1069 062c 211C     	 mov r1,r4
- 1070 062e 434A     	 ldr r2,.L97+4
- 1071 0630 434B     	 ldr r3,.L97+8
- 1072 0632 FFF7FEFF 	 bl __aeabi_dsub
- 1073 0636 031C     	 mov r3,r0
- 1074 0638 0C1C     	 mov r4,r1
- 1075 063a 4248     	 ldr r0,.L97+12
- 1076 063c 4249     	 ldr r1,.L97+16
- 1077 063e 1A1C     	 mov r2,r3
- 1078 0640 231C     	 mov r3,r4
- 1079 0642 FFF7FEFF 	 bl __aeabi_ddiv
- 1080 0646 031C     	 mov r3,r0
- 1081 0648 0C1C     	 mov r4,r1
- 1082 064a 181C     	 mov r0,r3
- 1083 064c 211C     	 mov r1,r4
- 1084 064e FFF7FEFF 	 bl atan
- 1085 0652 031C     	 mov r3,r0
- 1086 0654 0C1C     	 mov r4,r1
- 1087 0656 181C     	 mov r0,r3
- 1088 0658 211C     	 mov r1,r4
- 1089 065a 3C4A     	 ldr r2,.L97+20
- 1090 065c 4F4B     	 ldr r3,.L97+100
- 1091 065e FFF7FEFF 	 bl __aeabi_dmul
- 1092 0662 031C     	 mov r3,r0
- 1093 0664 0C1C     	 mov r4,r1
- 1094 0666 181C     	 mov r0,r3
- 1095 0668 211C     	 mov r1,r4
- 1096 066a FFF7FEFF 	 bl __aeabi_d2f
- 1097 066e 021C     	 add r2,r0,#0
- 1098 0670 3F4B     	 ldr r3,.L97+56
- 1099 0672 1A60     	 str r2,[r3]
+ 1062              	 .loc 3 97 0 is_stmt 1
+ 1063 061c 464B     	 ldr r3,.L106
+ 1064 061e 1B68     	 ldr r3,[r3]
+ 1065 0620 181C     	 add r0,r3,#0
+ 1066 0622 FFF7FEFF 	 bl __aeabi_f2d
+ 1067 0626 031C     	 mov r3,r0
+ 1068 0628 0C1C     	 mov r4,r1
+ 1069 062a 181C     	 mov r0,r3
+ 1070 062c 211C     	 mov r1,r4
+ 1071 062e 434A     	 ldr r2,.L106+4
+ 1072 0630 434B     	 ldr r3,.L106+8
+ 1073 0632 FFF7FEFF 	 bl __aeabi_dsub
+ 1074 0636 031C     	 mov r3,r0
+ 1075 0638 0C1C     	 mov r4,r1
+ 1076 063a 4248     	 ldr r0,.L106+12
+ 1077 063c 4249     	 ldr r1,.L106+16
+ 1078 063e 1A1C     	 mov r2,r3
+ 1079 0640 231C     	 mov r3,r4
+ 1080 0642 FFF7FEFF 	 bl __aeabi_ddiv
+ 1081 0646 031C     	 mov r3,r0
+ 1082 0648 0C1C     	 mov r4,r1
+ 1083 064a 181C     	 mov r0,r3
+ 1084 064c 211C     	 mov r1,r4
+ 1085 064e FFF7FEFF 	 bl atan
+ 1086 0652 031C     	 mov r3,r0
+ 1087 0654 0C1C     	 mov r4,r1
+ 1088 0656 181C     	 mov r0,r3
+ 1089 0658 211C     	 mov r1,r4
+ 1090 065a 3C4A     	 ldr r2,.L106+20
+ 1091 065c 4F4B     	 ldr r3,.L106+100
+ 1092 065e FFF7FEFF 	 bl __aeabi_dmul
+ 1093 0662 031C     	 mov r3,r0
+ 1094 0664 0C1C     	 mov r4,r1
+ 1095 0666 181C     	 mov r0,r3
+ 1096 0668 211C     	 mov r1,r4
+ 1097 066a FFF7FEFF 	 bl __aeabi_d2f
+ 1098 066e 021C     	 add r2,r0,#0
+ 1099 0670 3F4B     	 ldr r3,.L106+56
+ 1100 0672 1A60     	 str r2,[r3]
   98:../Driving_dynamics.c **** 					angle_rr = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // in wheel
- 1100              	 .loc 3 98 0
- 1101 0674 304B     	 ldr r3,.L97
- 1102 0676 1B68     	 ldr r3,[r3]
- 1103 0678 181C     	 add r0,r3,#0
- 1104 067a FFF7FEFF 	 bl __aeabi_f2d
- 1105 067e 031C     	 mov r3,r0
- 1106 0680 0C1C     	 mov r4,r1
- 1107 0682 181C     	 mov r0,r3
- 1108 0684 211C     	 mov r1,r4
- 1109 0686 2D4A     	 ldr r2,.L97+4
- 1110 0688 2D4B     	 ldr r3,.L97+8
- 1111 068a FFF7FEFF 	 bl __aeabi_dadd
- 1112 068e 031C     	 mov r3,r0
- 1113 0690 0C1C     	 mov r4,r1
- 1114 0692 2C48     	 ldr r0,.L97+12
- 1115 0694 2C49     	 ldr r1,.L97+16
- 1116 0696 1A1C     	 mov r2,r3
- 1117 0698 231C     	 mov r3,r4
- 1118 069a FFF7FEFF 	 bl __aeabi_ddiv
- 1119 069e 031C     	 mov r3,r0
- 1120 06a0 0C1C     	 mov r4,r1
- 1121 06a2 181C     	 mov r0,r3
- 1122 06a4 211C     	 mov r1,r4
- 1123 06a6 FFF7FEFF 	 bl atan
- 1124 06aa 031C     	 mov r3,r0
- 1125 06ac 0C1C     	 mov r4,r1
- 1126 06ae 181C     	 mov r0,r3
- 1127 06b0 211C     	 mov r1,r4
- 1128 06b2 264A     	 ldr r2,.L97+20
- 1129 06b4 394B     	 ldr r3,.L97+100
- 1130 06b6 FFF7FEFF 	 bl __aeabi_dmul
- 1131 06ba 031C     	 mov r3,r0
- 1132 06bc 0C1C     	 mov r4,r1
- 1133 06be 181C     	 mov r0,r3
- 1134 06c0 211C     	 mov r1,r4
- 1135 06c2 FFF7FEFF 	 bl __aeabi_d2f
- 1136 06c6 021C     	 add r2,r0,#0
- 1137 06c8 2A4B     	 ldr r3,.L97+60
- 1138 06ca 1A60     	 str r2,[r3]
+ 1101              	 .loc 3 98 0
+ 1102 0674 304B     	 ldr r3,.L106
+ 1103 0676 1B68     	 ldr r3,[r3]
+ 1104 0678 181C     	 add r0,r3,#0
+ 1105 067a FFF7FEFF 	 bl __aeabi_f2d
+ 1106 067e 031C     	 mov r3,r0
+ 1107 0680 0C1C     	 mov r4,r1
+ 1108 0682 181C     	 mov r0,r3
+ 1109 0684 211C     	 mov r1,r4
+ 1110 0686 2D4A     	 ldr r2,.L106+4
+ 1111 0688 2D4B     	 ldr r3,.L106+8
+ 1112 068a FFF7FEFF 	 bl __aeabi_dadd
+ 1113 068e 031C     	 mov r3,r0
+ 1114 0690 0C1C     	 mov r4,r1
+ 1115 0692 2C48     	 ldr r0,.L106+12
+ 1116 0694 2C49     	 ldr r1,.L106+16
+ 1117 0696 1A1C     	 mov r2,r3
+ 1118 0698 231C     	 mov r3,r4
+ 1119 069a FFF7FEFF 	 bl __aeabi_ddiv
+ 1120 069e 031C     	 mov r3,r0
+ 1121 06a0 0C1C     	 mov r4,r1
+ 1122 06a2 181C     	 mov r0,r3
+ 1123 06a4 211C     	 mov r1,r4
+ 1124 06a6 FFF7FEFF 	 bl atan
+ 1125 06aa 031C     	 mov r3,r0
+ 1126 06ac 0C1C     	 mov r4,r1
+ 1127 06ae 181C     	 mov r0,r3
+ 1128 06b0 211C     	 mov r1,r4
+ 1129 06b2 264A     	 ldr r2,.L106+20
+ 1130 06b4 394B     	 ldr r3,.L106+100
+ 1131 06b6 FFF7FEFF 	 bl __aeabi_dmul
+ 1132 06ba 031C     	 mov r3,r0
+ 1133 06bc 0C1C     	 mov r4,r1
+ 1134 06be 181C     	 mov r0,r3
+ 1135 06c0 211C     	 mov r1,r4
+ 1136 06c2 FFF7FEFF 	 bl __aeabi_d2f
+ 1137 06c6 021C     	 add r2,r0,#0
+ 1138 06c8 2A4B     	 ldr r3,.L106+60
+ 1139 06ca 1A60     	 str r2,[r3]
   99:../Driving_dynamics.c **** 
  100:../Driving_dynamics.c **** 					speed_fl = Driving_speed_cal / Speed_ratio;
- 1139              	 .loc 3 100 0
- 1140 06cc 234B     	 ldr r3,.L97+36
- 1141 06ce 1B68     	 ldr r3,[r3]
- 1142 06d0 B868     	 ldr r0,[r7,#8]
- 1143 06d2 191C     	 add r1,r3,#0
- 1144 06d4 FFF7FEFF 	 bl __aeabi_fdiv
- 1145 06d8 031C     	 add r3,r0,#0
- 1146 06da 1A1C     	 add r2,r3,#0
- 1147 06dc 204B     	 ldr r3,.L97+40
- 1148 06de 1A60     	 str r2,[r3]
+ 1140              	 .loc 3 100 0
+ 1141 06cc 234B     	 ldr r3,.L106+36
+ 1142 06ce 1B68     	 ldr r3,[r3]
+ 1143 06d0 B868     	 ldr r0,[r7,#8]
+ 1144 06d2 191C     	 add r1,r3,#0
+ 1145 06d4 FFF7FEFF 	 bl __aeabi_fdiv
+ 1146 06d8 031C     	 add r3,r0,#0
+ 1147 06da 1A1C     	 add r2,r3,#0
+ 1148 06dc 204B     	 ldr r3,.L106+40
+ 1149 06de 1A60     	 str r2,[r3]
  101:../Driving_dynamics.c **** 					speed_fr = Driving_speed_cal * Speed_ratio;
- 1149              	 .loc 3 101 0
- 1150 06e0 1E4B     	 ldr r3,.L97+36
- 1151 06e2 1B68     	 ldr r3,[r3]
- 1152 06e4 181C     	 add r0,r3,#0
- 1153 06e6 B968     	 ldr r1,[r7,#8]
- 1154 06e8 FFF7FEFF 	 bl __aeabi_fmul
- 1155 06ec 031C     	 add r3,r0,#0
- 1156 06ee 1A1C     	 add r2,r3,#0
- 1157 06f0 1C4B     	 ldr r3,.L97+44
- 1158 06f2 1A60     	 str r2,[r3]
+ 1150              	 .loc 3 101 0
+ 1151 06e0 1E4B     	 ldr r3,.L106+36
+ 1152 06e2 1B68     	 ldr r3,[r3]
+ 1153 06e4 181C     	 add r0,r3,#0
+ 1154 06e6 B968     	 ldr r1,[r7,#8]
+ 1155 06e8 FFF7FEFF 	 bl __aeabi_fmul
+ 1156 06ec 031C     	 add r3,r0,#0
+ 1157 06ee 1A1C     	 add r2,r3,#0
+ 1158 06f0 1C4B     	 ldr r3,.L106+44
+ 1159 06f2 1A60     	 str r2,[r3]
  102:../Driving_dynamics.c **** 
  103:../Driving_dynamics.c **** 					speed_rl = speed_fl;
- 1159              	 .loc 3 103 0
- 1160 06f4 1A4B     	 ldr r3,.L97+40
- 1161 06f6 1A68     	 ldr r2,[r3]
- 1162 06f8 1B4B     	 ldr r3,.L97+48
- 1163 06fa 1A60     	 str r2,[r3]
+ 1160              	 .loc 3 103 0
+ 1161 06f4 1A4B     	 ldr r3,.L106+40
+ 1162 06f6 1A68     	 ldr r2,[r3]
+ 1163 06f8 1B4B     	 ldr r3,.L106+48
+ 1164 06fa 1A60     	 str r2,[r3]
  104:../Driving_dynamics.c **** 					speed_rr = speed_fr;
- 1164              	 .loc 3 104 0
- 1165 06fc 194B     	 ldr r3,.L97+44
- 1166 06fe 1A68     	 ldr r2,[r3]
- 1167 0700 1A4B     	 ldr r3,.L97+52
- 1168 0702 1A60     	 str r2,[r3]
- 1169 0704 D7E0     	 b .L47
- 1170              	.L41:
+ 1165              	 .loc 3 104 0
+ 1166 06fc 194B     	 ldr r3,.L106+44
+ 1167 06fe 1A68     	 ldr r2,[r3]
+ 1168 0700 1A4B     	 ldr r3,.L106+52
+ 1169 0702 1A60     	 str r2,[r3]
+ 1170 0704 D7E0     	 b .L47
+ 1171              	.L41:
  105:../Driving_dynamics.c **** 				}
  106:../Driving_dynamics.c **** 				else if((- R_TRUN_MIN > R_Turn) && (R_Turn > -R_TRUN_MAX)){
- 1171              	 .loc 3 106 0
- 1172 0706 0C4B     	 ldr r3,.L97
- 1173 0708 1B68     	 ldr r3,[r3]
- 1174 070a 181C     	 add r0,r3,#0
- 1175 070c FFF7FEFF 	 bl __aeabi_f2d
- 1176 0710 031C     	 mov r3,r0
- 1177 0712 0C1C     	 mov r4,r1
- 1178 0714 181C     	 mov r0,r3
- 1179 0716 211C     	 mov r1,r4
- 1180 0718 1D4A     	 ldr r2,.L97+88
- 1181 071a 214B     	 ldr r3,.L97+104
- 1182 071c FFF7FEFF 	 bl __aeabi_dcmplt
- 1183 0720 031E     	 sub r3,r0,#0
- 1184 0722 00D1     	 bne .L81
- 1185 0724 C7E0     	 b .L47
- 1186              	.L81:
- 1187              	 .loc 3 106 0 is_stmt 0 discriminator 1
- 1188 0726 044B     	 ldr r3,.L97
- 1189 0728 1B68     	 ldr r3,[r3]
- 1190 072a 181C     	 add r0,r3,#0
- 1191 072c 1D49     	 ldr r1,.L97+108
- 1192 072e FFF7FEFF 	 bl __aeabi_fcmpgt
- 1193 0732 031E     	 sub r3,r0,#0
- 1194 0734 38D1     	 bne .L82
- 1195 0736 BEE0     	 b .L47
- 1196              	.L98:
- 1197              	 .align 2
- 1198              	.L97:
- 1199 0738 00000000 	 .word R_Turn
- 1200 073c 77BE9F1A 	 .word 446676599
- 1201 0740 2FDDC43F 	 .word 1069866287
- 1202 0744 79E92631 	 .word 824633721
- 1203 0748 08ACDC3F 	 .word 1071426568
- 1204 074c C7F48425 	 .word 629470407
- 1205 0750 1EA64C40 	 .word 1078765086
- 1206 0754 00000000 	 .word angle_fl
- 1207 0758 00000000 	 .word angle_fr
- 1208 075c 00000000 	 .word Speed_ratio
- 1209 0760 00000000 	 .word speed_fl
- 1210 0764 00000000 	 .word speed_fr
- 1211 0768 00000000 	 .word speed_rl
- 1212 076c 00000000 	 .word speed_rr
- 1213 0770 00000000 	 .word angle_rl
- 1214 0774 00000000 	 .word angle_rr
- 1215 0778 00004842 	 .word 1112014848
- 1216 077c 000048C2 	 .word -1035468800
- 1217 0780 0000A0C0 	 .word -1063256064
- 1218 0784 0000A040 	 .word 1084227584
- 1219 0788 182D4454 	 .word 1413754136
- 1220 078c FB210940 	 .word 1074340347
- 1221 0790 9A999999 	 .word -1717986918
- 1222 0794 9999A93F 	 .word 1068079513
- 1223 0798 0000A041 	 .word 1101004800
- 1224 079c 1EA64CC0 	 .word -1068718562
- 1225 07a0 9999A9BF 	 .word -1079404135
- 1226 07a4 0000A0C1 	 .word -1046478848
- 1227              	.L82:
+ 1172              	 .loc 3 106 0
+ 1173 0706 0C4B     	 ldr r3,.L106
+ 1174 0708 1B68     	 ldr r3,[r3]
+ 1175 070a 181C     	 add r0,r3,#0
+ 1176 070c FFF7FEFF 	 bl __aeabi_f2d
+ 1177 0710 031C     	 mov r3,r0
+ 1178 0712 0C1C     	 mov r4,r1
+ 1179 0714 181C     	 mov r0,r3
+ 1180 0716 211C     	 mov r1,r4
+ 1181 0718 1D4A     	 ldr r2,.L106+88
+ 1182 071a 214B     	 ldr r3,.L106+104
+ 1183 071c FFF7FEFF 	 bl __aeabi_dcmplt
+ 1184 0720 031E     	 sub r3,r0,#0
+ 1185 0722 00D1     	 bne .L87
+ 1186 0724 C7E0     	 b .L47
+ 1187              	.L87:
+ 1188              	 .loc 3 106 0 is_stmt 0 discriminator 1
+ 1189 0726 044B     	 ldr r3,.L106
+ 1190 0728 1B68     	 ldr r3,[r3]
+ 1191 072a 181C     	 add r0,r3,#0
+ 1192 072c 1D49     	 ldr r1,.L106+108
+ 1193 072e FFF7FEFF 	 bl __aeabi_fcmpgt
+ 1194 0732 031E     	 sub r3,r0,#0
+ 1195 0734 38D1     	 bne .L88
+ 1196 0736 BEE0     	 b .L47
+ 1197              	.L107:
+ 1198              	 .align 2
+ 1199              	.L106:
+ 1200 0738 00000000 	 .word R_Turn
+ 1201 073c 77BE9F1A 	 .word 446676599
+ 1202 0740 2FDDC43F 	 .word 1069866287
+ 1203 0744 79E92631 	 .word 824633721
+ 1204 0748 08ACDC3F 	 .word 1071426568
+ 1205 074c C7F48425 	 .word 629470407
+ 1206 0750 1EA64C40 	 .word 1078765086
+ 1207 0754 00000000 	 .word angle_fl
+ 1208 0758 00000000 	 .word angle_fr
+ 1209 075c 00000000 	 .word Speed_ratio
+ 1210 0760 00000000 	 .word speed_fl
+ 1211 0764 00000000 	 .word speed_fr
+ 1212 0768 00000000 	 .word speed_rl
+ 1213 076c 00000000 	 .word speed_rr
+ 1214 0770 00000000 	 .word angle_rl
+ 1215 0774 00000000 	 .word angle_rr
+ 1216 0778 00004842 	 .word 1112014848
+ 1217 077c 000048C2 	 .word -1035468800
+ 1218 0780 0000A0C0 	 .word -1063256064
+ 1219 0784 0000A040 	 .word 1084227584
+ 1220 0788 182D4454 	 .word 1413754136
+ 1221 078c FB210940 	 .word 1074340347
+ 1222 0790 9A999999 	 .word -1717986918
+ 1223 0794 9999A93F 	 .word 1068079513
+ 1224 0798 0000A041 	 .word 1101004800
+ 1225 079c 1EA64CC0 	 .word -1068718562
+ 1226 07a0 9999A9BF 	 .word -1079404135
+ 1227 07a4 0000A0C1 	 .word -1046478848
+ 1228              	.L88:
  107:../Driving_dynamics.c **** 					angle_rl = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // in wheel
- 1228              	 .loc 3 107 0 is_stmt 1
- 1229 07a8 E64B     	 ldr r3,.L99
- 1230 07aa 1B68     	 ldr r3,[r3]
- 1231 07ac 181C     	 add r0,r3,#0
- 1232 07ae FFF7FEFF 	 bl __aeabi_f2d
- 1233 07b2 031C     	 mov r3,r0
- 1234 07b4 0C1C     	 mov r4,r1
- 1235 07b6 181C     	 mov r0,r3
- 1236 07b8 211C     	 mov r1,r4
- 1237 07ba E34A     	 ldr r2,.L99+4
- 1238 07bc E34B     	 ldr r3,.L99+8
- 1239 07be FFF7FEFF 	 bl __aeabi_dsub
- 1240 07c2 031C     	 mov r3,r0
- 1241 07c4 0C1C     	 mov r4,r1
- 1242 07c6 E248     	 ldr r0,.L99+12
- 1243 07c8 E249     	 ldr r1,.L99+16
- 1244 07ca 1A1C     	 mov r2,r3
- 1245 07cc 231C     	 mov r3,r4
- 1246 07ce FFF7FEFF 	 bl __aeabi_ddiv
- 1247 07d2 031C     	 mov r3,r0
- 1248 07d4 0C1C     	 mov r4,r1
- 1249 07d6 181C     	 mov r0,r3
- 1250 07d8 211C     	 mov r1,r4
- 1251 07da FFF7FEFF 	 bl atan
- 1252 07de 031C     	 mov r3,r0
- 1253 07e0 0C1C     	 mov r4,r1
- 1254 07e2 181C     	 mov r0,r3
- 1255 07e4 211C     	 mov r1,r4
- 1256 07e6 DC4A     	 ldr r2,.L99+20
- 1257 07e8 DC4B     	 ldr r3,.L99+24
- 1258 07ea FFF7FEFF 	 bl __aeabi_dmul
- 1259 07ee 031C     	 mov r3,r0
- 1260 07f0 0C1C     	 mov r4,r1
- 1261 07f2 181C     	 mov r0,r3
- 1262 07f4 211C     	 mov r1,r4
- 1263 07f6 FFF7FEFF 	 bl __aeabi_d2f
- 1264 07fa 021C     	 add r2,r0,#0
- 1265 07fc D84B     	 ldr r3,.L99+28
- 1266 07fe 1A60     	 str r2,[r3]
+ 1229              	 .loc 3 107 0 is_stmt 1
+ 1230 07a8 E64B     	 ldr r3,.L108
+ 1231 07aa 1B68     	 ldr r3,[r3]
+ 1232 07ac 181C     	 add r0,r3,#0
+ 1233 07ae FFF7FEFF 	 bl __aeabi_f2d
+ 1234 07b2 031C     	 mov r3,r0
+ 1235 07b4 0C1C     	 mov r4,r1
+ 1236 07b6 181C     	 mov r0,r3
+ 1237 07b8 211C     	 mov r1,r4
+ 1238 07ba E34A     	 ldr r2,.L108+4
+ 1239 07bc E34B     	 ldr r3,.L108+8
+ 1240 07be FFF7FEFF 	 bl __aeabi_dsub
+ 1241 07c2 031C     	 mov r3,r0
+ 1242 07c4 0C1C     	 mov r4,r1
+ 1243 07c6 E248     	 ldr r0,.L108+12
+ 1244 07c8 E249     	 ldr r1,.L108+16
+ 1245 07ca 1A1C     	 mov r2,r3
+ 1246 07cc 231C     	 mov r3,r4
+ 1247 07ce FFF7FEFF 	 bl __aeabi_ddiv
+ 1248 07d2 031C     	 mov r3,r0
+ 1249 07d4 0C1C     	 mov r4,r1
+ 1250 07d6 181C     	 mov r0,r3
+ 1251 07d8 211C     	 mov r1,r4
+ 1252 07da FFF7FEFF 	 bl atan
+ 1253 07de 031C     	 mov r3,r0
+ 1254 07e0 0C1C     	 mov r4,r1
+ 1255 07e2 181C     	 mov r0,r3
+ 1256 07e4 211C     	 mov r1,r4
+ 1257 07e6 DC4A     	 ldr r2,.L108+20
+ 1258 07e8 DC4B     	 ldr r3,.L108+24
+ 1259 07ea FFF7FEFF 	 bl __aeabi_dmul
+ 1260 07ee 031C     	 mov r3,r0
+ 1261 07f0 0C1C     	 mov r4,r1
+ 1262 07f2 181C     	 mov r0,r3
+ 1263 07f4 211C     	 mov r1,r4
+ 1264 07f6 FFF7FEFF 	 bl __aeabi_d2f
+ 1265 07fa 021C     	 add r2,r0,#0
+ 1266 07fc D84B     	 ldr r3,.L108+28
+ 1267 07fe 1A60     	 str r2,[r3]
  108:../Driving_dynamics.c **** 					angle_rr = - RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // out wheel
- 1267              	 .loc 3 108 0
- 1268 0800 D04B     	 ldr r3,.L99
- 1269 0802 1B68     	 ldr r3,[r3]
- 1270 0804 181C     	 add r0,r3,#0
- 1271 0806 FFF7FEFF 	 bl __aeabi_f2d
- 1272 080a 031C     	 mov r3,r0
- 1273 080c 0C1C     	 mov r4,r1
- 1274 080e 181C     	 mov r0,r3
- 1275 0810 211C     	 mov r1,r4
- 1276 0812 CD4A     	 ldr r2,.L99+4
- 1277 0814 CD4B     	 ldr r3,.L99+8
- 1278 0816 FFF7FEFF 	 bl __aeabi_dadd
- 1279 081a 031C     	 mov r3,r0
- 1280 081c 0C1C     	 mov r4,r1
- 1281 081e CC48     	 ldr r0,.L99+12
- 1282 0820 CC49     	 ldr r1,.L99+16
- 1283 0822 1A1C     	 mov r2,r3
- 1284 0824 231C     	 mov r3,r4
- 1285 0826 FFF7FEFF 	 bl __aeabi_ddiv
- 1286 082a 031C     	 mov r3,r0
- 1287 082c 0C1C     	 mov r4,r1
- 1288 082e 181C     	 mov r0,r3
- 1289 0830 211C     	 mov r1,r4
- 1290 0832 FFF7FEFF 	 bl atan
- 1291 0836 031C     	 mov r3,r0
- 1292 0838 0C1C     	 mov r4,r1
- 1293 083a 181C     	 mov r0,r3
- 1294 083c 211C     	 mov r1,r4
- 1295 083e C64A     	 ldr r2,.L99+20
- 1296 0840 C64B     	 ldr r3,.L99+24
- 1297 0842 FFF7FEFF 	 bl __aeabi_dmul
- 1298 0846 031C     	 mov r3,r0
- 1299 0848 0C1C     	 mov r4,r1
- 1300 084a 181C     	 mov r0,r3
- 1301 084c 211C     	 mov r1,r4
- 1302 084e FFF7FEFF 	 bl __aeabi_d2f
- 1303 0852 021C     	 add r2,r0,#0
- 1304 0854 C34B     	 ldr r3,.L99+32
- 1305 0856 1A60     	 str r2,[r3]
+ 1268              	 .loc 3 108 0
+ 1269 0800 D04B     	 ldr r3,.L108
+ 1270 0802 1B68     	 ldr r3,[r3]
+ 1271 0804 181C     	 add r0,r3,#0
+ 1272 0806 FFF7FEFF 	 bl __aeabi_f2d
+ 1273 080a 031C     	 mov r3,r0
+ 1274 080c 0C1C     	 mov r4,r1
+ 1275 080e 181C     	 mov r0,r3
+ 1276 0810 211C     	 mov r1,r4
+ 1277 0812 CD4A     	 ldr r2,.L108+4
+ 1278 0814 CD4B     	 ldr r3,.L108+8
+ 1279 0816 FFF7FEFF 	 bl __aeabi_dadd
+ 1280 081a 031C     	 mov r3,r0
+ 1281 081c 0C1C     	 mov r4,r1
+ 1282 081e CC48     	 ldr r0,.L108+12
+ 1283 0820 CC49     	 ldr r1,.L108+16
+ 1284 0822 1A1C     	 mov r2,r3
+ 1285 0824 231C     	 mov r3,r4
+ 1286 0826 FFF7FEFF 	 bl __aeabi_ddiv
+ 1287 082a 031C     	 mov r3,r0
+ 1288 082c 0C1C     	 mov r4,r1
+ 1289 082e 181C     	 mov r0,r3
+ 1290 0830 211C     	 mov r1,r4
+ 1291 0832 FFF7FEFF 	 bl atan
+ 1292 0836 031C     	 mov r3,r0
+ 1293 0838 0C1C     	 mov r4,r1
+ 1294 083a 181C     	 mov r0,r3
+ 1295 083c 211C     	 mov r1,r4
+ 1296 083e C64A     	 ldr r2,.L108+20
+ 1297 0840 C64B     	 ldr r3,.L108+24
+ 1298 0842 FFF7FEFF 	 bl __aeabi_dmul
+ 1299 0846 031C     	 mov r3,r0
+ 1300 0848 0C1C     	 mov r4,r1
+ 1301 084a 181C     	 mov r0,r3
+ 1302 084c 211C     	 mov r1,r4
+ 1303 084e FFF7FEFF 	 bl __aeabi_d2f
+ 1304 0852 021C     	 add r2,r0,#0
+ 1305 0854 C34B     	 ldr r3,.L108+32
+ 1306 0856 1A60     	 str r2,[r3]
  109:../Driving_dynamics.c **** 
  110:../Driving_dynamics.c **** 					speed_fl = Driving_speed_cal * Speed_ratio;
- 1306              	 .loc 3 110 0
- 1307 0858 C34B     	 ldr r3,.L99+36
- 1308 085a 1B68     	 ldr r3,[r3]
- 1309 085c 181C     	 add r0,r3,#0
- 1310 085e B968     	 ldr r1,[r7,#8]
- 1311 0860 FFF7FEFF 	 bl __aeabi_fmul
- 1312 0864 031C     	 add r3,r0,#0
- 1313 0866 1A1C     	 add r2,r3,#0
- 1314 0868 C04B     	 ldr r3,.L99+40
- 1315 086a 1A60     	 str r2,[r3]
+ 1307              	 .loc 3 110 0
+ 1308 0858 C34B     	 ldr r3,.L108+36
+ 1309 085a 1B68     	 ldr r3,[r3]
+ 1310 085c 181C     	 add r0,r3,#0
+ 1311 085e B968     	 ldr r1,[r7,#8]
+ 1312 0860 FFF7FEFF 	 bl __aeabi_fmul
+ 1313 0864 031C     	 add r3,r0,#0
+ 1314 0866 1A1C     	 add r2,r3,#0
+ 1315 0868 C04B     	 ldr r3,.L108+40
+ 1316 086a 1A60     	 str r2,[r3]
  111:../Driving_dynamics.c **** 					speed_fr = Driving_speed_cal / Speed_ratio;
- 1316              	 .loc 3 111 0
- 1317 086c BE4B     	 ldr r3,.L99+36
- 1318 086e 1B68     	 ldr r3,[r3]
- 1319 0870 B868     	 ldr r0,[r7,#8]
- 1320 0872 191C     	 add r1,r3,#0
- 1321 0874 FFF7FEFF 	 bl __aeabi_fdiv
- 1322 0878 031C     	 add r3,r0,#0
- 1323 087a 1A1C     	 add r2,r3,#0
- 1324 087c BC4B     	 ldr r3,.L99+44
- 1325 087e 1A60     	 str r2,[r3]
+ 1317              	 .loc 3 111 0
+ 1318 086c BE4B     	 ldr r3,.L108+36
+ 1319 086e 1B68     	 ldr r3,[r3]
+ 1320 0870 B868     	 ldr r0,[r7,#8]
+ 1321 0872 191C     	 add r1,r3,#0
+ 1322 0874 FFF7FEFF 	 bl __aeabi_fdiv
+ 1323 0878 031C     	 add r3,r0,#0
+ 1324 087a 1A1C     	 add r2,r3,#0
+ 1325 087c BC4B     	 ldr r3,.L108+44
+ 1326 087e 1A60     	 str r2,[r3]
  112:../Driving_dynamics.c **** 
  113:../Driving_dynamics.c **** 					speed_rl = speed_fl;
- 1326              	 .loc 3 113 0
- 1327 0880 BA4B     	 ldr r3,.L99+40
- 1328 0882 1A68     	 ldr r2,[r3]
- 1329 0884 BB4B     	 ldr r3,.L99+48
- 1330 0886 1A60     	 str r2,[r3]
+ 1327              	 .loc 3 113 0
+ 1328 0880 BA4B     	 ldr r3,.L108+40
+ 1329 0882 1A68     	 ldr r2,[r3]
+ 1330 0884 BB4B     	 ldr r3,.L108+48
+ 1331 0886 1A60     	 str r2,[r3]
  114:../Driving_dynamics.c **** 					speed_rr = speed_fr;
- 1331              	 .loc 3 114 0
- 1332 0888 B94B     	 ldr r3,.L99+44
- 1333 088a 1A68     	 ldr r2,[r3]
- 1334 088c BA4B     	 ldr r3,.L99+52
- 1335 088e 1A60     	 str r2,[r3]
- 1336 0890 11E0     	 b .L47
- 1337              	.L40:
+ 1332              	 .loc 3 114 0
+ 1333 0888 B94B     	 ldr r3,.L108+44
+ 1334 088a 1A68     	 ldr r2,[r3]
+ 1335 088c BA4B     	 ldr r3,.L108+52
+ 1336 088e 1A60     	 str r2,[r3]
+ 1337 0890 11E0     	 b .L47
+ 1338              	.L40:
  115:../Driving_dynamics.c **** 				}
  116:../Driving_dynamics.c **** 			}
  117:../Driving_dynamics.c **** 			else{
  118:../Driving_dynamics.c **** 				angle_rl = 0;
- 1338              	 .loc 3 118 0
- 1339 0892 B34B     	 ldr r3,.L99+28
- 1340 0894 0022     	 mov r2,#0
- 1341 0896 1A60     	 str r2,[r3]
+ 1339              	 .loc 3 118 0
+ 1340 0892 B34B     	 ldr r3,.L108+28
+ 1341 0894 0022     	 mov r2,#0
+ 1342 0896 1A60     	 str r2,[r3]
  119:../Driving_dynamics.c **** 				angle_rr = 0;
- 1342              	 .loc 3 119 0
- 1343 0898 B24B     	 ldr r3,.L99+32
- 1344 089a 0022     	 mov r2,#0
- 1345 089c 1A60     	 str r2,[r3]
+ 1343              	 .loc 3 119 0
+ 1344 0898 B24B     	 ldr r3,.L108+32
+ 1345 089a 0022     	 mov r2,#0
+ 1346 089c 1A60     	 str r2,[r3]
  120:../Driving_dynamics.c **** 
  121:../Driving_dynamics.c **** 				speed_fl = Driving_speed_cal;
- 1346              	 .loc 3 121 0
- 1347 089e B34B     	 ldr r3,.L99+40
- 1348 08a0 BA68     	 ldr r2,[r7,#8]
- 1349 08a2 1A60     	 str r2,[r3]
+ 1347              	 .loc 3 121 0
+ 1348 089e B34B     	 ldr r3,.L108+40
+ 1349 08a0 BA68     	 ldr r2,[r7,#8]
+ 1350 08a2 1A60     	 str r2,[r3]
  122:../Driving_dynamics.c **** 				speed_fr = Driving_speed_cal;
- 1350              	 .loc 3 122 0
- 1351 08a4 B24B     	 ldr r3,.L99+44
- 1352 08a6 BA68     	 ldr r2,[r7,#8]
- 1353 08a8 1A60     	 str r2,[r3]
+ 1351              	 .loc 3 122 0
+ 1352 08a4 B24B     	 ldr r3,.L108+44
+ 1353 08a6 BA68     	 ldr r2,[r7,#8]
+ 1354 08a8 1A60     	 str r2,[r3]
  123:../Driving_dynamics.c **** 				speed_rl = Driving_speed_cal;
- 1354              	 .loc 3 123 0
- 1355 08aa B24B     	 ldr r3,.L99+48
- 1356 08ac BA68     	 ldr r2,[r7,#8]
- 1357 08ae 1A60     	 str r2,[r3]
+ 1355              	 .loc 3 123 0
+ 1356 08aa B24B     	 ldr r3,.L108+48
+ 1357 08ac BA68     	 ldr r2,[r7,#8]
+ 1358 08ae 1A60     	 str r2,[r3]
  124:../Driving_dynamics.c **** 				speed_rr = Driving_speed_cal;
- 1358              	 .loc 3 124 0
- 1359 08b0 B14B     	 ldr r3,.L99+52
- 1360 08b2 BA68     	 ldr r2,[r7,#8]
- 1361 08b4 1A60     	 str r2,[r3]
- 1362              	.L47:
+ 1359              	 .loc 3 124 0
+ 1360 08b0 B14B     	 ldr r3,.L108+52
+ 1361 08b2 BA68     	 ldr r2,[r7,#8]
+ 1362 08b4 1A60     	 str r2,[r3]
+ 1363              	.L47:
  125:../Driving_dynamics.c **** 			}
  126:../Driving_dynamics.c **** 
  127:../Driving_dynamics.c **** 			//rear axle
  128:../Driving_dynamics.c **** 			angle_fl = 0;
- 1363              	 .loc 3 128 0
- 1364 08b6 B14B     	 ldr r3,.L99+56
- 1365 08b8 0022     	 mov r2,#0
- 1366 08ba 1A60     	 str r2,[r3]
+ 1364              	 .loc 3 128 0
+ 1365 08b6 B14B     	 ldr r3,.L108+56
+ 1366 08b8 0022     	 mov r2,#0
+ 1367 08ba 1A60     	 str r2,[r3]
  129:../Driving_dynamics.c **** 			angle_fr = 0;
- 1367              	 .loc 3 129 0
- 1368 08bc B04B     	 ldr r3,.L99+60
- 1369 08be 0022     	 mov r2,#0
- 1370 08c0 1A60     	 str r2,[r3]
+ 1368              	 .loc 3 129 0
+ 1369 08bc B04B     	 ldr r3,.L108+60
+ 1370 08be 0022     	 mov r2,#0
+ 1371 08c0 1A60     	 str r2,[r3]
  130:../Driving_dynamics.c **** 			break;
- 1371              	 .loc 3 130 0
- 1372 08c2 9FE2     	 b .L35
- 1373              	.L20:
+ 1372              	 .loc 3 130 0
+ 1373 08c2 FAE2     	 b .L35
+ 1374              	.L20:
  131:../Driving_dynamics.c **** 
  132:../Driving_dynamics.c **** 		case ALL_WHEEL: // 4 wheel #############################################################
  133:../Driving_dynamics.c **** 			// steering limits
  134:../Driving_dynamics.c **** 			if(Steering_direction_cal > 30) Steering_direction_cal = 30;
- 1374              	 .loc 3 134 0
- 1375 08c4 F868     	 ldr r0,[r7,#12]
- 1376 08c6 AF49     	 ldr r1,.L99+64
- 1377 08c8 FFF7FEFF 	 bl __aeabi_fcmpgt
- 1378 08cc 031E     	 sub r3,r0,#0
- 1379 08ce 01D0     	 beq .L48
- 1380              	 .loc 3 134 0 is_stmt 0 discriminator 1
- 1381 08d0 AC4B     	 ldr r3,.L99+64
- 1382 08d2 FB60     	 str r3,[r7,#12]
- 1383              	.L48:
+ 1375              	 .loc 3 134 0
+ 1376 08c4 F868     	 ldr r0,[r7,#12]
+ 1377 08c6 AF49     	 ldr r1,.L108+64
+ 1378 08c8 FFF7FEFF 	 bl __aeabi_fcmpgt
+ 1379 08cc 031E     	 sub r3,r0,#0
+ 1380 08ce 01D0     	 beq .L48
+ 1381              	 .loc 3 134 0 is_stmt 0 discriminator 1
+ 1382 08d0 AC4B     	 ldr r3,.L108+64
+ 1383 08d2 FB60     	 str r3,[r7,#12]
+ 1384              	.L48:
  135:../Driving_dynamics.c **** 			if(Steering_direction_cal < -30) Steering_direction_cal = -30;
- 1384              	 .loc 3 135 0 is_stmt 1
- 1385 08d4 F868     	 ldr r0,[r7,#12]
- 1386 08d6 AC49     	 ldr r1,.L99+68
- 1387 08d8 FFF7FEFF 	 bl __aeabi_fcmplt
- 1388 08dc 031E     	 sub r3,r0,#0
- 1389 08de 01D0     	 beq .L50
- 1390              	 .loc 3 135 0 is_stmt 0 discriminator 1
- 1391 08e0 A94B     	 ldr r3,.L99+68
- 1392 08e2 FB60     	 str r3,[r7,#12]
- 1393              	.L50:
+ 1385              	 .loc 3 135 0 is_stmt 1
+ 1386 08d4 F868     	 ldr r0,[r7,#12]
+ 1387 08d6 AC49     	 ldr r1,.L108+68
+ 1388 08d8 FFF7FEFF 	 bl __aeabi_fcmplt
+ 1389 08dc 031E     	 sub r3,r0,#0
+ 1390 08de 01D0     	 beq .L50
+ 1391              	 .loc 3 135 0 is_stmt 0 discriminator 1
+ 1392 08e0 A94B     	 ldr r3,.L108+68
+ 1393 08e2 FB60     	 str r3,[r7,#12]
+ 1394              	.L50:
  136:../Driving_dynamics.c **** 
  137:../Driving_dynamics.c **** 			if(within_MAX_MIN(Steering_direction_cal,-5,5) == 0){// if not almost zero
- 1394              	 .loc 3 137 0 is_stmt 1
- 1395 08e4 FB68     	 ldr r3,[r7,#12]
- 1396 08e6 A949     	 ldr r1,.L99+72
- 1397 08e8 A94A     	 ldr r2,.L99+76
- 1398 08ea 181C     	 add r0,r3,#0
- 1399 08ec FFF7FEFF 	 bl within_MAX_MIN
- 1400 08f0 031C     	 mov r3,r0
- 1401 08f2 1A1C     	 mov r2,r3
- 1402 08f4 0123     	 mov r3,#1
- 1403 08f6 5340     	 eor r3,r2
- 1404 08f8 DBB2     	 uxtb r3,r3
- 1405 08fa 002B     	 cmp r3,#0
- 1406 08fc 00D1     	 bne .LCB1222
- 1407 08fe E0E1     	 b .L52
- 1408              	.LCB1222:
+ 1395              	 .loc 3 137 0 is_stmt 1
+ 1396 08e4 FB68     	 ldr r3,[r7,#12]
+ 1397 08e6 A949     	 ldr r1,.L108+72
+ 1398 08e8 A94A     	 ldr r2,.L108+76
+ 1399 08ea 181C     	 add r0,r3,#0
+ 1400 08ec FFF7FEFF 	 bl within_MAX_MIN
+ 1401 08f0 031C     	 mov r3,r0
+ 1402 08f2 1A1C     	 mov r2,r3
+ 1403 08f4 0123     	 mov r3,#1
+ 1404 08f6 5340     	 eor r3,r2
+ 1405 08f8 DBB2     	 uxtb r3,r3
+ 1406 08fa 002B     	 cmp r3,#0
+ 1407 08fc 00D1     	 bne .LCB1223
+ 1408 08fe E0E1     	 b .L52
+ 1409              	.LCB1223:
  138:../Driving_dynamics.c **** 				// pre calc
  139:../Driving_dynamics.c **** 				R_Turn = HALF_WHEEL_BASE / tan(Steering_direction_cal / RAD_TO_DEG); // to truni graduis conver
- 1409              	 .loc 3 139 0
- 1410 0900 F868     	 ldr r0,[r7,#12]
- 1411 0902 FFF7FEFF 	 bl __aeabi_f2d
- 1412 0906 031C     	 mov r3,r0
- 1413 0908 0C1C     	 mov r4,r1
- 1414 090a 181C     	 mov r0,r3
- 1415 090c 211C     	 mov r1,r4
- 1416 090e 924A     	 ldr r2,.L99+20
- 1417 0910 A04B     	 ldr r3,.L99+80
- 1418 0912 FFF7FEFF 	 bl __aeabi_ddiv
- 1419 0916 031C     	 mov r3,r0
- 1420 0918 0C1C     	 mov r4,r1
- 1421 091a 181C     	 mov r0,r3
- 1422 091c 211C     	 mov r1,r4
- 1423 091e FFF7FEFF 	 bl tan
- 1424 0922 031C     	 mov r3,r0
- 1425 0924 0C1C     	 mov r4,r1
- 1426 0926 9C48     	 ldr r0,.L99+84
- 1427 0928 9C49     	 ldr r1,.L99+88
- 1428 092a 1A1C     	 mov r2,r3
- 1429 092c 231C     	 mov r3,r4
- 1430 092e FFF7FEFF 	 bl __aeabi_ddiv
- 1431 0932 031C     	 mov r3,r0
- 1432 0934 0C1C     	 mov r4,r1
- 1433 0936 181C     	 mov r0,r3
- 1434 0938 211C     	 mov r1,r4
- 1435 093a FFF7FEFF 	 bl __aeabi_d2f
- 1436 093e 021C     	 add r2,r0,#0
- 1437 0940 804B     	 ldr r3,.L99
- 1438 0942 1A60     	 str r2,[r3]
+ 1410              	 .loc 3 139 0
+ 1411 0900 F868     	 ldr r0,[r7,#12]
+ 1412 0902 FFF7FEFF 	 bl __aeabi_f2d
+ 1413 0906 031C     	 mov r3,r0
+ 1414 0908 0C1C     	 mov r4,r1
+ 1415 090a 181C     	 mov r0,r3
+ 1416 090c 211C     	 mov r1,r4
+ 1417 090e 924A     	 ldr r2,.L108+20
+ 1418 0910 A04B     	 ldr r3,.L108+80
+ 1419 0912 FFF7FEFF 	 bl __aeabi_ddiv
+ 1420 0916 031C     	 mov r3,r0
+ 1421 0918 0C1C     	 mov r4,r1
+ 1422 091a 181C     	 mov r0,r3
+ 1423 091c 211C     	 mov r1,r4
+ 1424 091e FFF7FEFF 	 bl tan
+ 1425 0922 031C     	 mov r3,r0
+ 1426 0924 0C1C     	 mov r4,r1
+ 1427 0926 9C48     	 ldr r0,.L108+84
+ 1428 0928 9C49     	 ldr r1,.L108+88
+ 1429 092a 1A1C     	 mov r2,r3
+ 1430 092c 231C     	 mov r3,r4
+ 1431 092e FFF7FEFF 	 bl __aeabi_ddiv
+ 1432 0932 031C     	 mov r3,r0
+ 1433 0934 0C1C     	 mov r4,r1
+ 1434 0936 181C     	 mov r0,r3
+ 1435 0938 211C     	 mov r1,r4
+ 1436 093a FFF7FEFF 	 bl __aeabi_d2f
+ 1437 093e 021C     	 add r2,r0,#0
+ 1438 0940 804B     	 ldr r3,.L108
+ 1439 0942 1A60     	 str r2,[r3]
  140:../Driving_dynamics.c **** 				Speed_ratio = (2 * (copysign(R_Turn,1) + HALF_TRACK_WIDTH) * M_PI) / (2 * copysign(R_Turn,1) * 
- 1439              	 .loc 3 140 0
- 1440 0944 7F4B     	 ldr r3,.L99
- 1441 0946 1B68     	 ldr r3,[r3]
- 1442 0948 5B00     	 lsl r3,r3,#1
- 1443 094a 5B08     	 lsr r3,r3,#1
- 1444 094c 181C     	 add r0,r3,#0
- 1445 094e FFF7FEFF 	 bl __aeabi_f2d
- 1446 0952 031C     	 mov r3,r0
- 1447 0954 0C1C     	 mov r4,r1
- 1448 0956 181C     	 mov r0,r3
- 1449 0958 211C     	 mov r1,r4
- 1450 095a 7B4A     	 ldr r2,.L99+4
- 1451 095c 7B4B     	 ldr r3,.L99+8
- 1452 095e FFF7FEFF 	 bl __aeabi_dadd
- 1453 0962 031C     	 mov r3,r0
- 1454 0964 0C1C     	 mov r4,r1
- 1455 0966 181C     	 mov r0,r3
- 1456 0968 211C     	 mov r1,r4
- 1457 096a 1A1C     	 mov r2,r3
- 1458 096c 231C     	 mov r3,r4
- 1459 096e FFF7FEFF 	 bl __aeabi_dadd
- 1460 0972 031C     	 mov r3,r0
- 1461 0974 0C1C     	 mov r4,r1
- 1462 0976 181C     	 mov r0,r3
- 1463 0978 211C     	 mov r1,r4
- 1464 097a 894A     	 ldr r2,.L99+92
- 1465 097c 894B     	 ldr r3,.L99+96
- 1466 097e FFF7FEFF 	 bl __aeabi_dmul
- 1467 0982 031C     	 mov r3,r0
- 1468 0984 0C1C     	 mov r4,r1
- 1469 0986 1D1C     	 mov r5,r3
- 1470 0988 261C     	 mov r6,r4
- 1471 098a 6E4B     	 ldr r3,.L99
- 1472 098c 1B68     	 ldr r3,[r3]
- 1473 098e 5B00     	 lsl r3,r3,#1
- 1474 0990 5B08     	 lsr r3,r3,#1
- 1475 0992 181C     	 add r0,r3,#0
- 1476 0994 FFF7FEFF 	 bl __aeabi_f2d
- 1477 0998 031C     	 mov r3,r0
- 1478 099a 0C1C     	 mov r4,r1
- 1479 099c 181C     	 mov r0,r3
- 1480 099e 211C     	 mov r1,r4
- 1481 09a0 1A1C     	 mov r2,r3
- 1482 09a2 231C     	 mov r3,r4
- 1483 09a4 FFF7FEFF 	 bl __aeabi_dadd
- 1484 09a8 031C     	 mov r3,r0
- 1485 09aa 0C1C     	 mov r4,r1
- 1486 09ac 181C     	 mov r0,r3
- 1487 09ae 211C     	 mov r1,r4
- 1488 09b0 7B4A     	 ldr r2,.L99+92
- 1489 09b2 7C4B     	 ldr r3,.L99+96
- 1490 09b4 FFF7FEFF 	 bl __aeabi_dmul
- 1491 09b8 031C     	 mov r3,r0
- 1492 09ba 0C1C     	 mov r4,r1
- 1493 09bc 281C     	 mov r0,r5
- 1494 09be 311C     	 mov r1,r6
- 1495 09c0 1A1C     	 mov r2,r3
- 1496 09c2 231C     	 mov r3,r4
- 1497 09c4 FFF7FEFF 	 bl __aeabi_ddiv
- 1498 09c8 031C     	 mov r3,r0
- 1499 09ca 0C1C     	 mov r4,r1
- 1500 09cc 181C     	 mov r0,r3
- 1501 09ce 211C     	 mov r1,r4
- 1502 09d0 FFF7FEFF 	 bl __aeabi_d2f
- 1503 09d4 021C     	 add r2,r0,#0
- 1504 09d6 644B     	 ldr r3,.L99+36
- 1505 09d8 1A60     	 str r2,[r3]
+ 1440              	 .loc 3 140 0
+ 1441 0944 7F4B     	 ldr r3,.L108
+ 1442 0946 1B68     	 ldr r3,[r3]
+ 1443 0948 5B00     	 lsl r3,r3,#1
+ 1444 094a 5B08     	 lsr r3,r3,#1
+ 1445 094c 181C     	 add r0,r3,#0
+ 1446 094e FFF7FEFF 	 bl __aeabi_f2d
+ 1447 0952 031C     	 mov r3,r0
+ 1448 0954 0C1C     	 mov r4,r1
+ 1449 0956 181C     	 mov r0,r3
+ 1450 0958 211C     	 mov r1,r4
+ 1451 095a 7B4A     	 ldr r2,.L108+4
+ 1452 095c 7B4B     	 ldr r3,.L108+8
+ 1453 095e FFF7FEFF 	 bl __aeabi_dadd
+ 1454 0962 031C     	 mov r3,r0
+ 1455 0964 0C1C     	 mov r4,r1
+ 1456 0966 181C     	 mov r0,r3
+ 1457 0968 211C     	 mov r1,r4
+ 1458 096a 1A1C     	 mov r2,r3
+ 1459 096c 231C     	 mov r3,r4
+ 1460 096e FFF7FEFF 	 bl __aeabi_dadd
+ 1461 0972 031C     	 mov r3,r0
+ 1462 0974 0C1C     	 mov r4,r1
+ 1463 0976 181C     	 mov r0,r3
+ 1464 0978 211C     	 mov r1,r4
+ 1465 097a 894A     	 ldr r2,.L108+92
+ 1466 097c 894B     	 ldr r3,.L108+96
+ 1467 097e FFF7FEFF 	 bl __aeabi_dmul
+ 1468 0982 031C     	 mov r3,r0
+ 1469 0984 0C1C     	 mov r4,r1
+ 1470 0986 1D1C     	 mov r5,r3
+ 1471 0988 261C     	 mov r6,r4
+ 1472 098a 6E4B     	 ldr r3,.L108
+ 1473 098c 1B68     	 ldr r3,[r3]
+ 1474 098e 5B00     	 lsl r3,r3,#1
+ 1475 0990 5B08     	 lsr r3,r3,#1
+ 1476 0992 181C     	 add r0,r3,#0
+ 1477 0994 FFF7FEFF 	 bl __aeabi_f2d
+ 1478 0998 031C     	 mov r3,r0
+ 1479 099a 0C1C     	 mov r4,r1
+ 1480 099c 181C     	 mov r0,r3
+ 1481 099e 211C     	 mov r1,r4
+ 1482 09a0 1A1C     	 mov r2,r3
+ 1483 09a2 231C     	 mov r3,r4
+ 1484 09a4 FFF7FEFF 	 bl __aeabi_dadd
+ 1485 09a8 031C     	 mov r3,r0
+ 1486 09aa 0C1C     	 mov r4,r1
+ 1487 09ac 181C     	 mov r0,r3
+ 1488 09ae 211C     	 mov r1,r4
+ 1489 09b0 7B4A     	 ldr r2,.L108+92
+ 1490 09b2 7C4B     	 ldr r3,.L108+96
+ 1491 09b4 FFF7FEFF 	 bl __aeabi_dmul
+ 1492 09b8 031C     	 mov r3,r0
+ 1493 09ba 0C1C     	 mov r4,r1
+ 1494 09bc 281C     	 mov r0,r5
+ 1495 09be 311C     	 mov r1,r6
+ 1496 09c0 1A1C     	 mov r2,r3
+ 1497 09c2 231C     	 mov r3,r4
+ 1498 09c4 FFF7FEFF 	 bl __aeabi_ddiv
+ 1499 09c8 031C     	 mov r3,r0
+ 1500 09ca 0C1C     	 mov r4,r1
+ 1501 09cc 181C     	 mov r0,r3
+ 1502 09ce 211C     	 mov r1,r4
+ 1503 09d0 FFF7FEFF 	 bl __aeabi_d2f
+ 1504 09d4 021C     	 add r2,r0,#0
+ 1505 09d6 644B     	 ldr r3,.L108+36
+ 1506 09d8 1A60     	 str r2,[r3]
  141:../Driving_dynamics.c **** 
  142:../Driving_dynamics.c **** 				if((R_TRUN_MIN < R_Turn) && (R_Turn < R_TRUN_MAX)){ // trun right positive R
- 1506              	 .loc 3 142 0
- 1507 09da 5A4B     	 ldr r3,.L99
- 1508 09dc 1B68     	 ldr r3,[r3]
- 1509 09de 181C     	 add r0,r3,#0
- 1510 09e0 FFF7FEFF 	 bl __aeabi_f2d
- 1511 09e4 031C     	 mov r3,r0
- 1512 09e6 0C1C     	 mov r4,r1
- 1513 09e8 181C     	 mov r0,r3
- 1514 09ea 211C     	 mov r1,r4
- 1515 09ec 6E4A     	 ldr r2,.L99+100
- 1516 09ee 6F4B     	 ldr r3,.L99+104
- 1517 09f0 FFF7FEFF 	 bl __aeabi_dcmpgt
- 1518 09f4 031E     	 sub r3,r0,#0
- 1519 09f6 00D1     	 bne .LCB1331
- 1520 09f8 8BE0     	 b .L53
- 1521              	.LCB1331:
- 1522              	 .loc 3 142 0 is_stmt 0 discriminator 1
- 1523 09fa 524B     	 ldr r3,.L99
- 1524 09fc 1B68     	 ldr r3,[r3]
- 1525 09fe 181C     	 add r0,r3,#0
- 1526 0a00 6B49     	 ldr r1,.L99+108
- 1527 0a02 FFF7FEFF 	 bl __aeabi_fcmplt
- 1528 0a06 031E     	 sub r3,r0,#0
- 1529 0a08 00D1     	 bne .LCB1339
- 1530 0a0a 82E0     	 b .L53
- 1531              	.LCB1339:
+ 1507              	 .loc 3 142 0
+ 1508 09da 5A4B     	 ldr r3,.L108
+ 1509 09dc 1B68     	 ldr r3,[r3]
+ 1510 09de 181C     	 add r0,r3,#0
+ 1511 09e0 FFF7FEFF 	 bl __aeabi_f2d
+ 1512 09e4 031C     	 mov r3,r0
+ 1513 09e6 0C1C     	 mov r4,r1
+ 1514 09e8 181C     	 mov r0,r3
+ 1515 09ea 211C     	 mov r1,r4
+ 1516 09ec 6E4A     	 ldr r2,.L108+100
+ 1517 09ee 6F4B     	 ldr r3,.L108+104
+ 1518 09f0 FFF7FEFF 	 bl __aeabi_dcmpgt
+ 1519 09f4 031E     	 sub r3,r0,#0
+ 1520 09f6 00D1     	 bne .LCB1332
+ 1521 09f8 8BE0     	 b .L53
+ 1522              	.LCB1332:
+ 1523              	 .loc 3 142 0 is_stmt 0 discriminator 1
+ 1524 09fa 524B     	 ldr r3,.L108
+ 1525 09fc 1B68     	 ldr r3,[r3]
+ 1526 09fe 181C     	 add r0,r3,#0
+ 1527 0a00 6B49     	 ldr r1,.L108+108
+ 1528 0a02 FFF7FEFF 	 bl __aeabi_fcmplt
+ 1529 0a06 031E     	 sub r3,r0,#0
+ 1530 0a08 00D1     	 bne .LCB1340
+ 1531 0a0a 82E0     	 b .L53
+ 1532              	.LCB1340:
  143:../Driving_dynamics.c **** 					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // out wheel
- 1532              	 .loc 3 143 0 is_stmt 1
- 1533 0a0c 4D4B     	 ldr r3,.L99
- 1534 0a0e 1B68     	 ldr r3,[r3]
- 1535 0a10 181C     	 add r0,r3,#0
- 1536 0a12 FFF7FEFF 	 bl __aeabi_f2d
- 1537 0a16 031C     	 mov r3,r0
- 1538 0a18 0C1C     	 mov r4,r1
- 1539 0a1a 181C     	 mov r0,r3
- 1540 0a1c 211C     	 mov r1,r4
- 1541 0a1e 4A4A     	 ldr r2,.L99+4
- 1542 0a20 4A4B     	 ldr r3,.L99+8
- 1543 0a22 FFF7FEFF 	 bl __aeabi_dsub
- 1544 0a26 031C     	 mov r3,r0
- 1545 0a28 0C1C     	 mov r4,r1
- 1546 0a2a 4948     	 ldr r0,.L99+12
- 1547 0a2c 4949     	 ldr r1,.L99+16
- 1548 0a2e 1A1C     	 mov r2,r3
- 1549 0a30 231C     	 mov r3,r4
- 1550 0a32 FFF7FEFF 	 bl __aeabi_ddiv
- 1551 0a36 031C     	 mov r3,r0
- 1552 0a38 0C1C     	 mov r4,r1
- 1553 0a3a 181C     	 mov r0,r3
- 1554 0a3c 211C     	 mov r1,r4
- 1555 0a3e FFF7FEFF 	 bl atan
- 1556 0a42 031C     	 mov r3,r0
- 1557 0a44 0C1C     	 mov r4,r1
- 1558 0a46 181C     	 mov r0,r3
- 1559 0a48 211C     	 mov r1,r4
- 1560 0a4a 434A     	 ldr r2,.L99+20
- 1561 0a4c 514B     	 ldr r3,.L99+80
- 1562 0a4e FFF7FEFF 	 bl __aeabi_dmul
- 1563 0a52 031C     	 mov r3,r0
- 1564 0a54 0C1C     	 mov r4,r1
- 1565 0a56 181C     	 mov r0,r3
- 1566 0a58 211C     	 mov r1,r4
- 1567 0a5a FFF7FEFF 	 bl __aeabi_d2f
- 1568 0a5e 021C     	 add r2,r0,#0
- 1569 0a60 464B     	 ldr r3,.L99+56
- 1570 0a62 1A60     	 str r2,[r3]
+ 1533              	 .loc 3 143 0 is_stmt 1
+ 1534 0a0c 4D4B     	 ldr r3,.L108
+ 1535 0a0e 1B68     	 ldr r3,[r3]
+ 1536 0a10 181C     	 add r0,r3,#0
+ 1537 0a12 FFF7FEFF 	 bl __aeabi_f2d
+ 1538 0a16 031C     	 mov r3,r0
+ 1539 0a18 0C1C     	 mov r4,r1
+ 1540 0a1a 181C     	 mov r0,r3
+ 1541 0a1c 211C     	 mov r1,r4
+ 1542 0a1e 4A4A     	 ldr r2,.L108+4
+ 1543 0a20 4A4B     	 ldr r3,.L108+8
+ 1544 0a22 FFF7FEFF 	 bl __aeabi_dsub
+ 1545 0a26 031C     	 mov r3,r0
+ 1546 0a28 0C1C     	 mov r4,r1
+ 1547 0a2a 4948     	 ldr r0,.L108+12
+ 1548 0a2c 4949     	 ldr r1,.L108+16
+ 1549 0a2e 1A1C     	 mov r2,r3
+ 1550 0a30 231C     	 mov r3,r4
+ 1551 0a32 FFF7FEFF 	 bl __aeabi_ddiv
+ 1552 0a36 031C     	 mov r3,r0
+ 1553 0a38 0C1C     	 mov r4,r1
+ 1554 0a3a 181C     	 mov r0,r3
+ 1555 0a3c 211C     	 mov r1,r4
+ 1556 0a3e FFF7FEFF 	 bl atan
+ 1557 0a42 031C     	 mov r3,r0
+ 1558 0a44 0C1C     	 mov r4,r1
+ 1559 0a46 181C     	 mov r0,r3
+ 1560 0a48 211C     	 mov r1,r4
+ 1561 0a4a 434A     	 ldr r2,.L108+20
+ 1562 0a4c 514B     	 ldr r3,.L108+80
+ 1563 0a4e FFF7FEFF 	 bl __aeabi_dmul
+ 1564 0a52 031C     	 mov r3,r0
+ 1565 0a54 0C1C     	 mov r4,r1
+ 1566 0a56 181C     	 mov r0,r3
+ 1567 0a58 211C     	 mov r1,r4
+ 1568 0a5a FFF7FEFF 	 bl __aeabi_d2f
+ 1569 0a5e 021C     	 add r2,r0,#0
+ 1570 0a60 464B     	 ldr r3,.L108+56
+ 1571 0a62 1A60     	 str r2,[r3]
  144:../Driving_dynamics.c **** 					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // in wheel
- 1571              	 .loc 3 144 0
- 1572 0a64 374B     	 ldr r3,.L99
- 1573 0a66 1B68     	 ldr r3,[r3]
- 1574 0a68 181C     	 add r0,r3,#0
- 1575 0a6a FFF7FEFF 	 bl __aeabi_f2d
- 1576 0a6e 031C     	 mov r3,r0
- 1577 0a70 0C1C     	 mov r4,r1
- 1578 0a72 181C     	 mov r0,r3
- 1579 0a74 211C     	 mov r1,r4
- 1580 0a76 344A     	 ldr r2,.L99+4
- 1581 0a78 344B     	 ldr r3,.L99+8
- 1582 0a7a FFF7FEFF 	 bl __aeabi_dadd
- 1583 0a7e 031C     	 mov r3,r0
- 1584 0a80 0C1C     	 mov r4,r1
- 1585 0a82 3348     	 ldr r0,.L99+12
- 1586 0a84 3349     	 ldr r1,.L99+16
- 1587 0a86 1A1C     	 mov r2,r3
- 1588 0a88 231C     	 mov r3,r4
- 1589 0a8a FFF7FEFF 	 bl __aeabi_ddiv
- 1590 0a8e 031C     	 mov r3,r0
- 1591 0a90 0C1C     	 mov r4,r1
- 1592 0a92 181C     	 mov r0,r3
- 1593 0a94 211C     	 mov r1,r4
- 1594 0a96 FFF7FEFF 	 bl atan
- 1595 0a9a 031C     	 mov r3,r0
- 1596 0a9c 0C1C     	 mov r4,r1
- 1597 0a9e 181C     	 mov r0,r3
- 1598 0aa0 211C     	 mov r1,r4
- 1599 0aa2 2D4A     	 ldr r2,.L99+20
- 1600 0aa4 3B4B     	 ldr r3,.L99+80
- 1601 0aa6 FFF7FEFF 	 bl __aeabi_dmul
- 1602 0aaa 031C     	 mov r3,r0
- 1603 0aac 0C1C     	 mov r4,r1
- 1604 0aae 181C     	 mov r0,r3
- 1605 0ab0 211C     	 mov r1,r4
- 1606 0ab2 FFF7FEFF 	 bl __aeabi_d2f
- 1607 0ab6 021C     	 add r2,r0,#0
- 1608 0ab8 314B     	 ldr r3,.L99+60
- 1609 0aba 1A60     	 str r2,[r3]
+ 1572              	 .loc 3 144 0
+ 1573 0a64 374B     	 ldr r3,.L108
+ 1574 0a66 1B68     	 ldr r3,[r3]
+ 1575 0a68 181C     	 add r0,r3,#0
+ 1576 0a6a FFF7FEFF 	 bl __aeabi_f2d
+ 1577 0a6e 031C     	 mov r3,r0
+ 1578 0a70 0C1C     	 mov r4,r1
+ 1579 0a72 181C     	 mov r0,r3
+ 1580 0a74 211C     	 mov r1,r4
+ 1581 0a76 344A     	 ldr r2,.L108+4
+ 1582 0a78 344B     	 ldr r3,.L108+8
+ 1583 0a7a FFF7FEFF 	 bl __aeabi_dadd
+ 1584 0a7e 031C     	 mov r3,r0
+ 1585 0a80 0C1C     	 mov r4,r1
+ 1586 0a82 3348     	 ldr r0,.L108+12
+ 1587 0a84 3349     	 ldr r1,.L108+16
+ 1588 0a86 1A1C     	 mov r2,r3
+ 1589 0a88 231C     	 mov r3,r4
+ 1590 0a8a FFF7FEFF 	 bl __aeabi_ddiv
+ 1591 0a8e 031C     	 mov r3,r0
+ 1592 0a90 0C1C     	 mov r4,r1
+ 1593 0a92 181C     	 mov r0,r3
+ 1594 0a94 211C     	 mov r1,r4
+ 1595 0a96 FFF7FEFF 	 bl atan
+ 1596 0a9a 031C     	 mov r3,r0
+ 1597 0a9c 0C1C     	 mov r4,r1
+ 1598 0a9e 181C     	 mov r0,r3
+ 1599 0aa0 211C     	 mov r1,r4
+ 1600 0aa2 2D4A     	 ldr r2,.L108+20
+ 1601 0aa4 3B4B     	 ldr r3,.L108+80
+ 1602 0aa6 FFF7FEFF 	 bl __aeabi_dmul
+ 1603 0aaa 031C     	 mov r3,r0
+ 1604 0aac 0C1C     	 mov r4,r1
+ 1605 0aae 181C     	 mov r0,r3
+ 1606 0ab0 211C     	 mov r1,r4
+ 1607 0ab2 FFF7FEFF 	 bl __aeabi_d2f
+ 1608 0ab6 021C     	 add r2,r0,#0
+ 1609 0ab8 314B     	 ldr r3,.L108+60
+ 1610 0aba 1A60     	 str r2,[r3]
  145:../Driving_dynamics.c **** 
  146:../Driving_dynamics.c **** 					angle_rl = -angle_fl;
- 1610              	 .loc 3 146 0
- 1611 0abc 2F4B     	 ldr r3,.L99+56
- 1612 0abe 1B68     	 ldr r3,[r3]
- 1613 0ac0 8022     	 mov r2,#128
- 1614 0ac2 1206     	 lsl r2,r2,#24
- 1615 0ac4 5A40     	 eor r2,r3
- 1616 0ac6 264B     	 ldr r3,.L99+28
- 1617 0ac8 1A60     	 str r2,[r3]
+ 1611              	 .loc 3 146 0
+ 1612 0abc 2F4B     	 ldr r3,.L108+56
+ 1613 0abe 1B68     	 ldr r3,[r3]
+ 1614 0ac0 8022     	 mov r2,#128
+ 1615 0ac2 1206     	 lsl r2,r2,#24
+ 1616 0ac4 5A40     	 eor r2,r3
+ 1617 0ac6 264B     	 ldr r3,.L108+28
+ 1618 0ac8 1A60     	 str r2,[r3]
  147:../Driving_dynamics.c **** 					angle_rr = -angle_fr;
- 1618              	 .loc 3 147 0
- 1619 0aca 2D4B     	 ldr r3,.L99+60
- 1620 0acc 1B68     	 ldr r3,[r3]
- 1621 0ace 8022     	 mov r2,#128
- 1622 0ad0 1206     	 lsl r2,r2,#24
- 1623 0ad2 5A40     	 eor r2,r3
- 1624 0ad4 234B     	 ldr r3,.L99+32
- 1625 0ad6 1A60     	 str r2,[r3]
+ 1619              	 .loc 3 147 0
+ 1620 0aca 2D4B     	 ldr r3,.L108+60
+ 1621 0acc 1B68     	 ldr r3,[r3]
+ 1622 0ace 8022     	 mov r2,#128
+ 1623 0ad0 1206     	 lsl r2,r2,#24
+ 1624 0ad2 5A40     	 eor r2,r3
+ 1625 0ad4 234B     	 ldr r3,.L108+32
+ 1626 0ad6 1A60     	 str r2,[r3]
  148:../Driving_dynamics.c **** 
  149:../Driving_dynamics.c **** 					speed_fl = Driving_speed_cal / Speed_ratio;
- 1626              	 .loc 3 149 0
- 1627 0ad8 234B     	 ldr r3,.L99+36
- 1628 0ada 1B68     	 ldr r3,[r3]
- 1629 0adc B868     	 ldr r0,[r7,#8]
- 1630 0ade 191C     	 add r1,r3,#0
- 1631 0ae0 FFF7FEFF 	 bl __aeabi_fdiv
- 1632 0ae4 031C     	 add r3,r0,#0
- 1633 0ae6 1A1C     	 add r2,r3,#0
- 1634 0ae8 204B     	 ldr r3,.L99+40
- 1635 0aea 1A60     	 str r2,[r3]
+ 1627              	 .loc 3 149 0
+ 1628 0ad8 234B     	 ldr r3,.L108+36
+ 1629 0ada 1B68     	 ldr r3,[r3]
+ 1630 0adc B868     	 ldr r0,[r7,#8]
+ 1631 0ade 191C     	 add r1,r3,#0
+ 1632 0ae0 FFF7FEFF 	 bl __aeabi_fdiv
+ 1633 0ae4 031C     	 add r3,r0,#0
+ 1634 0ae6 1A1C     	 add r2,r3,#0
+ 1635 0ae8 204B     	 ldr r3,.L108+40
+ 1636 0aea 1A60     	 str r2,[r3]
  150:../Driving_dynamics.c **** 					speed_fr = Driving_speed_cal * Speed_ratio;
- 1636              	 .loc 3 150 0
- 1637 0aec 1E4B     	 ldr r3,.L99+36
- 1638 0aee 1B68     	 ldr r3,[r3]
- 1639 0af0 181C     	 add r0,r3,#0
- 1640 0af2 B968     	 ldr r1,[r7,#8]
- 1641 0af4 FFF7FEFF 	 bl __aeabi_fmul
- 1642 0af8 031C     	 add r3,r0,#0
- 1643 0afa 1A1C     	 add r2,r3,#0
- 1644 0afc 1C4B     	 ldr r3,.L99+44
- 1645 0afe 1A60     	 str r2,[r3]
+ 1637              	 .loc 3 150 0
+ 1638 0aec 1E4B     	 ldr r3,.L108+36
+ 1639 0aee 1B68     	 ldr r3,[r3]
+ 1640 0af0 181C     	 add r0,r3,#0
+ 1641 0af2 B968     	 ldr r1,[r7,#8]
+ 1642 0af4 FFF7FEFF 	 bl __aeabi_fmul
+ 1643 0af8 031C     	 add r3,r0,#0
+ 1644 0afa 1A1C     	 add r2,r3,#0
+ 1645 0afc 1C4B     	 ldr r3,.L108+44
+ 1646 0afe 1A60     	 str r2,[r3]
  151:../Driving_dynamics.c **** 
  152:../Driving_dynamics.c **** 					speed_rl = speed_fl;
- 1646              	 .loc 3 152 0
- 1647 0b00 1A4B     	 ldr r3,.L99+40
- 1648 0b02 1A68     	 ldr r2,[r3]
- 1649 0b04 1B4B     	 ldr r3,.L99+48
- 1650 0b06 1A60     	 str r2,[r3]
+ 1647              	 .loc 3 152 0
+ 1648 0b00 1A4B     	 ldr r3,.L108+40
+ 1649 0b02 1A68     	 ldr r2,[r3]
+ 1650 0b04 1B4B     	 ldr r3,.L108+48
+ 1651 0b06 1A60     	 str r2,[r3]
  153:../Driving_dynamics.c **** 					speed_rr = speed_fr;
- 1651              	 .loc 3 153 0
- 1652 0b08 194B     	 ldr r3,.L99+44
- 1653 0b0a 1A68     	 ldr r2,[r3]
- 1654 0b0c 1A4B     	 ldr r3,.L99+52
- 1655 0b0e 1A60     	 str r2,[r3]
- 1656 0b10 F0E0     	 b .L59
- 1657              	.L53:
+ 1652              	 .loc 3 153 0
+ 1653 0b08 194B     	 ldr r3,.L108+44
+ 1654 0b0a 1A68     	 ldr r2,[r3]
+ 1655 0b0c 1A4B     	 ldr r3,.L108+52
+ 1656 0b0e 1A60     	 str r2,[r3]
+ 1657 0b10 F0E0     	 b .L59
+ 1658              	.L53:
  154:../Driving_dynamics.c **** 				}
  155:../Driving_dynamics.c **** 				else if((- R_TRUN_MIN > R_Turn) && (R_Turn > -R_TRUN_MAX)){ // trun left positive R
- 1658              	 .loc 3 155 0
- 1659 0b12 0C4B     	 ldr r3,.L99
- 1660 0b14 1B68     	 ldr r3,[r3]
- 1661 0b16 181C     	 add r0,r3,#0
- 1662 0b18 FFF7FEFF 	 bl __aeabi_f2d
- 1663 0b1c 031C     	 mov r3,r0
- 1664 0b1e 0C1C     	 mov r4,r1
- 1665 0b20 181C     	 mov r0,r3
- 1666 0b22 211C     	 mov r1,r4
- 1667 0b24 204A     	 ldr r2,.L99+100
- 1668 0b26 234B     	 ldr r3,.L99+112
- 1669 0b28 FFF7FEFF 	 bl __aeabi_dcmplt
- 1670 0b2c 031E     	 sub r3,r0,#0
- 1671 0b2e 00D1     	 bne .L87
- 1672 0b30 E0E0     	 b .L59
- 1673              	.L87:
- 1674              	 .loc 3 155 0 is_stmt 0 discriminator 1
- 1675 0b32 044B     	 ldr r3,.L99
- 1676 0b34 1B68     	 ldr r3,[r3]
- 1677 0b36 181C     	 add r0,r3,#0
- 1678 0b38 1F49     	 ldr r1,.L99+116
- 1679 0b3a FFF7FEFF 	 bl __aeabi_fcmpgt
- 1680 0b3e 031E     	 sub r3,r0,#0
- 1681 0b40 3CD1     	 bne .L88
- 1682 0b42 D7E0     	 b .L59
- 1683              	.L100:
- 1684              	 .align 2
- 1685              	.L99:
- 1686 0b44 00000000 	 .word R_Turn
- 1687 0b48 77BE9F1A 	 .word 446676599
- 1688 0b4c 2FDDC43F 	 .word 1069866287
- 1689 0b50 79E92631 	 .word 824633721
- 1690 0b54 08ACDC3F 	 .word 1071426568
- 1691 0b58 C7F48425 	 .word 629470407
- 1692 0b5c 1EA64CC0 	 .word -1068718562
- 1693 0b60 00000000 	 .word angle_rl
- 1694 0b64 00000000 	 .word angle_rr
- 1695 0b68 00000000 	 .word Speed_ratio
- 1696 0b6c 00000000 	 .word speed_fl
- 1697 0b70 00000000 	 .word speed_fr
- 1698 0b74 00000000 	 .word speed_rl
- 1699 0b78 00000000 	 .word speed_rr
- 1700 0b7c 00000000 	 .word angle_fl
- 1701 0b80 00000000 	 .word angle_fr
- 1702 0b84 0000F041 	 .word 1106247680
- 1703 0b88 0000F0C1 	 .word -1041235968
- 1704 0b8c 0000A0C0 	 .word -1063256064
- 1705 0b90 0000A040 	 .word 1084227584
- 1706 0b94 1EA64C40 	 .word 1078765086
- 1707 0b98 295C8FC2 	 .word -1030792151
- 1708 0b9c F528CC3F 	 .word 1070344437
- 1709 0ba0 182D4454 	 .word 1413754136
- 1710 0ba4 FB210940 	 .word 1074340347
- 1711 0ba8 9A999999 	 .word -1717986918
- 1712 0bac 9999A93F 	 .word 1068079513
- 1713 0bb0 0000A041 	 .word 1101004800
- 1714 0bb4 9999A9BF 	 .word -1079404135
- 1715 0bb8 0000A0C1 	 .word -1046478848
- 1716              	.L88:
+ 1659              	 .loc 3 155 0
+ 1660 0b12 0C4B     	 ldr r3,.L108
+ 1661 0b14 1B68     	 ldr r3,[r3]
+ 1662 0b16 181C     	 add r0,r3,#0
+ 1663 0b18 FFF7FEFF 	 bl __aeabi_f2d
+ 1664 0b1c 031C     	 mov r3,r0
+ 1665 0b1e 0C1C     	 mov r4,r1
+ 1666 0b20 181C     	 mov r0,r3
+ 1667 0b22 211C     	 mov r1,r4
+ 1668 0b24 204A     	 ldr r2,.L108+100
+ 1669 0b26 234B     	 ldr r3,.L108+112
+ 1670 0b28 FFF7FEFF 	 bl __aeabi_dcmplt
+ 1671 0b2c 031E     	 sub r3,r0,#0
+ 1672 0b2e 00D1     	 bne .L93
+ 1673 0b30 E0E0     	 b .L59
+ 1674              	.L93:
+ 1675              	 .loc 3 155 0 is_stmt 0 discriminator 1
+ 1676 0b32 044B     	 ldr r3,.L108
+ 1677 0b34 1B68     	 ldr r3,[r3]
+ 1678 0b36 181C     	 add r0,r3,#0
+ 1679 0b38 1F49     	 ldr r1,.L108+116
+ 1680 0b3a FFF7FEFF 	 bl __aeabi_fcmpgt
+ 1681 0b3e 031E     	 sub r3,r0,#0
+ 1682 0b40 3CD1     	 bne .L94
+ 1683 0b42 D7E0     	 b .L59
+ 1684              	.L109:
+ 1685              	 .align 2
+ 1686              	.L108:
+ 1687 0b44 00000000 	 .word R_Turn
+ 1688 0b48 77BE9F1A 	 .word 446676599
+ 1689 0b4c 2FDDC43F 	 .word 1069866287
+ 1690 0b50 79E92631 	 .word 824633721
+ 1691 0b54 08ACDC3F 	 .word 1071426568
+ 1692 0b58 C7F48425 	 .word 629470407
+ 1693 0b5c 1EA64CC0 	 .word -1068718562
+ 1694 0b60 00000000 	 .word angle_rl
+ 1695 0b64 00000000 	 .word angle_rr
+ 1696 0b68 00000000 	 .word Speed_ratio
+ 1697 0b6c 00000000 	 .word speed_fl
+ 1698 0b70 00000000 	 .word speed_fr
+ 1699 0b74 00000000 	 .word speed_rl
+ 1700 0b78 00000000 	 .word speed_rr
+ 1701 0b7c 00000000 	 .word angle_fl
+ 1702 0b80 00000000 	 .word angle_fr
+ 1703 0b84 0000F041 	 .word 1106247680
+ 1704 0b88 0000F0C1 	 .word -1041235968
+ 1705 0b8c 0000A0C0 	 .word -1063256064
+ 1706 0b90 0000A040 	 .word 1084227584
+ 1707 0b94 1EA64C40 	 .word 1078765086
+ 1708 0b98 295C8FC2 	 .word -1030792151
+ 1709 0b9c F528CC3F 	 .word 1070344437
+ 1710 0ba0 182D4454 	 .word 1413754136
+ 1711 0ba4 FB210940 	 .word 1074340347
+ 1712 0ba8 9A999999 	 .word -1717986918
+ 1713 0bac 9999A93F 	 .word 1068079513
+ 1714 0bb0 0000A041 	 .word 1101004800
+ 1715 0bb4 9999A9BF 	 .word -1079404135
+ 1716 0bb8 0000A0C1 	 .word -1046478848
+ 1717              	.L94:
  156:../Driving_dynamics.c **** 					angle_fl = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn - HALF_TRACK_WIDTH)); // in wheel
- 1717              	 .loc 3 156 0 is_stmt 1
- 1718 0bbc A34B     	 ldr r3,.L101
- 1719 0bbe 1B68     	 ldr r3,[r3]
- 1720 0bc0 181C     	 add r0,r3,#0
- 1721 0bc2 FFF7FEFF 	 bl __aeabi_f2d
- 1722 0bc6 031C     	 mov r3,r0
- 1723 0bc8 0C1C     	 mov r4,r1
- 1724 0bca 181C     	 mov r0,r3
- 1725 0bcc 211C     	 mov r1,r4
- 1726 0bce A04A     	 ldr r2,.L101+4
- 1727 0bd0 A04B     	 ldr r3,.L101+8
- 1728 0bd2 FFF7FEFF 	 bl __aeabi_dsub
- 1729 0bd6 031C     	 mov r3,r0
- 1730 0bd8 0C1C     	 mov r4,r1
- 1731 0bda 9F48     	 ldr r0,.L101+12
- 1732 0bdc 9F49     	 ldr r1,.L101+16
- 1733 0bde 1A1C     	 mov r2,r3
- 1734 0be0 231C     	 mov r3,r4
- 1735 0be2 FFF7FEFF 	 bl __aeabi_ddiv
- 1736 0be6 031C     	 mov r3,r0
- 1737 0be8 0C1C     	 mov r4,r1
- 1738 0bea 181C     	 mov r0,r3
- 1739 0bec 211C     	 mov r1,r4
- 1740 0bee FFF7FEFF 	 bl atan
- 1741 0bf2 031C     	 mov r3,r0
- 1742 0bf4 0C1C     	 mov r4,r1
- 1743 0bf6 181C     	 mov r0,r3
- 1744 0bf8 211C     	 mov r1,r4
- 1745 0bfa 994A     	 ldr r2,.L101+20
- 1746 0bfc 994B     	 ldr r3,.L101+24
- 1747 0bfe FFF7FEFF 	 bl __aeabi_dmul
- 1748 0c02 031C     	 mov r3,r0
- 1749 0c04 0C1C     	 mov r4,r1
- 1750 0c06 181C     	 mov r0,r3
- 1751 0c08 211C     	 mov r1,r4
- 1752 0c0a FFF7FEFF 	 bl __aeabi_d2f
- 1753 0c0e 021C     	 add r2,r0,#0
- 1754 0c10 954B     	 ldr r3,.L101+28
- 1755 0c12 1A60     	 str r2,[r3]
+ 1718              	 .loc 3 156 0 is_stmt 1
+ 1719 0bbc D04B     	 ldr r3,.L110
+ 1720 0bbe 1B68     	 ldr r3,[r3]
+ 1721 0bc0 181C     	 add r0,r3,#0
+ 1722 0bc2 FFF7FEFF 	 bl __aeabi_f2d
+ 1723 0bc6 031C     	 mov r3,r0
+ 1724 0bc8 0C1C     	 mov r4,r1
+ 1725 0bca 181C     	 mov r0,r3
+ 1726 0bcc 211C     	 mov r1,r4
+ 1727 0bce CD4A     	 ldr r2,.L110+4
+ 1728 0bd0 CD4B     	 ldr r3,.L110+8
+ 1729 0bd2 FFF7FEFF 	 bl __aeabi_dsub
+ 1730 0bd6 031C     	 mov r3,r0
+ 1731 0bd8 0C1C     	 mov r4,r1
+ 1732 0bda CC48     	 ldr r0,.L110+12
+ 1733 0bdc CC49     	 ldr r1,.L110+16
+ 1734 0bde 1A1C     	 mov r2,r3
+ 1735 0be0 231C     	 mov r3,r4
+ 1736 0be2 FFF7FEFF 	 bl __aeabi_ddiv
+ 1737 0be6 031C     	 mov r3,r0
+ 1738 0be8 0C1C     	 mov r4,r1
+ 1739 0bea 181C     	 mov r0,r3
+ 1740 0bec 211C     	 mov r1,r4
+ 1741 0bee FFF7FEFF 	 bl atan
+ 1742 0bf2 031C     	 mov r3,r0
+ 1743 0bf4 0C1C     	 mov r4,r1
+ 1744 0bf6 181C     	 mov r0,r3
+ 1745 0bf8 211C     	 mov r1,r4
+ 1746 0bfa C64A     	 ldr r2,.L110+20
+ 1747 0bfc C64B     	 ldr r3,.L110+24
+ 1748 0bfe FFF7FEFF 	 bl __aeabi_dmul
+ 1749 0c02 031C     	 mov r3,r0
+ 1750 0c04 0C1C     	 mov r4,r1
+ 1751 0c06 181C     	 mov r0,r3
+ 1752 0c08 211C     	 mov r1,r4
+ 1753 0c0a FFF7FEFF 	 bl __aeabi_d2f
+ 1754 0c0e 021C     	 add r2,r0,#0
+ 1755 0c10 C24B     	 ldr r3,.L110+28
+ 1756 0c12 1A60     	 str r2,[r3]
  157:../Driving_dynamics.c **** 					angle_fr = RAD_TO_DEG * atan(WHEEL_BASE /(R_Turn + HALF_TRACK_WIDTH)); // out wheel
- 1756              	 .loc 3 157 0
- 1757 0c14 8D4B     	 ldr r3,.L101
- 1758 0c16 1B68     	 ldr r3,[r3]
- 1759 0c18 181C     	 add r0,r3,#0
- 1760 0c1a FFF7FEFF 	 bl __aeabi_f2d
- 1761 0c1e 031C     	 mov r3,r0
- 1762 0c20 0C1C     	 mov r4,r1
- 1763 0c22 181C     	 mov r0,r3
- 1764 0c24 211C     	 mov r1,r4
- 1765 0c26 8A4A     	 ldr r2,.L101+4
- 1766 0c28 8A4B     	 ldr r3,.L101+8
- 1767 0c2a FFF7FEFF 	 bl __aeabi_dadd
- 1768 0c2e 031C     	 mov r3,r0
- 1769 0c30 0C1C     	 mov r4,r1
- 1770 0c32 8948     	 ldr r0,.L101+12
- 1771 0c34 8949     	 ldr r1,.L101+16
- 1772 0c36 1A1C     	 mov r2,r3
- 1773 0c38 231C     	 mov r3,r4
- 1774 0c3a FFF7FEFF 	 bl __aeabi_ddiv
- 1775 0c3e 031C     	 mov r3,r0
- 1776 0c40 0C1C     	 mov r4,r1
- 1777 0c42 181C     	 mov r0,r3
- 1778 0c44 211C     	 mov r1,r4
- 1779 0c46 FFF7FEFF 	 bl atan
- 1780 0c4a 031C     	 mov r3,r0
- 1781 0c4c 0C1C     	 mov r4,r1
- 1782 0c4e 181C     	 mov r0,r3
- 1783 0c50 211C     	 mov r1,r4
- 1784 0c52 834A     	 ldr r2,.L101+20
- 1785 0c54 834B     	 ldr r3,.L101+24
- 1786 0c56 FFF7FEFF 	 bl __aeabi_dmul
- 1787 0c5a 031C     	 mov r3,r0
- 1788 0c5c 0C1C     	 mov r4,r1
- 1789 0c5e 181C     	 mov r0,r3
- 1790 0c60 211C     	 mov r1,r4
- 1791 0c62 FFF7FEFF 	 bl __aeabi_d2f
- 1792 0c66 021C     	 add r2,r0,#0
- 1793 0c68 804B     	 ldr r3,.L101+32
- 1794 0c6a 1A60     	 str r2,[r3]
+ 1757              	 .loc 3 157 0
+ 1758 0c14 BA4B     	 ldr r3,.L110
+ 1759 0c16 1B68     	 ldr r3,[r3]
+ 1760 0c18 181C     	 add r0,r3,#0
+ 1761 0c1a FFF7FEFF 	 bl __aeabi_f2d
+ 1762 0c1e 031C     	 mov r3,r0
+ 1763 0c20 0C1C     	 mov r4,r1
+ 1764 0c22 181C     	 mov r0,r3
+ 1765 0c24 211C     	 mov r1,r4
+ 1766 0c26 B74A     	 ldr r2,.L110+4
+ 1767 0c28 B74B     	 ldr r3,.L110+8
+ 1768 0c2a FFF7FEFF 	 bl __aeabi_dadd
+ 1769 0c2e 031C     	 mov r3,r0
+ 1770 0c30 0C1C     	 mov r4,r1
+ 1771 0c32 B648     	 ldr r0,.L110+12
+ 1772 0c34 B649     	 ldr r1,.L110+16
+ 1773 0c36 1A1C     	 mov r2,r3
+ 1774 0c38 231C     	 mov r3,r4
+ 1775 0c3a FFF7FEFF 	 bl __aeabi_ddiv
+ 1776 0c3e 031C     	 mov r3,r0
+ 1777 0c40 0C1C     	 mov r4,r1
+ 1778 0c42 181C     	 mov r0,r3
+ 1779 0c44 211C     	 mov r1,r4
+ 1780 0c46 FFF7FEFF 	 bl atan
+ 1781 0c4a 031C     	 mov r3,r0
+ 1782 0c4c 0C1C     	 mov r4,r1
+ 1783 0c4e 181C     	 mov r0,r3
+ 1784 0c50 211C     	 mov r1,r4
+ 1785 0c52 B04A     	 ldr r2,.L110+20
+ 1786 0c54 B04B     	 ldr r3,.L110+24
+ 1787 0c56 FFF7FEFF 	 bl __aeabi_dmul
+ 1788 0c5a 031C     	 mov r3,r0
+ 1789 0c5c 0C1C     	 mov r4,r1
+ 1790 0c5e 181C     	 mov r0,r3
+ 1791 0c60 211C     	 mov r1,r4
+ 1792 0c62 FFF7FEFF 	 bl __aeabi_d2f
+ 1793 0c66 021C     	 add r2,r0,#0
+ 1794 0c68 AD4B     	 ldr r3,.L110+32
+ 1795 0c6a 1A60     	 str r2,[r3]
  158:../Driving_dynamics.c **** 
  159:../Driving_dynamics.c **** 					angle_rl = -angle_fl;
- 1795              	 .loc 3 159 0
- 1796 0c6c 7E4B     	 ldr r3,.L101+28
- 1797 0c6e 1B68     	 ldr r3,[r3]
- 1798 0c70 8022     	 mov r2,#128
- 1799 0c72 1206     	 lsl r2,r2,#24
- 1800 0c74 5A40     	 eor r2,r3
- 1801 0c76 7E4B     	 ldr r3,.L101+36
- 1802 0c78 1A60     	 str r2,[r3]
+ 1796              	 .loc 3 159 0
+ 1797 0c6c AB4B     	 ldr r3,.L110+28
+ 1798 0c6e 1B68     	 ldr r3,[r3]
+ 1799 0c70 8022     	 mov r2,#128
+ 1800 0c72 1206     	 lsl r2,r2,#24
+ 1801 0c74 5A40     	 eor r2,r3
+ 1802 0c76 AB4B     	 ldr r3,.L110+36
+ 1803 0c78 1A60     	 str r2,[r3]
  160:../Driving_dynamics.c **** 					angle_rr = -angle_fr;
- 1803              	 .loc 3 160 0
- 1804 0c7a 7C4B     	 ldr r3,.L101+32
- 1805 0c7c 1B68     	 ldr r3,[r3]
- 1806 0c7e 8022     	 mov r2,#128
- 1807 0c80 1206     	 lsl r2,r2,#24
- 1808 0c82 5A40     	 eor r2,r3
- 1809 0c84 7B4B     	 ldr r3,.L101+40
- 1810 0c86 1A60     	 str r2,[r3]
+ 1804              	 .loc 3 160 0
+ 1805 0c7a A94B     	 ldr r3,.L110+32
+ 1806 0c7c 1B68     	 ldr r3,[r3]
+ 1807 0c7e 8022     	 mov r2,#128
+ 1808 0c80 1206     	 lsl r2,r2,#24
+ 1809 0c82 5A40     	 eor r2,r3
+ 1810 0c84 A84B     	 ldr r3,.L110+40
+ 1811 0c86 1A60     	 str r2,[r3]
  161:../Driving_dynamics.c **** 
  162:../Driving_dynamics.c **** 					speed_fl = Driving_speed_cal * Speed_ratio;
- 1811              	 .loc 3 162 0
- 1812 0c88 7B4B     	 ldr r3,.L101+44
- 1813 0c8a 1B68     	 ldr r3,[r3]
- 1814 0c8c 181C     	 add r0,r3,#0
- 1815 0c8e B968     	 ldr r1,[r7,#8]
- 1816 0c90 FFF7FEFF 	 bl __aeabi_fmul
- 1817 0c94 031C     	 add r3,r0,#0
- 1818 0c96 1A1C     	 add r2,r3,#0
- 1819 0c98 784B     	 ldr r3,.L101+48
- 1820 0c9a 1A60     	 str r2,[r3]
+ 1812              	 .loc 3 162 0
+ 1813 0c88 A84B     	 ldr r3,.L110+44
+ 1814 0c8a 1B68     	 ldr r3,[r3]
+ 1815 0c8c 181C     	 add r0,r3,#0
+ 1816 0c8e B968     	 ldr r1,[r7,#8]
+ 1817 0c90 FFF7FEFF 	 bl __aeabi_fmul
+ 1818 0c94 031C     	 add r3,r0,#0
+ 1819 0c96 1A1C     	 add r2,r3,#0
+ 1820 0c98 A54B     	 ldr r3,.L110+48
+ 1821 0c9a 1A60     	 str r2,[r3]
  163:../Driving_dynamics.c **** 					speed_fr = Driving_speed_cal / Speed_ratio;
- 1821              	 .loc 3 163 0
- 1822 0c9c 764B     	 ldr r3,.L101+44
- 1823 0c9e 1B68     	 ldr r3,[r3]
- 1824 0ca0 B868     	 ldr r0,[r7,#8]
- 1825 0ca2 191C     	 add r1,r3,#0
- 1826 0ca4 FFF7FEFF 	 bl __aeabi_fdiv
- 1827 0ca8 031C     	 add r3,r0,#0
- 1828 0caa 1A1C     	 add r2,r3,#0
- 1829 0cac 744B     	 ldr r3,.L101+52
- 1830 0cae 1A60     	 str r2,[r3]
+ 1822              	 .loc 3 163 0
+ 1823 0c9c A34B     	 ldr r3,.L110+44
+ 1824 0c9e 1B68     	 ldr r3,[r3]
+ 1825 0ca0 B868     	 ldr r0,[r7,#8]
+ 1826 0ca2 191C     	 add r1,r3,#0
+ 1827 0ca4 FFF7FEFF 	 bl __aeabi_fdiv
+ 1828 0ca8 031C     	 add r3,r0,#0
+ 1829 0caa 1A1C     	 add r2,r3,#0
+ 1830 0cac A14B     	 ldr r3,.L110+52
+ 1831 0cae 1A60     	 str r2,[r3]
  164:../Driving_dynamics.c **** 
  165:../Driving_dynamics.c **** 					speed_rl = speed_fl;
- 1831              	 .loc 3 165 0
- 1832 0cb0 724B     	 ldr r3,.L101+48
- 1833 0cb2 1A68     	 ldr r2,[r3]
- 1834 0cb4 734B     	 ldr r3,.L101+56
- 1835 0cb6 1A60     	 str r2,[r3]
+ 1832              	 .loc 3 165 0
+ 1833 0cb0 9F4B     	 ldr r3,.L110+48
+ 1834 0cb2 1A68     	 ldr r2,[r3]
+ 1835 0cb4 A04B     	 ldr r3,.L110+56
+ 1836 0cb6 1A60     	 str r2,[r3]
  166:../Driving_dynamics.c **** 					speed_rr = speed_fr;
- 1836              	 .loc 3 166 0
- 1837 0cb8 714B     	 ldr r3,.L101+52
- 1838 0cba 1A68     	 ldr r2,[r3]
- 1839 0cbc 724B     	 ldr r3,.L101+60
- 1840 0cbe 1A60     	 str r2,[r3]
- 1841 0cc0 18E0     	 b .L59
- 1842              	.L52:
+ 1837              	 .loc 3 166 0
+ 1838 0cb8 9E4B     	 ldr r3,.L110+52
+ 1839 0cba 1A68     	 ldr r2,[r3]
+ 1840 0cbc 9F4B     	 ldr r3,.L110+60
+ 1841 0cbe 1A60     	 str r2,[r3]
+ 1842 0cc0 18E0     	 b .L59
+ 1843              	.L52:
  167:../Driving_dynamics.c **** 				}
  168:../Driving_dynamics.c **** 			}
  169:../Driving_dynamics.c **** 			else{// starigt driving
  170:../Driving_dynamics.c **** 				angle_fl = 0;
- 1843              	 .loc 3 170 0
- 1844 0cc2 694B     	 ldr r3,.L101+28
- 1845 0cc4 0022     	 mov r2,#0
- 1846 0cc6 1A60     	 str r2,[r3]
+ 1844              	 .loc 3 170 0
+ 1845 0cc2 964B     	 ldr r3,.L110+28
+ 1846 0cc4 0022     	 mov r2,#0
+ 1847 0cc6 1A60     	 str r2,[r3]
  171:../Driving_dynamics.c **** 				angle_fr = 0;
- 1847              	 .loc 3 171 0
- 1848 0cc8 684B     	 ldr r3,.L101+32
- 1849 0cca 0022     	 mov r2,#0
- 1850 0ccc 1A60     	 str r2,[r3]
+ 1848              	 .loc 3 171 0
+ 1849 0cc8 954B     	 ldr r3,.L110+32
+ 1850 0cca 0022     	 mov r2,#0
+ 1851 0ccc 1A60     	 str r2,[r3]
  172:../Driving_dynamics.c **** 				angle_rl = 0;
- 1851              	 .loc 3 172 0
- 1852 0cce 684B     	 ldr r3,.L101+36
- 1853 0cd0 0022     	 mov r2,#0
- 1854 0cd2 1A60     	 str r2,[r3]
+ 1852              	 .loc 3 172 0
+ 1853 0cce 954B     	 ldr r3,.L110+36
+ 1854 0cd0 0022     	 mov r2,#0
+ 1855 0cd2 1A60     	 str r2,[r3]
  173:../Driving_dynamics.c **** 				angle_rr = 0;
- 1855              	 .loc 3 173 0
- 1856 0cd4 674B     	 ldr r3,.L101+40
- 1857 0cd6 0022     	 mov r2,#0
- 1858 0cd8 1A60     	 str r2,[r3]
+ 1856              	 .loc 3 173 0
+ 1857 0cd4 944B     	 ldr r3,.L110+40
+ 1858 0cd6 0022     	 mov r2,#0
+ 1859 0cd8 1A60     	 str r2,[r3]
  174:../Driving_dynamics.c **** 
  175:../Driving_dynamics.c **** 				speed_fl = Driving_speed_cal;
- 1859              	 .loc 3 175 0
- 1860 0cda 684B     	 ldr r3,.L101+48
- 1861 0cdc BA68     	 ldr r2,[r7,#8]
- 1862 0cde 1A60     	 str r2,[r3]
+ 1860              	 .loc 3 175 0
+ 1861 0cda 954B     	 ldr r3,.L110+48
+ 1862 0cdc BA68     	 ldr r2,[r7,#8]
+ 1863 0cde 1A60     	 str r2,[r3]
  176:../Driving_dynamics.c **** 				speed_fr = Driving_speed_cal;
- 1863              	 .loc 3 176 0
- 1864 0ce0 674B     	 ldr r3,.L101+52
- 1865 0ce2 BA68     	 ldr r2,[r7,#8]
- 1866 0ce4 1A60     	 str r2,[r3]
+ 1864              	 .loc 3 176 0
+ 1865 0ce0 944B     	 ldr r3,.L110+52
+ 1866 0ce2 BA68     	 ldr r2,[r7,#8]
+ 1867 0ce4 1A60     	 str r2,[r3]
  177:../Driving_dynamics.c **** 				speed_rl = Driving_speed_cal;
- 1867              	 .loc 3 177 0
- 1868 0ce6 674B     	 ldr r3,.L101+56
- 1869 0ce8 BA68     	 ldr r2,[r7,#8]
- 1870 0cea 1A60     	 str r2,[r3]
+ 1868              	 .loc 3 177 0
+ 1869 0ce6 944B     	 ldr r3,.L110+56
+ 1870 0ce8 BA68     	 ldr r2,[r7,#8]
+ 1871 0cea 1A60     	 str r2,[r3]
  178:../Driving_dynamics.c **** 				speed_rr = Driving_speed_cal;
- 1871              	 .loc 3 178 0
- 1872 0cec 664B     	 ldr r3,.L101+60
- 1873 0cee BA68     	 ldr r2,[r7,#8]
- 1874 0cf0 1A60     	 str r2,[r3]
+ 1872              	 .loc 3 178 0
+ 1873 0cec 934B     	 ldr r3,.L110+60
+ 1874 0cee BA68     	 ldr r2,[r7,#8]
+ 1875 0cf0 1A60     	 str r2,[r3]
  179:../Driving_dynamics.c **** 			}
  180:../Driving_dynamics.c **** 			break;
- 1875              	 .loc 3 180 0
- 1876 0cf2 87E0     	 b .L35
- 1877              	.L59:
- 1878              	 .loc 3 180 0 is_stmt 0 discriminator 1
- 1879 0cf4 86E0     	 b .L35
- 1880              	.L21:
+ 1876              	 .loc 3 180 0
+ 1877 0cf2 E2E0     	 b .L35
+ 1878              	.L59:
+ 1879              	 .loc 3 180 0 is_stmt 0 discriminator 1
+ 1880 0cf4 E1E0     	 b .L35
+ 1881              	.L21:
  181:../Driving_dynamics.c **** 
  182:../Driving_dynamics.c **** 		case CRAB:  //carb //#############################################################
  183:../Driving_dynamics.c **** 			Steering_direction_cal = Steering_direction_cal * 2.5; // mach data from remote
- 1881              	 .loc 3 183 0 is_stmt 1
- 1882 0cf6 F868     	 ldr r0,[r7,#12]
- 1883 0cf8 6449     	 ldr r1,.L101+64
- 1884 0cfa FFF7FEFF 	 bl __aeabi_fmul
- 1885 0cfe 031C     	 add r3,r0,#0
- 1886 0d00 FB60     	 str r3,[r7,#12]
+ 1882              	 .loc 3 183 0 is_stmt 1
+ 1883 0cf6 F868     	 ldr r0,[r7,#12]
+ 1884 0cf8 9149     	 ldr r1,.L110+64
+ 1885 0cfa FFF7FEFF 	 bl __aeabi_fmul
+ 1886 0cfe 031C     	 add r3,r0,#0
+ 1887 0d00 FB60     	 str r3,[r7,#12]
  184:../Driving_dynamics.c **** 			if(Steering_direction_cal > 190) Steering_direction_cal = 190;
- 1887              	 .loc 3 184 0
- 1888 0d02 F868     	 ldr r0,[r7,#12]
- 1889 0d04 6249     	 ldr r1,.L101+68
- 1890 0d06 FFF7FEFF 	 bl __aeabi_fcmpgt
- 1891 0d0a 031E     	 sub r3,r0,#0
- 1892 0d0c 01D0     	 beq .L60
- 1893              	 .loc 3 184 0 is_stmt 0 discriminator 1
- 1894 0d0e 604B     	 ldr r3,.L101+68
- 1895 0d10 FB60     	 str r3,[r7,#12]
- 1896              	.L60:
+ 1888              	 .loc 3 184 0
+ 1889 0d02 F868     	 ldr r0,[r7,#12]
+ 1890 0d04 8F49     	 ldr r1,.L110+68
+ 1891 0d06 FFF7FEFF 	 bl __aeabi_fcmpgt
+ 1892 0d0a 031E     	 sub r3,r0,#0
+ 1893 0d0c 01D0     	 beq .L60
+ 1894              	 .loc 3 184 0 is_stmt 0 discriminator 1
+ 1895 0d0e 8D4B     	 ldr r3,.L110+68
+ 1896 0d10 FB60     	 str r3,[r7,#12]
+ 1897              	.L60:
  185:../Driving_dynamics.c **** 			if(Steering_direction_cal < -190) Steering_direction_cal = -190;
- 1897              	 .loc 3 185 0 is_stmt 1
- 1898 0d12 F868     	 ldr r0,[r7,#12]
- 1899 0d14 5F49     	 ldr r1,.L101+72
- 1900 0d16 FFF7FEFF 	 bl __aeabi_fcmplt
- 1901 0d1a 031E     	 sub r3,r0,#0
- 1902 0d1c 01D0     	 beq .L62
- 1903              	 .loc 3 185 0 is_stmt 0 discriminator 1
- 1904 0d1e 5D4B     	 ldr r3,.L101+72
- 1905 0d20 FB60     	 str r3,[r7,#12]
- 1906              	.L62:
+ 1898              	 .loc 3 185 0 is_stmt 1
+ 1899 0d12 F868     	 ldr r0,[r7,#12]
+ 1900 0d14 8C49     	 ldr r1,.L110+72
+ 1901 0d16 FFF7FEFF 	 bl __aeabi_fcmplt
+ 1902 0d1a 031E     	 sub r3,r0,#0
+ 1903 0d1c 01D0     	 beq .L62
+ 1904              	 .loc 3 185 0 is_stmt 0 discriminator 1
+ 1905 0d1e 8A4B     	 ldr r3,.L110+72
+ 1906 0d20 FB60     	 str r3,[r7,#12]
+ 1907              	.L62:
  186:../Driving_dynamics.c **** 			// steering
  187:../Driving_dynamics.c **** 			angle_fl = Steering_direction_cal;
- 1907              	 .loc 3 187 0 is_stmt 1
- 1908 0d22 514B     	 ldr r3,.L101+28
- 1909 0d24 FA68     	 ldr r2,[r7,#12]
- 1910 0d26 1A60     	 str r2,[r3]
+ 1908              	 .loc 3 187 0 is_stmt 1
+ 1909 0d22 7E4B     	 ldr r3,.L110+28
+ 1910 0d24 FA68     	 ldr r2,[r7,#12]
+ 1911 0d26 1A60     	 str r2,[r3]
  188:../Driving_dynamics.c **** 			angle_fr = Steering_direction_cal;
- 1911              	 .loc 3 188 0
- 1912 0d28 504B     	 ldr r3,.L101+32
- 1913 0d2a FA68     	 ldr r2,[r7,#12]
- 1914 0d2c 1A60     	 str r2,[r3]
+ 1912              	 .loc 3 188 0
+ 1913 0d28 7D4B     	 ldr r3,.L110+32
+ 1914 0d2a FA68     	 ldr r2,[r7,#12]
+ 1915 0d2c 1A60     	 str r2,[r3]
  189:../Driving_dynamics.c **** 			angle_rl = Steering_direction_cal;
- 1915              	 .loc 3 189 0
- 1916 0d2e 504B     	 ldr r3,.L101+36
- 1917 0d30 FA68     	 ldr r2,[r7,#12]
- 1918 0d32 1A60     	 str r2,[r3]
+ 1916              	 .loc 3 189 0
+ 1917 0d2e 7D4B     	 ldr r3,.L110+36
+ 1918 0d30 FA68     	 ldr r2,[r7,#12]
+ 1919 0d32 1A60     	 str r2,[r3]
  190:../Driving_dynamics.c **** 			angle_rr = Steering_direction_cal;
- 1919              	 .loc 3 190 0
- 1920 0d34 4F4B     	 ldr r3,.L101+40
- 1921 0d36 FA68     	 ldr r2,[r7,#12]
- 1922 0d38 1A60     	 str r2,[r3]
+ 1920              	 .loc 3 190 0
+ 1921 0d34 7C4B     	 ldr r3,.L110+40
+ 1922 0d36 FA68     	 ldr r2,[r7,#12]
+ 1923 0d38 1A60     	 str r2,[r3]
  191:../Driving_dynamics.c **** 			 // speed
  192:../Driving_dynamics.c **** 			 speed_fl = Driving_speed_cal;
- 1923              	 .loc 3 192 0
- 1924 0d3a 504B     	 ldr r3,.L101+48
- 1925 0d3c BA68     	 ldr r2,[r7,#8]
- 1926 0d3e 1A60     	 str r2,[r3]
+ 1924              	 .loc 3 192 0
+ 1925 0d3a 7D4B     	 ldr r3,.L110+48
+ 1926 0d3c BA68     	 ldr r2,[r7,#8]
+ 1927 0d3e 1A60     	 str r2,[r3]
  193:../Driving_dynamics.c **** 			 speed_fr = Driving_speed_cal;
- 1927              	 .loc 3 193 0
- 1928 0d40 4F4B     	 ldr r3,.L101+52
- 1929 0d42 BA68     	 ldr r2,[r7,#8]
- 1930 0d44 1A60     	 str r2,[r3]
+ 1928              	 .loc 3 193 0
+ 1929 0d40 7C4B     	 ldr r3,.L110+52
+ 1930 0d42 BA68     	 ldr r2,[r7,#8]
+ 1931 0d44 1A60     	 str r2,[r3]
  194:../Driving_dynamics.c **** 			 speed_rl = Driving_speed_cal;
- 1931              	 .loc 3 194 0
- 1932 0d46 4F4B     	 ldr r3,.L101+56
- 1933 0d48 BA68     	 ldr r2,[r7,#8]
- 1934 0d4a 1A60     	 str r2,[r3]
+ 1932              	 .loc 3 194 0
+ 1933 0d46 7C4B     	 ldr r3,.L110+56
+ 1934 0d48 BA68     	 ldr r2,[r7,#8]
+ 1935 0d4a 1A60     	 str r2,[r3]
  195:../Driving_dynamics.c **** 			 speed_rr = Driving_speed_cal;
- 1935              	 .loc 3 195 0
- 1936 0d4c 4E4B     	 ldr r3,.L101+60
- 1937 0d4e BA68     	 ldr r2,[r7,#8]
- 1938 0d50 1A60     	 str r2,[r3]
+ 1936              	 .loc 3 195 0
+ 1937 0d4c 7B4B     	 ldr r3,.L110+60
+ 1938 0d4e BA68     	 ldr r2,[r7,#8]
+ 1939 0d50 1A60     	 str r2,[r3]
  196:../Driving_dynamics.c **** 
  197:../Driving_dynamics.c **** 			break;
- 1939              	 .loc 3 197 0
- 1940 0d52 57E0     	 b .L35
- 1941              	.L22:
+ 1940              	 .loc 3 197 0
+ 1941 0d52 B2E0     	 b .L35
+ 1942              	.L22:
  198:../Driving_dynamics.c **** 
  199:../Driving_dynamics.c **** 		case ROTATE: // rotate #############################################################
  200:../Driving_dynamics.c **** 			// steering agel for turng in place
  201:../Driving_dynamics.c **** 			angle_fl = ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
- 1942              	 .loc 3 201 0
- 1943 0d54 444B     	 ldr r3,.L101+28
- 1944 0d56 504A     	 ldr r2,.L101+76
- 1945 0d58 1A60     	 str r2,[r3]
+ 1943              	 .loc 3 201 0
+ 1944 0d54 714B     	 ldr r3,.L110+28
+ 1945 0d56 7D4A     	 ldr r2,.L110+76
+ 1946 0d58 1A60     	 str r2,[r3]
  202:../Driving_dynamics.c **** 			angle_fr = -ROTATION_ANGLE - ROTATION_ANGLE_OFFSET;
- 1946              	 .loc 3 202 0
- 1947 0d5a 444B     	 ldr r3,.L101+32
- 1948 0d5c 4F4A     	 ldr r2,.L101+80
- 1949 0d5e 1A60     	 str r2,[r3]
+ 1947              	 .loc 3 202 0
+ 1948 0d5a 714B     	 ldr r3,.L110+32
+ 1949 0d5c 7C4A     	 ldr r2,.L110+80
+ 1950 0d5e 1A60     	 str r2,[r3]
  203:../Driving_dynamics.c **** 			angle_rl = -ROTATION_ANGLE - ROTATION_ANGLE_OFFSET;
- 1950              	 .loc 3 203 0
- 1951 0d60 434B     	 ldr r3,.L101+36
- 1952 0d62 4E4A     	 ldr r2,.L101+80
- 1953 0d64 1A60     	 str r2,[r3]
+ 1951              	 .loc 3 203 0
+ 1952 0d60 704B     	 ldr r3,.L110+36
+ 1953 0d62 7B4A     	 ldr r2,.L110+80
+ 1954 0d64 1A60     	 str r2,[r3]
  204:../Driving_dynamics.c **** 			angle_rr = ROTATION_ANGLE + ROTATION_ANGLE_OFFSET;
- 1954              	 .loc 3 204 0
- 1955 0d66 434B     	 ldr r3,.L101+40
- 1956 0d68 4B4A     	 ldr r2,.L101+76
- 1957 0d6a 1A60     	 str r2,[r3]
+ 1955              	 .loc 3 204 0
+ 1956 0d66 704B     	 ldr r3,.L110+40
+ 1957 0d68 784A     	 ldr r2,.L110+76
+ 1958 0d6a 1A60     	 str r2,[r3]
  205:../Driving_dynamics.c **** 
  206:../Driving_dynamics.c **** 			 // speed
  207:../Driving_dynamics.c **** 			if (Steering_direction_cal > 10){
- 1958              	 .loc 3 207 0
- 1959 0d6c F868     	 ldr r0,[r7,#12]
- 1960 0d6e 4C49     	 ldr r1,.L101+84
- 1961 0d70 FFF7FEFF 	 bl __aeabi_fcmpgt
- 1962 0d74 031E     	 sub r3,r0,#0
- 1963 0d76 0CD0     	 beq .L93
+ 1959              	 .loc 3 207 0
+ 1960 0d6c F868     	 ldr r0,[r7,#12]
+ 1961 0d6e 7949     	 ldr r1,.L110+84
+ 1962 0d70 FFF7FEFF 	 bl __aeabi_fcmpgt
+ 1963 0d74 031E     	 sub r3,r0,#0
+ 1964 0d76 0CD0     	 beq .L101
  208:../Driving_dynamics.c **** 				speed_fl = -ROTATION_SPEED;
- 1964              	 .loc 3 208 0
- 1965 0d78 404B     	 ldr r3,.L101+48
- 1966 0d7a 4A4A     	 ldr r2,.L101+88
- 1967 0d7c 1A60     	 str r2,[r3]
+ 1965              	 .loc 3 208 0
+ 1966 0d78 6D4B     	 ldr r3,.L110+48
+ 1967 0d7a 774A     	 ldr r2,.L110+88
+ 1968 0d7c 1A60     	 str r2,[r3]
  209:../Driving_dynamics.c **** 				speed_fr = ROTATION_SPEED;
- 1968              	 .loc 3 209 0
- 1969 0d7e 404B     	 ldr r3,.L101+52
- 1970 0d80 494A     	 ldr r2,.L101+92
- 1971 0d82 1A60     	 str r2,[r3]
+ 1969              	 .loc 3 209 0
+ 1970 0d7e 6D4B     	 ldr r3,.L110+52
+ 1971 0d80 764A     	 ldr r2,.L110+92
+ 1972 0d82 1A60     	 str r2,[r3]
  210:../Driving_dynamics.c **** 				speed_rl = -ROTATION_SPEED;
- 1972              	 .loc 3 210 0
- 1973 0d84 3F4B     	 ldr r3,.L101+56
- 1974 0d86 474A     	 ldr r2,.L101+88
- 1975 0d88 1A60     	 str r2,[r3]
+ 1973              	 .loc 3 210 0
+ 1974 0d84 6C4B     	 ldr r3,.L110+56
+ 1975 0d86 744A     	 ldr r2,.L110+88
+ 1976 0d88 1A60     	 str r2,[r3]
  211:../Driving_dynamics.c **** 				speed_rr = ROTATION_SPEED;
- 1976              	 .loc 3 211 0
- 1977 0d8a 3F4B     	 ldr r3,.L101+60
- 1978 0d8c 464A     	 ldr r2,.L101+92
- 1979 0d8e 1A60     	 str r2,[r3]
- 1980 0d90 1FE0     	 b .L66
- 1981              	.L93:
+ 1977              	 .loc 3 211 0
+ 1978 0d8a 6C4B     	 ldr r3,.L110+60
+ 1979 0d8c 734A     	 ldr r2,.L110+92
+ 1980 0d8e 1A60     	 str r2,[r3]
+ 1981 0d90 1FE0     	 b .L66
+ 1982              	.L101:
  212:../Driving_dynamics.c **** 			}
  213:../Driving_dynamics.c **** 			else if(Steering_direction_cal < -10){
- 1982              	 .loc 3 213 0
- 1983 0d92 F868     	 ldr r0,[r7,#12]
- 1984 0d94 4549     	 ldr r1,.L101+96
- 1985 0d96 FFF7FEFF 	 bl __aeabi_fcmplt
- 1986 0d9a 031E     	 sub r3,r0,#0
- 1987 0d9c 0CD0     	 beq .L94
+ 1983              	 .loc 3 213 0
+ 1984 0d92 F868     	 ldr r0,[r7,#12]
+ 1985 0d94 7249     	 ldr r1,.L110+96
+ 1986 0d96 FFF7FEFF 	 bl __aeabi_fcmplt
+ 1987 0d9a 031E     	 sub r3,r0,#0
+ 1988 0d9c 0CD0     	 beq .L102
  214:../Driving_dynamics.c **** 				speed_fl = ROTATION_SPEED;
- 1988              	 .loc 3 214 0
- 1989 0d9e 374B     	 ldr r3,.L101+48
- 1990 0da0 414A     	 ldr r2,.L101+92
- 1991 0da2 1A60     	 str r2,[r3]
+ 1989              	 .loc 3 214 0
+ 1990 0d9e 644B     	 ldr r3,.L110+48
+ 1991 0da0 6E4A     	 ldr r2,.L110+92
+ 1992 0da2 1A60     	 str r2,[r3]
  215:../Driving_dynamics.c **** 				speed_fr = -ROTATION_SPEED;
- 1992              	 .loc 3 215 0
- 1993 0da4 364B     	 ldr r3,.L101+52
- 1994 0da6 3F4A     	 ldr r2,.L101+88
- 1995 0da8 1A60     	 str r2,[r3]
+ 1993              	 .loc 3 215 0
+ 1994 0da4 634B     	 ldr r3,.L110+52
+ 1995 0da6 6C4A     	 ldr r2,.L110+88
+ 1996 0da8 1A60     	 str r2,[r3]
  216:../Driving_dynamics.c **** 				speed_rl = ROTATION_SPEED;
- 1996              	 .loc 3 216 0
- 1997 0daa 364B     	 ldr r3,.L101+56
- 1998 0dac 3E4A     	 ldr r2,.L101+92
- 1999 0dae 1A60     	 str r2,[r3]
+ 1997              	 .loc 3 216 0
+ 1998 0daa 634B     	 ldr r3,.L110+56
+ 1999 0dac 6B4A     	 ldr r2,.L110+92
+ 2000 0dae 1A60     	 str r2,[r3]
  217:../Driving_dynamics.c **** 				speed_rr = -ROTATION_SPEED;
- 2000              	 .loc 3 217 0
- 2001 0db0 354B     	 ldr r3,.L101+60
- 2002 0db2 3C4A     	 ldr r2,.L101+88
- 2003 0db4 1A60     	 str r2,[r3]
- 2004 0db6 0CE0     	 b .L66
- 2005              	.L94:
+ 2001              	 .loc 3 217 0
+ 2002 0db0 624B     	 ldr r3,.L110+60
+ 2003 0db2 694A     	 ldr r2,.L110+88
+ 2004 0db4 1A60     	 str r2,[r3]
+ 2005 0db6 0CE0     	 b .L66
+ 2006              	.L102:
  218:../Driving_dynamics.c **** 			}
  219:../Driving_dynamics.c **** 			else{
  220:../Driving_dynamics.c **** 				speed_fl = 0;
- 2006              	 .loc 3 220 0
- 2007 0db8 304B     	 ldr r3,.L101+48
- 2008 0dba 0022     	 mov r2,#0
- 2009 0dbc 1A60     	 str r2,[r3]
+ 2007              	 .loc 3 220 0
+ 2008 0db8 5D4B     	 ldr r3,.L110+48
+ 2009 0dba 0022     	 mov r2,#0
+ 2010 0dbc 1A60     	 str r2,[r3]
  221:../Driving_dynamics.c **** 				speed_fr = 0;
- 2010              	 .loc 3 221 0
- 2011 0dbe 304B     	 ldr r3,.L101+52
- 2012 0dc0 0022     	 mov r2,#0
- 2013 0dc2 1A60     	 str r2,[r3]
+ 2011              	 .loc 3 221 0
+ 2012 0dbe 5D4B     	 ldr r3,.L110+52
+ 2013 0dc0 0022     	 mov r2,#0
+ 2014 0dc2 1A60     	 str r2,[r3]
  222:../Driving_dynamics.c **** 				speed_rl = 0;
- 2014              	 .loc 3 222 0
- 2015 0dc4 2F4B     	 ldr r3,.L101+56
- 2016 0dc6 0022     	 mov r2,#0
- 2017 0dc8 1A60     	 str r2,[r3]
+ 2015              	 .loc 3 222 0
+ 2016 0dc4 5C4B     	 ldr r3,.L110+56
+ 2017 0dc6 0022     	 mov r2,#0
+ 2018 0dc8 1A60     	 str r2,[r3]
  223:../Driving_dynamics.c **** 				speed_rr = 0;
- 2018              	 .loc 3 223 0
- 2019 0dca 2F4B     	 ldr r3,.L101+60
- 2020 0dcc 0022     	 mov r2,#0
- 2021 0dce 1A60     	 str r2,[r3]
+ 2019              	 .loc 3 223 0
+ 2020 0dca 5C4B     	 ldr r3,.L110+60
+ 2021 0dcc 0022     	 mov r2,#0
+ 2022 0dce 1A60     	 str r2,[r3]
  224:../Driving_dynamics.c **** 			}
  225:../Driving_dynamics.c **** 			break;
- 2022              	 .loc 3 225 0
- 2023 0dd0 18E0     	 b .L35
- 2024              	.L66:
- 2025 0dd2 17E0     	 b .L35
- 2026              	.L16:
+ 2023              	 .loc 3 225 0
+ 2024 0dd0 73E0     	 b .L35
+ 2025              	.L66:
+ 2026 0dd2 72E0     	 b .L35
+ 2027              	.L16:
  226:../Driving_dynamics.c **** 
  227:../Driving_dynamics.c **** 		default:
  228:../Driving_dynamics.c **** 			angle_fl = 0;
- 2027              	 .loc 3 228 0
- 2028 0dd4 244B     	 ldr r3,.L101+28
- 2029 0dd6 0022     	 mov r2,#0
- 2030 0dd8 1A60     	 str r2,[r3]
+ 2028              	 .loc 3 228 0
+ 2029 0dd4 514B     	 ldr r3,.L110+28
+ 2030 0dd6 0022     	 mov r2,#0
+ 2031 0dd8 1A60     	 str r2,[r3]
  229:../Driving_dynamics.c **** 			angle_fr = 0;
- 2031              	 .loc 3 229 0
- 2032 0dda 244B     	 ldr r3,.L101+32
- 2033 0ddc 0022     	 mov r2,#0
- 2034 0dde 1A60     	 str r2,[r3]
+ 2032              	 .loc 3 229 0
+ 2033 0dda 514B     	 ldr r3,.L110+32
+ 2034 0ddc 0022     	 mov r2,#0
+ 2035 0dde 1A60     	 str r2,[r3]
  230:../Driving_dynamics.c **** 			angle_rl = 0;
- 2035              	 .loc 3 230 0
- 2036 0de0 234B     	 ldr r3,.L101+36
- 2037 0de2 0022     	 mov r2,#0
- 2038 0de4 1A60     	 str r2,[r3]
+ 2036              	 .loc 3 230 0
+ 2037 0de0 504B     	 ldr r3,.L110+36
+ 2038 0de2 0022     	 mov r2,#0
+ 2039 0de4 1A60     	 str r2,[r3]
  231:../Driving_dynamics.c **** 			angle_rr = 0;
- 2039              	 .loc 3 231 0
- 2040 0de6 234B     	 ldr r3,.L101+40
- 2041 0de8 0022     	 mov r2,#0
- 2042 0dea 1A60     	 str r2,[r3]
+ 2040              	 .loc 3 231 0
+ 2041 0de6 504B     	 ldr r3,.L110+40
+ 2042 0de8 0022     	 mov r2,#0
+ 2043 0dea 1A60     	 str r2,[r3]
  232:../Driving_dynamics.c **** 
  233:../Driving_dynamics.c **** 			speed_fl = 0;
- 2043              	 .loc 3 233 0
- 2044 0dec 234B     	 ldr r3,.L101+48
- 2045 0dee 0022     	 mov r2,#0
- 2046 0df0 1A60     	 str r2,[r3]
+ 2044              	 .loc 3 233 0
+ 2045 0dec 504B     	 ldr r3,.L110+48
+ 2046 0dee 0022     	 mov r2,#0
+ 2047 0df0 1A60     	 str r2,[r3]
  234:../Driving_dynamics.c **** 			speed_fr = 0;
- 2047              	 .loc 3 234 0
- 2048 0df2 234B     	 ldr r3,.L101+52
- 2049 0df4 0022     	 mov r2,#0
- 2050 0df6 1A60     	 str r2,[r3]
+ 2048              	 .loc 3 234 0
+ 2049 0df2 504B     	 ldr r3,.L110+52
+ 2050 0df4 0022     	 mov r2,#0
+ 2051 0df6 1A60     	 str r2,[r3]
  235:../Driving_dynamics.c **** 			speed_rl = 0;
- 2051              	 .loc 3 235 0
- 2052 0df8 224B     	 ldr r3,.L101+56
- 2053 0dfa 0022     	 mov r2,#0
- 2054 0dfc 1A60     	 str r2,[r3]
+ 2052              	 .loc 3 235 0
+ 2053 0df8 4F4B     	 ldr r3,.L110+56
+ 2054 0dfa 0022     	 mov r2,#0
+ 2055 0dfc 1A60     	 str r2,[r3]
  236:../Driving_dynamics.c **** 			speed_rr = 0;
- 2055              	 .loc 3 236 0
- 2056 0dfe 224B     	 ldr r3,.L101+60
- 2057 0e00 0022     	 mov r2,#0
- 2058 0e02 1A60     	 str r2,[r3]
- 2059              	.L35:
+ 2056              	 .loc 3 236 0
+ 2057 0dfe 4F4B     	 ldr r3,.L110+60
+ 2058 0e00 0022     	 mov r2,#0
+ 2059 0e02 1A60     	 str r2,[r3]
  237:../Driving_dynamics.c **** 
- 238:../Driving_dynamics.c **** 	}
- 239:../Driving_dynamics.c ****   // set gobal vars
- 240:../Driving_dynamics.c ****   Steering_Angles[0] = angle_fl;
- 2060              	 .loc 3 240 0
- 2061 0e04 184B     	 ldr r3,.L101+28
- 2062 0e06 1A68     	 ldr r2,[r3]
- 2063 0e08 294B     	 ldr r3,.L101+100
- 2064 0e0a 1A60     	 str r2,[r3]
- 241:../Driving_dynamics.c ****   Steering_Angles[1] = angle_fr;
- 2065              	 .loc 3 241 0
- 2066 0e0c 174B     	 ldr r3,.L101+32
- 2067 0e0e 1A68     	 ldr r2,[r3]
- 2068 0e10 274B     	 ldr r3,.L101+100
- 2069 0e12 5A60     	 str r2,[r3,#4]
- 242:../Driving_dynamics.c ****   Steering_Angles[2] = angle_rl;
- 2070              	 .loc 3 242 0
- 2071 0e14 164B     	 ldr r3,.L101+36
- 2072 0e16 1A68     	 ldr r2,[r3]
- 2073 0e18 254B     	 ldr r3,.L101+100
- 2074 0e1a 9A60     	 str r2,[r3,#8]
- 243:../Driving_dynamics.c ****   Steering_Angles[3] = angle_rr;
- 2075              	 .loc 3 243 0
- 2076 0e1c 154B     	 ldr r3,.L101+40
- 2077 0e1e 1A68     	 ldr r2,[r3]
- 2078 0e20 234B     	 ldr r3,.L101+100
- 2079 0e22 DA60     	 str r2,[r3,#12]
+ 238:../Driving_dynamics.c **** 			// servor NP setting
+ 239:../Driving_dynamics.c **** 			uint8_t front_or_back = 0;
+ 2060              	 .loc 3 239 0
+ 2061 0e04 1723     	 mov r3,#23
+ 2062 0e06 FB18     	 add r3,r7,r3
+ 2063 0e08 0022     	 mov r2,#0
+ 2064 0e0a 1A70     	 strb r2,[r3]
+ 240:../Driving_dynamics.c **** 			if(RC_AUX1_duty == 1) front_or_back = 2;
+ 2065              	 .loc 3 240 0
+ 2066 0e0c 554B     	 ldr r3,.L110+100
+ 2067 0e0e 1B78     	 ldrb r3,[r3]
+ 2068 0e10 DBB2     	 uxtb r3,r3
+ 2069 0e12 012B     	 cmp r3,#1
+ 2070 0e14 03D1     	 bne .L69
+ 2071              	 .loc 3 240 0 is_stmt 0 discriminator 1
+ 2072 0e16 1723     	 mov r3,#23
+ 2073 0e18 FB18     	 add r3,r7,r3
+ 2074 0e1a 0222     	 mov r2,#2
+ 2075 0e1c 1A70     	 strb r2,[r3]
+ 2076              	.L69:
+ 241:../Driving_dynamics.c **** 
+ 242:../Driving_dynamics.c **** 			if(captured_time_Speed > 1700000) NP[0 + front_or_back]++;
+ 2077              	 .loc 3 242 0 is_stmt 1
+ 2078 0e1e 524B     	 ldr r3,.L110+104
+ 2079 0e20 1B68     	 ldr r3,[r3]
+ 2080 0e22 524A     	 ldr r2,.L110+108
+ 2081 0e24 9342     	 cmp r3,r2
+ 2082 0e26 0CD9     	 bls .L70
+ 2083              	 .loc 3 242 0 is_stmt 0 discriminator 1
+ 2084 0e28 1723     	 mov r3,#23
+ 2085 0e2a FB18     	 add r3,r7,r3
+ 2086 0e2c 1B78     	 ldrb r3,[r3]
+ 2087 0e2e 504A     	 ldr r2,.L110+112
+ 2088 0e30 5900     	 lsl r1,r3,#1
+ 2089 0e32 8A5A     	 ldrh r2,[r1,r2]
+ 2090 0e34 92B2     	 uxth r2,r2
+ 2091 0e36 0132     	 add r2,r2,#1
+ 2092 0e38 91B2     	 uxth r1,r2
+ 2093 0e3a 4D4A     	 ldr r2,.L110+112
+ 2094 0e3c 5B00     	 lsl r3,r3,#1
+ 2095 0e3e 9952     	 strh r1,[r3,r2]
+ 2096 0e40 10E0     	 b .L71
+ 2097              	.L70:
+ 243:../Driving_dynamics.c **** 			else if	(captured_time_Speed < 1200000) NP[0 + front_or_back]--;
+ 2098              	 .loc 3 243 0 is_stmt 1
+ 2099 0e42 494B     	 ldr r3,.L110+104
+ 2100 0e44 1B68     	 ldr r3,[r3]
+ 2101 0e46 4B4A     	 ldr r2,.L110+116
+ 2102 0e48 9342     	 cmp r3,r2
+ 2103 0e4a 0BD8     	 bhi .L71
+ 2104              	 .loc 3 243 0 is_stmt 0 discriminator 1
+ 2105 0e4c 1723     	 mov r3,#23
+ 2106 0e4e FB18     	 add r3,r7,r3
+ 2107 0e50 1B78     	 ldrb r3,[r3]
+ 2108 0e52 474A     	 ldr r2,.L110+112
+ 2109 0e54 5900     	 lsl r1,r3,#1
+ 2110 0e56 8A5A     	 ldrh r2,[r1,r2]
+ 2111 0e58 92B2     	 uxth r2,r2
+ 2112 0e5a 013A     	 sub r2,r2,#1
+ 2113 0e5c 91B2     	 uxth r1,r2
+ 2114 0e5e 444A     	 ldr r2,.L110+112
+ 2115 0e60 5B00     	 lsl r3,r3,#1
+ 2116 0e62 9952     	 strh r1,[r3,r2]
+ 2117              	.L71:
  244:../Driving_dynamics.c **** 
- 245:../Driving_dynamics.c ****   Speeds[0] = speed_fl;
- 2080              	 .loc 3 245 0
- 2081 0e24 154B     	 ldr r3,.L101+48
- 2082 0e26 1A68     	 ldr r2,[r3]
- 2083 0e28 224B     	 ldr r3,.L101+104
- 2084 0e2a 1A60     	 str r2,[r3]
- 246:../Driving_dynamics.c ****   Speeds[1] = speed_fr;
- 2085              	 .loc 3 246 0
- 2086 0e2c 144B     	 ldr r3,.L101+52
- 2087 0e2e 1A68     	 ldr r2,[r3]
- 2088 0e30 204B     	 ldr r3,.L101+104
- 2089 0e32 5A60     	 str r2,[r3,#4]
- 247:../Driving_dynamics.c ****   Speeds[2] = speed_rl;
- 2090              	 .loc 3 247 0
- 2091 0e34 134B     	 ldr r3,.L101+56
- 2092 0e36 1A68     	 ldr r2,[r3]
- 2093 0e38 1E4B     	 ldr r3,.L101+104
- 2094 0e3a 9A60     	 str r2,[r3,#8]
- 248:../Driving_dynamics.c ****   Speeds[3] = speed_rr;
- 2095              	 .loc 3 248 0
- 2096 0e3c 124B     	 ldr r3,.L101+60
- 2097 0e3e 1A68     	 ldr r2,[r3]
- 2098 0e40 1C4B     	 ldr r3,.L101+104
- 2099 0e42 DA60     	 str r2,[r3,#12]
- 249:../Driving_dynamics.c **** 
- 250:../Driving_dynamics.c **** }
- 2100              	 .loc 3 250 0
- 2101 0e44 BD46     	 mov sp,r7
- 2102 0e46 05B0     	 add sp,sp,#20
- 2103              	 
- 2104 0e48 F0BD     	 pop {r4,r5,r6,r7,pc}
- 2105              	.L102:
- 2106 0e4a C046     	 .align 2
- 2107              	.L101:
- 2108 0e4c 00000000 	 .word R_Turn
- 2109 0e50 77BE9F1A 	 .word 446676599
- 2110 0e54 2FDDC43F 	 .word 1069866287
- 2111 0e58 79E92631 	 .word 824633721
- 2112 0e5c 08ACDC3F 	 .word 1071426568
- 2113 0e60 C7F48425 	 .word 629470407
- 2114 0e64 1EA64C40 	 .word 1078765086
- 2115 0e68 00000000 	 .word angle_fl
- 2116 0e6c 00000000 	 .word angle_fr
- 2117 0e70 00000000 	 .word angle_rl
- 2118 0e74 00000000 	 .word angle_rr
- 2119 0e78 00000000 	 .word Speed_ratio
- 2120 0e7c 00000000 	 .word speed_fl
- 2121 0e80 00000000 	 .word speed_fr
- 2122 0e84 00000000 	 .word speed_rl
- 2123 0e88 00000000 	 .word speed_rr
- 2124 0e8c 00002040 	 .word 1075838976
- 2125 0e90 00003E43 	 .word 1128136704
- 2126 0e94 00003EC3 	 .word -1019346944
- 2127 0e98 85EB93C2 	 .word -1030493307
- 2128 0e9c 85EB9342 	 .word 1116990341
- 2129 0ea0 00002041 	 .word 1092616192
- 2130 0ea4 CDCCCCBE 	 .word -1093874483
- 2131 0ea8 CDCCCC3E 	 .word 1053609165
- 2132 0eac 000020C1 	 .word -1054867456
- 2133 0eb0 00000000 	 .word Steering_Angles
- 2134 0eb4 00000000 	 .word Speeds
- 2135              	 .cfi_endproc
- 2136              	.LFE224:
- 2138              	 .section .text.Trajcetory_calc,"ax",%progbits
- 2139              	 .align 2
- 2140              	 .global Trajcetory_calc
- 2141              	 .code 16
- 2142              	 .thumb_func
- 2144              	Trajcetory_calc:
- 2145              	.LFB225:
- 251:../Driving_dynamics.c **** 
- 252:../Driving_dynamics.c **** 
- 253:../Driving_dynamics.c **** void Trajcetory_calc(){
- 2146              	 .loc 3 253 0
- 2147              	 .cfi_startproc
- 2148 0000 F8B5     	 push {r3,r4,r5,r6,r7,lr}
- 2149              	.LCFI15:
- 2150              	 .cfi_def_cfa_offset 24
- 2151              	 .cfi_offset 3,-24
- 2152              	 .cfi_offset 4,-20
- 2153              	 .cfi_offset 5,-16
- 2154              	 .cfi_offset 6,-12
- 2155              	 .cfi_offset 7,-8
- 2156              	 .cfi_offset 14,-4
- 2157 0002 00AF     	 add r7,sp,#0
- 2158              	.LCFI16:
- 2159              	 .cfi_def_cfa_register 7
+ 245:../Driving_dynamics.c **** 			if(RC_Steering > 30) NP[1 + front_or_back]++;
+ 2118              	 .loc 3 245 0 is_stmt 1
+ 2119 0e64 444B     	 ldr r3,.L110+120
+ 2120 0e66 1B68     	 ldr r3,[r3]
+ 2121 0e68 181C     	 add r0,r3,#0
+ 2122 0e6a 4449     	 ldr r1,.L110+124
+ 2123 0e6c FFF7FEFF 	 bl __aeabi_fcmpgt
+ 2124 0e70 031E     	 sub r3,r0,#0
+ 2125 0e72 0DD0     	 beq .L103
+ 2126              	 .loc 3 245 0 is_stmt 0 discriminator 1
+ 2127 0e74 1723     	 mov r3,#23
+ 2128 0e76 FB18     	 add r3,r7,r3
+ 2129 0e78 1B78     	 ldrb r3,[r3]
+ 2130 0e7a 0133     	 add r3,r3,#1
+ 2131 0e7c 3C4A     	 ldr r2,.L110+112
+ 2132 0e7e 5900     	 lsl r1,r3,#1
+ 2133 0e80 8A5A     	 ldrh r2,[r1,r2]
+ 2134 0e82 92B2     	 uxth r2,r2
+ 2135 0e84 0132     	 add r2,r2,#1
+ 2136 0e86 91B2     	 uxth r1,r2
+ 2137 0e88 394A     	 ldr r2,.L110+112
+ 2138 0e8a 5B00     	 lsl r3,r3,#1
+ 2139 0e8c 9952     	 strh r1,[r3,r2]
+ 2140 0e8e 14E0     	 b .L35
+ 2141              	.L103:
+ 246:../Driving_dynamics.c **** 			else if(RC_Steering < -30) NP[1 + front_or_back]--;
+ 2142              	 .loc 3 246 0 is_stmt 1
+ 2143 0e90 394B     	 ldr r3,.L110+120
+ 2144 0e92 1B68     	 ldr r3,[r3]
+ 2145 0e94 181C     	 add r0,r3,#0
+ 2146 0e96 3A49     	 ldr r1,.L110+128
+ 2147 0e98 FFF7FEFF 	 bl __aeabi_fcmplt
+ 2148 0e9c 031E     	 sub r3,r0,#0
+ 2149 0e9e 0CD0     	 beq .L35
+ 2150              	 .loc 3 246 0 is_stmt 0 discriminator 1
+ 2151 0ea0 1723     	 mov r3,#23
+ 2152 0ea2 FB18     	 add r3,r7,r3
+ 2153 0ea4 1B78     	 ldrb r3,[r3]
+ 2154 0ea6 0133     	 add r3,r3,#1
+ 2155 0ea8 314A     	 ldr r2,.L110+112
+ 2156 0eaa 5900     	 lsl r1,r3,#1
+ 2157 0eac 8A5A     	 ldrh r2,[r1,r2]
+ 2158 0eae 92B2     	 uxth r2,r2
+ 2159 0eb0 013A     	 sub r2,r2,#1
+ 2160 0eb2 91B2     	 uxth r1,r2
+ 2161 0eb4 2E4A     	 ldr r2,.L110+112
+ 2162 0eb6 5B00     	 lsl r3,r3,#1
+ 2163 0eb8 9952     	 strh r1,[r3,r2]
+ 2164              	.L35:
+ 2165              	.LBE2:
+ 247:../Driving_dynamics.c **** 
+ 248:../Driving_dynamics.c **** 	}
+ 249:../Driving_dynamics.c ****   // set gobal vars
+ 250:../Driving_dynamics.c ****   Steering_Angles[0] = angle_fl;
+ 2166              	 .loc 3 250 0 is_stmt 1
+ 2167 0eba 184B     	 ldr r3,.L110+28
+ 2168 0ebc 1A68     	 ldr r2,[r3]
+ 2169 0ebe 314B     	 ldr r3,.L110+132
+ 2170 0ec0 1A60     	 str r2,[r3]
+ 251:../Driving_dynamics.c ****   Steering_Angles[1] = angle_fr;
+ 2171              	 .loc 3 251 0
+ 2172 0ec2 174B     	 ldr r3,.L110+32
+ 2173 0ec4 1A68     	 ldr r2,[r3]
+ 2174 0ec6 2F4B     	 ldr r3,.L110+132
+ 2175 0ec8 5A60     	 str r2,[r3,#4]
+ 252:../Driving_dynamics.c ****   Steering_Angles[2] = angle_rl;
+ 2176              	 .loc 3 252 0
+ 2177 0eca 164B     	 ldr r3,.L110+36
+ 2178 0ecc 1A68     	 ldr r2,[r3]
+ 2179 0ece 2D4B     	 ldr r3,.L110+132
+ 2180 0ed0 9A60     	 str r2,[r3,#8]
+ 253:../Driving_dynamics.c ****   Steering_Angles[3] = angle_rr;
+ 2181              	 .loc 3 253 0
+ 2182 0ed2 154B     	 ldr r3,.L110+40
+ 2183 0ed4 1A68     	 ldr r2,[r3]
+ 2184 0ed6 2B4B     	 ldr r3,.L110+132
+ 2185 0ed8 DA60     	 str r2,[r3,#12]
  254:../Driving_dynamics.c **** 
- 255:../Driving_dynamics.c **** 	avg_Speeds = average(Speeds,4);
- 2160              	 .loc 3 255 0
- 2161 0004 4F4B     	 ldr r3,.L112
- 2162 0006 181C     	 mov r0,r3
- 2163 0008 0421     	 mov r1,#4
- 2164 000a FFF7FEFF 	 bl average
- 2165 000e 021C     	 add r2,r0,#0
- 2166 0010 4D4B     	 ldr r3,.L112+4
- 2167 0012 1A60     	 str r2,[r3]
- 256:../Driving_dynamics.c **** 
- 257:../Driving_dynamics.c **** 	switch(Steering_mode) // options 'Front'; 'Rear'; '4_Wheel'; 'Carb'; 'Rotate'
- 2168              	 .loc 3 257 0
- 2169 0014 4D4B     	 ldr r3,.L112+8
- 2170 0016 1B78     	 ldrb r3,[r3]
- 2171 0018 DBB2     	 uxtb r3,r3
- 2172 001a 052B     	 cmp r3,#5
- 2173 001c 5BD8     	 bhi .L104
- 2174 001e 9A00     	 lsl r2,r3,#2
- 2175 0020 4B4B     	 ldr r3,.L112+12
- 2176 0022 D318     	 add r3,r2,r3
- 2177 0024 1B68     	 ldr r3,[r3]
- 2178 0026 9F46     	 mov pc,r3
- 2179              	 .section .rodata.Trajcetory_calc,"a",%progbits
- 2180              	 .align 2
- 2181              	.L106:
- 2182 0000 D6000000 	 .word .L104
- 2183 0004 E4000000 	 .word .L111
- 2184 0008 E4000000 	 .word .L111
- 2185 000c E4000000 	 .word .L111
- 2186 0010 28000000 	 .word .L108
- 2187 0014 E4000000 	 .word .L111
- 2188              	 .section .text.Trajcetory_calc
- 2189              	.L108:
- 258:../Driving_dynamics.c **** 		{
- 259:../Driving_dynamics.c **** 			case FRONT://#############################################################
- 260:../Driving_dynamics.c **** 				//trajctory_x =
- 261:../Driving_dynamics.c **** 				break;
- 262:../Driving_dynamics.c **** 
- 263:../Driving_dynamics.c **** 			case BACK:// rear #############################################################
- 264:../Driving_dynamics.c **** 
- 265:../Driving_dynamics.c **** 
- 266:../Driving_dynamics.c **** 			case ALL_WHEEL: // 4 wheel #############################################################
- 267:../Driving_dynamics.c **** 
- 268:../Driving_dynamics.c **** 				break;
- 269:../Driving_dynamics.c **** 
- 270:../Driving_dynamics.c **** 			case CRAB:  //carb //#############################################################
- 271:../Driving_dynamics.c **** 				trajctory_x = avg_Speeds * cos(Steering_Angles[0] / RAD_TO_DEG);
- 2190              	 .loc 3 271 0
- 2191 0028 474B     	 ldr r3,.L112+4
- 2192 002a 1B68     	 ldr r3,[r3]
- 2193 002c 181C     	 add r0,r3,#0
- 2194 002e FFF7FEFF 	 bl __aeabi_f2d
- 2195 0032 051C     	 mov r5,r0
- 2196 0034 0E1C     	 mov r6,r1
- 2197 0036 474B     	 ldr r3,.L112+16
- 2198 0038 1B68     	 ldr r3,[r3]
- 2199 003a 181C     	 add r0,r3,#0
- 2200 003c FFF7FEFF 	 bl __aeabi_f2d
- 2201 0040 031C     	 mov r3,r0
- 2202 0042 0C1C     	 mov r4,r1
- 2203 0044 181C     	 mov r0,r3
- 2204 0046 211C     	 mov r1,r4
- 2205 0048 434A     	 ldr r2,.L112+20
- 2206 004a 444B     	 ldr r3,.L112+24
- 2207 004c FFF7FEFF 	 bl __aeabi_ddiv
- 2208 0050 031C     	 mov r3,r0
- 2209 0052 0C1C     	 mov r4,r1
- 2210 0054 181C     	 mov r0,r3
- 2211 0056 211C     	 mov r1,r4
- 2212 0058 FFF7FEFF 	 bl cos
- 2213 005c 031C     	 mov r3,r0
- 2214 005e 0C1C     	 mov r4,r1
- 2215 0060 281C     	 mov r0,r5
- 2216 0062 311C     	 mov r1,r6
- 2217 0064 1A1C     	 mov r2,r3
- 2218 0066 231C     	 mov r3,r4
- 2219 0068 FFF7FEFF 	 bl __aeabi_dmul
- 2220 006c 031C     	 mov r3,r0
- 2221 006e 0C1C     	 mov r4,r1
- 2222 0070 181C     	 mov r0,r3
- 2223 0072 211C     	 mov r1,r4
- 2224 0074 FFF7FEFF 	 bl __aeabi_d2f
- 2225 0078 021C     	 add r2,r0,#0
- 2226 007a 394B     	 ldr r3,.L112+28
- 2227 007c 1A60     	 str r2,[r3]
- 272:../Driving_dynamics.c **** 				trajctory_y = avg_Speeds * sin(Steering_Angles[0] / RAD_TO_DEG);
- 2228              	 .loc 3 272 0
- 2229 007e 324B     	 ldr r3,.L112+4
- 2230 0080 1B68     	 ldr r3,[r3]
- 2231 0082 181C     	 add r0,r3,#0
- 2232 0084 FFF7FEFF 	 bl __aeabi_f2d
- 2233 0088 051C     	 mov r5,r0
- 2234 008a 0E1C     	 mov r6,r1
- 2235 008c 314B     	 ldr r3,.L112+16
- 2236 008e 1B68     	 ldr r3,[r3]
- 2237 0090 181C     	 add r0,r3,#0
- 2238 0092 FFF7FEFF 	 bl __aeabi_f2d
- 2239 0096 031C     	 mov r3,r0
- 2240 0098 0C1C     	 mov r4,r1
- 2241 009a 181C     	 mov r0,r3
- 2242 009c 211C     	 mov r1,r4
- 2243 009e 2E4A     	 ldr r2,.L112+20
- 2244 00a0 2E4B     	 ldr r3,.L112+24
- 2245 00a2 FFF7FEFF 	 bl __aeabi_ddiv
- 2246 00a6 031C     	 mov r3,r0
- 2247 00a8 0C1C     	 mov r4,r1
- 2248 00aa 181C     	 mov r0,r3
- 2249 00ac 211C     	 mov r1,r4
- 2250 00ae FFF7FEFF 	 bl sin
- 2251 00b2 031C     	 mov r3,r0
- 2252 00b4 0C1C     	 mov r4,r1
- 2253 00b6 281C     	 mov r0,r5
- 2254 00b8 311C     	 mov r1,r6
- 2255 00ba 1A1C     	 mov r2,r3
- 2256 00bc 231C     	 mov r3,r4
- 2257 00be FFF7FEFF 	 bl __aeabi_dmul
- 2258 00c2 031C     	 mov r3,r0
- 2259 00c4 0C1C     	 mov r4,r1
- 2260 00c6 181C     	 mov r0,r3
- 2261 00c8 211C     	 mov r1,r4
- 2262 00ca FFF7FEFF 	 bl __aeabi_d2f
- 2263 00ce 021C     	 add r2,r0,#0
- 2264 00d0 244B     	 ldr r3,.L112+32
- 2265 00d2 1A60     	 str r2,[r3]
- 273:../Driving_dynamics.c **** 
- 274:../Driving_dynamics.c **** 
- 275:../Driving_dynamics.c **** 				break;
- 2266              	 .loc 3 275 0
- 2267 00d4 07E0     	 b .L110
- 2268              	.L104:
- 276:../Driving_dynamics.c **** 
- 277:../Driving_dynamics.c **** 			case ROTATE: // rotate ############################################################
- 278:../Driving_dynamics.c **** 
- 279:../Driving_dynamics.c **** 				break;
- 280:../Driving_dynamics.c **** 
- 281:../Driving_dynamics.c **** 			default :
- 282:../Driving_dynamics.c **** 
- 283:../Driving_dynamics.c **** 			trajctory_x = 0;
- 2269              	 .loc 3 283 0
- 2270 00d6 224B     	 ldr r3,.L112+28
- 2271 00d8 0022     	 mov r2,#0
- 2272 00da 1A60     	 str r2,[r3]
- 284:../Driving_dynamics.c **** 			trajctory_y = 0;
- 2273              	 .loc 3 284 0
- 2274 00dc 214B     	 ldr r3,.L112+32
- 2275 00de 0022     	 mov r2,#0
- 2276 00e0 1A60     	 str r2,[r3]
- 2277 00e2 00E0     	 b .L110
- 2278              	.L111:
+ 255:../Driving_dynamics.c ****   Speeds[0] = speed_fl;
+ 2186              	 .loc 3 255 0
+ 2187 0eda 154B     	 ldr r3,.L110+48
+ 2188 0edc 1A68     	 ldr r2,[r3]
+ 2189 0ede 2A4B     	 ldr r3,.L110+136
+ 2190 0ee0 1A60     	 str r2,[r3]
+ 256:../Driving_dynamics.c ****   Speeds[1] = speed_fr;
+ 2191              	 .loc 3 256 0
+ 2192 0ee2 144B     	 ldr r3,.L110+52
+ 2193 0ee4 1A68     	 ldr r2,[r3]
+ 2194 0ee6 284B     	 ldr r3,.L110+136
+ 2195 0ee8 5A60     	 str r2,[r3,#4]
+ 257:../Driving_dynamics.c ****   Speeds[2] = speed_rl;
+ 2196              	 .loc 3 257 0
+ 2197 0eea 134B     	 ldr r3,.L110+56
+ 2198 0eec 1A68     	 ldr r2,[r3]
+ 2199 0eee 264B     	 ldr r3,.L110+136
+ 2200 0ef0 9A60     	 str r2,[r3,#8]
+ 258:../Driving_dynamics.c ****   Speeds[3] = speed_rr;
+ 2201              	 .loc 3 258 0
+ 2202 0ef2 124B     	 ldr r3,.L110+60
+ 2203 0ef4 1A68     	 ldr r2,[r3]
+ 2204 0ef6 244B     	 ldr r3,.L110+136
+ 2205 0ef8 DA60     	 str r2,[r3,#12]
+ 259:../Driving_dynamics.c **** 
+ 260:../Driving_dynamics.c **** }
+ 2206              	 .loc 3 260 0
+ 2207 0efa BD46     	 mov sp,r7
+ 2208 0efc 07B0     	 add sp,sp,#28
+ 2209              	 
+ 2210 0efe F0BD     	 pop {r4,r5,r6,r7,pc}
+ 2211              	.L111:
+ 2212              	 .align 2
+ 2213              	.L110:
+ 2214 0f00 00000000 	 .word R_Turn
+ 2215 0f04 77BE9F1A 	 .word 446676599
+ 2216 0f08 2FDDC43F 	 .word 1069866287
+ 2217 0f0c 79E92631 	 .word 824633721
+ 2218 0f10 08ACDC3F 	 .word 1071426568
+ 2219 0f14 C7F48425 	 .word 629470407
+ 2220 0f18 1EA64C40 	 .word 1078765086
+ 2221 0f1c 00000000 	 .word angle_fl
+ 2222 0f20 00000000 	 .word angle_fr
+ 2223 0f24 00000000 	 .word angle_rl
+ 2224 0f28 00000000 	 .word angle_rr
+ 2225 0f2c 00000000 	 .word Speed_ratio
+ 2226 0f30 00000000 	 .word speed_fl
+ 2227 0f34 00000000 	 .word speed_fr
+ 2228 0f38 00000000 	 .word speed_rl
+ 2229 0f3c 00000000 	 .word speed_rr
+ 2230 0f40 00002040 	 .word 1075838976
+ 2231 0f44 00003E43 	 .word 1128136704
+ 2232 0f48 00003EC3 	 .word -1019346944
+ 2233 0f4c 85EB93C2 	 .word -1030493307
+ 2234 0f50 85EB9342 	 .word 1116990341
+ 2235 0f54 00002041 	 .word 1092616192
+ 2236 0f58 CDCCCCBE 	 .word -1093874483
+ 2237 0f5c CDCCCC3E 	 .word 1053609165
+ 2238 0f60 000020C1 	 .word -1054867456
+ 2239 0f64 00000000 	 .word RC_AUX1_duty
+ 2240 0f68 00000000 	 .word captured_time_Speed
+ 2241 0f6c A0F01900 	 .word 1700000
+ 2242 0f70 00000000 	 .word NP
+ 2243 0f74 7F4F1200 	 .word 1199999
+ 2244 0f78 00000000 	 .word RC_Steering
+ 2245 0f7c 0000F041 	 .word 1106247680
+ 2246 0f80 0000F0C1 	 .word -1041235968
+ 2247 0f84 00000000 	 .word Steering_Angles
+ 2248 0f88 00000000 	 .word Speeds
+ 2249              	 .cfi_endproc
+ 2250              	.LFE224:
+ 2252              	 .section .text.Trajcetory_calc,"ax",%progbits
+ 2253              	 .align 2
+ 2254              	 .global Trajcetory_calc
+ 2255              	 .code 16
+ 2256              	 .thumb_func
+ 2258              	Trajcetory_calc:
+ 2259              	.LFB225:
  261:../Driving_dynamics.c **** 
- 2279              	 .loc 3 261 0
- 2280 00e4 C046     	 mov r8,r8
- 2281              	.L110:
- 285:../Driving_dynamics.c **** 		}
+ 262:../Driving_dynamics.c **** 
+ 263:../Driving_dynamics.c **** void Trajcetory_calc(){
+ 2260              	 .loc 3 263 0
+ 2261              	 .cfi_startproc
+ 2262 0000 F8B5     	 push {r3,r4,r5,r6,r7,lr}
+ 2263              	.LCFI15:
+ 2264              	 .cfi_def_cfa_offset 24
+ 2265              	 .cfi_offset 3,-24
+ 2266              	 .cfi_offset 4,-20
+ 2267              	 .cfi_offset 5,-16
+ 2268              	 .cfi_offset 6,-12
+ 2269              	 .cfi_offset 7,-8
+ 2270              	 .cfi_offset 14,-4
+ 2271 0002 00AF     	 add r7,sp,#0
+ 2272              	.LCFI16:
+ 2273              	 .cfi_def_cfa_register 7
+ 264:../Driving_dynamics.c **** 
+ 265:../Driving_dynamics.c **** 	avg_Speeds = average(Speeds,4);
+ 2274              	 .loc 3 265 0
+ 2275 0004 4F4B     	 ldr r3,.L121
+ 2276 0006 181C     	 mov r0,r3
+ 2277 0008 0421     	 mov r1,#4
+ 2278 000a FFF7FEFF 	 bl average
+ 2279 000e 021C     	 add r2,r0,#0
+ 2280 0010 4D4B     	 ldr r3,.L121+4
+ 2281 0012 1A60     	 str r2,[r3]
+ 266:../Driving_dynamics.c **** 
+ 267:../Driving_dynamics.c **** 	switch(Steering_mode) // options 'Front'; 'Rear'; '4_Wheel'; 'Carb'; 'Rotate'
+ 2282              	 .loc 3 267 0
+ 2283 0014 4D4B     	 ldr r3,.L121+8
+ 2284 0016 1B78     	 ldrb r3,[r3]
+ 2285 0018 DBB2     	 uxtb r3,r3
+ 2286 001a 052B     	 cmp r3,#5
+ 2287 001c 5BD8     	 bhi .L113
+ 2288 001e 9A00     	 lsl r2,r3,#2
+ 2289 0020 4B4B     	 ldr r3,.L121+12
+ 2290 0022 D318     	 add r3,r2,r3
+ 2291 0024 1B68     	 ldr r3,[r3]
+ 2292 0026 9F46     	 mov pc,r3
+ 2293              	 .section .rodata.Trajcetory_calc,"a",%progbits
+ 2294              	 .align 2
+ 2295              	.L115:
+ 2296 0000 D6000000 	 .word .L113
+ 2297 0004 E4000000 	 .word .L120
+ 2298 0008 E4000000 	 .word .L120
+ 2299 000c E4000000 	 .word .L120
+ 2300 0010 28000000 	 .word .L117
+ 2301 0014 E4000000 	 .word .L120
+ 2302              	 .section .text.Trajcetory_calc
+ 2303              	.L117:
+ 268:../Driving_dynamics.c **** 		{
+ 269:../Driving_dynamics.c **** 			case FRONT://#############################################################
+ 270:../Driving_dynamics.c **** 				//trajctory_x =
+ 271:../Driving_dynamics.c **** 				break;
+ 272:../Driving_dynamics.c **** 
+ 273:../Driving_dynamics.c **** 			case BACK:// rear #############################################################
+ 274:../Driving_dynamics.c **** 
+ 275:../Driving_dynamics.c **** 
+ 276:../Driving_dynamics.c **** 			case ALL_WHEEL: // 4 wheel #############################################################
+ 277:../Driving_dynamics.c **** 
+ 278:../Driving_dynamics.c **** 				break;
+ 279:../Driving_dynamics.c **** 
+ 280:../Driving_dynamics.c **** 			case CRAB:  //carb //#############################################################
+ 281:../Driving_dynamics.c **** 				trajctory_x = avg_Speeds * cos(Steering_Angles[0] / RAD_TO_DEG);
+ 2304              	 .loc 3 281 0
+ 2305 0028 474B     	 ldr r3,.L121+4
+ 2306 002a 1B68     	 ldr r3,[r3]
+ 2307 002c 181C     	 add r0,r3,#0
+ 2308 002e FFF7FEFF 	 bl __aeabi_f2d
+ 2309 0032 051C     	 mov r5,r0
+ 2310 0034 0E1C     	 mov r6,r1
+ 2311 0036 474B     	 ldr r3,.L121+16
+ 2312 0038 1B68     	 ldr r3,[r3]
+ 2313 003a 181C     	 add r0,r3,#0
+ 2314 003c FFF7FEFF 	 bl __aeabi_f2d
+ 2315 0040 031C     	 mov r3,r0
+ 2316 0042 0C1C     	 mov r4,r1
+ 2317 0044 181C     	 mov r0,r3
+ 2318 0046 211C     	 mov r1,r4
+ 2319 0048 434A     	 ldr r2,.L121+20
+ 2320 004a 444B     	 ldr r3,.L121+24
+ 2321 004c FFF7FEFF 	 bl __aeabi_ddiv
+ 2322 0050 031C     	 mov r3,r0
+ 2323 0052 0C1C     	 mov r4,r1
+ 2324 0054 181C     	 mov r0,r3
+ 2325 0056 211C     	 mov r1,r4
+ 2326 0058 FFF7FEFF 	 bl cos
+ 2327 005c 031C     	 mov r3,r0
+ 2328 005e 0C1C     	 mov r4,r1
+ 2329 0060 281C     	 mov r0,r5
+ 2330 0062 311C     	 mov r1,r6
+ 2331 0064 1A1C     	 mov r2,r3
+ 2332 0066 231C     	 mov r3,r4
+ 2333 0068 FFF7FEFF 	 bl __aeabi_dmul
+ 2334 006c 031C     	 mov r3,r0
+ 2335 006e 0C1C     	 mov r4,r1
+ 2336 0070 181C     	 mov r0,r3
+ 2337 0072 211C     	 mov r1,r4
+ 2338 0074 FFF7FEFF 	 bl __aeabi_d2f
+ 2339 0078 021C     	 add r2,r0,#0
+ 2340 007a 394B     	 ldr r3,.L121+28
+ 2341 007c 1A60     	 str r2,[r3]
+ 282:../Driving_dynamics.c **** 				trajctory_y = avg_Speeds * sin(Steering_Angles[0] / RAD_TO_DEG);
+ 2342              	 .loc 3 282 0
+ 2343 007e 324B     	 ldr r3,.L121+4
+ 2344 0080 1B68     	 ldr r3,[r3]
+ 2345 0082 181C     	 add r0,r3,#0
+ 2346 0084 FFF7FEFF 	 bl __aeabi_f2d
+ 2347 0088 051C     	 mov r5,r0
+ 2348 008a 0E1C     	 mov r6,r1
+ 2349 008c 314B     	 ldr r3,.L121+16
+ 2350 008e 1B68     	 ldr r3,[r3]
+ 2351 0090 181C     	 add r0,r3,#0
+ 2352 0092 FFF7FEFF 	 bl __aeabi_f2d
+ 2353 0096 031C     	 mov r3,r0
+ 2354 0098 0C1C     	 mov r4,r1
+ 2355 009a 181C     	 mov r0,r3
+ 2356 009c 211C     	 mov r1,r4
+ 2357 009e 2E4A     	 ldr r2,.L121+20
+ 2358 00a0 2E4B     	 ldr r3,.L121+24
+ 2359 00a2 FFF7FEFF 	 bl __aeabi_ddiv
+ 2360 00a6 031C     	 mov r3,r0
+ 2361 00a8 0C1C     	 mov r4,r1
+ 2362 00aa 181C     	 mov r0,r3
+ 2363 00ac 211C     	 mov r1,r4
+ 2364 00ae FFF7FEFF 	 bl sin
+ 2365 00b2 031C     	 mov r3,r0
+ 2366 00b4 0C1C     	 mov r4,r1
+ 2367 00b6 281C     	 mov r0,r5
+ 2368 00b8 311C     	 mov r1,r6
+ 2369 00ba 1A1C     	 mov r2,r3
+ 2370 00bc 231C     	 mov r3,r4
+ 2371 00be FFF7FEFF 	 bl __aeabi_dmul
+ 2372 00c2 031C     	 mov r3,r0
+ 2373 00c4 0C1C     	 mov r4,r1
+ 2374 00c6 181C     	 mov r0,r3
+ 2375 00c8 211C     	 mov r1,r4
+ 2376 00ca FFF7FEFF 	 bl __aeabi_d2f
+ 2377 00ce 021C     	 add r2,r0,#0
+ 2378 00d0 244B     	 ldr r3,.L121+32
+ 2379 00d2 1A60     	 str r2,[r3]
+ 283:../Driving_dynamics.c **** 
+ 284:../Driving_dynamics.c **** 
+ 285:../Driving_dynamics.c **** 				break;
+ 2380              	 .loc 3 285 0
+ 2381 00d4 07E0     	 b .L119
+ 2382              	.L113:
  286:../Driving_dynamics.c **** 
- 287:../Driving_dynamics.c **** 	//trajectory_angle = angel_of_2D_vetor_deg(Trajctory); // atan(trajctory_x / trajctory_y) / RAD_TO
- 288:../Driving_dynamics.c **** 	Trajctory[0] = trajctory_x;
- 2282              	 .loc 3 288 0
- 2283 00e6 1E4B     	 ldr r3,.L112+28
- 2284 00e8 1A68     	 ldr r2,[r3]
- 2285 00ea 1F4B     	 ldr r3,.L112+36
- 2286 00ec 1A60     	 str r2,[r3]
- 289:../Driving_dynamics.c **** 	Trajctory[1] = trajctory_y;
- 2287              	 .loc 3 289 0
- 2288 00ee 1D4B     	 ldr r3,.L112+32
- 2289 00f0 1A68     	 ldr r2,[r3]
- 2290 00f2 1D4B     	 ldr r3,.L112+36
- 2291 00f4 5A60     	 str r2,[r3,#4]
- 290:../Driving_dynamics.c **** 	trajectory_angle = atan2(trajctory_y,trajctory_x) * RAD_TO_DEG;
- 2292              	 .loc 3 290 0
- 2293 00f6 1B4B     	 ldr r3,.L112+32
- 2294 00f8 1B68     	 ldr r3,[r3]
- 2295 00fa 181C     	 add r0,r3,#0
- 2296 00fc FFF7FEFF 	 bl __aeabi_f2d
- 2297 0100 051C     	 mov r5,r0
- 2298 0102 0E1C     	 mov r6,r1
- 2299 0104 164B     	 ldr r3,.L112+28
- 2300 0106 1B68     	 ldr r3,[r3]
- 2301 0108 181C     	 add r0,r3,#0
- 2302 010a FFF7FEFF 	 bl __aeabi_f2d
- 2303 010e 031C     	 mov r3,r0
- 2304 0110 0C1C     	 mov r4,r1
- 2305 0112 281C     	 mov r0,r5
- 2306 0114 311C     	 mov r1,r6
- 2307 0116 1A1C     	 mov r2,r3
- 2308 0118 231C     	 mov r3,r4
- 2309 011a FFF7FEFF 	 bl atan2
- 2310 011e 031C     	 mov r3,r0
- 2311 0120 0C1C     	 mov r4,r1
- 2312 0122 181C     	 mov r0,r3
- 2313 0124 211C     	 mov r1,r4
- 2314 0126 0C4A     	 ldr r2,.L112+20
- 2315 0128 0C4B     	 ldr r3,.L112+24
- 2316 012a FFF7FEFF 	 bl __aeabi_dmul
- 2317 012e 031C     	 mov r3,r0
- 2318 0130 0C1C     	 mov r4,r1
- 2319 0132 181C     	 mov r0,r3
- 2320 0134 211C     	 mov r1,r4
- 2321 0136 FFF7FEFF 	 bl __aeabi_d2f
- 2322 013a 021C     	 add r2,r0,#0
- 2323 013c 0B4B     	 ldr r3,.L112+40
- 2324 013e 1A60     	 str r2,[r3]
- 291:../Driving_dynamics.c **** }
- 2325              	 .loc 3 291 0
- 2326 0140 BD46     	 mov sp,r7
- 2327              	 
- 2328 0142 F8BD     	 pop {r3,r4,r5,r6,r7,pc}
- 2329              	.L113:
- 2330              	 .align 2
- 2331              	.L112:
- 2332 0144 00000000 	 .word Speeds
- 2333 0148 00000000 	 .word avg_Speeds
- 2334 014c 00000000 	 .word Steering_mode
- 2335 0150 00000000 	 .word .L106
- 2336 0154 00000000 	 .word Steering_Angles
- 2337 0158 C7F48425 	 .word 629470407
- 2338 015c 1EA64C40 	 .word 1078765086
- 2339 0160 00000000 	 .word trajctory_x
- 2340 0164 00000000 	 .word trajctory_y
- 2341 0168 00000000 	 .word Trajctory
- 2342 016c 00000000 	 .word trajectory_angle
- 2343              	 .cfi_endproc
- 2344              	.LFE225:
- 2346              	 .section .text.mode_led,"ax",%progbits
- 2347              	 .align 2
- 2348              	 .global mode_led
- 2349              	 .code 16
- 2350              	 .thumb_func
- 2352              	mode_led:
- 2353              	.LFB226:
+ 287:../Driving_dynamics.c **** 			case ROTATE: // rotate ############################################################
+ 288:../Driving_dynamics.c **** 
+ 289:../Driving_dynamics.c **** 				break;
+ 290:../Driving_dynamics.c **** 
+ 291:../Driving_dynamics.c **** 			default :
  292:../Driving_dynamics.c **** 
- 293:../Driving_dynamics.c **** 
- 294:../Driving_dynamics.c **** 
- 295:../Driving_dynamics.c **** void mode_led(uint8_t var){
- 2354              	 .loc 3 295 0
- 2355              	 .cfi_startproc
- 2356 0000 80B5     	 push {r7,lr}
- 2357              	.LCFI17:
- 2358              	 .cfi_def_cfa_offset 8
- 2359              	 .cfi_offset 7,-8
- 2360              	 .cfi_offset 14,-4
- 2361 0002 82B0     	 sub sp,sp,#8
- 2362              	.LCFI18:
- 2363              	 .cfi_def_cfa_offset 16
- 2364 0004 00AF     	 add r7,sp,#0
- 2365              	.LCFI19:
- 2366              	 .cfi_def_cfa_register 7
- 2367 0006 021C     	 mov r2,r0
- 2368 0008 FB1D     	 add r3,r7,#7
- 2369 000a 1A70     	 strb r2,[r3]
- 296:../Driving_dynamics.c **** 	if(CHECK_BIT(var,0)){
- 2370              	 .loc 3 296 0
- 2371 000c FB1D     	 add r3,r7,#7
- 2372 000e 1B78     	 ldrb r3,[r3]
- 2373 0010 0122     	 mov r2,#1
- 2374 0012 1340     	 and r3,r2
- 2375 0014 04D0     	 beq .L115
- 297:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputLow(&MODE_001);
- 2376              	 .loc 3 297 0
- 2377 0016 174B     	 ldr r3,.L121
- 2378 0018 181C     	 mov r0,r3
- 2379 001a FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 2380 001e 03E0     	 b .L116
- 2381              	.L115:
- 298:../Driving_dynamics.c **** 	}
- 299:../Driving_dynamics.c **** 	else{
- 300:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputHigh(&MODE_001);
- 2382              	 .loc 3 300 0
- 2383 0020 144B     	 ldr r3,.L121
- 2384 0022 181C     	 mov r0,r3
- 2385 0024 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
- 2386              	.L116:
- 301:../Driving_dynamics.c **** 	}
+ 293:../Driving_dynamics.c **** 			trajctory_x = 0;
+ 2383              	 .loc 3 293 0
+ 2384 00d6 224B     	 ldr r3,.L121+28
+ 2385 00d8 0022     	 mov r2,#0
+ 2386 00da 1A60     	 str r2,[r3]
+ 294:../Driving_dynamics.c **** 			trajctory_y = 0;
+ 2387              	 .loc 3 294 0
+ 2388 00dc 214B     	 ldr r3,.L121+32
+ 2389 00de 0022     	 mov r2,#0
+ 2390 00e0 1A60     	 str r2,[r3]
+ 2391 00e2 00E0     	 b .L119
+ 2392              	.L120:
+ 271:../Driving_dynamics.c **** 
+ 2393              	 .loc 3 271 0
+ 2394 00e4 C046     	 mov r8,r8
+ 2395              	.L119:
+ 295:../Driving_dynamics.c **** 		}
+ 296:../Driving_dynamics.c **** 
+ 297:../Driving_dynamics.c **** 	//trajectory_angle = angel_of_2D_vetor_deg(Trajctory); // atan(trajctory_x / trajctory_y) / RAD_TO
+ 298:../Driving_dynamics.c **** 	Trajctory[0] = trajctory_x;
+ 2396              	 .loc 3 298 0
+ 2397 00e6 1E4B     	 ldr r3,.L121+28
+ 2398 00e8 1A68     	 ldr r2,[r3]
+ 2399 00ea 1F4B     	 ldr r3,.L121+36
+ 2400 00ec 1A60     	 str r2,[r3]
+ 299:../Driving_dynamics.c **** 	Trajctory[1] = trajctory_y;
+ 2401              	 .loc 3 299 0
+ 2402 00ee 1D4B     	 ldr r3,.L121+32
+ 2403 00f0 1A68     	 ldr r2,[r3]
+ 2404 00f2 1D4B     	 ldr r3,.L121+36
+ 2405 00f4 5A60     	 str r2,[r3,#4]
+ 300:../Driving_dynamics.c **** 	trajectory_angle = atan2(trajctory_y,trajctory_x) * RAD_TO_DEG;
+ 2406              	 .loc 3 300 0
+ 2407 00f6 1B4B     	 ldr r3,.L121+32
+ 2408 00f8 1B68     	 ldr r3,[r3]
+ 2409 00fa 181C     	 add r0,r3,#0
+ 2410 00fc FFF7FEFF 	 bl __aeabi_f2d
+ 2411 0100 051C     	 mov r5,r0
+ 2412 0102 0E1C     	 mov r6,r1
+ 2413 0104 164B     	 ldr r3,.L121+28
+ 2414 0106 1B68     	 ldr r3,[r3]
+ 2415 0108 181C     	 add r0,r3,#0
+ 2416 010a FFF7FEFF 	 bl __aeabi_f2d
+ 2417 010e 031C     	 mov r3,r0
+ 2418 0110 0C1C     	 mov r4,r1
+ 2419 0112 281C     	 mov r0,r5
+ 2420 0114 311C     	 mov r1,r6
+ 2421 0116 1A1C     	 mov r2,r3
+ 2422 0118 231C     	 mov r3,r4
+ 2423 011a FFF7FEFF 	 bl atan2
+ 2424 011e 031C     	 mov r3,r0
+ 2425 0120 0C1C     	 mov r4,r1
+ 2426 0122 181C     	 mov r0,r3
+ 2427 0124 211C     	 mov r1,r4
+ 2428 0126 0C4A     	 ldr r2,.L121+20
+ 2429 0128 0C4B     	 ldr r3,.L121+24
+ 2430 012a FFF7FEFF 	 bl __aeabi_dmul
+ 2431 012e 031C     	 mov r3,r0
+ 2432 0130 0C1C     	 mov r4,r1
+ 2433 0132 181C     	 mov r0,r3
+ 2434 0134 211C     	 mov r1,r4
+ 2435 0136 FFF7FEFF 	 bl __aeabi_d2f
+ 2436 013a 021C     	 add r2,r0,#0
+ 2437 013c 0B4B     	 ldr r3,.L121+40
+ 2438 013e 1A60     	 str r2,[r3]
+ 301:../Driving_dynamics.c **** }
+ 2439              	 .loc 3 301 0
+ 2440 0140 BD46     	 mov sp,r7
+ 2441              	 
+ 2442 0142 F8BD     	 pop {r3,r4,r5,r6,r7,pc}
+ 2443              	.L122:
+ 2444              	 .align 2
+ 2445              	.L121:
+ 2446 0144 00000000 	 .word Speeds
+ 2447 0148 00000000 	 .word avg_Speeds
+ 2448 014c 00000000 	 .word Steering_mode
+ 2449 0150 00000000 	 .word .L115
+ 2450 0154 00000000 	 .word Steering_Angles
+ 2451 0158 C7F48425 	 .word 629470407
+ 2452 015c 1EA64C40 	 .word 1078765086
+ 2453 0160 00000000 	 .word trajctory_x
+ 2454 0164 00000000 	 .word trajctory_y
+ 2455 0168 00000000 	 .word Trajctory
+ 2456 016c 00000000 	 .word trajectory_angle
+ 2457              	 .cfi_endproc
+ 2458              	.LFE225:
+ 2460              	 .section .text.mode_led,"ax",%progbits
+ 2461              	 .align 2
+ 2462              	 .global mode_led
+ 2463              	 .code 16
+ 2464              	 .thumb_func
+ 2466              	mode_led:
+ 2467              	.LFB226:
  302:../Driving_dynamics.c **** 
- 303:../Driving_dynamics.c **** 	if(CHECK_BIT(var,1)){
- 2387              	 .loc 3 303 0
- 2388 0028 FB1D     	 add r3,r7,#7
- 2389 002a 1B78     	 ldrb r3,[r3]
- 2390 002c 5B08     	 lsr r3,r3,#1
- 2391 002e DBB2     	 uxtb r3,r3
- 2392 0030 1A1C     	 mov r2,r3
- 2393 0032 0123     	 mov r3,#1
- 2394 0034 1340     	 and r3,r2
- 2395 0036 04D0     	 beq .L117
- 304:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputLow(&MODE_010);
- 2396              	 .loc 3 304 0
- 2397 0038 0F4B     	 ldr r3,.L121+4
- 2398 003a 181C     	 mov r0,r3
- 2399 003c FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 2400 0040 03E0     	 b .L118
- 2401              	.L117:
- 305:../Driving_dynamics.c **** 	}
- 306:../Driving_dynamics.c **** 	else{
- 307:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputHigh(&MODE_010);
- 2402              	 .loc 3 307 0
- 2403 0042 0D4B     	 ldr r3,.L121+4
- 2404 0044 181C     	 mov r0,r3
- 2405 0046 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
- 2406              	.L118:
+ 303:../Driving_dynamics.c **** 
+ 304:../Driving_dynamics.c **** 
+ 305:../Driving_dynamics.c **** void mode_led(uint8_t var){
+ 2468              	 .loc 3 305 0
+ 2469              	 .cfi_startproc
+ 2470 0000 80B5     	 push {r7,lr}
+ 2471              	.LCFI17:
+ 2472              	 .cfi_def_cfa_offset 8
+ 2473              	 .cfi_offset 7,-8
+ 2474              	 .cfi_offset 14,-4
+ 2475 0002 82B0     	 sub sp,sp,#8
+ 2476              	.LCFI18:
+ 2477              	 .cfi_def_cfa_offset 16
+ 2478 0004 00AF     	 add r7,sp,#0
+ 2479              	.LCFI19:
+ 2480              	 .cfi_def_cfa_register 7
+ 2481 0006 021C     	 mov r2,r0
+ 2482 0008 FB1D     	 add r3,r7,#7
+ 2483 000a 1A70     	 strb r2,[r3]
+ 306:../Driving_dynamics.c **** 	if(CHECK_BIT(var,0)){
+ 2484              	 .loc 3 306 0
+ 2485 000c FB1D     	 add r3,r7,#7
+ 2486 000e 1B78     	 ldrb r3,[r3]
+ 2487 0010 0122     	 mov r2,#1
+ 2488 0012 1340     	 and r3,r2
+ 2489 0014 04D0     	 beq .L124
+ 307:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputLow(&MODE_001);
+ 2490              	 .loc 3 307 0
+ 2491 0016 174B     	 ldr r3,.L130
+ 2492 0018 181C     	 mov r0,r3
+ 2493 001a FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 2494 001e 03E0     	 b .L125
+ 2495              	.L124:
  308:../Driving_dynamics.c **** 	}
- 309:../Driving_dynamics.c **** 
- 310:../Driving_dynamics.c **** 	if(CHECK_BIT(var,2)){
- 2407              	 .loc 3 310 0
- 2408 004a FB1D     	 add r3,r7,#7
- 2409 004c 1B78     	 ldrb r3,[r3]
- 2410 004e 9B08     	 lsr r3,r3,#2
- 2411 0050 DBB2     	 uxtb r3,r3
- 2412 0052 1A1C     	 mov r2,r3
- 2413 0054 0123     	 mov r3,#1
- 2414 0056 1340     	 and r3,r2
- 2415 0058 04D0     	 beq .L119
- 311:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputLow(&MODE_100);
- 2416              	 .loc 3 311 0
- 2417 005a 084B     	 ldr r3,.L121+8
- 2418 005c 181C     	 mov r0,r3
- 2419 005e FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
- 2420 0062 03E0     	 b .L114
- 2421              	.L119:
- 312:../Driving_dynamics.c **** 	}
- 313:../Driving_dynamics.c **** 	else{
- 314:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputHigh(&MODE_100);
- 2422              	 .loc 3 314 0
- 2423 0064 054B     	 ldr r3,.L121+8
- 2424 0066 181C     	 mov r0,r3
- 2425 0068 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
- 2426              	.L114:
+ 309:../Driving_dynamics.c **** 	else{
+ 310:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputHigh(&MODE_001);
+ 2496              	 .loc 3 310 0
+ 2497 0020 144B     	 ldr r3,.L130
+ 2498 0022 181C     	 mov r0,r3
+ 2499 0024 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 2500              	.L125:
+ 311:../Driving_dynamics.c **** 	}
+ 312:../Driving_dynamics.c **** 
+ 313:../Driving_dynamics.c **** 	if(CHECK_BIT(var,1)){
+ 2501              	 .loc 3 313 0
+ 2502 0028 FB1D     	 add r3,r7,#7
+ 2503 002a 1B78     	 ldrb r3,[r3]
+ 2504 002c 5B08     	 lsr r3,r3,#1
+ 2505 002e DBB2     	 uxtb r3,r3
+ 2506 0030 1A1C     	 mov r2,r3
+ 2507 0032 0123     	 mov r3,#1
+ 2508 0034 1340     	 and r3,r2
+ 2509 0036 04D0     	 beq .L126
+ 314:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputLow(&MODE_010);
+ 2510              	 .loc 3 314 0
+ 2511 0038 0F4B     	 ldr r3,.L130+4
+ 2512 003a 181C     	 mov r0,r3
+ 2513 003c FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 2514 0040 03E0     	 b .L127
+ 2515              	.L126:
  315:../Driving_dynamics.c **** 	}
- 316:../Driving_dynamics.c **** }
- 2427              	 .loc 3 316 0
- 2428 006c BD46     	 mov sp,r7
- 2429 006e 02B0     	 add sp,sp,#8
- 2430              	 
- 2431 0070 80BD     	 pop {r7,pc}
- 2432              	.L122:
- 2433 0072 C046     	 .align 2
- 2434              	.L121:
- 2435 0074 00000000 	 .word MODE_001
- 2436 0078 00000000 	 .word MODE_010
- 2437 007c 00000000 	 .word MODE_100
- 2438              	 .cfi_endproc
- 2439              	.LFE226:
- 2441              	 .text
- 2442              	.Letext0:
- 2443              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 2444              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 2445              	 .file 6 "../Globals.h"
- 2446              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
- 2447              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 2448              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 2449              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 316:../Driving_dynamics.c **** 	else{
+ 317:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputHigh(&MODE_010);
+ 2516              	 .loc 3 317 0
+ 2517 0042 0D4B     	 ldr r3,.L130+4
+ 2518 0044 181C     	 mov r0,r3
+ 2519 0046 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 2520              	.L127:
+ 318:../Driving_dynamics.c **** 	}
+ 319:../Driving_dynamics.c **** 
+ 320:../Driving_dynamics.c **** 	if(CHECK_BIT(var,2)){
+ 2521              	 .loc 3 320 0
+ 2522 004a FB1D     	 add r3,r7,#7
+ 2523 004c 1B78     	 ldrb r3,[r3]
+ 2524 004e 9B08     	 lsr r3,r3,#2
+ 2525 0050 DBB2     	 uxtb r3,r3
+ 2526 0052 1A1C     	 mov r2,r3
+ 2527 0054 0123     	 mov r3,#1
+ 2528 0056 1340     	 and r3,r2
+ 2529 0058 04D0     	 beq .L128
+ 321:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputLow(&MODE_100);
+ 2530              	 .loc 3 321 0
+ 2531 005a 084B     	 ldr r3,.L130+8
+ 2532 005c 181C     	 mov r0,r3
+ 2533 005e FFF7FEFF 	 bl DIGITAL_IO_SetOutputLow
+ 2534 0062 03E0     	 b .L123
+ 2535              	.L128:
+ 322:../Driving_dynamics.c **** 	}
+ 323:../Driving_dynamics.c **** 	else{
+ 324:../Driving_dynamics.c **** 		DIGITAL_IO_SetOutputHigh(&MODE_100);
+ 2536              	 .loc 3 324 0
+ 2537 0064 054B     	 ldr r3,.L130+8
+ 2538 0066 181C     	 mov r0,r3
+ 2539 0068 FFF7FEFF 	 bl DIGITAL_IO_SetOutputHigh
+ 2540              	.L123:
+ 325:../Driving_dynamics.c **** 	}
+ 326:../Driving_dynamics.c **** }
+ 2541              	 .loc 3 326 0
+ 2542 006c BD46     	 mov sp,r7
+ 2543 006e 02B0     	 add sp,sp,#8
+ 2544              	 
+ 2545 0070 80BD     	 pop {r7,pc}
+ 2546              	.L131:
+ 2547 0072 C046     	 .align 2
+ 2548              	.L130:
+ 2549 0074 00000000 	 .word MODE_001
+ 2550 0078 00000000 	 .word MODE_010
+ 2551 007c 00000000 	 .word MODE_100
+ 2552              	 .cfi_endproc
+ 2553              	.LFE226:
+ 2555              	 .text
+ 2556              	.Letext0:
+ 2557              	 .file 4 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 2558              	 .file 5 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 2559              	 .file 6 "../Globals.h"
+ 2560              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 2561              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 2562              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 2563              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 2564              	 .file 11 "../RC_data_recive.h"
+ 2565              	 .file 12 "../Steering_Servos.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 Driving_dynamics.c
                             *COM*:00000001 RC_controll
@@ -3384,20 +3510,20 @@ DEFINED SYMBOLS
     {standard input}:277    .text.Steering_Function:00000000 $t
     {standard input}:282    .text.Steering_Function:00000000 Steering_Function
     {standard input}:426    .rodata.Steering_Function:00000000 $d
-    {standard input}:730    .text.Steering_Function:00000348 $d
-    {standard input}:760    .text.Steering_Function:000003b8 $t
-    {standard input}:1199   .text.Steering_Function:00000738 $d
-    {standard input}:1229   .text.Steering_Function:000007a8 $t
-    {standard input}:1686   .text.Steering_Function:00000b44 $d
-    {standard input}:1718   .text.Steering_Function:00000bbc $t
-    {standard input}:2108   .text.Steering_Function:00000e4c $d
-    {standard input}:2139   .text.Trajcetory_calc:00000000 $t
-    {standard input}:2144   .text.Trajcetory_calc:00000000 Trajcetory_calc
-    {standard input}:2180   .rodata.Trajcetory_calc:00000000 $d
-    {standard input}:2332   .text.Trajcetory_calc:00000144 $d
-    {standard input}:2347   .text.mode_led:00000000 $t
-    {standard input}:2352   .text.mode_led:00000000 mode_led
-    {standard input}:2435   .text.mode_led:00000074 $d
+    {standard input}:731    .text.Steering_Function:00000348 $d
+    {standard input}:761    .text.Steering_Function:000003b8 $t
+    {standard input}:1200   .text.Steering_Function:00000738 $d
+    {standard input}:1230   .text.Steering_Function:000007a8 $t
+    {standard input}:1687   .text.Steering_Function:00000b44 $d
+    {standard input}:1719   .text.Steering_Function:00000bbc $t
+    {standard input}:2214   .text.Steering_Function:00000f00 $d
+    {standard input}:2253   .text.Trajcetory_calc:00000000 $t
+    {standard input}:2258   .text.Trajcetory_calc:00000000 Trajcetory_calc
+    {standard input}:2294   .rodata.Trajcetory_calc:00000000 $d
+    {standard input}:2446   .text.Trajcetory_calc:00000144 $d
+    {standard input}:2461   .text.mode_led:00000000 $t
+    {standard input}:2466   .text.mode_led:00000000 mode_led
+    {standard input}:2549   .text.mode_led:00000074 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -3417,6 +3543,10 @@ within_MAX_MIN
 tan
 atan
 New_Input
+RC_AUX1_duty
+captured_time_Speed
+NP
+RC_Steering
 Steering_Angles
 Speeds
 average

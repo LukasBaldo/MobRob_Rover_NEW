@@ -76,7 +76,7 @@
    8:../Steering_Servos.c **** 
    9:../Steering_Servos.c **** #define deg_PWM  0.645 // deg to PWM singlan converstion factor
   10:../Steering_Servos.c **** 
-  11:../Steering_Servos.c **** uint16_t NP[4] = {840, 757, 628, 800}; //servo nutral points PWM duty values
+  11:../Steering_Servos.c **** volatile uint16_t NP[4] = {840, 757, 628, 800}; //servo nutral points PWM duty values
   12:../Steering_Servos.c **** uint16_t NPfl = 840; int NPfr = 757; int NPrl = 628; int NPrr = 800; // serov defalut 750
   13:../Steering_Servos.c **** 
   14:../Steering_Servos.c **** float Servo_PWMs[4] = {0, 0, 0, 0};
@@ -106,7 +106,7 @@
   99 000a FB18     	 add r3,r7,r3
  100 000c 0022     	 mov r2,#0
  101 000e 1A70     	 strb r2,[r3]
- 102 0010 62E0     	 b .L2
+ 102 0010 63E0     	 b .L2
  103              	.L7:
   18:../Steering_Servos.c **** 		Servo_PWMs[i] = -Angles_data[i]*deg_PWM + NP[i]; // calcuation of PWM for Angle on each wheel
  104              	 .loc 1 18 0
@@ -129,8 +129,8 @@
  121 0034 0B1C     	 mov r3,r1
  122 0036 101C     	 mov r0,r2
  123 0038 191C     	 mov r1,r3
- 124 003a 414A     	 ldr r2,.L11
- 125 003c 414B     	 ldr r3,.L11+4
+ 124 003a 424A     	 ldr r2,.L11
+ 125 003c 424B     	 ldr r3,.L11+4
  126 003e FFF7FEFF 	 bl __aeabi_dmul
  127 0042 021C     	 mov r2,r0
  128 0044 0B1C     	 mov r3,r1
@@ -139,234 +139,235 @@
  131 004a 0F23     	 mov r3,#15
  132 004c FB18     	 add r3,r7,r3
  133 004e 1A78     	 ldrb r2,[r3]
- 134 0050 3D4B     	 ldr r3,.L11+8
+ 134 0050 3E4B     	 ldr r3,.L11+8
  135 0052 5200     	 lsl r2,r2,#1
  136 0054 D35A     	 ldrh r3,[r2,r3]
- 137 0056 181C     	 mov r0,r3
- 138 0058 FFF7FEFF 	 bl __aeabi_i2d
- 139 005c 021C     	 mov r2,r0
- 140 005e 0B1C     	 mov r3,r1
- 141 0060 281C     	 mov r0,r5
- 142 0062 311C     	 mov r1,r6
- 143 0064 FFF7FEFF 	 bl __aeabi_dadd
- 144 0068 021C     	 mov r2,r0
- 145 006a 0B1C     	 mov r3,r1
- 146 006c 101C     	 mov r0,r2
- 147 006e 191C     	 mov r1,r3
- 148 0070 FFF7FEFF 	 bl __aeabi_d2f
- 149 0074 011C     	 add r1,r0,#0
- 150 0076 354B     	 ldr r3,.L11+12
- 151 0078 A200     	 lsl r2,r4,#2
- 152 007a D150     	 str r1,[r2,r3]
+ 137 0056 9BB2     	 uxth r3,r3
+ 138 0058 181C     	 mov r0,r3
+ 139 005a FFF7FEFF 	 bl __aeabi_i2d
+ 140 005e 021C     	 mov r2,r0
+ 141 0060 0B1C     	 mov r3,r1
+ 142 0062 281C     	 mov r0,r5
+ 143 0064 311C     	 mov r1,r6
+ 144 0066 FFF7FEFF 	 bl __aeabi_dadd
+ 145 006a 021C     	 mov r2,r0
+ 146 006c 0B1C     	 mov r3,r1
+ 147 006e 101C     	 mov r0,r2
+ 148 0070 191C     	 mov r1,r3
+ 149 0072 FFF7FEFF 	 bl __aeabi_d2f
+ 150 0076 011C     	 add r1,r0,#0
+ 151 0078 354B     	 ldr r3,.L11+12
+ 152 007a A200     	 lsl r2,r4,#2
+ 153 007c D150     	 str r1,[r2,r3]
   19:../Steering_Servos.c **** 
   20:../Steering_Servos.c **** 		//limitinbg max servor Angle to 1.75 rot in each dirction
   21:../Steering_Servos.c **** 		if(Servo_PWMs[i] > 950) { Servo_PWMs[i] = 950;}
- 153              	 .loc 1 21 0
- 154 007c 0F23     	 mov r3,#15
- 155 007e FB18     	 add r3,r7,r3
- 156 0080 1A78     	 ldrb r2,[r3]
- 157 0082 324B     	 ldr r3,.L11+12
- 158 0084 9200     	 lsl r2,r2,#2
- 159 0086 D358     	 ldr r3,[r2,r3]
- 160 0088 181C     	 add r0,r3,#0
- 161 008a 3149     	 ldr r1,.L11+16
- 162 008c FFF7FEFF 	 bl __aeabi_fcmpgt
- 163 0090 031E     	 sub r3,r0,#0
- 164 0092 07D0     	 beq .L10
- 165              	 .loc 1 21 0 is_stmt 0 discriminator 1
- 166 0094 0F23     	 mov r3,#15
- 167 0096 FB18     	 add r3,r7,r3
- 168 0098 1A78     	 ldrb r2,[r3]
- 169 009a 2C4B     	 ldr r3,.L11+12
- 170 009c 9200     	 lsl r2,r2,#2
- 171 009e 2C49     	 ldr r1,.L11+16
- 172 00a0 D150     	 str r1,[r2,r3]
- 173 00a2 12E0     	 b .L5
- 174              	.L10:
+ 154              	 .loc 1 21 0
+ 155 007e 0F23     	 mov r3,#15
+ 156 0080 FB18     	 add r3,r7,r3
+ 157 0082 1A78     	 ldrb r2,[r3]
+ 158 0084 324B     	 ldr r3,.L11+12
+ 159 0086 9200     	 lsl r2,r2,#2
+ 160 0088 D358     	 ldr r3,[r2,r3]
+ 161 008a 181C     	 add r0,r3,#0
+ 162 008c 3149     	 ldr r1,.L11+16
+ 163 008e FFF7FEFF 	 bl __aeabi_fcmpgt
+ 164 0092 031E     	 sub r3,r0,#0
+ 165 0094 07D0     	 beq .L10
+ 166              	 .loc 1 21 0 is_stmt 0 discriminator 1
+ 167 0096 0F23     	 mov r3,#15
+ 168 0098 FB18     	 add r3,r7,r3
+ 169 009a 1A78     	 ldrb r2,[r3]
+ 170 009c 2C4B     	 ldr r3,.L11+12
+ 171 009e 9200     	 lsl r2,r2,#2
+ 172 00a0 2C49     	 ldr r1,.L11+16
+ 173 00a2 D150     	 str r1,[r2,r3]
+ 174 00a4 12E0     	 b .L5
+ 175              	.L10:
   22:../Steering_Servos.c **** 		else if(Servo_PWMs[i] < 550) { Servo_PWMs[i] = 550;}
- 175              	 .loc 1 22 0 is_stmt 1
- 176 00a4 0F23     	 mov r3,#15
- 177 00a6 FB18     	 add r3,r7,r3
- 178 00a8 1A78     	 ldrb r2,[r3]
- 179 00aa 284B     	 ldr r3,.L11+12
- 180 00ac 9200     	 lsl r2,r2,#2
- 181 00ae D358     	 ldr r3,[r2,r3]
- 182 00b0 181C     	 add r0,r3,#0
- 183 00b2 2849     	 ldr r1,.L11+20
- 184 00b4 FFF7FEFF 	 bl __aeabi_fcmplt
- 185 00b8 031E     	 sub r3,r0,#0
- 186 00ba 06D0     	 beq .L5
- 187              	 .loc 1 22 0 is_stmt 0 discriminator 1
- 188 00bc 0F23     	 mov r3,#15
- 189 00be FB18     	 add r3,r7,r3
- 190 00c0 1A78     	 ldrb r2,[r3]
- 191 00c2 224B     	 ldr r3,.L11+12
- 192 00c4 9200     	 lsl r2,r2,#2
- 193 00c6 2349     	 ldr r1,.L11+20
- 194 00c8 D150     	 str r1,[r2,r3]
- 195              	.L5:
+ 176              	 .loc 1 22 0 is_stmt 1
+ 177 00a6 0F23     	 mov r3,#15
+ 178 00a8 FB18     	 add r3,r7,r3
+ 179 00aa 1A78     	 ldrb r2,[r3]
+ 180 00ac 284B     	 ldr r3,.L11+12
+ 181 00ae 9200     	 lsl r2,r2,#2
+ 182 00b0 D358     	 ldr r3,[r2,r3]
+ 183 00b2 181C     	 add r0,r3,#0
+ 184 00b4 2849     	 ldr r1,.L11+20
+ 185 00b6 FFF7FEFF 	 bl __aeabi_fcmplt
+ 186 00ba 031E     	 sub r3,r0,#0
+ 187 00bc 06D0     	 beq .L5
+ 188              	 .loc 1 22 0 is_stmt 0 discriminator 1
+ 189 00be 0F23     	 mov r3,#15
+ 190 00c0 FB18     	 add r3,r7,r3
+ 191 00c2 1A78     	 ldrb r2,[r3]
+ 192 00c4 224B     	 ldr r3,.L11+12
+ 193 00c6 9200     	 lsl r2,r2,#2
+ 194 00c8 2349     	 ldr r1,.L11+20
+ 195 00ca D150     	 str r1,[r2,r3]
+ 196              	.L5:
   17:../Steering_Servos.c **** 		Servo_PWMs[i] = -Angles_data[i]*deg_PWM + NP[i]; // calcuation of PWM for Angle on each wheel
- 196              	 .loc 1 17 0 is_stmt 1 discriminator 2
- 197 00ca 0F23     	 mov r3,#15
- 198 00cc FB18     	 add r3,r7,r3
- 199 00ce 1A78     	 ldrb r2,[r3]
- 200 00d0 0F23     	 mov r3,#15
- 201 00d2 FB18     	 add r3,r7,r3
- 202 00d4 0132     	 add r2,r2,#1
- 203 00d6 1A70     	 strb r2,[r3]
- 204              	.L2:
+ 197              	 .loc 1 17 0 is_stmt 1 discriminator 2
+ 198 00cc 0F23     	 mov r3,#15
+ 199 00ce FB18     	 add r3,r7,r3
+ 200 00d0 1A78     	 ldrb r2,[r3]
+ 201 00d2 0F23     	 mov r3,#15
+ 202 00d4 FB18     	 add r3,r7,r3
+ 203 00d6 0132     	 add r2,r2,#1
+ 204 00d8 1A70     	 strb r2,[r3]
+ 205              	.L2:
   17:../Steering_Servos.c **** 		Servo_PWMs[i] = -Angles_data[i]*deg_PWM + NP[i]; // calcuation of PWM for Angle on each wheel
- 205              	 .loc 1 17 0 is_stmt 0 discriminator 1
- 206 00d8 0F23     	 mov r3,#15
- 207 00da FB18     	 add r3,r7,r3
- 208 00dc 1B78     	 ldrb r3,[r3]
- 209 00de 032B     	 cmp r3,#3
- 210 00e0 97D9     	 bls .L7
- 211              	.LBE2:
+ 206              	 .loc 1 17 0 is_stmt 0 discriminator 1
+ 207 00da 0F23     	 mov r3,#15
+ 208 00dc FB18     	 add r3,r7,r3
+ 209 00de 1B78     	 ldrb r3,[r3]
+ 210 00e0 032B     	 cmp r3,#3
+ 211 00e2 96D9     	 bls .L7
+ 212              	.LBE2:
   23:../Steering_Servos.c **** 		}
   24:../Steering_Servos.c **** 
   25:../Steering_Servos.c **** 	//seting PWM values
   26:../Steering_Servos.c **** 	PWM_SetDutyCycle(&PWM_servo_fl,Servo_PWMs[0]);
- 212              	 .loc 1 26 0 is_stmt 1
- 213 00e2 1A4B     	 ldr r3,.L11+12
- 214 00e4 1B68     	 ldr r3,[r3]
- 215 00e6 181C     	 add r0,r3,#0
- 216 00e8 FFF7FEFF 	 bl __aeabi_f2uiz
- 217 00ec 021C     	 mov r2,r0
- 218 00ee 1A4B     	 ldr r3,.L11+24
- 219 00f0 181C     	 mov r0,r3
- 220 00f2 111C     	 mov r1,r2
- 221 00f4 FFF7FEFF 	 bl PWM_SetDutyCycle
+ 213              	 .loc 1 26 0 is_stmt 1
+ 214 00e4 1A4B     	 ldr r3,.L11+12
+ 215 00e6 1B68     	 ldr r3,[r3]
+ 216 00e8 181C     	 add r0,r3,#0
+ 217 00ea FFF7FEFF 	 bl __aeabi_f2uiz
+ 218 00ee 021C     	 mov r2,r0
+ 219 00f0 1A4B     	 ldr r3,.L11+24
+ 220 00f2 181C     	 mov r0,r3
+ 221 00f4 111C     	 mov r1,r2
+ 222 00f6 FFF7FEFF 	 bl PWM_SetDutyCycle
   27:../Steering_Servos.c **** 	PWM_SetDutyCycle(&PWM_servo_fr,Servo_PWMs[1]);
- 222              	 .loc 1 27 0
- 223 00f8 144B     	 ldr r3,.L11+12
- 224 00fa 5B68     	 ldr r3,[r3,#4]
- 225 00fc 181C     	 add r0,r3,#0
- 226 00fe FFF7FEFF 	 bl __aeabi_f2uiz
- 227 0102 021C     	 mov r2,r0
- 228 0104 154B     	 ldr r3,.L11+28
- 229 0106 181C     	 mov r0,r3
- 230 0108 111C     	 mov r1,r2
- 231 010a FFF7FEFF 	 bl PWM_SetDutyCycle
+ 223              	 .loc 1 27 0
+ 224 00fa 154B     	 ldr r3,.L11+12
+ 225 00fc 5B68     	 ldr r3,[r3,#4]
+ 226 00fe 181C     	 add r0,r3,#0
+ 227 0100 FFF7FEFF 	 bl __aeabi_f2uiz
+ 228 0104 021C     	 mov r2,r0
+ 229 0106 164B     	 ldr r3,.L11+28
+ 230 0108 181C     	 mov r0,r3
+ 231 010a 111C     	 mov r1,r2
+ 232 010c FFF7FEFF 	 bl PWM_SetDutyCycle
   28:../Steering_Servos.c **** 	PWM_SetDutyCycle(&PWM_servo_rl,Servo_PWMs[2]);
- 232              	 .loc 1 28 0
- 233 010e 0F4B     	 ldr r3,.L11+12
- 234 0110 9B68     	 ldr r3,[r3,#8]
- 235 0112 181C     	 add r0,r3,#0
- 236 0114 FFF7FEFF 	 bl __aeabi_f2uiz
- 237 0118 021C     	 mov r2,r0
- 238 011a 114B     	 ldr r3,.L11+32
- 239 011c 181C     	 mov r0,r3
- 240 011e 111C     	 mov r1,r2
- 241 0120 FFF7FEFF 	 bl PWM_SetDutyCycle
+ 233              	 .loc 1 28 0
+ 234 0110 0F4B     	 ldr r3,.L11+12
+ 235 0112 9B68     	 ldr r3,[r3,#8]
+ 236 0114 181C     	 add r0,r3,#0
+ 237 0116 FFF7FEFF 	 bl __aeabi_f2uiz
+ 238 011a 021C     	 mov r2,r0
+ 239 011c 114B     	 ldr r3,.L11+32
+ 240 011e 181C     	 mov r0,r3
+ 241 0120 111C     	 mov r1,r2
+ 242 0122 FFF7FEFF 	 bl PWM_SetDutyCycle
   29:../Steering_Servos.c **** 	PWM_SetDutyCycle(&PWM_servo_rr,Servo_PWMs[3]);
- 242              	 .loc 1 29 0
- 243 0124 094B     	 ldr r3,.L11+12
- 244 0126 DB68     	 ldr r3,[r3,#12]
- 245 0128 181C     	 add r0,r3,#0
- 246 012a FFF7FEFF 	 bl __aeabi_f2uiz
- 247 012e 021C     	 mov r2,r0
- 248 0130 0C4B     	 ldr r3,.L11+36
- 249 0132 181C     	 mov r0,r3
- 250 0134 111C     	 mov r1,r2
- 251 0136 FFF7FEFF 	 bl PWM_SetDutyCycle
+ 243              	 .loc 1 29 0
+ 244 0126 0A4B     	 ldr r3,.L11+12
+ 245 0128 DB68     	 ldr r3,[r3,#12]
+ 246 012a 181C     	 add r0,r3,#0
+ 247 012c FFF7FEFF 	 bl __aeabi_f2uiz
+ 248 0130 021C     	 mov r2,r0
+ 249 0132 0D4B     	 ldr r3,.L11+36
+ 250 0134 181C     	 mov r0,r3
+ 251 0136 111C     	 mov r1,r2
+ 252 0138 FFF7FEFF 	 bl PWM_SetDutyCycle
   30:../Steering_Servos.c **** 
   31:../Steering_Servos.c **** }
- 252              	 .loc 1 31 0
- 253 013a BD46     	 mov sp,r7
- 254 013c 05B0     	 add sp,sp,#20
- 255              	 
- 256 013e F0BD     	 pop {r4,r5,r6,r7,pc}
- 257              	.L12:
- 258              	 .align 2
- 259              	.L11:
- 260 0140 A4703D0A 	 .word 171798692
- 261 0144 D7A3E43F 	 .word 1071948759
- 262 0148 00000000 	 .word NP
- 263 014c 00000000 	 .word Servo_PWMs
- 264 0150 00806D44 	 .word 1148026880
- 265 0154 00800944 	 .word 1141473280
- 266 0158 00000000 	 .word PWM_servo_fl
- 267 015c 00000000 	 .word PWM_servo_fr
- 268 0160 00000000 	 .word PWM_servo_rl
- 269 0164 00000000 	 .word PWM_servo_rr
- 270              	 .cfi_endproc
- 271              	.LFE224:
- 273              	 .section .text.Servo_NP_setting,"ax",%progbits
- 274              	 .align 2
- 275              	 .global Servo_NP_setting
- 276              	 .code 16
- 277              	 .thumb_func
- 279              	Servo_NP_setting:
- 280              	.LFB225:
+ 253              	 .loc 1 31 0
+ 254 013c BD46     	 mov sp,r7
+ 255 013e 05B0     	 add sp,sp,#20
+ 256              	 
+ 257 0140 F0BD     	 pop {r4,r5,r6,r7,pc}
+ 258              	.L12:
+ 259 0142 C046     	 .align 2
+ 260              	.L11:
+ 261 0144 A4703D0A 	 .word 171798692
+ 262 0148 D7A3E43F 	 .word 1071948759
+ 263 014c 00000000 	 .word NP
+ 264 0150 00000000 	 .word Servo_PWMs
+ 265 0154 00806D44 	 .word 1148026880
+ 266 0158 00800944 	 .word 1141473280
+ 267 015c 00000000 	 .word PWM_servo_fl
+ 268 0160 00000000 	 .word PWM_servo_fr
+ 269 0164 00000000 	 .word PWM_servo_rl
+ 270 0168 00000000 	 .word PWM_servo_rr
+ 271              	 .cfi_endproc
+ 272              	.LFE224:
+ 274              	 .section .text.Servo_NP_setting,"ax",%progbits
+ 275              	 .align 2
+ 276              	 .global Servo_NP_setting
+ 277              	 .code 16
+ 278              	 .thumb_func
+ 280              	Servo_NP_setting:
+ 281              	.LFB225:
   32:../Steering_Servos.c **** 
   33:../Steering_Servos.c **** void Servo_NP_setting(void){
- 281              	 .loc 1 33 0
- 282              	 .cfi_startproc
- 283 0000 80B5     	 push {r7,lr}
- 284              	.LCFI3:
- 285              	 .cfi_def_cfa_offset 8
- 286              	 .cfi_offset 7,-8
- 287              	 .cfi_offset 14,-4
- 288 0002 00AF     	 add r7,sp,#0
- 289              	.LCFI4:
- 290              	 .cfi_def_cfa_register 7
+ 282              	 .loc 1 33 0
+ 283              	 .cfi_startproc
+ 284 0000 80B5     	 push {r7,lr}
+ 285              	.LCFI3:
+ 286              	 .cfi_def_cfa_offset 8
+ 287              	 .cfi_offset 7,-8
+ 288              	 .cfi_offset 14,-4
+ 289 0002 00AF     	 add r7,sp,#0
+ 290              	.LCFI4:
+ 291              	 .cfi_def_cfa_register 7
   34:../Steering_Servos.c **** 	  NP[0] = NPfl;
- 291              	 .loc 1 34 0
- 292 0004 0A4B     	 ldr r3,.L14
- 293 0006 1A88     	 ldrh r2,[r3]
- 294 0008 0A4B     	 ldr r3,.L14+4
- 295 000a 1A80     	 strh r2,[r3]
+ 292              	 .loc 1 34 0
+ 293 0004 0A4B     	 ldr r3,.L14
+ 294 0006 1A88     	 ldrh r2,[r3]
+ 295 0008 0A4B     	 ldr r3,.L14+4
+ 296 000a 1A80     	 strh r2,[r3]
   35:../Steering_Servos.c **** 	  NP[1] = NPfr;
- 296              	 .loc 1 35 0
- 297 000c 0A4B     	 ldr r3,.L14+8
- 298 000e 1B68     	 ldr r3,[r3]
- 299 0010 9AB2     	 uxth r2,r3
- 300 0012 084B     	 ldr r3,.L14+4
- 301 0014 5A80     	 strh r2,[r3,#2]
+ 297              	 .loc 1 35 0
+ 298 000c 0A4B     	 ldr r3,.L14+8
+ 299 000e 1B68     	 ldr r3,[r3]
+ 300 0010 9AB2     	 uxth r2,r3
+ 301 0012 084B     	 ldr r3,.L14+4
+ 302 0014 5A80     	 strh r2,[r3,#2]
   36:../Steering_Servos.c **** 	  NP[2] = NPrl;
- 302              	 .loc 1 36 0
- 303 0016 094B     	 ldr r3,.L14+12
- 304 0018 1B68     	 ldr r3,[r3]
- 305 001a 9AB2     	 uxth r2,r3
- 306 001c 054B     	 ldr r3,.L14+4
- 307 001e 9A80     	 strh r2,[r3,#4]
+ 303              	 .loc 1 36 0
+ 304 0016 094B     	 ldr r3,.L14+12
+ 305 0018 1B68     	 ldr r3,[r3]
+ 306 001a 9AB2     	 uxth r2,r3
+ 307 001c 054B     	 ldr r3,.L14+4
+ 308 001e 9A80     	 strh r2,[r3,#4]
   37:../Steering_Servos.c **** 	  NP[3] = NPrr;
- 308              	 .loc 1 37 0
- 309 0020 074B     	 ldr r3,.L14+16
- 310 0022 1B68     	 ldr r3,[r3]
- 311 0024 9AB2     	 uxth r2,r3
- 312 0026 034B     	 ldr r3,.L14+4
- 313 0028 DA80     	 strh r2,[r3,#6]
+ 309              	 .loc 1 37 0
+ 310 0020 074B     	 ldr r3,.L14+16
+ 311 0022 1B68     	 ldr r3,[r3]
+ 312 0024 9AB2     	 uxth r2,r3
+ 313 0026 034B     	 ldr r3,.L14+4
+ 314 0028 DA80     	 strh r2,[r3,#6]
   38:../Steering_Servos.c **** }
- 314              	 .loc 1 38 0
- 315 002a BD46     	 mov sp,r7
- 316              	 
- 317 002c 80BD     	 pop {r7,pc}
- 318              	.L15:
- 319 002e C046     	 .align 2
- 320              	.L14:
- 321 0030 00000000 	 .word NPfl
- 322 0034 00000000 	 .word NP
- 323 0038 00000000 	 .word NPfr
- 324 003c 00000000 	 .word NPrl
- 325 0040 00000000 	 .word NPrr
- 326              	 .cfi_endproc
- 327              	.LFE225:
- 329              	 .text
- 330              	.Letext0:
- 331              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
- 332              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
- 333              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
- 334              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_scu.h"
- 335              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_gpio.h"
- 336              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
- 337              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_ccu4.h"
- 338              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
- 339              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/PWM/pwm.h"
- 340              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
- 341              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
- 342              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/PWM/PWM_Extern.h"
+ 315              	 .loc 1 38 0
+ 316 002a BD46     	 mov sp,r7
+ 317              	 
+ 318 002c 80BD     	 pop {r7,pc}
+ 319              	.L15:
+ 320 002e C046     	 .align 2
+ 321              	.L14:
+ 322 0030 00000000 	 .word NPfl
+ 323 0034 00000000 	 .word NP
+ 324 0038 00000000 	 .word NPfr
+ 325 003c 00000000 	 .word NPrl
+ 326 0040 00000000 	 .word NPrr
+ 327              	 .cfi_endproc
+ 328              	.LFE225:
+ 330              	 .text
+ 331              	.Letext0:
+ 332              	 .file 2 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 333              	 .file 3 "c:\\dave\\dave-ide-4.4.2-64bit\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 334              	 .file 4 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/XMC1400.h"
+ 335              	 .file 5 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_scu.h"
+ 336              	 .file 6 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_gpio.h"
+ 337              	 .file 7 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc1_gpio.h"
+ 338              	 .file 8 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/XMCLib/inc/xmc_ccu4.h"
+ 339              	 .file 9 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
+ 340              	 .file 10 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/PWM/pwm.h"
+ 341              	 .file 11 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 342              	 .file 12 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Libraries/CMSIS/Infineon/XMC1400_series/Include/system_XMC1400.h"
+ 343              	 .file 13 "C:/GitHub/MobRob_Rover_NEW/Steering_Controller/MobRob_Steering_Controller/Dave/Generated/PWM/PWM_Extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 Steering_Servos.c
     {standard input}:22     .data.NP:00000000 NP
@@ -383,10 +384,10 @@ DEFINED SYMBOLS
     {standard input}:57     .bss.Servo_PWMs:00000000 $d
     {standard input}:71     .text.Steering_set_Angles:00000000 $t
     {standard input}:76     .text.Steering_set_Angles:00000000 Steering_set_Angles
-    {standard input}:260    .text.Steering_set_Angles:00000140 $d
-    {standard input}:274    .text.Servo_NP_setting:00000000 $t
-    {standard input}:279    .text.Servo_NP_setting:00000000 Servo_NP_setting
-    {standard input}:321    .text.Servo_NP_setting:00000030 $d
+    {standard input}:261    .text.Steering_set_Angles:00000144 $d
+    {standard input}:275    .text.Servo_NP_setting:00000000 $t
+    {standard input}:280    .text.Servo_NP_setting:00000000 Servo_NP_setting
+    {standard input}:322    .text.Servo_NP_setting:00000030 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

@@ -13,4 +13,6 @@
 void Steering_set_Angles(float Angles_data_int[4]);
 void Servo_NP_setting(void);
 
+volatile extern uint16_t NP[4];
+
 #endif /* STEERING_SERVOS_H_ */

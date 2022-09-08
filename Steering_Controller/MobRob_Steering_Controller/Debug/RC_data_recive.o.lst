@@ -1904,12 +1904,12 @@
  818 008e DAB2     	 uxtb r2,r3
  819 0090 154B     	 ldr r3,.L36+28
  820 0092 1A70     	 strb r2,[r3]
- 104:../RC_data_recive.c **** 					if(Steering_mode > 5)Steering_mode = 0;
+ 104:../RC_data_recive.c **** 					if(Steering_mode > 4)Steering_mode = 0;
  821              	 .loc 4 104 0
  822 0094 144B     	 ldr r3,.L36+28
  823 0096 1B78     	 ldrb r3,[r3]
  824 0098 DBB2     	 uxtb r3,r3
- 825 009a 052B     	 cmp r3,#5
+ 825 009a 042B     	 cmp r3,#4
  826 009c 02D9     	 bls .L34
  827              	 .loc 4 104 0 is_stmt 0 discriminator 1
  828 009e 124B     	 ldr r3,.L36+28

@@ -19,4 +19,8 @@ void RC_Recive(void);
 
 volatile extern uint8_t RC_Speed_Stop_counter;
 
+extern uint32_t captured_time_Speed;
+ extern float RC_Steering;
+extern volatile uint8_t RC_AUX1_duty;
+
 #endif /* RC_DATA_RECIVE_H_ */

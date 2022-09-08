@@ -101,7 +101,7 @@ void RC_Connected_ISR(void){
 			if(modeswitch_colldown == 0){
 				if(RC_Gear_duty == 0 && RC_Gear_duty_OLD == 1){
 					Steering_mode ++;
-					if(Steering_mode > 5)Steering_mode = 0;
+					if(Steering_mode > 4)Steering_mode = 0;
 					modeswitch_colldown = 10;
 				}
 			}

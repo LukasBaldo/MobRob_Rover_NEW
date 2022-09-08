@@ -235,6 +235,16 @@ void Steering_Function(float Steering_direction_cal, float Driving_speed_cal, ui
 			speed_rl = 0;
 			speed_rr = 0;
 
+			// servor NP setting
+			uint8_t front_or_back = 0;
+			if(RC_AUX1_duty == 1) front_or_back = 2;
+
+			if(captured_time_Speed > 1700000) NP[0 + front_or_back]++;
+			else if	(captured_time_Speed < 1200000) NP[0 + front_or_back]--;
+
+			if(RC_Steering > 30) NP[1 + front_or_back]++;
+			else if(RC_Steering < -30) NP[1 + front_or_back]--;
+
 	}
   // set gobal vars
   Steering_Angles[0] = angle_fl;

@@ -56,7 +56,7 @@ int main(void)
   /* Placeholder for user application code. The while loop below can be replaced with user application code. */
   while(1U)
   {
-	  //Servo_NP_setting();	  // nutral point servo setting
+	 // Servo_NP_setting();	  // nutral point servo setting
 
   }
 }
